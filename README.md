@@ -25,7 +25,7 @@
       + [Linkedin](https://www.linkedin.com/in/enric-guillem-dur%C3%A1n-vilar-9a1932138/)
  - Marc Ariza - Lead Designer
       + [Github](https://github.com/MarcArizaAlborni)
-      + [Linkedin](https://es.linkedin.com/)
+      + [Linkedin](https://www.linkedin.com/in/marc-ariza-0b2b431a2/)
  - Tomás Carreras - Lead Coder
       + [Github](https://github.com/tomascarreras1000)
       + [Linkedin](https://es.linkedin.com/)
