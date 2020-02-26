@@ -32,10 +32,7 @@
  - Alex Lopez - Lead QA
       + [Github](https://github.com/AlexLA99)
       + [Linkedin](https://es.linkedin.com/)
- 
- 
- 
- - Núria Lamonja: Team Leader, Management, Community Manager, Social Media
+ - Núria Lamonja: **Team Leader**, Management, Community Manager, Social Media
       + [Github](https://github.com/Needlesslord)
       + [Linkedin](https://es.linkedin.com/in/n%C3%BAria-lamonja-i-pujol-b149271a2)
 
