@@ -22,7 +22,7 @@
       + [Linkedin](https://es.linkedin.com/marcsjm19)
  - Enric-G. Durán - Lead UI Designer, Lead Artist and Music
       + [Github](https://github.com/EnricGDV)
-      + [Linkedin](https://es.linkedin.com/)
+      + [Linkedin](https://www.linkedin.com/in/enric-guillem-dur%C3%A1n-vilar-9a1932138/)
  - Marc Ariza - Lead Designer
       + [Github](https://github.com/MarcArizaAlborni)
       + [Linkedin](https://es.linkedin.com/)
