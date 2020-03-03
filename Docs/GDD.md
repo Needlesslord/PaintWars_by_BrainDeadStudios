@@ -135,7 +135,7 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
 .|Wooden Stockade Door| 2 | Paint + Wood | Wooden structure that will keep enemies outside of the base, works as a door for allied units | Grounded
 .|Bunker|3|Paint + Metal Scrap | Tier 3 tower that has high HP and can hold enemies for some time, it has average damage and attack speed, and low range | Anything
 .|Paint Dispenser|3| Paint + Metal Scrap | Tier 3 tower that throws paint to slow enemies near it, it deals no damage | Anything
-.|Paint Mortar |3| Paint + Metal Scrap | Tier 3 tower that blobs of paint to enemies, deals AOE damage | Grounded
+.|Paint Cannon |3| Paint + Metal Scrap | Tier 3 tower that throws blobs of paint to enemies, deals AOE damage | Grounded
 .|Explosive Decoy| 3 | Paint + Metal Scrap| Structure that attracts enemies into attacking it, High HP. When it is destroyed, deals High AOE damage | Anything
 .|Metal Wall |3| Paint + Metal Scrap |  Metal structure that will keep enemies outside of the base, allied units can't walk through it | Grounded
 .|Metal Wall Door| 3 | Paint + Metal Scrap | Metal structure that will keep enemies outside of the base, works as a door for allied units | Grounded
@@ -160,6 +160,25 @@ SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
 .|Paint Squire | 2 | Paint + Wood | Regular mid tier melee unit, good early game, regular mid/late game | Grounded
 .|Paint Knight | 3 | Paint + Metal Scrap | Good high tier unit, good any stage of the game |  Grounded
 .|Paint Chosen | 4 | Paint + Metal Scrap + Aluminium | Elite unit, very expensive and will win any direct engagement against him | Grounded
+
+#### RANGED
+
+SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
+ ---------|------------ | ------------- | -----------| ---------|-------
+.|Paint Ranger | 1 | Paint | Weak low tier melee unit, decent for early game, trash mid/late game | Anything
+.|Paint Sniper | 3 | Paint + Wood | Good high tier unit, great range and damage, low attack speed | Anything
+.|Paint Trooper | 3 | Paint + Metal Scrap | Good high tier unit, good any stage of the game |  Anything
+.|Paint Mortar | 4 | Paint + Metal Scrap + Aluminium | Elite unit, very expensive and will win any direct engagement against him | Grounded
+
+
+#### SPECIAL
+
+SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
+ ---------|------------ | ------------- | -----------| ---------|-------
+.|Blob Rider | 1 | Paint | Weak low tier melee unit, decent for early game, trash mid/late game | Anything
+.|Paint Amalgam| 3 |Paint | Good high tier unit, great range and damage, low attack speed | Anything
+.|Mecha-Painter | 3 | Villager and fighter |  Anything
+.|P-Rex | 4 | Paint + Metal Scrap + Aluminium | Elite unit, very expensive and will win any direct engagement against him | Grounded
 
 
 
