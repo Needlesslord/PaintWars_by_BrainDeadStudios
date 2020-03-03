@@ -89,7 +89,14 @@ Titanium
 
  SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
  ---------|------------ | ------------- | -----------| ---------
-.|Lumbermill v1 | 1 | Paint | Tier 1 Wood Gatherer, produces small amount of wood. Needs trees and workers to work
-.|Lumbermill v2 | 2 | Paint Wood | Tier 2 Wood Collector, produces regular amount of wood. Needs trees and workers to work
-.|Lumbermill v3 | 3 | Leather + Metal Scrap | Tier 3 Wood Collector, produces big amount of wood. Needs trees and workers to work
+.|Lumberjack cabin | 1 | Paint | Tier 1 Wood Gatherer, produces small amount of wood. Needs trees and workers to work
+.|Carpentry Station | 2 | Paint Wood | Tier 2 Wood Collector, produces regular amount of wood. Needs trees and workers to work
+.|Lumbermill | 3 | Leather + Metal Scrap | Tier 3 Wood Collector, produces big amount of wood. Needs trees and workers to work
 
+**METAL SCRAP**:
+
+ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
+ ---------|------------ | ------------- | -----------| ---------
+.|Metal Gatherer | 1 | Paint | Tier 1 Metal Gatherer, produces small amount of metal. Needs metal scrap piles and workers to work
+.|Metal Collector | 2 | Paint Wood | Tier 2 Metal Collector, produces regular amount of metal. Needs metal scrap piles and workers to work
+.|Metal Fabricator| 3 | Leather + Metal Scrap | Tier 3 Metal Collector, produces big amount of metal. Needs metal scrap piles and workers to work
