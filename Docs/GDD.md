@@ -75,4 +75,13 @@ Titanium
 .|House | 3 | Leather + Metal Scrap | Tier 3 Housing Building, not very cheap and gives decent capacity
 .|Mansion| 4 | Paint + Leather + Metal Scrap + Titanium | Tier 4 Housing Building, very expensive and gives lots of capacity
 
+##### RESOURCE BUILDINGS
+
+**Paint**:
+
+ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
+ ---------|------------ | ------------- | -----------| ---------
+.|Paint Extractor v1 | 1 | Paint | Tier 1 Paint Extraction, cheap and gather small amount of paint. Can only be placed in paint geysers
+.|Paint Extractor v2 | 2 | Paint Wood | Tier 2 Paint Extraction, gathers a regular amount of paint. Can only be placed in paint geysers
+.|Paint Extractor v1 | 3 | Leather + Metal Scrap | Tier 3 Paint Extraction, gathers a big amount of paint. Can only be placed in paint geysers
 
