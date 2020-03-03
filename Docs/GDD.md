@@ -58,10 +58,12 @@ The player will lose if his Main Building gets destroyed, this will happen if he
 ## GAME ELEMENTS
 #### RESOURCES:
 
-Paint
-Wood
-Metal Scrap
-Titanium
+SPRITE|   NAME         | TIER 
+ ---------|------------ | ------------- 
+.|Paint | 1 | 
+.|Wood | 2 | 
+.|Metal Scrap | 3 | 
+.|Titanium | 4 | 
 
 
 ### ALLIED BUILDINGS:
