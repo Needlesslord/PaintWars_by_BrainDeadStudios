@@ -39,10 +39,10 @@ Enemy waves will come constantly after a certain amount of time or specific acti
 ### Objective:
 The main goal of the game is to destroy all enemy bases while you defend your own base from oposing armies. The enemy will attack the player with waves of enemies, each of them beeing stronger than previously.
 
-### Player Win:
-The player will win if he is able to defend his base enough time for him to destroy all enemy bases.
+### Player Win
+If the player is able to manage resources correctly, defend his base from enemy attacks and build an army that can defeat all enemy bases, he will achieve victory.
 
-## Player Lose:
+### Player Lose
 The player will lose if his Main Building gets destroyed, this will happen if he is not able to defeat the enemy waves that attack his base.
 
 ### Main Gameplay Characteristics
