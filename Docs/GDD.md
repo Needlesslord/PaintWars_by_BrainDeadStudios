@@ -64,7 +64,7 @@ Metal Scrap
 Titanium
 
 
-#### ALLIED BUILDINGS:
+### ALLIED BUILDINGS:
 
 ##### HOUSING
 
@@ -77,7 +77,7 @@ Titanium
 
 ##### RESOURCE BUILDINGS
 
-**Paint**:
+**PAINT**:
 
  SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
  ---------|------------ | ------------- | -----------| ---------
