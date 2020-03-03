@@ -58,6 +58,10 @@ The player will lose if his Main Building gets destroyed, this will happen if he
 ## GAME ELEMENTS
 #### RESOURCES:
 
+Paint
+Wood
+Metal Scrap
+Titanium
 
 
 #### ALLIED BUILDINGS:
@@ -66,9 +70,9 @@ The player will lose if his Main Building gets destroyed, this will happen if he
 
    NAME         | TIER |   REQUIRED RESOURCES | UTILITY
 ------------ | ------------- | -----------| ---------
-Tent | Content cell 2
-Shack | Content column 2
-House |
-Mansion|
+Tent | 1 | Paint | Tier 1 Housing Building, very cheap but gives very little capacity
+Shack | 2 | Paint Wood | Tier 2 Housing Building, cheap and gives some capacity
+House | 3 | Leather + Metal Scrap | Tier 3 Housing Building, not very cheap and gives decent capacity
+Mansion| 4 | Paint + Leather + Metal Scrap + Titanium | Tier 4 Housing Building, very expensive and gives lots of capacity
 
 
