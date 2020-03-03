@@ -108,4 +108,35 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
 .|Titanium Extractor | 4 | Paint + Leather + Scrap + Titanium | Tier 4 Titanium Extractor, produces a very small amount of titanium, can be placed anywhere, doesn't need workers (Only 1 building of this kind)
 
 
+##### EXPLORATION 
+
+ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
+ ---------|------------ | ------------- | -----------| ---------
+.|Watchtower | 2 | Paint + Leather | Tier 2 exploration tower, reveals a small area around the building, 
+.|Radar | 3 | Paint + Metal Scrap | Tier 3 exploration tower, reveals a big area around the building
+.|Atlas| 4 | Paint + Leather + Scrap + Titanium | Tier 4 exploration tower, reveals the entire map, very expensive to build (Only 1 building of this kind)
+
+##### RESEARCH
+
+SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
+ ---------|------------ | ------------- | -----------| ---------
+.|Llibrary | 2 | Paint + Leather + Scrap | Tier 2 reasearch building, allows the player to research low/mid tier upgrades, upgrades made with paint/leather (Only 1 building of this kind)
+.|Laboratory | 3 | Paint + Leather + Scrap | Tier 3 research building, allows the player to research low/mid/high tier upgrades, upgrades made with paint/leather/metal (Only 1 building of this kind)
+.|High Tech Lab| 4 | Paint + Leather + Scrap + Titanium | Tier 4 research building, allows the player to research low/mid/high/elite tier upgrades, upgrades made with paint/leather/metal/titanium (Only 1 building of this kind)
+
+
+#### DEFENSIVE BUILDINGS 
+
+SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
+ ---------|------------ | ------------- | -----------| ---------
+.|Ranger Tower | 2 | Paint+ Leather | Tier 2 tower that shoots at enemies that get close, regular range and damage, low attack speed
+.|Decoy | 2 | Paint + Wood | Structure that deals no damage but attracts enemies into attacking it, High HP
+.|Wooden Stockade| 2 | Paint + Wood | Wooden structure that will keep enemies outside of the base, allied units can't walk through it
+.|Wooden Stockade Door| 2 | Paint + Wood | Wooden structure that will keep enemies outside of the base, works as a door for allied units
+.|Bunker|Paint + Metal Scrap | Tier 3 tower that has high HP and can hold enemies for some time, it has average damage and attack speed, and low range
+.|Paint Dispenser|3| Paint + Wood | Wooden structure that will keep enemies outside of the base, works as a door for allied units
+
+
+
+
 
