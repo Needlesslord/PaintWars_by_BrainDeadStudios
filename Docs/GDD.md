@@ -77,7 +77,7 @@ Titanium
 
 ##### RESOURCE BUILDINGS
 
-**PAINT**:
+**PAINT**
 
  SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
  ---------|------------ | ------------- | -----------| ---------
@@ -85,7 +85,7 @@ Titanium
 .|Paint Extractor v2 | 2 | Paint Wood | Tier 2 Paint Extraction, gathers a regular amount of paint. Can only be placed in paint geysers
 .|Paint Extractor v3 | 3 | Leather + Metal Scrap | Tier 3 Paint Extraction, gathers a big amount of paint. Can only be placed in paint geysers
 
-**WOOD**:
+**WOOD**
 
  SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
  ---------|------------ | ------------- | -----------| ---------
@@ -93,10 +93,19 @@ Titanium
 .|Carpentry Station | 2 | Paint Wood | Tier 2 Wood Collector, produces regular amount of wood. Needs trees and workers to work
 .|Lumbermill | 3 | Leather + Metal Scrap | Tier 3 Wood Collector, produces big amount of wood. Needs trees and workers to work
 
-**METAL SCRAP**:
+**METAL SCRAP**
 
  SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
  ---------|------------ | ------------- | -----------| ---------
 .|Metal Gatherer | 1 | Paint | Tier 1 Metal Gatherer, produces small amount of metal. Needs metal scrap piles and workers to work
 .|Metal Collector | 2 | Paint Wood | Tier 2 Metal Collector, produces regular amount of metal. Needs metal scrap piles and workers to work
 .|Metal Fabricator| 3 | Leather + Metal Scrap | Tier 3 Metal Collector, produces big amount of metal. Needs metal scrap piles and workers to work
+
+**TITANIUM**
+
+SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
+ ---------|------------ | ------------- | -----------| ---------
+.|Titanium Extractor | 4 | Paint + Leather + Scrap + Titanium | Tier 4 Titanium Extractor, produces a very small amount of titanium, can be placed anywhere, doesn't need workers (Only 1 building of this kind)
+
+
+
