@@ -47,4 +47,10 @@ The player will lose if his Main Building gets destroyed, this will happen if he
 
 ### Main Gameplay Characteristics
 
+**Build & Manage Your Base:** The player will be able to build and upgrade several buildings to strengthen his base by using resrouces that he will have to manage accordingly in order to defend from the enemy armies that will attack. 
+
+**Command Armies:** The player will have at its disposal several  buildings to strengthen his army and attack the enemy to finally stop the continuous attacks from enemy armies.
+
 **Enemy Waves:** The player will have to defend from several waves of enemies, with increasing difficulty as the game progresses. These waves will come at certain situations in the game such as the player destroying an enemy base, or after a certain amount of time.
+
+
