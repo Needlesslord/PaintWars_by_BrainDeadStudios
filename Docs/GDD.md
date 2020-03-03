@@ -83,5 +83,13 @@ Titanium
  ---------|------------ | ------------- | -----------| ---------
 .|Paint Extractor v1 | 1 | Paint | Tier 1 Paint Extraction, cheap and gather small amount of paint. Can only be placed in paint geysers
 .|Paint Extractor v2 | 2 | Paint Wood | Tier 2 Paint Extraction, gathers a regular amount of paint. Can only be placed in paint geysers
-.|Paint Extractor v1 | 3 | Leather + Metal Scrap | Tier 3 Paint Extraction, gathers a big amount of paint. Can only be placed in paint geysers
+.|Paint Extractor v3 | 3 | Leather + Metal Scrap | Tier 3 Paint Extraction, gathers a big amount of paint. Can only be placed in paint geysers
+
+**WOOD**:
+
+ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
+ ---------|------------ | ------------- | -----------| ---------
+.|Lumbermill v1 | 1 | Paint | Tier 1 Wood Gatherer, produces small amount of wood. Needs trees and workers to work
+.|Lumbermill v2 | 2 | Paint Wood | Tier 2 Wood Collector, produces regular amount of wood. Needs trees and workers to work
+.|Lumbermill v3 | 3 | Leather + Metal Scrap | Tier 3 Wood Collector, produces big amount of wood. Needs trees and workers to work
 
