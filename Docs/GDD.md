@@ -131,11 +131,12 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
  ---------|------------ | ------------- | -----------| ---------|--------
 .|Ranger Tower | 2 | Paint+ Leather | Tier 2 tower that shoots at enemies that get close, regular range and damage, low attack speed| Anything
 .|Decoy | 2 | Paint + Wood | Structure that deals no damage but attracts enemies into attacking it, High HP | Anything
-.|Wooden Stockade| 2 | Paint + Wood | Wooden structure that will keep enemies outside of the base, allied units can't walk through it | Won't work on flying units
-.|Wooden Stockade Door| 2 | Paint + Wood | Wooden structure that will keep enemies outside of the base, works as a door for allied units | Won't work on flying units
+.|Wooden Stockade| 2 | Paint + Wood | Wooden structure that will keep enemies outside of the base, allied units can't walk through it | Won't block flying units
+.|Wooden Stockade Door| 2 | Paint + Wood | Wooden structure that will keep enemies outside of the base, works as a door for allied units | Won't block flying units
 .|Bunker|Paint + Metal Scrap| 3 | Tier 3 tower that has high HP and can hold enemies for some time, it has average damage and attack speed, and low range | Anything
-.|Paint Dispenser|3| Paint + Wood | Wooden structure that will keep enemies outside of the base, works as a door for allied units | Anything
-
+.|Paint Dispenser|3| Paint + Metal Scrap | Tier 3 tower that throws paint to slow enemies near it, it deals no damage | Anything
+.|Metal Wall |3| Paint + Metal Scrap |  Wooden structure that will keep enemies outside of the base, allied units can't walk through it | Won't block flying units
+.|Metal Wall Door| 3 | Paint + Metal Scrap | Metal structure that will keep enemies outside of the base, works as a door for allied units | Won't block on flying units
 
 
 
