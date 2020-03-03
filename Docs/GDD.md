@@ -138,6 +138,10 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
 .|Explosive Decoy| 3 | Paint + Metal Scrap| Structure that attracts enemies into attacking it, High HP. When it is destroyed, deals High AOE damage | Anything
 .|Metal Wall |3| Paint + Metal Scrap |  Metal structure that will keep enemies outside of the base, allied units can't walk through it | Won't block flying units
 .|Metal Wall Door| 3 | Paint + Metal Scrap | Metal structure that will keep enemies outside of the base, works as a door for allied units | Won't block on flying units
+.|Paint Laser| 4 | Paint + Metal Scrap + Titanium |Tier 4 tower that deals massive damage to a single target, high range and low attack speed | Anything
+.|Paint MachineGun| 4 | Paint + Metal Scrap + Titanium |Tier 4 tower that deals regular damage to a single target, medium range and extremely high attack speed | Anything
+
+
 
 
 
