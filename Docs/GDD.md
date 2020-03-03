@@ -135,6 +135,7 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
 .|Wooden Stockade Door| 2 | Paint + Wood | Wooden structure that will keep enemies outside of the base, works as a door for allied units | Grounded
 .|Bunker|Paint + Metal Scrap| 3 | Tier 3 tower that has high HP and can hold enemies for some time, it has average damage and attack speed, and low range | Anything
 .|Paint Dispenser|3| Paint + Metal Scrap | Tier 3 tower that throws paint to slow enemies near it, it deals no damage | Anything
+.|Paint Mortar |3| Paint + Metal Scrap | Tier 3 tower that blobs of paint to enemies, deals AOE damage | Grounded
 .|Explosive Decoy| 3 | Paint + Metal Scrap| Structure that attracts enemies into attacking it, High HP. When it is destroyed, deals High AOE damage | Anything
 .|Metal Wall |3| Paint + Metal Scrap |  Metal structure that will keep enemies outside of the base, allied units can't walk through it | Grounded
 .|Metal Wall Door| 3 | Paint + Metal Scrap | Metal structure that will keep enemies outside of the base, works as a door for allied units | Grounded
