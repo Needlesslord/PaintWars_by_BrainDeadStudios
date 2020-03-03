@@ -181,7 +181,7 @@ SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
 .|Paint Amalgam| 1 |Paint | Good high tier unit, great range and damage, low attack speed | Anything
 .|Blo-Bat | 2 | Paint | Weak low tier melee unit, decent for early game, trash mid/late game | Anything
 .|Paint-O-Bot| 2 |Paint | Good high tier unit, great range and damage, low attack speed | Anything
-.|Blo-Bat | 3 | Paint | Weak low tier melee unit, decent for early game, trash mid/late game | Anything
+.|Paint-Drops | 3 | Paint | Weak low tier melee unit, decent for early game, trash mid/late game | Anything
 .|Mecha-Painter | 3 |Paint| Villager and fighter |  Anything
 .|P-Rex | 4 | Paint + Metal Scrap + Titanium | Elite unit, very expensive and will win any direct engagement against him | Grounded
 
