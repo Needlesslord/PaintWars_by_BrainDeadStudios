@@ -5,7 +5,6 @@
 
 ## OVERVIEW 
 
-
 "GAME NAME" is an isometric single player RTS game featuring a campaign with playable units, buildable structures and manageable resources where the player will have to fight against waves of enemies trying to destroy his base.
 
 The game is located in a paint themed world where resources, units and buildings will be related to paint.
@@ -24,3 +23,28 @@ The player will also have to attack enemy bases distributed around the map, thes
 
 ### Endless Waves:
 Enemy waves will come constantly after a certain amount of time or specific actions are made by the player. The only way to stop them will be to destroy the enemy bases.
+
+
+## PLOT
+
+
+
+## CONTROLS
+
+
+
+
+## GAMEPLAY
+
+### Objective:
+The main goal of the game is to destroy all enemy bases while you defend your own base from oposing armies. The enemy will attack the player with waves of enemies, each of them beeing stronger than previously.
+
+### Player Win:
+The player will win if he is able to defend his base enough time for him to destroy all enemy bases.
+
+## Player Lose:
+The player will lose if his Main Building gets destroyed, this will happen if he is not able to defeat the enemy waves that attack his base.
+
+### Main Gameplay Characteristics
+
+**Enemy Waves:** The player will have to defend from several waves of enemies, with increasing difficulty as the game progresses. These waves will come at certain situations in the game such as the player destroying an enemy base, or after a certain amount of time.
