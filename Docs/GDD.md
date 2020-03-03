@@ -53,4 +53,12 @@ The player will lose if his Main Building gets destroyed, this will happen if he
 
 **Enemy Waves:** The player will have to defend from several waves of enemies, with increasing difficulty as the game progresses. These waves will come at certain situations in the game such as the player destroying an enemy base, or after a certain amount of time.
 
+**Explore the map:** The map is full of scarce resources that the player will be able to collect in order to reinforce his army or upgrade even further his base.
+
+## GAME ELEMENTS
+
+#### ALLIED BUILDINGS:
+
+###### Housing
+
 
