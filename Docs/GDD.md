@@ -59,6 +59,6 @@ The player will lose if his Main Building gets destroyed, this will happen if he
 
 #### ALLIED BUILDINGS:
 
-###### Housing
+###### **Housing**
 
 
