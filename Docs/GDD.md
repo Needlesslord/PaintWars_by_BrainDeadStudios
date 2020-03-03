@@ -146,14 +146,15 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
 ### ALLIED UNITS
 
 #### SPECIFIC ROLES 
+
 SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
- ---------|------------ | ------------- | -----------| ---------
+ ---------|------------ | ------------- | -----------| ---------|----
 .|Painter | 1 | Paint | Recollect (Typical villager in RTS games), can also fight if needed to, but is weak | Resources
 .|Explorer | 1 | Paint | Very fast melee unit, great for exploring and scouting, terrible at fighting | Grounded
 
 #### INFANTRY
 SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
- ---------|------------ | ------------- | -----------| ---------
+ ---------|------------ | ------------- | -----------| ---------|-------
 .|Paint Recruit | 1 | Paint | Recollect (Typical villager in RTS games), can also fight if needed to, but is weak | Resources
 .|Paint Squire | 1 | Paint | Very fast melee unit, great for exploring and scouting, terrible at fighting | Grounded
 .|Paint Recruit | 1 | Paint | Recollect (Typical villager in RTS games), can also fight if needed to, but is weak | Resources
