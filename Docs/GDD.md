@@ -59,6 +59,11 @@ The player will lose if his Main Building gets destroyed, this will happen if he
 
 #### ALLIED BUILDINGS:
 
-##### Housing
+##### HOUSING
+
+   NAME         | Second Header
+------------ | -------------
+Content cell 1 | Content cell 2
+Content column 1 | Content column 2
 
 
