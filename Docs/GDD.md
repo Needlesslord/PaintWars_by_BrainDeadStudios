@@ -56,14 +56,19 @@ The player will lose if his Main Building gets destroyed, this will happen if he
 **Explore the map:** The map is full of scarce resources that the player will be able to collect in order to reinforce his army or upgrade even further his base.
 
 ## GAME ELEMENTS
+#### RESOURCES:
+
+
 
 #### ALLIED BUILDINGS:
 
 ##### HOUSING
 
-   NAME         | Second Header
------------- | -------------
-Content cell 1 | Content cell 2
-Content column 1 | Content column 2
+   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
+------------ | ------------- | -----------| ---------
+Tent | Content cell 2
+Shack | Content column 2
+House |
+Mansion|
 
 
