@@ -153,12 +153,15 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
 .|Explorer | 1 | Paint | Very fast melee unit, great for exploring and scouting, terrible at fighting | Grounded
 
 #### INFANTRY
+
 SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------
-.|Paint Recruit | 1 | Paint | Recollect (Typical villager in RTS games), can also fight if needed to, but is weak | Resources
-.|Paint Squire | 1 | Paint | Very fast melee unit, great for exploring and scouting, terrible at fighting | Grounded
-.|Paint Recruit | 1 | Paint | Recollect (Typical villager in RTS games), can also fight if needed to, but is weak | Resources
-.|Paint Squire | 1 | Paint | Very fast melee unit, great for exploring and scouting, terrible at fighting | Grounded
+.|Paint Recruit | 1 | Paint | Weak low tier melee unit, decent for early game, trash mid/late game | Grounded
+.|Paint Squire | 2 | Paint + Wood | Regular mid tier melee unit, good early game, regular mid/late game | Grounded
+.|Paint Knight | 3 | Paint + Metal Scrap | Good high tier unit, good any stage of the game |  Grounded
+.|Paint Chosen | 4 | Paint + Metal Scrap + Aluminium | Elite unit, very expensive and will win any direct engagement against him | Grounded
+
+
 
 
 
