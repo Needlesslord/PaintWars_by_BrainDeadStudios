@@ -209,15 +209,15 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
 
 SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
-.|Paint Slime | 5 | Paint |30|15| Basic Enemy Unit | Grounded
-.|Dark Rider | 5 | Paint + Wood |50|25| Regular mid tier melee unit, good early game, regular mid/late game | Grounded
-.|Corrupted Knight | 5 | Paint + Metal Scrap |75|40| Good high tier unit, good any stage of the game | Grounded
-.|Explosive Blob | 5 | Paint + Metal Scrap + Aluminium |50|300| Elite unit| Grounded
-.|Forsaken Sniper | 5 | Paint + Metal Scrap + Aluminium |100|25| Elite unit| Grounded
+.|Paint Slime | 5 | Paint |30|15| Ground Unit | Grounded
+.|Dark Rider | 5 | Paint + Wood |50|25| Ground Unit | Grounded
+.|Corrupted Knight | 5 | Paint + Metal Scrap |75|40| Ground Unit | Grounded
+.|Explosive Blob | 5 | Paint + Metal Scrap + Aluminium |50|300| Ground Unit. AOE damage around the unit, dies after it attacks| Grounded
+.|Forsaken Sniper | 5 | Paint + Metal Scrap + Aluminium |100|25| Ground Unit| Grounded
 .|Floating Blob | 5 | Paint + Metal Scrap + Aluminium |20|15| Flying| Grounded
 .|Corrupted Eye | 5 | Paint + Metal Scrap + Aluminium |150|30| Flying| Grounded
-.|Black Executioner | 5 | Paint + Metal Scrap + Aluminium |300|40| Ground| Grounded
-.|Corruptor | 6 | Paint + Metal Scrap + Aluminium |500|100| BOSS| Anything
+.|Black Executioner | 5 | Paint + Metal Scrap + Aluminium |300|40| Ground Unit| Grounded
+.|Corruptor | 6 | Paint + Metal Scrap + Aluminium |500|100|BOSS| Anything
 
 
 
