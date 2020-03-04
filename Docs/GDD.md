@@ -177,13 +177,13 @@ SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARG
 
 SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
-.|Blob Rider | 1 | Paint | Weak low tier melee unit, decent for early game, trash mid/late game | Anything
-.|Paint Amalgam| 1 |Paint | Good high tier unit, great range and damage, low attack speed | Anything
-.|Blo-Bat | 2 | Paint | Weak low tier melee unit, decent for early game, trash mid/late game | Anything
-.|Paint-O-Bot| 2 |Paint | Good high tier unit, great range and damage, low attack speed | Anything
-.|Paint-Drops | 3 | Paint | Weak low tier melee unit, decent for early game, trash mid/late game | Anything
-.|Mecha-Painter | 3 |Paint| Villager and fighter |  Anything
-.|P-Rex | 4 | Paint + Metal Scrap + Titanium | Elite unit, very expensive and will win any direct engagement against him | Grounded
+.|Blob Rider | 1 | Paint |30|15|Polivalent Unit | Anything
+.|Paint Amalgam| 1 |Paint |75|30| Expensive Unit | Anything
+.|Blo-Bat | 2 | Paint |15|10| Weak low tier melee unit, decent for early game, trash mid/late game | Anything
+.|Paint-O-Bot| 2 |150|10|Paint + Metal Scrap | Good high tier unit, great range and damage, low attack speed | Anything
+.|Paintshee | 3 | Paint|30|75| Very fast and high damage, low health | Grounded
+.|Mecha-Painter | 3 |Paint + Metal Scrap|250|25| Villager and fighter |  Anything
+.|P-Rex | 4 | Paint + Metal Scrap + Titanium |400|50| Elite unit, very expensive and will win any direct engagement against him | Grounded
 
 
 
