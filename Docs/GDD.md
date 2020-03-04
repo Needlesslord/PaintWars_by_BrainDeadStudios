@@ -120,7 +120,11 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
  ---------|------------ | ------------- | -----------| ---------|-----------
 .|Titanium Extractor | 4 | Paint + Wood + Metal Scrap + Titanium |200| Tier 4 Titanium Extractor, produces a very small amount of titanium, can be placed anywhere, doesn't need workers (Only 1 building of this kind)
 
+**FOOD**
 
+SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
+ ---------|------------ | ------------- | -----------| ---------|-----------
+.|Farm | 0 | Paint + Wood |50| Automatically creates Food
 ##### EXPLORATION 
 
  SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
@@ -164,6 +168,7 @@ SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
 .|Painter | 1 | Paint |20|1| Ground Unit. Recollect resources and building| Resources/Grounded
 .|Explorer | 1 | Paint |35|5| Ground Unit. Very Fast | Grounded
+
 
 #### INFANTRY
 
