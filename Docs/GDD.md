@@ -37,7 +37,7 @@ Enemy waves will come constantly after a certain amount of time or specific acti
 ## GAMEPLAY
 
 ### Objective:
-The main goal of the game is to destroy all enemy bases while you defend your own base from oposing armies. The enemy will attack the player with waves of enemies, each of them beeing stronger than previously.
+The main goal of the game is to destroy all enemy bases while you defend your own base from oposing armies. The enemy will attack the player with waves of enemies, each of them being stronger than the previous one.
 
 ### Player Win
 If the player is able to manage resources correctly, defend his base from enemy attacks and build an army that can defeat all enemy bases, he will achieve victory.
