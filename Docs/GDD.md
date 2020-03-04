@@ -120,8 +120,8 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
 
 ##### RESEARCH
 
-SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
- ---------|------------ | ------------- | -----------| ---------
+SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
+ ---------|------------ | ------------- | -----------| ---------|--------
 .|Library | 2 | Paint + Leather + Scrap |200| Tier 2 reasearch building, allows the player to research low/mid tier upgrades, upgrades made with paint/leather (Only 1 building of this kind)
 .|Laboratory | 3 | Paint + Leather + Scrap |300| Tier 3 research building, allows the player to research low/mid/high tier upgrades, upgrades made with paint/leather/metal (Only 1 building of this kind)
 .|High Tech Lab| 4 | Paint + Leather + Scrap + Titanium |400| Tier 4 research building, allows the player to research low/mid/high/elite tier upgrades, upgrades made with paint/leather/metal/titanium (Only 1 building of this kind)
@@ -133,16 +133,16 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH|DAMAGE| UTILITY | T
  ---------|------------ | ------------- | -----------| ---------|--------|------------------|-------------|
 .|Ranger Tower | 2 | Paint+ Leather |150|10| Tier 2 tower that shoots at enemies that get close, regular range and damage, low attack speed| Anything
 .|Decoy | 2 | Paint + Wood |300|0| Structure that deals no damage but attracts enemies into attacking it, High HP | Anything
-.|Wooden Stockade| 2 | Paint + Wood | Wooden structure that will keep enemies outside of the base, allied units can't walk through it | Grounded
-.|Wooden Stockade Door| 2 | Paint + Wood | Wooden structure that will keep enemies outside of the base, works as a door for allied units | Grounded
-.|Bunker|3|Paint + Metal Scrap | Tier 3 tower that has high HP and can hold enemies for some time, it has average damage and attack speed, and low range | Anything
-.|Paint Dispenser|3| Paint + Metal Scrap | Tier 3 tower that throws paint to slow enemies near it, it deals no damage | Anything
-.|Paint Cannon |3| Paint + Metal Scrap | Tier 3 tower that throws blobs of paint to enemies, deals AOE damage | Grounded
-.|Explosive Decoy| 3 | Paint + Metal Scrap| Structure that attracts enemies into attacking it, High HP. When it is destroyed, deals High AOE damage | Anything
-.|Metal Wall |3| Paint + Metal Scrap |  Metal structure that will keep enemies outside of the base, allied units can't walk through it | Grounded
-.|Metal Wall Door| 3 | Paint + Metal Scrap | Metal structure that will keep enemies outside of the base, works as a door for allied units | Grounded
-.|Paint Laser| 4 | Paint + Metal Scrap + Titanium |Tier 4 tower that deals massive damage to a single target, high range and low attack speed | Anything
-.|Paint MachineGun| 4 | Paint + Metal Scrap + Titanium |Tier 4 tower that deals regular damage to a single target, medium range and extremely high attack speed | Anything
+.|Wooden Stockade| 2 | Paint + Wood |50|0| Wooden structure that will keep enemies outside of the base, allied units can't walk through it | Grounded
+.|Wooden Stockade Door| 2 | Paint + Wood |75|0| Wooden structure that will keep enemies outside of the base, works as a door for allied units | Grounded
+.|Bunker|3|Paint + Metal Scrap |300|15| Tier 3 tower that has high HP and can hold enemies for some time, it has average damage and attack speed, and low range | Anything
+.|Paint Dispenser|3| Paint + Metal Scrap |250|0| Tier 3 tower that throws paint to slow enemies near it, it deals no damage | Anything
+.|Paint Cannon |3| Paint + Metal Scrap |200|25| Tier 3 tower that throws blobs of paint to enemies, deals AOE damage | Grounded
+.|Explosive Decoy| 3 | Paint + Metal Scrap|400|100| Structure that attracts enemies into attacking it, High HP. When it is destroyed, deals High AOE damage | Anything
+.|Metal Wall |3| Paint + Metal Scrap |100|0|  Metal structure that will keep enemies outside of the base, allied units can't walk through it | Grounded
+.|Metal Wall Door| 3 | Paint + Metal Scrap 150|0| Metal structure that will keep enemies outside of the base, works as a door for allied units | Grounded
+.|Paint Laser| 4 | Paint + Metal Scrap + Titanium |300|50|Tier 4 tower that deals massive damage to a single target, high range and low attack speed | Anything
+.|Paint MachineGun| 4 | Paint + Metal Scrap + Titanium |300|10|Tier 4 tower that deals regular damage to a single target, medium range and extremely high attack speed | Anything
 
 
 ### ALLIED UNITS
