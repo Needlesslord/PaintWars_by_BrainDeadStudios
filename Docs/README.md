@@ -9,6 +9,8 @@
 + The Game
 + The Team
 + Sections
++ Social Media
++ License
 
 
 ***
@@ -76,6 +78,35 @@ Here you will find an index of all the data relevant to the game. All this infor
 
 
 ***
+
+
+
+
+## Social Media
+
+You can find us in our media handles:
+
+[Web](https://needlesslord.github.io/BrainDeadStudios/): https://needlesslord.github.io/BrainDeadStudios/
+[Instagram](https://www.instagram.com/braindeadstd/):  @braindeadstd (https://www.instagram.com/braindeadstd/)
+[Twitter](https://twitter.com/braindeadstd): @braindeadstd (https://twitter.com/braindeadstd)
+[Youtube](https://www.youtube.com/channel/UCBQi2z2n9ROyIaE3GKfXTWA): https://www.youtube.com/channel/UCBQi2z2n9ROyIaE3GKfXTWA
+[Twitch](https://www.twitch.tv/braindeadstd):  @braindeadstd (https://www.twitch.tv/braindeadstd)
+
+
+***
+
+
+
+
+## License
+
+
+
+
+
+***
+
+
 
 
 
