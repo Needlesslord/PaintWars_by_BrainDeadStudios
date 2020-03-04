@@ -217,8 +217,8 @@ SPRITE|   NAME   | TIER  | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
 .|Floating Blob | 5 | 20|15| Flying| Grounded
 .|Corrupted Eye | 5 | 150|30| Flying| Grounded
 .|Black Executioner | 5 |300|40| Ground Unit| Grounded
-.|Corruptor | 6 | 350 2 first appearances, 450 3rd and 4th appearance, 500 5th appearance & onwards|50 2 first appearances, 450 3rd and 4th appearance , 500 5th appearance & onwards|BOSS. Appears every 3 waves or after destroying a spawner | Anything
-.|Chroma-King | 6 | 2000| 200 |FINAL BOSS, Extremely Slow & only appears in the last wave| Town Hall
+.|Corruptor | 6 | (350) first two appearances, (450) 3rd and 4th appearance, (500) 5th appearance & onwards|(50) first two appearances, (100) 3rd and 4th appearance, (200) 5th appearance & onwards|BOSS. Appears every 3 waves or after destroying a spawner | Anything
+.|Chroma-King | 6 | 2000| 500 |FINAL BOSS, Extremely Slow & only appears in the last wave| Town Hall
 
 
 
