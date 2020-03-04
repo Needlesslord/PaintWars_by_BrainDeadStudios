@@ -62,14 +62,14 @@ The player will lose if his Main Building gets destroyed, this will happen if he
 ## GAME ELEMENTS
 #### RESOURCES:
 
-SPRITE|   NAME         | TIER 
- ---------|------------ | ------------- 
-.|Paint | 1 | 
-.|Wood | 2 | 
-.|Metal Scrap | 3 | 
-.|Titanium | 4 | 
-.|Food|0|
-.|Research|0|
+SPRITE|   NAME         | TIER | USE|
+ ---------|------------ | ------------- |--------
+.|Paint | 1 | Main Resource of the game, used for almost everything
+.|Wood | 2 | Upgraded Resource used for low/mid tier units & buildings
+.|Metal Scrap | 3 | High tier Resource used for almost every late game unit & building in the game 
+.|Titanium | 4 | Extremely scarce & quality resource used for only the best units & buildings in the game
+.|Food|0| Resource used for the upkeep of units in the game
+.|Research|0| Resource that represents which level of upgrades the player has acces to
 
 
 ### ALLIED BUILDINGS:
@@ -225,7 +225,7 @@ SPRITE|   NAME   | TIER  | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
 .|Corruptor | 6 | (350) first two appearances, (450) 3rd and 4th appearance, (500) 5th appearance & onwards|(50) first two appearances, (100) 3rd and 4th appearance, (200) 5th appearance & onwards|BOSS. Appears every 3 waves or after destroying a spawner | Anything
 .|Chroma-King | 6 | 2000| 500 |FINAL BOSS, Extremely Slow & only appears in the last wave| Town Hall
 
-
+### UPGRADES
 
 
 
