@@ -66,13 +66,13 @@ For further information please consult the GDD document.
 Here you will find an index of all the data relevant to the game. All this information can also be found in the folder [BrainDeadStudios/Docs/](https://github.com/Needlesslord/BrainDeadStudios/tree/master/Docs).
 
  + Game Reference: information about other games to help inspire the concept and mechanics of ours.
- + GDD (Game Design Document): Game pillars of the game
- + TDD (Tech Design Document): Tech Design, which includes all the technical aspects of the game and its performance
- + GUI Design Document: UI design, which includes, for example, the flow diagram, HUD, screens layout, etc.
- + Audio Bible: Music and FX
- + Art Bible: Art, concept, mood and intention behind the graphics
- + QA Workflow: QA used during pre-production, alpha, beta and gold, as well as the tools used and process for Quality Testing
- + Production Plan: calendar, risk and contingency list, Gantt Chart and records
+ + [GDD (Game Design Document)](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md): Game pillars of the game
+ + [TDD (Tech Design Document)](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md): Tech Design, which includes all the technical aspects of the game and its performance
+ + [GUI Design Document](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GUIDocument.md): UI design, which includes, for example, the flow diagram, HUD, screens layout, etc.
+ + [Audio Bible](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md): Music and FX
+ + [Art Bible](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md): Art, concept, mood and intention behind the graphics
+ + [QA Workflow](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md): QA used during pre-production, alpha, beta and gold, as well as the tools used and process for Quality Testing
+ + [Production Plan](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ProductionPlan.md): calendar, risk and contingency list, Gantt Chart and records
 
 
 
