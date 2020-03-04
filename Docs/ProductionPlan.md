@@ -22,6 +22,10 @@
 
 In this part of the documentation we are going to explain our Production Plan, how we approached the project and why we chose to do it this way.
 
+
+***
+
+
 ## General Calendar
 
 For the production of iur RTS, we arranged different ways to control the time of our members. Here are what we used:
