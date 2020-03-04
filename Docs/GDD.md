@@ -40,7 +40,11 @@ Enemy waves will come constantly after a certain amount of time or specific acti
 The main goal of the game is to destroy all enemy bases while you defend your own base from oposing armies. The enemy will attack the player with waves of enemies, each of them being stronger than the previous one.
 
 ### Player Win
+The player has two ways of wining
+
 If the player is able to manage resources correctly, defend his base from enemy attacks and build an army that can defeat all enemy bases, he will achieve victory.
+
+He can also decide to defend the base from the enemy waves, and if he is succesfull defending his base from every single wave, he will achieve victory.
 
 ### Player Lose
 The player will lose if his Main Building gets destroyed, this will happen if he is not able to defeat the enemy waves that attack his base.
@@ -64,18 +68,25 @@ SPRITE|   NAME         | TIER
 .|Wood | 2 | 
 .|Metal Scrap | 3 | 
 .|Titanium | 4 | 
+.|Food|0|
+.|Research|0|
 
 
 ### ALLIED BUILDINGS:
+
+#### MAIN BUILDING
+ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
+ ---------|------------ | ------------- | -----------| ---------|---------
+.|Town Hall | 0 | Unbuildable |500| Main base building, if it gets destroyed the player will instantly lose even if he has remanining units. Produces a small amount of Paint. 
 
 ##### HOUSING
 
  SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
  ---------|------------ | ------------- | -----------| ---------|---------
 .|Tent | 1 | Paint |50| Tier 1 Housing Building, very cheap but gives very little capacity
-.|Shack | 2 | Paint Wood |100| Tier 2 Housing Building, cheap and gives some capacity
-.|House | 3 | Leather + Metal Scrap |150| Tier 3 Housing Building, not very cheap and gives decent capacity
-.|Mansion| 4 | Paint + Leather + Metal Scrap + Titanium |250| Tier 4 Housing Building, very expensive and gives lots of capacity
+.|Shack | 2 | Paint +  Wood |100| Tier 2 Housing Building, cheap and gives some capacity
+.|House | 3 | Wood + Metal Scrap |150| Tier 3 Housing Building, not very cheap and gives decent capacity
+.|Mansion| 4 | Paint + Wood + Metal Scrap + Titanium |250| Tier 4 Housing Building, very expensive and gives lots of capacity
 
 ##### RESOURCE BUILDINGS
 
@@ -85,7 +96,7 @@ SPRITE|   NAME         | TIER
  ---------|------------ | ------------- | -----------| ---------|-----------
 .|Paint Extractor v1 | 1 | Paint |100| Tier 1 Paint Extraction, cheap and gather small amount of paint. Can only be placed in paint geysers
 .|Paint Extractor v2 | 2 | Paint + Wood |100| Tier 2 Paint Extraction, gathers a regular amount of paint. Can only be placed in paint geysers
-.|Paint Extractor v3 | 3 | Leather + Metal Scrap |100| Tier 3 Paint Extraction, gathers a big amount of paint. Can only be placed in paint geysers
+.|Paint Extractor v3 | 3 | Wood + Metal Scrap |100| Tier 3 Paint Extraction, gathers a big amount of paint. Can only be placed in paint geysers
 
 **WOOD**
 
@@ -93,7 +104,7 @@ SPRITE|   NAME         | TIER
  ---------|------------ | ------------- | -----------| ---------|---------
 .|Lumberjack cabin | 1 | Paint |100| Tier 1 Wood Gatherer, produces small amount of wood. Needs trees and workers to work
 .|Carpentry Station | 2 | Paint Wood |100| Tier 2 Wood Collector, produces regular amount of wood. Needs trees and workers to work
-.|Lumbermill | 3 | Leather + Metal Scrap |100| Tier 3 Wood Collector, produces big amount of wood. Needs trees and workers to work
+.|Lumbermill | 3 | Wood + Metal Scrap |100| Tier 3 Wood Collector, produces big amount of wood. Needs trees and workers to work
 
 **METAL SCRAP**
 
@@ -101,37 +112,37 @@ SPRITE|   NAME         | TIER
  ---------|------------ | ------------- | -----------| ---------|--------
 .|Metal Gatherer | 1 | Paint |100| Tier 1 Metal Gatherer, produces small amount of metal. Needs metal scrap piles and workers to work
 .|Metal Collector | 2 | Paint Wood |100| Tier 2 Metal Collector, produces regular amount of metal. Needs metal scrap piles and workers to work
-.|Metal Fabricator| 3 | Leather + Metal Scrap |100| Tier 3 Metal Collector, produces big amount of metal. Needs metal scrap piles and workers to work
+.|Metal Fabricator| 3 | Wood + Metal Scrap |100| Tier 3 Metal Collector, produces big amount of metal. Needs metal scrap piles and workers to work
 
 **TITANIUM**
 
 SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
  ---------|------------ | ------------- | -----------| ---------|-----------
-.|Titanium Extractor | 4 | Paint + Leather + Scrap + Titanium |200| Tier 4 Titanium Extractor, produces a very small amount of titanium, can be placed anywhere, doesn't need workers (Only 1 building of this kind)
+.|Titanium Extractor | 4 | Paint + Wood + Metal Scrap + Titanium |200| Tier 4 Titanium Extractor, produces a very small amount of titanium, can be placed anywhere, doesn't need workers (Only 1 building of this kind)
 
 
 ##### EXPLORATION 
 
  SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
  ---------|------------ | ------------- | -----------| ---------|----------
-.|Watchtower | 2 | Paint + Leather |50| Tier 2 exploration tower, reveals a small area around the building, 
+.|Watchtower | 2 | Paint + Wood |50| Tier 2 exploration tower, reveals a small area around the building, 
 .|Radar | 3 | Paint + Metal Scrap |150| Tier 3 exploration tower, reveals a big area around the building
-.|Atlas| 4 | Paint + Leather + Scrap + Titanium |250| Tier 4 exploration tower, reveals the entire map, very expensive to build (Only 1 building of this kind)
+.|Atlas| 4 | Paint + Wood + Scrap + Titanium |250| Tier 4 exploration tower, reveals the entire map, very expensive to build (Only 1 building of this kind)
 
 ##### RESEARCH
 
 SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
  ---------|------------ | ------------- | -----------| ---------|--------
-.|Library | 2 | Paint + Leather + Scrap |100| Tier 2 reasearch building, allows the player to research low/mid tier upgrades, upgrades made with paint/leather (Only 1 building of this kind)
-.|Laboratory | 3 | Paint + Leather + Scrap |150| Tier 3 research building, allows the player to research low/mid/high tier upgrades, upgrades made with paint/leather/metal (Only 1 building of this kind)
-.|High Tech Lab| 4 | Paint + Leather + Scrap + Titanium |250| Tier 4 research building, allows the player to research low/mid/high/elite tier upgrades, upgrades made with paint/leather/metal/titanium (Only 1 building of this kind)
+.|Library | 2 | Paint + Wood + Scrap |100| Tier 2 reasearch building, allows the player to research low/mid tier upgrades, upgrades made with paint/Wood (Only 1 building of this kind)
+.|Laboratory | 3 | Paint + Wood + Scrap |150| Tier 3 research building, allows the player to research low/mid/high tier upgrades, upgrades made with Paint/Wood/metal Scrap (Only 1 building of this kind)
+.|High Tech Lab| 4 | Paint + Wood + Scrap + Titanium |250| Tier 4 research building, allows the player to research low/mid/high/elite tier upgrades, upgrades made with paint/Wood/Metal Scrap/titanium (Only 1 building of this kind)
 
 
 #### DEFENSIVE BUILDINGS 
 
 SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH|DAMAGE| UTILITY | TARGET
  ---------|------------ | ------------- | -----------| ---------|--------|------------------|-------------|
-.|Ranger Tower | 2 | Paint+ Leather |200|10| Tier 2 tower that shoots at enemies that get close, regular range and damage, low attack speed| Anything
+.|Ranger Tower | 2 | Paint + Wood |200|10| Tier 2 tower that shoots at enemies that get close, regular range and damage, low attack speed| Anything
 .|Decoy | 2 | Paint + Wood |150|0| Structure that deals no damage but attracts enemies into attacking it, High HP | Anything
 .|Wooden Stockade| 2 | Paint + Wood |50|0| Wooden structure that will keep enemies outside of the base, allied units can't walk through it | Grounded
 .|Wooden Stockade Door| 2 | Paint + Wood |75|0| Wooden structure that will keep enemies outside of the base, works as a door for allied units | Grounded
@@ -149,14 +160,14 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH|DAMAGE| UTILITY | T
 
 #### SPECIFIC ROLES 
 
-SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARGET
+SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
-.|Painter | 1 | Paint |20|1| Recollect (Typical villager in RTS games), can also fight if needed to, but is weak | Resources
+.|Painter | 1 | Paint |20|1| Recollect (Typical villager in RTS games), can also fight if needed to, but is weak | Resources/Grounded
 .|Explorer | 1 | Paint |35|5| Very fast melee unit, great for exploring and scouting, terrible at fighting | Grounded
 
 #### INFANTRY
 
-SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARGET
+SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
 .|Paint Recruit | 1 | Paint |30|10| Weak low tier melee unit, decent for early game, trash mid/late game | Grounded
 .|Paint Squire | 2 | Paint + Wood |40|15| Regular mid tier melee unit, good early game, regular mid/late game | Grounded
@@ -165,7 +176,7 @@ SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARG
 
 #### RANGED
 
-SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARGET
+SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
 .|Paint Ranger | 1 | Paint |20|10| Weak low tier melee unit, decent for early game, trash mid/late game | Anything
 .|Paint Sniper | 3 | Paint + Wood |30|25| Good high tier unit, great range and damage, low attack speed | Anything
@@ -175,7 +186,7 @@ SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARG
 
 #### SPECIAL
 
-SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARGET
+SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
 .|Blob Rider | 1 | Paint |40|15|Polivalent Unit | Anything
 .|Paint Amalgam| 1 |Paint |75|30| Expensive Unit | Anything
@@ -196,7 +207,7 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
 
 #### ENEMY UNITS
 
-SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARGET
+SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
 .|Paint Slime | 5 | Paint |30|15| Basic Enemy Unit | Grounded
 .|Dark Rider | 5 | Paint + Wood |50|25| Regular mid tier melee unit, good early game, regular mid/late game | Grounded
