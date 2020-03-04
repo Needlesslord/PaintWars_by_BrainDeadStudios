@@ -202,7 +202,7 @@ SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC
 
 SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
  ---------|------------ | ------------- | -----------| ---------|----------
-.|Spawner | 0 | 0|500| Enemy spawner
+.|Spawner | 5 | 0|500| Enemy spawner
 
 
 #### ENEMY UNITS
