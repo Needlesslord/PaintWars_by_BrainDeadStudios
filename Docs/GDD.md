@@ -6,48 +6,48 @@
 
 ## Main Index
 
-+ [Overview]()
++ [Overview](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#overview)
 
-+ [Game Pillars]()
-    - [Resource Management]()
-    - [Exploration]()
-    - [Attack The Enemy Base]()
-    - [Endless Waves]()
++ [Game Pillars](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#game-pillars)
+    - [Resource Management](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#resource-management)
+    - [Exploration](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#exploration)
+    - [Attack The Enemy Base](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#attack-the-enemy-base)
+    - [Endless Waves](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#endless-waves)
     
-+ [Plot]()
++ [Plot](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#plot)
 
-+ [Controls]()
++ [Controls](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#controls)
 
-+ [Gameplay]()
-    - [Objective]()
-    - [Player Win]()
-    - [Player Lose]()
-    - [Main Gameplay Characteristics]()
++ [Gameplay](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#gameplay)
+    - [Objective](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#objective)
+    - [Player Win](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#player-win)
+    - [Player Lose](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#player-lose)
+    - [Main Gameplay Characteristics](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#main-gameplay-characteristics)
     
-+ [Game Elements]()
-    - [Resources]()
-    - [Buildings]()
-     + [Allied Buildings]()
-     + [Resources Buildings]()
-     + [Exploration]()
-     + [Research]()
-     + [Defensive Buildings]()
-    - [Units]()
-     + [Allied Units]()
-      - [Specific Roles]()
-      - [Infantry]()
-      - [Ranged]()
-      - [Special]()
-     + [Enemies]()
-      - [Enemy Buildings]()
-      - [Enemy Units]()
-     + [Upgrades]()
++ [Game Elements](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#game-elements)
+    - [Resources](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#resources)
+    - [Buildings](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#buildings)
+     + [Allied Buildings](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#allied-buildings)
+     + [Resources Buildings](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#resource-buildings)
+     + [Exploration](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#exploration-buildings)
+     + [Research](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#research)
+     + [Defensive Buildings](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#defensive-buildings)
+    - [Units](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#units)
+     + [Allied Units](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#allied-units)
+      - [Specific Roles](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#specific-roles)
+      - [Infantry](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#infantry)
+      - [Ranged](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#ranged)
+      - [Special](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#special)
+     + [Enemies](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#enemies)
+      - [Enemy Buildings](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#enemy-buildings)
+      - [Enemy Units](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#enemy-units)
+     + [Upgrades](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#upgrades)
      
-+ [Maps]()
++ [Maps](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#maps)
 
-+ [Quests and Advancecments]()
++ [Quests and Advancecments](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#quests-and-advancements)
 
-+ [Tutorial]()
++ [Tutorial](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#tutorial)
 
 
 ***
@@ -130,7 +130,7 @@ The player will lose if his Main Building gets destroyed, this will happen if he
 
 ## Game Elements
 
-### RESOURCES:
+### RESOURCES
 
 SPRITE|   NAME         | TIER | USE|
  ---------|------------ | ------------- |--------
