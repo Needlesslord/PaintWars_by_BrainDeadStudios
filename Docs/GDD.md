@@ -129,8 +129,8 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
 
 #### DEFENSIVE BUILDINGS 
 
-SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
- ---------|------------ | ------------- | -----------| ---------|--------
+SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH|DAMAGE| UTILITY | TARGET
+ ---------|------------ | ------------- | -----------| ---------|--------|------------------|-------------|
 .|Ranger Tower | 2 | Paint+ Leather | Tier 2 tower that shoots at enemies that get close, regular range and damage, low attack speed| Anything
 .|Decoy | 2 | Paint + Wood | Structure that deals no damage but attracts enemies into attacking it, High HP | Anything
 .|Wooden Stockade| 2 | Paint + Wood | Wooden structure that will keep enemies outside of the base, allied units can't walk through it | Grounded
