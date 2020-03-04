@@ -185,16 +185,16 @@ SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARG
 .|Mecha-Painter | 3 |Paint + Metal Scrap|250|15| Villager and fighter |  Anything
 .|P-Rex | 4 | Paint + Metal Scrap + Titanium |400|75| Elite unit, very expensive and will win any direct engagement against him | Grounded
 
-### ENEMY BUILDINGS
+
+### ENEMY
+#### ENEMY BUILDINGS
 
 SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
  ---------|------------ | ------------- | -----------| ---------|----------
 .|Spawner | 0 | 0|500| Enemy spawner
 
 
-
-### ENEMY UNITS
-
+#### ENEMY UNITS
 
 SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
