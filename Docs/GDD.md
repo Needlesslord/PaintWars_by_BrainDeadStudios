@@ -179,12 +179,34 @@ SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARG
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
 .|Blob Rider | 1 | Paint |40|15|Polivalent Unit | Anything
 .|Paint Amalgam| 1 |Paint |75|30| Expensive Unit | Anything
-.|Blo-Bat | 2 | Paint |15|10| Weak low tier melee unit, decent for early game, trash mid/late game | Anything
+.|Blo-Bat | 2 | Paint |15|10| Flying | Anything
 .|Paint-O-Bot| 2 |150|10|Paint + Metal Scrap | Good high tier unit, great range and damage, low attack speed | Anything
 .|Paintshee | 3 | Paint|30|50| Very fast and high damage, low health | Grounded
 .|Mecha-Painter | 3 |Paint + Metal Scrap|250|15| Villager and fighter |  Anything
 .|P-Rex | 4 | Paint + Metal Scrap + Titanium |400|75| Elite unit, very expensive and will win any direct engagement against him | Grounded
 
+### ENEMY BUILDINGS
+
+SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
+ ---------|------------ | ------------- | -----------| ---------|----------
+.|Spawner | 0 | 0|500| Enemy spawner
+
+
+
+### ENEMY UNITS
+
+
+SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARGET
+ ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
+.|Paint Slime | 5 | Paint |30|15| Basic Enemy Unit | Grounded
+.|Dark Rider | 5 | Paint + Wood |50|25| Regular mid tier melee unit, good early game, regular mid/late game | Grounded
+.|Corrupted Knight | 5 | Paint + Metal Scrap |75|40| Good high tier unit, good any stage of the game |  Grounded
+.|Explosive Blob | 5 | Paint + Metal Scrap + Aluminium |50|300| Elite unit| Grounded
+.|Forsaken Sniper | 5 | Paint + Metal Scrap + Aluminium |100|25| Elite unit| Grounded
+.|Floating Blob | 5 | Paint + Metal Scrap + Aluminium |20|15| Flying| Grounded
+.|Corrupted Eye | 5 | Paint + Metal Scrap + Aluminium |150|30| Flying| Grounded
+.|Black Executioner | 5 | Paint + Metal Scrap + Aluminium |300|40| Ground| Grounded
+.|Corruptor | 6 | Paint + Metal Scrap + Aluminium |500|100| BOSS| Anything
 
 
 
