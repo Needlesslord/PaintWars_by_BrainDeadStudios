@@ -70,8 +70,8 @@ SPRITE|   NAME         | TIER
 
 ##### HOUSING
 
- SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
- ---------|------------ | ------------- | -----------| ---------
+ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
+ ---------|------------ | ------------- | -----------| ---------|---------
 .|Tent | 1 | Paint | Tier 1 Housing Building, very cheap but gives very little capacity
 .|Shack | 2 | Paint Wood | Tier 2 Housing Building, cheap and gives some capacity
 .|House | 3 | Leather + Metal Scrap | Tier 3 Housing Building, not very cheap and gives decent capacity
@@ -81,39 +81,39 @@ SPRITE|   NAME         | TIER
 
 **PAINT**
 
- SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
- ---------|------------ | ------------- | -----------| ---------
+ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
+ ---------|------------ | ------------- | -----------| ---------|-----------
 .|Paint Extractor v1 | 1 | Paint | Tier 1 Paint Extraction, cheap and gather small amount of paint. Can only be placed in paint geysers
 .|Paint Extractor v2 | 2 | Paint Wood | Tier 2 Paint Extraction, gathers a regular amount of paint. Can only be placed in paint geysers
 .|Paint Extractor v3 | 3 | Leather + Metal Scrap | Tier 3 Paint Extraction, gathers a big amount of paint. Can only be placed in paint geysers
 
 **WOOD**
 
- SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
- ---------|------------ | ------------- | -----------| ---------
+ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
+ ---------|------------ | ------------- | -----------| ---------|---------
 .|Lumberjack cabin | 1 | Paint | Tier 1 Wood Gatherer, produces small amount of wood. Needs trees and workers to work
 .|Carpentry Station | 2 | Paint Wood | Tier 2 Wood Collector, produces regular amount of wood. Needs trees and workers to work
 .|Lumbermill | 3 | Leather + Metal Scrap | Tier 3 Wood Collector, produces big amount of wood. Needs trees and workers to work
 
 **METAL SCRAP**
 
- SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
- ---------|------------ | ------------- | -----------| ---------
+ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
+ ---------|------------ | ------------- | -----------| ---------|--------
 .|Metal Gatherer | 1 | Paint | Tier 1 Metal Gatherer, produces small amount of metal. Needs metal scrap piles and workers to work
 .|Metal Collector | 2 | Paint Wood | Tier 2 Metal Collector, produces regular amount of metal. Needs metal scrap piles and workers to work
 .|Metal Fabricator| 3 | Leather + Metal Scrap | Tier 3 Metal Collector, produces big amount of metal. Needs metal scrap piles and workers to work
 
 **TITANIUM**
 
-SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
- ---------|------------ | ------------- | -----------| ---------
+SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
+ ---------|------------ | ------------- | -----------| ---------|-----------
 .|Titanium Extractor | 4 | Paint + Leather + Scrap + Titanium | Tier 4 Titanium Extractor, produces a very small amount of titanium, can be placed anywhere, doesn't need workers (Only 1 building of this kind)
 
 
 ##### EXPLORATION 
 
- SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY
- ---------|------------ | ------------- | -----------| ---------
+ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
+ ---------|------------ | ------------- | -----------| ---------|----------
 .|Watchtower | 2 | Paint + Leather | Tier 2 exploration tower, reveals a small area around the building, 
 .|Radar | 3 | Paint + Metal Scrap | Tier 3 exploration tower, reveals a big area around the building
 .|Atlas| 4 | Paint + Leather + Scrap + Titanium | Tier 4 exploration tower, reveals the entire map, very expensive to build (Only 1 building of this kind)
