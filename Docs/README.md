@@ -6,11 +6,11 @@
 
 ## Main Index
 
-+ The Game
-+ The Team
-+ Sections
-+ Social Media
-+ License
++ [The Game](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#the-game)
++ [The Team](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#the-team)
++ [Sections](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#sections)
++ [Social Media](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#social-media)
++ [License](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#license)
 
 
 ***
@@ -55,7 +55,7 @@ For further information please consult the GDD document.
       + [Github](https://github.com/Needlesslord)
       + [Linkedin](https://es.linkedin.com/in/n%C3%BAria-lamonja-i-pujol-b149271a2)
 
-*Note: All the team will be involved in the code aspect of the game and will be able to choose if they want to take part in other fields too.
+*Note: All the team will be involved in the code aspect of the game and will be able to choose if they want to take part in other fields too.*
 
 
 ***
@@ -86,11 +86,16 @@ Here you will find an index of all the data relevant to the game. All this infor
 
 You can find us in our media handles:
 
-[Web](https://needlesslord.github.io/BrainDeadStudios/): https://needlesslord.github.io/BrainDeadStudios/
-[Instagram](https://www.instagram.com/braindeadstd/):  @braindeadstd (https://www.instagram.com/braindeadstd/)
-[Twitter](https://twitter.com/braindeadstd): @braindeadstd (https://twitter.com/braindeadstd)
-[Youtube](https://www.youtube.com/channel/UCBQi2z2n9ROyIaE3GKfXTWA): https://www.youtube.com/channel/UCBQi2z2n9ROyIaE3GKfXTWA
-[Twitch](https://www.twitch.tv/braindeadstd):  @braindeadstd (https://www.twitch.tv/braindeadstd)
+**[Web](https://needlesslord.github.io/BrainDeadStudios/):** https://needlesslord.github.io/BrainDeadStudios/
+
+**[Instagram](https://www.instagram.com/braindeadstd/):**  @braindeadstd (https://www.instagram.com/braindeadstd/)
+
+**[Twitter](https://twitter.com/braindeadstd):** @braindeadstd (https://twitter.com/braindeadstd)
+
+**[Youtube](https://www.youtube.com/channel/UCBQi2z2n9ROyIaE3GKfXTWA):** https://www.youtube.com/channel/UCBQi2z2n9ROyIaE3GKfXTWA
+
+**[Twitch](https://www.twitch.tv/braindeadstd):**  @braindeadstd (https://www.twitch.tv/braindeadstd)
+
 
 
 ***
@@ -100,8 +105,9 @@ You can find us in our media handles:
 
 ## License
 
+BrainDead Studios' games are licensed under an unmodified MIT license, which is an OSI-certified license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
 
-
+All the data used (sprites, music, fx, etc) will be credited or free to use as well.
 
 
 ***
