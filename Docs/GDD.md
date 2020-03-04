@@ -149,15 +149,15 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
 
 #### SPECIFIC ROLES 
 
-SPRITE|   NAME         | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
- ---------|------------ | ------------- | -----------| ---------|----
+SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARGET
+ ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
 .|Painter | 1 | Paint | Recollect (Typical villager in RTS games), can also fight if needed to, but is weak | Resources
 .|Explorer | 1 | Paint | Very fast melee unit, great for exploring and scouting, terrible at fighting | Grounded
 
 #### INFANTRY
 
-SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
- ---------|------------ | ------------- | -----------| ---------|-------
+SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARGET
+ ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
 .|Paint Recruit | 1 | Paint | Weak low tier melee unit, decent for early game, trash mid/late game | Grounded
 .|Paint Squire | 2 | Paint + Wood | Regular mid tier melee unit, good early game, regular mid/late game | Grounded
 .|Paint Knight | 3 | Paint + Metal Scrap | Good high tier unit, good any stage of the game |  Grounded
@@ -165,8 +165,8 @@ SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
 
 #### RANGED
 
-SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
- ---------|------------ | ------------- | -----------| ---------|-------
+SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARGET
+ ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
 .|Paint Ranger | 1 | Paint | Weak low tier melee unit, decent for early game, trash mid/late game | Anything
 .|Paint Sniper | 3 | Paint + Wood | Good high tier unit, great range and damage, low attack speed | Anything
 .|Paint Trooper | 3 | Paint + Metal Scrap | Good high tier unit, good any stage of the game |  Anything
@@ -175,8 +175,8 @@ SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
 
 #### SPECIAL
 
-SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | UTILITY | TARGET
- ---------|------------ | ------------- | -----------| ---------|-------
+SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARGET
+ ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
 .|Blob Rider | 1 | Paint | Weak low tier melee unit, decent for early game, trash mid/late game | Anything
 .|Paint Amalgam| 1 |Paint | Good high tier unit, great range and damage, low attack speed | Anything
 .|Blo-Bat | 2 | Paint | Weak low tier melee unit, decent for early game, trash mid/late game | Anything
