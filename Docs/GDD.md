@@ -26,7 +26,7 @@ Enemy waves will come constantly after a certain amount of time or specific acti
 
 
 ## PLOT
-
+After many years of peace and tranquility, citizens of the "WORLD NAME" began to lose their colours and turned into monocromatic beeings. This was due to a corruption created
 
 
 ## CONTROLS
@@ -207,17 +207,18 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
 
 #### ENEMY UNITS
 
-SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
- ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
+SPRITE|   NAME   | TIER  | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
+ ---------|------------ |  -----------| ---------|-------|-------|-------
 .|Paint Slime | 5 | Paint |30|15| Ground Unit | Grounded
 .|Dark Rider | 5 | Paint + Wood |50|25| Ground Unit | Grounded
-.|Corrupted Knight | 5 | Paint + Metal Scrap |75|40| Ground Unit | Grounded
-.|Explosive Blob | 5 | Paint + Metal Scrap + Aluminium |50|300| Ground Unit. AOE damage around the unit, dies after it attacks| Grounded
-.|Forsaken Sniper | 5 | Paint + Metal Scrap + Aluminium |100|25| Ground Unit| Grounded
-.|Floating Blob | 5 | Paint + Metal Scrap + Aluminium |20|15| Flying| Grounded
-.|Corrupted Eye | 5 | Paint + Metal Scrap + Aluminium |150|30| Flying| Grounded
-.|Black Executioner | 5 | Paint + Metal Scrap + Aluminium |300|40| Ground Unit| Grounded
-.|Corruptor | 6 | Paint + Metal Scrap + Aluminium |500|100|BOSS| Anything
+.|Corrupted Knight | 5 | 75|40| Ground Unit | Grounded
+.|Explosive Blob | 5 |50|300| Ground Unit. AOE damage around the unit, dies after it attacks| Grounded
+.|Forsaken Sniper | 5 | 100|25| Ground Unit| Grounded
+.|Floating Blob | 5 | 20|15| Flying| Grounded
+.|Corrupted Eye | 5 | 150|30| Flying| Grounded
+.|Black Executioner | 5 |300|40| Ground Unit| Grounded
+.|Corruptor | 6 | 350 2 first appearances, 450 3rd and 4th appearance, 500 5th appearance & onwards|50 2 first appearances, 450 3rd and 4th appearance , 500 5th appearance & onwards|BOSS. Appears every 3 waves or after destroying a spawner | Anything
+.|Chroma-King | 6 | 2000| 200 |FINAL BOSS, Extremely Slow & only appears in the last wave| Town Hall
 
 
 
