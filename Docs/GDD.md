@@ -140,7 +140,7 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH|DAMAGE| UTILITY | T
 .|Paint Cannon |3| Paint + Metal Scrap |200|25| Tier 3 tower that throws blobs of paint to enemies, deals AOE damage | Grounded
 .|Explosive Decoy| 3 | Paint + Metal Scrap|400|100| Structure that attracts enemies into attacking it, High HP. When it is destroyed, deals High AOE damage | Anything
 .|Metal Wall |3| Paint + Metal Scrap |100|0|  Metal structure that will keep enemies outside of the base, allied units can't walk through it | Grounded
-.|Metal Wall Door| 3 | Paint + Metal Scrap 150|0| Metal structure that will keep enemies outside of the base, works as a door for allied units | Grounded
+.|Metal Wall Door| 3 | Paint + Metal Scrap| 150|0| Metal structure that will keep enemies outside of the base, works as a door for allied units | Grounded
 .|Paint Laser| 4 | Paint + Metal Scrap + Titanium |300|50|Tier 4 tower that deals massive damage to a single target, high range and low attack speed | Anything
 .|Paint MachineGun| 4 | Paint + Metal Scrap + Titanium |300|10|Tier 4 tower that deals regular damage to a single target, medium range and extremely high attack speed | Anything
 
@@ -151,26 +151,26 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH|DAMAGE| UTILITY | T
 
 SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
-.|Painter | 1 | Paint | Recollect (Typical villager in RTS games), can also fight if needed to, but is weak | Resources
-.|Explorer | 1 | Paint | Very fast melee unit, great for exploring and scouting, terrible at fighting | Grounded
+.|Painter | 1 | Paint |30|5| Recollect (Typical villager in RTS games), can also fight if needed to, but is weak | Resources
+.|Explorer | 1 | Paint |45|5| Very fast melee unit, great for exploring and scouting, terrible at fighting | Grounded
 
 #### INFANTRY
 
 SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
-.|Paint Recruit | 1 | Paint | Weak low tier melee unit, decent for early game, trash mid/late game | Grounded
-.|Paint Squire | 2 | Paint + Wood | Regular mid tier melee unit, good early game, regular mid/late game | Grounded
-.|Paint Knight | 3 | Paint + Metal Scrap | Good high tier unit, good any stage of the game |  Grounded
-.|Paint Chosen | 4 | Paint + Metal Scrap + Aluminium | Elite unit, very expensive and will win any direct engagement against him | Grounded
+.|Paint Recruit | 1 | Paint |50|10| Weak low tier melee unit, decent for early game, trash mid/late game | Grounded
+.|Paint Squire | 2 | Paint + Wood |75|15| Regular mid tier melee unit, good early game, regular mid/late game | Grounded
+.|Paint Knight | 3 | Paint + Metal Scrap |100|20| Good high tier unit, good any stage of the game |  Grounded
+.|Paint Chosen | 4 | Paint + Metal Scrap + Aluminium |300|30| Elite unit, very expensive and will win any direct engagement against him | Grounded
 
 #### RANGED
 
 SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | UTILITY | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
-.|Paint Ranger | 1 | Paint | Weak low tier melee unit, decent for early game, trash mid/late game | Anything
-.|Paint Sniper | 3 | Paint + Wood | Good high tier unit, great range and damage, low attack speed | Anything
-.|Paint Trooper | 3 | Paint + Metal Scrap | Good high tier unit, good any stage of the game |  Anything
-.|Paint Mortar | 4 | Paint + Metal Scrap + Aluminium | Elite unit, very expensive and will win any direct engagement against him | Grounded
+.|Paint Ranger | 1 | Paint |20|10| Weak low tier melee unit, decent for early game, trash mid/late game | Anything
+.|Paint Sniper | 3 | Paint + Wood |30|25| Good high tier unit, great range and damage, low attack speed | Anything
+.|Paint Trooper | 3 | Paint + Metal Scrap |75|15| Good high tier unit, good any stage of the game |  Anything
+.|Paint Mortar | 4 | Paint + Metal Scrap + Aluminium |100|40| Elite unit, very expensive and will win any direct engagement against him | Grounded
 
 
 #### SPECIAL
