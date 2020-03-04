@@ -162,39 +162,39 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH|DAMAGE| UTILITY | T
 
 SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
-.|Painter | 1 | Paint |20|1| Recollect (Typical villager in RTS games), can also fight if needed to, but is weak | Resources/Grounded
-.|Explorer | 1 | Paint |35|5| Very fast melee unit, great for exploring and scouting, terrible at fighting | Grounded
+.|Painter | 1 | Paint |20|1| Ground Unit. Recollect resources and building| Resources/Grounded
+.|Explorer | 1 | Paint |35|5| Ground Unit. Very Fast | Grounded
 
 #### INFANTRY
 
 SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
-.|Paint Recruit | 1 | Paint |30|10| Weak low tier melee unit, decent for early game, trash mid/late game | Grounded
-.|Paint Squire | 2 | Paint + Wood |40|15| Regular mid tier melee unit, good early game, regular mid/late game | Grounded
-.|Paint Knight | 3 | Paint + Metal Scrap |75|20| Good high tier unit, good any stage of the game |  Grounded
-.|Paint Chosen | 4 | Paint + Metal Scrap + Aluminium |150|30| Elite unit| Grounded
+.|Paint Recruit | 1 | Paint |30|10| Ground Unit | Grounded
+.|Paint Squire | 2 | Paint + Wood |40|15| Ground Unit | Grounded
+.|Paint Knight | 3 | Paint + Metal Scrap |75|20| Ground Unit |  Grounded
+.|Paint Chosen | 4 | Paint + Metal Scrap + Aluminium |150|30| Ground Unit| Grounded
 
 #### RANGED
 
 SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
-.|Paint Ranger | 1 | Paint |20|10| Weak low tier melee unit, decent for early game, trash mid/late game | Anything
-.|Paint Sniper | 3 | Paint + Wood |30|25| Good high tier unit, great range and damage, low attack speed | Anything
-.|Paint Trooper | 3 | Paint + Metal Scrap |75|15| Good high tier unit, good any stage of the game |  Anything
-.|Paint Mortar | 4 | Paint + Metal Scrap + Aluminium |100|40| Elite unit, very expensive and will win any direct engagement against him | Grounded
+.|Paint Ranger | 1 | Paint |20|10| Ground Unit. Ranged (Low Range & Attack Speed) | Anything
+.|Paint Sniper | 3 | Paint + Wood |30|25| Ground Unit. Ranged (High Range & Low Attack Speed) | Anything
+.|Paint Trooper | 3 | Paint + Metal Scrap |60|15| Ground Unit. (Low Range & High Attack Speed) |  Anything
+.|Paint Mortar | 4 | Paint + Metal Scrap + Aluminium |100|40| Ground Unit. (High Range & Slow Attack Speed, AOE Damage) | Grounded
 
 
 #### SPECIAL
 
 SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
-.|Blob Rider | 1 | Paint |40|15|Polivalent Unit | Anything
-.|Paint Amalgam| 1 |Paint |75|30| Expensive Unit | Anything
-.|Blo-Bat | 2 | Paint |15|10| Flying | Anything
-.|Paint-O-Bot| 2 |150|10|Paint + Metal Scrap | Good high tier unit, great range and damage, low attack speed | Anything
-.|Paintshee | 3 | Paint|30|50| Very fast and high damage, low health | Grounded
-.|Mecha-Painter | 3 |Paint + Metal Scrap|250|15| Villager and fighter |  Anything
-.|P-Rex | 4 | Paint + Metal Scrap + Titanium |400|75| Elite unit, very expensive and will win any direct engagement against him | Grounded
+.|Blob Rider | 1 | Paint |40|15|Ground Unit | Anything
+.|Paint Amalgam| 1 |Paint |75|30| Ground Unit | Anything
+.|Blo-Bat | 2 | Paint |15|10| Flying unit, very fast | Anything
+.|Auto-Sprinkler| 2 |200|10|Paint + Metal Scrap | Ground Unit. AOE constant Damage around the unit | Anything
+.|Paintshee | 3 | Paint|30|50| Ground Unit, Extremely Fast | Grounded
+.|Paint-O-Bot | 3 |Paint + Metal Scrap|150|10| Ground Unit, Acts as a basic painter but with better stats | Resources/Grounded
+.|P-Rex | 4 | Paint + Metal Scrap + Titanium |400|75| Ground Unit. No colision with other units | Anything
 
 
 ### ENEMY
@@ -211,7 +211,7 @@ SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
 .|Paint Slime | 5 | Paint |30|15| Basic Enemy Unit | Grounded
 .|Dark Rider | 5 | Paint + Wood |50|25| Regular mid tier melee unit, good early game, regular mid/late game | Grounded
-.|Corrupted Knight | 5 | Paint + Metal Scrap |75|40| Good high tier unit, good any stage of the game |  Grounded
+.|Corrupted Knight | 5 | Paint + Metal Scrap |75|40| Good high tier unit, good any stage of the game | Grounded
 .|Explosive Blob | 5 | Paint + Metal Scrap + Aluminium |50|300| Elite unit| Grounded
 .|Forsaken Sniper | 5 | Paint + Metal Scrap + Aluminium |100|25| Elite unit| Grounded
 .|Floating Blob | 5 | Paint + Metal Scrap + Aluminium |20|15| Flying| Grounded
