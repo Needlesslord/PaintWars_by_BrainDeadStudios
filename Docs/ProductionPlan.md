@@ -83,7 +83,8 @@ For the Budget, we will take into consideration that some of the resources we us
   
 Therefore, we are going to consider only salaries for an expected duration of the project of 4 months:
 
-| Members | Gross salary per month | Social Security | Total cost per project
+| Members | Gross salary per month | Social Security | Total cost per project |
+ ---------|------------ | ------------- | ------------- 
 | Team Leader | 1500 | 1500 | 12000 |
 | Lead Coder | 1200 | 1200 | 9600 |
 | Lead Designer | 1200 | 1200 | 9600 |
