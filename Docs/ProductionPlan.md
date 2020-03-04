@@ -94,8 +94,12 @@ Therefore, we are going to consider only salaries for an expected duration of th
 | Manager | 1000 | 1000 | 8000 |
 | Coders/Designers/Artists/etc | 800 | 800 | 6400 |
 
+
 That adds up to (taken into account that some people have different positions, we will consider the higher pay): 56800 € per project.
+
+
 Taken into account that we should have an emergency found, we would add: 20000€
+
 
 Therefore, rounding up, we would need founds of: 77000€
 
