@@ -6,7 +6,7 @@
 
 ## Main Index
 
-+ [Menus (Flow Driagram)](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GUIDocument.md#menus-flow-driagram)
++ [Menus (Flow Driagram)](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GUIDocument.md#menus-flow-diagram)
 
 + [HUD](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GUIDocument.md#hud)
   - [Technical point of view](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GUIDocument.md#technical-point-of-view)
@@ -20,7 +20,7 @@
 ***
 
 
-## Menus (Flow Driagram)
+## Menus (Flow Diagram)
 
 
 ***
