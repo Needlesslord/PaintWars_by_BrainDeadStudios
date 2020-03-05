@@ -6,12 +6,12 @@
 
 ## Main Index
 
-+ [Audio Pillars]()
-  - **[Music]():** [Genre]() - [Style]() - [Instrumentation]() - [Implementation]()
-  - **[FX]():** [Ambient]() - [Player]() - [Units]() - [Enemies]() - [UI]() - [Others]()
-  - **[Voice Over]()**
-  - **[Technology Used]()**
-  - **[References]()**
++ [Audio Pillars](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#audio-pillars)
+  - **[Music](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#music):** [Genre](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#genre) - [Style](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#style) - [Instrumentation](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#instrumentation) - [Implementation](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#implementation)
+  - **[FX](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#fx):** [Ambient](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#ambient) - [Player](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#player) - [Units](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#units) - [Enemies](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#enemies) - [UI](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#ui) - [Others](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#others)
+  - **[Voice Over](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#voice-over)**
+  - **[Technology Used](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#technology-used)**
+  - **[References](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#references)**
 
 + [Music Used](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#music-used)
   - [Main Menu](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#main-menu)
@@ -76,6 +76,7 @@
 
 ### Voice Over
 
+We do not have any Voice Over's.
 
 ### Technology Used
 
