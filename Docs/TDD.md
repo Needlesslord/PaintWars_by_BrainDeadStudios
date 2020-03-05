@@ -19,9 +19,9 @@
   - [Development Hardware](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#development-hardware)
   - [Development Software](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#development-software)
 
-+ [UML](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#uml)
-
 + [Coding Style](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#coding-style)
+
++ [UML](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#uml)
 
 + [Branching policy](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#branching-policy)
 
@@ -77,13 +77,13 @@
 ***
 
 
-## UML
+## Coding Style
 
 
 ***
 
 
-## Coding Style
+## UML
 
 
 ***
