@@ -6,7 +6,12 @@
 
 ## Main Index
 
-+ [Audio Style](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#audio-style)
++ [Audio Pillars]()
+  - **[Music]():** [Genre]() - [Style]() - [Instrumentation]() - [Implementation]()
+  - **[FX]():** [Ambient]() - [Player]() - [Units]() - [Enemies]() - [UI]() - [Others]()
+  - **[Voice Over]()**
+  - **[Technology Used]()**
+  - **[References]()**
 
 + [Music Used](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#music-used)
   - [Main Menu](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#main-menu)
@@ -30,7 +35,52 @@
 ***
 
 
-## Audio Style
+## Audio Pillars
+
+
+### Music
+
+
+#### Genre
+
+
+#### Style
+
+
+#### Instrumentation
+
+
+#### Implementation
+
+
+### FX
+
+
+#### Ambient
+
+
+#### Player
+
+
+#### Units
+
+
+#### Enemies
+
+
+#### UI
+
+
+#### Others
+
+
+### Voice Over
+
+
+### Technology Used
+
+
+### References
 
 
 ***
