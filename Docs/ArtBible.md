@@ -7,14 +7,14 @@
 ## Main Index
 
 + [Mood](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#mood)
-  - [Art Style]()
-  - [Character Art]()
-  - [Level of Detail]()
-  - [Camera]()
-  - [Color Palette]()
-  - [Atmosphere]()
-  - [UI]()
-  - [References]()
+  - [Art Style](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#art-style)
+  - [Character Art](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#character-art)
+  - [Level of Detail](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#level-of-detail)
+  - [Camera](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#camera)
+  - [Color Palette](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#color-palette)
+  - [Atmosphere](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#atmosphere)
+  - [UI](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#ui)
+  - [References](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#references)
 
 + [Intention of the Graphics](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#intention-of-the-graphics)
 
@@ -22,7 +22,7 @@
 
 + [Concept Art](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#concept-art)
 
-+ [Technical Guidelines]()
++ [Technical Guidelines](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#technical-guidelines)
 
 + [Credits](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#credits)
 
