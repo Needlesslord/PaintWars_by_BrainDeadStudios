@@ -6,18 +6,18 @@
 
 ## Main Menu
 
-+ [Introduction]()
++ [Introduction](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#introduction)
 
-+ [Technical Goals]()
-  - [Target Hardware]()
-  - [Target Software] ()
-  - [Performance Budgets]()
++ [Technical Goals](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#technical-goals)
+  - [Target Hardware](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#target-hardware)
+  - [Target Software](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#target-software)
+  - [Performance Budgets](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#performance-budgets)
 
-+ [Game Mechanics]()
++ [Game Mechanics](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#game-mechanics)
 
-+ [Development Tools]()
-  - [Development Hardware] ()
-  - [Development Software] ()
++ [Development Tools](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#development-tools)
+  - [Development Hardware](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#development-hardware)
+  - [Development Software](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#development-software)
 
 + [UML](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#uml)
 
