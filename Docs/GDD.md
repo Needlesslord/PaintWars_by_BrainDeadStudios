@@ -298,6 +298,36 @@ SPRITE|   NAME   | TIER  | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
 ## Maps
 
 
+We have designed 3 different maps to give the player a little bit more freedom when playing and to make it more interesting. Each map will come with different passives which will affect the player in different ways. In addition, there is a recommended order, but it is not compulsory since the games are independent from each other. 
+
+The recommended first level is the **Forest Map**. It has 2 passives: 
++ Fog reappears in the forest areas (areas with more than 4 trees)
++ Allied units have increased movement speed
+
+
+![FOREST](https://user-images.githubusercontent.com/51851736/76069450-2becec80-5f93-11ea-8f01-445eaafa043e.png)
+
+
+The recommended second level is the **Volcanic Map**. It only has 1 passive:
++ Comets will fall from the sky, which will cause mild area-damage
+
+
+![VOLCANIC](https://user-images.githubusercontent.com/51851736/76069447-2b545600-5f93-11ea-9f18-ee0a6ca13c15.png)
+
+
+The recommended third level is the **Snow Map**. It has 1 passive, but it also affects units:
++ Allied units move slower
++ Some allied units will benefit from this map, others will be penalised (Ex: Ranged Units will have increased attack speed)
+
+
+![SNOW](https://user-images.githubusercontent.com/51851736/76069448-2becec80-5f93-11ea-9d33-c6432782b076.png)
+
+
+The above representations are the technical point of view of the maps, with key points and the Hall. Below, there will be the finished maps.
+
+*UNDER CONSTRUCTION*
+
+
 ***
 
 
