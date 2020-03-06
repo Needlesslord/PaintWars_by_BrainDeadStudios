@@ -40,6 +40,27 @@
 
 ## Introduction
 
+"GAME NAME" is an isometric single player RTS game featuring a campaign with playable units, buildable structures and manageable resources where the player will have to fight against waves of enemies trying to destroy his base.
+
+**Development Team:**
+
+[Nuria Lamonja](https://github.com/Needlesslord)
+Team Leader
+
+[Tomás Carreras](https://github.com/tomascarreras1000)
+Technical Director
+
+[Marc Ariza](https://github.com/MarcArizaAlborni)
+Design Director
+
+[Enric Durán](https://github.com/EnricGDV)
+Art Director
+
+[Álex Lopez](https://github.com/AlexLA99)
+QA Director
+
+[Marc San José]()
+Coder, Designer
 
 ***
 
