@@ -10,14 +10,13 @@
 
 + [Technical Goals](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#technical-goals)
   - [Target Hardware](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#target-hardware)
-  - [Target Software](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#target-software)
   - [Performance Budgets](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#performance-budgets)
-
-+ [Game Mechanics](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#game-mechanics)
 
 + [Development Tools](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#development-tools)
   - [Development Hardware](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#development-hardware)
   - [Development Software](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#development-software)
+  
++ [Game Mechanics](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#game-mechanics)
 
 + [Coding Style](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#coding-style)
 
@@ -51,19 +50,11 @@
 ### Target Hardware
 
 
-### Target Software
-
-
 ### Performance Budgets
 
 
 ***
 
-
-## Game Mechanics
-
-
-***
 
 ## Development Tools
 
@@ -72,6 +63,12 @@
 
 
 ### Development Software
+
+
+***
+
+
+## Game Mechanics
 
 
 ***
