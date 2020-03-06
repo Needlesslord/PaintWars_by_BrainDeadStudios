@@ -105,7 +105,7 @@ You can find us in our media handles:
 
 ## License
 
-BrainDead Studios' games are licensed under an unmodified MIT license, which is an OSI-certified license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
+BrainDead Studios' games are licensed under an unmodified MIT license, which is an OSI-certified license that allows static linking with closed source software. Check [LICENSE](https://github.com/Needlesslord/BrainDeadStudios/blob/master/LICENSE) for further details.
 
 All the data used (sprites, music, fx, etc) will be credited or free to use as well.
 
