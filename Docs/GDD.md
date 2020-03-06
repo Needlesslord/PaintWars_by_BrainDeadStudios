@@ -277,8 +277,8 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
 
 SPRITE|   NAME   | TIER  | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
  ---------|------------ |  -----------| ---------|-------|-------|-------
-.|Paint Slime | 5 | Paint |30|15| Ground Unit | Grounded
-.|Dark Rider | 5 | Paint + Wood |50|25| Ground Unit | Grounded
+.|Paint Slime | 5 | Paint |30|15| Ground Unit. Weak and easy to kill | Grounded
+.|Dark Rider | 5 | Paint + Wood |50|25| Ground Unit. Fast strong unit | Grounded
 .|Corrupted Knight | 5 | 75|40| Ground Unit | Grounded
 .|Explosive Blob | 5 |50|300| Ground Unit. AOE damage around the unit, dies after it attacks| Grounded
 .|Forsaken Sniper | 5 | 100|25| Ground Unit| Grounded
