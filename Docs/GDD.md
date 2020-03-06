@@ -303,8 +303,39 @@ SPRITE|   NAME   | TIER  | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
 
 ## Quests and Advancements
 
+**The player will be tasked to complete several missions to beat the game. Some of these missions will be required to beat the game, others will simply give advantages to the player if they are completed.**
 
-***
+### QUESTS
+ Quests will be required to beat the game and must . Thee quests will ask the player to destroy a certain enemy building, go a specific place in the map or kill a certain enemy.
+ They will be displayed in the quests window on the screen.
+ 
+ #### SOME QUESTS
+ 
+ - Destroy each enemy spawner in the map.
+ 
+ - Reach every enemy base in the map
+ 
+ - Kill the final boss aporeaching the base
+ 
+ - Survive every enemy wave
+ 
+ 
+ 
+ ### ADVANCEMENTS
+ 
+ Advancements will be secondary missions that will make the game easier for the player if completed. These advancements will ask the player certain specific actions, for example gather a certain amount of a specific resource, create a certain amount of units of a specific type, build a certain amount of buildings, etc.
+ 
+ #### SOME ADVANCEMENTS
+ 
+  - Build 3 paint extractors
+  
+  - Create 5 ranged units
+  
+  - Kill 20 enemy units
+  
+  - Gather 500 Metal Scrap
+
+
 
 
 ## Tutorial
