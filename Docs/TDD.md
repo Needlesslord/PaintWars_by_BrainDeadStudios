@@ -23,15 +23,13 @@
 + [UML](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#uml)
 
 + [Branching policy](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#branching-policy)
+  
++ [Data Layout]()
 
 + [Version List](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#version-list)
   - [Planned](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#planned)
   - [Real](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#real)
   - [Scheduling]()
-  
-+ [Data Layout]()
-
-+ [External Libraries](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#external-libraries)
 
 + [Build Delivery Method](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#build-delivery-method)
 
@@ -40,27 +38,27 @@
 
 ## Introduction
 
-"GAME NAME" is an isometric single player RTS game featuring a campaign with playable units, buildable structures and manageable resources where the player will have to fight against waves of enemies trying to destroy his base.
+"GAME NAME" is an isometric single player RTS game featuring a campaign with playable units, buildable structures and manageable resources where the player will have to fight against waves of enemies trying to destroy their base. The language used will be C++. For more about the game check out our [GDD](GDD.md).
 
 **Development Team:**
 
 [Nuria Lamonja](https://github.com/Needlesslord)
-Team Leader
++ Team Leader
 
 [Tomás Carreras](https://github.com/tomascarreras1000)
-Technical Director
++ Technical Director
 
 [Marc Ariza](https://github.com/MarcArizaAlborni)
-Design Director
++ Design Director
 
 [Enric Durán](https://github.com/EnricGDV)
-Art Director
++ Art Director
 
 [Álex Lopez](https://github.com/AlexLA99)
-QA Director
++ QA Director
 
 [Marc San José]()
-Coder, Designer
++ Coder, Designer
 
 ***
 
@@ -85,6 +83,7 @@ Coder, Designer
 
 ### Development Software
 
+**External Libraries:**
 
 ***
 
@@ -102,12 +101,6 @@ Coder, Designer
 
 
 ## UML
-
-
-***
-
-
-## Branching policy
 
 
 ***
@@ -131,19 +124,62 @@ You can check this information in the [GDD Document](https://github.com/Needless
 ***
 
 
-## Data Layout
+## Branching policy
 
 
 ***
 
 
-## External Libraries
+## Data Layout
 
+The Data Layout was provided by the teacher in a template from which the GitHub Repository was created and is structured as shown below, together with the format in which every file should be stored:
+
++ Repository
+  + Docs
+      + ArtBible.md
+      + AudioBible.md
+      + GDD.md
+      + GUIDocument.md
+      + ProductionPlan.md
+      + QAWorkflow.md
+      + TDD.md
+      + README.md
+  + Screenshots
+    + .png
+  + Source
+    + Deps
+      + src
+        + .hpp
+        + .cpp
+      + readme.txt
+    + Resources
+      + Audio
+        + Fx
+          + .wav
+        + Music
+          + .ogg
+      + Fonts
+        + LICENSE.txt
+        + .tff
+      + Maps
+        + .tmx
+      + Sprites
+        + .png
+      + config.xml
+    + Game.vcxproj
+  + LICENSE.md
+  + Project.sln
+  + README.md
+  + RRSS.md
+  
+**File Naming Conventions:**
+Even though there may be certain specific conventions for each type of files, the general naming conventions should be the use of     underscores to separate words and no use of capital letters. The logical naming hierarchy should go from general to particular. (i.e. tiles_terrain_grass.png)
 
 ***
 
 
 ## Build Delivery Method
 
+We will be using GitHub Actions as a Continuous Integration tool to test our code every important feature commit in the Development branch in order to prove that it is functional in every possible environment in the [Target Platform(s)](TDD.md/#Target-Hardware). There will be a release for every one of these commits in GitHub.
 
 ***
