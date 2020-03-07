@@ -1,4 +1,4 @@
-## ART BIBLE DOCUMENT
+# ART BIBLE DOCUMENT
 
 
 ***
@@ -11,9 +11,11 @@
   - [Character Art](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#character-art)
   - [Level of Detail](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#level-of-detail)
   - [Camera](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#camera)
-  - [Color Palette](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#color-palette)
+  - Scale
+  - Scenarios
+  - [Color Palette](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#color-palette): Visual Hierarchy
   - [Atmosphere](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#atmosphere)
-  - [UI](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#ui)
+  - [UI](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#ui): Main Menu - In Game - Font
   - [References](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#references)
 
 + [Intention of the Graphics](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#intention-of-the-graphics)
@@ -45,13 +47,29 @@
 ### Camera
 
 
+### Scale
+
+
+### Scenarios
+
+
 ### Color Palette
+
+
+#### Visual Hierarchy
 
 
 ### Atmosphere
 
 
 ### UI
+
+
+#### Main Menu
+
+#### In Game
+
+#### Font
 
 
 ### References
