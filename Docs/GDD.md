@@ -16,6 +16,8 @@
     
 + [Plot](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#plot)
 
++ Game Flow
+
 + [Controls](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#controls)
 
 + [Gameplay](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#gameplay)
@@ -23,6 +25,8 @@
     - [Player Win](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#player-win)
     - [Player Lose](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#player-lose)
     - [Main Gameplay Characteristics](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#main-gameplay-characteristics)
+    - Gameplay Systems
+    - Balancing
     
 + [Game Elements](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#game-elements)
     - **[Resources](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#resources)**
@@ -32,6 +36,10 @@
     - **[Upgrades](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#upgrades)**
      
 + [Maps](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#maps)
+  - Fog of War
+  - Player Base
+  - Middle Areas
+  - Minimap
 
 + [Quests and Advancecments](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#quests-and-advancements)
 
@@ -77,6 +85,14 @@ After many years of peace and tranquility, citizens of the "WORLD NAME" began to
 ***
 
 
+## Game Flow
+
+*Under construction**
+
+
+***
+
+
 ## Controls
 
 + Mouse
@@ -92,6 +108,7 @@ After many years of peace and tranquility, citizens of the "WORLD NAME" began to
 ### Objective
 The main goal of the game is to destroy all enemy bases while you defend your own base from oposing armies. The enemy will attack the player with waves of enemies, each of them being stronger than the previous one.
 
+
 ### Player Win
 The player has two ways of wining
 
@@ -101,6 +118,7 @@ He can also decide to defend the base from the enemy waves, and if he is succesf
 
 ### Player Lose
 The player will lose if his Main Building gets destroyed, this will happen if he is not able to defeat the enemy waves that attack his base.
+
 
 ### Main Gameplay Characteristics
 
@@ -112,6 +130,12 @@ The player will lose if his Main Building gets destroyed, this will happen if he
 
 **Explore the map:** The map is full of scarce resources that the player will be able to collect in order to reinforce his army or upgrade even further his base.
 
+
+### Gameplay Systems
+
+*Under construction**
+
+### Balancing
 
 ***
 
@@ -323,7 +347,23 @@ The recommended third level is the **Snow Map**. It has 1 passive, but it also a
 ![SNOW](https://user-images.githubusercontent.com/51851736/76069448-2becec80-5f93-11ea-9d33-c6432782b076.png)
 
 
-The above representations are the technical point of view of the maps, with key points and the Hall. Below, there will be the finished maps.
+The above representations are the technical point of view of the maps, with key points and the Hall. Below, you can find the finished maps.
+
+*UNDER CONSTRUCTION*
+
+### Fog of War
+
+*UNDER CONSTRUCTION*
+
+### Player Base
+
+*UNDER CONSTRUCTION*
+
+### Middle Areas
+
+*UNDER CONSTRUCTION*
+
+### Minimap
 
 *UNDER CONSTRUCTION*
 
@@ -365,7 +405,10 @@ The above representations are the technical point of view of the maps, with key 
   
   - Gather 500 Metal Scrap
 
+### Rewards
 
+
+***
 
 
 ## Tutorial
