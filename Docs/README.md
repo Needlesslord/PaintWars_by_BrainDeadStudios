@@ -127,14 +127,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-
 All the data used (sprites, music, fx, etc) will be credited or free to use as well.
 
-***
 
+### Disclaimer
 
-
-
+Our games are non-profit for educational purposes only. We do not intend to earn profit from it, since it is part of a university project taught at CITM-TTC in the degree Videogame Development and Design. All the assets (including sprites, music FX, etc) used in our games belong to their rightful owners, which will be credited.
 
 
 
