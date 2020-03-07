@@ -42,49 +42,57 @@ For further information please consult the GDD document.
 
 ### What are players looking for?
 
+After a throughrough research, we have found that the following content is what is most liked/disliked by players. We added our ethics as goals or things we also believe is important, which align as well with what people want these days.
+
+Wants from the audience and our ethics (summary):
+
+**- inclusive (both disabilities and "relatable")**
+**- war and destruction**
+- exploring is cool, but not the most important aspect
+**- inventory systems works well**
+- character-based perma-death adds drama and makes it interesting
+**- RTS take a long time to finish, which is bad**
+**- Instant gratification: we don't want to wait for buildings**
+- Random dungeon generation is good
+- Levelable heroes are good
+**- Micromanaging is hard**
+
+We are aware that some of them may contradict each other and that, with the scope we have, we cannot accomplish everything. Therefore, we chose the highlighted ones as the ones we are going to implement.
+
+From the list we can take that users want to destroy and kill enemies, rather than explore. In this case, we are goinng to matain the destruction part, but we added an important part that comes from exploring. The game will be incluse in the design, for both people with disabilities and trying not to discourage anyone from playing the game due to ethnics, body type, genre, etc. Out time goal is 20-30 minutes top, which makes it quite short for an RTS. Buildings will be buildt instantly and micromanaging will be balanced, with an inventory which will be small and always visible (at the top of the screen).
+
 
 ### Target Audience Analysis
+
+The target audience for the game we want to develop is going to be as inclusive as possible. 
+
+First of all, our game is going to be **Free-To-Play**. In case of revenue we are going to ad ADs, therefore, mostly **anyone with a computer** will be able to play the game, since no required money investments will be needed. In addition, the computer won't have to be a gaming one, since the required **CPU usage will be low**, allowing the game to be played almost from every computer.
+
+Secondly, the user's profile is going to be very generic, which will allow a wider reach range to the audience. Our target user will be between the ages of **12-30 years old**; however, since the theme is "paint", younger and older people will be appealed by it too. Our target has a non-specific gender; this means that **all genders** are in fact our target. In addition, the player **won't need any previous experience with either RTS games or any game in general**, since it will have easy commands, a tutorial and a very intuitive HUD/UI.
+
+Finally, it will be **inclusive** in the sense that the colours won't be more appealing to one gender than the other, the units/characters will have an unclear gender/sexuality/body type/etc, as well as the enemies. Moreover, for **users with disabilities**, we are planning on having settings that will allow them to change the controls at will and we will include subtitles for non-hearing people.
 
 
 ### Genre
 
-The game we are developing uses the basic formula of an RTS, (managing resources, building armies and constructing your base) and turning it into a single player game where waves of enemies will constantly pressure and attack the base to force player into choosing correctly on what he wants to invest resources at the same time as he completes missions and explores the map fo beat the game.
 
 ### Innovation and goals
 
-The game is focused on a single player experience where the player has to manage defending the base using resources, buildings and units at the same time he explores the map full of enemies and completes missions handed to him to beat the game. 
-
-There will be several types of buildings that fulfill different roles, such as exploration, resource generation and defense. Units that will have different utilities such as long range attacking, holding the line or moving fast around the map to explore.
-
-Increasing difficulty as time goes on, the game will pressure the player harder each time turning the game into an adaptation and endurance test.
 
 ### SWOT Analysis
 
 
 #### Strengths
 
-- Extensive knowledge of different videogame genres
-- Enthusiastic developers
-- High adaptability if we find challenges across the way
 
 #### Weaknesses
-
-- Focusing on unnecessary things and running out of time
-- Not beeing able to release what we expected to
-- Beeing constant when working and beeing consistent when developing the game
 
 
 #### Opportunities
 
-- Great oportunity to develop and RTS and create a more complex game
-- ?
-- ?
 
 #### Threats
 
-- Loosing the scop and trying to achieve more than we can
-- Time schedule of the developers and designers
-- Disagreement between group members
  
 ***
 
