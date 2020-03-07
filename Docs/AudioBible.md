@@ -12,7 +12,8 @@
   - **[Voice Over](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#voice-over)**
   - **[Technology Used](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#technology-used)**
   - **[References](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#references)**
-
+  - Technical Guidelines
+  
 + [Music Used](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#music-used)
   - [Main Menu](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#main-menu)
   - [Pause Menu](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#pause-menu)
@@ -82,6 +83,9 @@ We do not have any Voice Over's.
 
 
 ### References
+
+
+### Technical Guidelines
 
 
 ***
