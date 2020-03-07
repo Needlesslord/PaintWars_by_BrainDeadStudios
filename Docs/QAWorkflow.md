@@ -32,7 +32,7 @@
 ## Introduction
 
 
-In this section; the Quality Assurance (QA) plan, we'll be explaining the tools, methods, parameters and tests that we'll be using during the project.
+In this section, the Quality Assurance (QA) plan, we'll be explaining the tools, methods, parameters and tests that we'll be using during the developement of our video game project.
 
 
 ***
