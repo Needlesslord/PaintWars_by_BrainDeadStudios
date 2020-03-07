@@ -63,15 +63,28 @@ Increasing difficulty as time goes on, the game will pressure the player harder 
 
 #### Strengths
 
+- Extensive knowledge of different videogame genres
+- Enthusiastic developers
+- High adaptability if we find challenges across the way
 
 #### Weaknesses
+
+- Focusing on unnecessary things and running out of time
+- Not beeing able to release what we expected to
+- Beeing constant when working and beeing consistent when developing the game
 
 
 #### Opportunities
 
+- Great oportunity to develop and RTS and create a more complex game
+- ?
+- ?
 
 #### Threats
 
+- Loosing the scop and trying to achieve more than we can
+- Time schedule of the developers and designers
+- Disagreement between group members
  
 ***
 
