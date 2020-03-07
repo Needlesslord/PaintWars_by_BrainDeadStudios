@@ -55,6 +55,59 @@ Tools we used to keep up with the sprints:
 
 *TO BE CONTINUED*
 
+
+### Milestones
+
+For each delivery we have set a milestone. Therefore, we have 4 milestones with concrete delivery dates, which for each milestone will be 3 days prior (depending on the delivery). With the planned sprints and the planning we can assure that the following will be completed:
+
++ Concept Discovery (Milestone: 9th March; Delivery: 10th March)
+    - Art Bible
+    - Audio Bible
+    - GDD
+    - GUI Document
+    - Game Reference
+    - Production Plan
+    - QA Workflow
+    - TDD
+    - Social Media Updates + Calendar
+    - Pitch
+    - Group Setting
+    - Logo Design and Briefing
+    - Base Code + Main Modules
+    
++ Vertical Slice (Milestone: 19th April; Delivery: 22nd April)
+    - Sprites and Animations
+    - Units and Enemies functional: at least 
+    - Map Implementation: 1/3 maps
+    - Basic UI
+    - Battle System
+    - Win Lose Condition
+    - Cheats and Debug
+    - FX and music
+    - Social Media: at least 3 tweets and instagram posts per week, at least 3 streams on Twitch and Youtube (can be the same)
+
++ Alpha (Milestone: 16th May; Delivery: 19th May)
+    - All Maps
+    - Complete UI
+    - All units and enemies completely functional
+    - Menu workflow complete and smooth
+    - Transitions between scenes
+    - Only minor bugs lefts
+    - Social Media: at least 6 tweets and instagram posts per week, at least 5 streams on Twitch and Youtube (can be the same)
+    - Social Media: Promotions for the game started
+
+
++ Gold (Milestone: 30th May; Delivery: 1st June)
+    - All the bugs fixed
+    - Game is polished and complete
+    - Website
+    - Trailer
+    - Gameplay
+    - Spreadsheet
+    - Social Media: at least 6 tweets and instagram posts per week, at least 5 streams on Twitch and Youtube (can be the same)
+    - Social Media: Launch Day promoted on social media
+
+
 ***
 
 
