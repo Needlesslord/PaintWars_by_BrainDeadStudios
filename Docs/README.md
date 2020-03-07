@@ -47,14 +47,23 @@ After a throughrough research, we have found that the following content is what 
 Wants from the audience and our ethics (summary):
 
 **- inclusive (both disabilities and "relatable")**
+
 **- war and destruction**
+
 - exploring is cool, but not the most important aspect
+
 **- inventory systems works well**
+
 - character-based perma-death adds drama and makes it interesting
+
 **- RTS take a long time to finish, which is bad**
+
 **- Instant gratification: we don't want to wait for buildings**
+
 - Random dungeon generation is good
+
 - Levelable heroes are good
+
 **- Micromanaging is hard**
 
 We are aware that some of them may contradict each other and that, with the scope we have, we cannot accomplish everything. Therefore, we chose the highlighted ones as the ones we are going to implement.
