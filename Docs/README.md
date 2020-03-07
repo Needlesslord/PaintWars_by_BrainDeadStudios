@@ -156,7 +156,7 @@ Increasing difficulty as time goes on, the game will pressure the player harder 
 
 Here you will find an index of all the data relevant to the game. All this information can also be found in the folder [BrainDeadStudios/Docs/](https://github.com/Needlesslord/BrainDeadStudios/tree/master/Docs).
 
- + Game Reference: information about other games to help inspire the concept and mechanics of ours.
+ + [Game Reference](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GameReference.md): information about other games to help inspire the concept and mechanics of ours.
  + [GDD (Game Design Document)](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md): Game pillars of the game
  + [TDD (Tech Design Document)](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md): Tech Design, which includes all the technical aspects of the game and its performance
  + [GUI Design Document](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GUIDocument.md): UI design, which includes, for example, the flow diagram, HUD, screens layout, etc.
