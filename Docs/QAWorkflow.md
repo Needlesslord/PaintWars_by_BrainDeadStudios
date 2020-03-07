@@ -32,10 +32,16 @@
 ## Introduction
 
 
+In this section; the Quality Assurance (QA) plan, we'll be explaining the tools, methods, parameters and tests that we'll be using during the project.
+
+
 ***
 
 
 ## Tools Used
+
+
+We will use Github issues as a tool to report bugs. In order to report a bug we just have to press the button “New issue”, and fill the template provided by the tool to describe everything about the bug, what happens, when it happens, complexity, priority… A label can be added, if necessary, to provide some more information about the bug. Each bug report, must follow all the specified parameters of our template.
 
 
 ***
