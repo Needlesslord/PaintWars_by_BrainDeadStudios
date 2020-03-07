@@ -101,7 +101,7 @@ The deliveries are:
 
 For describing the bugs we will use a template like the following one:
 
-![Image](Docs/Photos_Wiki/report.PNG)
+![Image](Photos_Wiki/report.PNG)
 
 
 ***
