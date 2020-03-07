@@ -84,26 +84,44 @@ Finally, it will be **inclusive** in the sense that the colours won't be more ap
 
 ### Genre
 
+The game we are developing uses the basic formula of an RTS, (managing resources, building armies and constructing your base) and turning it into a single player game where waves of enemies will constantly pressure and attack the base to force player into choosing correctly on what he wants to invest resources at the same time as he completes missions and explores the map fo beat the game.
 
 ### Innovation and goals
 
+The game is focused on a single player experience where the player has to manage defending the base using resources, buildings and units at the same time he explores the map full of enemies and completes missions handed to him to beat the game. 
+
+There will be several types of buildings that fulfill different roles, such as exploration, resource generation and defense. Units that will have different utilities such as long range attacking, holding the line or moving fast around the map to explore.
+
+Increasing difficulty as time goes on, the game will pressure the player harder each time turning the game into an adaptation and endurance test.
 
 ### SWOT Analysis
 
 
 #### Strengths
 
+- Extensive knowledge of different videogame genres
+- Enthusiastic developers
+- High adaptability if we find challenges across the way
 
 #### Weaknesses
+
+- Focusing on unnecessary things and running out of time
+- Not beeing able to release what we expected to
+- Beeing constant when working and beeing consistent when developing the game
 
 
 #### Opportunities
 
+- Great oportunity to develop and RTS and create a more complex game
+- ?
+- ?
 
 #### Threats
 
+- Loosing the scop and trying to achieve more than we can
+- Time schedule of the developers and designers
+- Disagreement between group members
  
-***
 
 
 ## The Team
