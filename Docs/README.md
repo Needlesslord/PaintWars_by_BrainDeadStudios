@@ -7,11 +7,11 @@
 ## Main Index
 
 + [The Game](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#the-game)
-  - **[What are players looking for?]()**
-  - **[Target Audience Analysis]()**
-  - **[Genre]()**
-  - **[Innovation and goals]()**
-  - **[SWOT Analysis]():** [Strengths]() - [Weaknesses]() - [Opportunities]() - [Threats]()
+  - **[What are players looking for?](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#what-are-players-looking-for)**
+  - **[Target Audience Analysis](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#target-audience-analysis)**
+  - **[Genre](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#genre)**
+  - **[Innovation and goals](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#innovation-and-goals)**
+  - **[SWOT Analysis](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#swot-analysis):** [Strengths](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#strengths) - [Weaknesses](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#weaknesses) - [Opportunities](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#opportunities) - [Threats](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#threats)
   
 
 + [The Team](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#the-team)
