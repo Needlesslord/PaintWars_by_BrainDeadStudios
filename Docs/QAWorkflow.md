@@ -99,6 +99,11 @@ The deliveries are:
 ## Bug Properties
 
 
+For describing the bugs we will use a template like the following one:
+
+![Image](Docs/Photos_Wiki/report.PNG)
+
+
 ***
 
 
