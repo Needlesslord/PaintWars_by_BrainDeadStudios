@@ -19,6 +19,13 @@
 + [Game Mechanics](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#game-mechanics)
 
 + [Coding Style](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#coding-style)
+  - Coding Style
+  - Naming Convention
+  - Variables
+  - Loops
+  - Conditionals
+  - Classes and structs
+  - XML
 
 + [UML](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#uml)
 
@@ -43,7 +50,7 @@
 **Development Team:**
 
 [Nuria Lamonja](https://github.com/Needlesslord)
-+ Team Leader
++ Team Leader, Management
 
 [Tomás Carreras](https://github.com/tomascarreras1000)
 + Technical Director
@@ -83,7 +90,8 @@
 
 ### Development Software
 
-**External Libraries:**
+#### External Libraries
+
 
 ***
 
@@ -95,6 +103,18 @@
 
 
 ## Coding Style
+
+### Naming Convention
+
+### Variables
+
+### Loops
+
+### Conditionals
+
+### Classes and structs
+
+### XML
 
 
 ***
