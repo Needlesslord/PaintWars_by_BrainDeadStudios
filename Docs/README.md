@@ -7,9 +7,19 @@
 ## Main Index
 
 + [The Game](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#the-game)
+  - **[What are players looking for?]()**
+  - **[Target Audience Analysis]()**
+  - **[Genre]()**
+  - **[Innovation and goals]()**
+  - **[SWOT Analysis]():** [Strengths]() - [Weaknesses]() - [Opportunities]() - [Threats]()
+  
+
 + [The Team](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#the-team)
+
 + [Sections](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#sections)
+
 + [Social Media](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#social-media)
+
 + [License](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/README.md#license)
 
 
@@ -28,6 +38,33 @@ For further information please consult the GDD document.
 
 
 *( * ) temporary name.*
+
+
+### What are players looking for?
+
+
+### Target Audience Analysis
+
+
+### Genre
+
+
+### Innovation and goals
+
+
+### SWOT Analysis
+
+
+#### Strengths
+
+
+#### Weaknesses
+
+
+#### Opportunities
+
+
+#### Threats
 
  
 ***
