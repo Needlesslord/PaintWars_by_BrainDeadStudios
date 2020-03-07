@@ -13,7 +13,6 @@
 + [Workflows](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#workflows)
   - [Pre-production](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#pre-production)
   - [Alpha](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#alpha)
-  - [Beta](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#beta)
   - [Gold](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#gold)
   
 + [Software](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#software)
@@ -49,9 +48,6 @@
 
 
 ### Alpha
-
-
-### Beta
 
 
 ### Gold
