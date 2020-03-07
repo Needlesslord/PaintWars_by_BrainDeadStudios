@@ -8,7 +8,7 @@
 
 + [Introduction](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#introduction)
 
-+ Tools Used
++ [Tools Used](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#tools-used)
 
 + [Workflows](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#workflows)
   - [Pre-production](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#pre-production)
@@ -23,7 +23,7 @@
 
 + [Process for Quality Testing](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#process-for-quality-testing)
 
-+ Process for Quality Assurance
++ [Process for Quality Assurance](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#process-for-quality-assurance)
 
 
 ***
