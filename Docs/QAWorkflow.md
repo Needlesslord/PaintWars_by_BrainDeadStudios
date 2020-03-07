@@ -18,7 +18,9 @@
 + [Software](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#software)
 
 + [Milestone Delivery Protocol](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#milestone-delivery-protocolhttps://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#milestone-delivery-protocol)
-
+  - [Internal Milestones](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#internal-milestone)
+  - [External Milestones](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#external-milestone)
+  
 + [Bug Properties](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#bug-properties)
 
 + [Process for Quality Testing](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#process-for-quality-testing)
@@ -69,6 +71,18 @@ We will use Github issues as a tool to report bugs. In order to report a bug we 
 
 
 ## Milestone Delivery Protocol
+
+
+### Internal Milestones
+
+
+Every friday, we will make a build and on saturday, it will be tested in a QA test sesion. Finally the bugs will be fixed and retested between sunday and monday. In this sesion, the QA team and the Team Lead will test the game. Every two weeks, we will test the game with another team and see which aspects of our game can be improved with their help.
+
+
+### External Milestones
+
+
+All the external milestones will be organised a week before every delivery. This milestones will consist in a major QA test sesion where all the members of the team will take part in. After this milestones, the team will make the necessary changes in order to improve the game.
 
 
 ***
