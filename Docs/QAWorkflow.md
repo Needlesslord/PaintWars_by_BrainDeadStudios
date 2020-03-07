@@ -18,8 +18,8 @@
 + [Software](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#software)
 
 + [Milestone Delivery Protocol](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#milestone-delivery-protocolhttps://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#milestone-delivery-protocol)
-  - [Internal Milestones](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#internal-milestone)
-  - [External Milestones](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#external-milestone)
+  - [Internal Milestones](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#internal-milestones)
+  - [External Milestones](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#external-milestones)
   
 + [Bug Properties](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#bug-properties)
 
