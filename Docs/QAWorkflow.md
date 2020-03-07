@@ -84,6 +84,14 @@ Every friday, we will make a build and on saturday, it will be tested in a QA te
 
 All the external milestones will be organised a week before every delivery. This milestones will consist in a major QA test sesion where all the members of the team will take part in. After this milestones, the team will make the necessary changes in order to improve the game.
 
+The deliveries are:
+
+**Vertical Slice:** 22nd of April
+
+**Alpha:** 19th of May
+
+**Gold:** 1st-10th of June
+
 
 ***
 
