@@ -158,8 +158,9 @@ That adds up to (taken into account that some people have different positions, w
 Taken into account that we should have an emergency found, we would add: 20000€
 
 
-Therefore, rounding up, we would need founds of: 77000€
+Therefore, rounding up, the founds for the **development phase** we would need would be: 77000€
 
+For the **launching phase** we would hire top RTS streamers to promote our content and we would gift it to small streamers and general gaming streamers, we would need to pay digital vendors such as Steam or Origin (no physical copies would be launched at the start of production to avoid overcosts) and social media to promote our content. We believe we would need around: 50000€
 
 ***
 
