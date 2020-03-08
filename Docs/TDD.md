@@ -143,7 +143,7 @@ For more information check out our [Art Bible](ArtBible.md) and [Audio Bible](Au
 
 ### Physics & Collisions
 
-
+In a 2D Isometric RTS Game there are is no need for a Physics System per se, however, interactions between entities will be defined through a tiles system where occupied tiles will be labeled as unwalkable and have different interactions that depend on the type of entity they are hosting.
 
 ***
 
