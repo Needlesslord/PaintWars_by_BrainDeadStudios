@@ -78,7 +78,7 @@ We will use Github issues as a tool to report bugs. In order to report a bug we 
 ### Internal Milestones
 
 
-Every friday, we will make a build and on saturday, it will be tested in a QA test sesion. Finally the bugs will be fixed and retested between sunday and monday. In this session, the QA team and the Team Lead will test the game. Every two weeks, we will test the game with another team and see which aspects of our game can be improved with their help.
+Every friday, we will make a build and, on Saturday, it will be tested in a QA test sesion. Finally, the bugs will be fixed and retested between Sunday and Monday. In this session, the QA team and the Team Lead will test the game. Every two weeks, we will test the game with another team and see which aspects of our game can be improved with their help.
 
 
 ### External Milestones
@@ -117,7 +117,7 @@ For describing the bugs we will use a template like the following one:
   - Urgent: Bug needs to be fixed immediately.
   - High: Bug needs to be fixed within a day or two. 
   - Regular: Bug needs to be fixed within a week.
-  - Low: Bug needs to be fixed whenever there aren't any high or critial bugs.
+  - Low: Bug needs to be fixed whenever there aren't any high or urgent bugs.
 + **Version:** The version of the build where the bug happens.
 
 ***
