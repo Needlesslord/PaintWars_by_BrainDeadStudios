@@ -127,7 +127,7 @@ Every friday, a build will be made. This build will be tested with a QA test on 
 ### External QA Test
 
 
-f
+This test are similar than the internal QA tests, but instead of being done by members of the team, this test is performed by other people, in our case, other groups. This will help to find bugs the ones couldn’t be found by the members of the team.
 
 
 ***
