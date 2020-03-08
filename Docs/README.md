@@ -28,7 +28,7 @@
 
 ## The Game
 
-The game we are going to develop is going to be called *Paint of Evolution ( * ).*
+The game we are going to develop is going to be called *Paint Wars ( * ).*
 
 
 The game is going to be an RTS, which its theme will be about paint. The player will have to get resources, the main one being paint, to upgrade their base, units, etc. in order to win the game.
@@ -128,7 +128,7 @@ Increasing difficulty as time goes on, the game will pressure the player harder 
 
 
  - Marc San José - Design, QA
-      + [Github](https://github.com/)
+      + [Github](https://github.com/marcsjm19)
       + [Linkedin](https://es.linkedin.com/marcsjm19)
  - Enric-G. Durán - Lead UI Designer, Lead Artist and Music
       + [Github](https://github.com/EnricGDV)
