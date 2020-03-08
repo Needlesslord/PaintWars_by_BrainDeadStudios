@@ -6,39 +6,42 @@
 
 ## Main Menu
 
-+ [Introduction](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#introduction)
++ [Introduction](TDD.md#introduction)
 
-+ [Technical Goals](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#technical-goals)
-  - [Target Hardware](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#target-hardware)
-  - [Performance Budgets](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#performance-budgets)
++ [Technical Goals](TDD.md#technical-goals)
+  - [Target Hardware](TDD.md#target-hardware)
+  - [Performance Budgets](TDD.md#performance-budgets)
 
-+ [Development Tools](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#development-tools)
-  - [Development Hardware](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#development-hardware)
-  - [Development Software](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#development-software)
++ [Development Tools](TDD.md#development-tools)
+  - [Development Hardware](TDD.md#development-hardware)
+  - [Development Software](TDD.md#development-software)
   
-+ [Game Mechanics](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#game-mechanics)
++ [Game Mechanics](TDD.md#game-mechanics)
+  - [Technical](TDD.md#technical)
+  - [Architecture](TDD.md#architecture)
+  - [Graphics & Sound](TDD.md#graphics-&-sound)
+  - [Artificial Intelligence](TDD.md#artificial-intelligence)
+  - [Logic](TDD.md#logic)
+  - [Physics & Collisions](TDD.md#physics-&-collisions)
 
-+ [Coding Style](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#coding-style)
-  - Coding Style
-  - Naming Convention
-  - Variables
-  - Loops
-  - Conditionals
-  - Classes and structs
-  - XML
++ [Coding Style](TDD.md#coding-style)
+  - [Naming Conventions](TDD.md#naming-conventions)
+  - [Variables](TDD.md#variables)
+  - [Loops](TDD.md#loops)
+  - [Conditionals](TDD.md#conditionals)
+  - [Classes and structs](TDD.md#classes-and-structs)
+  - [XML](TDD.md#xml)
 
-+ [UML](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#uml)
++ [UML](TDD.md#uml)
 
-+ [Branching policy](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#branching-policy)
-  
 + [Data Layout]()
 
-+ [Version List](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#version-list)
-  - [Planned](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#planned)
-  - [Real](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#real)
++ [Version List](TDD.md#version-list)
+  - [Planned](TDD.md#planned)
+  - [Real](TDD.md#real)
   - [Scheduling]()
 
-+ [Build Delivery Method](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#build-delivery-method)
++ [Build Delivery Method](TDD.md#build-delivery-method)
 
 
 ***
@@ -47,7 +50,7 @@
 
 "GAME NAME" is an isometric single player RTS game featuring a campaign with playable units, buildable structures and manageable resources where the player will have to fight against waves of enemies trying to destroy their base. The language used will be C++. For more about the game check out our [GDD](GDD.md).
 
-**Development Team:**
+#### Development Team:
 
 [Nuria Lamonja](https://github.com/Needlesslord)
 + Team Leader, Management
@@ -73,10 +76,13 @@
 ## Technical Goals
 
 
+
 ### Target Hardware
 
 
+
 ### Performance Budgets
+
 
 
 ***
@@ -91,10 +97,12 @@
 ### Development Software
 
 
-**GitHub Commit Naming:**
+#### GitHub Commit Naming:
+
 Every commit should follow the following structure: Area of work + space + work done
 
-**GitHub Branching:**
+#### GitHub Branching:
+
 GitHub offers a feature for branching your projects in order to have a more clear and divided workspace. This feature is very useful for having different coders working in the same project without stepping on each other's toes and keeping their work divided. We will apply the following branching model:
 
 ![Image](Photos_Wiki/branching.jpg)
@@ -113,13 +121,36 @@ The development branch will be the main working branch where every change implem
 
 ## Game Mechanics
 
+### Technical
+
+
+
+### Architecture
+
+The Game's Flow Diagram can be found in the [GUI Document](GUIDocument.md#menus-flow-diagram).
+
+### Graphics & Sound
+
+For more information check out our [Art Bible](ArtBible.md) and [Audio Bible](AudioBible.md).
+
+### Artificial Intelligence
+
+
+
+### Logic
+
+
+
+### Physics & Collisions
+
+
 
 ***
 
 
 ## Coding Style
 
-### Naming Convention
+### Naming Conventions
 
 ### Variables
 
@@ -137,6 +168,9 @@ The development branch will be the main working branch where every change implem
 
 ## UML
 
+The overview of our code is provided in the following UML. This structure, however, might change, evolve or be extended during the development.
+
+![Image](Photos_Wiki/entities_uml.png)
 
 ***
 
@@ -201,7 +235,8 @@ The Data Layout was provided by the teacher in a template from which the GitHub 
   + README.md
   + RRSS.md
   
-**File Naming Conventions:**
+#### File Naming Conventions:
+
 Even though there may be certain specific conventions for each type of files, the general naming conventions should be the use of     underscores to separate words and no use of capital letters. The logical naming hierarchy should go from general to particular. (i.e. tiles_terrain_grass.png)
 
 ***
