@@ -18,7 +18,7 @@
 ## Developers
 
  - Marc San José - Design, QA
-      + [Github](https://github.com/)
+      + [Github](https://github.com/marcsjm19)
       + [Linkedin](https://www.linkedin.com/in/marc-san-jos%C3%A9-mart%C3%ADnez-6239361a3/)
  - Enric-G. Durán - Lead UI Designer, Lead Artist and Music
       + [Github](https://github.com/EnricGDV)
