@@ -105,6 +105,20 @@ For describing the bugs we will use a template like the following one:
 
 ![Image](Photos_Wiki/report.PNG)
 
++ **Bug:** Brief description about what happens.
++ **Status:** It tells if the bug has been fixed or it is still happening.
++ **Step by step:** It says how to arrive to the bug.
++ **Expected behaviour:** It is what it should happen.
++ **Type:**
+  - A: Game breaking bug or bug that makes the game unplayable.
+  - B: Bug that makes the game less playable as intended.
+  - C: Aesthetic, graphical or audio bug.
++ **Priority:**
+  - Urgent: Bug needs to be fixed immediately.
+  - High: Bug needs to be fixed within a day or two. 
+  - Regular: Bug needs to be fixed within a week.
+  - Low: Bug needs to be fixed whenever there aren't any high or critial bugs.
++ **Version:** The version of the build where the bug happens.
 
 ***
 
