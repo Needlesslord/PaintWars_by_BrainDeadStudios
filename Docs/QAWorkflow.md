@@ -26,6 +26,8 @@
 + [Process for Quality Testing](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#process-for-quality-testing)
 
 + [Process for Quality Assurance](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#process-for-quality-assurance)
+  - [Internal QA Test](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#internal-qa- test)
+  - [External QA Test](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#external-qa-test)
 
 
 ***
@@ -76,13 +78,13 @@ We will use Github issues as a tool to report bugs. In order to report a bug we 
 ### Internal Milestones
 
 
-Every friday, we will make a build and on saturday, it will be tested in a QA test sesion. Finally the bugs will be fixed and retested between sunday and monday. In this sesion, the QA team and the Team Lead will test the game. Every two weeks, we will test the game with another team and see which aspects of our game can be improved with their help.
+Every friday, we will make a build and on saturday, it will be tested in a QA test sesion. Finally the bugs will be fixed and retested between sunday and monday. In this session, the QA team and the Team Lead will test the game. Every two weeks, we will test the game with another team and see which aspects of our game can be improved with their help.
 
 
 ### External Milestones
 
 
-All the external milestones will be organised a week before every delivery. This milestones will consist in a major QA test sesion where all the members of the team will take part in. After this milestones, the team will make the necessary changes in order to improve the game.
+All the external milestones will be organised a week before every delivery. This milestones will consist in a major QA test session where all the members of the team will take part in. After this milestones, the team will make the necessary changes in order to improve the game.
 
 The deliveries are:
 
@@ -114,6 +116,18 @@ For describing the bugs we will use a template like the following one:
 
 
 ## Process for Quality Assurance
+
+
+### Internal QA Test
+
+
+Every friday, a build will be made. This build will be tested with a QA test on saturdays. The normal tests will last approximately 1 hour while the big ones 1 hour and a half, more or less. All bugs must be reported using the template explained before with Github issues. After the session, the QA master will check that the reports have been well done and will pass all the informations to the members of the team. All bugs will be fixed during sundays and mondays.
+
+
+### External QA Test
+
+
+f
 
 
 ***
