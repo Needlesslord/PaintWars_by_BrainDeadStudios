@@ -53,7 +53,7 @@
 #### Development Team:
 
 [Nuria Lamonja](https://github.com/Needlesslord)
-+ **Team Leader**, Management, Community Manager, Social Media
++ **Team Leader**, Management, Community Manager, Social Media, Co-Lead UI Designer, Music
 
 [Tomás Carreras](https://github.com/tomascarreras1000)
 + Lead Coder
@@ -62,7 +62,7 @@
 + Lead Design
 
 [Enric Durán](https://github.com/EnricGDV)
-+ Lead Artist+Music, Lead UI
++ Lead Artist, Co-Lead UI
 
 [Álex Lopez](https://github.com/AlexLA99)
 + QA Director
