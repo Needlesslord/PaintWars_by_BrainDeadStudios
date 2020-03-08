@@ -88,11 +88,11 @@ All the external milestones will be organised a week before every delivery. This
 
 The deliveries are:
 
-**Vertical Slice:** 22nd of April
+**Vertical Slice:** 19th of April
 
-**Alpha:** 19th of May
+**Alpha:** 16th of May
 
-**Gold:** 1st-10th of June
+**Gold:** 30th of June
 
 
 ***
