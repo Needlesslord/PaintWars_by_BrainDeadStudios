@@ -53,21 +53,21 @@
 #### Development Team:
 
 [Nuria Lamonja](https://github.com/Needlesslord)
-+ Team Leader, Management
++ **Team Leader**, Management, Community Manager, Social Media
 
 [Tomás Carreras](https://github.com/tomascarreras1000)
-+ Technical Director
++ Lead Coder
 
 [Marc Ariza](https://github.com/MarcArizaAlborni)
-+ Design Director
++ Lead Design
 
 [Enric Durán](https://github.com/EnricGDV)
-+ Art Director
++ Lead Artist+Music, Lead UI
 
 [Álex Lopez](https://github.com/AlexLA99)
 + QA Director
 
-[Marc San José]()
+[Marc San José](https://github.com/marcsjm19)
 + Coder, Designer
 
 ***
