@@ -26,7 +26,7 @@
 + [Process for Quality Testing](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#process-for-quality-testing)
 
 + [Process for Quality Assurance](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#process-for-quality-assurance)
-  - [Internal QA Test](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#internal-qa- test)
+  - [Internal QA Test](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#internal-qa-test)
   - [External QA Test](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/QAWorkflow.md#external-qa-test)
 
 
