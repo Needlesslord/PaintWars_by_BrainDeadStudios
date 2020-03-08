@@ -90,6 +90,21 @@
 
 ### Development Software
 
+
+**GitHub Commit Naming:**
+Every commit should follow the following structure: Area of work + space + work done
+
+**GitHub Branching:**
+GitHub offers a feature for branching your projects in order to have a more clear and divided workspace. This feature is very useful for having different coders working in the same project without stepping on each other's toes and keeping their work divided. We will apply the following branching model:
+
+![Image](Photos_Wiki/branching.jpg)
+
+The master branch will be where the commits for the 4 main releases of the game will be allocated.
+
+The versions branch will have the different milestones / sets of features that the team agreed to implement in the game.
+
+The development branch will be the main working branch where every change implemented to the game is seen. However, smaller branches will appear so that unfinished work and uncomplete features can be uploaded without breaking the main branch and the code the rest of the team is working with. These smaller branches will also be useful for bug fixing and experimentation.
+
 #### External Libraries
 
 
@@ -139,12 +154,6 @@
 ### Scheduling
 
 You can check this information in the [GDD Document](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md).
-
-
-***
-
-
-## Branching policy
 
 
 ***
