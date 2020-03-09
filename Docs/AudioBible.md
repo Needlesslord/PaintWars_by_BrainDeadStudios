@@ -41,14 +41,26 @@
 
 ### Music
 
+The style could be defined as "epic". The in game music tries to motivate the player while keeping up the tension and has to able to loop. 
+
+However, for the menus, we chose a more casual, almost ballad, genre, but that can be recognised as typical adventure menu music. For the pause menu we kept that in mind while choosing a more soft way to make it easier for the player to know/remember they left the game on hold.
+
+Finally, for the Win/Lose conditions we have a similar kind of epic/medieval style of music, but without the tension. While the Lose song has a more melancholic tone, the Win song has a happier mood. Both are also very intuitive.
+
+Overall, the style could be considered epic and medieval, and classified as typical music used in Adveture RTS or RPG games.
+
 
 #### Genre
 
 
 #### Style
 
+The style could be considered epic and medieval, and classified as typical music used in Adveture RTS or RPG games. For the menus, we could also define them as ballads. The FX try to match the vibe, avoiding futuristic sounds and trying to have more traditional and medieval related sounnds.
+
 
 #### Instrumentation
+
+A lot of drums are used, with Taikos (Japanese drums) also taking a lead role in some songs. Also, piano is key to the ballad type songs. A lot of computer software is used as well to mix the sounds. Other instruments have been used but they may not be as remarkable as these ones.
 
 
 #### Implementation
@@ -130,12 +142,11 @@ This music is relatable to epic. The rythm will match the passive of the map, wh
 
 Can be found [here](https://www.bensound.com/royalty-free-music/track/evolution-epic-nature): https://www.bensound.com/royalty-free-music/track/evolution-epic-nature
 
-
-https://www.bensound.com/royalty-free-music/track/evolution-epic-nature
-
 #### Map 3: Snow
 
 Epic - by Bensound
+
+This is also a very epic song, which, since the Snow Map could be considered the most difficult one, matches well the spirit and motivates the player, yet again, with a smooth loop.
 
 Can be found [here](https://www.bensound.com/royalty-free-music/track/epic): https://www.bensound.com/royalty-free-music/track/epic
 
