@@ -199,11 +199,70 @@ Can be found [here](https://www.audioblocks.com/stock-audio/defeat-bgthydanudrk0
 
 ### Main Menu
 
+All the FX used in the Main Menu are the following:
+
+- Button Hover
+- Button select
+- Button select response:
+   + Quit game
+   + Play (used both on the play button and when selecting the map)
+   + Back
 
 ### Pause Menu
 
+All the FX used in the Pause Menu are the following:
+
+- Button Hover
+- Button select
+- Button select response:
+   + Quit game / back to main menu
+   + Resume
+   + Restart
 
 ### In Game
+
+All the FX used in game are the following:
+
+ - Message
+ - Close
+ - Start building
+ - Action finished
+ - Fight:
+    + Melee
+    + Ranged
+    + Special
+ - Special units:
+    + Painter
+    + Explorer
+ - Spawn destroyed
+ - Ally death
+ - Enemy death
+ - Buildings producing
+    + Hall
+    
+    ...
+    
+ - Enemies:
+    + Chroma-King
+    
+    ...
+    
+ - Hover
+ - Select option
+ - Idle FX
+    + Birds
+    + Wind
+    
+    ...
+    
+    + Each Map:
+       - Forest
+       - Volcanic
+       - Snow
+ - Quest achieved
+ - Advancement
+ - Fold/unfold menu
+ - Time (sound to make every 5 min)
 
 
 ### Others
