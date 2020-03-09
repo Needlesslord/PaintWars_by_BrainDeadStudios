@@ -6,42 +6,39 @@
 
 ## Main Menu
 
-+ [Introduction](TDD.md#introduction)
++ [Introduction](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#introduction)
 
-+ [Technical Goals](TDD.md#technical-goals)
-  - [Target Hardware](TDD.md#target-hardware)
-  - [Performance Budgets](TDD.md#performance-budgets)
++ [Technical Goals](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#technical-goals)
+  - [Target Hardware](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#target-hardware)
+  - [Performance Budgets](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#performance-budgets)
 
-+ [Development Tools](TDD.md#development-tools)
-  - [Development Hardware](TDD.md#development-hardware)
-  - [Development Software](TDD.md#development-software)
++ [Development Tools](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#development-tools)
+  - [Development Hardware](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#development-hardware)
+  - [Development Software](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#development-software)
   
-+ [Game Mechanics](TDD.md#game-mechanics)
-  - [Technical](TDD.md#technical)
-  - [Architecture](TDD.md#architecture)
-  - [Graphics & Sound](TDD.md#graphics-&-sound)
-  - [Artificial Intelligence](TDD.md#artificial-intelligence)
-  - [Logic](TDD.md#logic)
-  - [Physics & Collisions](TDD.md#physics-&-collisions)
++ [Game Mechanics](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#game-mechanics)
 
-+ [Coding Style](TDD.md#coding-style)
-  - [Naming Conventions](TDD.md#naming-conventions)
-  - [Variables](TDD.md#variables)
-  - [Loops](TDD.md#loops)
-  - [Conditionals](TDD.md#conditionals)
-  - [Classes and structs](TDD.md#classes-and-structs)
-  - [XML](TDD.md#xml)
++ [Coding Style](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#coding-style)
+  - Coding Style
+  - Naming Convention
+  - Variables
+  - Loops
+  - Conditionals
+  - Classes and structs
+  - XML
 
-+ [UML](TDD.md#uml)
++ [UML](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#uml)
 
++ [Branching policy](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#branching-policy)
+  
 + [Data Layout]()
 
-+ [Version List](TDD.md#version-list)
-  - [Planned](TDD.md#planned)
-  - [Real](TDD.md#real)
++ [Version List](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#version-list)
+  - [Planned](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#planned)
+  - [Real](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#real)
   - [Scheduling]()
 
-+ [Build Delivery Method](TDD.md#build-delivery-method)
++ [Build Delivery Method](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#build-delivery-method)
 
 
 ***
@@ -50,24 +47,24 @@
 
 "GAME NAME" is an isometric single player RTS game featuring a campaign with playable units, buildable structures and manageable resources where the player will have to fight against waves of enemies trying to destroy their base. The language used will be C++. For more about the game check out our [GDD](GDD.md).
 
-#### Development Team:
+**Development Team:**
 
 [Nuria Lamonja](https://github.com/Needlesslord)
-+ **Team Leader**, Management, Community Manager, Social Media, Co-Lead UI Designer, Music
++ Team Leader, Management
 
 [Tomás Carreras](https://github.com/tomascarreras1000)
-+ Lead Coder
++ Technical Director
 
 [Marc Ariza](https://github.com/MarcArizaAlborni)
-+ Lead Design
++ Design Director
 
 [Enric Durán](https://github.com/EnricGDV)
-+ Lead Artist, Co-Lead UI
++ Art Director
 
 [Álex Lopez](https://github.com/AlexLA99)
 + QA Director
 
-[Marc San José](https://github.com/marcsjm19)
+[Marc San José]()
 + Coder, Designer
 
 ***
@@ -76,13 +73,10 @@
 ## Technical Goals
 
 
-
 ### Target Hardware
 
 
-
 ### Performance Budgets
-
 
 
 ***
@@ -97,12 +91,10 @@
 ### Development Software
 
 
-#### GitHub Commit Naming:
-
+**GitHub Commit Naming:**
 Every commit should follow the following structure: Area of work + space + work done
 
-#### GitHub Branching:
-
+**GitHub Branching:**
 GitHub offers a feature for branching your projects in order to have a more clear and divided workspace. This feature is very useful for having different coders working in the same project without stepping on each other's toes and keeping their work divided. We will apply the following branching model:
 
 ![Image](Photos_Wiki/branching.jpg)
@@ -121,38 +113,44 @@ The development branch will be the main working branch where every change implem
 
 ## Game Mechanics
 
-### Technical
-
-
-
-### Architecture
-
-The Game's Flow Diagram can be found in the [GUI Document](GUIDocument.md#menus-flow-diagram).
-
-### Graphics & Sound
-
-For more information check out our [Art Bible](ArtBible.md) and [Audio Bible](AudioBible.md).
-
-### Artificial Intelligence
-
-
-
-### Logic
-
-
-
-### Physics & Collisions
-
-In a 2D Isometric RTS Game there are is no need for a Physics System per se, however, interactions between entities will be defined through a tiles system where occupied tiles will be labeled as unwalkable and have different interactions that depend on the type of entity they are hosting.
 
 ***
 
 
 ## Coding Style
 
-### Naming Conventions
+### Naming Convention
 
++ Everything will be written in english, including comments.
++ Indentation:
+```
+if (something)  
+      // Do something
+      
+else if(somthing else)
+      // Do something else
+      
+else 
+      // Something else
+```
+```
+for (uint i = 0; i < n; i++) {
+      // Do something
+}
+```
 ### Variables
+
++ Simple variables:
+```uint heath```
++ Compound variables:
+```uint numEnemies```
++ Variables should not try to be as short as possible but rather they should be able to be understood out of context:
+```uint numEnemiesWave01 ```
++ This will not be the case, however, for temporal vairbales:
+```uint i ```
++ Generic variables will have the same name as their class/struct/etc.:
+```Enemy* enemy ```
++ Enums will be written all upper case with underscores to separate words
 
 ### Loops
 
@@ -168,9 +166,6 @@ In a 2D Isometric RTS Game there are is no need for a Physics System per se, how
 
 ## UML
 
-The overview of our code is provided in the following UML. This structure, however, might change, evolve or be extended during the development.
-
-![Image](Photos_Wiki/entities_uml.png)
 
 ***
 
@@ -235,8 +230,7 @@ The Data Layout was provided by the teacher in a template from which the GitHub 
   + README.md
   + RRSS.md
   
-#### File Naming Conventions:
-
+**File Naming Conventions:**
 Even though there may be certain specific conventions for each type of files, the general naming conventions should be the use of     underscores to separate words and no use of capital letters. The logical naming hierarchy should go from general to particular. (i.e. tiles_terrain_grass.png)
 
 ***
