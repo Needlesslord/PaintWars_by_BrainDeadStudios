@@ -244,8 +244,15 @@ All the FX used in game are the following:
     
  - Enemies:
     + Chroma-King
-    
-    ...
+    + Corruptor
+    + Black Executioner
+    + Corrupted Eye
+    + Floating Blob
+    + Forsaken Sniper
+    + Explosive Blop
+    + Corrupted Knight
+    + Dark Rider
+    + Paint Slime
     
  - Hover
  - Select option
