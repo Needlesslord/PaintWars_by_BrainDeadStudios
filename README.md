@@ -1,4 +1,4 @@
-# BRAIN STUDIOS
+# PAINT WARS
 
 ***
 
