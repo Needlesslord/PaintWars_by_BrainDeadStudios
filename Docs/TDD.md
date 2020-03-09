@@ -122,44 +122,146 @@ The development branch will be the main working branch where every change implem
 ### Naming Convention
 
 + Everything will be written in english, including comments.
-+ Indentation:
+
++ Blank spaces will be left for clarity and a better understanding of the code as much as needed:
+
 ```
-if (something)  
-      // Do something
-      
-else if(somthing else)
-      // Do something else
-      
-else 
-      // Something else
+for (uint i = 0; i < n; i++)
 ```
++ Comments will always leave a space between the two bars and the actual comment:
+
+```
+// Comment
+```
+
+### Braces
+
++ Braces will be opened in the same line as the declaration finishes.
+
++ Braces will be closed in the line after the last line of filling.
+
+```
+void BraceUse(){
+// Filling here
+}
+```
++ Braces will be avoided if the filling is only one line or less
+
+```
+while (isOpen)
+        doSomething();
+```
+
+### Variables
+
++ Simple variables will all be lowercase:
+
+```
+uint heath
+```
++ Compound variables will have all the words but the first starting with capital letters:
+
+```
+uint numEnemies
+```
++ Generic variables will have the same name as their class/struct/etc.:
+
+```
+Enemy* enemy
+```
++ Variables should not try to be as short as possible but rather they should be able to be understood out of context:
+
+```
+uint numEnemiesWave01
+```
++ This will not be the case, however, for temporal vairbales:
+
+```
+uint i
+```
++ Bools will start with the prefix is- in order to interpret more clearly it's current state:
+
+```
+bool isActive
+```
+
+### Functions 
+
++ Functions will have all their words starting in capital letters and will have no spaces among them:
+
+```
+CallNextWave()
+```
+
+### Enums 
+
++ Enums will be written all upper case with underscores to separate words in both enum declarations and their items.
+
++ All items will have at least the first word in common with the enum:
+
+```
+PAINT_SOLDIER_STATES
+```
+
+```
+PAINT_SOLDIER_IDLE
+```
+
+### Loops
+
++ For iterator variables we will use i and, in case of need, j, k, etc.
 ```
 for (uint i = 0; i < n; i++) {
       // Do something
 }
 ```
-### Variables
-
-+ Simple variables:
-```uint heath```
-+ Compound variables:
-```uint numEnemies```
-+ Variables should not try to be as short as possible but rather they should be able to be understood out of context:
-```uint numEnemiesWave01 ```
-+ This will not be the case, however, for temporal vairbales:
-```uint i ```
-+ Generic variables will have the same name as their class/struct/etc.:
-```Enemy* enemy ```
-+ Enums will be written all upper case with underscores to separate words
-
-### Loops
 
 ### Conditionals
 
+```
+if (something)  
+      // Do something
+      
+else if (somthing else)
+      // Do something else
+      
+else 
+      // Something else
+```
+
++ In the case a parenthesis is too long it should be split in two or more lines after a comas, operators and operands but never after the >/=/< operators:
+
+```
+if(player.x < object.x && player.x + player.w > object.x &&
+player.y < object.y && player.y + player.h > object.y)
+```
+
 ### Classes and structs
+
++ Structs will be used to store data.
+
++ The naming for the classes will follow the same rules as the functions.
+
++ Classes will always follow the same structure:
+
+```
+  Class ExampleClass {
+public:
+  // Constructor and destructor
+  // Methods
+private:
+  // Methods
+public: 
+  // Variables
+private:
+  // Variables
+  
+};
+```
 
 ### XML
 
++ For the XML we will use the standard coding convention.
 
 ***
 
