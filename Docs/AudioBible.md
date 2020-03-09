@@ -93,12 +93,14 @@ We do not have any Voice Over's.
 
 ### Technology Used
 
+The main idea is to get all the music and the sound from the internet. But in case we need to cut or edit some sound, we are going to use "Audacity"
 
 ### References
 
 
 ### Technical Guidelines
 
+We are going use the ".ogg" format for all the music of our game. Then for all the sound effects, we will use ".wav" files. 
 
 ***
 
