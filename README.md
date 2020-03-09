@@ -1,4 +1,16 @@
-# {Project Name}
+# BRAIN STUDIOS
+
+***
+
+***
+
+*WEB PAGE UNDER CONSTRUCTION*
+
+***
+
+***
+
+
 
 ## Description
 
@@ -28,7 +40,7 @@
       + [Linkedin](https://www.linkedin.com/in/marc-ariza-0b2b431a2/)
  - Tomás Carreras - Lead Coder
       + [Github](https://github.com/tomascarreras1000)
-      + [Linkedin](https://es.linkedin.com/)
+      + [Linkedin](https://www.linkedin.com/in/tom%C3%A1s-carreras-a96a99177/)
  - Alex Lopez - Lead QA
       + [Github](https://github.com/AlexLA99)
       + [Linkedin](https://www.linkedin.com/in/alex-lopez-agudo-9777741a3)
