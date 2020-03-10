@@ -18,7 +18,11 @@
 ## Comparison with other games (genre)
 
 
-***
+Our game is based in the classic RTS formula of base and army management. But instead of doing a 1 Vs 1 game, we will be doing a wave defense game where the player manages it's base and army, but instead of fighting another player, he will fight againt enemy waves.
+
+Some games that we are using as reference are:
+
+- They are 
 
 
 ## Technical Profile
