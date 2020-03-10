@@ -375,6 +375,8 @@ The overview of our code is provided in the following UML. This structure, howev
 
 #### ENTITIES UML
 ![Image](Photos_Wiki/entities_uml.png)
+
+
 ***
 
 
@@ -383,6 +385,72 @@ The overview of our code is provided in the following UML. This structure, howev
 
 ### Planned
 
+#### 0.1
+
+ + Base Code
+ + Base Modules
+ + Camera movement
+ + Hall
+ + Spawners
+ 
+#### 0.2
+
+ + Maps implemented
+ + Colliders
+ + Ally units
+ + Buildings
+ 
+#### 0.3 
+
+ + HUD
+ + Minimap
+ + Pathfinding
+ + Group movement (multiple selection)
+ 
+#### 0.4 
+
+ + Enemies
+ + Enemies AI
+ + Enemies random spawn
+ 
+#### 0.5
+
+ + Battle system
+ + Boss
+ 
+#### 0.6
+
+ + Fog of war
+ + Waves
+ 
+#### 0.7
+
+ + Menu Workflow
+ + All Maps functional
+ 
+#### 0.8
+
+ + Cheats
+ + Fixed animation
+ 
+#### 0.9
+
+ + Bugs fixed
+ + Polished
+ 
+#### 1.0
+
+ + Last bugs fixed
+ 
+#### Vertical Slice
+
++ All the ally units and enemies (no multiple animations needed)
++ Minimap
++ HUD (basic)
++ Buildings and spawner
++ Basic Pathfinding
++ Debugging
++ 
 
 ### Real
   
