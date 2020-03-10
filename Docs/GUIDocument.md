@@ -24,7 +24,7 @@
 
 The following flowchart diagram is the technical description of how the menus will interact with each other, with all the buttons, etc.
 
-![Flow Diagram (Technical)](https://user-images.githubusercontent.com/51851736/76065547-2b048c80-5f8c-11ea-91ff-c366b759ae44.png)
+![Flow Diagram (Technical)](https://user-images.githubusercontent.com/51851736/76337250-60e0a280-62f7-11ea-87f0-cc8a988168e2.png)
 
 ***
 
