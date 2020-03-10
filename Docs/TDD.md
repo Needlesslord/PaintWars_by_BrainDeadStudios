@@ -366,10 +366,15 @@ private:
 
 ## UML
 
+
 The overview of our code is provided in the following UML. This structure, however, is very likely to change, evolve or be extended during the development.
 
-![Image](Photos_Wiki/entities_uml.png)
 
+#### GENERAL UML
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/Photos_Wiki/General_UML_1.0.png)
+
+#### ENTITIES UML
+![Image](Photos_Wiki/entities_uml.png)
 ***
 
 
