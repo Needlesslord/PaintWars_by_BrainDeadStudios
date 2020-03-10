@@ -27,9 +27,6 @@ The following flowchart diagram is the technical description of how the menus wi
 ![Flow Diagram (Technical)](https://user-images.githubusercontent.com/51851736/76337250-60e0a280-62f7-11ea-87f0-cc8a988168e2.png)
 
 
-*Flow Diagram In Game under construction*
-
-
 ***
 
 
