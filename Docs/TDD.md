@@ -6,39 +6,45 @@
 
 ## Main Menu
 
-+ [Introduction](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#introduction)
++ [Introduction](TDD.md#introduction)
 
-+ [Technical Goals](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#technical-goals)
-  - [Target Hardware](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#target-hardware)
-  - [Performance Budgets](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#performance-budgets)
++ [Technical Goals](TDD.md#technical-goals)
+  - [Target Hardware](TDD.md#target-hardware)
+  - [Performance Budgets](TDD.md#performance-budgets)
 
-+ [Development Tools](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#development-tools)
-  - [Development Hardware](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#development-hardware)
-  - [Development Software](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#development-software)
++ [Development Tools](TDD.md#development-tools)
+  - [Development Hardware](TDD.md#development-hardware)
+  - [Development Software](TDD.md#development-software)
   
-+ [Game Mechanics](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#game-mechanics)
++ [Game Mechanics](TDD.md#game-mechanics)
+  - [Technical](TDD.md#technical)
+  - [Architecture](TDD.md#architecture)
+  - [Graphics & Sound](TDD.md#graphics-&-sound)
+  - [Artificial Intelligence](TDD.md#artificial-intelligence)
+  - [Logic](TDD.md#logic)
+  - [Physics & Collisions](TDD.md#physics-&-collisions)
 
-+ [Coding Style](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#coding-style)
-  - Coding Style
-  - Naming Convention
-  - Variables
-  - Loops
-  - Conditionals
-  - Classes and structs
-  - XML
++ [Coding Style](TDD.md#coding-style)
+  - [Naming Conventions](TDD.md#naming-conventions)
+  - [Braces](TDD.md#braces)
+  - [Variables](TDD.md#variables)
+  - [Functions](TDD.md#functions)
+  - [Enums](TDD.md#enums)
+  - [Loops](TDD.md#loops)
+  - [Conditionals](TDD.md#conditionals)
+  - [Classes and structs](TDD.md#classes-and-structs)
+  - [XML](TDD.md#xml)
 
-+ [UML](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#uml)
++ [UML](TDD.md#uml)
 
-+ [Branching policy](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#branching-policy)
-  
 + [Data Layout]()
 
-+ [Version List](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#version-list)
-  - [Planned](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#planned)
-  - [Real](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#real)
++ [Version List](TDD.md#version-list)
+  - [Planned](TDD.md#planned)
+  - [Real](TDD.md#real)
   - [Scheduling]()
 
-+ [Build Delivery Method](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/TDD.md#build-delivery-method)
++ [Build Delivery Method](TDD.md#build-delivery-method)
 
 
 ***
@@ -113,13 +119,38 @@ The development branch will be the main working branch where every change implem
 
 ## Game Mechanics
 
+### Technical
+
+
+
+### Architecture
+
+The Game's Flow Diagram can be found in the [GUI Document](GUIDocument.md#menus-flow-diagram).
+
+### Graphics & Sound
+
+For more information check out our [Art Bible](ArtBible.md) and [Audio Bible](AudioBible.md).
+
+### Artificial Intelligence
+
+
+
+### Logic
+
+In the following UML you can see how the Entity System will work:
+
+![Image](Photos_Wiki/entities_uml.png)
+
+### Physics & Collisions
+
+In a 2D Isometric RTS Game there are is no need for a Physics System per se, however, interactions between entities will be defined through a tiles system where occupied tiles will be labeled as unwalkable and have different interactions that depend on the type of entity they are hosting.
 
 ***
 
 
 ## Coding Style
 
-### Naming Convention
+### Naming Conventions
 
 + Everything will be written in english, including comments.
 
@@ -268,6 +299,7 @@ private:
 
 ## UML
 
+The overview of our code is provided in the following UML. This structure, however, might change, evolve or be extended during the development.
 
 ***
 
@@ -333,7 +365,7 @@ The Data Layout was provided by the teacher in a template from which the GitHub 
   + RRSS.md
   
 **File Naming Conventions:**
-Even though there may be certain specific conventions for each type of files, the general naming conventions should be the use of     underscores to separate words and no use of capital letters. The logical naming hierarchy should go from general to particular. (i.e. tiles_terrain_grass.png)
+Even though there may be certain specific conventions for each type of files, the general naming conventions should be the use of     underscores to separate words and use of capital letters af the start. The logical naming hierarchy should go from general to particular. (i.e. tiles_terrain_grass.png)
 
 ***
 
