@@ -53,7 +53,7 @@
 
 "GAME NAME" is an isometric single player RTS game featuring a campaign with playable units, buildable structures and manageable resources where the player will have to fight against waves of enemies trying to destroy their base. The language used will be C++. For more about the game check out our [GDD](GDD.md).
 
-**Development Team:**
+#### Development Team:
 
 [Nuria Lamonja](https://github.com/Needlesslord)
 + Team Leader, Management
@@ -81,9 +81,19 @@
 
 ### Target Hardware
 
+The following table represents the different specifications considered for the target platform:
+
+|    Hardware   |             Requirements             |
+| ------------- | ------------------------------------ |
+|      CPU      | Intel(R) Core(TM) i7-9750H @2.60GHz  |
+|      GPU      |       NVIDIA GeForce RTX 2060        |
+|      RAM      |                16GB                  |
+|Free Disk Space|                100MB                 |
+|      OS       |         Windows 10 Enterprise        |
 
 ### Performance Budgets
 
+Performance Budgets are directly linked to the Target Hardware's specifications. 
 
 ***
 
@@ -97,10 +107,10 @@
 ### Development Software
 
 
-**GitHub Commit Naming:**
+#### GitHub Commit Naming:
 Every commit should follow the following structure: Area of work + space + work done
 
-**GitHub Branching:**
+#### GitHub Branching:
 GitHub offers a feature for branching your projects in order to have a more clear and divided workspace. This feature is very useful for having different coders working in the same project without stepping on each other's toes and keeping their work divided. We will apply the following branching model:
 
 ![Image](Photos_Wiki/branching.jpg)
@@ -366,7 +376,7 @@ The Data Layout was provided by the teacher in a template from which the GitHub 
   + README.md
   + RRSS.md
   
-**File Naming Conventions:**
+#### File Naming Conventions:
 Even though there may be certain specific conventions for each type of files, the general naming conventions should be the use of     underscores to separate words and use of capital letters af the start. The logical naming hierarchy should go from general to particular. (i.e. tiles_terrain_grass.png)
 
 ***
