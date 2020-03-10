@@ -102,6 +102,7 @@ Performance Budgets are directly linked to the Target Hardware's specifications.
 
 ### Development Hardware
 
+The following hardware equipment will be needed for production:
 + 6 Personal/Laptop Computers with the following minimum Specs (data extracted from minimum Specs required for Photoshop):
 
     |     Hardware    |             Requirements             |
@@ -117,12 +118,18 @@ Performance Budgets are directly linked to the Target Hardware's specifications.
 
 ### Development Software
 
-+ Microsoft VisualStudio 2019 (coding)
+The following software must be installed before production:
++ Microsoft VisualStudio 2017 (coding)
 + **GitHub** (work environment, cloud storage facility, QA, CD + CI)
-+ Tiled (maps)
++ Tiled 0.17 (maps)
 + Adobe Photoshop (Art making/editing)
 + Adobe Illustrator (Logo making/sketching)
++ ToonBoom Harmony (Animation)
 
+#### External Libraries
+
++ SDL 2.0.10
++ pugixml 1.10
 
 #### GitHub Commit Naming:
 Every commit should follow the following structure: Area of work + space + work done
@@ -138,9 +145,6 @@ The versions branch will have the different milestones / sets of features that t
 
 The development branch will be the main working branch where every change implemented to the game is seen. However, smaller branches will appear so that unfinished work and uncomplete features can be uploaded without breaking the main branch and the code the rest of the team is working with. These smaller branches will also be useful for bug fixing and experimentation.
 
-#### External Libraries
-
-+ SDL Library
 
 ***
 
