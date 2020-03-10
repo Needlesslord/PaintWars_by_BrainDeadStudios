@@ -299,7 +299,9 @@ private:
 
 ## UML
 
-The overview of our code is provided in the following UML. This structure, however, might change, evolve or be extended during the development.
+The overview of our code is provided in the following UML. This structure, however, is very likely to change, evolve or be extended during the development.
+
+![Image](Photos_Wiki/entities_uml.png)
 
 ***
 
