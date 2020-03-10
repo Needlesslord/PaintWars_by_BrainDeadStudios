@@ -442,7 +442,7 @@ The overview of our code is provided in the following UML. This structure, howev
 
  + Last bugs fixed
  
-#### Vertical Slice
+#### For the Vertical Slice
 
 + All the ally units and enemies (no multiple animations needed)
 + Minimap
