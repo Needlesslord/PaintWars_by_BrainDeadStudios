@@ -92,7 +92,7 @@ The deliveries are:
 
 **Alpha:** 16th of May
 
-**Gold:** 30th of June
+**Gold:** 30th of May
 
 
 ***
