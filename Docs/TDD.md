@@ -373,9 +373,6 @@ The overview of our code is provided in the following UML. This structure, howev
 #### GENERAL UML
 ![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/Photos_Wiki/General_UML_1.0.png)
 
-#### ENTITIES UML
-![Image](Photos_Wiki/entities_uml.png)
-
 
 ***
 
