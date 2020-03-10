@@ -1,4 +1,4 @@
-# GDD DOCUMENT
+# GD DOCUMENT
 
 
 ***
