@@ -113,16 +113,15 @@ Increasing difficulty as time goes on, the game will pressure the player harder 
 #### Opportunities
 
 - Great oportunity to develop and RTS and create a more complex game
-- ?
-- ?
+- We can explore a different genre, escape our confort zone
+- Work with a bigger team and understand better how to work together
 
 #### Threats
 
-- Loosing the scop and trying to achieve more than we can
+- Loosing the scope and trying to achieve more than we can
 - Time schedule of the developers and designers
 - Disagreement between group members
  
-
 
 ## The Team
 

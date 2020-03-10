@@ -97,6 +97,7 @@ The main idea is to get all the music and the sound from the internet. But in ca
 
 ### References
 
+We took reference of some games that have epic music that makes the player feel motivated like World of Warcraft, Dark Souls Saga, and Skyrim.
 
 ### Technical Guidelines
 
@@ -239,8 +240,18 @@ All the FX used in game are the following:
  - Enemy death
  - Buildings producing
     + Hall
-    
-    ...
+    + Housing
+    + Paint Extractor
+    + Wood Collector
+    + Metal Scrap
+    + Titanium Extractor
+    + Food Farm
+    + Exploration Buildings
+    + Research Buildings
+    + Towers
+    + Decoy
+    + Wooden Stockade
+    + Metal Wall
     
  - Enemies:
     + Chroma-King

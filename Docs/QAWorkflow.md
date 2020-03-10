@@ -69,6 +69,9 @@ We will use Github issues as a tool to report bugs. In order to report a bug we 
 ## Software
 
 
+The software we will use it will be Github Issues. We will create a template on Github Issues that will help us to control the bugs and fix them.
+
+
 ***
 
 
@@ -88,11 +91,11 @@ All the external milestones will be organised a week before every delivery. This
 
 The deliveries are:
 
-**Vertical Slice:** 19th of April
+**Vertical Slice:** 22nd April
 
-**Alpha:** 16th of May
+**Alpha:** 19th May
 
-**Gold:** 30th of June
+**Gold:** 1-10th June
 
 
 ***
@@ -103,12 +106,11 @@ The deliveries are:
 
 For describing the bugs we will use a template like the following one:
 
-![Image](Photos_Wiki/report.PNG)
+![Image](Photos_Wiki/Github_Issues_Template.jpg)
 
-+ **Bug:** Brief description about what happens.
++ **Bug Title:** Brief description about what happens.
++ **Summary:** Description more explained.
 + **Status:** It tells if the bug has been fixed or it is still happening.
-+ **Step by step:** It says how to arrive to the bug.
-+ **Expected behaviour:** It is what it should happen.
 + **Type:**
   - A: Game breaking bug or bug that makes the game unplayable.
   - B: Bug that makes the game less playable as intended.
@@ -118,7 +120,16 @@ For describing the bugs we will use a template like the following one:
   - High: Bug needs to be fixed within a day or two. 
   - Regular: Bug needs to be fixed within a week.
   - Low: Bug needs to be fixed whenever there aren't any high or urgent bugs.
-+ **Version:** The version of the build where the bug happens.
++ **Frequency:**
+  - Always.
+  - High.
+  - Regular.
+  - Low.
++ **Steps to reproduce:** It says how to arrive to the bug.
++ **Actual result:** It is what happens.
++ **Expected result:** It is what it should happen.
++ **Build:** Build where the bug happens.
++ **Screenshot or video:** A screenshot or video of the bug to know how it is.
 
 ***
 

@@ -87,7 +87,7 @@ After many years of peace and tranquility, citizens of the "WORLD NAME" began to
 
 ## Game Flow
 
-*Under construction**
+*Under construction*
 
 
 ***
@@ -353,7 +353,14 @@ The above representations are the technical point of view of the maps, with key 
 
 ### Fog of War
 
-*UNDER CONSTRUCTION*
+The Fog will be present through out the game. The following colours will let the player understand how it is:
+
++ **Black**: Areas not explored.
++ **Gray**: areas that have been explored but the player has not vision over (the player will need a vision turret or a unit there to regain vision)
++ **None**: Areas explored and within sight of the player, since it may have units or buildings.
+
+At the start of the game, the minimap will be black except for the Hall and close area. All the other parts will be covered by the Fog of War. When the player moves around, the Fog of War will clear from the path of the player on both the minimap and the map. When the player leaves the area, after an amount of time, the Fog of War will reappear, this time gray.
+
 
 ### Player Base
 
@@ -365,7 +372,7 @@ The above representations are the technical point of view of the maps, with key 
 
 ### Minimap
 
-*UNDER CONSTRUCTION*
+On the Top-left part of the screen, the HUD will contain a minimap. It will be black except from the area where the player is and grey where the player has explored. Building and allied units will be represented, but not enemies or spawners, neither Paint sources. It will always be displayed and updated as the player's units move.
 
 
 ***
@@ -412,6 +419,37 @@ The above representations are the technical point of view of the maps, with key 
 
 
 ## Tutorial
+
+
+### STEPS
+
+    1- MESSAGE: Game goal (win conditions), game description
+    2- MESSAGE: Controls
+    3- START: Hall, Paint rec, x resources
+    4- MESSAGE: Explain what you already have and how it works
+    5- QUEST: Create a painter (basic unit)
+    6- MESSAGE: Explain Painter
+    7- QUEST: with Painter, build a farm
+    8- MESSAGE (during last Quest): Explain all the buildings
+    9- QUEST: Create an explorer
+    10- MESSAGE: Explain the explorer
+    11- QUEST: Find another paint geyser
+    12- QUEST: Build a Army Camp (3 different types to choose)
+    13- MESSAGE: Explain the Army Camp 
+    14- QUEST: Create a unit
+    15- MESSAGE: Explain that unit
+    16- MESSAGE: Explain all the units
+    17- MESSAGE: Explain the enemies and the spawners (explain again the win conditions)
+    18- QUEST. Find an enemy and battle 5 enemies
+    19- QUEST: Level Up the Hall
+    20- MESSAGE: Explain upgrades
+    21- QUEST: Win destroying the spawners
+
+It works like this:
+
+![image](Photos_Wiki/tutorial%20diagram.png)
+
+
 
 
 ***
