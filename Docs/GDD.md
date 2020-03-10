@@ -414,6 +414,37 @@ The above representations are the technical point of view of the maps, with key 
 ## Tutorial
 
 
+### STEPS
+
+    1- MESSAGE: Game goal (win conditions), game description
+    2- MESSAGE: Controls
+    3- START: Hall, Paint rec, x resources
+    4- MESSAGE: Explain what you already have and how it works
+    5- QUEST: Create a painter (basic unit)
+    6- MESSAGE: Explain Painter
+    7- QUEST: with Painter, build a farm
+    8- MESSAGE (during last Quest): Explain all the buildings
+    9- QUEST: Create an explorer
+    10- MESSAGE: Explain the explorer
+    11- QUEST: Find another paint geyser
+    12- QUEST: Build a Army Camp (3 different types to choose)
+    13- MESSAGE: Explain the Army Camp 
+    14- QUEST: Create a unit
+    15- MESSAGE: Explain that unit
+    16- MESSAGE: Explain all the units
+    17- MESSAGE: Explain the enemies and the spawners (explain again the win conditions)
+    18- QUEST. Find an enemy and battle 5 enemies
+    19- QUEST: Level Up the Hall
+    20- MESSAGE: Explain upgrades
+    21- QUEST: Win destroying the spawners
+
+It works like this:
+
+![image](Photos_Wiki/tutorial%20diagram.png)
+
+
+
+
 ***
 
 
