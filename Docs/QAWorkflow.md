@@ -108,10 +108,9 @@ For describing the bugs we will use a template like the following one:
 
 ![Image](Photos_Wiki/Github_Issues_Template.jpg)
 
-+ **Bug:** Brief description about what happens.
++ **Bug Title:** Brief description about what happens.
++ **Summary:** Description more explained.
 + **Status:** It tells if the bug has been fixed or it is still happening.
-+ **Step by step:** It says how to arrive to the bug.
-+ **Expected behaviour:** It is what it should happen.
 + **Type:**
   - A: Game breaking bug or bug that makes the game unplayable.
   - B: Bug that makes the game less playable as intended.
@@ -121,7 +120,16 @@ For describing the bugs we will use a template like the following one:
   - High: Bug needs to be fixed within a day or two. 
   - Regular: Bug needs to be fixed within a week.
   - Low: Bug needs to be fixed whenever there aren't any high or urgent bugs.
-+ **Version:** The version of the build where the bug happens.
++ **Frequency:**
+  - Always.
+  - High.
+  - Regular.
+  - Low.
++ **Steps to reproduce:** It says how to arrive to the bug.
++ **Actual result:** It is what happens.
++ **Expected result:** It is what it should happen.
++ **Build:** Build where the bug happens.
++ **Screenshot or video:** A screenshot or video of the bug to know how it is.
 
 ***
 
