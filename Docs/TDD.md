@@ -1,4 +1,4 @@
-# TDD DOCUMENT
+# TD DOCUMENT
 
 
 ***
@@ -112,11 +112,16 @@ Performance Budgets are directly linked to the Target Hardware's specifications.
     | Free Disk Space |                 1GB                  |
     |       OS        |         Windows 10 Enterprise        |
     
-+ 
-
++ At least 1 wacom graphic tablet or iPad for the whole team, in case it is needed for any purpose in the art department such as logo, sprites... (can be rented at university)
++ At least 1 Xbox Gamepad (can be rented at university)
 
 ### Development Software
 
++ Microsoft VisualStudio 2019 (coding)
++ **GitHub** (work environment, cloud storage facility, QA, CD + CI)
++ Tiled (maps)
++ Adobe Photoshop (Art making/editing)
++ Adobe Illustrator (Logo making/sketching)
 
 
 #### GitHub Commit Naming:
@@ -135,6 +140,7 @@ The development branch will be the main working branch where every change implem
 
 #### External Libraries
 
++ SDL Library
 
 ***
 
