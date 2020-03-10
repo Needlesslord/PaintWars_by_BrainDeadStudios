@@ -450,7 +450,10 @@ The overview of our code is provided in the following UML. This structure, howev
 + Buildings and spawner
 + Basic Pathfinding
 + Debugging
-+ 
++ Camera movement
++ 3 maps
++ Basic waves
++ Colliders
 
 ### Real
   
