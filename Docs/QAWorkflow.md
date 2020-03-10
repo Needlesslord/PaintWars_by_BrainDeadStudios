@@ -69,6 +69,9 @@ We will use Github issues as a tool to report bugs. In order to report a bug we 
 ## Software
 
 
+The software we will use it will be Github Issues. We will create a template on Github Issues that will help us to control the bugs and fix them.
+
+
 ***
 
 
@@ -103,7 +106,7 @@ The deliveries are:
 
 For describing the bugs we will use a template like the following one:
 
-![Image](Photos_Wiki/report.PNG)
+![Image](Photos_Wiki/Github_Issues_Template.jpg)
 
 + **Bug:** Brief description about what happens.
 + **Status:** It tells if the bug has been fixed or it is still happening.
