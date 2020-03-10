@@ -38,6 +38,8 @@ For the production of iur RTS, we arranged different ways to control the time of
  + **Calendar:** This is an overview of the whole project and how the Team Leader envisions the development of the project. It is adapted when deadlines are not met, by adding time, when strictly necessary.
  
  + **General Calendar:** We have a general calendar to have a log of what each member does in a week, the estimated time and the real time.
+ 
+ ![calendar](https://user-images.githubusercontent.com/51851736/76343290-2e877300-6300-11ea-8734-f6230c817af5.PNG)
 
   + **Gantt Chart:** A Gantt Chart will also be used to oversee the scope of the project and the original plan. For more information please refer to [Gantt Chart](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ProductionPlan.md#gantt-chart).
 
