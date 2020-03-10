@@ -97,6 +97,7 @@ The main idea is to get all the music and the sound from the internet. But in ca
 
 ### References
 
+we took reference of some games that have epic music that makes the player feel motivated like World of Warcraft, Dark Souls Saga, and Skyrim.
 
 ### Technical Guidelines
 
