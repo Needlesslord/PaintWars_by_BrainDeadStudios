@@ -19,10 +19,10 @@
 + [Game Mechanics](TDD.md#game-mechanics)
   - [Technical](TDD.md#technical)
   - [Architecture](TDD.md#architecture)
-  - [Graphics & Sound](TDD.md#graphics-&-sound)
+  - [Graphics & Sound](TDD.md#graphics-and-sound)
   - [Artificial Intelligence](TDD.md#artificial-intelligence)
   - [Logic](TDD.md#logic)
-  - [Physics & Collisions](TDD.md#physics-&-collisions)
+  - [Physics & Collisions](TDD.md#physics-and-collisions)
 
 + [Coding Style](TDD.md#coding-style)
   - [Naming Conventions](TDD.md#naming-conventions)
@@ -51,7 +51,7 @@
 
 ## Introduction
 
-"GAME NAME" is an isometric single player RTS game featuring a campaign with playable units, buildable structures and manageable resources where the player will have to fight against waves of enemies trying to destroy their base. The language used will be C++. For more about the game check out our [GDD](GDD.md).
+"Paint Wars" is an isometric single player RTS game featuring a campaign with playable units, buildable structures and manageable resources where the player will have to fight against waves of enemies trying to destroy their base. The language used will be C++. For more about the game check out our [GDD](GDD.md).
 
 #### Development Team:
 
@@ -81,30 +81,42 @@
 
 ### Target Hardware
 
-The following table represents the different specifications considered for the target platform:
+The following table represents the different specifications considered for the target platform (data extracted from the laptops in class):
 
-|    Hardware   |             Requirements             |
-| ------------- | ------------------------------------ |
-|      CPU      | Intel(R) Core(TM) i7-9750H @2.60GHz  |
-|      GPU      |       NVIDIA GeForce RTX 2060        |
-|      RAM      |                16GB                  |
-|Free Disk Space|                100MB                 |
-|      OS       |         Windows 10 Enterprise        |
+|     Hardware    |             Requirements             |
+| --------------- | ------------------------------------ |
+|       CPU       |  Intel(R) Core(TM) i7-9750H @2.60GHz |
+|       GPU       |       NVIDIA GeForce RTX 2060        |
+|       RAM       |                16GB                  |
+| Free Disk Space |                100MB                 |
+|       OS        |         Windows 10 Enterprise        |
 
 ### Performance Budgets
 
-Performance Budgets are directly linked to the Target Hardware's specifications. 
+Performance Budgets are directly linked to the Target Hardware's specifications. For out specific case, as the target hardware properties surpass overwhelmingly the amount of content that we can provide for the GPU and CPU to handle (2D Sprites, not enormous amounts of information...), the only precaution advised would be eliminating any possible memory leaks that could overwork the RAM.
 
 ***
 
 
 ## Development Tools
 
-
 ### Development Hardware
+
++ 6 Personal/Laptop Computers with the following minimum Specs (data extracted from minimum Specs required for Photoshop):
+
+    |     Hardware    |             Requirements             |
+    | --------------- | ------------------------------------ |
+    |       CPU       |          Intel(R) Core(TM) i3        |
+    |       GPU       |       NVIDIA GeForce GTX 1050        |
+    |       RAM       |                 4GB                  |
+    | Free Disk Space |                 1GB                  |
+    |       OS        |         Windows 10 Enterprise        |
+    
++ 
 
 
 ### Development Software
+
 
 
 #### GitHub Commit Naming:
@@ -131,19 +143,54 @@ The development branch will be the main working branch where every change implem
 
 ### Technical
 
+**The game will include the following features:**
++ Screens transitions
++ God Mode
++ Assets/Resources Loaded from a ZIP
++ Automatic CI + CD
++ Animated Logo Intro with Audio
++ Main Title Screen with Main game Menu, Animations, Audio and Responsive UI
++ 6 Resources
++ 11 Types of Buildings
++ 4 Types of Playable Units
++ 10 Types of Enemies
++ At least 4 Quests
++ At least 5 Particle Systems
++ Group Movement
++ Fog of War
++ Gamepad & Keyboard/Mouse Inputs
++ Responsive Pause Menu with lower Music Volume
++ Minimap
++ Responsive Interface
++ In-game fx and music tracks specific for each screen and fade-in/fade-out
++ Animated Victory/Lose Screen with Audio
 
+Order of application can be checked in the [Version List](TDD.md#version-list)
 
 ### Architecture
 
 The Game's Flow Diagram can be found in the [GUI Document](GUIDocument.md#menus-flow-diagram).
 
-### Graphics & Sound
+#### Data Management:
+
+The game will have a save button in the pause menu so that players can save a game whenever they need to and there will be an option to continue playing the last unfinished game in the main menu.
+
+### Graphics and Sound
+
+#### Graphics:
+
+Spritesheets will be stored in the [sprites](https://github.com/Needlesslord/BrainDeadStudios/tree/master/Source/Resources/sprites) folder in [Resources](https://github.com/Needlesslord/BrainDeadStudios/tree/master/Source/Resources) each contain a certain entity's sprites and will be divided by rows in different animations, which will have the sprites properly alineated and equally separated (in the case the entity is animated). In the case of tiles and background sprites, tilesets will be stored with maps and feature every tile needed for a certain map. Each one of the spritesheets and tilesets will be stored in .png format and a resolution that is multiple of 1080p * 1080p.
+
+#### Sound:
+
+Audio files will be stored in the [audio](https://github.com/Needlesslord/BrainDeadStudios/tree/master/Source/Resources/audio) folder in [Resources](https://github.com/Needlesslord/BrainDeadStudios/tree/master/Source/Resources). There will be a division between [fx](https://github.com/Needlesslord/BrainDeadStudios/tree/master/Source/Resources/audio/fx) and [music](https://github.com/Needlesslord/BrainDeadStudios/tree/master/Source/Resources/audio/music), which will be stored in .wav and .ogg format respectively.
+We will be using, then, two different channels, one for music that will be reproduced constantly and one for fx that will only be used when some action is triggered.
 
 For more information check out our [Art Bible](ArtBible.md) and [Audio Bible](AudioBible.md).
 
 ### Artificial Intelligence
 
-
+Artificial Intelligence will be limited and managed through the Entity System. *(To be specified in more advanced stages of production)*
 
 ### Logic
 
@@ -151,9 +198,9 @@ In the following UML you can see how the Entity System will work:
 
 ![Image](Photos_Wiki/entities_uml.png)
 
-### Physics & Collisions
+### Physics and Collisions
 
-In a 2D Isometric RTS Game there are is no need for a Physics System per se, however, interactions between entities will be defined through a tiles system where occupied tiles will be labeled as unwalkable and have different interactions that depend on the type of entity they are hosting.
+In a 2D Isometric RTS Game there are is no need for a Physics System per se, however, interactions between entities will be defined through a tiles system where occupied tiles will be labeled as unwalkable and have different interactions that depend on the type of entity they are hosting. *(To be specified in more advanced stages of production)*
 
 ***
 
@@ -328,7 +375,7 @@ The overview of our code is provided in the following UML. This structure, howev
 
 ### Scheduling
 
-You can check this information in the [GDD Document](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md).
+You can check this information in the [GDD Document](GDD.md).
 
 
 ***
