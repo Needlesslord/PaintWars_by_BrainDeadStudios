@@ -53,16 +53,23 @@ We will use Github issues as a tool to report bugs. In order to report a bug we 
 
 ## Workflows 
 
+This is the workflow the team will use:
+
 ![image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/Photos_Wiki/workflows.png)
+
+As we can see, the QA is involved in all the process of the project.
 
 ### Pre-production
 
+During this process, the QA members will test the prototype (Vertical Slice) that the team will be doing and see if everything works as expected. This means that the buildings and troops and all the other parts of the game will have to work as the team wants, if not, the team will have to fix everything that the QA members have reported.
 
 ### Alpha
 
+Here the QA team will try the Alpha of the game and they will report any bug or any issue that can be improved. For example, that the map works well, the economy of the game is well-balanced and this sort of things to be optimized for the Gold version.
 
 ### Gold
 
+In this final process, it has to be tested everything that has been optimized to see if it is better optimized than the Alpha version and if it works more fluid. Because in this part not only has to be tested if everything works fine, also if the game produces the expected feelings.
 
 ***
 
