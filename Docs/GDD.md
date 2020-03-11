@@ -144,6 +144,12 @@ Paint will be the basic material which will be used all around the game. It will
 
 Wood will be the mid tier resource that will allow the player to have better units and buildings than the ones created with paint.
 
+Metal Scrap is the late game tier that gives acces to some of the best units and buildings in the game. 
+
+Finally Titanium will work as the ultra late game resource which will grant acces to elite units. It will be hard to find around the map and the player will have to think carefully on what to use it.
+
+Overall stats and costs of units and buildings can't be decided yet because they haven't been teste. Once we have them we will uupdate this section.
+
 .....
 ***
 
@@ -372,7 +378,7 @@ At the start of the game, the minimap will be black except for the Hall and clos
 
 ### Player Base
 
-*UNDER CONSTRUCTION*
+The player will have a main building that will have to be protected at all cost. Around it resource and defensive buildings will be built by the player, inside a large are designated in the map. The player will be able to place buildings freely inside the base area. Only some buildings will be able to be placed outside it.
 
 ### Middle Areas
 
