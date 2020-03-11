@@ -53,6 +53,7 @@ We will use Github issues as a tool to report bugs. In order to report a bug we 
 
 ## Workflows 
 
+![image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/Photos_Wiki/workflows.png)
 
 ### Pre-production
 
@@ -170,6 +171,10 @@ After the Quality Test, the test holder will put together everything the tester 
 
 
 Every friday, a build will be made. This build will be tested with a QA test on saturdays. The normal tests will last approximately 1 hour while the big ones 1 hour and a half, more or less. All bugs must be reported using the template explained before with Github issues. After the session, the QA master will check that the reports have been well done and will pass all the informations to the members of the team. All bugs will be fixed during sundays and mondays.
+
+When a bug is found, we will follow this process:
+
+![image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/Photos_Wiki/qa%20process.png)
 
 
 ### External QA Test
