@@ -209,30 +209,13 @@ void j1App::FinishUpdate()
 		framerate_cap -= 10;
 	if (App->input->GetKey(SDL_SCANCODE_KP_PLUS) == KEY_DOWN)
 		framerate_cap += 10;
-	//if (App->render->vsync)
-	//	vsync = "ON";
-	//else
-	//	vsync = "OFF";
-	////////char* thread1 = "thread1";								   Thread optimization testing, do not touch
-	////////char* thread2 = "thread2";								   Thread optimization testing, do not touch
-	////////char* thread3 = "thread3";								   Thread optimization testing, do not touch
-	////////char* thread4 = "thread4";								   Thread optimization testing, do not touch
-	////////														   Thread optimization testing, do not touch
-	////////std::thread t1(logsomething, thread1);					   Thread optimization testing, do not touch
-	////////std::thread t2(logsomething, thread2);					   Thread optimization testing, do not touch
-	////////std::thread t3(logsomething, thread3);					   Thread optimization testing, do not touch
-	////////std::thread t4(logsomething, thread4);					   Thread optimization testing, do not touch
-	////////t1.join();												   Thread optimization testing, do not touch
-	////////t2.join();												   Thread optimization testing, do not touch
-	////////t3.join();												   Thread optimization testing, do not touch
-	////////t4.join();												   Thread optimization testing, do not touch
+	
 	sprintf_s(title, 256, "QR || FPS: %02u / EstFPS: %02u/ Av.FPS: %.2f / Last Frame Ms: %02u / Cap: %s / Vsync: -- / dt: %f",
-		frames_on_last_update, framerate_cap, avg_fps, last_frame_ms, cap,/* vsync,*/ dt);
+		frames_on_last_update, framerate_cap, avg_fps, last_frame_ms, cap, dt);
 
 	App->win->SetTitle(title);
 
-	//LOG("Last frame ms %d", last_frame_ms);
-	//App->win->SetTitle(App->input->GetText().GetString());
+	
 	if ((framerate_cap > 0) && fpscap)
 	{
 		if ((last_frame_ms < (1000 / framerate_cap))) {
