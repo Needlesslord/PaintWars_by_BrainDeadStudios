@@ -79,7 +79,7 @@ Enemy waves will come constantly after a certain amount of time or specific acti
 
 ## Plot
 
-After many years of peace and tranquility, citizens of the "WORLD NAME" began to lose their colours and turned into monocromatic beeings. This was due to a corruption created
+After many years of peace and tranquility, citizens of the "WORLD NAME" began to lose their colours and turned into monocromatic beeings. This was due to a corruption created by Chroma-King when he invaded the land. We, as rulers of the country will have to defeat his monochromatic armies and defeat Chroma-King to recover the peace and tranquility of our land.
 
 
 ***
@@ -96,8 +96,9 @@ After many years of peace and tranquility, citizens of the "WORLD NAME" began to
 ## Controls
 
 + Mouse
-+ ESC 
-+ Shorcuts with different keys *(to be decided)*
++ ESC
++ Debugging Controls (F1,F2,F3,etc.)
++ Shortcuts with different keys that allow the player to control his units more easily.
 
 
 ***
@@ -137,6 +138,13 @@ The player will lose if his Main Building gets destroyed, this will happen if he
 
 ### Balancing
 
+The game will be balanced around the available resources. Each resource will be used in different things, and each of them will have different qualities. 
+
+Paint will be the basic material which will be used all around the game. It will be an esenital component in different units or buildings from various tiers.
+
+Wood will be the mid tier resource that will allow the player to have better units and buildings than the ones created with paint.
+
+.....
 ***
 
 
