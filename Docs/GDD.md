@@ -420,6 +420,16 @@ On the Top-left part of the screen, the HUD will contain a minimap. It will be b
 
 ## Tutorial
 
++ **MAIN GOAL:** Destroy all spawners.
++ **TIME ESTIMATED:** 10 min.
+
+### SUMMARY
+
+In the tutorial, the player will have to learn the mechanics of the game and the main goal that he has to achieve. To do that, he will follow some quests that will guide him to achieve that.
+There is an order to follow, because some things are more important at the beginning for growing faster. Depending on the map, the player will have a passive skill that will help him in the game.
+
+Also, the player will choose just before the game starts if he wants to play the tutorial or not. It is recommended to do it if it is the first time playing the game, but it is up to the player. If he chooses to play it, he will have some quests that will guide him, but they are not mandatory to do them. 
+
 
 ### STEPS
 
