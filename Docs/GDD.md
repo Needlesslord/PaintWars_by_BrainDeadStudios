@@ -447,7 +447,7 @@ On the Top-left part of the screen, the HUD will contain a minimap. It will be b
 
 It works like this:
 
-![image](Photos_Wiki/tutorial%20diagram.png)
+![image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/Photos_Wiki/tutorial%20diagram%20good.png)
 
 
 
