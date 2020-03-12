@@ -57,8 +57,8 @@ bool j1InGameUI::CleanUp()
 //UI FUNCTIONS
 void j1InGameUI::Add_UI()
 {
-	menu.optionsButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, {width - 1500,50 }, { 0,0 }, true, true, { 0,0,100,50 },"", this);
-	menu.continueButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, {width-1500,500 }, { 0,0 }, true, false, { 0, 0,100,50 }, "", this);
+	menu.optionsButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, {width - 200,50 }, { 0,0 }, true, true, { 0,0,100,50 },"", this);
+	menu.continueButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, {width-200,500 }, { 0,0 }, true, false, { 0, 0,100,50 }, "", this);
 	
 }
 
