@@ -124,6 +124,7 @@ void j1Player::Camera_Control(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F9) == KEY_REPEAT) {
 
 		App->render->camera.x = 0;
+		App->render->camera.y = 0;
 	}
 }
 
