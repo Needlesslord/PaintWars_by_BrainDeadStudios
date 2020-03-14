@@ -55,7 +55,7 @@
 
 #### Development Team:
 
-[Nuria Lamonja](https://github.com/Needlesslord)
+[Núria Lamonja](https://github.com/Needlesslord)
 + Team Leader, Management
 
 [Tomás Carreras](https://github.com/tomascarreras1000)
