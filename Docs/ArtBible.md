@@ -18,8 +18,6 @@
   - [UI](ArtBible.md#ui): Main Menu - In Game - Font
   - [References](ArtBible.md#references)
 
-+ [Intention of the Graphics](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#intention-of-the-graphics)
-
 + [Art Used](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#art-used)
 
 + [Concept Art](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#concept-art)
@@ -110,7 +108,7 @@ This way, the eye of the player will always go to the brightest and different co
 
 ### Atmosphere
 
-As stated before, each map will have its own individual feel that goes with a certain playing style. However, the whole game will share most of the visual assets, and so, will have a certain atmosphere. The aim of the art in this sense will be to have a laid back, colorful and fun atmosphere that keeps just enough tension and aggressive elements so that the player can't completely relax.
+As stated before, each map will have its own individual feel that goes with a certain playing style. However, the whole game will share most of the visual assets, and so, will have a certain atmosphere. The aim of the art in this sense will be to have a laid back, colorful and fun atmosphere that keeps just enough tension and aggressive elements so that the player can't be completely passive.
 
 (In-game screenshot to be added)
 
@@ -155,13 +153,8 @@ The artistic inspiration for this game comes from games like:
 ***
 
 
-## Intention of the Graphics
-
-
-***
-
-
 ## Art Used
+
 
 
 ***
@@ -169,12 +162,25 @@ The artistic inspiration for this game comes from games like:
 
 ## Concept Art
 
+For our project we are not going to use original sprites, therefore, we will not be making any concept art apart from the general [style](ArtBible.md#art-style) ideas and [references](ArtBible.md#references), which you can check out above.
+
+You can check out [here](https://splatoonwiki.org/wiki/Concept_art) if you want to see what the concept art for Splatoon looks like.
 
 ***
 
 
 ## Technical Guidelines
 
+### Format
+
++ Spritesheets and tilesets will be exported in .png format.
++ Format for video files will be decided after the lecture about Video Rendering is done.
+
+### Software
+
++ We will use Adobe Illusrator CC 2019 to create any icons or logos (team use rather than in-game)
++ We will use Adobe Photoshop CC 2019 to edit/create sprites
++ We will use ToonBoom Harmony Premium to make the intro animations.
 
 ***
 
