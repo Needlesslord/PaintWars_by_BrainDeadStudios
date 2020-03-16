@@ -382,7 +382,7 @@ The player will have a main building that will have to be protected at all cost.
 
 ### Middle Areas
 
-*UNDER CONSTRUCTION*
+The map will be full of resources and elements that will affect how the player plays the game. It will give acces to different resource  nodes that using a resource building will allow them to gather those resources 
 
 ### Minimap
 
