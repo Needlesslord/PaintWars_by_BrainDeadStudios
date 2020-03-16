@@ -44,24 +44,17 @@ bool j1Scene::Awake()
 }
 
 // Called before the first frame
-bool j1Scene::Start()
-{
+bool j1Scene::Start() {
 
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 0, 0 }, App->entities);
 
-	TownHallInfo entityInfo;
-	TownHall* townHall = new TownHall({ 0, 0 }, { 128, 128 }, 100/*X*/, 100/*X*/, (const TownHallInfo&)entityInfo, this);
-	App->entities->toSpawnEntities.push_back((Entity*)townHall); 
-	
 	App->map->Load("iso.tmx") == true;
-	
 
 	return true;
 }
 
 // Called each loop iteration
-bool j1Scene::PreUpdate()
-{
-
+bool j1Scene::PreUpdate() {
 	// debug pathfing ------------------
 	static iPoint origin;
 	static bool origin_selected = false;
@@ -89,13 +82,22 @@ bool j1Scene::PreUpdate()
 }
 
 // Called each loop iteration
-bool j1Scene::Update(float dt)
-{
+bool j1Scene::Update(float dt) {
 	if(App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
 		App->LoadGame("save_game.xml");
 
 	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 		App->SaveGame("save_game.xml");
+
+	if (App->input->GetKey(SDL_SCANCODE_T) == KEY_DOWN) {
+		int a, b;
+		App->input->GetMousePosition(a, b);
+		float c, d;
+		c = a;
+		d = b;
+		TownHall* townHall = new TownHall({ c,d }, 100, this);
+		App->entities->toSpawnEntities.push_back((Entity*)townHall);
+	}
 
 	App->map->Draw();
 

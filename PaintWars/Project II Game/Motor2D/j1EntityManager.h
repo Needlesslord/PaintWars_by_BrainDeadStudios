@@ -25,10 +25,6 @@ struct SDL_Texture;
 struct SDL_Rect;
 
 class Entity;
-class StaticEntity;
-class DynamicEntity;
-struct EntityInfo;
-struct UnitInfo;
 
 enum ENTITY_TYPE;
 
@@ -47,7 +43,7 @@ public:
 	bool CleanUp();
 
 
-	Entity* AddEntity(ENTITY_TYPE entityType, fPoint pos, const EntityInfo& entityInfo, const UnitInfo& unitInfo, j1Module* listener = nullptr);
+	Entity* AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module* listener = nullptr);
 
 
 	// Selects an Entity
@@ -66,16 +62,9 @@ public:
 public:
 
 	list<Entity*> toSpawnEntities;
-	list<DynamicEntity*> activeDynamicEntities;
-	list<StaticEntity*> activeStaticEntities;
-	list<DynamicEntity*> unitsSelected;
-
-private:
-
-	// TODO: Textures here
-
-	// TODO: Info here
-	TownHallInfo townHallInfo;
+	list<Entity*> activeDynamicEntities;
+	list<Entity*> activeStaticEntities;
+	list<Entity*> unitsSelected;
 
 };
 

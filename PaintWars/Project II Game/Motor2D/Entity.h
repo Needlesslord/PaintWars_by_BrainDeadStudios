@@ -16,34 +16,46 @@ struct ColliderGroup;
 
 enum CollisionState;
 
-enum ENTITY_CATEGORY 
-{
+enum ENTITY_CATEGORY {
 
-	EntityCategory_NONE,
-	EntityCategory_STATIC_ENTITY,
-	EntityCategory_DYNAMIC_ENTITY,
-	EntityCategory_MAX
+	ENTITY_CATEGORY_NONE = 0,
+
+	ENTITY_CATEGORY_STATIC_ENTITY,
+	ENTITY_CATEGORY_DYNAMIC_ENTITY,
+	ENTITY_CATEGORY_MAX
 };
 
-enum EntitiesEvent
-{
-	EntitiesEvent_NONE,
-	EntitiesEvent_RIGHT_CLICK,
-	EntitiesEvent_LEFT_CLICK,
-	EntitiesEvent_HOVER,
-	EntitiesEvent_LEAVE,
-	EntitiesEvent_CREATED,
+enum ENTITY_SIZE {
+
+	ENTITY_SIZE_NONE = 0,
+
+	ENTITY_SIZE_MINI,	// 1*1
+	ENTITY_SIZE_SMALL,  // 2*2
+	ENTITY_SIZE_MEDIUM, // 3*3
+	ENTITY_SIZE_BIG		// 4*4
+
 };
+
+//enum EntitiesEvent
+//{
+//	EntitiesEvent_NONE,
+//	EntitiesEvent_RIGHT_CLICK,
+//	EntitiesEvent_LEFT_CLICK,
+//	EntitiesEvent_HOVER,
+//	EntitiesEvent_LEAVE,
+//	EntitiesEvent_CREATED,
+//};
 
 enum ENTITY_TYPE
 {
-	EntityType_NONE = 0,
+	ENTITY_TYPE_NONE = 0,
 
 	// TODO: Add all entities here
 
-	TOWN_HALL,
+	ENTITY_TYPE_TOWN_HALL,
+	ENTITY_TYPE_PAINTER,
 
-	EntityType_MAX = 500
+	ENTITY_TYPE_MAX = 500
 };
 
 class Entity;
@@ -52,7 +64,7 @@ class Entity
 {
 public:
 
-	Entity(fPoint pos, iPoint size, int currLife, uint maxLife, j1Module* listener);
+	Entity(fPoint pos, int currLife, j1Module* listener);
 	virtual ~Entity();
 	virtual void Draw(SDL_Texture* sprites);
 	virtual void DebugDrawSelected();
@@ -78,32 +90,19 @@ public:
 
 	// Collision
 	ColliderGroup* GetEntityCollider() const;
-	bool CreateEntityCollider(bool isEntityFromPlayer, bool createOffset = false);
-	void UpdateEntityColliderPos();
-
-	// Attack
-	/// Entity is being attacked by units
-	bool AddAttackingUnit(Entity* entity);
-	bool RemoveAttackingUnit(Entity* entity);
-	uint GetAttackingUnitsSize(Entity* attackingUnit) const;
-
-	// Valid
-	void SetIsValid(bool isValid);
-	bool GetIsValid() const;
+	bool CreateEntityCollider(fPoint pos);
 
 public:
+	const ENTITY_CATEGORY entityCategory = ENTITY_CATEGORY_NONE;
+	const ENTITY_TYPE entityType = ENTITY_TYPE_NONE;
+	const ENTITY_SIZE entitySize = ENTITY_SIZE_NONE;
 
-	const ENTITY_CATEGORY entityType = EntityCategory_NONE;
-
-	bool isRemove = false;
 	bool isSelected = false;
-	bool isEntityFromPlayer = true;
+	bool isEntityFromPlayer = NULL;
 
 	fPoint pos = { 0.0f,0.0f };
 
 	SDL_Color minimapDrawColor{ 0,0,0,0 };
-
-	int enemyGroup = -1;
 
 protected:
 
@@ -116,14 +115,10 @@ protected:
 
 	j1Module* listener = nullptr; // callback
 
+	SDL_Texture* texture = nullptr;
+
 	// Collision
 	ColliderGroup* entityCollider = nullptr;
-
-	// Attack
-	list<Entity*> unitsAttacking;
-
-	// Valid
-	bool isValid = true;
 };
 
 #endif //__Entity_H__

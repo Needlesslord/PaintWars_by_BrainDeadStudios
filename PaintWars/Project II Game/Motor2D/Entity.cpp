@@ -9,7 +9,7 @@
 #include "j1EntityManager.h"
 #include "j1Player.h"
 
-Entity::Entity(fPoint pos, iPoint size, int currLife, uint maxLife, j1Module* listener) : pos(pos), size(size), currLife(currLife), maxLife(maxLife), listener(listener)
+Entity::Entity(fPoint pos, int currLife, j1Module* listener) : pos(pos), currLife(currLife), listener(listener)
 {
 	if (this->currLife == 0)
 		this->currLife = this->maxLife;
@@ -113,83 +113,18 @@ ColliderGroup* Entity::GetEntityCollider() const
 	return entityCollider;
 }
 
-bool Entity::CreateEntityCollider(bool isEntityFromPlayer, bool createOffset)
-{
-	COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
+bool Entity::CreateEntityCollider(fPoint pos) {
+	if (entitySize == ENTITY_SIZE_MEDIUM) {
+		if (entityType == ENTITY_TYPE_TOWN_HALL) {
+			COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
+			vector<Collider*> collider;
+			SDL_Rect rect = { pos.x, pos.y, 30, 30 };
+			App->col->AddCollider(rect, collType, App->entities);
+			collider.push_back(App->col->AddCollider(rect, collType, App->entities));
 
-	vector<Collider*> collider;
-	SDL_Rect rect = { pos.x, pos.y, size.x, size.y };
-	App->col->AddCollider(rect, collType, App->entities);
-	//collider.push_back(App->col->CreateCollider(rect));
-
-	return false;
-}
-
-//void Entity::UpdateEntityColliderPos()
-//{
-//	if (entityCollider != nullptr)
-//	{
-//		Collider* front = entityCollider->colliders.front();
-//		if (front != nullptr)
-//			entityCollider->colliders.front()->SetPos(pos.x, pos.y);
-//
-//		// 2. Create/Update the offset collider
-//		entityCollider->CreateOffsetCollider();
-//	}
-//}
-
-// Attack
-/// Entity is being attacked by units
-bool Entity::AddAttackingUnit(Entity* entity)
-{
-	bool ret = false;
-
-	if (entity == nullptr)
-		return ret;
-
-	if (find(unitsAttacking.begin(), unitsAttacking.end(), entity) == unitsAttacking.end()) {
-		unitsAttacking.push_back(entity);
-		ret = true;
+			return true;
+		}
 	}
-
-	return ret;
-}
-
-bool Entity::RemoveAttackingUnit(Entity* entity)
-{
-	bool ret = false;
-
-	if (find(unitsAttacking.begin(), unitsAttacking.end(), entity) != unitsAttacking.end()) {
-		unitsAttacking.remove(entity);
-		ret = true;
-	}
-
-	return ret;
-}
-
-uint Entity::GetAttackingUnitsSize(Entity* attackingUnit) const
-{
-	list<Entity*>::const_iterator it = unitsAttacking.begin();
-	uint size = 0;
-
-	while (it != unitsAttacking.end()) {
-
-		if (*it != attackingUnit)
-			size++;
-
-		it++;
-	}
-
-	return size;
-}
-
-// Valid
-void Entity::SetIsValid(bool isValid)
-{
-	this->isValid = isValid;
-}
-
-bool Entity::GetIsValid() const
-{
-	return isValid;
+	else
+		return false;
 }

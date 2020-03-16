@@ -8,10 +8,18 @@
 #include "j1Pathfinding.h"
 #include "j1Map.h"
 #include "j1Collision.h"
+#include "j1Textures.h"
 
-TownHall::TownHall(fPoint pos, iPoint size, int currLife, uint maxLife, const TownHallInfo& townHallInfo, j1Module* listener) : Entity(pos, size, currLife, maxLife, listener), townHallInfo(townHallInfo) {
+TownHall::TownHall(fPoint pos, int currLife, j1Module* listener) : Entity(pos, currLife, listener) {
+	
 	// Handle data and initialize the TH
-	CreateEntityCollider(true, true);
+	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_TOWN_HALL;
+	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_STATIC_ENTITY;
+	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_MEDIUM;
+	this->pos = pos;
+	texture = App->tex->Load("textures/TownHall.png");
+	isEntityFromPlayer = true;
+	CreateEntityCollider(pos);
 }
 
 TownHall::~TownHall() {}

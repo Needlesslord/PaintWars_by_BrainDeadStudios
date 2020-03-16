@@ -79,10 +79,10 @@ void j1EntityManager::UnselectAllEntities() {
 
 }
 
-Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, const EntityInfo& entityInfo, const UnitInfo& unitInfo, j1Module* listener) {
-	if (entityType == TOWN_HALL) {
-		TownHall* townHall = new TownHall(pos, { 128, 128 }, 100/*X*/, 100/*X*/, (const TownHallInfo&)entityInfo, listener);
-		//townHall->SetStringLife
+Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module* listener) {
+	if (entityType == ENTITY_TYPE_TOWN_HALL) {
+		TownHall* townHall = new TownHall({ pos.x, pos.y }, 100, this);
+		App->entities->toSpawnEntities.push_back((Entity*)townHall);
 
 		toSpawnEntities.push_back((Entity*)townHall);
 		return (Entity*)townHall;

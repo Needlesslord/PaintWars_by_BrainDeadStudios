@@ -50,6 +50,7 @@ public:
 
 	bool PreUpdate() override;
 	bool Update(float dt);
+	bool PostUpdate();
 	bool CleanUp() override;
 
 	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* callback = nullptr);
