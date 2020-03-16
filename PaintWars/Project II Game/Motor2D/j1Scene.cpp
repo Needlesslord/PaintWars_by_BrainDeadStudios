@@ -8,8 +8,22 @@
 #include "j1Window.h"
 #include "j1Map.h"
 #include "j1PathFinding.h"
+#include "j1EntityManager.h"
 #include "j1Scene.h"
 #include "j1GUI.h"
+
+
+
+
+
+
+
+#include "j1Collision.h"
+
+
+
+
+
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -32,9 +46,13 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	App->map->Load("iso.tmx") == true;
-	
 
+
+	TownHallInfo entityInfo;
+	TownHall* townHall = new TownHall({ 0, 0 }, { 128, 128 }, 100/*X*/, 100/*X*/, (const TownHallInfo&)entityInfo, this);
+	App->entities->toSpawnEntities.push_back((Entity*)townHall); 
+	
+	App->map->Load("iso.tmx") == true;
 	
 
 	return true;

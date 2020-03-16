@@ -10,7 +10,7 @@ j1Collision::j1Collision()
 	for(uint i = 0; i < MAX_COLLIDERS; ++i)
 		colliders[i] = nullptr;
 
-	matrix[COLLIDER_UNIT][COLLIDER_UNIT] = true;
+	matrix[COLLIDER_ALLY_UNIT][COLLIDER_ALLY_UNIT] = true;
 
 }
 
@@ -91,8 +91,17 @@ void j1Collision::DebugDraw()
 		case COLLIDER_NONE: // white
 			App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 			break;
-		case COLLIDER_UNIT: // blue
+		case COLLIDER_ALLY_UNIT: // blue
 			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
+			break;
+		case COLLIDER_ENEMY_UNIT: // blue
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+			break;
+		case COLLIDER_ALLY_BUILDING: // blue
+			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
+			break;
+		case COLLIDER_ENEMY_BUILDING: // blue
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
 		}
 	}

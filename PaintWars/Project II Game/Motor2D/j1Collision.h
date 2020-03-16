@@ -11,7 +11,11 @@ constexpr auto MAX_COLLIDERS = 256;
 enum COLLIDER_TYPE
 {
 	COLLIDER_NONE = -1,
-	COLLIDER_UNIT,
+	COLLIDER_ALLY_UNIT,
+	COLLIDER_ENEMY_UNIT,
+	COLLIDER_ALLY_BUILDING,
+	COLLIDER_ENEMY_BUILDING,
+	COLLIDER_RESOURCE,
 	COLLIDER_MAX
 };
 
@@ -51,7 +55,7 @@ public:
 	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* callback = nullptr);
 	void DebugDraw();
 	SDL_Rect rect;
-	bool debug = false;
+	bool debug = true;
 private:
 
 	Collider* colliders[MAX_COLLIDERS];

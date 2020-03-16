@@ -76,6 +76,15 @@
     <ClCompile Include="j1InGameUI.cpp">
       <Filter>Desenvolupament  ========\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Desenvolupament  ========\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="j1EntityManager.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="TownHall.cpp">
+      <Filter>Desenvolupament  ========\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -144,9 +153,6 @@
     <ClInclude Include="j1Collision.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="j1Entities.h">
-      <Filter>Desenvolupament  ========\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="animation.h">
       <Filter>Desenvolupament  ========\Tools</Filter>
     </ClInclude>
@@ -179,6 +185,15 @@
     </ClInclude>
     <ClInclude Include="j1InGameUI.h">
       <Filter>Desenvolupament  ========\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Desenvolupament  ========\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="j1EntityManager.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="TownHall.h">
+      <Filter>Desenvolupament  ========\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
