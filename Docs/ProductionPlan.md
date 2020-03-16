@@ -109,6 +109,7 @@ For each delivery we have set a milestone. Therefore, we have 4 milestones with 
     - Only minor bugs lefts
     - Social Media: at least 6 tweets and instagram posts per week, at least 5 streams on Twitch and Youtube (can be the same)
     - Social Media: Promotions for the game started
+    - Game Logo
 
 
 + Gold (Milestone: 30th May; Delivery: 1st June)
