@@ -62,9 +62,14 @@ public:
 public:
 
 	list<Entity*> toSpawnEntities;
-	list<Entity*> activeDynamicEntities;
-	list<Entity*> activeStaticEntities;
+	list<Entity*> activeEntities;
 	list<Entity*> unitsSelected;
+
+protected:
+
+	// TODO: Add all textures here (each one will be initialized in it's module)
+	SDL_Texture* townHallTexture = nullptr;
+	SDL_Texture* painterTexture = nullptr;
 
 };
 

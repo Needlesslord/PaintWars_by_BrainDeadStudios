@@ -33,6 +33,10 @@ bool j1EntityManager::Awake(pugi::xml_node& config) {
 bool j1EntityManager::Start() {
 	bool ret = true;
 
+	// TODO: Initialize all textures
+	townHallTexture = App->tex->Load("textures/TownHall.png");
+	painterTexture = App->tex->Load("textures/Painter.png");
+
 	return ret;
 }
 
@@ -41,8 +45,18 @@ bool j1EntityManager::PreUpdate() {
 
 	return ret;
 }
+
 bool j1EntityManager::Update(float dt) {
 	bool ret = true;
+
+	list<Entity*>::iterator entitiesToDraw = activeEntities.begin();
+	while (entitiesToDraw != activeEntities.end()) {
+		if ((*entitiesToDraw)->entityType == ENTITY_TYPE_TOWN_HALL) {
+			(*entitiesToDraw)->Draw(townHallTexture);
+		}
+
+		entitiesToDraw++;
+	}
 
 	return ret;
 }
@@ -55,6 +69,12 @@ bool j1EntityManager::PostUpdate() {
 
 bool j1EntityManager::CleanUp() {
 	bool ret = true;
+
+	if (townHallTexture != nullptr)
+		App->tex->UnLoad(townHallTexture);
+
+	if (painterTexture != nullptr)
+		App->tex->UnLoad(painterTexture);
 
 	return ret;
 }
@@ -71,10 +91,6 @@ bool j1EntityManager::Load(pugi::xml_node& save) {
 	return ret;
 }
 
-/*void SelectGroupEntities(SDL_Rect rectangleRect) {
-
-}*/
-
 void j1EntityManager::UnselectAllEntities() {
 
 }
@@ -82,10 +98,13 @@ void j1EntityManager::UnselectAllEntities() {
 Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module* listener) {
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
 		TownHall* townHall = new TownHall({ pos.x, pos.y }, 100, this);
-		App->entities->toSpawnEntities.push_back((Entity*)townHall);
+		activeEntities.push_back((Entity*)townHall);
 
-		toSpawnEntities.push_back((Entity*)townHall);
 		return (Entity*)townHall;
+	}
+
+	else if (entityType == ENTITY_TYPE_PAINTER) {
+
 	}
 
 	else

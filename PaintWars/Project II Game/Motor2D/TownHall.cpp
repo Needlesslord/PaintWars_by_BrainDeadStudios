@@ -17,7 +17,6 @@ TownHall::TownHall(fPoint pos, int currLife, j1Module* listener) : Entity(pos, c
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_STATIC_ENTITY;
 	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_MEDIUM;
 	this->pos = pos;
-	texture = App->tex->Load("textures/TownHall.png");
 	isEntityFromPlayer = true;
 	CreateEntityCollider(pos);
 }

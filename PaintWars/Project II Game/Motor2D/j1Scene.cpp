@@ -95,8 +95,8 @@ bool j1Scene::Update(float dt) {
 		float c, d;
 		c = a;
 		d = b;
-		TownHall* townHall = new TownHall({ c,d }, 100, this);
-		App->entities->toSpawnEntities.push_back((Entity*)townHall);
+		
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { c, d }, App->entities);
 	}
 
 	App->map->Draw();

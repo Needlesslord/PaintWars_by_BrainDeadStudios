@@ -17,8 +17,9 @@ Entity::Entity(fPoint pos, int currLife, j1Module* listener) : pos(pos), currLif
 
 Entity::~Entity() {}
 
-void Entity::Draw(SDL_Texture* sprites)
-{
+void Entity::Draw(SDL_Texture* sprites) {
+	if (sprites != nullptr)
+		App->render->AddBlitEvent(1, sprites, pos.x, pos.y, { 0, 0, 100, 100 });
 }
 
 void Entity::DebugDrawSelected()
@@ -118,7 +119,7 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 		if (entityType == ENTITY_TYPE_TOWN_HALL) {
 			COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
 			vector<Collider*> collider;
-			SDL_Rect rect = { pos.x, pos.y, 30, 30 };
+			SDL_Rect rect = { pos.x, pos.y, 100, 100 };
 			App->col->AddCollider(rect, collType, App->entities);
 			collider.push_back(App->col->AddCollider(rect, collType, App->entities));
 

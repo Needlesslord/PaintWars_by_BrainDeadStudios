@@ -29,10 +29,10 @@ enum ENTITY_SIZE {
 
 	ENTITY_SIZE_NONE = 0,
 
-	ENTITY_SIZE_MINI,	// 1*1
-	ENTITY_SIZE_SMALL,  // 2*2
-	ENTITY_SIZE_MEDIUM, // 3*3
-	ENTITY_SIZE_BIG		// 4*4
+	ENTITY_SIZE_MINI,	// 1*1	50
+	ENTITY_SIZE_SMALL,  // 2*2	75
+	ENTITY_SIZE_MEDIUM, // 3*3	100
+	ENTITY_SIZE_BIG		// 4*4	125
 
 };
 
@@ -114,8 +114,6 @@ protected:
 	string lifeString;
 
 	j1Module* listener = nullptr; // callback
-
-	SDL_Texture* texture = nullptr;
 
 	// Collision
 	ColliderGroup* entityCollider = nullptr;
