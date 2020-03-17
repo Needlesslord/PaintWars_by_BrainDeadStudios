@@ -53,6 +53,25 @@ With everything, the design we have come up with is the following for the inside
 ## Sprites
 
 
+The sprites we are going to use are from a free GUI Pack from Unity by *Chocoball*, which can be found [here](https://assetstore.unity.com/packages/2d/gui/puzzle-stage-settings-gui-pack-147389). Some modifications will be made, however, to make it a perfect fit for our game.
+
+Since this also allows to use different colours, we would like to implement different colours for each map, but, in case we don't have the time and it is not a priority, we would use only one of them.
+
+| Asset | Sprite Idle | Sprite Hover |
+| ----- | ----------- | ------------ | 
+| Button (with strings) | . | . |
+| Dialog frame | . | . |
+| On | . | . |
+| Off | . | . |
+| Unfold (menu) | . | . |
+| Fold (menu) | . | . |
+| Slider + pivot | . | . |
+| Keyboard selected | . | . |
+| Gamepad selected | . | . |
+| . | . | . |
+
+The Font we are going to use is 
+
 *UNDER CONSTRUCTION*
 
 
