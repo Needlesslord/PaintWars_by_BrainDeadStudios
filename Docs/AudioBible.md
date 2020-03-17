@@ -8,25 +8,28 @@
 
 + [Audio Pillars](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#audio-pillars)
   - **[Music](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#music):** [Genre](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#genre) - [Style](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#style) - [Instrumentation](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#instrumentation) - [Implementation](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#implementation)
-  - **[FX](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#fx):** [Ambient](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#ambient) - [Player](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#player) - [Units](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#units) - [Enemies](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#enemies) - [UI](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#ui) - [Others](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#others)
+  - **[FX](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#fx):** 
   - **[Voice Over](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#voice-over)**
   - **[Technology Used](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#technology-used)**
   - **[References](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#references)**
   - **[Technical Guidelines](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#technical-guidelines)**
   
 + [Music Used](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#music-used)
-  - [Main Menu](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#main-menu)
-  - [Pause Menu](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#pause-menu)
-  - [In Game](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#in-game)
-  - [Others](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#others)
-  - [Applied to the Game](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#applied-to-the-game)
+  - **[Main Menu](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#main-menu)**
+  - **[Pause Menu](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#pause-menu)**
+  - **[In Game](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#in-game):** 
+  - **[Others](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#others)**
+  - **[Applied to the Game](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#applied-to-the-game)**
 
 + [FX Used](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#fx-used)
-  - [Main Menu](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#main-menu-1)
-  - [Pause Menu](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#pause-menu-1)
-  - [In Game](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#in-game-1)
-  - [Others](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#others-1)
-  - [Applied to the Game](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#applied-to-the-game-1)
+  - **[Main Menu](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#main-menu-1)**
+  - **[Pause Menu](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#pause-menu-1)**
+  - **[In Game](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#in-game-1):** [Ambient](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#ambient) - [Player](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#player) - [Units](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#units) - [Enemies](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#enemies) - [UI](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#ui) 
+  - **[Others](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#others-1)**
+  - **[Win](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#win)**
+  - **[Lose](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#lose)**
+  - **[Voice Over](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#voice-over)**
+  - **[Applied to the Game](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#applied-to-the-game-1)**
 
 + [Credits](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#credits)
 
@@ -69,35 +72,13 @@ A lot of drums are used, with Taikos (Japanese drums) also taking a lead role in
 ### FX
 
 
-#### Ambient
-
-
-#### Player
-
-
-#### Units
-
-
-#### Enemies
-
-
-#### UI
-
-
-#### Others
-
-
-### Voice Over
-
-We do not have any Voice Over's.
-
 ### Technology Used
 
-The main idea is to get all the music and the sound from the internet. But in case we need to cut or edit some sound, we are going to use "Audacity"
+The main idea is to get all the music and sounds from the internet, from free sources. However, in case we need to cut or edit them, we are going to use "Audacity".
 
 ### References
 
-We took reference of some games that have epic music that makes the player feel motivated like World of Warcraft, Dark Souls Saga, and Skyrim.
+We took reference of some games that have epic music that makes the player feel motivated like World of Warcraft, Dark Souls Saga and Skyrim.
 
 ### Technical Guidelines
 
@@ -198,6 +179,8 @@ Can be found [here](https://www.audioblocks.com/stock-audio/defeat-bgthydanudrk0
 
 ## FX Used
 
+All the FX used in game are the following:
+
 ### Main Menu
 
 All the FX used in the Main Menu are the following:
@@ -222,12 +205,24 @@ All the FX used in the Pause Menu are the following:
 
 ### In Game
 
-All the FX used in game are the following:
 
- - Message
- - Close
- - Start building
- - Action finished
+#### Ambient
+
+ - Idle FX
+    + Birds
+    + Wind
+    +    
+    + Each Map:
+       - Forest
+       - Volcanic
+       - Snow
+
+#### Player
+
+
+
+#### Units
+
  - Fight:
     + Melee
     + Ranged
@@ -235,10 +230,42 @@ All the FX used in game are the following:
  - Special units:
     + Painter
     + Explorer
- - Spawn destroyed
  - Ally death
+
+
+#### Enemies
+
+ - Spawn destroyed
  - Enemy death
- - Buildings producing
+ - Enemies:
+    + Chroma-King
+    + Corruptor
+    + Black Executioner
+    + Corrupted Eye
+    + Floating Blob
+    + Forsaken Sniper
+    + Explosive Blop
+    + Corrupted Knight
+    + Dark Rider
+    + Paint Slime
+
+### UI
+
+ - Message
+ - Close
+ - Hover
+ - Select option
+ - Fold/unfold menu
+ - Time (sound to make every 5 min)
+  - Quest achieved
+ - Advancement
+
+
+#### Others
+
+ - Start building
+ - Action finished
+  - Buildings producing
     + Hall
     + Housing
     + Paint Extractor
@@ -252,38 +279,7 @@ All the FX used in game are the following:
     + Decoy
     + Wooden Stockade
     + Metal Wall
-    
- - Enemies:
-    + Chroma-King
-    + Corruptor
-    + Black Executioner
-    + Corrupted Eye
-    + Floating Blob
-    + Forsaken Sniper
-    + Explosive Blop
-    + Corrupted Knight
-    + Dark Rider
-    + Paint Slime
-    
- - Hover
- - Select option
- - Idle FX
-    + Birds
-    + Wind
-    
-    ...
-    
-    + Each Map:
-       - Forest
-       - Volcanic
-       - Snow
- - Quest achieved
- - Advancement
- - Fold/unfold menu
- - Time (sound to make every 5 min)
 
-
-### Others
 
 #### Win
 
@@ -300,6 +296,12 @@ Fanfares - Short For Lost - by *Unknown*
 This FX matches the theme of the Losing song, without overstepping and it is very intuitive
 
 Can be found [here](https://www.audioblocks.com/stock-audio/fanfares---short-for-lost-rldllh338prk0wxs1w8.html): https://www.audioblocks.com/stock-audio/fanfares---short-for-lost-rldllh338prk0wxs1w8.html
+
+
+#### Voice Over
+
+We do not have any Voice Over's.
+
 
 ### Applied to the Game
 
