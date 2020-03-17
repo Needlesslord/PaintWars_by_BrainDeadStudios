@@ -13,9 +13,9 @@
   - [Camera](ArtBible.md#camera)
   - [Scale](ArtBible.md#scale)
   - [Scenarios](ArtBible.md#scenarios)
-  - [Color Palette](ArtBible.md#color-palette): Visual Hierarchy
+  - [Color Palette](ArtBible.md#color-palette): [Visual Hierarchy](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#visual-hierarchy)
   - [Atmosphere](ArtBible.md#atmosphere)
-  - [UI](ArtBible.md#ui): Main Menu - In Game - Font
+  - [UI](ArtBible.md#ui): 
   - [References](ArtBible.md#references)
 
 + [Art Used](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ArtBible.md#art-used)
@@ -114,18 +114,7 @@ As stated before, each map will have its own individual feel that goes with a ce
 
 ### UI
 
-
-
-#### Main Menu
-
-
-
-#### In Game
-
-
-
-#### Font
-
+To know more about our GUI design, layout, sprites, etc. please go to the [GUI Document](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GUIDocument.md).
 
 
 ### References
