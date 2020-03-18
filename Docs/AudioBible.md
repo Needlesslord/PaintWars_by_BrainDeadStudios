@@ -7,7 +7,7 @@
 ## Main Index
 
 + [Audio Pillars](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#audio-pillars)
-  - **[Music](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#music):** [Genre](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#genre) - [Style](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#style) - [Instrumentation](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#instrumentation) - [Implementation](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#implementation)
+  - **[Music](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#music):** [Genre](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#genre) - [Style](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#style) - [Instrumentation](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#instrumentation)
   - **[FX](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#fx):** 
   - **[Voice Over](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#voice-over)**
   - **[Technology Used](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#technology-used)**
@@ -66,9 +66,6 @@ The style could be considered epic and medieval, and classified as typical music
 #### Instrumentation
 
 A lot of drums are used, with Taikos (Japanese drums) also taking a lead role in some songs. Also, piano is key to the ballad type songs. A lot of computer software is used as well to mix the sounds. Other instruments have been used but they may not be as remarkable as these ones.
-
-
-#### Implementation
 
 
 ### FX
