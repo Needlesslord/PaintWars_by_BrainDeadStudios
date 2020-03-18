@@ -166,6 +166,8 @@ Can be found [here](https://www.audioblocks.com/stock-audio/becoming-an-angel-hl
 
 #### Lose
 
+**LINK BROKEN, MUSIC HAS TO CHANGE**
+
 Defeat - by Jason Donnelly
 
 It could be used as well for another map, but it has a sadder tone, as well as not the epic/fighting mood, rather just melancholic.
@@ -191,37 +193,37 @@ All the FX used in game are the following:
 
 All the FX used in the Main Menu are the following:
 
-- Button Hover
-- Button select
-- Button select response:
-   + Quit game
-   + Play (used both on the play button and when selecting the map)
-   + Back
+- Button Hover - 
+- Button select - 
+- Specific buttons select response:
+   + Quit game - 
+   + Play (used both on the play button and when selecting the map) - 
+   + Back - 
 
 ### Pause Menu
 
 All the FX used in the Pause Menu are the following:
 
-- Button Hover
-- Button select
-- Button select response:
-   + Quit game / back to main menu
-   + Resume
-   + Restart
+- Button Hover - 
+- Button select - 
+- Specific buttons select response:
+   + Quit game / back to main menu - 
+   + Resume - 
+   + Restart - 
 
 ### In Game
 
 
 #### Ambient
 
- - Idle FX
-    + Birds
-    + Wind
-    +    
-    + Each Map:
-       - Forest
-       - Volcanic
-       - Snow
+ + Birds - 
+ + Wind - 
+ + Water (in water areas) - 
+ + Bugs - 
+ + Each Map:
+    - Forest: Leaves (in forest areas) - 
+    - Volcanic: Comets falling - 
+    - Snow: Wolfs' howls - 
 
 #### Player
 
@@ -230,61 +232,62 @@ All the FX used in the Pause Menu are the following:
 #### Units
 
  - Fight:
-    + Melee
-    + Ranged
-    + Special
+    + Melee - 
+    + Ranged - 
+    + Special - 
  - Special units:
-    + Painter
-    + Explorer
- - Ally death
+    + Painter - 
+    + Explorer - 
+ - Ally death - 
 
 
 #### Enemies
 
- - Spawn destroyed
- - Enemy death
+ - Spawn destroyed - 
+ - Enemy death - 
  - Enemies:
-    + Chroma-King
-    + Corruptor
-    + Black Executioner
-    + Corrupted Eye
-    + Floating Blob
-    + Forsaken Sniper
-    + Explosive Blop
-    + Corrupted Knight
-    + Dark Rider
-    + Paint Slime
+    + Chroma-King - 
+    + Corruptor - 
+    + Black Executioner - 
+    + Corrupted Eye - 
+    + Floating Blob - 
+    + Forsaken Sniper - 
+    + Explosive Blop - 
+    + Corrupted Knight - 
+    + Dark Rider - 
+    + Paint Slime - 
 
 ### UI
 
- - Message
- - Close
- - Hover
- - Select option
- - Fold/unfold menu
- - Time (sound to make every 5 min)
-  - Quest achieved
- - Advancement
+ - Message - 
+ - Close - 
+ - Hover - 
+ - Select option (in game) - 
+ - Select option (UI general) - 
+ - Fold/unfold menu - 
+ - Time (sound to make every 5 min) - 
+ - Quest achieved - 
+ - Advancement - 
 
 
 #### Others
 
- - Start building
- - Action finished
+ - Start building - 
+ - Action finished - 
   - Buildings producing
-    + Hall
-    + Housing
-    + Paint Extractor
-    + Wood Collector
-    + Metal Scrap
-    + Titanium Extractor
-    + Food Farm
-    + Exploration Buildings
-    + Research Buildings
-    + Towers
-    + Decoy
-    + Wooden Stockade
-    + Metal Wall
+    + Hall - 
+    + Housing - 
+    + Paint Extractor - 
+    + Wood Collector - 
+    + Metal Scrap - 
+    + Titanium Extractor - 
+    + Food Farm - 
+    + Exploration Buildings - 
+    + Research Buildings - 
+    + Towers - 
+    + Decoy - 
+    + Wooden Stockade - 
+    + Metal Wall - 
 
 
 #### Win
@@ -316,6 +319,12 @@ We do not have any Voice Over's.
 
 
 ## Credits
+
+For each song you can find in the sections above each use. However, in this section we are going to mention all the creators.
+
++ [Bensound](https://www.bensound.com/)
++ [Neil Cross](https://www.audioblocks.com/stock-audio/becoming-an-angel-hlsgluanivsk0wy3deg.html)
++ [Komiku](https://freemusicarchive.org/music/Komiku)
 
 
 ***
