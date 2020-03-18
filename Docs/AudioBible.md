@@ -55,6 +55,8 @@ Overall, the style could be considered epic and medieval, and classified as typi
 
 #### Genre
 
+The genre of the music we are using is "epic", "heroic", "adventure" and almost cinematic. The songs used are also thought to be used as a soundtrack for example, for videogames.
+
 
 #### Style
 
@@ -172,6 +174,10 @@ Can be found [here](https://www.audioblocks.com/stock-audio/defeat-bgthydanudrk0
 
 
 ### Applied to the Game
+
+Each song has been selected for a specific part of the game. To transition between them, we are going to use fade in and outin the majority of cases. 
+
+For further information, please look at each song to see where they are going to be used or a the ["Transitions"](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#transitions) section down below to see how the music is going to loop and transition.
 
 
 ***
