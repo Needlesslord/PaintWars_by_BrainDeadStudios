@@ -1,4 +1,6 @@
-# README
+# PAINT WARS
+
+## by BRAINDEAD STUDIOS
 
 
 ***
@@ -28,16 +30,13 @@
 
 ## The Game
 
-The game we are going to develop is going to be called *Paint Wars ( * ).*
+The game we are going to develop is going to be called *Paint Wars*.
 
 
 The game is going to be an RTS, which its theme will be about paint. The player will have to get resources, the main one being paint, to upgrade their base, units, etc. in order to win the game.
 
 
 For further information please consult the GDD document.
-
-
-*( * ) temporary name.*
 
 
 ### What are players looking for?
