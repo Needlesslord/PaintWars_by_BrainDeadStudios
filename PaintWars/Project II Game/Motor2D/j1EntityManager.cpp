@@ -54,6 +54,9 @@ bool j1EntityManager::Update(float dt) {
 		if ((*entitiesToDraw)->entityType == ENTITY_TYPE_TOWN_HALL) {
 			(*entitiesToDraw)->Draw(townHallTexture);
 		}
+		else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINTER) {
+			(*entitiesToDraw)->Draw(painterTexture);
+		}
 
 		entitiesToDraw++;
 	}
@@ -104,7 +107,10 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module*
 	}
 
 	else if (entityType == ENTITY_TYPE_PAINTER) {
+		Painter* painter = new Painter({ pos.x, pos.y }, 100, this);
+		activeEntities.push_back((Entity*)painter);
 
+		return (Entity*)painter;
 	}
 
 	else

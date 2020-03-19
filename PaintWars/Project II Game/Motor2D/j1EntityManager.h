@@ -5,7 +5,7 @@
 #include "p2Point.h"
 
 // Units
-
+#include "Painter.h"
 
 // Buildings
 #include "TownHall.h"

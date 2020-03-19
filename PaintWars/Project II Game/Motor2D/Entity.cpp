@@ -18,8 +18,14 @@ Entity::Entity(fPoint pos, int currLife, j1Module* listener) : pos(pos), currLif
 Entity::~Entity() {}
 
 void Entity::Draw(SDL_Texture* sprites) {
-	if (sprites != nullptr)
-		App->render->AddBlitEvent(1, sprites, pos.x, pos.y, { 0, 0, 100, 100 });
+	if (this->entityType == ENTITY_TYPE_TOWN_HALL) {
+		if (sprites != nullptr)
+			App->render->AddBlitEvent(1, sprites, pos.x, pos.y, { 0, 0, 100, 100 });
+	}
+	else {
+		if (sprites != nullptr)
+			App->render->AddBlitEvent(1, sprites, pos.x, pos.y, { 0, 0, 1000, 1000 });
+	}
 }
 
 void Entity::DebugDrawSelected()
@@ -115,7 +121,19 @@ ColliderGroup* Entity::GetEntityCollider() const
 }
 
 bool Entity::CreateEntityCollider(fPoint pos) {
-	if (entitySize == ENTITY_SIZE_MEDIUM) {
+	if (entitySize == ENTITY_SIZE_MINI) {
+		if (entityType == ENTITY_TYPE_PAINTER) {
+			COLLIDER_TYPE collType = COLLIDER_ALLY_UNIT;
+			vector<Collider*> collider;
+			SDL_Rect rect = { pos.x, pos.y, 25, 25 };
+			App->col->AddCollider(rect, collType, App->entities);
+			collider.push_back(App->col->AddCollider(rect, collType, App->entities));
+
+			return true;
+		}
+	}
+
+	else if (entitySize == ENTITY_SIZE_MEDIUM) {
 		if (entityType == ENTITY_TYPE_TOWN_HALL) {
 			COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
 			vector<Collider*> collider;
