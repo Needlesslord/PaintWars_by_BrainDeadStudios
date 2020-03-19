@@ -49,6 +49,19 @@ bool j1EntityManager::PreUpdate() {
 bool j1EntityManager::Update(float dt) {
 	bool ret = true;
 
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+		list<Entity*>::iterator checkForSelectedUnits = activeEntities.begin();
+		while (checkForSelectedUnits != activeEntities.end()) {
+			int x, y;
+			App->input->GetMousePosition(x, y);
+			if (x > (*checkForSelectedUnits)->pos.x && x < ((*checkForSelectedUnits)->pos.x) + 100/* Width  from TH */ &&
+				y > (*checkForSelectedUnits)->pos.y && y < ((*checkForSelectedUnits)->pos.y) + 100/* Height from TH */) {
+				SelectEntity(*checkForSelectedUnits);
+			}
+			checkForSelectedUnits++;
+		}
+	}
+
 	list<Entity*>::iterator entitiesToDraw = activeEntities.begin();
 	while (entitiesToDraw != activeEntities.end()) {
 		if ((*entitiesToDraw)->entityType == ENTITY_TYPE_TOWN_HALL) {
@@ -115,4 +128,11 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module*
 
 	else
 		return nullptr;
+}
+
+bool j1EntityManager::SelectEntity(Entity* entity) {
+	unitsSelected.push_back(entity);
+	entity->isSelected = true;
+	// If a unit is selected, show data on update (Entity.cpp)
+	return true;
 }
