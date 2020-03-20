@@ -46,8 +46,8 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start() {
 
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 0, 0 }, App->entities);
-	App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 100, 100 }, App->entities);
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 0, 0 }, App->entities, 10);
+	App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 100, 100 }, App->entities, 5);
 	App->map->Load("iso.tmx") == true;
 
 	return true;

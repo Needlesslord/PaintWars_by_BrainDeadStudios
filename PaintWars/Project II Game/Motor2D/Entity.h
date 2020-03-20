@@ -28,11 +28,12 @@ enum ENTITY_SIZE {
 
 	ENTITY_SIZE_NONE = 0,
 
-	ENTITY_SIZE_MINI,	// 1*1	50
-	ENTITY_SIZE_SMALL,  // 2*2	75
-	ENTITY_SIZE_MEDIUM, // 3*3	100
-	ENTITY_SIZE_BIG		// 4*4	125
-
+	ENTITY_SIZE_MINI,		// 1*1	20
+	ENTITY_SIZE_SMALL,		// 2*2	40
+	ENTITY_SIZE_MEDIUM,		// 3*3	60
+	ENTITY_SIZE_BIG,		// 4*4	80
+	ENTITY_SIZE_VERY_BIG,	// 5*5 100
+	ENTITY_SIZE_GIGANTIC	// 6*6 120
 };
 
 //enum EntitiesEvent
@@ -80,20 +81,18 @@ public:
 
 	// Life and damage
 	void SetMaxLife(int life);
-	int GetMaxLife() const;
+	float GetMaxLife() const;
 	void SetCurrLife(int currLife);
-	int GetCurrLife() const;
+	float GetCurrLife() const;
 	void ApplyDamage(int damage);
 	void ApplyHealth(int health);
 
-	string GetStringLife() const;
-	void SetStringLife(int currentLife, int maxLife);
-
 	// Collision
-	ColliderGroup* GetEntityCollider() const;
+	Collider* GetEntityCollider() const;
 	bool CreateEntityCollider(fPoint pos);
 
 public:
+
 	const ENTITY_CATEGORY entityCategory = ENTITY_CATEGORY_NONE;
 	const ENTITY_TYPE entityType = ENTITY_TYPE_NONE;
 	const ENTITY_SIZE entitySize = ENTITY_SIZE_NONE;
@@ -110,14 +109,15 @@ protected:
 	iPoint size = { 0,0 };
 	iPoint offsetSize = { 0,0 };
 
-	int currLife = 0;
-	uint maxLife = 0;
+	float currLife = 0;
+	float maxLife = 0;
 	string lifeString;
 
 	j1Module* listener = nullptr; // callback
 
 	// Collision
-	ColliderGroup* entityCollider = nullptr;
+	Collider* entityCollider = nullptr;
+
 };
 
 #endif //__Entity_H__

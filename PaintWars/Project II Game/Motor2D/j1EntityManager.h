@@ -43,7 +43,7 @@ public:
 	bool CleanUp();
 
 
-	Entity* AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module* listener = nullptr);
+	Entity* AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module* listener = nullptr, int damage = 0);
 
 
 	// Selects an Entity
@@ -71,6 +71,8 @@ protected:
 	SDL_Texture* townHallTexture = nullptr;
 	SDL_Texture* painterTexture = nullptr;
 
+	SDL_Texture* fullLifeTexture = nullptr;
+	SDL_Texture* zeroLifeTexture = nullptr;
 };
 
 #endif //__j1ENTITY_FACTORY_H__

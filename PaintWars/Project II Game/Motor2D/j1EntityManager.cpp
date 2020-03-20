@@ -37,6 +37,10 @@ bool j1EntityManager::Start() {
 	townHallTexture = App->tex->Load("textures/TownHall.png");
 	painterTexture = App->tex->Load("textures/Painter.png");
 
+
+	fullLifeTexture = App->tex->Load("textures/FullLife.png");
+	zeroLifeTexture = App->tex->Load("textures/ZeroLife.png");
+
 	return ret;
 }
 
@@ -60,6 +64,17 @@ bool j1EntityManager::Update(float dt) {
 			}
 			checkForSelectedUnits++;
 		}
+	}
+
+	list<Entity*>::iterator selectedUnits = unitsSelected.begin();
+	while (selectedUnits != unitsSelected.end()) {
+
+		if ((*selectedUnits)->GetCurrLife() != (*selectedUnits)->GetMaxLife()) {		
+			App->render->AddBlitEvent(1, zeroLifeTexture, 400, 400, { 0, 0, 100, 10 });
+		}
+		App->render->AddBlitEvent(1, fullLifeTexture, 400, 400, { 0, 0, (int)(((*selectedUnits)->GetCurrLife() / (*selectedUnits)->GetMaxLife()) * 100), 10 });
+		
+		selectedUnits++;
 	}
 
 	list<Entity*>::iterator entitiesToDraw = activeEntities.begin();
@@ -92,6 +107,10 @@ bool j1EntityManager::CleanUp() {
 	if (painterTexture != nullptr)
 		App->tex->UnLoad(painterTexture);
 
+
+	App->tex->UnLoad(fullLifeTexture);
+	App->tex->UnLoad(zeroLifeTexture);
+
 	return ret;
 }
 
@@ -111,16 +130,16 @@ void j1EntityManager::UnselectAllEntities() {
 
 }
 
-Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module* listener) {
+Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module* listener, int damage) {
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
-		TownHall* townHall = new TownHall({ pos.x, pos.y }, 100, this);
+		TownHall* townHall = new TownHall({ pos.x, pos.y }, damage, this);
 		activeEntities.push_back((Entity*)townHall);
 
 		return (Entity*)townHall;
 	}
 
 	else if (entityType == ENTITY_TYPE_PAINTER) {
-		Painter* painter = new Painter({ pos.x, pos.y }, 100, this);
+		Painter* painter = new Painter({ pos.x, pos.y }, damage, this);
 		activeEntities.push_back((Entity*)painter);
 
 		return (Entity*)painter;
@@ -131,8 +150,11 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module*
 }
 
 bool j1EntityManager::SelectEntity(Entity* entity) {
+	unitsSelected.clear();
+
 	unitsSelected.push_back(entity);
 	entity->isSelected = true;
+
 	// If a unit is selected, show data on update (Entity.cpp)
 	return true;
 }

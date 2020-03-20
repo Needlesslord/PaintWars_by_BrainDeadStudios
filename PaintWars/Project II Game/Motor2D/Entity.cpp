@@ -9,10 +9,11 @@
 #include "j1EntityManager.h"
 #include "j1Player.h"
 
-Entity::Entity(fPoint pos, int currLife, j1Module* listener) : pos(pos), currLife(currLife), listener(listener)
+Entity::Entity(fPoint pos, int damage, j1Module* listeners) : pos(pos), currLife(maxLife - damage), listener(listener)
 {
 	if (this->currLife == 0)
 		this->currLife = this->maxLife;
+
 }
 
 Entity::~Entity() {}
@@ -55,7 +56,7 @@ fPoint Entity::GetPos() const
 
 iPoint Entity::GetSize() const
 {
-	return size;
+	return size; //											CUIDADO
 }
 
 iPoint Entity::GetOffsetSize() const
@@ -66,11 +67,10 @@ iPoint Entity::GetOffsetSize() const
 void Entity::SetMaxLife(int life)
 {
 	maxLife = life;
-	SetStringLife(currLife, maxLife);
 }
 
 // Life and damage
-int Entity::GetMaxLife() const
+float Entity::GetMaxLife() const
 {
 	return maxLife;
 }
@@ -78,10 +78,9 @@ int Entity::GetMaxLife() const
 void Entity::SetCurrLife(int currLife)
 {
 	this->currLife = currLife;
-	SetStringLife(currLife, maxLife);
 }
 
-int Entity::GetCurrLife() const
+float Entity::GetCurrLife() const
 {
 	return currLife;
 }
@@ -91,7 +90,6 @@ void Entity::ApplyDamage(int damage)
 	currLife -= damage;
 	if (currLife < 0)
 		currLife = 0;
-	SetStringLife(currLife, maxLife);	
 }
 
 void Entity::ApplyHealth(int health) 
@@ -101,21 +99,10 @@ void Entity::ApplyHealth(int health)
 	else
 		currLife += health;
 
-	SetStringLife(currLife, maxLife);
-}
-
-string Entity::GetStringLife() const
-{
-	return lifeString;
-}
-
-void Entity::SetStringLife(int currentLife, int maxLife) 
-{
-	lifeString = to_string(currentLife) + "/" + to_string(maxLife);
 }
 
 // Collision
-ColliderGroup* Entity::GetEntityCollider() const
+Collider* Entity::GetEntityCollider() const
 {
 	return entityCollider;
 }
@@ -125,21 +112,21 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 		if (entityType == ENTITY_TYPE_PAINTER) {
 			COLLIDER_TYPE collType = COLLIDER_ALLY_UNIT;
 			vector<Collider*> collider;
-			SDL_Rect rect = { pos.x, pos.y, 25, 25 };
-			App->col->AddCollider(rect, collType, App->entities);
-			collider.push_back(App->col->AddCollider(rect, collType, App->entities));
-
+			SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
+			entityCollider = App->col->AddCollider(rect, collType, App->entities);
+			collider.push_back(entityCollider);
+			
 			return true;
 		}
 	}
 
-	else if (entitySize == ENTITY_SIZE_MEDIUM) {
+	else if (entitySize == ENTITY_SIZE_VERY_BIG) {
 		if (entityType == ENTITY_TYPE_TOWN_HALL) {
 			COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
 			vector<Collider*> collider;
-			SDL_Rect rect = { pos.x, pos.y, 100, 100 };
-			App->col->AddCollider(rect, collType, App->entities);
-			collider.push_back(App->col->AddCollider(rect, collType, App->entities));
+			SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
+			entityCollider = App->col->AddCollider(rect, collType, App->entities);
+			collider.push_back(entityCollider);
 
 			return true;
 		}
