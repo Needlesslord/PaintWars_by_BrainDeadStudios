@@ -8,8 +8,22 @@
 #include "j1Window.h"
 #include "j1Map.h"
 #include "j1PathFinding.h"
+#include "j1EntityManager.h"
 #include "j1Scene.h"
 #include "j1GUI.h"
+
+
+
+
+
+
+
+#include "j1Collision.h"
+
+
+
+
+
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -30,20 +44,17 @@ bool j1Scene::Awake()
 }
 
 // Called before the first frame
-bool j1Scene::Start()
-{
-	App->map->Load("iso.tmx") == true;
-	
+bool j1Scene::Start() {
 
-	
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 0, 0 }, App->entities);
+	App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 100, 100 }, App->entities);
+	App->map->Load("iso.tmx") == true;
 
 	return true;
 }
 
 // Called each loop iteration
-bool j1Scene::PreUpdate()
-{
-
+bool j1Scene::PreUpdate() {
 	// debug pathfing ------------------
 	static iPoint origin;
 	static bool origin_selected = false;
@@ -71,13 +82,22 @@ bool j1Scene::PreUpdate()
 }
 
 // Called each loop iteration
-bool j1Scene::Update(float dt)
-{
+bool j1Scene::Update(float dt) {
 	if(App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
 		App->LoadGame("save_game.xml");
 
 	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 		App->SaveGame("save_game.xml");
+
+	if (App->input->GetKey(SDL_SCANCODE_T) == KEY_DOWN) {
+		int a, b;
+		App->input->GetMousePosition(a, b);
+		float c, d;
+		c = a;
+		d = b;
+		
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { c, d }, App->entities);
+	}
 
 	App->map->Draw();
 

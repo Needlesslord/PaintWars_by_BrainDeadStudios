@@ -1,7 +1,11 @@
 #ifndef __j1AUDIO_H__
 #define __j1AUDIO_H__
 
+#include <list>
+
 #include "j1Module.h"
+
+using namespace std;
 
 #define DEFAULT_MUSIC_FADE_TIME 2.0f
 
@@ -32,10 +36,19 @@ public:
 	// Play a previously loaded WAV
 	bool PlayFx(unsigned int fx, int repeat = 0);
 
+	// Save
+	bool Save(pugi::xml_node&) const;
+
+	// Load
+	bool Load(pugi::xml_node&);
+
+public:
+	uint generalVolume = 0;
+
 private:
 
 	_Mix_Music*			music = NULL;
-	p2List<Mix_Chunk*>	fx;
+	list<Mix_Chunk*>	fx;
 };
 
 #endif // __j1AUDIO_H__

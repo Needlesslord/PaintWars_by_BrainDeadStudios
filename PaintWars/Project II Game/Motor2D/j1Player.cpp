@@ -11,9 +11,6 @@
 #include "j1Window.h"
 #include "j1GUI.h"
 
-//#include "j1EntityManager.h"
-
-
 
 j1Player::j1Player() : j1Module()
 {
@@ -41,13 +38,15 @@ bool j1Player::Awake(pugi::xml_node& config)
 }
 
 
-bool j1Player::Start()
-{
+bool j1Player::Start() {
 	bool ret = true;
 	LOG("Player Started");
 	Tex_Player = App->tex->Load("textures/Cursor.png");
 	App->win->GetWindowSize( win_width,win_height);
 	SDL_ShowCursor(SDL_DISABLE);
+
+
+
 	return ret;
 }
 
@@ -144,20 +143,6 @@ void j1Player::Select_Entitites(SDL_Rect select_area)
 	}
 	//LOG("Ax -> %d | Ay -> %d | Aw -> %d | Ah -> %d", select_area.x, select_area.y, select_area.w, select_area.h);
 
-	/*for (auto entity = App->entitymanager->entities.begin(); entity != App->entitymanager->entities.end(); entity++)
-		if (select_area.x < (*entity)->position.x + (*entity)->rect.w &&
-			select_area.x + select_area.w >(*entity)->position.x && 
-			select_area.y < (*entity)->position.y + (*entity)->rect.h && 
-			select_area.h + select_area.y >(*entity)->position.y)
-			if (App->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT)
-				(*entity)->selected = false;
-			else
-				(*entity)->selected = true;
-		else
-		{
-			if (App->input->GetKey(SDL_SCANCODE_LSHIFT) != KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_LALT) != KEY_REPEAT)
-				(*entity)->selected = false;
-		}*/
 }
 
 void j1Player::Mouse_Cursor() 
