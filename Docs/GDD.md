@@ -16,7 +16,7 @@
     
 + [Plot](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#plot)
 
-+ Game Flow
++ [Game Flow](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#game-flow)
 
 + [Controls](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#controls)
 
@@ -329,6 +329,9 @@ SPRITE|   NAME   | TIER  | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
 
 ### UPGRADES
 
+The player will also have at it's disposal a chain of buildings that will allow unit and building upgrades by spending resources. This will allow the player to upgrade units that are not the best to be able to be used later in the game. It will also increase resource generation from other buildings when upgrade
+
+Upgrades will be chosen by the player and will require a research time to be completed.
 
 ***
 
@@ -428,7 +431,9 @@ On the Top-left part of the screen, the HUD will contain a minimap. It will be b
 
 ### Rewards
 
+Rewards will be awarded when advancements are completed, these rewards will depend on what kind of advancement the player had to do. For example if the player was tasked with building units of a certain type, resources will be rewarded. If the player was tasked with exploring the map, a free unit will be rewarded etc.
 
+Rewards will also increase depending on the difficulty of the task, and will progress throughout the game as it progresses.
 ***
 
 
