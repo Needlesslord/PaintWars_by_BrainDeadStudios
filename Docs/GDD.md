@@ -26,7 +26,6 @@
     - [Player Lose](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#player-lose)
     - [Main Gameplay Characteristics](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#main-gameplay-characteristics)
     - [Gameplay Systems](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#gameplay-systems)
-    - [Game Flow](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#game-flow)
     
 + [Game Elements](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#game-elements)
     - **[Resources](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#resources)**
@@ -36,10 +35,10 @@
     - **[Upgrades](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#upgrades)**
      
 + [Maps](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#maps)
-  - Fog of War
-  - Player Base
-  - Middle Areas
-  - Minimap
+  - [Fog of War](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#fog-of-war)
+  - [Player Base](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#player-base)
+  - [Middle Areas](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#middle-areas)
+  - [Minimap](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#minimap)
 
 + [Quests and Advancecments](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#quests-and-advancements)
 
