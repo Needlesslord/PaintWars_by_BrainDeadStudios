@@ -134,3 +134,10 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	else
 		return false;
 }
+
+void Entity::ShowHealthBar() {
+	if (GetCurrLife() != GetMaxLife()) {
+		App->render->AddBlitEvent(1, App->entities->zeroLifeTexture, pos.x, pos.y - 10, { 0, 0, 20, 5 });
+	}
+	App->render->AddBlitEvent(1, App->entities->fullLifeTexture, pos.x, pos.y - 10, { 0, 0, (int)((currLife/maxLife)*20), 5 });
+}

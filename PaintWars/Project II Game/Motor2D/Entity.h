@@ -56,6 +56,7 @@ enum ENTITY_TYPE
 
 	/// Units
 	ENTITY_TYPE_PAINTER,
+	ENTITY_TYPE_WARRIOR,
 
 	ENTITY_TYPE_MAX = 500
 };
@@ -71,6 +72,7 @@ public:
 	virtual void Draw(SDL_Texture* sprites);
 	virtual void DebugDrawSelected();
 	virtual void OnCollision(ColliderGroup* c1, ColliderGroup* c2, CollisionState collisionState);
+	//virtual void Move(iPoint destination);
 
 	// Position and size
 	void SetPos(fPoint pos);
@@ -91,6 +93,7 @@ public:
 	Collider* GetEntityCollider() const;
 	bool CreateEntityCollider(fPoint pos);
 
+	void ShowHealthBar();
 public:
 
 	const ENTITY_CATEGORY entityCategory = ENTITY_CATEGORY_NONE;

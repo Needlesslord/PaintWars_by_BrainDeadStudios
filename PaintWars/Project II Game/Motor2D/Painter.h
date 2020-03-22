@@ -10,7 +10,7 @@ public:
 
 	Painter(fPoint pos, int currLife, j1Module* listener);
 	~Painter();
-
+	//void Move(iPoint destination)override;
 public:
 
 private:

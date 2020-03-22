@@ -88,6 +88,9 @@
     <ClCompile Include="TownHall.cpp">
       <Filter>Desenvolupament  ========\Entities\Static\Buildings</Filter>
     </ClCompile>
+    <ClCompile Include="Warrior.cpp">
+      <Filter>Desenvolupament  ========\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -200,6 +203,9 @@
     </ClInclude>
     <ClInclude Include="TownHall.h">
       <Filter>Desenvolupament  ========\Entities\Static\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Warrior.h">
+      <Filter>Desenvolupament  ========\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
