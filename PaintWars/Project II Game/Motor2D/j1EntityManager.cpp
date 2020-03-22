@@ -53,30 +53,59 @@ bool j1EntityManager::PreUpdate() {
 bool j1EntityManager::Update(float dt) {
 	bool ret = true;
 
+	// Check if there was any unit selected when LEFT MOUSE BUTTON was pressed and if not, unselect all
+	// If control was pressed as a unit was selected, the rest of selected units aren't unselected
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
-		list<Entity*>::iterator checkForSelectedUnits = activeEntities.begin();
-		while (checkForSelectedUnits != activeEntities.end()) {
+
+		bool controlWasPressed = false;
+		if (App->input->GetKey(SDL_SCANCODE_LCTRL)) 
+			controlWasPressed = true;
+
+		bool isSomeEntitySelected = false;
+
+		list<Entity*>::iterator checkForSelectedEntities = activeEntities.begin();
+		while (checkForSelectedEntities != activeEntities.end()) {
+
 			int x, y;
 			App->input->GetMousePosition(x, y);
-			if (x > (*checkForSelectedUnits)->pos.x && x < ((*checkForSelectedUnits)->pos.x) + 100/* Width  from TH */ &&
-				y > (*checkForSelectedUnits)->pos.y && y < ((*checkForSelectedUnits)->pos.y) + 100/* Height from TH */) {
-				SelectEntity(*checkForSelectedUnits);
+			if (x > (*checkForSelectedEntities)->pos.x && x < ((*checkForSelectedEntities)->pos.x) + (*checkForSelectedEntities)->GetSize().x &&
+				y > (*checkForSelectedEntities)->pos.y && y < ((*checkForSelectedEntities)->pos.y) + (*checkForSelectedEntities)->GetSize().y) {
+				SelectEntity(*checkForSelectedEntities, controlWasPressed);
+				isSomeEntitySelected = true;
+				break;
+
 			}
-			checkForSelectedUnits++;
+
+			checkForSelectedEntities++;
+
 		}
+
+		// Unselect all
+		if (!isSomeEntitySelected) UnselectAllEntities();
 	}
 
-	list<Entity*>::iterator selectedUnits = unitsSelected.begin();
-	while (selectedUnits != unitsSelected.end()) {
 
-		if ((*selectedUnits)->GetCurrLife() != (*selectedUnits)->GetMaxLife()) {		
+	// LifeBars from selected  on HUD
+	list<Entity*>::iterator selectedEntities = entitiesSelected.begin();
+	while (selectedEntities != entitiesSelected.end()) {
+
+		if ((*selectedEntities)->GetCurrLife() != (*selectedEntities)->GetMaxLife()) {		
 			App->render->AddBlitEvent(1, zeroLifeTexture, 400, 400, { 0, 0, 100, 10 });
 		}
-		App->render->AddBlitEvent(1, fullLifeTexture, 400, 400, { 0, 0, (int)(((*selectedUnits)->GetCurrLife() / (*selectedUnits)->GetMaxLife()) * 100), 10 });
+		App->render->AddBlitEvent(1, fullLifeTexture, 400, 400, { 0, 0, (int)(((*selectedEntities)->GetCurrLife() / (*selectedEntities)->GetMaxLife()) * 100), 10 });
 		
+		selectedEntities++;
+	}
+
+	// LifeBars from selected units on top of themselves
+	list<Entity*>::iterator selectedUnits = unitsSelected.begin();
+	while (selectedUnits != unitsSelected.end()) {
+		(*selectedUnits)->ShowHealthBar();
 		selectedUnits++;
 	}
 
+
+	// Draw all active entities
 	list<Entity*>::iterator entitiesToDraw = activeEntities.begin();
 	while (entitiesToDraw != activeEntities.end()) {
 		if ((*entitiesToDraw)->entityType == ENTITY_TYPE_TOWN_HALL) {
@@ -128,12 +157,24 @@ bool j1EntityManager::Load(pugi::xml_node& save) {
 
 void j1EntityManager::UnselectAllEntities() {
 
+	list<Entity*>::iterator unselectEntities = activeEntities.begin();
+	while (unselectEntities != activeEntities.end()) {
+		(*unselectEntities)->isSelected = false;
+		unselectEntities++;
+	}
+
+	entitiesSelected.clear();
+	unitsSelected.clear();
+	buildingsSelected.clear();
+
 }
 
 Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module* listener, int damage) {
+
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
 		TownHall* townHall = new TownHall({ pos.x, pos.y }, damage, this);
 		activeEntities.push_back((Entity*)townHall);
+		activeBuildings.push_back((Entity*)townHall);
 
 		return (Entity*)townHall;
 	}
@@ -141,6 +182,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module*
 	else if (entityType == ENTITY_TYPE_PAINTER) {
 		Painter* painter = new Painter({ pos.x, pos.y }, damage, this);
 		activeEntities.push_back((Entity*)painter);
+		activeUnits.push_back((Entity*)painter);
 
 		return (Entity*)painter;
 	}
@@ -149,12 +191,25 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module*
 		return nullptr;
 }
 
-bool j1EntityManager::SelectEntity(Entity* entity) {
-	unitsSelected.clear();
+bool j1EntityManager::SelectEntity(Entity* entity, bool controlWasPressed) {
 
-	unitsSelected.push_back(entity);
+	if (!controlWasPressed) {
+		UnselectAllEntities();
+	}
+
+	if (entity->entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY)
+		unitsSelected.push_back(entity);
+
+	else if (entity->entityCategory == ENTITY_CATEGORY_STATIC_ENTITY)
+		buildingsSelected.push_back(entity);
+	
+	entitiesSelected.push_back(entity);
 	entity->isSelected = true;
 
 	// If a unit is selected, show data on update (Entity.cpp)
 	return true;
+}
+
+void j1EntityManager::SelectGroupEntities(SDL_Rect rect) {
+
 }

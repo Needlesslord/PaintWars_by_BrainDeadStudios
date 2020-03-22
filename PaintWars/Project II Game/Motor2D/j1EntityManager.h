@@ -42,19 +42,16 @@ public:
 	bool PostUpdate();
 	bool CleanUp();
 
-
 	Entity* AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module* listener = nullptr, int damage = 0);
 
-
 	// Selects an Entity
-	bool SelectEntity(Entity* entity);
+	bool SelectEntity(Entity* entity, bool controlWasPressed = false);
 
 	// Selects the entities within a rectangle
-	//void SelectGroupEntities(SDL_Rect rectangleRect);
+	void SelectGroupEntities(SDL_Rect rect);
 
 	// Unselects all entities
-	void UnselectAllEntities();
-	
+	void UnselectAllEntities();	
 
 	bool Save(pugi::xml_node& save) const;
 	bool Load(pugi::xml_node& save);
@@ -63,16 +60,22 @@ public:
 
 	list<Entity*> toSpawnEntities;
 	list<Entity*> activeEntities;
+	list<Entity*> activeBuildings;
+	list<Entity*> activeUnits;
+
+	list<Entity*> entitiesSelected;
 	list<Entity*> unitsSelected;
+	list<Entity*> buildingsSelected;
+
+	// Thsese two need to be public so that each entity can use it
+	SDL_Texture* fullLifeTexture = nullptr;
+	SDL_Texture* zeroLifeTexture = nullptr;
 
 protected:
 
-	// TODO: Add all textures here (each one will be initialized in it's module)
 	SDL_Texture* townHallTexture = nullptr;
 	SDL_Texture* painterTexture = nullptr;
 
-	SDL_Texture* fullLifeTexture = nullptr;
-	SDL_Texture* zeroLifeTexture = nullptr;
 };
 
 #endif //__j1ENTITY_FACTORY_H__

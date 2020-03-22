@@ -11,18 +11,7 @@
 #include "j1EntityManager.h"
 #include "j1Scene.h"
 #include "j1GUI.h"
-
-
-
-
-
-
-
 #include "j1Collision.h"
-
-
-
-
 
 
 j1Scene::j1Scene() : j1Module()
@@ -46,16 +35,17 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start() {
 
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 0, 0 }, App->entities, 10);
-	App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 100, 100 }, App->entities, 5);
-	App->map->Load("iso.tmx") == true;
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 0, 100 }, App->entities, 10);
+	App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 200, 200 }, App->entities, 5);
+	App->map->Load("map_forest.tmx") == true;
 
 	return true;
 }
 
 // Called each loop iteration
 bool j1Scene::PreUpdate() {
-	// debug pathfing ------------------
+
+	// Debug pathfing ------------------
 	static iPoint origin;
 	static bool origin_selected = false;
 
@@ -97,6 +87,16 @@ bool j1Scene::Update(float dt) {
 		d = b;
 		
 		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { c, d }, App->entities);
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN) {
+		int a, b;
+		App->input->GetMousePosition(a, b);
+		float c, d;
+		c = a;
+		d = b;
+
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { c, d }, App->entities);
 	}
 
 	App->map->Draw();
