@@ -35,8 +35,11 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start() {
 
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 0, 100 }, App->entities, 10);
-	App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 200, 200 }, App->entities, 5);
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, {   0, 100 }, App->entities, 10);
+	App->entities->AddEntity(ENTITY_TYPE_PAINTER,	{ 200, 200 }, App->entities,  5);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{ 400, 200 }, App->entities, 10);
+	App->entities->AddEntity(ENTITY_TYPE_SLIME,		{ 600, 200 }, App->entities);
+
 	App->map->Load("map_forest.tmx") == true;
 
 	return true;

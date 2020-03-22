@@ -65,8 +65,7 @@ bool j1Collision::PreUpdate()
 }
 
 // Called before render is available
-bool j1Collision::Update(float dt)
-{
+bool j1Collision::Update(float dt) {
 	
 
 	return true;
@@ -94,20 +93,23 @@ void j1Collision::DebugDraw()
 
 		switch (colliders[i]->type)
 		{
-		case COLLIDER_NONE: // white
+		case COLLIDER_NONE:				// white
 			App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 			break;
-		case COLLIDER_ALLY_UNIT: // blue
-			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
+		case COLLIDER_ALLY_BUILDING:	// Blue
+			App->render->DrawQuad(colliders[i]->rect,   0,   0, 255, alpha);
 			break;
-		case COLLIDER_ENEMY_UNIT: // blue
-			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+		case COLLIDER_ALLY_UNIT:		// Green
+			App->render->DrawQuad(colliders[i]->rect,   0, 255,   0, alpha);
 			break;
-		case COLLIDER_ALLY_BUILDING: // blue
-			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
+		case COLLIDER_ENEMY_BUILDING:	// Red
+			App->render->DrawQuad(colliders[i]->rect, 255,   0,   0, alpha);
 			break;
-		case COLLIDER_ENEMY_BUILDING: // blue
-			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+		case COLLIDER_ENEMY_UNIT:		// Red
+			App->render->DrawQuad(colliders[i]->rect, 255,   0,   0, alpha);
+			break;
+		case COLLIDER_NEUTRAL:			// Grey
+			App->render->DrawQuad(colliders[i]->rect, 192, 192, 192, alpha);
 			break;
 		}
 	}

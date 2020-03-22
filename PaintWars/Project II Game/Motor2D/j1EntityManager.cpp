@@ -34,8 +34,20 @@ bool j1EntityManager::Start() {
 	bool ret = true;
 
 	// TODO: Initialize all textures
+
+		// Allies
+	/// Buildings
 	townHallTexture = App->tex->Load("textures/TownHall.png");
+	
+	/// Units
 	painterTexture = App->tex->Load("textures/Painter.png");
+	warriorTexture = App->tex->Load("textures/Warrior.png");
+
+		// Enemies
+	/// Buildings
+
+	/// Units
+	SlimeTexture = App->tex->Load("textures/Slime.png");
 
 
 	fullLifeTexture = App->tex->Load("textures/FullLife.png");
@@ -171,6 +183,8 @@ void j1EntityManager::UnselectAllEntities() {
 
 Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module* listener, int damage) {
 
+		// Allies
+	/// Buildings
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
 		TownHall* townHall = new TownHall({ pos.x, pos.y }, damage, this);
 		activeEntities.push_back((Entity*)townHall);
@@ -179,12 +193,33 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module*
 		return (Entity*)townHall;
 	}
 
+	/// Units
 	else if (entityType == ENTITY_TYPE_PAINTER) {
 		Painter* painter = new Painter({ pos.x, pos.y }, damage, this);
 		activeEntities.push_back((Entity*)painter);
 		activeUnits.push_back((Entity*)painter);
 
 		return (Entity*)painter;
+	}
+
+	else if (entityType == ENTITY_TYPE_WARRIOR) {
+		Warrior* warrior = new Warrior({ pos.x, pos.y }, damage, this);
+		activeEntities.push_back((Entity*)warrior);
+		activeUnits.push_back((Entity*)warrior);
+
+		return (Entity*)warrior;
+	}
+
+		// Enemies
+	/// Buildings
+
+	/// Units
+	else if (entityType == ENTITY_TYPE_SLIME) {
+		Slime* slime = new Slime({ pos.x, pos.y }, damage, this);
+		activeEntities.push_back((Entity*)slime);
+		activeUnits.push_back((Entity*)slime);
+
+		return (Entity*) slime;
 	}
 
 	else

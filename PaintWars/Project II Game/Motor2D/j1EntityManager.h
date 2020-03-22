@@ -4,11 +4,20 @@
 #include "j1Module.h"
 #include "p2Point.h"
 
-// Units
-#include "Painter.h"
 
-// Buildings
+	// Allies
+/// Buildings
 #include "TownHall.h"
+
+/// Units
+#include "Painter.h"
+#include "Warrior.h"
+
+	// Enemies
+/// Buildings
+
+/// Units
+#include "Slime.h"
 
 
 #include <string>
@@ -59,6 +68,7 @@ public:
 public:
 
 	list<Entity*> toSpawnEntities;
+
 	list<Entity*> activeEntities;
 	list<Entity*> activeBuildings;
 	list<Entity*> activeUnits;
@@ -73,8 +83,19 @@ public:
 
 protected:
 
+		// Allies
+	/// Buildings
 	SDL_Texture* townHallTexture = nullptr;
+
+	/// Units
 	SDL_Texture* painterTexture = nullptr;
+	SDL_Texture* warriorTexture = nullptr;
+
+		// Enemies
+	/// Buildings
+
+	/// Units
+	SDL_Texture* SlimeTexture = nullptr;
 
 };
 

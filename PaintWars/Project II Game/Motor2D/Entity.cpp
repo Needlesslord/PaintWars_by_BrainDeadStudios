@@ -19,14 +19,8 @@ Entity::Entity(fPoint pos, int damage, j1Module* listeners) : pos(pos), currLife
 Entity::~Entity() {}
 
 void Entity::Draw(SDL_Texture* sprites) {
-	if (this->entityType == ENTITY_TYPE_TOWN_HALL) {
-		if (sprites != nullptr)
-			App->render->AddBlitEvent(1, sprites, pos.x, pos.y, { 0, 0, 100, 100 });
-	}
-	else {
-		if (sprites != nullptr)
-			App->render->AddBlitEvent(1, sprites, pos.x, pos.y, { 0, 0, 1000, 1000 });
-	}
+	if (sprites != nullptr)
+		App->render->AddBlitEvent(1, sprites, pos.x, pos.y, { 0, 0, size.x, size.y });
 }
 
 void Entity::DebugDrawSelected()
@@ -56,7 +50,7 @@ fPoint Entity::GetPos() const
 
 iPoint Entity::GetSize() const
 {
-	return size; //											CUIDADO
+	return size; 
 }
 
 iPoint Entity::GetOffsetSize() const
@@ -108,29 +102,54 @@ Collider* Entity::GetEntityCollider() const
 }
 
 bool Entity::CreateEntityCollider(fPoint pos) {
-	if (entitySize == ENTITY_SIZE_MINI) {
-		if (entityType == ENTITY_TYPE_PAINTER) {
-			COLLIDER_TYPE collType = COLLIDER_ALLY_UNIT;
-			vector<Collider*> collider;
-			SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
-			entityCollider = App->col->AddCollider(rect, collType, App->entities);
-			collider.push_back(entityCollider);
-			
-			return true;
-		}
+
+		// Allies
+	/// Buildings
+	if (entityType == ENTITY_TYPE_TOWN_HALL) {
+		COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
+		vector<Collider*> collider;
+		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
+		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+		collider.push_back(entityCollider);
+
+		return true;
 	}
 
-	else if (entitySize == ENTITY_SIZE_VERY_BIG) {
-		if (entityType == ENTITY_TYPE_TOWN_HALL) {
-			COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
-			vector<Collider*> collider;
-			SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
-			entityCollider = App->col->AddCollider(rect, collType, App->entities);
-			collider.push_back(entityCollider);
+	/// Units
+	else if (entityType == ENTITY_TYPE_PAINTER) {
+		COLLIDER_TYPE collType = COLLIDER_ALLY_UNIT;
+		vector<Collider*> collider;
+		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
+		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+		collider.push_back(entityCollider);
 
-			return true;
-		}
+		return true;
 	}
+
+	else if (entityType == ENTITY_TYPE_WARRIOR) {
+		COLLIDER_TYPE collType = COLLIDER_ALLY_UNIT;
+		vector<Collider*> collider;
+		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
+		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+		collider.push_back(entityCollider);
+
+		return true;
+	}
+		
+		// Enemies
+	/// Buildings
+
+	/// Units
+	else if (entityType == ENTITY_TYPE_SLIME) {
+		COLLIDER_TYPE collType = COLLIDER_ENEMY_UNIT;
+		vector<Collider*> collider;
+		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
+		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+		collider.push_back(entityCollider);
+
+		return true;
+	}
+
 	else
 		return false;
 }
