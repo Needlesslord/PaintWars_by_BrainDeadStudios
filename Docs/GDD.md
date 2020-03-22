@@ -86,7 +86,7 @@ After many years of peace and tranquility, citizens of the "WORLD NAME" began to
 
 ## Game Flow
 
-*Under construction*
+The flow of the game will be based on the player defending it's base while he manages it's resources while he explores the map completes missions and destroys the enemy armies.
 
 
 ***
@@ -131,9 +131,6 @@ The player will lose if his Main Building gets destroyed, this will happen if he
 **Explore the map:** The map is full of scarce resources that the player will be able to collect in order to reinforce his army or upgrade even further his base.
 
 
-### Gameplay Systems
-
-*Under construction**
 
 ### Balancing
 
