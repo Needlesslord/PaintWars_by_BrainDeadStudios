@@ -82,11 +82,11 @@
     <ClCompile Include="j1EntityManager.cpp">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="TownHall.cpp">
-      <Filter>Desenvolupament  ========\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Painter.cpp">
-      <Filter>Desenvolupament  ========\Entities</Filter>
+      <Filter>Desenvolupament  ========\Entities\Dynamic\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="TownHall.cpp">
+      <Filter>Desenvolupament  ========\Entities\Static\Buildings</Filter>
     </ClCompile>
     <ClCompile Include="Warrior.cpp">
       <Filter>Desenvolupament  ========\Entities</Filter>
@@ -198,11 +198,11 @@
     <ClInclude Include="j1EntityManager.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="TownHall.h">
-      <Filter>Desenvolupament  ========\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Painter.h">
-      <Filter>Desenvolupament  ========\Entities</Filter>
+      <Filter>Desenvolupament  ========\Entities\Dynamic\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="TownHall.h">
+      <Filter>Desenvolupament  ========\Entities\Static\Buildings</Filter>
     </ClInclude>
     <ClInclude Include="Warrior.h">
       <Filter>Desenvolupament  ========\Entities</Filter>
@@ -232,6 +232,30 @@
     </Filter>
     <Filter Include="Desenvolupament  ========\UI">
       <UniqueIdentifier>{c35b2584-ee30-4553-be6c-ce5e439cf695}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Entities\Dynamic">
+      <UniqueIdentifier>{5717cc74-7371-4ea0-8129-9fe48814548f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Entities\Static">
+      <UniqueIdentifier>{3db76989-0a38-4560-b23b-fc3f30aef000}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Entities\Dynamic\Units">
+      <UniqueIdentifier>{c3c48f25-5c9c-4de8-848f-bdd7002e08f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Entities\Dynamic\Enemies">
+      <UniqueIdentifier>{5bbada01-1fc3-4ea6-935f-789bf26ce0f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Entities\Static\Buildings">
+      <UniqueIdentifier>{c648ade9-b842-4734-ab0b-60e78fb7cbc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Entities\Static\Enemies">
+      <UniqueIdentifier>{84c1077e-0292-49c0-a638-8d45d96ecee3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Entities\Static\Others">
+      <UniqueIdentifier>{c339365b-5b7b-44bc-98b8-5c877ffde7a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Entities\Dynamic\Others">
+      <UniqueIdentifier>{48754950-d266-46af-8ee7-738e13e1b8a1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
