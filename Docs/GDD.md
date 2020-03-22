@@ -25,7 +25,7 @@
     - [Player Win](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#player-win)
     - [Player Lose](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#player-lose)
     - [Main Gameplay Characteristics](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#main-gameplay-characteristics)
-    - [Gameplay Systems](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#gameplay-systems)
+   
     
 + [Game Elements](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#game-elements)
     - **[Resources](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#resources)**
