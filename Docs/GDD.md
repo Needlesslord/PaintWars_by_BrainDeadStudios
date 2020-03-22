@@ -16,7 +16,7 @@
     
 + [Plot](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#plot)
 
-+ Game Flow
++ [Game Flow](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#game-flow)
 
 + [Controls](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#controls)
 
@@ -25,8 +25,7 @@
     - [Player Win](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#player-win)
     - [Player Lose](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#player-lose)
     - [Main Gameplay Characteristics](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#main-gameplay-characteristics)
-    - Gameplay Systems
-    - Balancing
+   
     
 + [Game Elements](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#game-elements)
     - **[Resources](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#resources)**
@@ -36,10 +35,10 @@
     - **[Upgrades](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#upgrades)**
      
 + [Maps](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#maps)
-  - Fog of War
-  - Player Base
-  - Middle Areas
-  - Minimap
+  - [Fog of War](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#fog-of-war)
+  - [Player Base](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#player-base)
+  - [Middle Areas](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#middle-areas)
+  - [Minimap](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#minimap)
 
 + [Quests and Advancecments](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/GDD.md#quests-and-advancements)
 
@@ -87,7 +86,7 @@ After many years of peace and tranquility, citizens of the "WORLD NAME" began to
 
 ## Game Flow
 
-*Under construction*
+The flow of the game will be based on the player defending it's base while he manages it's resources while he explores the map completes missions and destroys the enemy armies.
 
 
 ***
@@ -132,9 +131,6 @@ The player will lose if his Main Building gets destroyed, this will happen if he
 **Explore the map:** The map is full of scarce resources that the player will be able to collect in order to reinforce his army or upgrade even further his base.
 
 
-### Gameplay Systems
-
-*Under construction**
 
 ### Balancing
 
@@ -329,6 +325,9 @@ SPRITE|   NAME   | TIER  | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
 
 ### UPGRADES
 
+The player will also have at it's disposal a chain of buildings that will allow unit and building upgrades by spending resources. This will allow the player to upgrade units that are not the best to be able to be used later in the game. It will also increase resource generation from other buildings when upgrade
+
+Upgrades will be chosen by the player and will require a research time to be completed.
 
 ***
 
@@ -428,7 +427,9 @@ On the Top-left part of the screen, the HUD will contain a minimap. It will be b
 
 ### Rewards
 
+Rewards will be awarded when advancements are completed, these rewards will depend on what kind of advancement the player had to do. For example if the player was tasked with building units of a certain type, resources will be rewarded. If the player was tasked with exploring the map, a free unit will be rewarded etc.
 
+Rewards will also increase depending on the difficulty of the task, and will progress throughout the game as it progresses.
 ***
 
 

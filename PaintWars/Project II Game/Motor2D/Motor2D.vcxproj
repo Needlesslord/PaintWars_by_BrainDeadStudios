@@ -76,7 +76,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="j1Collision.cpp" />
+    <ClCompile Include="j1EntityManager.cpp" />
     <ClCompile Include="j1Fonts.cpp" />
     <ClCompile Include="j1GUI.cpp" />
     <ClCompile Include="j1GUIbutton.cpp" />
@@ -100,13 +102,18 @@
     <ClCompile Include="j1Render.cpp" />
     <ClCompile Include="j1Textures.cpp" />
     <ClCompile Include="j1Window.cpp" />
+    <ClCompile Include="Painter.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
+    <ClCompile Include="Slime.cpp" />
+    <ClCompile Include="TownHall.cpp" />
+    <ClCompile Include="Warrior.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
     <ClInclude Include="Color.h" />
-    <ClInclude Include="j1Entities.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="j1Collision.h" />
+    <ClInclude Include="j1EntityManager.h" />
     <ClInclude Include="j1Fonts.h" />
     <ClInclude Include="j1GUI.h" />
     <ClInclude Include="j1GUIbutton.h" />
@@ -135,8 +142,12 @@
     <ClInclude Include="j1Textures.h" />
     <ClInclude Include="j1Window.h" />
     <ClInclude Include="p2SString.h" />
+    <ClInclude Include="Painter.h" />
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
+    <ClInclude Include="Slime.h" />
+    <ClInclude Include="TownHall.h" />
+    <ClInclude Include="Warrior.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\Game\config.xml">

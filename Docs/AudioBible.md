@@ -7,7 +7,7 @@
 ## Main Index
 
 + [Audio Pillars](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#audio-pillars)
-  - **[Music](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#music):** [Genre](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#genre) - [Style](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#style) - [Instrumentation](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#instrumentation) - [Implementation](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#implementation)
+  - **[Music](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#music):** [Genre](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#genre) - [Style](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#style) - [Instrumentation](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#instrumentation)
   - **[FX](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#fx):** 
   - **[Voice Over](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#voice-over)**
   - **[Technology Used](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#technology-used)**
@@ -55,6 +55,8 @@ Overall, the style could be considered epic and medieval, and classified as typi
 
 #### Genre
 
+The genre of the music we are using is "epic", "heroic", "adventure" and almost cinematic. The songs used are also thought to be used as a soundtrack for example, for videogames.
+
 
 #### Style
 
@@ -64,9 +66,6 @@ The style could be considered epic and medieval, and classified as typical music
 #### Instrumentation
 
 A lot of drums are used, with Taikos (Japanese drums) also taking a lead role in some songs. Also, piano is key to the ballad type songs. A lot of computer software is used as well to mix the sounds. Other instruments have been used but they may not be as remarkable as these ones.
-
-
-#### Implementation
 
 
 ### FX
@@ -164,6 +163,8 @@ Can be found [here](https://www.audioblocks.com/stock-audio/becoming-an-angel-hl
 
 #### Lose
 
+**LINK BROKEN, MUSIC HAS TO CHANGE**
+
 Defeat - by Jason Donnelly
 
 It could be used as well for another map, but it has a sadder tone, as well as not the epic/fighting mood, rather just melancholic.
@@ -172,6 +173,10 @@ Can be found [here](https://www.audioblocks.com/stock-audio/defeat-bgthydanudrk0
 
 
 ### Applied to the Game
+
+Each song has been selected for a specific part of the game. To transition between them, we are going to use fade in and outin the majority of cases. 
+
+For further information, please look at each song to see where they are going to be used or a the ["Transitions"](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/AudioBible.md#transitions) section down below to see how the music is going to loop and transition.
 
 
 ***
@@ -185,37 +190,37 @@ All the FX used in game are the following:
 
 All the FX used in the Main Menu are the following:
 
-- Button Hover
-- Button select
-- Button select response:
-   + Quit game
-   + Play (used both on the play button and when selecting the map)
-   + Back
+- Button Hover - 
+- Button select - 
+- Specific buttons select response:
+   + Quit game - 
+   + Play (used both on the play button and when selecting the map) - 
+   + Back - 
 
 ### Pause Menu
 
 All the FX used in the Pause Menu are the following:
 
-- Button Hover
-- Button select
-- Button select response:
-   + Quit game / back to main menu
-   + Resume
-   + Restart
+- Button Hover - 
+- Button select - 
+- Specific buttons select response:
+   + Quit game / back to main menu - 
+   + Resume - 
+   + Restart - 
 
 ### In Game
 
 
 #### Ambient
 
- - Idle FX
-    + Birds
-    + Wind
-    +    
-    + Each Map:
-       - Forest
-       - Volcanic
-       - Snow
+ + Birds - 
+ + Wind - 
+ + Water (in water areas) - 
+ + Bugs - 
+ + Each Map:
+    - Forest: Leaves (in forest areas) - 
+    - Volcanic: Comets falling - 
+    - Snow: Wolfs' howls - 
 
 #### Player
 
@@ -224,61 +229,62 @@ All the FX used in the Pause Menu are the following:
 #### Units
 
  - Fight:
-    + Melee
-    + Ranged
-    + Special
+    + Melee - 
+    + Ranged - 
+    + Special - 
  - Special units:
-    + Painter
-    + Explorer
- - Ally death
+    + Painter - 
+    + Explorer - 
+ - Ally death - 
 
 
 #### Enemies
 
- - Spawn destroyed
- - Enemy death
+ - Spawn destroyed - 
+ - Enemy death - 
  - Enemies:
-    + Chroma-King
-    + Corruptor
-    + Black Executioner
-    + Corrupted Eye
-    + Floating Blob
-    + Forsaken Sniper
-    + Explosive Blop
-    + Corrupted Knight
-    + Dark Rider
-    + Paint Slime
+    + Chroma-King - 
+    + Corruptor - 
+    + Black Executioner - 
+    + Corrupted Eye - 
+    + Floating Blob - 
+    + Forsaken Sniper - 
+    + Explosive Blop - 
+    + Corrupted Knight - 
+    + Dark Rider - 
+    + Paint Slime - 
 
 ### UI
 
- - Message
- - Close
- - Hover
- - Select option
- - Fold/unfold menu
- - Time (sound to make every 5 min)
-  - Quest achieved
- - Advancement
+ - Message - 
+ - Close - 
+ - Hover - 
+ - Select option (in game) - 
+ - Select option (UI general) - 
+ - Fold/unfold menu - 
+ - Time (sound to make every 5 min) - 
+ - Quest achieved - 
+ - Advancement - 
 
 
 #### Others
 
- - Start building
- - Action finished
+ - Start building - 
+ - Action finished - 
   - Buildings producing
-    + Hall
-    + Housing
-    + Paint Extractor
-    + Wood Collector
-    + Metal Scrap
-    + Titanium Extractor
-    + Food Farm
-    + Exploration Buildings
-    + Research Buildings
-    + Towers
-    + Decoy
-    + Wooden Stockade
-    + Metal Wall
+    + Hall - 
+    + Housing - 
+    + Paint Extractor - 
+    + Wood Collector - 
+    + Metal Scrap - 
+    + Titanium Extractor - 
+    + Food Farm - 
+    + Exploration Buildings - 
+    + Research Buildings - 
+    + Towers - 
+    + Decoy - 
+    + Wooden Stockade - 
+    + Metal Wall - 
 
 
 #### Win
@@ -310,6 +316,12 @@ We do not have any Voice Over's.
 
 
 ## Credits
+
+For each song you can find in the sections above each use. However, in this section we are going to mention all the creators.
+
++ [Bensound](https://www.bensound.com/)
++ [Neil Cross](https://www.audioblocks.com/stock-audio/becoming-an-angel-hlsgluanivsk0wy3deg.html)
++ [Komiku](https://freemusicarchive.org/music/Komiku)
 
 
 ***

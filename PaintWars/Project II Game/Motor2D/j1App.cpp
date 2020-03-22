@@ -11,6 +11,8 @@
 #include "j1Audio.h"
 #include "j1Scene.h"
 #include "j1Map.h"
+#include "j1Collision.h"
+#include "j1EntityManager.h"
 #include "j1Pathfinding.h"
 #include "j1App.h"
 #include "j1Player.h"
@@ -29,6 +31,8 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new j1Audio();
 	scene = new j1Scene();
 	map = new j1Map();
+	col = new j1Collision(); 
+	entities = new j1EntityManager();
 	pathfinding = new j1PathFinding();
 	player = new j1Player();
 	gui = new j1GUI();
@@ -40,8 +44,10 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(win);
 	AddModule(tex);
 	AddModule(audio);
-	AddModule(map);
 	AddModule(scene);
+	AddModule(map);
+	AddModule(col); 
+	AddModule(entities);
 	AddModule(pathfinding);
 	AddModule(player);
 	AddModule(gui);
