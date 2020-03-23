@@ -5,7 +5,8 @@
 #include "p2List.h"
 #include "p2Point.h"
 #include "j1Module.h"
-
+#include <vector>
+#include "animation.h"
 // ----------------------------------------------------
 struct Properties
 {
@@ -61,7 +62,7 @@ struct MapLayer
 struct TileSet
 {
 	SDL_Rect GetTileRect(int id) const;
-
+	SDL_Rect GetAnimTileRect(int id, uint columns);
 	p2SString			name;
 	int					firstgid;
 	int					margin;
@@ -75,6 +76,7 @@ struct TileSet
 	int					num_tiles_height;
 	int					offset_x;
 	int					offset_y;
+	
 
 };
 
@@ -137,6 +139,7 @@ private:
 
 public:
 
+	std::vector<Animation> allAnimations;
 	MapData data;
 
 private:

@@ -22,6 +22,21 @@ Painter::Painter(fPoint pos, int damage, j1Module* listener) : Entity(pos, damag
 	size = { 20, 20 };
 	isEntityFromPlayer = true;
 	CreateEntityCollider(pos);
+
+
+	for (std::vector<Animation>::iterator i = App->map->allAnimations.begin(); i != App->map->allAnimations.end(); i++)
+	{
+		/*if (this->type == (i)->type)
+		{
+			if ((i)->orientation == ORIENTATION::ORIENTATION_NORTH)
+			{
+				this->north = i->GetAnimation(); continue;
+			}
+			
+		}*/
+	}
+
+
 }
 
 Painter::~Painter() {}
