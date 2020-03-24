@@ -50,7 +50,7 @@
 
 ## Overview
 
-"GAME NAME" is an isometric single player RTS game featuring a campaign with playable units, buildable structures and manageable resources where the player will have to fight against waves of enemies trying to destroy his base.
+Paint Wars is an isometric single player RTS game featuring a campaign with playable units, buildable structures and manageable resources where the player will have to fight against waves of enemies trying to destroy his base.
 
 The game is located in a paint themed world where resources, units and buildings will be related to paint.
 
@@ -78,7 +78,7 @@ Enemy waves will come constantly after a certain amount of time or specific acti
 
 ## Plot
 
-After many years of peace and tranquility, citizens of the "WORLD NAME" began to lose their colours and turned into monocromatic beeings. This was due to a corruption created by Chroma-King when he invaded the land. We, as rulers of the country will have to defeat his monochromatic armies and defeat Chroma-King to recover the peace and tranquility of our land.
+After many years of peace and tranquility, citizens of the world began to lose their colours and turned into monocromatic beings. This was due to a corruption created by Chroma-King when he invaded the land. We, as rulers of the country will have to defeat his monochromatic armies and defeat Chroma-King to recover the peace and tranquility of our land.
 
 
 ***
