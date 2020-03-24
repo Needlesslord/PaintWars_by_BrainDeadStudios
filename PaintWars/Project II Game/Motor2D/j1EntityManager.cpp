@@ -47,7 +47,7 @@ bool j1EntityManager::Start() {
 	/// Buildings
 
 	/// Units
-	SlimeTexture = App->tex->Load("textures/Slime.png");
+	slimeTexture = App->tex->Load("textures/Slime.png");
 
 
 	fullLifeTexture = App->tex->Load("textures/FullLife.png");
@@ -126,7 +126,12 @@ bool j1EntityManager::Update(float dt) {
 		else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINTER) {
 			(*entitiesToDraw)->Draw(painterTexture);
 		}
-
+		else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_WARRIOR) {
+			(*entitiesToDraw)->Draw(warriorTexture);
+		}
+		else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SLIME) {
+			(*entitiesToDraw)->Draw(slimeTexture);
+		}
 		entitiesToDraw++;
 	}
 
@@ -148,6 +153,11 @@ bool j1EntityManager::CleanUp() {
 	if (painterTexture != nullptr)
 		App->tex->UnLoad(painterTexture);
 
+	if (warriorTexture != nullptr)
+		App->tex->UnLoad(warriorTexture);
+
+	if (slimeTexture != nullptr)
+		App->tex->UnLoad(slimeTexture);
 
 	App->tex->UnLoad(fullLifeTexture);
 	App->tex->UnLoad(zeroLifeTexture);

@@ -61,7 +61,7 @@ bool j1Scene::PreUpdate() {
 	{
 		if(origin_selected == true)
 		{
-			App->pathfinding->CreatePath(origin, p);
+			//App->pathfinding->CreatePath(origin, p);                  CRASHES WITH THE NEW PATHFINDING
 			origin_selected = false;
 		}
 		else

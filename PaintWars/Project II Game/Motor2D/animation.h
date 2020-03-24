@@ -2,8 +2,12 @@
 #define __ANIMATION_H__
 
 #include "SDL/include/SDL_rect.h"
-//#include "j1App.h"
+#include "SDL_image/include/SDL_image.h"
+
 #define MAX_FRAMES 200
+typedef unsigned int uint;
+enum  ORIENTATION; //?????????????
+enum  ENTITY_TYPE;//?????????????
 
 class Animation
 {
@@ -11,51 +15,28 @@ public:
 	bool loop = true;
 	float defspeed = 1.0f;
 	SDL_Rect frames[MAX_FRAMES];
-	float speeds[MAX_FRAMES];
+	float speed;
+	uint n_frames = 0;
+	ENTITY_TYPE type;
+	ORIENTATION orientation;
+	SDL_Texture* texture;
 
 private:
 	float current_frame;
+	int current_speed;
 	int last_frame = 0;
 	int loops = 0;
 
 public:
 
-	void PushBack(const SDL_Rect& rect)
-	{
-		frames[last_frame++] = rect;
-	}
+	SDL_Rect& GetCurrentFrame();
 
-	//SDL_Rect& GetCurrentFrame()
-	//{
-	//	current_frame += speed * (App->dt / 0.016f);
-	//	if (current_frame >= last_frame)
-	//	{
-	//		current_frame = (loop) ? 0.0f : last_frame - 1;
-	//		loops++;
-	//	}
-	//
-	//	return frames[(int)current_frame];
-	//}
-
-	bool Finished() const
-	{
-		return loops > 0;
-	}
-
-	void Reset()
-	{
-		current_frame = 0;
-	}
-
-	void SetFrame(int frame)
-	{
-		current_frame = frame;
-	}
-
-	int GetFrameNum()
-	{
-		return current_frame;
-	}
+	void PushBack(const SDL_Rect& rect);
+	bool Finished() const;
+	void Reset();
+	void SetFrame(int frame);
+	int GetFrameNum();
+	Animation GetAnimation();
 };
 
-#endif
+#endif 

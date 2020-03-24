@@ -95,7 +95,7 @@ protected:
 	/// Buildings
 
 	/// Units
-	SDL_Texture* SlimeTexture = nullptr;
+	SDL_Texture* slimeTexture = nullptr;
 
 };
 

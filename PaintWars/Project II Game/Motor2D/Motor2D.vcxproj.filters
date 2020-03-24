@@ -94,6 +94,9 @@
     <ClCompile Include="Slime.cpp">
       <Filter>Desenvolupament  ========\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="animation.cpp">
+      <Filter>Desenvolupament  ========\Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">

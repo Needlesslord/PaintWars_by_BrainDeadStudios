@@ -19,7 +19,7 @@ Warrior::Warrior(fPoint pos, int damage, j1Module* listener) : Entity(pos, damag
 	maxLife = 30;
 	this->currLife = maxLife - damage;
 	this->pos = pos;
-	size = { 20, 20 };
+	size = { 62, 118 };
 	isEntityFromPlayer = true;
 	CreateEntityCollider(pos);
 }

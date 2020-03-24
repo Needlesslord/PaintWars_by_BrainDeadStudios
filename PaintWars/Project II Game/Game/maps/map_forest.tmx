@@ -21,6 +21,16 @@
   <tile id="62" terrain="0,1,1,1"/>
   <tile id="63" terrain="1,0,1,1"/>
  </tileset>
+ <tileset firstgid="65" name="Test_Animation_Tiled" tilewidth="151" tileheight="107" tilecount="72" columns="8">
+  <image source="floor_tileset_forest.png" width="1208" height="1008"/>
+  <tile id="0" type="Animation_Painter_North">
+   <animation>
+    <frame tileid="0" duration="300"/>
+    <frame tileid="1" duration="300"/>
+    <frame tileid="10" duration="300"/>
+   </animation>
+  </tile>
+ </tileset>
  <layer id="1" name="Capa de Patrones 1" width="100" height="100" offsetx="108" offsety="92">
   <data>
    <tile gid="48"/>

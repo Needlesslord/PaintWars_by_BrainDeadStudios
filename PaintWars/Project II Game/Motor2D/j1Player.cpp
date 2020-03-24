@@ -189,6 +189,6 @@ void j1Player::Zoom()
 		
 			else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 			{
-			App->win->scale = 1;
+			App->win->scale = 0.5;
 			}
 }

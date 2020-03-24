@@ -13,7 +13,7 @@ Slime::Slime(fPoint pos, int damage, j1Module* listener) : Entity(pos, damage, l
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_SLIME;
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_DYNAMIC_ENTITY;
 	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_MINI;
-	maxLife = 10;
+	maxLife = 50;
 	this->currLife = maxLife - damage;
 	this->pos = pos;
 	size = { 20, 20 };

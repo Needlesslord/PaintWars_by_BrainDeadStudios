@@ -16,6 +16,20 @@ struct ColliderGroup;
 
 enum CollisionState;
 
+enum ORIENTATION { //This is needed when loading animations from tiled
+	
+	ORIENTATION_NORTH,
+	ORIENTATION_NORTH_EAST,
+	ORIENTATION_EAST,
+	ORIENTATION_SOUTH_EAST,
+	ORIENTATION_SOUTH,
+	ORIENTATION_SOUTH_WEST,
+	ORIENTATION_WEST,
+	ORIENTATION_NORTH_WEST,
+	NONE
+
+
+};
 enum ENTITY_CATEGORY {
 
 	ENTITY_CATEGORY_NONE = 0,
@@ -121,6 +135,15 @@ protected:
 
 	// Collision
 	Collider* entityCollider = nullptr;
+
+
+protected:
+
+	Animation North_Animation;
+	
+	fPoint past_frame_dest;
+
+
 
 };
 
