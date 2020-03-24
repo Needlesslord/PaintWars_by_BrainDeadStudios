@@ -70,18 +70,18 @@ bool j1EntityManager::Update(float dt) {
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 
 		bool controlWasPressed = false;
-		if (App->input->GetKey(SDL_SCANCODE_LCTRL)) 
+		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT)
 			controlWasPressed = true;
 
 		bool isSomeEntitySelected = false;
 
 		list<Entity*>::iterator checkForSelectedEntities = activeEntities.begin();
 		while (checkForSelectedEntities != activeEntities.end()) {
-
 			int x, y;
 			App->input->GetMousePosition(x, y);
-			if (x > (*checkForSelectedEntities)->pos.x && x < ((*checkForSelectedEntities)->pos.x) + (*checkForSelectedEntities)->GetSize().x &&
-				y > (*checkForSelectedEntities)->pos.y && y < ((*checkForSelectedEntities)->pos.y) + (*checkForSelectedEntities)->GetSize().y) {
+			iPoint mapCoordinates = App->render->ScreenToWorld(x, y);
+			if (mapCoordinates.x > (*checkForSelectedEntities)->pos.x && mapCoordinates.x < (*checkForSelectedEntities)->pos.x + (*checkForSelectedEntities)->GetSize().x &&
+				mapCoordinates.y > (*checkForSelectedEntities)->pos.y && mapCoordinates.y < (*checkForSelectedEntities)->pos.y + (*checkForSelectedEntities)->GetSize().y) {
 				SelectEntity(*checkForSelectedEntities, controlWasPressed);
 				isSomeEntitySelected = true;
 				break;
@@ -134,6 +134,19 @@ bool j1EntityManager::Update(float dt) {
 		}
 		entitiesToDraw++;
 	}
+
+
+	// Move units selected on right-click
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && !unitsSelected.empty()) {
+		list<Entity*>::iterator unitsToMove = unitsSelected.begin();
+		while (unitsToMove != unitsSelected.end()) {
+			int x, y;
+			App->input->GetMousePosition(x, y);
+			(*unitsToMove)->Move({ x, y });
+			unitsToMove++;
+		}
+	}
+	
 
 	return ret;
 }
@@ -191,12 +204,12 @@ void j1EntityManager::UnselectAllEntities() {
 
 }
 
-Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module* listener, int damage) {
+Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, iPoint size, j1Module* listener, int damage) {
 
 		// Allies
 	/// Buildings
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
-		TownHall* townHall = new TownHall({ pos.x, pos.y }, damage, this);
+		TownHall* townHall = new TownHall({ pos.x - size.x/2, pos.y - size.y/2 }, damage, this);
 		activeEntities.push_back((Entity*)townHall);
 		activeBuildings.push_back((Entity*)townHall);
 
@@ -205,7 +218,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module*
 
 	/// Units
 	else if (entityType == ENTITY_TYPE_PAINTER) {
-		Painter* painter = new Painter({ pos.x, pos.y }, damage, this);
+		Painter* painter = new Painter({ pos.x - size.x / 2, pos.y - size.y / 2 }, damage, this);
 		activeEntities.push_back((Entity*)painter);
 		activeUnits.push_back((Entity*)painter);
 
@@ -213,7 +226,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module*
 	}
 
 	else if (entityType == ENTITY_TYPE_WARRIOR) {
-		Warrior* warrior = new Warrior({ pos.x, pos.y }, damage, this);
+		Warrior* warrior = new Warrior({ pos.x - size.x / 2, pos.y - size.y / 2 }, damage, this);
 		activeEntities.push_back((Entity*)warrior);
 		activeUnits.push_back((Entity*)warrior);
 
@@ -225,7 +238,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module*
 
 	/// Units
 	else if (entityType == ENTITY_TYPE_SLIME) {
-		Slime* slime = new Slime({ pos.x, pos.y }, damage, this);
+		Slime* slime = new Slime({ pos.x - size.x / 2, pos.y - size.y / 2 }, damage, this);
 		activeEntities.push_back((Entity*)slime);
 		activeUnits.push_back((Entity*)slime);
 
@@ -257,4 +270,27 @@ bool j1EntityManager::SelectEntity(Entity* entity, bool controlWasPressed) {
 
 void j1EntityManager::SelectGroupEntities(SDL_Rect rect) {
 
+	if (!App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT)
+		UnselectAllEntities();
+
+	bool isSomeEntitySelected = false;
+
+	list<Entity*>::iterator chechUnitsToSelect = activeUnits.begin();
+	while (chechUnitsToSelect != activeUnits.end()) {
+		if (rect.x < (*chechUnitsToSelect)->pos.x + (*chechUnitsToSelect)->GetSize().x &&
+			rect.x + rect.w >(*chechUnitsToSelect)->pos.x &&
+			rect.y < (*chechUnitsToSelect)->pos.y + (*chechUnitsToSelect)->GetSize().y &&
+			rect.h + rect.y >(*chechUnitsToSelect)->pos.y) {
+
+			unitsSelected.push_back((*chechUnitsToSelect));
+			entitiesSelected.push_back((*chechUnitsToSelect));
+			(*chechUnitsToSelect)->isSelected = true;
+
+			isSomeEntitySelected = true;
+		}
+		chechUnitsToSelect++;
+	}
+
+	if (!isSomeEntitySelected)
+		UnselectAllEntities();
 }

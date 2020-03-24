@@ -35,12 +35,19 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start() {
 
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, {   0, 100 }, App->entities, 10);
-	App->entities->AddEntity(ENTITY_TYPE_PAINTER,	{ 200, 200 }, App->entities,  5);
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{ 400, 200 }, App->entities, 10);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME,		{ 600, 200 }, App->entities);
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 0, 100 }, { 100, 100 }, App->entities, 10);
+	App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 200, 200 }, { 20, 20 }, App->entities, 5);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { 400, 200 }, { 62, 118 }, App->entities, 10);
+	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 600, 200 }, { 20, 20 }, App->entities);
 
 	App->map->Load("map_forest.tmx") == true;
+
+	int wCACA, hCACA;
+	uchar* dataCACA = NULL;
+	if (App->map->CreateWalkabilityMap(wCACA, hCACA, &dataCACA))
+	{
+		App->pathfinding->SetMap(wCACA, hCACA, dataCACA);						//Sets a new walkability map with the map passed by CreateWalkabilityMap().
+	}
 
 	return true;
 }
@@ -85,21 +92,23 @@ bool j1Scene::Update(float dt) {
 	if (App->input->GetKey(SDL_SCANCODE_T) == KEY_DOWN) {
 		int a, b;
 		App->input->GetMousePosition(a, b);
+		iPoint cd = App->render->ScreenToWorld(a, b);
 		float c, d;
-		c = a;
-		d = b;
+		c = cd.x;
+		d = cd.y;
 		
-		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { c, d }, App->entities);
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { c, d }, { 100, 100 }, App->entities);
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN) {
 		int a, b;
 		App->input->GetMousePosition(a, b);
+		iPoint cd = App->render->ScreenToWorld(a, b);
 		float c, d;
-		c = a;
-		d = b;
+		c = cd.x;
+		d = cd.y;
 
-		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { c, d }, App->entities);
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { c, d }, { 20, 20 }, App->entities);
 	}
 
 	App->map->Draw();
@@ -107,13 +116,13 @@ bool j1Scene::Update(float dt) {
 	int x, y;
 	App->input->GetMousePosition(x, y);
 	iPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
-	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d",
+	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d, %d, %d",
 					App->map->data.width, App->map->data.height,
 					App->map->data.tile_width, App->map->data.tile_height,
 					App->map->data.tilesets.count(),
 					map_coordinates.x, map_coordinates.y);
 
-	//App->win->SetTitle(title.GetString());
+	App->win->SetTitle(title.GetString());
 
 	// Debug pathfinding ------------------------------
 	//int x, y;

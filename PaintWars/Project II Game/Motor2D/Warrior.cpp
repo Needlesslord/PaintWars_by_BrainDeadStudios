@@ -26,8 +26,9 @@ Warrior::Warrior(fPoint pos, int damage, j1Module* listener) : Entity(pos, damag
 
 Warrior::~Warrior() {}
 
-//void Warrior::Move(iPoint destination) {
-//	iPoint posI;
-//	posI.x = pos.x; posI.y = pos.y;
-//	App->pathfinding->CreatePath(posI, destination);
-//}
+void Warrior::Move(iPoint destination) {
+	iPoint fPos;
+	fPos.x = pos.x;
+	fPos.y = pos.y;
+	App->pathfinding->CreatePath(fPos, destination);
+}

@@ -29,6 +29,8 @@ void Entity::DebugDrawSelected()
 
 void Entity::OnCollision(ColliderGroup* c1, ColliderGroup* c2, CollisionState collisionState) {}
 
+void Entity::Move(iPoint destination) {}
+
 // -------------------------------------------------------------
 
 // Position and size
@@ -156,7 +158,7 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 
 void Entity::ShowHealthBar() {
 	if (GetCurrLife() != GetMaxLife()) {
-		App->render->AddBlitEvent(1, App->entities->zeroLifeTexture, pos.x, pos.y - 10, { 0, 0, 20, 5 });
+		App->render->AddBlitEvent(1, App->entities->zeroLifeTexture, pos.x, pos.y - 20, { 0, 0, size.x, 8 });
 	}
-	App->render->AddBlitEvent(1, App->entities->fullLifeTexture, pos.x, pos.y - 10, { 0, 0, (int)((currLife/maxLife)*20), 5 });
+	App->render->AddBlitEvent(1, App->entities->fullLifeTexture, pos.x, pos.y - 20, { 0, 0, (int)((currLife/maxLife)*size.x), 8 });
 }
