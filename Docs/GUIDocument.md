@@ -42,6 +42,10 @@ With everything, the design we have come up with is the following for the inside
 ![HUD](https://user-images.githubusercontent.com/51851736/76066200-6fdcf300-5f8d-11ea-97ce-a5d686543a0c.png)
 
 
+The draft we did for the GUI in general is the following:
+
+
+
 ### Artistic point of view
 
 *THE ARTISTIC POINT OF VIEW OF THE HUD WILL BE UPLOADED ONCE WE HAVE THE SPRITES*
@@ -70,9 +74,7 @@ Since this also allows to use different colours, we would like to implement diff
 | Gamepad selected | . | . |
 | . | . | . |
 
-The Font we are going to use is 
-
-*UNDER CONSTRUCTION*
+The Font we are going to use is samble in 3 different sizes.
 
 
 ***
