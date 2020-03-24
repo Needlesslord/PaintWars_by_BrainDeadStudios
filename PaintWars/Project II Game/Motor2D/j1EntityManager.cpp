@@ -77,11 +77,11 @@ bool j1EntityManager::Update(float dt) {
 
 		list<Entity*>::iterator checkForSelectedEntities = activeEntities.begin();
 		while (checkForSelectedEntities != activeEntities.end()) {
-
 			int x, y;
 			App->input->GetMousePosition(x, y);
-			if (x > (*checkForSelectedEntities)->pos.x && x < ((*checkForSelectedEntities)->pos.x) + (*checkForSelectedEntities)->GetSize().x &&
-				y > (*checkForSelectedEntities)->pos.y && y < ((*checkForSelectedEntities)->pos.y) + (*checkForSelectedEntities)->GetSize().y) {
+			iPoint mapCoordinates = App->render->ScreenToWorld(x, y);
+			if (mapCoordinates.x > (*checkForSelectedEntities)->pos.x && mapCoordinates.x < (*checkForSelectedEntities)->pos.x + (*checkForSelectedEntities)->GetSize().x &&
+				mapCoordinates.y > (*checkForSelectedEntities)->pos.y && mapCoordinates.y < (*checkForSelectedEntities)->pos.y + (*checkForSelectedEntities)->GetSize().y) {
 				SelectEntity(*checkForSelectedEntities, controlWasPressed);
 				isSomeEntitySelected = true;
 				break;
@@ -133,6 +133,15 @@ bool j1EntityManager::Update(float dt) {
 			(*entitiesToDraw)->Draw(slimeTexture);
 		}
 		entitiesToDraw++;
+	}
+
+
+	// Move Colliders
+	list<Entity*>::iterator collidersToMove = activeUnits.begin();
+	while (collidersToMove != activeUnits.end()) {
+		(*collidersToMove)->GetEntityCollider()->SetPos((*collidersToMove)->pos.x, (*collidersToMove)->pos.y);
+
+		collidersToMove++;
 	}
 
 	return ret;
