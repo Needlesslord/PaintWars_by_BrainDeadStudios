@@ -50,7 +50,7 @@
 
 ## Overview
 
-"GAME NAME" is an isometric single player RTS game featuring a campaign with playable units, buildable structures and manageable resources where the player will have to fight against waves of enemies trying to destroy his base.
+Paint Wars is an isometric single player RTS game featuring a campaign with playable units, buildable structures and manageable resources where the player will have to fight against waves of enemies trying to destroy his base.
 
 The game is located in a paint themed world where resources, units and buildings will be related to paint.
 
