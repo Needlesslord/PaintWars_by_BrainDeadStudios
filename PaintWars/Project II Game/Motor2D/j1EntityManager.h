@@ -51,7 +51,7 @@ public:
 	bool PostUpdate();
 	bool CleanUp();
 
-	Entity* AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module* listener = nullptr, int damage = 0);
+	Entity* AddEntity(ENTITY_TYPE entityType, fPoint pos, iPoint size, j1Module* listener = nullptr, int damage = 0);
 
 	// Selects an Entity
 	bool SelectEntity(Entity* entity, bool controlWasPressed = false);

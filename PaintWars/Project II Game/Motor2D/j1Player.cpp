@@ -8,6 +8,7 @@
 #include "j1Window.h"
 #include "j1Player.h"
 #include "j1Scene.h"
+#include "j1EntityManager.h"
 #include "j1Window.h"
 #include "j1GUI.h"
 
@@ -170,25 +171,26 @@ void j1Player::Drag_Mouse()
 
 	if (App->input->GetMouseButtonDown(1) == KEY_UP)
 	{
+		App->entities->SelectGroupEntities(selector);
 		Select_Entitites(selector);
 	}
 
 }
 
-void j1Player::Zoom() 
+void j1Player::Zoom()
 {
-	
-			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-			{
-				App->win->scale = App->win->scale + 0.001;
-			}
-			else if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-			{
-				App->win->scale = App->win->scale - 0.001;
-			}
-		
-			else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-			{
-			App->win->scale = 0.5;
-			}
+
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+	{
+		App->win->scale = App->win->scale + 0.001;
+	}
+	else if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+	{
+		App->win->scale = App->win->scale - 0.001;
+	}
+
+	else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	{
+		App->win->scale = 0.5;
+	}
 }

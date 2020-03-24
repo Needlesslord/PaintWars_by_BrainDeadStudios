@@ -29,6 +29,8 @@ void Entity::DebugDrawSelected()
 
 void Entity::OnCollision(ColliderGroup* c1, ColliderGroup* c2, CollisionState collisionState) {}
 
+void Entity::Move(iPoint destination) {}
+
 // -------------------------------------------------------------
 
 // Position and size

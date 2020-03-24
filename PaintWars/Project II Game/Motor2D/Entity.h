@@ -76,8 +76,6 @@ enum ENTITY_TYPE
 	ENTITY_TYPE_MAX = 500
 };
 
-class Entity;
-
 class Entity
 {
 public:
@@ -87,7 +85,7 @@ public:
 	virtual void Draw(SDL_Texture* sprites);
 	virtual void DebugDrawSelected();
 	virtual void OnCollision(ColliderGroup* c1, ColliderGroup* c2, CollisionState collisionState);
-	//virtual void Move(iPoint destination);
+	virtual void Move(iPoint destination);
 
 	// Position and size
 	void SetPos(fPoint pos);
