@@ -8,6 +8,9 @@
 #include "j1GUIinputBox.h"
 #include "j1GUIlabel.h"
 #include "j1GUIimage.h"
+#include <list>
+
+using namespace std;
 
 #include "j1GUIscrollBar.h"
 
@@ -40,11 +43,11 @@ bool j1GUI::Start()
 bool j1GUI::PreUpdate()
 {
 	bool ret = true;
-	p2List_item<j1GUIelement*>* tmp = GUI_ELEMENTS.start;
-	while (tmp != nullptr)
+	list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin();
+	while (tmp != GUI_ELEMENTS.end())
 	{
 		ret = tmp->data->PreUpdate();
-		tmp = tmp->next;
+		tmp++;
 	}
 
 	return ret;
@@ -56,11 +59,11 @@ bool j1GUI::Update(float dt)
 {
 
 	bool ret = true;
-	p2List_item<j1GUIelement*>* tmp = GUI_ELEMENTS.start;
-	while (tmp != nullptr)
+	list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin();
+	while (tmp != GUI_ELEMENTS.end())
 	{
 		ret = tmp->data->Update(dt);
-		tmp = tmp->next;
+		tmp++;
 	}
 
 	return ret;
@@ -73,11 +76,11 @@ bool j1GUI::PostUpdate()
 
 	bool ret = true;
 
-	p2List_item<j1GUIelement*>* tmp = GUI_ELEMENTS.start;
-	while (tmp != nullptr)
+	list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin();
+	while (tmp != GUI_ELEMENTS.end())
 	{
 		ret = tmp->data->PostUpdate();
-		tmp = tmp->next;
+		tmp++;
 	}
 	return ret;
 
@@ -89,7 +92,7 @@ bool j1GUI::CleanUp()
 {
 	LOG("Freeing GUI");
 
-	for (p2List_item<j1GUIelement*>* item = GUI_ELEMENTS.start; item; item = item->next)
+	for (list<j1GUIelement*>::iterator item = GUI_ELEMENTS.begin(); item != GUI_ELEMENTS.end(); item++)
 	{
 		item->data->CleanUp();
 	}
@@ -138,7 +141,7 @@ j1GUIelement* j1GUI::ADD_ELEMENT(GUItype type, j1GUIelement* parent, iPoint Map_
 		temp->rect = section;
 		temp->text = text;
 
-		GUI_ELEMENTS.add(temp)->data->Start();
+		GUI_ELEMENTS.push_back(temp)->data->Start();
 	}
 
 	return temp;

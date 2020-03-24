@@ -15,6 +15,8 @@
 
 #include "Entity.h"
 
+using namespace std;
+
 
 j1EntityManager::j1EntityManager()
 {

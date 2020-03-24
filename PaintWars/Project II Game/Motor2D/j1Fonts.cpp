@@ -3,6 +3,9 @@
 #include "j1App.h"
 #include "j1Textures.h"
 #include "j1Fonts.h"
+#include <list>
+
+using namespace std;
 
 #include "SDL\include\SDL.h"
 #include "SDL_TTF/include/SDL_ttf.h"
@@ -42,9 +45,9 @@ bool j1Fonts::Awake(pugi::xml_node& conf)
 bool j1Fonts::CleanUp()
 {
 	LOG("Freeing True Type fonts and library");
-	p2List_item<TTF_Font*>* item;
+	list<TTF_Font*>::iterator item;
 
-	for (item = fonts.start; item != NULL; item = item->next)
+	for (item = fonts.begin(); item != fonts.end(); item = item++)
 	{
 		TTF_CloseFont(item->data);
 	}
@@ -66,7 +69,7 @@ TTF_Font* const j1Fonts::Load(const char* path, int size)
 	else
 	{
 		LOG("Successfully loaded font %s size %d", path, size);
-		fonts.add(font);
+		fonts.push_back(font);
 	}
 
 	return font;

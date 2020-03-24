@@ -20,6 +20,9 @@
 #include "j1Fonts.h"
 #include "j1InGameUI.h"
 #include <thread>
+#include <list>
+
+using namespace std;
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -62,12 +65,12 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 j1App::~j1App()
 {
 	// release modules
-	p2List_item<j1Module*>* item = modules.end;
+	list<j1Module*>::iterator item = modules.end();
 
-	while(item != NULL)
+	while(item != modules.begin())
 	{
 		RELEASE(item->data);
-		item = item->prev;
+		item--;
 	}
 
 	modules.clear();
@@ -76,7 +79,7 @@ j1App::~j1App()
 void j1App::AddModule(j1Module* module)
 {
 	module->Init();
-	modules.add(module);
+	modules.push_back(module);
 }
 
 // Called before render is available
@@ -101,13 +104,13 @@ bool j1App::Awake()
 
 	if(ret == true)
 	{
-		p2List_item<j1Module*>* item;
-		item = modules.start;
+		list<j1Module*>::iterator item;
+		item = modules.begin();
 
-		while(item != NULL && ret == true)
+		while(item != modules.end() && ret == true)
 		{
 			ret = item->data->Awake(config.child(item->data->name.GetString()));
-			item = item->next;
+			item++;
 		}
 	}
 
@@ -118,13 +121,13 @@ bool j1App::Awake()
 bool j1App::Start()
 {
 	bool ret = true;
-	p2List_item<j1Module*>* item;
-	item = modules.start;
+	list<j1Module*>::iterator item;
+	item = modules.begin();
 
-	while(item != NULL && ret == true)
+	while(item != modules.end() && ret == true)
 	{
 		ret = item->data->Start();
-		item = item->next;
+		item++;
 	}
 	return ret;
 }
@@ -236,11 +239,11 @@ void j1App::FinishUpdate()
 bool j1App::PreUpdate()
 {
 	bool ret = true;
-	p2List_item<j1Module*>* item;
-	item = modules.start;
+	list<j1Module*>::iterator item;
+	item = modules.begin();
 	j1Module* pModule = NULL;
 
-	for(item = modules.start; item != NULL && ret == true; item = item->next)
+	for(item = modules.begin(); item != modules.end() && ret == true; item = item++)
 	{
 		pModule = item->data;
 
@@ -258,11 +261,11 @@ bool j1App::PreUpdate()
 bool j1App::DoUpdate()
 {
 	bool ret = true;
-	p2List_item<j1Module*>* item;
-	item = modules.start;
+	list<j1Module*>::iterator item;
+	item = modules.begin();
 	j1Module* pModule = NULL;
 
-	for(item = modules.start; item != NULL && ret == true; item = item->next)
+	for(item = modules.begin(); item != modules.end() && ret == true; item = item++)
 	{
 		pModule = item->data;
 
@@ -280,10 +283,10 @@ bool j1App::DoUpdate()
 bool j1App::PostUpdate()
 {
 	bool ret = true;
-	p2List_item<j1Module*>* item;
+	list<j1Module*>::iterator item;
 	j1Module* pModule = NULL;
 
-	for(item = modules.start; item != NULL && ret == true; item = item->next)
+	for(item = modules.begin(); item != modules.end() && ret == true; item = item++)
 	{
 		pModule = item->data;
 
@@ -301,13 +304,13 @@ bool j1App::PostUpdate()
 bool j1App::CleanUp()
 {
 	bool ret = true;
-	p2List_item<j1Module*>* item;
-	item = modules.end;
+	list<j1Module*>::iterator item;
+	item = modules.end();
 
-	while(item != NULL && ret == true)
+	while(item != modules.begin() && ret == true)
 	{
 		ret = item->data->CleanUp();
-		item = item->prev;
+		item = item--;
 	}
 	return ret;
 }
@@ -365,7 +368,7 @@ void j1App::SaveGame(const char* file) const
 }
 
 // ---------------------------------------
-void j1App::GetSaveGames(p2List<p2SString>& list_to_fill) const
+void j1App::GetSaveGames(list<p2SString>& list_to_fill) const
 {
 	// need to add functionality to file_system module for this to work
 }
@@ -385,13 +388,13 @@ bool j1App::LoadGameNow()
 
 		root = data.child("game_state");
 
-		p2List_item<j1Module*>* item = modules.start;
+		list<j1Module*>::iterator item = modules.begin();
 		ret = true;
 
-		while(item != NULL && ret == true)
+		while(item != modules.end() && ret == true)
 		{
 			ret = item->data->Load(root.child(item->data->name.GetString()));
-			item = item->next;
+			item--;
 		}
 
 		data.reset();
@@ -419,12 +422,12 @@ bool j1App::SavegameNow() const
 	
 	root = data.append_child("game_state");
 
-	p2List_item<j1Module*>* item = modules.start;
+	list<j1Module*>::iterator item = modules.begin();
 
-	while(item != NULL && ret == true)
+	while(item != modules.end() && ret == true)
 	{
 		ret = item->data->Save(root.append_child(item->data->name.GetString()));
-		item = item->next;
+		item++;
 	}
 
 	if(ret == true)

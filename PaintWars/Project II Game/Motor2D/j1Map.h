@@ -7,6 +7,9 @@
 #include "j1Module.h"
 #include <vector>
 #include "animation.h"
+#include <list>
+
+using namespace std;
 // ----------------------------------------------------
 struct Properties
 {
@@ -18,13 +21,13 @@ struct Properties
 
 	~Properties()
 	{
-		p2List_item<Property*>* item;
-		item = list.start;
+		list<Property*>::iterator item;
+		item = list.begin();
 
 		while(item != NULL)
 		{
 			RELEASE(item->data);
-			item = item->next;
+			item++;
 		}
 
 		list.clear();
@@ -32,7 +35,7 @@ struct Properties
 
 	int Get(const char* name, int default_value = 0) const;
 
-	p2List<Property*>	list;
+	list<Property*>	list;
 };
 
 // ----------------------------------------------------
@@ -96,8 +99,8 @@ struct MapData
 	int					tile_height;
 	SDL_Color			background_color;
 	MapTypes			type;
-	p2List<TileSet*>	tilesets;
-	p2List<MapLayer*>	layers;
+	list<TileSet*>	tilesets;
+	list<MapLayer*>	layers;
 };
 
 // ----------------------------------------------------
