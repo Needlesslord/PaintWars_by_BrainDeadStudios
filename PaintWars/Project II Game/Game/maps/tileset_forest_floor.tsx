@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.2" tiledversion="1.2.4" name="floor_tileset" tilewidth="151" tileheight="126" tilecount="64" columns="8">
- <image source="floor_tileset_forest.png" width="1208" height="1008"/>
+ <image source="tileset_forest_floor.png" width="1208" height="1008"/>
  <terraintypes>
   <terrain name="Land" tile="47"/>
   <terrain name="Water" tile="56"/>
