@@ -97,7 +97,7 @@ bool j1Player::CleanUp()
 
 void j1Player::Camera_Control(float dt)
 {
-	if (mouse_position.x == 0) 
+	if (mouse_position.x == 0 && App->render->camera.x<=3750) 
 		App->render->camera.x += camera_speed*dt*1000;
 
 	if (mouse_position.y == 0) 
@@ -180,16 +180,16 @@ void j1Player::Drag_Mouse()
 void j1Player::Zoom()
 {
 
-	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_REPEAT) //zoom IN
 	{
 		App->win->scale = App->win->scale + 0.001;
 	}
-	else if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+	else if (App->input->GetKey(SDL_SCANCODE_M) == KEY_REPEAT)//zoom OUT
 	{
 		App->win->scale = App->win->scale - 0.001;
 	}
 
-	else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)//zoom RESET
 	{
 		App->win->scale = 0.5;
 	}
