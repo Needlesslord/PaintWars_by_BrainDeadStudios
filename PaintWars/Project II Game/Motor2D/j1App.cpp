@@ -346,12 +346,11 @@ const char* j1App::GetOrganization() const
 }
 
 // Load / Save
-void j1App::LoadGame(const char* file)
+void j1App::LoadGame()
 {
 	// we should be checking if that file actually exist
 	// from the "GetSaveGames" list
 	want_to_load = true;
-	//load_game.create("%s%s", fs->GetSaveDirectory(), file);
 }
 
 // ---------------------------------------
@@ -374,12 +373,14 @@ bool j1App::LoadGameNow()
 {
 	bool ret = false;
 
+	load_game.create("save_game.xml");
+
 	pugi::xml_document data;
 	pugi::xml_node root;
 
 	pugi::xml_parse_result result = data.load_file(load_game.GetString());
 
-	if(result != NULL)
+	if (result != NULL)
 	{
 		LOG("Loading new Game State from %s...", load_game.GetString());
 
@@ -388,14 +389,14 @@ bool j1App::LoadGameNow()
 		p2List_item<j1Module*>* item = modules.start;
 		ret = true;
 
-		while(item != NULL && ret == true)
+		while (item != NULL && ret == true)
 		{
 			ret = item->data->Load(root.child(item->data->name.GetString()));
 			item = item->next;
 		}
 
 		data.reset();
-		if(ret == true)
+		if (ret == true)
 			LOG("...finished loading");
 		else
 			LOG("...loading process interrupted with error on module %s", (item != NULL) ? item->data->name.GetString() : "unknown");
@@ -416,30 +417,26 @@ bool j1App::SavegameNow() const
 	// xml object were we will store all data
 	pugi::xml_document data;
 	pugi::xml_node root;
-	
+
 	root = data.append_child("game_state");
 
 	p2List_item<j1Module*>* item = modules.start;
 
-	while(item != NULL && ret == true)
+	while (item != NULL && ret == true)
 	{
 		ret = item->data->Save(root.append_child(item->data->name.GetString()));
 		item = item->next;
 	}
 
-	if(ret == true)
+	if (ret == true)
 	{
-		std::stringstream stream;
-		data.save(stream);
-
-		// we are done, so write data to disk
-//		fs->Save(save_game.GetString(), stream.str().c_str(), stream.str().length());
-		LOG("... finished saving", save_game.GetString());
+		data.save_file(save_game.GetString());
+		LOG("... finished saving", );
 	}
 	else
 		LOG("Save process halted from an error in module %s", (item != NULL) ? item->data->name.GetString() : "unknown");
 
-	data.reset();
+	//data.reset();   AQUESTA MERDA D'AQUI FEIA QUE NO GUARDES
 	want_to_save = false;
 	return ret;
 }

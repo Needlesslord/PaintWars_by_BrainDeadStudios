@@ -96,8 +96,17 @@ bool j1Render::Load(pugi::xml_node& data)
 
 bool j1Render::Save(pugi::xml_node& data) const
 {
-	pugi::xml_node cam = data.append_child("camera");
 
+	//TO SAVE ANY KIND OF VALUE IN THE SAVE FILE YOU HAVE TO:
+
+	//1. CREATE A NEW NODE WITH THE NAME THAT YOU WANT TO GIVE TO THAT NODE (ITS LIKE THE TITLE OF THE SECTION)  FOR EXAMPLE:
+	//pugi::xml_node cam = data.append_child("camera");  "camera" being the title, cam being the name of the node,
+	//just copy this and change camera name with what you want it to be called and the  node name
+
+    //2. Save the value inside that 
+	// to save a value you write ->  nodename.append_attribute("nameofthevalueinthesavefile")= name of the value in code
+
+	pugi::xml_node cam = data.append_child("camera");
 	cam.append_attribute("x") = camera.x;
 	cam.append_attribute("y") = camera.y;
 

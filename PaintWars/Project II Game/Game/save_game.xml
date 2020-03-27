@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<game_state>
+	<input />
+	<window />
+	<textures />
+	<audio>
+		<volume default="0" />
+	</audio>
+	<scene />
+	<map />
+	<:anonymous />
+	<entities />
+	<pathfinding />
+	<player />
+	<gui />
+	<fonts />
+	<InGameUI />
+	<renderer>
+		<camera x="617" y="-617" />
+	</renderer>
+</game_state>

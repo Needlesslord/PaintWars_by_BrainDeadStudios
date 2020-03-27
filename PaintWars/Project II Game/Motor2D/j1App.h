@@ -55,8 +55,8 @@ public:
 	const char* GetOrganization() const;
 	float GetDT() const;
 
-	void LoadGame(const char* file);
-	void SaveGame(const char* file) const;
+	void LoadGame();
+	void SaveGame(const char*) const;
 	void GetSaveGames(p2List<p2SString>& list_to_fill) const;
 
 private:

@@ -247,5 +247,6 @@
     <Xml Include="..\Game\config.xml">
       <Filter>Desenvolupament  ========</Filter>
     </Xml>
+    <Xml Include="..\Game\save_game.xml" />
   </ItemGroup>
 </Project>
