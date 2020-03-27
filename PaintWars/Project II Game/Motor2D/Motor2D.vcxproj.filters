@@ -97,6 +97,24 @@
     <ClCompile Include="animation.cpp">
       <Filter>Desenvolupament  ========\Tools</Filter>
     </ClCompile>
+    <ClCompile Include="j1Colour.cpp">
+      <Filter>Desenvolupament  ========\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="FadeToColour.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Transitions.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1TransitionsManager.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Lines.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Squares.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -215,6 +233,24 @@
     </ClInclude>
     <ClInclude Include="Slime.h">
       <Filter>Desenvolupament  ========\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Colour.h">
+      <Filter>Desenvolupament  ========\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="FadeToColour.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Transitions.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1TransitionsManager.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Lines.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Squares.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

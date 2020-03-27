@@ -78,7 +78,9 @@
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="FadeToColour.cpp" />
     <ClCompile Include="j1Collision.cpp" />
+    <ClCompile Include="j1Colour.cpp" />
     <ClCompile Include="j1EntityManager.cpp" />
     <ClCompile Include="j1Fonts.cpp" />
     <ClCompile Include="j1GUI.cpp" />
@@ -99,6 +101,9 @@
     <ClCompile Include="j1Player.cpp" />
     <ClCompile Include="j1Scene.cpp" />
     <ClCompile Include="j1Timer.cpp" />
+    <ClCompile Include="j1Transitions.cpp" />
+    <ClCompile Include="j1TransitionsManager.cpp" />
+    <ClCompile Include="Lines.cpp" />
     <ClCompile Include="p2Log.cpp" />
     <ClCompile Include="j1Render.cpp" />
     <ClCompile Include="j1Textures.cpp" />
@@ -106,6 +111,7 @@
     <ClCompile Include="Painter.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
     <ClCompile Include="Slime.cpp" />
+    <ClCompile Include="Squares.cpp" />
     <ClCompile Include="TownHall.cpp" />
     <ClCompile Include="Warrior.cpp" />
   </ItemGroup>
@@ -113,7 +119,9 @@
     <ClInclude Include="animation.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="FadeToColour.h" />
     <ClInclude Include="j1Collision.h" />
+    <ClInclude Include="j1Colour.h" />
     <ClInclude Include="j1EntityManager.h" />
     <ClInclude Include="j1Fonts.h" />
     <ClInclude Include="j1GUI.h" />
@@ -130,6 +138,9 @@
     <ClInclude Include="j1Player.h" />
     <ClInclude Include="j1Scene.h" />
     <ClInclude Include="j1Timer.h" />
+    <ClInclude Include="j1Transitions.h" />
+    <ClInclude Include="j1TransitionsManager.h" />
+    <ClInclude Include="Lines.h" />
     <ClInclude Include="p2DynArray.h" />
     <ClInclude Include="j1Audio.h" />
     <ClInclude Include="j1Input.h" />
@@ -147,6 +158,7 @@
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
     <ClInclude Include="Slime.h" />
+    <ClInclude Include="Squares.h" />
     <ClInclude Include="TownHall.h" />
     <ClInclude Include="Warrior.h" />
   </ItemGroup>

@@ -19,6 +19,7 @@
 #include "j1GUI.h"
 #include "j1Fonts.h"
 #include "j1InGameUI.h"
+#include "j1TransitionsManager.h"
 #include <thread>
 
 // Constructor
@@ -38,6 +39,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	gui = new j1GUI();
 	fonts = new j1Fonts();
 	InGameUI = new j1InGameUI();
+	transitions = new j1TransitionsManager();
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 	AddModule(input);
@@ -53,6 +55,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(gui);
 	AddModule(fonts);
 	AddModule(InGameUI);
+	AddModule(transitions);
 
 	// render last to swap buffer
 	AddModule(render);
