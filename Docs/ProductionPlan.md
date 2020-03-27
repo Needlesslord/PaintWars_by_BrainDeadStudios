@@ -31,7 +31,7 @@ In this part of the documentation we are going to explain our Production Plan, h
 
 For the production of iur RTS, we arranged different ways to control the time of our members. Here are what we used:
 
- + **Personal time calendar:** We used an Excel to create a calendar. Each week, all the members should write when they have free time or when they don't. This was used to distribute the work evenly, taking into account personal issues and to set realistic goals.
+ + **Personal time calendar:** We used an Excel to create a calendar. Each week, all the members should write when they have free time or when they don't. This was used to distribute the work evenly, taking into account personal issues and to set realistic goals. *(As of 1st of March)*
  
  ![Calendar-personal](https://user-images.githubusercontent.com/51851736/76265716-9d63be00-6265-11ea-9ef4-951be63a959d.PNG)
  
@@ -99,6 +99,8 @@ For each delivery we have set a milestone. Therefore, we have 4 milestones with 
     - Cheats and Debug
     - FX and music
     - Social Media: at least 3 tweets and instagram posts per week, at least 3 streams on Twitch and Youtube (can be the same)
+    
+ *Note: to see a more throrough list of what it is included please check out [this]() document.*
 
 + Alpha (Milestone: 16th May; Delivery: 19th May)
     - All Maps
