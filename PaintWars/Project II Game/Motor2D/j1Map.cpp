@@ -40,7 +40,7 @@ void j1Map::Draw()
 
 	for(; item != data.layers.end(); item = item++)
 	{
-		MapLayer* layer = (*item)->data;
+		MapLayer* layer = (*item);
 
 		if(layer->properties.Get("Nodraw") != 0)
 			continue;
@@ -66,13 +66,13 @@ void j1Map::Draw()
 
 int Properties::Get(const char* value, int default_value) const
 {
-	list<Property*>::iterator item = list.begin();
+	std::list<Property*>::iterator item = list.begin();
 
-	while(item)
+	while(*item)
 	{
-		if(item->data->name == value)
-			return item->data->value;
-		item = item->next;
+		if((*item)->name == value)
+			return (*item)->value;
+		item++;
 	}
 
 	return default_value;
@@ -80,17 +80,17 @@ int Properties::Get(const char* value, int default_value) const
 
 TileSet* j1Map::GetTilesetFromTileId(int id) const
 {
-	list<TileSet*>::iterator item = data.tilesets.begin();
-	TileSet* set = item->data;
+	std::list<TileSet*>::iterator item = data.tilesets.begin();
+	TileSet* set = (*item);
 
 	while(*item)
 	{
-		if(id < item->data->firstgid)
+		if(id < (*item)->firstgid)
 		{
 			set = item->prev->data;
 			break;
 		}
-		set = item->data;
+		set = (*item);
 		item++;
 	}
 
@@ -179,7 +179,7 @@ bool j1Map::CleanUp()
 
 	while(item != data.tilesets.end())
 	{
-		RELEASE(item->data);
+		RELEASE((*item));
 		item ++;
 	}
 	data.tilesets.clear();
@@ -190,7 +190,7 @@ bool j1Map::CleanUp()
 
 	while(item2 != data.layers.end())
 	{
-		RELEASE(item2->data);
+		RELEASE((*item2));
 		item2 ++;
 	}
 	data.layers.clear();
@@ -265,7 +265,7 @@ bool j1Map::Load(const char* file_name)
 		list<TileSet*>::iterator item = data.tilesets.begin();
 		while(item != data.tilesets.end())
 		{
-			TileSet* s = item->data;
+			TileSet* s = (*item);
 			LOG("Tileset ----");
 			LOG("name: %s firstgid: %d", s->name.GetString(), s->firstgid);
 			LOG("tile width: %d tile height: %d", s->tile_width, s->tile_height);
@@ -276,7 +276,7 @@ bool j1Map::Load(const char* file_name)
 		list<MapLayer*>::iterator item_layer = data.layers.begin();
 		while(item_layer != data.layers.end())
 		{
-			MapLayer* l = item_layer->data;
+			MapLayer* l = (*item_layer);
 			LOG("Layer ----");
 			LOG("name: %s", l->name.GetString());
 			LOG("tile width: %d tile height: %d", l->width, l->height);
@@ -526,11 +526,10 @@ bool j1Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer) const
 {
 	bool ret = false;
 	list<MapLayer*>::iterator item;
-	item = data.layers.begin();
 
-	for(item = data.layers.begin(); item != data.layers.end(); item ++)
+	for(item == data.layers.begin(); item != data.layers.end(); item ++)
 	{
-		MapLayer* layer = item->data;
+		MapLayer* layer = (*item);
 
 		if(layer->properties.Get("Navigation", 0) == 0)
 			continue;

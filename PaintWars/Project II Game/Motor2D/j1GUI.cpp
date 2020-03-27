@@ -43,11 +43,10 @@ bool j1GUI::Start()
 bool j1GUI::PreUpdate()
 {
 	bool ret = true;
-	list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin();
-	while (tmp != GUI_ELEMENTS.end())
+	
+	for (list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin(); tmp != GUI_ELEMENTS.end() && ret; tmp++)
 	{
-		ret = tmp->data->PreUpdate();
-		tmp++;
+		ret = (*tmp)->PreUpdate();
 	}
 
 	return ret;
@@ -59,11 +58,10 @@ bool j1GUI::Update(float dt)
 {
 
 	bool ret = true;
-	list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin();
-	while (tmp != GUI_ELEMENTS.end())
+	
+	for (list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin(); tmp != GUI_ELEMENTS.end() && ret; tmp++)
 	{
-		ret = tmp->data->Update(dt);
-		tmp++;
+		ret = (*tmp)->Update(dt);
 	}
 
 	return ret;
@@ -77,9 +75,9 @@ bool j1GUI::PostUpdate()
 	bool ret = true;
 
 	list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin();
-	while (tmp != GUI_ELEMENTS.end())
+	for (list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin(); tmp != GUI_ELEMENTS.end() && ret; tmp++)
 	{
-		ret = tmp->data->PostUpdate();
+		ret = (*tmp)->PostUpdate();
 		tmp++;
 	}
 	return ret;
@@ -94,7 +92,7 @@ bool j1GUI::CleanUp()
 
 	for (list<j1GUIelement*>::iterator item = GUI_ELEMENTS.begin(); item != GUI_ELEMENTS.end(); item++)
 	{
-		item->data->CleanUp();
+		(*item)->CleanUp();
 	}
 	GUI_ELEMENTS.clear();
 	return true;
@@ -141,7 +139,7 @@ j1GUIelement* j1GUI::ADD_ELEMENT(GUItype type, j1GUIelement* parent, iPoint Map_
 		temp->rect = section;
 		temp->text = text;
 
-		GUI_ELEMENTS.push_back(temp)->data->Start();
+		GUI_ELEMENTS.push_back(temp);
 	}
 
 	return temp;

@@ -8,8 +8,6 @@
 #include "j1PerfTimer.h"
 #include <list>
 
-using namespace std;
-
 // Modules
 class j1Window;
 class j1Input;
@@ -60,7 +58,7 @@ public:
 
 	void LoadGame(const char* file);
 	void SaveGame(const char* file) const;
-	void GetSaveGames(list<p2SString>& list_to_fill) const;
+	void GetSaveGames(std::list<p2SString>& list_to_fill) const;
 
 private:
 
@@ -105,7 +103,7 @@ public:
 	j1InGameUI*			InGameUI = NULL;
 private:
 
-	list<j1Module*>	modules;
+	std::list<j1Module*> modules;
 	int					argc;
 	char**				args;
 

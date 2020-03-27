@@ -49,7 +49,7 @@ bool j1Fonts::CleanUp()
 
 	for (item = fonts.begin(); item != fonts.end(); item = item++)
 	{
-		TTF_CloseFont(item->data);
+		TTF_CloseFont(*item);
 	}
 
 	fonts.clear();

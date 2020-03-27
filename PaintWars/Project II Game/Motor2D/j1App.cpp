@@ -22,8 +22,6 @@
 #include <thread>
 #include <list>
 
-using namespace std;
-
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 {
@@ -65,11 +63,11 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 j1App::~j1App()
 {
 	// release modules
-	list<j1Module*>::iterator item = modules.end();
+	std::list<j1Module*>::iterator item = modules.end();
 
 	while(item != modules.begin())
 	{
-		RELEASE(item->data);
+		RELEASE(*item);
 		item--;
 	}
 
@@ -104,12 +102,12 @@ bool j1App::Awake()
 
 	if(ret == true)
 	{
-		list<j1Module*>::iterator item;
+		std::list<j1Module*>::iterator item;
 		item = modules.begin();
 
 		while(item != modules.end() && ret == true)
 		{
-			ret = item->data->Awake(config.child(item->data->name.GetString()));
+			ret = (*item)->Awake(config.child((*item)->name.GetString()));
 			item++;
 		}
 	}
@@ -121,12 +119,12 @@ bool j1App::Awake()
 bool j1App::Start()
 {
 	bool ret = true;
-	list<j1Module*>::iterator item;
+	std::list<j1Module*>::iterator item;
 	item = modules.begin();
 
 	while(item != modules.end() && ret == true)
 	{
-		ret = item->data->Start();
+		ret = (*item)->Start();
 		item++;
 	}
 	return ret;
@@ -239,19 +237,19 @@ void j1App::FinishUpdate()
 bool j1App::PreUpdate()
 {
 	bool ret = true;
-	list<j1Module*>::iterator item;
+	std::list<j1Module*>::iterator item;
 	item = modules.begin();
 	j1Module* pModule = NULL;
 
 	for(item = modules.begin(); item != modules.end() && ret == true; item = item++)
 	{
-		pModule = item->data;
+		pModule = (*item);
 
 		if(pModule->active == false) {
 			continue;
 		}
 
-		ret = item->data->PreUpdate();
+		ret = (*item)->PreUpdate();
 	}
 
 	return ret;
@@ -261,19 +259,19 @@ bool j1App::PreUpdate()
 bool j1App::DoUpdate()
 {
 	bool ret = true;
-	list<j1Module*>::iterator item;
+	std::list<j1Module*>::iterator item;
 	item = modules.begin();
 	j1Module* pModule = NULL;
 
 	for(item = modules.begin(); item != modules.end() && ret == true; item = item++)
 	{
-		pModule = item->data;
+		pModule = (*item);
 
 		if(pModule->active == false) {
 			continue;
 		}
 
-		ret = item->data->Update(dt);
+		ret = (*item)->Update(dt);
 	}
 
 	return ret;
@@ -283,18 +281,18 @@ bool j1App::DoUpdate()
 bool j1App::PostUpdate()
 {
 	bool ret = true;
-	list<j1Module*>::iterator item;
+	std::list<j1Module*>::iterator item;
 	j1Module* pModule = NULL;
 
 	for(item = modules.begin(); item != modules.end() && ret == true; item = item++)
 	{
-		pModule = item->data;
+		pModule = (*item);
 
 		if(pModule->active == false) {
 			continue;
 		}
 
-		ret = item->data->PostUpdate();
+		ret = (*item)->PostUpdate();
 	}
 
 	return ret;
@@ -304,12 +302,12 @@ bool j1App::PostUpdate()
 bool j1App::CleanUp()
 {
 	bool ret = true;
-	list<j1Module*>::iterator item;
+	std::list<j1Module*>::iterator item;
 	item = modules.end();
 
 	while(item != modules.begin() && ret == true)
 	{
-		ret = item->data->CleanUp();
+		ret = (*item)->CleanUp();
 		item = item--;
 	}
 	return ret;
@@ -388,12 +386,12 @@ bool j1App::LoadGameNow()
 
 		root = data.child("game_state");
 
-		list<j1Module*>::iterator item = modules.begin();
+		std::list<j1Module*>::iterator item = modules.begin();
 		ret = true;
 
 		while(item != modules.end() && ret == true)
 		{
-			ret = item->data->Load(root.child(item->data->name.GetString()));
+			ret = (*item)->Load(root.child((*item)->name.GetString()));
 			item--;
 		}
 
@@ -401,7 +399,7 @@ bool j1App::LoadGameNow()
 		if(ret == true)
 			LOG("...finished loading");
 		else
-			LOG("...loading process interrupted with error on module %s", (item != NULL) ? item->data->name.GetString() : "unknown");
+			LOG("...loading process interrupted with error on module %s", (*item != NULL) ? (*item)->name.GetString() : "unknown");
 	}
 	else
 		LOG("Could not parse game state xml file %s. pugi error: %s", load_game.GetString(), result.description());
@@ -422,11 +420,11 @@ bool j1App::SavegameNow() const
 	
 	root = data.append_child("game_state");
 
-	list<j1Module*>::iterator item = modules.begin();
+	std::list<j1Module*>::iterator item = modules.begin();
 
 	while(item != modules.end() && ret == true)
 	{
-		ret = item->data->Save(root.append_child(item->data->name.GetString()));
+		ret = (*item)->Save(root.append_child((*item)->name.GetString()));
 		item++;
 	}
 
@@ -440,7 +438,7 @@ bool j1App::SavegameNow() const
 		LOG("... finished saving", save_game.GetString());
 	}
 	else
-		LOG("Save process halted from an error in module %s", (item != NULL) ? item->data->name.GetString() : "unknown");
+		LOG("Save process halted from an error in module %s", (*item != NULL) ? (*item)->name.GetString() : "unknown");
 
 	data.reset();
 	want_to_save = false;

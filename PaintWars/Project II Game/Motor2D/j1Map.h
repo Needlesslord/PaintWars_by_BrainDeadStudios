@@ -9,7 +9,7 @@
 #include "animation.h"
 #include <list>
 
-using namespace std;
+
 // ----------------------------------------------------
 struct Properties
 {
@@ -19,14 +19,16 @@ struct Properties
 		int value;
 	};
 
+	std::list<Property*>	list;
+
 	~Properties()
 	{
-		list<Property*>::iterator item;
+		std::list<Property*>::iterator item;
 		item = list.begin();
 
-		while(item != NULL)
+		while(*item != NULL)
 		{
-			RELEASE(item->data);
+			RELEASE(*item);
 			item++;
 		}
 
@@ -35,7 +37,7 @@ struct Properties
 
 	int Get(const char* name, int default_value = 0) const;
 
-	list<Property*>	list;
+
 };
 
 // ----------------------------------------------------

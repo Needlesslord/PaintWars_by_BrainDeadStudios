@@ -53,7 +53,7 @@ bool j1Textures::CleanUp()
 
 	for(item = textures.begin(); item != textures.end(); item++)
 	{
-		SDL_DestroyTexture(item->data);
+		SDL_DestroyTexture((*item));
 	}
 
 	textures.clear();
@@ -87,10 +87,10 @@ bool j1Textures::UnLoad(SDL_Texture* texture)
 
 	for(item = textures.begin(); item != textures.end(); item++)
 	{
-		if(texture == item->data)
+		if(texture == (*item))
 		{
-			SDL_DestroyTexture(item->data);
-			textures.del(item);
+			SDL_DestroyTexture((*item));
+			textures.erase(item);
 			return true;
 		}
 	}
