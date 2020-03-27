@@ -142,7 +142,7 @@ Increasing difficulty as time goes on, the game will pressure the player harder 
       + [Linkedin](https://www.linkedin.com/in/alex-lopez-agudo-9777741a3)
  - Núria Lamonja - **Team Leader**, Management, Community Manager, Social Media, Co-Lead UI Designer, Music
       + [Github](https://github.com/Needlesslord)
-      + [Linkedin](https://es.linkedin.com/in/n%C3%BAria-lamonja-i-pujol-b149271a2)
+      + [Linkedin](https://es.linkedin.com/in/needlesslord)
 
 *Note: All the team will be involved in the code aspect of the game and will be able to choose if they want to take part in other fields too.*
 
