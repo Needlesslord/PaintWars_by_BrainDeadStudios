@@ -1,222 +1,161 @@
-#include "p2Defs.h"
-#include "p2Log.h"
-#include "p2List.h"
-#include "p2Point.h"
+#include "j1GUI.h"
 #include "j1App.h"
 #include "j1Render.h"
-#include "j1Audio.h"
 #include "j1Textures.h"
 #include "j1Fonts.h"
 #include "j1Input.h"
-#include "j1Gui.h"
-#include "j1ElementUI.h"
-#include "j1LabelUI.h"
-#include "j1BarUI.h"
-#include "j1SpriteUI.h"
-#include "j1Thumb.h"
-#include "j1SceneUI.h"
-#include "SDL/include/SDL.h"
+#include "j1GUIbutton.h"
+#include "j1GUIinputBox.h"
+#include "j1GUIlabel.h"
+#include "j1GUIimage.h"
+
+#include "j1GUIscrollBar.h"
 
 
-j1Gui::j1Gui() : j1Module()
+j1GUI::j1GUI() : j1Module()
 {
 	name.create("gui");
 }
 
 // Destructor
-j1Gui::~j1Gui()
+j1GUI::~j1GUI()
 {}
 
-// Called before render is available
-bool j1Gui::Awake(pugi::xml_node& conf)
-{
-	
-	LOG("Loading GUI atlas");
-	bool ret = true;
 
-	atlas_file_name = conf.child("atlas").attribute("file").as_string("");
-	fx_button_pressed_string = conf.child("FX_Audios_UI").child_value();
+bool j1GUI::Awake(pugi::xml_node& config)
+{
+	bool ret = true;
 
 	return ret;
 }
 
-// Called before the first frame
-bool j1Gui::Start()
-{
-	
-	atlas = App->tex->Load(atlas_file_name.GetString());
-	fx_buton_pressed = App->audio->LoadFx(fx_button_pressed_string.GetString());
 
-	p2List_item<UI_Item*>* item_gui = gui_list.start;
-	
-	while (item_gui != nullptr)
-	{
-		item_gui->data->Start();
-		item_gui = item_gui->next;
-	}
+bool j1GUI::Start()
+{
 
 	return true;
 }
 
-// Update all guis
-bool j1Gui::PreUpdate(float dt)
-{
-	
-	p2List_item<UI_Item*>* item_gui = gui_list.start;
-	while (item_gui != nullptr)
-	{
-		item_gui->data->PreUpdate(dt);
-		item_gui = item_gui->next;
-	}
-	return true;
-}
 
-bool j1Gui::Update(float dt)
+bool j1GUI::PreUpdate()
 {
-	
-	p2List_item<UI_Item*>* item_gui = gui_list.start;
-	while (item_gui != nullptr)
+	bool ret = true;
+	p2List_item<j1GUIelement*>* tmp = GUI_ELEMENTS.start;
+	while (tmp != nullptr)
 	{
-		if (item_gui->data->visible)
-			item_gui->data->Update(dt);
-		item_gui = item_gui->next;
-	}
-	return true;
-}
-
-// Called after all Updates
-bool j1Gui::PostUpdate()
-{
-	
-	p2List_item<UI_Item*>* item_gui = gui_list.start;
-	while (item_gui != nullptr)
-	{
-		if (item_gui->data->visible)
-			item_gui->data->PostUpdate();
-		if (item_gui->data->parent != nullptr)
-			item_gui->data->visible = item_gui->data->parent->visible;
-		item_gui = item_gui->next;
+		ret = tmp->data->PreUpdate();
+		tmp = tmp->next;
 	}
 
-	return true;
+	return ret;
+
 }
 
-// Called before quitting
-bool j1Gui::CleanUp()
+
+bool j1GUI::Update(float dt)
 {
-	
+
+	bool ret = true;
+	p2List_item<j1GUIelement*>* tmp = GUI_ELEMENTS.start;
+	while (tmp != nullptr)
+	{
+		ret = tmp->data->Update(dt);
+		tmp = tmp->next;
+	}
+
+	return ret;
+
+}
+
+
+bool j1GUI::PostUpdate()
+{
+
+	bool ret = true;
+
+	p2List_item<j1GUIelement*>* tmp = GUI_ELEMENTS.start;
+	while (tmp != nullptr)
+	{
+		ret = tmp->data->PostUpdate();
+		tmp = tmp->next;
+	}
+	return ret;
+
+}
+
+
+
+bool j1GUI::CleanUp()
+{
 	LOG("Freeing GUI");
 
-	p2List_item<UI_Item*>* item;
-	item = gui_list.start;
-
-	while (item != NULL)
+	for (p2List_item<j1GUIelement*>* item = GUI_ELEMENTS.start; item; item = item->next)
 	{
-		RELEASE(item->data);
-		item = item->next;
+		item->data->CleanUp();
 	}
-	gui_list.clear();
+	GUI_ELEMENTS.clear();
+	return true;
+}
 
-	if (atlas != nullptr)
+
+
+j1GUIelement* j1GUI::ADD_ELEMENT(GUItype type, j1GUIelement* parent, iPoint Map_Position, iPoint Inside_Position, bool interactable, bool enabled, SDL_Rect section, char* text, j1Module* listener, bool X_drag, bool Y_drag, SCROLL_TYPE scrollType, bool decor)
+{
+
+	j1GUIelement* temp = nullptr;
+
+	switch (type)
 	{
-		App->tex->UnLoad(atlas);
-		atlas = nullptr;
+
+	case GUItype::GUI_BUTTON:
+		temp = new j1GUIButton();
+		break;
+	case GUItype::GUI_INPUTBOX:
+		temp = new j1GUIinputBox(text);
+		break;
+	case GUItype::GUI_LABEL:
+		temp = new j1GUIlabel();
+		break;
+	case GUItype::GUI_IMAGE:
+		temp = new j1GUIimage();
+		break;
+	case GUItype::GUI_SCROLLBAR:
+		temp = new j1GUIscrollBar(scrollType);
+		break;
 	}
 
+	if (temp)
+	{
+		temp->parent = parent;
+		temp->Map_Position = Map_Position;
+		temp->Inside_Position = Inside_Position;
+		temp->listener = listener;
+		temp->interactable = interactable;
+		temp->X_drag = X_drag;
+		temp->Y_drag = Y_drag;
+		temp->decorative = decor;
+		temp->enabled = enabled;
+		temp->rect = section;
+		temp->text = text;
+
+		GUI_ELEMENTS.add(temp)->data->Start();
+	}
+
+	return temp;
+}
+
+bool j1GUI::Save(pugi::xml_node& file) const {
+
 	return true;
 }
 
 
-UI_Label* j1Gui::CreateLabel(iPoint pos, const char * text, Label_Type type, SDL_Color color, bool static_obj, UI_Item* parent)
-{
-	
-	UI_Item* label = nullptr;
-	label = new UI_Label(text, type, color, parent);
-	label->pos.x = pos.x;
-	label->pos.y = pos.y;
-
-	label->static_object = static_obj;
-
-	gui_list.add(label);
-
-	return (UI_Label*)label;
-}
-
-UI_Item* j1Gui::CreateSprite(iPoint pos, SDL_Rect rect, bool static_obj, UI_Item* parent)
-{
-	
-	UI_Item* sprite = nullptr;
-	sprite = new UI_Sprite(rect, parent);
-	sprite->pos.x = pos.x;
-	sprite->pos.y = pos.y;
-
-	sprite->static_object = static_obj;
-
-	gui_list.add(sprite);
-
-	return sprite;
-}
-
-UIitem_Button* j1Gui::CreateButton(iPoint pos, Button_Type type, SDL_Rect idle_rect, SDL_Rect* idle_hover, SDL_Rect* idle_click, const char* text, bool static_obj, UI_Item* parent)
-{
-	
-	UI_Item* button = nullptr;
-	button = new UIitem_Button(text, type, idle_rect, idle_hover, idle_click, parent);
-	button->pos.x = pos.x;
-	button->pos.y = pos.y;
-
-	button->static_object = static_obj;
-
-	gui_list.add(button);
-
-	return (UIitem_Button*)button;
-}
-UiItem_Bar * j1Gui::CreateSlider(iPoint pos, SDL_Rect slider_box, bool static_obj, UI_Item* parent)
-{
-	
-	UI_Item*slider = nullptr;
-	slider = new UiItem_Bar(slider_box, parent);
-	slider->pos.x = pos.x;
-	slider->pos.y = pos.y;
-
-	gui_list.add(slider);
-
-	return (UiItem_Bar*)slider;
-}
-
-
-UiItem_Thumb * j1Gui::CreateThumb(SDL_Rect s_thumb, UI_Item * parent)
-{
-	UI_Item* thumb = nullptr;
-	thumb = new UiItem_Thumb(s_thumb, parent);
-	thumb->pos.x = parent->pos.x + 1;
-	thumb->pos.y = parent->pos.y + 1;
-
-	gui_list.add(thumb);
-
-	return (UiItem_Thumb*)thumb;
-}
-
-// const getter for atlas
-SDL_Texture* j1Gui::GetAtlas() const
-{
-	
-	return atlas;
-}
-
-bool j1Gui::Load(pugi::xml_node &node)
-{
-	/*App->scene_ui->player_score = node.child("score").attribute("value").as_uint();
-	sprintf_s(App->scene_ui->player_score_string, 5, "%1d", App->scene_ui->player_score);
-	App->scene_ui->score_label->ChangeText(App->scene_ui->player_score_string);*/
+bool j1GUI::Load(pugi::xml_node& file) {
 
 	return true;
 }
 
-bool j1Gui::Save(pugi::xml_node &node) const
-{
-	/*pugi::xml_node score = node.append_child("score");
-
-	score.append_attribute("value") = App->scene_ui->player_score;*/
-	return true;
+void j1GUI::Update_Position(j1GUIelement* element, iPoint position, iPoint localPosition) {
+	element->Map_Position = position;
+	element->Inside_Position = localPosition;
 }

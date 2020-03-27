@@ -19,10 +19,9 @@ class j1Map;
 class j1EntityManager;
 class j1PathFinding;
 class j1Player;
+class j1GUI;
 class j1Fonts;
-class j1Gui;
-class j1SceneMenu;
-class j1Scene_UI;
+class j1InGameUI;
 
 class j1App 
 {
@@ -98,12 +97,9 @@ public:
 	j1EntityManager*	entities = nullptr;
 	j1PathFinding*		pathfinding = NULL;
 	j1Player*			player = NULL;
-	j1Gui*				gui;
-	j1Fonts*			font;
-	j1SceneMenu*		scene_menu;
-	j1Scene_UI*			scene_ui;
-	
-	
+	j1GUI*				gui = NULL;
+	j1Fonts*			fonts = NULL;
+	j1InGameUI*			InGameUI = NULL;
 private:
 
 	p2List<j1Module*>	modules;

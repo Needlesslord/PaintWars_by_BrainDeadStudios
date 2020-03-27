@@ -16,10 +16,9 @@
 #include "j1Pathfinding.h"
 #include "j1App.h"
 #include "j1Player.h"
-#include "j1SceneUI.h"
-#include "j1MenuScene.h"
-#include "j1Fonts.h"
 #include "j1GUI.h"
+#include "j1Fonts.h"
+#include "j1InGameUI.h"
 #include <thread>
 
 // Constructor
@@ -36,10 +35,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	entities = new j1EntityManager();
 	pathfinding = new j1PathFinding();
 	player = new j1Player();
-	scene_menu = new j1SceneMenu();
-	gui = new j1Gui();
-	scene_ui = new j1Scene_UI();
-	font = new j1Fonts();
+	gui = new j1GUI();
+	fonts = new j1Fonts();
+	InGameUI = new j1InGameUI();
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 	AddModule(input);
@@ -52,10 +50,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(entities);
 	AddModule(pathfinding);
 	AddModule(player);
-	AddModule(font);
 	AddModule(gui);
-	AddModule(scene_menu);
-	AddModule(scene_ui);
+	AddModule(fonts);
+	AddModule(InGameUI);
 
 	// render last to swap buffer
 	AddModule(render);

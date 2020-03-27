@@ -4,9 +4,8 @@
 #include "j1Module.h"
 #include "SDL\include\SDL_pixels.h"
 
-//#define DEFAULT_FONT "fonts/OpenSans-BoldItalic.ttf"
-#define DEFAULT_FONT "fonts/Chocolate_Drink.ttf"
-#define DEFAULT_FONT_SIZE 40
+#define DEFAULT_FONT "fonts/open_sans/OpenSans-Regular.ttf"
+#define DEFAULT_FONT_SIZE 12
 
 struct SDL_Texture;
 struct _TTF_Font;
@@ -23,8 +22,6 @@ public:
 	// Called before render is available
 	bool Awake(pugi::xml_node&);
 
-	bool Start();
-
 	// Called before quitting
 	bool CleanUp();
 
@@ -36,24 +33,11 @@ public:
 
 	bool CalcSize(const char* text, int& width, int& height, _TTF_Font* font = NULL) const;
 
+
 public:
 
 	p2List<_TTF_Font*>	fonts;
-	_TTF_Font*			default;
-	_TTF_Font*			title_buttons;
-	_TTF_Font*			title_config;
-	_TTF_Font*			title_settings;
-	_TTF_Font*			Button_Title;
-	_TTF_Font*			credits;
-	_TTF_Font*          MainTitle;
-	_TTF_Font*          Timer;
-	_TTF_Font*          UI_Title;
-	_TTF_Font*          Regular_Text;
-	_TTF_Font*          Regular_Text_Small;
-	_TTF_Font*          Timer_Ingame_Font;
-	_TTF_Font*          Console_Font;
-	_TTF_Font*          SliderFont;
+	_TTF_Font* default;
 };
-
 
 #endif // __j1FONTS_H__

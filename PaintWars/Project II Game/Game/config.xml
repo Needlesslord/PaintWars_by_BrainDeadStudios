@@ -1,5 +1,5 @@
 <!-- Config file for the game -->
-<!--hola-->
+
 <config>
   <app framerate_cap="30">
     <title>Project Ceta</title>

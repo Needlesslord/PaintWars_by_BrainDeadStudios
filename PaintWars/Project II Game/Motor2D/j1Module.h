@@ -93,20 +93,10 @@ public:
 
 	}
 
-	void Disable()
-	{
-		if (enabled == true)
-		{
-			enabled = false;
-			CleanUp();
-		}
-	}
-
 public:
 
 	p2SString	name;
 	bool		active;
-	bool	    enabled = true;
 
 };
 
