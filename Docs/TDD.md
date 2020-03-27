@@ -454,7 +454,8 @@ The overview of our code is provided in the following UML. This structure, howev
 
 ### Real
   
-*TO BE DELIVERED AT THE END OF THE PROJECT AND UPDATED DURING THE DEVELOPMENT*
+You can read what each build has detailed on every release. [Here](https://github.com/Needlesslord/BrainDeadStudios/releases) you can find all the builds
+
 
 ### Scheduling
 
