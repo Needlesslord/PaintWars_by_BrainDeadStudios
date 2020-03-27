@@ -55,7 +55,8 @@ public:
 	SDL_Rect		viewport;
 	SDL_Color		background;
 
-private:
+
+public:
 
 	std::multimap<int, BlitEvent> blit_queue;
 

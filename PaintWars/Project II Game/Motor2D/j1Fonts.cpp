@@ -5,8 +5,10 @@
 #include "j1Fonts.h"
 
 #include "SDL\include\SDL.h"
-#include "SDL_TTF/include/SDL_ttf.h"
+#include "SDL_ttf\include\SDL_ttf.h"
 #pragma comment( lib, "SDL_ttf/libx86/SDL2_ttf.lib" )
+
+
 
 j1Fonts::j1Fonts() : j1Module()
 {
@@ -20,6 +22,8 @@ j1Fonts::~j1Fonts()
 // Called before render is available
 bool j1Fonts::Awake(pugi::xml_node& conf)
 {
+
+
 	LOG("Init True Type Font library");
 	bool ret = true;
 
@@ -38,9 +42,29 @@ bool j1Fonts::Awake(pugi::xml_node& conf)
 	return ret;
 }
 
+bool j1Fonts::Start()
+{
+	
+
+	Button_Title = Load("fonts/Chocolate_Drink.ttf",40);
+	Regular_Text = Load("fonts/OpenSans-BoldItalic.ttf", 16);
+	Regular_Text_Small = Load("fonts/OpenSans-BoldItalic.ttf", 13);
+	title_settings = Load("fonts/Black & Blue_DEMO", 19);
+	MainTitle = Load("fonts/Black & Blue Textured_DEMO.ttf", 40);
+	title_config = Load("fonts/Chocolate_Drink.ttf", 40);
+	title_buttons = Load("fonts/Jungle Bloods Font.ttf", 19);
+	UI_Title = Load("fonts/Black & Blue_DEMO", 20);
+	Timer_Ingame_Font=Load("fonts/Chocolate_Drink.ttf", 40);
+	Console_Font= Load("fonts/open-sans.bold.ttf", 17);
+	SliderFont= Load("fonts/Chocolate_Drink.ttf", 30);
+	return true;
+}
+
 // Called before quitting
 bool j1Fonts::CleanUp()
 {
+	
+
 	LOG("Freeing True Type fonts and library");
 	p2List_item<TTF_Font*>* item;
 
@@ -73,8 +97,10 @@ TTF_Font* const j1Fonts::Load(const char* path, int size)
 }
 
 // Print text using font
-SDL_Texture* j1Fonts::Print(const char* text, SDL_Color color, TTF_Font* font)
+SDL_Texture* j1Fonts::Print(const char* text, SDL_Color color, _TTF_Font* font)
 {
+	
+
 	SDL_Texture* ret = NULL;
 	SDL_Surface* surface = TTF_RenderText_Blended((font) ? font : default, text, color);
 
@@ -96,7 +122,7 @@ bool j1Fonts::CalcSize(const char* text, int& width, int& height, _TTF_Font* fon
 {
 	bool ret = false;
 
-	if (TTF_SizeText((font) ? font : default, text, & width, & height) != 0)
+	if (TTF_SizeText((font) ? font : default, text, &width, &height) != 0)
 		LOG("Unable to calc size of text surface! SDL_ttf Error: %s\n", TTF_GetError());
 	else
 		ret = true;
