@@ -1,4 +1,4 @@
-#ifndef __j1ENTITY_FACTORY_H__
+﻿#ifndef __j1ENTITY_FACTORY_H__
 #define __j1ENTITY_FACTORY_H__
 
 #include "j1Module.h"
@@ -67,15 +67,15 @@ public:
 
 public:
 
-	list<Entity*> toSpawnEntities;
+	
+	std::list<Entity*> toSpawnEntities;
+	std::list<Entity*> activeEntities;
+	std::list<Entity*> activeBuildings;
+	std::list<Entity*> activeUnits;
 
-	list<Entity*> activeEntities;
-	list<Entity*> activeBuildings;
-	list<Entity*> activeUnits;
-
-	list<Entity*> entitiesSelected;
-	list<Entity*> unitsSelected;
-	list<Entity*> buildingsSelected;
+	std::list<Entity*> entitiesSelected;
+	std::list<Entity*> unitsSelected;
+	std::list<Entity*> buildingsSelected;
 
 	// Thsese two need to be public so that each entity can use it
 	SDL_Texture* fullLifeTexture = nullptr;
@@ -100,3 +100,41 @@ protected:
 };
 
 #endif //__j1ENTITY_FACTORY_H__
+
+
+
+
+
+//--------------------------------------------------------------------------------------------------------
+
+
+//STD LISTS USE
+
+
+//std::list<item> list  IGUAL QUE LA LIST DEL P2 LIST
+
+//std::list<item>::iterator PER PASAR PER LA LLISTA D'ITEMS ---- EXEMPLE:
+
+//for (std::list<Module*>::iterator item = modules.begin(); item != modules.end() && ret; ++item)
+//{
+//	ret = (*item)->Start();
+//}
+
+
+
+//item = list.begin(); PER COMENÇAR LA LLISTA DESDE EL PRINCIPI
+
+
+
+//for(; item != list.end(); ++item)  SI PER EXEMPLE VOLEM QUE PASI PER LA LLISTA FINS AL FINAL
+//{
+//}
+
+
+//list.erase(item)   BORRAR COSES DE LA LLISTA
+
+
+//list.pushback(Module* module)  POSAR ITEMS A UNA LLISTA JA CREADA
+
+// (*item)->itemquequeremos    ACCEDIR AL ITEM DE LA LLISTA  
+
