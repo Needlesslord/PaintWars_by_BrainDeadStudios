@@ -5,7 +5,6 @@
 #include "p2List.h"
 #include <list>
 
-using namespace std;
 
 struct SDL_Texture;
 struct SDL_Surface;
@@ -36,7 +35,7 @@ public:
 
 public:
 
-	list<SDL_Texture*>	textures;
+	std::list<SDL_Texture*>	textures;
 
 };
 

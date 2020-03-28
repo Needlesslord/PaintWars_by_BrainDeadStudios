@@ -129,7 +129,7 @@ protected:
 
 	float currLife = 0;
 	float maxLife = 0;
-	string lifeString;
+	std::string lifeString;
 
 	j1Module* listener = nullptr; // callback
 

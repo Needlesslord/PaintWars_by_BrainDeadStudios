@@ -10,7 +10,6 @@
 #include "j1GUIimage.h"
 #include <list>
 
-using namespace std;
 
 #include "j1GUIscrollBar.h"
 
@@ -44,7 +43,7 @@ bool j1GUI::PreUpdate()
 {
 	bool ret = true;
 	
-	for (list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin(); tmp != GUI_ELEMENTS.end() && ret; tmp++)
+	for (std::list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin(); tmp != GUI_ELEMENTS.end() && ret; tmp++)
 	{
 		ret = (*tmp)->PreUpdate();
 	}
@@ -59,7 +58,7 @@ bool j1GUI::Update(float dt)
 
 	bool ret = true;
 	
-	for (list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin(); tmp != GUI_ELEMENTS.end() && ret; tmp++)
+	for (std::list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin(); tmp != GUI_ELEMENTS.end() && ret; tmp++)
 	{
 		ret = (*tmp)->Update(dt);
 	}
@@ -74,8 +73,8 @@ bool j1GUI::PostUpdate()
 
 	bool ret = true;
 
-	list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin();
-	for (list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin(); tmp != GUI_ELEMENTS.end() && ret; tmp++)
+	std::list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin();
+	for (std::list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin(); tmp != GUI_ELEMENTS.end() && ret; tmp++)
 	{
 		ret = (*tmp)->PostUpdate();
 		tmp++;
@@ -90,7 +89,7 @@ bool j1GUI::CleanUp()
 {
 	LOG("Freeing GUI");
 
-	for (list<j1GUIelement*>::iterator item = GUI_ELEMENTS.begin(); item != GUI_ELEMENTS.end(); item++)
+	for (std::list<j1GUIelement*>::iterator item = GUI_ELEMENTS.begin(); item != GUI_ELEMENTS.end(); item++)
 	{
 		(*item)->CleanUp();
 	}

@@ -5,7 +5,6 @@
 #include "SDL\include\SDL_pixels.h"
 #include <list>
 
-using namespace std;
 
 #define DEFAULT_FONT "fonts/open_sans/OpenSans-Regular.ttf"
 #define DEFAULT_FONT_SIZE 12
@@ -39,7 +38,7 @@ public:
 
 public:
 
-	list<_TTF_Font*>	fonts;
+	std::list<_TTF_Font*>	fonts;
 	_TTF_Font* default;
 };
 

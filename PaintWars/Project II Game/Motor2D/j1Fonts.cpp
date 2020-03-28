@@ -5,7 +5,6 @@
 #include "j1Fonts.h"
 #include <list>
 
-using namespace std;
 
 #include "SDL\include\SDL.h"
 #include "SDL_TTF/include/SDL_ttf.h"
@@ -45,7 +44,7 @@ bool j1Fonts::Awake(pugi::xml_node& conf)
 bool j1Fonts::CleanUp()
 {
 	LOG("Freeing True Type fonts and library");
-	list<TTF_Font*>::iterator item;
+	std::list<TTF_Font*>::iterator item;
 
 	for (item = fonts.begin(); item != fonts.end(); item = item++)
 	{

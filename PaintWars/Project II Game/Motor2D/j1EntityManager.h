@@ -25,7 +25,6 @@
 #include <algorithm>
 #include <queue>
 
-using namespace std;
 
 #define MAX_UNITS_SELECTED 8
 #define MAX_SAVED_GROUPS 3
@@ -67,15 +66,15 @@ public:
 
 public:
 
-	list<Entity*> toSpawnEntities;
+	std::list<Entity*> toSpawnEntities;
 
-	list<Entity*> activeEntities;
-	list<Entity*> activeBuildings;
-	list<Entity*> activeUnits;
+	std::list<Entity*> activeEntities;
+	std::list<Entity*> activeBuildings;
+	std::list<Entity*> activeUnits;
 
-	list<Entity*> entitiesSelected;
-	list<Entity*> unitsSelected;
-	list<Entity*> buildingsSelected;
+	std::list<Entity*> entitiesSelected;
+	std::list<Entity*> unitsSelected;
+	std::list<Entity*> buildingsSelected;
 
 	// Thsese two need to be public so that each entity can use it
 	SDL_Texture* fullLifeTexture = nullptr;

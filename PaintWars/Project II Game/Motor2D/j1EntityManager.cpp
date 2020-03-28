@@ -15,7 +15,6 @@
 
 #include "Entity.h"
 
-using namespace std;
 
 
 j1EntityManager::j1EntityManager()
@@ -77,7 +76,7 @@ bool j1EntityManager::Update(float dt) {
 
 		bool isSomeEntitySelected = false;
 
-		list<Entity*>::iterator checkForSelectedEntities = activeEntities.begin();
+		std::list<Entity*>::iterator checkForSelectedEntities = activeEntities.begin();
 		while (checkForSelectedEntities != activeEntities.end()) {
 
 			int x, y;
@@ -100,7 +99,7 @@ bool j1EntityManager::Update(float dt) {
 
 
 	// LifeBars from selected  on HUD
-	list<Entity*>::iterator selectedEntities = entitiesSelected.begin();
+	std::list<Entity*>::iterator selectedEntities = entitiesSelected.begin();
 	while (selectedEntities != entitiesSelected.end()) {
 
 		if ((*selectedEntities)->GetCurrLife() != (*selectedEntities)->GetMaxLife()) {		
@@ -112,7 +111,7 @@ bool j1EntityManager::Update(float dt) {
 	}
 
 	// LifeBars from selected units on top of themselves
-	list<Entity*>::iterator selectedUnits = unitsSelected.begin();
+	std::list<Entity*>::iterator selectedUnits = unitsSelected.begin();
 	while (selectedUnits != unitsSelected.end()) {
 		(*selectedUnits)->ShowHealthBar();
 		selectedUnits++;
@@ -120,7 +119,7 @@ bool j1EntityManager::Update(float dt) {
 
 
 	// Draw all active entities
-	list<Entity*>::iterator entitiesToDraw = activeEntities.begin();
+	std::list<Entity*>::iterator entitiesToDraw = activeEntities.begin();
 	while (entitiesToDraw != activeEntities.end()) {
 		if ((*entitiesToDraw)->entityType == ENTITY_TYPE_TOWN_HALL) {
 			(*entitiesToDraw)->Draw(townHallTexture);
@@ -181,7 +180,7 @@ bool j1EntityManager::Load(pugi::xml_node& save) {
 
 void j1EntityManager::UnselectAllEntities() {
 
-	list<Entity*>::iterator unselectEntities = activeEntities.begin();
+	std::list<Entity*>::iterator unselectEntities = activeEntities.begin();
 	while (unselectEntities != activeEntities.end()) {
 		(*unselectEntities)->isSelected = false;
 		unselectEntities++;

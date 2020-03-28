@@ -9,7 +9,6 @@
 #include "Entity.h"
 #include <list>
 
-using namespace std;
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
@@ -36,7 +35,7 @@ void j1Map::Draw()
 	if(map_loaded == false)
 		return;
 
-	list<MapLayer*>::iterator item = data.layers.begin();
+	std::list<MapLayer*>::iterator item = data.layers.begin();
 
 	for(; item != data.layers.end(); item = item++)
 	{
@@ -66,7 +65,7 @@ void j1Map::Draw()
 
 int Properties::Get(const char* value, int default_value) const
 {
-	std::list<Property*>::iterator item = list.begin();
+	std::list<Property*>::const_iterator item = list.begin();
 
 	while(*item)
 	{
@@ -80,14 +79,14 @@ int Properties::Get(const char* value, int default_value) const
 
 TileSet* j1Map::GetTilesetFromTileId(int id) const
 {
-	std::list<TileSet*>::iterator item = data.tilesets.begin();
+	std::list<TileSet*>::const_iterator item = data.tilesets.begin();
 	TileSet* set = (*item);
 
 	while(*item)
 	{
 		if(id < (*item)->firstgid)
 		{
-			set = item->prev->data;
+			set = (*item)->prev->data;
 			break;
 		}
 		set = (*item);
@@ -174,7 +173,7 @@ bool j1Map::CleanUp()
 	LOG("Unloading map");
 
 	// Remove all tilesets
-	list<TileSet*>::iterator item;
+	std::list<TileSet*>::iterator item;
 	item = data.tilesets.begin();
 
 	while(item != data.tilesets.end())
@@ -185,7 +184,7 @@ bool j1Map::CleanUp()
 	data.tilesets.clear();
 
 	// Remove all layers
-	list<MapLayer*>::iterator item2;
+	std::list<MapLayer*>::iterator item2;
 	item2 = data.layers.begin();
 
 	while(item2 != data.layers.end())
@@ -262,7 +261,7 @@ bool j1Map::Load(const char* file_name)
 		LOG("width: %d height: %d", data.width, data.height);
 		LOG("tile_width: %d tile_height: %d", data.tile_width, data.tile_height);
 
-		list<TileSet*>::iterator item = data.tilesets.begin();
+		std::list<TileSet*>::iterator item = data.tilesets.begin();
 		while(item != data.tilesets.end())
 		{
 			TileSet* s = (*item);
@@ -273,7 +272,7 @@ bool j1Map::Load(const char* file_name)
 			item++;
 		}
 
-		list<MapLayer*>::iterator item_layer = data.layers.begin();
+		std::list<MapLayer*>::iterator item_layer = data.layers.begin();
 		while(item_layer != data.layers.end())
 		{
 			MapLayer* l = (*item_layer);
@@ -525,7 +524,7 @@ bool j1Map::LoadProperties(pugi::xml_node& node, Properties& properties)
 bool j1Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer) const
 {
 	bool ret = false;
-	list<MapLayer*>::iterator item;
+	std::list<MapLayer*>::iterator item;
 
 	for(item == data.layers.begin(); item != data.layers.end(); item ++)
 	{

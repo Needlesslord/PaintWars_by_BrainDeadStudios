@@ -7,7 +7,6 @@
 
 #define VSYNC true
 
-using namespace std;
 
 j1Render::j1Render() : j1Module()
 {
@@ -138,13 +137,13 @@ void j1Render::AddBlitEvent(int layer, SDL_Texture* texture, int x, int y, const
 	{
 		if (x > (-camera.x / App->win->GetScale()) - 100 && x < ((-camera.x + camera.w) / App->win->GetScale()) + 100 &&
 			y >(-camera.y / App->win->GetScale()) - 100 && y < ((-camera.y + camera.h) / App->win->GetScale()) + 100)
-			blit_queue.insert(make_pair(layer, event));
+			blit_queue.insert(std::make_pair(layer, event));
 	}
 	else
 	{
 		if (section.x > (-camera.x / App->win->GetScale()) - 100 && section.x < (-camera.x + camera.w) / App->win->GetScale() &&
 			section.y >(-camera.y / App->win->GetScale()) - 100 && section.y < (-camera.y + camera.h) / App->win->GetScale())
-			blit_queue.insert(make_pair(layer, event));
+			blit_queue.insert(std::make_pair(layer, event));
 	}
 }
 

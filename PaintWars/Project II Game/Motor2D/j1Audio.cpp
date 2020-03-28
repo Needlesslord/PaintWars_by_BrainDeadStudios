@@ -8,7 +8,6 @@
 #include "SDL_mixer\include\SDL_mixer.h"
 #pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
 
-using namespace std;
 
 
 j1Audio::j1Audio() : j1Module()
@@ -69,7 +68,7 @@ bool j1Audio::CleanUp() {
 		Mix_FreeMusic(music);
 	}
 
-	list<Mix_Chunk*>::const_iterator item;
+	std::list<Mix_Chunk*>::const_iterator item;
 	for (item = fx.begin(); item != fx.end(); item++)
 		Mix_FreeChunk(*item);
 
@@ -162,7 +161,7 @@ bool j1Audio::PlayFx(unsigned int id, int repeat) {
 		return false;
 
 	if(id > 0 && id <= fx.size()) {
-		list< Mix_Chunk*>::const_iterator it;
+		std::list< Mix_Chunk*>::const_iterator it;
 		it = next(fx.begin(), id - 1);
 		Mix_PlayChannel(-1, *it, repeat);
 	}

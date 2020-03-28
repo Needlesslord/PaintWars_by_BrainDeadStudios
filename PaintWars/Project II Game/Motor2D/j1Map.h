@@ -101,8 +101,8 @@ struct MapData
 	int					tile_height;
 	SDL_Color			background_color;
 	MapTypes			type;
-	list<TileSet*>	tilesets;
-	list<MapLayer*>	layers;
+	std::list<TileSet*>	tilesets;
+	std::list<MapLayer*>	layers;
 };
 
 // ----------------------------------------------------

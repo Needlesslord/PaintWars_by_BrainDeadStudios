@@ -5,7 +5,6 @@
 #include "j1Textures.h"
 #include <list>
 
-using namespace std;
 
 #include "SDL_image/include/SDL_image.h"
 #pragma comment( lib, "SDL_image/libx86/SDL2_image.lib" )
@@ -49,7 +48,7 @@ bool j1Textures::Start()
 bool j1Textures::CleanUp()
 {
 	LOG("Freeing textures and Image library");
-	list<SDL_Texture*>::iterator item;
+	std::list<SDL_Texture*>::iterator item;
 
 	for(item = textures.begin(); item != textures.end(); item++)
 	{
@@ -83,7 +82,7 @@ SDL_Texture* const j1Textures::Load(const char* path)
 // Unload texture
 bool j1Textures::UnLoad(SDL_Texture* texture)
 {
-	list<SDL_Texture*>::iterator item;
+	std::list<SDL_Texture*>::iterator item;
 
 	for(item = textures.begin(); item != textures.end(); item++)
 	{
