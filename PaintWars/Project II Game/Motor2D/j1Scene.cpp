@@ -125,12 +125,12 @@ bool j1Scene::Update(float dt) {
 		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { c, d }, { 100, 100 }, App->entities);
 	}
 
-	/*if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 		iPoint mouse_pos = App->input->GetMousePositionWorld();
 		
 		App->render->camera.x = App->player->mouse_position.x;
 		
-	}*/
+	}
 
 	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN) {
 		int a, b;
