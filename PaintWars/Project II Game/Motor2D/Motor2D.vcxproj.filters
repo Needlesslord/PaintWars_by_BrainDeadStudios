@@ -7,14 +7,8 @@
     <ClCompile Include="j1Audio.cpp">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="j1App.cpp">
-      <Filter>Desenvolupament  ========</Filter>
-    </ClCompile>
     <ClCompile Include="j1Input.cpp">
       <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Main.cpp">
-      <Filter>Desenvolupament  ========</Filter>
     </ClCompile>
     <ClCompile Include="j1Render.cpp">
       <Filter>Desenvolupament  ========\Modules</Filter>
@@ -97,6 +91,15 @@
     <ClCompile Include="animation.cpp">
       <Filter>Desenvolupament  ========\Tools</Filter>
     </ClCompile>
+    <ClCompile Include="j1Main.cpp">
+      <Filter>Desenvolupament  ========\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="j1App.cpp">
+      <Filter>Desenvolupament  ========\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Desenvolupament  ========\Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -105,14 +108,8 @@
     <ClInclude Include="j1Audio.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="j1App.h">
-      <Filter>Desenvolupament  ========</Filter>
-    </ClInclude>
     <ClInclude Include="j1Input.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Module.h">
-      <Filter>Desenvolupament  ========</Filter>
     </ClInclude>
     <ClInclude Include="j1Render.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
@@ -216,6 +213,12 @@
     <ClInclude Include="Slime.h">
       <Filter>Desenvolupament  ========\Entities</Filter>
     </ClInclude>
+    <ClInclude Include="j1Module.h">
+      <Filter>Desenvolupament  ========\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="j1App.h">
+      <Filter>Desenvolupament  ========\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">
@@ -242,11 +245,22 @@
     <Filter Include="Desenvolupament  ========\UI">
       <UniqueIdentifier>{c35b2584-ee30-4553-be6c-ce5e439cf695}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Desenvolupament  ========\Scenes\Transition">
+      <UniqueIdentifier>{a96bee88-1472-4cb0-a66c-2315493ac611}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Core">
+      <UniqueIdentifier>{10a23613-96ae-43d7-b99b-896736fea92d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\XML">
+      <UniqueIdentifier>{ac70356d-d9bb-45be-99d7-0cd3367a3884}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="..\Game\config.xml">
-      <Filter>Desenvolupament  ========</Filter>
+    <Xml Include="..\Game\save_game.xml">
+      <Filter>Desenvolupament  ========\XML</Filter>
     </Xml>
-    <Xml Include="..\Game\save_game.xml" />
+    <Xml Include="..\Game\config.xml">
+      <Filter>Desenvolupament  ========\XML</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

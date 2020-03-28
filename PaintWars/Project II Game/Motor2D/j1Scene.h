@@ -9,7 +9,7 @@ struct SDL_Texture;
 class j1Scene : public j1Module
 {
 public:
-
+	
 	j1Scene();
 
 	// Destructor
@@ -33,11 +33,31 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	//CAMERA
+
+
+
+	//MAP & SCENE 
+	void Map_Manager();
+	void Create_Forest_Map();
+	void Create_Snow_Map();
+	void Create_Volcano_Map();
+
 
 private:
 	SDL_Texture* debug_tex;
 
+public:
 
+	//MAP MANAGER
+	bool LoadingMap;
+	bool Forest_Map_Active;
+	bool Volcano_Map_Active;
+	bool Snow_Map_Active;
+	bool Load_Forest_Map;
+	bool Load_Volcano_Map;
+	bool Load_Snow_Map;
+	bool Change_Map;
 };
 
 #endif // __j1SCENE_H__

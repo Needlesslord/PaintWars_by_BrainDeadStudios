@@ -194,3 +194,7 @@ void j1Player::Zoom()
 		App->win->scale = 0.5;
 	}
 }
+
+
+
+

@@ -1,8 +1,16 @@
-class Color
+#pragma once
+
+struct Color
 {
-public:
+	float r, g, b, a;
 
-	Color(unsigned int r = 0u, unsigned int g = 0u, unsigned int b = 0u, unsigned int a = 255u)
+	Color() : r(0), g(0), b(0), a(255)
+	{}
+
+	Color(float r, float g, float b, float a = 255) : r(r), g(g), b(b), a(a)
+	{}
+
+	void Set(float r, float g, float b, float a = 255)
 	{
 		this->r = r;
 		this->g = g;
@@ -10,52 +18,26 @@ public:
 		this->a = a;
 	}
 
-	void SetColor(unsigned int r, unsigned int g, unsigned int b, unsigned int a = 255u)
+	float* operator & ()
 	{
-		this->r = r;
-		this->g = g;
-		this->b = b;
-		this->a = a;
-	}
-	void SetAlpha(unsigned int a)
-	{
-		this->a = a;
+		return (float*)this;
 	}
 
-	void Red()
+	bool operator ==(const Color& v) const
 	{
-		r = 255u;
-		g = 0u;
-		b = 0u;
+		return (r == v.r && g == v.g && b == v.b);
 	}
-	void Green()
-	{
-		r = 0u;
-		g = 255u;
-		b = 0u;
-	}
-	void Blue()
-	{
-		r = 0u;
-		g = 0u;
-		b = 255u;
-	}
-	void White()
-	{
-		r = 255u;
-		g = 255u;
-		b = 255u;
-	}
-	void Black()
-	{
-		r = 0u;
-		g = 0u;
-		b = 0u;
-	}
-
-	unsigned int r;
-	unsigned int g;
-	unsigned int b;
-	unsigned int a;
-
 };
+
+extern Color Red;
+extern Color Green;
+extern Color Blue;
+extern Color Black;
+extern Color White;
+extern Color Yellow;
+extern Color Pink;
+extern Color Purple;
+extern Color Orange;
+extern Color Magenta;
+extern Color Cyan;
+extern Color Grey;

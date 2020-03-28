@@ -166,6 +166,17 @@ iPoint j1Input::GetMouseWorldPosition()
 	return ret;
 }
 
+iPoint j1Input::GetMousePositionWorld() const
+{
+	iPoint ret;
+
+	App->input->GetMousePosition(ret.x, ret.y);
+
+	iPoint world_pos = App->render->ScreenToWorld(ret.x, ret.y);
+
+	return world_pos;
+}
+
 void j1Input::GetMouseMotion(int& x, int& y)
 {
 	x = mouse_motion_x;

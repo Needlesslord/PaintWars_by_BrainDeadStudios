@@ -12,9 +12,12 @@
 #include "j1Scene.h"
 #include "j1GUI.h"
 #include "j1Collision.h"
+#include "j1Player.h"
 
 
-j1Scene::j1Scene() : j1Module()
+
+
+j1Scene::j1Scene():j1Module()
 {
 	name.create("scene");
 }
@@ -35,12 +38,16 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start() {
 
+	//THESE BOOLS HAVE TO BE REMOVED ONCE WE HAVE THE MAIN MENU, BECAUSE WE WANT THE GAME TO LOAD THE MAP AFTER WE USE THE PLAY BUTTON NOT WHILE WE ARE IN THE MENU
+	Load_Forest_Map = true;
+	Change_Map = true;
+	Map_Manager();
 	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 0, 100 }, { 100, 100 }, App->entities, 10);
 	App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 200, 200 }, { 20, 20 }, App->entities, 5);
 	App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { 400, 200 }, { 62, 118 }, App->entities, 10);
 	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 600, 200 }, { 20, 20 }, App->entities);
 
-	App->map->Load("map_forest.tmx") == true;
+	
 
 	int wCACA, hCACA;
 	uchar* dataCACA = NULL;
@@ -54,6 +61,22 @@ bool j1Scene::Start() {
 
 // Called each loop iteration
 bool j1Scene::PreUpdate() {
+	
+	if (Change_Map == true) {
+		if (Load_Forest_Map) {
+			Create_Forest_Map();
+		}
+		else if (Load_Volcano_Map) {
+			Create_Volcano_Map();
+		}
+		else if (Load_Snow_Map) {
+			Create_Snow_Map();
+		}
+		else {}
+	}
+
+
+
 
 	// Debug pathfing ------------------
 	static iPoint origin;
@@ -78,6 +101,8 @@ bool j1Scene::PreUpdate() {
 		}
 	}
 
+	
+
 	return true;
 }
 
@@ -99,6 +124,13 @@ bool j1Scene::Update(float dt) {
 		
 		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { c, d }, { 100, 100 }, App->entities);
 	}
+
+	/*if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+		iPoint mouse_pos = App->input->GetMousePositionWorld();
+		
+		App->render->camera.x = App->player->mouse_position.x;
+		
+	}*/
 
 	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN) {
 		int a, b;
@@ -147,6 +179,11 @@ bool j1Scene::Update(float dt) {
 // Called each loop iteration
 bool j1Scene::PostUpdate()
 {
+	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN) {
+		Change_Map = true;
+		Load_Snow_Map = true;
+	}
+
 	bool ret = true;
 
 	if(App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
@@ -161,5 +198,58 @@ bool j1Scene::CleanUp()
 	LOG("Freeing scene");
 
 	return true;
+}
+
+void j1Scene::Map_Manager(){ 
+	////THESE FUNCTION HAS TO BE REMOVED ONCE WE HAVE THE MAIN MENU, BECAUSE WE WANT THE GAME TO LOAD THE MAP AFTER WE USE THE PLAY BUTTON NOT WHILE WE ARE IN THE MENU
+	if (Load_Forest_Map) {
+		App->map->Load("map_forest.tmx") == true;
+		Create_Forest_Map();
+	}
+	else if (Load_Volcano_Map) {
+		App->map->Load("map_forest.tmx") == true;
+		Create_Volcano_Map();
+	}
+	else if (Load_Snow_Map) {
+		App->map->Load("map_snow.tmx") == true;
+		Create_Snow_Map();
+	}
+	else {
+		LOG("No map has been loaded in the scene");
+	}
+}
+
+void j1Scene::Create_Forest_Map()
+{
+	
+	App->map->CleanUp();
+	App->map->Load("map_forest.tmx") == true;
+	
+	Change_Map = false;
+	Forest_Map_Active = true;
+	Load_Forest_Map = false;
+}
+
+void j1Scene::Create_Snow_Map()
+{
+	App->map->CleanUp();
+	App->map->Load("map_snow.tmx") == true;
+
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { -200, 300 }, { 100, 100 }, App->entities, 10); //TESTING ONLY
+
+	Change_Map = false;
+	Snow_Map_Active = true;
+	Load_Snow_Map = false;
+}
+
+void j1Scene::Create_Volcano_Map()
+{
+	App->map->CleanUp();
+	App->map->Load("map_forest.tmx") == true;
+	
+	
+	Change_Map = false;
+	Volcano_Map_Active = true;
+	Load_Volcano_Map = false;
 }
 
