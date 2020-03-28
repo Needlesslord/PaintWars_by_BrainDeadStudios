@@ -171,8 +171,9 @@ void j1Player::Drag_Mouse()
 
 	if (App->input->GetMouseButtonDown(1) == KEY_UP)
 	{
-		App->entities->SelectGroupEntities(selector);
-		Select_Entitites(selector);
+		if (selector.w > 1)
+			App->entities->SelectGroupEntities(selector);
+		//Select_Entitites(selector);
 	}
 
 }

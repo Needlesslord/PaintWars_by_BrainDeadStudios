@@ -12,6 +12,7 @@
 #include "j1Collision.h"
 #include "j1Input.h"
 #include "j1Player.h"
+#include "j1Window.h"
 
 #include "Entity.h"
 
@@ -102,9 +103,9 @@ bool j1EntityManager::Update(float dt) {
 	while (selectedEntities != entitiesSelected.end()) {
 
 		if ((*selectedEntities)->GetCurrLife() != (*selectedEntities)->GetMaxLife()) {		
-			App->render->AddBlitEvent(1, zeroLifeTexture, 400, 400, { 0, 0, 100, 10 });
+			App->render->AddBlitEvent(1, zeroLifeTexture, App->win->width/2 - 100, App->win->height - 100, { 0, 0, 200, 15 }, false, true, 0);
 		}
-		App->render->AddBlitEvent(1, fullLifeTexture, 400, 400, { 0, 0, (int)(((*selectedEntities)->GetCurrLife() / (*selectedEntities)->GetMaxLife()) * 100), 10 });
+		App->render->AddBlitEvent(1, fullLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, (int)(((*selectedEntities)->GetCurrLife() / (*selectedEntities)->GetMaxLife()) * 200), 15 }, false, true, 0);
 		
 		selectedEntities++;
 	}

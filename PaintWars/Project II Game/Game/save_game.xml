@@ -16,6 +16,6 @@
 	<fonts />
 	<InGameUI />
 	<renderer>
-		<camera x="617" y="-617" />
+		<camera x="131" y="-20" />
 	</renderer>
 </game_state>
