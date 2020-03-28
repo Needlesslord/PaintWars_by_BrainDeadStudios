@@ -110,7 +110,7 @@ bool j1Scene::Update(float dt) {
 	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d",
 					App->map->data.width, App->map->data.height,
 					App->map->data.tile_width, App->map->data.tile_height,
-					App->map->data.tilesets.count(),
+					App->map->data.tilesets.size(),
 					map_coordinates.x, map_coordinates.y);
 
 	//App->win->SetTitle(title.GetString());

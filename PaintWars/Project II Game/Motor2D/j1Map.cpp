@@ -86,7 +86,7 @@ TileSet* j1Map::GetTilesetFromTileId(int id) const
 	{
 		if(id < (*item)->firstgid)
 		{
-			set = (*item)->prev->data;
+			set = *prev(item);
 			break;
 		}
 		set = (*item);
