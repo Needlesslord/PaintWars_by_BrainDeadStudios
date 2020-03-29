@@ -301,13 +301,12 @@ bool j1App::PostUpdate()
 bool j1App::CleanUp()
 {
 	bool ret = true;
-	std::list<j1Module*>::iterator item;
-	item = modules.end();
+	std::list<j1Module*>::iterator item = modules.end();
 
 	while(item != modules.begin() && ret == true)
 	{
-		ret = (*item)->CleanUp();
 		item--;
+		ret = (*item)->CleanUp();
 	}
 	return ret;
 }
