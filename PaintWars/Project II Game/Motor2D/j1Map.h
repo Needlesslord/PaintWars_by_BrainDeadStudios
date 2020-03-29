@@ -7,6 +7,7 @@
 #include "j1Module.h"
 #include <vector>
 #include "animation.h"
+#include <list>
 // ----------------------------------------------------
 struct Properties
 {
@@ -96,7 +97,7 @@ struct MapData
 	int					tile_height;
 	SDL_Color			background_color;
 	MapTypes			type;
-	p2List<TileSet*>	tilesets;
+	std::list<TileSet*>	tilesets;
 	p2List<MapLayer*>	layers;
 };
 

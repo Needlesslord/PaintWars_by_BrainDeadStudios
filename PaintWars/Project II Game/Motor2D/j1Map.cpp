@@ -77,18 +77,18 @@ int Properties::Get(const char* value, int default_value) const
 
 TileSet* j1Map::GetTilesetFromTileId(int id) const
 {
-	p2List_item<TileSet*>* item = data.tilesets.start;
-	TileSet* set = item->data;
+	std::list<TileSet*>::const_iterator item = data.tilesets.begin();
+	TileSet* set = (*item);
 
-	while(item)
+	while(item != data.tilesets.end())
 	{
-		if(id < item->data->firstgid)
+		if(id < (*item)->firstgid)
 		{
-			set = item->prev->data;
+			set = *prev(item);
 			break;
 		}
-		set = item->data;
-		item = item->next;
+		set = (*item);
+		item++;
 	}
 
 	return set;
@@ -171,13 +171,13 @@ bool j1Map::CleanUp()
 	LOG("Unloading map");
 
 	// Remove all tilesets
-	p2List_item<TileSet*>* item;
-	item = data.tilesets.start;
+	std::list<TileSet*>::iterator item;
+	item = data.tilesets.begin();
 
-	while(item != NULL)
+	while(item != data.tilesets.end())
 	{
-		RELEASE(item->data);
-		item = item->next;
+		RELEASE(*item);
+		item++;
 	}
 	data.tilesets.clear();
 
@@ -238,7 +238,7 @@ bool j1Map::Load(const char* file_name)
 			ret = LoadTilesetAnimations(tileset, set);
 		}
 
-		data.tilesets.add(set);
+		data.tilesets.push_back(set);
 	}
 
 	// Load layer info ----------------------------------------------
@@ -259,15 +259,15 @@ bool j1Map::Load(const char* file_name)
 		LOG("width: %d height: %d", data.width, data.height);
 		LOG("tile_width: %d tile_height: %d", data.tile_width, data.tile_height);
 
-		p2List_item<TileSet*>* item = data.tilesets.start;
-		while(item != NULL)
+		std::list<TileSet*>::iterator item = data.tilesets.begin();
+		while(item != data.tilesets.end())
 		{
-			TileSet* s = item->data;
+			TileSet* s = (*item);
 			LOG("Tileset ----");
 			LOG("name: %s firstgid: %d", s->name.GetString(), s->firstgid);
 			LOG("tile width: %d tile height: %d", s->tile_width, s->tile_height);
 			LOG("spacing: %d margin: %d", s->spacing, s->margin);
-			item = item->next;
+			item++;
 		}
 
 		p2List_item<MapLayer*>* item_layer = data.layers.start;
