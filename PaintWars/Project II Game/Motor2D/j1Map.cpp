@@ -33,11 +33,11 @@ void j1Map::Draw()
 	if(map_loaded == false)
 		return;
 
-	p2List_item<MapLayer*>* item = data.layers.start;
+	list<MapLayer*>::iterator item = data.layers.begin();
 
-	for(; item != NULL; item = item->next)
+	for(; item != data.layers.end(); item++)
 	{
-		MapLayer* layer = item->data;
+		MapLayer* layer = (*item);
 
 		if(layer->properties.Get("Nodraw") != 0)
 			continue;
@@ -182,13 +182,13 @@ bool j1Map::CleanUp()
 	data.tilesets.clear();
 
 	// Remove all layers
-	p2List_item<MapLayer*>* item2;
-	item2 = data.layers.start;
+	std::list<MapLayer*>::iterator item2;
+	item2 = data.layers.begin();
 
-	while(item2 != NULL)
+	while(item2 != data.layers.end())
 	{
-		RELEASE(item2->data);
-		item2 = item2->next;
+		RELEASE(*item2);
+		item2++;
 	}
 	data.layers.clear();
 
@@ -250,7 +250,7 @@ bool j1Map::Load(const char* file_name)
 		ret = LoadLayer(layer, lay);
 
 		if(ret == true)
-			data.layers.add(lay);
+			data.layers.push_back(lay);
 	}
 
 	if(ret == true)
@@ -270,14 +270,14 @@ bool j1Map::Load(const char* file_name)
 			item++;
 		}
 
-		p2List_item<MapLayer*>* item_layer = data.layers.start;
-		while(item_layer != NULL)
+		std::list<MapLayer*>::iterator item_layer = data.layers.begin();
+		while(item_layer != data.layers.end())
 		{
-			MapLayer* l = item_layer->data;
+			MapLayer* l = (*item_layer);
 			LOG("Layer ----");
 			LOG("name: %s", l->name.GetString());
 			LOG("tile width: %d tile height: %d", l->width, l->height);
-			item_layer = item_layer->next;
+			item_layer++;
 		}
 	}
 
@@ -522,12 +522,12 @@ bool j1Map::LoadProperties(pugi::xml_node& node, Properties& properties)
 bool j1Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer) const
 {
 	bool ret = false;
-	p2List_item<MapLayer*>* item;
-	item = data.layers.start;
+	std::list<MapLayer*>::const_iterator item;
+	item = data.layers.begin();
 
-	for(item = data.layers.start; item != NULL; item = item->next)
+	for(item = data.layers.begin(); item != data.layers.end(); item++)
 	{
-		MapLayer* layer = item->data;
+		MapLayer* layer = (*item);
 
 		if(layer->properties.Get("Navigation", 0) == 0)
 			continue;

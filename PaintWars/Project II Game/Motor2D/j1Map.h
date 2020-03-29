@@ -98,7 +98,7 @@ struct MapData
 	SDL_Color			background_color;
 	MapTypes			type;
 	std::list<TileSet*>	tilesets;
-	p2List<MapLayer*>	layers;
+	std::list<MapLayer*> layers;
 };
 
 // ----------------------------------------------------
