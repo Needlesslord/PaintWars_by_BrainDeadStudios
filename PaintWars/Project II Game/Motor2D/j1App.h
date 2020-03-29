@@ -6,6 +6,7 @@
 #include "PugiXml\src\pugixml.hpp"
 #include "j1Timer.h"
 #include "j1PerfTimer.h"
+#include <list>
 
 // Modules
 class j1Window;
@@ -102,7 +103,7 @@ public:
 	j1InGameUI*			InGameUI = NULL;
 private:
 
-	p2List<j1Module*>	modules;
+	std::list<j1Module*> modules;
 	int					argc;
 	char**				args;
 
