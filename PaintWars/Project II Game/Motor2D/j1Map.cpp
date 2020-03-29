@@ -63,13 +63,13 @@ void j1Map::Draw()
 
 int Properties::Get(const char* value, int default_value) const
 {
-	p2List_item<Property*>* item = list.start;
+	std::list<Property*>::const_iterator item = list.begin();
 
-	while(item)
+	while(item != list.end())
 	{
-		if(item->data->name == value)
-			return item->data->value;
-		item = item->next;
+		if((*item)->name == value)
+			return (*item)->value;
+		item++;
 	}
 
 	return default_value;
@@ -512,7 +512,7 @@ bool j1Map::LoadProperties(pugi::xml_node& node, Properties& properties)
 			p->name = prop.attribute("name").as_string();
 			p->value = prop.attribute("value").as_int();
 
-			properties.list.add(p);
+			properties.list.push_back(p);
 		}
 	}
 
