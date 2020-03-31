@@ -58,7 +58,7 @@ public:
 
 	void LoadGame();
 	void SaveGame(const char*) const;
-	void GetSaveGames(std::list<p2SString>& list_to_fill) const;
+	void GetSaveGames(p2List<p2SString>& list_to_fill) const;
 
 private:
 
