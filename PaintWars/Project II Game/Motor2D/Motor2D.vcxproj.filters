@@ -28,9 +28,6 @@
     <ClCompile Include="j1Map.cpp">
       <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="j1Pathfinding.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
     <ClCompile Include="j1Timer.cpp">
       <Filter>Motor  ========\Tools</Filter>
     </ClCompile>
@@ -100,8 +97,9 @@
     <ClCompile Include="Color.cpp">
       <Filter>Motor  ========\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="Spawner.cpp">
-      <Filter>Desenvolupament  ========\Entities</Filter>
+    <ClCompile Include="Spawner.cpp" />
+    <ClCompile Include="j1Pathfinding.cpp">
+      <Filter>Motor  ========\Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,9 +146,6 @@
       <Filter>Motor  ========\Tools\PuguiXML</Filter>
     </ClInclude>
     <ClInclude Include="j1Map.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Pathfinding.h">
       <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
     <ClInclude Include="j1Timer.h">
@@ -222,8 +217,9 @@
     <ClInclude Include="j1App.h">
       <Filter>Motor  ========\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Spawner.h">
-      <Filter>Desenvolupament  ========\Entities</Filter>
+    <ClInclude Include="Spawner.h" />
+    <ClInclude Include="j1Pathfinding.h">
+      <Filter>Motor  ========\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
