@@ -128,9 +128,9 @@ void j1Render::ResetViewPort()
 	SDL_RenderSetViewport(renderer, &viewport);
 }
 
-iPoint j1Render::ScreenToWorld(int x, int y) const
+fPoint j1Render::ScreenToWorld(float x, float y) const
 {
-	iPoint ret;
+	fPoint ret;
 	float scale = App->win->GetScale();
 
 	ret.x = (x - camera.x / scale);

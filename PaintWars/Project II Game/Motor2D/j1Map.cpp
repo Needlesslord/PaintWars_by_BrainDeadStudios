@@ -52,7 +52,7 @@ void j1Map::Draw()
 					TileSet* tileset = GetTilesetFromTileId(tile_id);
 
 					SDL_Rect r = tileset->GetTileRect(tile_id);
-					iPoint pos = MapToWorld(x, y);
+					fPoint pos = MapToWorld(x, y);
 
 					App->render->AddBlitEvent(0,tileset->texture, pos.x, pos.y, r);
 				}
@@ -94,9 +94,9 @@ TileSet* j1Map::GetTilesetFromTileId(int id) const
 	return set;
 }
 
-iPoint j1Map::MapToWorld(int x, int y) const
+fPoint j1Map::MapToWorld(float x, float y) const
 {
-	iPoint ret;
+	fPoint ret;
 
 	if(data.type == MAPTYPE_ORTHOGONAL)
 	{
@@ -117,9 +117,9 @@ iPoint j1Map::MapToWorld(int x, int y) const
 	return ret;
 }
 
-iPoint j1Map::WorldToMap(int x, int y) const
+fPoint j1Map::WorldToMap(float x, float y) const
 {
-	iPoint ret(0,0);
+	fPoint ret(0,0);
 
 	if(data.type == MAPTYPE_ORTHOGONAL)
 	{

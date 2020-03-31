@@ -51,9 +51,9 @@ bool j1GUIButton::Update(float dt)
 				if (X_drag || Y_drag)
 					dragging = true;
 
-				iPoint mouseClick = { 0,0 };
+				fPoint mouseClick = { 0,0 };
 				App->input->GetMousePosition(mouseClick.x, mouseClick.y);
-				Drag = { mouseClick.x - (this->Map_Position.x), mouseClick.y - (this->Map_Position.y) };
+				Drag = { (int)(mouseClick.x - (this->Map_Position.x)),(int)(mouseClick.y - (this->Map_Position.y)) };
 
 			}
 
@@ -94,7 +94,7 @@ void j1GUIButton::Dragging()
 void j1GUIButton::MovingIt(float dt)
 {
 
-	iPoint MousePos = { 0,0 };
+	fPoint MousePos = { 0,0 };
 	App->input->GetMousePosition(MousePos.x, MousePos.y);
 
 	iPoint currentPos = this->Map_Position;

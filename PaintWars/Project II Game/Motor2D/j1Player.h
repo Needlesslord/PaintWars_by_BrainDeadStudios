@@ -37,8 +37,8 @@ private:
 
 	SDL_Texture* Tex_Player;
 
-	iPoint mouse_position; 
-	iPoint start_mouse_position;
+	fPoint mouse_position; 
+	fPoint start_mouse_position;
 
 	p2SString	folder;
 	pugi::xml_node	node;

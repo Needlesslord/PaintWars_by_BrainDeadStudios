@@ -306,8 +306,8 @@ bool j1App::CleanUp()
 
 	while(item != modules.begin() && ret == true)
 	{
-		ret = (*item)->CleanUp();
 		item--;
+		ret = (*item)->CleanUp();
 	}
 	return ret;
 }

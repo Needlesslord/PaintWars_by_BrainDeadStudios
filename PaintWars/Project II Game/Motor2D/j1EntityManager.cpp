@@ -78,9 +78,9 @@ bool j1EntityManager::Update(float dt) {
 
 		list<Entity*>::iterator checkForSelectedEntities = activeEntities.begin();
 		while (checkForSelectedEntities != activeEntities.end()) {
-			int x, y;
+			float x, y;
 			App->input->GetMousePosition(x, y);
-			iPoint mapCoordinates = App->render->ScreenToWorld(x, y);
+			fPoint mapCoordinates = App->render->ScreenToWorld(x, y);
 			if (mapCoordinates.x > (*checkForSelectedEntities)->pos.x && mapCoordinates.x < (*checkForSelectedEntities)->pos.x + (*checkForSelectedEntities)->GetSize().x &&
 				mapCoordinates.y > (*checkForSelectedEntities)->pos.y && mapCoordinates.y < (*checkForSelectedEntities)->pos.y + (*checkForSelectedEntities)->GetSize().y) {
 				SelectEntity(*checkForSelectedEntities, controlWasPressed);
@@ -141,7 +141,7 @@ bool j1EntityManager::Update(float dt) {
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && !unitsSelected.empty()) {
 		list<Entity*>::iterator unitsToMove = unitsSelected.begin();
 		while (unitsToMove != unitsSelected.end()) {
-			int x, y;
+			float x, y;
 			App->input->GetMousePosition(x, y);
 			(*unitsToMove)->Move({ x, y });
 			unitsToMove++;

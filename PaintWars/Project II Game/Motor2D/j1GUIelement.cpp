@@ -40,12 +40,16 @@ bool j1GUIelement::OnAbove()
 {
 	bool ret = false;
 
-	SDL_Point mouse;
+	fPoint mouse;
 	App->input->GetMousePosition(mouse.x, mouse.y);
 
 	SDL_Rect intersect = { Map_Position.x / App->win->scale , Map_Position.y / App->win->scale, rect.w, rect.h };
 
-	if (SDL_PointInRect(&mouse, &intersect) && this->enabled && this->interactable) {
+	SDL_Point m;
+	m.x = mouse.x;
+	m.y = mouse.y;
+
+	if (SDL_PointInRect(&m, &intersect) && this->enabled && this->interactable) {
 		if (listener != nullptr)
 		{
 			this->listener->GUI_Event_Manager(GUI_Event::EVENT_HOVER, this);

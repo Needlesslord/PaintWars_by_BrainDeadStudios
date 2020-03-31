@@ -60,10 +60,10 @@ public:
 	bool GetWindowEvent(int code);
 
 	// Get mouse / axis position
-	void GetMousePosition(int &x, int &y);
-	iPoint GetMouseWorldPosition();
-	iPoint GetMousePositionWorld() const;
-	void GetMouseMotion(int& x, int& y);
+	void GetMousePosition(float &x, float &y);
+	fPoint GetMouseWorldPosition();
+	fPoint GetMousePositionWorld() const;
+	void GetMouseMotion(float& x, float& y);
 
 
 	void EnableTextInput();

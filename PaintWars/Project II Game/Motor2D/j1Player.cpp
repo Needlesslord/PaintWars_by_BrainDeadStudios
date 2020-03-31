@@ -165,7 +165,7 @@ void j1Player::Drag_Mouse()
 
 	if (App->input->GetMouseButtonDown(1) == KEY_REPEAT)
 	{
-		selector = { start_mouse_position.x, start_mouse_position.y, mouse_position.x - start_mouse_position.x, mouse_position.y - start_mouse_position.y };
+		selector = { (int)start_mouse_position.x, (int)start_mouse_position.y, (int)(mouse_position.x - start_mouse_position.x), (int)(mouse_position.y - start_mouse_position.y) };
 		App->render->AddBlitEvent(2, nullptr, 0,0, selector, false, false, 0.0f, 0u, 255u, 0u, 25u);
 	}
 

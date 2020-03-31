@@ -81,7 +81,7 @@ public:
 	virtual void Draw(SDL_Texture* sprites);
 	virtual void DebugDrawSelected();
 	virtual void OnCollision(ColliderGroup* c1, ColliderGroup* c2, CollisionState collisionState);
-	virtual void Move(iPoint destination);
+	virtual void Move(fPoint destination);
 
 	// Position and size
 	void SetPos(fPoint pos);
