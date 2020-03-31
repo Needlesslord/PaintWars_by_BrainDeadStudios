@@ -9,7 +9,7 @@
 #include "j1Render.h"
 #include "j1Textures.h"
 #include "j1Audio.h"
-#include "j1Scene.h"
+#include "j1SceneManager.h"
 #include "j1Map.h"
 #include "j1Collision.h"
 #include "j1EntityManager.h"
@@ -29,7 +29,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	render = new j1Render();
 	tex = new j1Textures();
 	audio = new j1Audio();
-	scene = new j1Scene();
+	scenes = new j1SceneManager();
 	map = new j1Map();
 	col = new j1Collision(); 
 	entities = new j1EntityManager();
@@ -44,7 +44,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(win);
 	AddModule(tex);
 	AddModule(audio);
-	AddModule(scene);
+	AddModule(scenes);
 	AddModule(map);
 	AddModule(col); 
 	AddModule(entities);

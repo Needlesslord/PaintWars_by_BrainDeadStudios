@@ -79,6 +79,7 @@
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="j1Collision.cpp" />
     <ClCompile Include="j1EntityManager.cpp" />
     <ClCompile Include="j1Fonts.cpp" />
@@ -98,7 +99,6 @@
     <ClCompile Include="j1Pathfinding.cpp" />
     <ClCompile Include="j1PerfTimer.cpp" />
     <ClCompile Include="j1Player.cpp" />
-    <ClCompile Include="j1Scene.cpp" />
     <ClCompile Include="j1Timer.cpp" />
     <ClCompile Include="p2Log.cpp" />
     <ClCompile Include="j1Render.cpp" />
@@ -106,6 +106,8 @@
     <ClCompile Include="j1Window.cpp" />
     <ClCompile Include="Painter.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="j1SceneManager.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="Spawner.cpp" />
     <ClCompile Include="TownHall.cpp" />
@@ -115,6 +117,7 @@
     <ClInclude Include="animation.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="GameScene.h" />
     <ClInclude Include="j1Collision.h" />
     <ClInclude Include="j1EntityManager.h" />
     <ClInclude Include="j1Fonts.h" />
@@ -130,7 +133,6 @@
     <ClInclude Include="j1Pathfinding.h" />
     <ClInclude Include="j1PerfTimer.h" />
     <ClInclude Include="j1Player.h" />
-    <ClInclude Include="j1Scene.h" />
     <ClInclude Include="j1Timer.h" />
     <ClInclude Include="p2DynArray.h" />
     <ClInclude Include="j1Audio.h" />
@@ -148,6 +150,8 @@
     <ClInclude Include="Painter.h" />
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="j1SceneManager.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="Spawner.h" />
     <ClInclude Include="TownHall.h" />
