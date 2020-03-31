@@ -40,9 +40,9 @@ private:
 	fPoint mouse_position; 
 	fPoint start_mouse_position;
 
-	p2SString	folder;
+	std::string	folder;
 	pugi::xml_node	node;
-	p2SString file;
+	std::string file;
 
 	uint win_height;
 	uint win_width;

@@ -14,7 +14,7 @@ using namespace std;
 j1Audio::j1Audio() : j1Module()
 {
 	music = NULL;
-	name.create("audio");
+	name = ("audio");
 }
 
 // Destructor

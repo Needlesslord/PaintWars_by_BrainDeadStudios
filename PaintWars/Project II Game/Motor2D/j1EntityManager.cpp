@@ -19,7 +19,7 @@
 
 j1EntityManager::j1EntityManager()
 {
-	name.create("entities");
+	name = ("entities");
 }
 
 // Destructor

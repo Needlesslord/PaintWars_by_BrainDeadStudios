@@ -16,7 +16,7 @@
 j1Player::j1Player() : j1Module()
 {
 
-	name.create("player");
+	name = ("player");
 }
 
 
@@ -29,7 +29,7 @@ bool j1Player::Awake(pugi::xml_node& config)
 {
 	bool ret = true;
 
-	folder.create(config.child("folder").child_value());
+	folder = (config.child("folder").child_value());
 
 	camera_speed = config.child("camera").attribute("speed").as_int(1);
 	camera_offset = config.child("camera").attribute("offset").as_int(10);

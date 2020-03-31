@@ -30,7 +30,7 @@ bool j1GUIlabel::Start()
 
 bool j1GUIlabel::PreUpdate()
 {
-	App->fonts->CalcSize(App->input->GetText().GetString(), rect.w, rect.h);
+	App->fonts->CalcSize(App->input->GetText().c_str(), rect.w, rect.h);
 	return true;
 }
 

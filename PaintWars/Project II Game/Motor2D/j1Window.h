@@ -40,7 +40,7 @@ public:
 	uint		width;
 	uint		height;
 private:
-	p2SString	title;
+	std::string	title;
 	
 	
 };
