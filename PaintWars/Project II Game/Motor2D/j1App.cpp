@@ -301,8 +301,7 @@ bool j1App::PostUpdate()
 bool j1App::CleanUp()
 {
 	bool ret = true;
-	std::list<j1Module*>::iterator item;
-	item = modules.end();
+	std::list<j1Module*>::iterator item = modules.end();
 
 	while(item != modules.begin() && ret == true)
 	{
@@ -364,7 +363,7 @@ void j1App::SaveGame(const char* file) const
 }
 
 // ---------------------------------------
-void j1App::GetSaveGames(p2List<p2SString>& list_to_fill) const
+void j1App::GetSaveGames(std::list<p2SString>& list_to_fill) const
 {
 	// need to add functionality to file_system module for this to work
 }
