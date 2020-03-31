@@ -40,11 +40,11 @@ bool j1GUI::Start()
 bool j1GUI::PreUpdate()
 {
 	bool ret = true;
-	p2List_item<j1GUIelement*>* tmp = GUI_ELEMENTS.start;
-	while (tmp != nullptr)
+	std::list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin();
+	while (tmp != GUI_ELEMENTS.end())
 	{
-		ret = tmp->data->PreUpdate();
-		tmp = tmp->next;
+		ret = (*tmp)->PreUpdate();
+		tmp++;
 	}
 
 	return ret;
@@ -56,11 +56,11 @@ bool j1GUI::Update(float dt)
 {
 
 	bool ret = true;
-	p2List_item<j1GUIelement*>* tmp = GUI_ELEMENTS.start;
-	while (tmp != nullptr)
+	std::list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin();
+	while (tmp != GUI_ELEMENTS.end())
 	{
-		ret = tmp->data->Update(dt);
-		tmp = tmp->next;
+		ret = (*tmp)->Update(dt);
+		tmp++;
 	}
 
 	return ret;
@@ -73,11 +73,11 @@ bool j1GUI::PostUpdate()
 
 	bool ret = true;
 
-	p2List_item<j1GUIelement*>* tmp = GUI_ELEMENTS.start;
-	while (tmp != nullptr)
+	std::list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin();
+	while (tmp != GUI_ELEMENTS.end())
 	{
-		ret = tmp->data->PostUpdate();
-		tmp = tmp->next;
+		ret = (*tmp)->PostUpdate();
+		tmp++;
 	}
 	return ret;
 
@@ -89,9 +89,9 @@ bool j1GUI::CleanUp()
 {
 	LOG("Freeing GUI");
 
-	for (p2List_item<j1GUIelement*>* item = GUI_ELEMENTS.start; item; item = item->next)
+	for (std::list<j1GUIelement*>::iterator item = GUI_ELEMENTS.begin(); item != GUI_ELEMENTS.end(); item++)
 	{
-		item->data->CleanUp();
+		(*item)->CleanUp();
 	}
 	GUI_ELEMENTS.clear();
 	return true;
@@ -138,7 +138,7 @@ j1GUIelement* j1GUI::ADD_ELEMENT(GUItype type, j1GUIelement* parent, iPoint Map_
 		temp->rect = section;
 		temp->text = text;
 
-		GUI_ELEMENTS.add(temp)->data->Start();
+		GUI_ELEMENTS.push_back(temp);
 	}
 
 	return temp;
