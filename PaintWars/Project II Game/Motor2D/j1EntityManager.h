@@ -97,6 +97,10 @@ protected:
 	/// Units
 	SDL_Texture* slimeTexture = nullptr;
 
+private:
+	float currentLifeSum;
+	float maxLifeSum;
+
 };
 
 #endif //__j1ENTITY_FACTORY_H__

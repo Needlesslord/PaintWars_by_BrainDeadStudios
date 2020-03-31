@@ -83,7 +83,9 @@ bool j1EntityManager::Update(float dt) {
 			fPoint mapCoordinates = App->render->ScreenToWorld(x, y);
 			if (mapCoordinates.x > (*checkForSelectedEntities)->pos.x && mapCoordinates.x < (*checkForSelectedEntities)->pos.x + (*checkForSelectedEntities)->GetSize().x &&
 				mapCoordinates.y > (*checkForSelectedEntities)->pos.y && mapCoordinates.y < (*checkForSelectedEntities)->pos.y + (*checkForSelectedEntities)->GetSize().y) {
-				SelectEntity(*checkForSelectedEntities, controlWasPressed);
+				if (!(*checkForSelectedEntities)->isSelected) {
+					SelectEntity(*checkForSelectedEntities, controlWasPressed);
+				}
 				isSomeEntitySelected = true;
 				break;
 
@@ -99,15 +101,20 @@ bool j1EntityManager::Update(float dt) {
 
 
 	// LifeBars from selected  on HUD
-	list<Entity*>::iterator selectedEntities = entitiesSelected.begin();
-	while (selectedEntities != entitiesSelected.end()) {
-
-		if ((*selectedEntities)->GetCurrLife() != (*selectedEntities)->GetMaxLife()) {		
-			App->render->AddBlitEvent(1, zeroLifeTexture, App->win->width/2 - 100, App->win->height - 100, { 0, 0, 200, 15 }, false, true, 0);
+	if (!entitiesSelected.empty()) {
+		list<Entity*>::iterator selectedEntities = entitiesSelected.begin();
+		currentLifeSum = 0;
+		maxLifeSum = 0;
+		while (selectedEntities != entitiesSelected.end()) {
+			currentLifeSum += (*selectedEntities)->GetCurrLife();
+			maxLifeSum += (*selectedEntities)->GetMaxLife();
+			selectedEntities++;
 		}
-		App->render->AddBlitEvent(1, fullLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, (int)(((*selectedEntities)->GetCurrLife() / (*selectedEntities)->GetMaxLife()) * 200), 15 }, false, true, 0);
+
+		float caca = (currentLifeSum / maxLifeSum) * 200;
+		App->render->AddBlitEvent(1, zeroLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, 200, 15 }, false, true, 0);
+		App->render->AddBlitEvent(1, fullLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, (int)caca, 15 }, false, true, 0);
 		
-		selectedEntities++;
 	}
 
 	// LifeBars from selected units on top of themselves
