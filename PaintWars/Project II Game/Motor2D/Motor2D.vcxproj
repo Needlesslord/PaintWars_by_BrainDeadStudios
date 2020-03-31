@@ -107,6 +107,7 @@
     <ClCompile Include="Painter.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
     <ClCompile Include="Slime.cpp" />
+    <ClCompile Include="Spawner.cpp" />
     <ClCompile Include="TownHall.cpp" />
     <ClCompile Include="Warrior.cpp" />
   </ItemGroup>
@@ -148,6 +149,7 @@
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
     <ClInclude Include="Slime.h" />
+    <ClInclude Include="Spawner.h" />
     <ClInclude Include="TownHall.h" />
     <ClInclude Include="Warrior.h" />
   </ItemGroup>

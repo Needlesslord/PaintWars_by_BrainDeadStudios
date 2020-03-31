@@ -15,6 +15,7 @@
 
 	// Enemies
 /// Buildings
+#include "Spawner.h"
 
 /// Units
 #include "Slime.h"
@@ -93,9 +94,14 @@ protected:
 
 		// Enemies
 	/// Buildings
+	SDL_Texture* spawnerTexture = nullptr;
 
 	/// Units
 	SDL_Texture* slimeTexture = nullptr;
+
+private:
+	float currentLifeSum;
+	float maxLifeSum;
 
 };
 

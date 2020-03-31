@@ -10,7 +10,7 @@ public:
 
 	Warrior(fPoint pos, int currLife, j1Module* listener);
 	~Warrior();
-	void Move(iPoint destination) override;
+	void Move(fPoint destination) override;
 public:
 
 private:

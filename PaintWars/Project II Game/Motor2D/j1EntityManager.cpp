@@ -46,6 +46,7 @@ bool j1EntityManager::Start() {
 
 		// Enemies
 	/// Buildings
+	spawnerTexture = App->tex->Load("textures/Spawner.png");
 
 	/// Units
 	slimeTexture = App->tex->Load("textures/Slime.png");
@@ -78,19 +79,19 @@ bool j1EntityManager::Update(float dt) {
 
 		list<Entity*>::iterator checkForSelectedEntities = activeEntities.begin();
 		while (checkForSelectedEntities != activeEntities.end()) {
-			int x, y;
+			float x, y;
 			App->input->GetMousePosition(x, y);
-			iPoint mapCoordinates = App->render->ScreenToWorld(x, y);
+			fPoint mapCoordinates = App->render->ScreenToWorld(x, y);
 			if (mapCoordinates.x > (*checkForSelectedEntities)->pos.x && mapCoordinates.x < (*checkForSelectedEntities)->pos.x + (*checkForSelectedEntities)->GetSize().x &&
 				mapCoordinates.y > (*checkForSelectedEntities)->pos.y && mapCoordinates.y < (*checkForSelectedEntities)->pos.y + (*checkForSelectedEntities)->GetSize().y) {
-				SelectEntity(*checkForSelectedEntities, controlWasPressed);
+				if (!(*checkForSelectedEntities)->isSelected) {
+					SelectEntity(*checkForSelectedEntities, controlWasPressed);
+				}
 				isSomeEntitySelected = true;
 				break;
 
 			}
-
 			checkForSelectedEntities++;
-
 		}
 
 		// Unselect all
@@ -99,15 +100,20 @@ bool j1EntityManager::Update(float dt) {
 
 
 	// LifeBars from selected  on HUD
-	list<Entity*>::iterator selectedEntities = entitiesSelected.begin();
-	while (selectedEntities != entitiesSelected.end()) {
-
-		if ((*selectedEntities)->GetCurrLife() != (*selectedEntities)->GetMaxLife()) {		
-			App->render->AddBlitEvent(1, zeroLifeTexture, App->win->width/2 - 100, App->win->height - 100, { 0, 0, 200, 15 }, false, true, 0);
+	if (!entitiesSelected.empty()) {
+		list<Entity*>::iterator selectedEntities = entitiesSelected.begin();
+		currentLifeSum = 0;
+		maxLifeSum = 0;
+		while (selectedEntities != entitiesSelected.end()) {
+			currentLifeSum += (*selectedEntities)->GetCurrLife();
+			maxLifeSum += (*selectedEntities)->GetMaxLife();
+			selectedEntities++;
 		}
-		App->render->AddBlitEvent(1, fullLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, (int)(((*selectedEntities)->GetCurrLife() / (*selectedEntities)->GetMaxLife()) * 200), 15 }, false, true, 0);
+
+		float caca = (currentLifeSum / maxLifeSum) * 200;
+		App->render->AddBlitEvent(1, zeroLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, 200, 15 }, false, true, 0);
+		App->render->AddBlitEvent(1, fullLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, (int)caca, 15 }, false, true, 0);
 		
-		selectedEntities++;
 	}
 
 	// LifeBars from selected units on top of themselves
@@ -130,6 +136,9 @@ bool j1EntityManager::Update(float dt) {
 		else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_WARRIOR) {
 			(*entitiesToDraw)->Draw(warriorTexture);
 		}
+		else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SPAWNER) {
+			(*entitiesToDraw)->Draw(spawnerTexture);
+		}
 		else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SLIME) {
 			(*entitiesToDraw)->Draw(slimeTexture);
 		}
@@ -141,7 +150,7 @@ bool j1EntityManager::Update(float dt) {
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && !unitsSelected.empty()) {
 		list<Entity*>::iterator unitsToMove = unitsSelected.begin();
 		while (unitsToMove != unitsSelected.end()) {
-			int x, y;
+			float x, y;
 			App->input->GetMousePosition(x, y);
 			(*unitsToMove)->Move({ x, y });
 			unitsToMove++;
@@ -236,6 +245,13 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, iPoint si
 
 		// Enemies
 	/// Buildings
+	if (entityType == ENTITY_TYPE_SPAWNER) {
+		Spawner* spawner = new Spawner({ pos.x - size.x / 2, pos.y - size.y / 2 }, damage, this);
+		activeEntities.push_back((Entity*)spawner);
+		activeBuildings.push_back((Entity*)spawner);
+
+		return (Entity*)spawner;
+	}
 
 	/// Units
 	else if (entityType == ENTITY_TYPE_SLIME) {

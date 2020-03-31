@@ -29,7 +29,7 @@ void Entity::DebugDrawSelected()
 
 void Entity::OnCollision(ColliderGroup* c1, ColliderGroup* c2, CollisionState collisionState) {}
 
-void Entity::Move(iPoint destination) {}
+void Entity::Move(fPoint destination) {}
 
 // -------------------------------------------------------------
 
@@ -140,6 +140,15 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 		
 		// Enemies
 	/// Buildings
+	else if (entityType == ENTITY_TYPE_SPAWNER) {
+		COLLIDER_TYPE collType = COLLIDER_ENEMY_BUILDING;
+		vector<Collider*> collider;
+		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
+		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+		collider.push_back(entityCollider);
+
+		return true;
+	}
 
 	/// Units
 	else if (entityType == ENTITY_TYPE_SLIME) {

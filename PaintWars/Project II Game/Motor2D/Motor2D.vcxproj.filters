@@ -100,6 +100,9 @@
     <ClCompile Include="Color.cpp">
       <Filter>Motor  ========\Tools</Filter>
     </ClCompile>
+    <ClCompile Include="Spawner.cpp">
+      <Filter>Desenvolupament  ========\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -218,6 +221,9 @@
     </ClInclude>
     <ClInclude Include="j1App.h">
       <Filter>Motor  ========\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Spawner.h">
+      <Filter>Desenvolupament  ========\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
