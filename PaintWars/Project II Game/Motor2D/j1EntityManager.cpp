@@ -46,6 +46,7 @@ bool j1EntityManager::Start() {
 
 		// Enemies
 	/// Buildings
+	spawnerTexture = App->tex->Load("textures/Spawner.png");
 
 	/// Units
 	slimeTexture = App->tex->Load("textures/Slime.png");
@@ -90,9 +91,7 @@ bool j1EntityManager::Update(float dt) {
 				break;
 
 			}
-
 			checkForSelectedEntities++;
-
 		}
 
 		// Unselect all
@@ -136,6 +135,9 @@ bool j1EntityManager::Update(float dt) {
 		}
 		else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_WARRIOR) {
 			(*entitiesToDraw)->Draw(warriorTexture);
+		}
+		else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SPAWNER) {
+			(*entitiesToDraw)->Draw(spawnerTexture);
 		}
 		else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SLIME) {
 			(*entitiesToDraw)->Draw(slimeTexture);
@@ -243,6 +245,13 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, iPoint si
 
 		// Enemies
 	/// Buildings
+	if (entityType == ENTITY_TYPE_SPAWNER) {
+		Spawner* spawner = new Spawner({ pos.x - size.x / 2, pos.y - size.y / 2 }, damage, this);
+		activeEntities.push_back((Entity*)spawner);
+		activeBuildings.push_back((Entity*)spawner);
+
+		return (Entity*)spawner;
+	}
 
 	/// Units
 	else if (entityType == ENTITY_TYPE_SLIME) {

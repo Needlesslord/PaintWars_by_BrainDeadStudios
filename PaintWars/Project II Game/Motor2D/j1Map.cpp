@@ -94,7 +94,7 @@ TileSet* j1Map::GetTilesetFromTileId(int id) const
 	return set;
 }
 
-fPoint j1Map::MapToWorld(float x, float y) const
+fPoint j1Map::MapToWorld(int x, int y) const
 {
 	fPoint ret;
 
@@ -117,9 +117,9 @@ fPoint j1Map::MapToWorld(float x, float y) const
 	return ret;
 }
 
-fPoint j1Map::WorldToMap(float x, float y) const
+iPoint j1Map::WorldToMap(float x, float y) const
 {
-	fPoint ret(0,0);
+	iPoint ret(0,0);
 
 	if(data.type == MAPTYPE_ORTHOGONAL)
 	{
@@ -399,7 +399,7 @@ bool j1Map::LoadTilesetAnimations(pugi::xml_node& tileset_node, TileSet* set)
 				//animation.type = EntityType::BOAT;
 				//animation.orientation = Orientation::NORTH;
 				animation.type = ENTITY_TYPE::ENTITY_TYPE_PAINTER;
-				animation.orientation = ORIENTATION::ORIENTATION_NORTH;
+				animation.orientation = UNIT_ORIENTATION::UNIT_ORIENTATION_NORTH;
 			}
 			else
 			{

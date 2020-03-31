@@ -42,18 +42,18 @@ bool j1Scene::Start() {
 	Load_Forest_Map = true;
 	Change_Map = true;
 	Map_Manager();
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 0, 100 }, { 100, 100 }, App->entities, 10);
-	App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 200, 200 }, { 20, 20 }, App->entities, 5);
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { 400, 200 }, { 62, 118 }, App->entities, 10);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 600, 200 }, { 20, 20 }, App->entities);
-
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,	{    0,  100 }, { 100, 100 }, App->entities, 10);
+	App->entities->AddEntity(ENTITY_TYPE_PAINTER,	{  200,  200 }, {  20,  20 }, App->entities, 5);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  400,  200 }, {  62, 118 }, App->entities, 10);
+	App->entities->AddEntity(ENTITY_TYPE_SLIME,		{  600,  200 }, {  20,  20 }, App->entities);
+	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,	{ 1000, 1000 }, {  20,  20 }, App->entities);
 	
 
 	int wCACA, hCACA;
 	uchar* dataCACA = NULL;
 	if (App->map->CreateWalkabilityMap(wCACA, hCACA, &dataCACA))
 	{
-		App->pathfinding->SetMap(wCACA, hCACA, dataCACA);						//Sets a new walkability map with the map passed by CreateWalkabilityMap().
+		App->pathfinding->SetMap(wCACA, hCACA, dataCACA);						// Sets a new walkability map with the map passed by CreateWalkabilityMap().
 	}
 
 	return true;
@@ -79,13 +79,11 @@ bool j1Scene::PreUpdate() {
 
 
 	// Debug pathfing ------------------
-	static fPoint origin;
+	static iPoint origin;
 	static bool origin_selected = false;
 
-	float x, y;
-	App->input->GetMousePosition(x, y);
-	fPoint p = App->render->ScreenToWorld(x, y);
-	p = App->map->WorldToMap(p.x, p.y);
+	fPoint mouseWP= App->input->GetMouseWorldPosition();
+	iPoint p = App->map->WorldToMap(mouseWP.x, mouseWP.y);
 
 	if(App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
 	{
@@ -147,7 +145,7 @@ bool j1Scene::Update(float dt) {
 
 	float x, y;
 	App->input->GetMousePosition(x, y);
-	fPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
+	iPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
 	fPoint map_coordinates2 = App->input->GetMouseWorldPosition();
 
 	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d, %d, %d",
@@ -160,10 +158,7 @@ bool j1Scene::Update(float dt) {
 
 	// Debug pathfinding ------------------------------
 	//float x, y;
-	App->input->GetMousePosition(x, y);
-	fPoint p = App->render->ScreenToWorld(x, y);
-	p = App->map->WorldToMap(p.x, p.y);
-	p = App->map->MapToWorld(p.x, p.y);
+
 
 	//App->render->Blit(debug_tex, p.x, p.y);
 
