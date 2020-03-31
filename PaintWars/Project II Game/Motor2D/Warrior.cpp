@@ -9,6 +9,7 @@
 #include "j1Map.h"
 #include "j1Collision.h"
 #include "j1Textures.h"
+#include "j1Render.h"
 
 Warrior::Warrior(fPoint pos, int damage, j1Module* listener) : Entity(pos, damage, listener) {
 
@@ -26,9 +27,15 @@ Warrior::Warrior(fPoint pos, int damage, j1Module* listener) : Entity(pos, damag
 
 Warrior::~Warrior() {}
 
-void Warrior::Move(iPoint destination) {
+void Warrior::Move(fPoint destination) {
 	iPoint fPos;
 	fPos.x = pos.x;
 	fPos.y = pos.y;
-	App->pathfinding->CreatePath(fPos, destination);
+
+	iPoint fDestination;
+	fDestination.x = destination.x;
+	fDestination.y = destination.y;
+
+	//App->map->WorldToMap()
+	App->pathfinding->CreatePath(fPos,fDestination);
 }

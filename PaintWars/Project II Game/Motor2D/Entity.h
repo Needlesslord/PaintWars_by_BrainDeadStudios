@@ -16,17 +16,17 @@ struct ColliderGroup;
 
 enum CollisionState;
 
-enum ORIENTATION { //This is needed when loading animations from tiled
+enum UNIT_ORIENTATION { //This is needed when loading animations from tiled
 	
-	ORIENTATION_NORTH = 8,
-	ORIENTATION_NORTH_EAST = 9,
-	ORIENTATION_EAST = 6,
-	ORIENTATION_SOUTH_EAST = 3,
-	ORIENTATION_SOUTH = 2,
-	ORIENTATION_SOUTH_WEST = 1,
-	ORIENTATION_WEST = 4,
-	ORIENTATION_NORTH_WEST = 7,
-	NONE = 0
+	UNIT_ORIENTATION_NORTH = 8,
+	UNIT_ORIENTATION_NORTH_EAST = 9,
+	UNIT_ORIENTATION_EAST = 6,
+	UNIT_ORIENTATION_SOUTH_EAST = 3,
+	UNIT_ORIENTATION_SOUTH = 2,
+	UNIT_ORIENTATION_SOUTH_WEST = 1,
+	UNIT_ORIENTATION_WEST = 4,
+	UNIT_ORIENTATION_NORTH_WEST = 7,
+	UNIT_ORIENTATION_NONE = 0
 
 };
 enum ENTITY_CATEGORY {
@@ -64,6 +64,7 @@ enum ENTITY_TYPE {
 
 	// Enemies
 	/// Buildings
+	ENTITY_TYPE_SPAWNER,
 
 	/// Units
 	ENTITY_TYPE_SLIME,
@@ -81,7 +82,7 @@ public:
 	virtual void Draw(SDL_Texture* sprites);
 	virtual void DebugDrawSelected();
 	virtual void OnCollision(ColliderGroup* c1, ColliderGroup* c2, CollisionState collisionState);
-	virtual void Move(iPoint destination);
+	virtual void Move(fPoint destination);
 
 	// Position and size
 	void SetPos(fPoint pos);
@@ -108,6 +109,7 @@ public:
 	const ENTITY_CATEGORY entityCategory = ENTITY_CATEGORY_NONE;
 	const ENTITY_TYPE entityType = ENTITY_TYPE_NONE;
 	const ENTITY_SIZE entitySize = ENTITY_SIZE_NONE;
+	const UNIT_ORIENTATION unitOrientation = UNIT_ORIENTATION_NONE;
 
 	bool isSelected = false;
 	bool isEntityFromPlayer = NULL;
@@ -136,9 +138,6 @@ protected:
 	Animation North_Animation;
 	
 	fPoint past_frame_dest;
-
-
-
 };
 
 #endif //__Entity_H__

@@ -2,100 +2,101 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="j1Window.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
     <ClCompile Include="j1Audio.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
     <ClCompile Include="j1Input.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
     <ClCompile Include="j1Render.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
     <ClCompile Include="j1Textures.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
     <ClCompile Include="p2Log.cpp">
       <Filter>Programacio 2 ===========</Filter>
     </ClCompile>
     <ClCompile Include="PugiXml\src\pugixml.cpp">
-      <Filter>Desenvolupament  ========\Tools\PuguiXML</Filter>
+      <Filter>Motor  ========\Tools\PuguiXML</Filter>
     </ClCompile>
     <ClCompile Include="j1Map.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Pathfinding.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
     <ClCompile Include="j1Timer.cpp">
-      <Filter>Desenvolupament  ========\Tools</Filter>
+      <Filter>Motor  ========\Tools</Filter>
     </ClCompile>
     <ClCompile Include="j1PerfTimer.cpp">
-      <Filter>Desenvolupament  ========\Tools</Filter>
+      <Filter>Motor  ========\Tools</Filter>
     </ClCompile>
     <ClCompile Include="j1Player.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
     <ClCompile Include="j1Collision.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
     <ClCompile Include="j1GUIscrollBar.cpp">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClCompile>
     <ClCompile Include="j1GUIlabel.cpp">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClCompile>
     <ClCompile Include="j1GUIinputBox.cpp">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClCompile>
     <ClCompile Include="j1GUIimage.cpp">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClCompile>
     <ClCompile Include="j1GUIelement.cpp">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClCompile>
     <ClCompile Include="j1GUIbutton.cpp">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClCompile>
     <ClCompile Include="j1GUI.cpp">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClCompile>
     <ClCompile Include="j1Fonts.cpp">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClCompile>
     <ClCompile Include="j1InGameUI.cpp">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
-      <Filter>Desenvolupament  ========\Entities</Filter>
+      <Filter>Motor  ========\Entities</Filter>
     </ClCompile>
     <ClCompile Include="j1EntityManager.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
     <ClCompile Include="TownHall.cpp">
-      <Filter>Desenvolupament  ========\Entities</Filter>
+      <Filter>Motor  ========\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Painter.cpp">
-      <Filter>Desenvolupament  ========\Entities</Filter>
+      <Filter>Motor  ========\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Warrior.cpp">
-      <Filter>Desenvolupament  ========\Entities</Filter>
+      <Filter>Motor  ========\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Slime.cpp">
-      <Filter>Desenvolupament  ========\Entities</Filter>
+      <Filter>Motor  ========\Entities</Filter>
     </ClCompile>
     <ClCompile Include="animation.cpp">
-      <Filter>Desenvolupament  ========\Tools</Filter>
+      <Filter>Motor  ========\Tools</Filter>
     </ClCompile>
     <ClCompile Include="j1Main.cpp">
-      <Filter>Desenvolupament  ========\Core</Filter>
+      <Filter>Motor  ========\Core</Filter>
     </ClCompile>
     <ClCompile Include="j1App.cpp">
-      <Filter>Desenvolupament  ========\Core</Filter>
+      <Filter>Motor  ========\Core</Filter>
     </ClCompile>
     <ClCompile Include="Color.cpp">
-      <Filter>Desenvolupament  ========\Tools</Filter>
+      <Filter>Motor  ========\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Spawner.cpp" />
+    <ClCompile Include="j1Pathfinding.cpp">
+      <Filter>Motor  ========\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Desenvolupament  ========\Scenes</Filter>
@@ -109,19 +110,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
     <ClInclude Include="j1Audio.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
     <ClInclude Include="j1Input.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
     <ClInclude Include="j1Render.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
     <ClInclude Include="j1Textures.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
     <ClInclude Include="p2Defs.h">
       <Filter>Programacio 2 ===========</Filter>
@@ -142,85 +143,86 @@
       <Filter>Programacio 2 ===========</Filter>
     </ClInclude>
     <ClInclude Include="PugiXml\src\pugiconfig.hpp">
-      <Filter>Desenvolupament  ========\Tools\PuguiXML</Filter>
+      <Filter>Motor  ========\Tools\PuguiXML</Filter>
     </ClInclude>
     <ClInclude Include="PugiXml\src\pugixml.hpp">
-      <Filter>Desenvolupament  ========\Tools\PuguiXML</Filter>
+      <Filter>Motor  ========\Tools\PuguiXML</Filter>
     </ClInclude>
     <ClInclude Include="j1Map.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Pathfinding.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
     <ClInclude Include="j1Timer.h">
-      <Filter>Desenvolupament  ========\Tools</Filter>
+      <Filter>Motor  ========\Tools</Filter>
     </ClInclude>
     <ClInclude Include="j1PerfTimer.h">
-      <Filter>Desenvolupament  ========\Tools</Filter>
+      <Filter>Motor  ========\Tools</Filter>
     </ClInclude>
     <ClInclude Include="j1Player.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
     <ClInclude Include="j1Collision.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
     <ClInclude Include="animation.h">
-      <Filter>Desenvolupament  ========\Tools</Filter>
+      <Filter>Motor  ========\Tools</Filter>
     </ClInclude>
     <ClInclude Include="Color.h">
-      <Filter>Desenvolupament  ========\Tools</Filter>
+      <Filter>Motor  ========\Tools</Filter>
     </ClInclude>
     <ClInclude Include="j1GUIscrollBar.h">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClInclude>
     <ClInclude Include="j1GUIlabel.h">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClInclude>
     <ClInclude Include="j1GUIinputBox.h">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClInclude>
     <ClInclude Include="j1GUIimage.h">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClInclude>
     <ClInclude Include="j1GUIelement.h">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClInclude>
     <ClInclude Include="j1GUIbutton.h">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClInclude>
     <ClInclude Include="j1GUI.h">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClInclude>
     <ClInclude Include="j1Fonts.h">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClInclude>
     <ClInclude Include="j1InGameUI.h">
-      <Filter>Desenvolupament  ========\UI</Filter>
+      <Filter>Motor  ========\UI</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
-      <Filter>Desenvolupament  ========\Entities</Filter>
+      <Filter>Motor  ========\Entities</Filter>
     </ClInclude>
     <ClInclude Include="j1EntityManager.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
+      <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
     <ClInclude Include="TownHall.h">
-      <Filter>Desenvolupament  ========\Entities</Filter>
+      <Filter>Motor  ========\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Painter.h">
-      <Filter>Desenvolupament  ========\Entities</Filter>
+      <Filter>Motor  ========\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Warrior.h">
-      <Filter>Desenvolupament  ========\Entities</Filter>
+      <Filter>Motor  ========\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Slime.h">
-      <Filter>Desenvolupament  ========\Entities</Filter>
+      <Filter>Motor  ========\Entities</Filter>
     </ClInclude>
     <ClInclude Include="j1Module.h">
-      <Filter>Desenvolupament  ========\Core</Filter>
+      <Filter>Motor  ========\Core</Filter>
     </ClInclude>
     <ClInclude Include="j1App.h">
-      <Filter>Desenvolupament  ========\Core</Filter>
+      <Filter>Motor  ========\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Spawner.h" />
+    <ClInclude Include="j1Pathfinding.h">
+      <Filter>Motor  ========\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Desenvolupament  ========\Scenes</Filter>
@@ -236,43 +238,55 @@
     <Filter Include="Programacio 2 ===========">
       <UniqueIdentifier>{a8bfab6a-5472-4969-943e-861a8b493f08}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Desenvolupament  ========">
+    <Filter Include="Motor  ========">
       <UniqueIdentifier>{cb944693-b9d0-484c-bad2-02d5a7cdbec6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Desenvolupament  ========\Tools">
+    <Filter Include="Motor  ========\Tools">
       <UniqueIdentifier>{42c748be-4a37-49de-970f-5be811d06b38}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Desenvolupament  ========\Scenes">
-      <UniqueIdentifier>{e07660eb-d36f-4cc9-af59-324d31c2f2f6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Desenvolupament  ========\Modules">
-      <UniqueIdentifier>{244722d1-90ce-423d-8e7a-556211865a32}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Desenvolupament  ========\Tools\PuguiXML">
+    <Filter Include="Motor  ========\Tools\PuguiXML">
       <UniqueIdentifier>{7cb78d67-17cc-45eb-af97-e2106becce7b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Desenvolupament  ========\Entities">
-      <UniqueIdentifier>{cc3459b2-da39-48dd-9d70-2899448ad36b}</UniqueIdentifier>
+    <Filter Include="Motor  ========\Scenes">
+      <UniqueIdentifier>{e07660eb-d36f-4cc9-af59-324d31c2f2f6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Desenvolupament  ========\UI">
-      <UniqueIdentifier>{c35b2584-ee30-4553-be6c-ce5e439cf695}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Desenvolupament  ========\Scenes\Transition">
+    <Filter Include="Motor  ========\Scenes\Transition">
       <UniqueIdentifier>{a96bee88-1472-4cb0-a66c-2315493ac611}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Desenvolupament  ========\Core">
+    <Filter Include="Motor  ========\Modules">
+      <UniqueIdentifier>{244722d1-90ce-423d-8e7a-556211865a32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Motor  ========\Entities">
+      <UniqueIdentifier>{cc3459b2-da39-48dd-9d70-2899448ad36b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Motor  ========\Entities\Enemies">
+      <UniqueIdentifier>{f8306883-084c-4e8c-bc97-b1a361cad1ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Motor  ========\Entities\Allies">
+      <UniqueIdentifier>{e5ec44e9-2ba8-480a-b105-dc71c4a00fb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Motor  ========\Entities\Allies\Buildings">
+      <UniqueIdentifier>{bdb9d870-3f83-4124-9c11-6bc5a42afd71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Motor  ========\Entities\Allies\Units">
+      <UniqueIdentifier>{3c25fe45-d213-4fba-8fd4-d3682432b4cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Motor  ========\UI">
+      <UniqueIdentifier>{c35b2584-ee30-4553-be6c-ce5e439cf695}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Motor  ========\Core">
       <UniqueIdentifier>{10a23613-96ae-43d7-b99b-896736fea92d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Desenvolupament  ========\XML">
+    <Filter Include="Motor  ========\XML">
       <UniqueIdentifier>{ac70356d-d9bb-45be-99d7-0cd3367a3884}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\Game\save_game.xml">
-      <Filter>Desenvolupament  ========\XML</Filter>
+      <Filter>Motor  ========\XML</Filter>
     </Xml>
     <Xml Include="..\Game\config.xml">
-      <Filter>Desenvolupament  ========\XML</Filter>
+      <Filter>Motor  ========\XML</Filter>
     </Xml>
   </ItemGroup>
 </Project>

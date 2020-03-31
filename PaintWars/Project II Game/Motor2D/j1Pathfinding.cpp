@@ -2,6 +2,7 @@
 #include "p2Log.h"
 #include "j1App.h"
 #include "j1PathFinding.h"
+#include "vector"
 
 j1PathFinding::j1PathFinding() : j1Module(), map(NULL), last_path(DEFAULT_PATH_LENGTH),width(0), height(0)
 {
@@ -19,7 +20,7 @@ bool j1PathFinding::CleanUp()
 {
 	LOG("Freeing pathfinding library");
 
-	last_path.Clear();
+	
 	RELEASE_ARRAY(map);
 	return true;
 }
@@ -59,46 +60,49 @@ uchar j1PathFinding::GetTileAt(const iPoint& pos) const
 }
 
 // To request all tiles involved in the last generated path
-const p2DynArray<iPoint>* j1PathFinding::GetLastPath() const
-{
-	return &last_path;
-}
+
 
 // PathList ------------------------------------------------------------------------
 // Looks for a node in this list and returns it's list node or NULL
 // ---------------------------------------------------------------------------------
- p2List_item<PathNode>* PathList::Find(const iPoint& point) const
+ std::list<PathNode>* PathList::Find(const iPoint& point) const
 {
-	p2List_item<PathNode>* item = list.start;
+	/*std::list<PathNode>* item = list.begin;
 	while(item)
 	{
 		if(item->data.pos == point)
 			return item;
-		item = item->next;
-	}
+		item = item->n
+	}*/
+
+	
+
+
+	
 	return NULL;
 }
 
 // PathList ------------------------------------------------------------------------
 // Returns the Pathnode with lowest score in this list or NULL if empty
 // ---------------------------------------------------------------------------------
-p2List_item<PathNode>* PathList::GetNodeLowestScore() const
-{
-	p2List_item<PathNode>* ret = NULL;
-	int min = 65535;
+ std::list<PathNode>::iterator PathList::GetNodeLowestScore()
+ {
+	 std::list<PathNode>::iterator ret = list.end();
 
-	p2List_item<PathNode>* item = list.end;
-	while(item)
-	{
-		if(item->data.Score() < min)
-		{
-			min = item->data.Score();
-			ret = item;
-		}
-		item = item->prev;
-	}
-	return ret;
-}
+	 int min = 65535;
+
+	 // This loop should go from end to begin. Make a tmp list with std::reverse list?
+	 for (std::list<PathNode>::iterator item = list.begin(); item != list.end(); item++)
+	 {
+		 if (item->Score() < min)
+		 {
+			 min = item->Score();
+			 ret = item;
+		 }
+	 }
+
+	 return ret;
+ }
 
 // PathNode -------------------------------------------------------------------------
 // Convenient constructors
@@ -115,33 +119,7 @@ PathNode::PathNode(const PathNode& node) : g(node.g), h(node.h), pos(node.pos), 
 // PathNode -------------------------------------------------------------------------
 // Fills a list (PathList) of all valid adjacent pathnodes
 // ----------------------------------------------------------------------------------
-uint PathNode::FindWalkableAdjacents(PathList& list_to_fill) const
-{
-	iPoint cell;
-	uint before = list_to_fill.list.count();
 
-	// north
-	cell.create(pos.x, pos.y + 1);
-	if(App->pathfinding->IsWalkable(cell))
-		list_to_fill.list.add(PathNode(-1, -1, cell, this));
-
-	// south
-	cell.create(pos.x, pos.y - 1);
-	if(App->pathfinding->IsWalkable(cell))
-		list_to_fill.list.add(PathNode(-1, -1, cell, this));
-
-	// east
-	cell.create(pos.x + 1, pos.y);
-	if(App->pathfinding->IsWalkable(cell))
-		list_to_fill.list.add(PathNode(-1, -1, cell, this));
-
-	// west
-	cell.create(pos.x - 1, pos.y);
-	if(App->pathfinding->IsWalkable(cell))
-		list_to_fill.list.add(PathNode(-1, -1, cell, this));
-
-	return list_to_fill.list.count();
-}
 
 // PathNode -------------------------------------------------------------------------
 // Calculates this tile score
@@ -167,81 +145,10 @@ int PathNode::CalculateF(const iPoint& destination)
 // ----------------------------------------------------------------------------------
 int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 {
-	// TODO 1: if origin or destination are not walkable, return -1
-	int ret = -1;
-	int iterations = 0;
-
-	if (IsWalkable(origin)) {
-		if (IsWalkable(destination))
-		{
-
-			// TODO 2: Create two lists: open, close
-			// Add the origin tile to open
-			// Iterate while we have tile in the open list
-			PathList open;
-			PathList close;
-			open.list.add(PathNode(0, 0, origin, NULL));
-			while (open.list.count() > 0)
-			{
-				// TODO 3: Move the lowest score cell from open list to the closed list
-				p2List_item<PathNode>* lowest = open.GetNodeLowestScore();
-				p2List_item<PathNode>* node = close.list.add(lowest->data);
-				open.list.del(lowest);
-
-				// TODO 4: If we just added the destination, we are done!
-				// Backtrack to create the final path
-				// Use the Pathnode::parent and Flip() the path when you are finish
-				if (node->data.pos == destination)
-				{
-					last_path.Clear();
-
-					const PathNode* path_node = &node->data;
-					while (path_node)
-					{
-						last_path.PushBack(path_node->pos);
-						path_node = path_node->parent;
-					}
-
-					last_path.Flip();
-					ret = last_path.Count();
-					break;
-				}
-
-				// TODO 5: Fill a list of all adjancent nodes
-				PathList adjacent;
-				node->data.FindWalkableAdjacents(adjacent);
-
-				// TODO 6: Iterate adjancent nodes:
-				// ignore nodes in the closed list
-				// If it is NOT found, calculate its F and add it to the open list
-				// If it is already in the open list, check if it is a better path (compare G)
-				// If it is a better path, Update the parent
-				p2List_item<PathNode>* item = adjacent.list.start;
-				for (; item != nullptr; item = item->next)
-				{
-					if (!close.Find(item->data.pos))
-					{
-						item->data.CalculateF(destination);
-						if (open.Find(item->data.pos))
-						{
-							if (item->data.g < open.Find(item->data.pos)->data.g)
-							{
-								open.Find(item->data.pos)->data.parent = item->data.parent;
-							}
-						}
-						else
-						{
-							open.list.add(item->data);
-						}
-						iterations++;
-					}
-				}
-
-			}
-		}
-	}
-	ret = iterations;
-
+	
+	int ret = 0;
 	return ret;
 }
+
+
 

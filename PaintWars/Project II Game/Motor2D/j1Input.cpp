@@ -150,15 +150,15 @@ bool j1Input::GetWindowEvent(j1EventWindow ev)
 	return windowEvents[ev];
 }
 
-void j1Input::GetMousePosition(int& x, int& y)
+void j1Input::GetMousePosition(float& x, float& y)
 {
 	x = mouse_x;
 	y = mouse_y;
 }
 
-iPoint j1Input::GetMouseWorldPosition()
+fPoint j1Input::GetMouseWorldPosition()
 {
-	iPoint ret;
+	fPoint ret;
 	GetMousePosition(ret.x, ret.y);
 	ret.x -= App->render->camera.x / App->win->GetScale();
 	ret.y -= App->render->camera.y / App->win->GetScale();
@@ -166,18 +166,18 @@ iPoint j1Input::GetMouseWorldPosition()
 	return ret;
 }
 
-iPoint j1Input::GetMousePositionWorld() const
+fPoint j1Input::GetMousePositionWorld() const
 {
-	iPoint ret;
+	fPoint ret;
 
 	App->input->GetMousePosition(ret.x, ret.y);
 
-	iPoint world_pos = App->render->ScreenToWorld(ret.x, ret.y);
+	fPoint world_pos = App->render->ScreenToWorld(ret.x, ret.y);
 
 	return world_pos;
 }
 
-void j1Input::GetMouseMotion(int& x, int& y)
+void j1Input::GetMouseMotion(float& x, float& y)
 {
 	x = mouse_motion_x;
 	y = mouse_motion_y;
