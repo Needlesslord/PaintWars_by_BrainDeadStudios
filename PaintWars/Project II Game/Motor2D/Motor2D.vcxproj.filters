@@ -98,15 +98,9 @@
     <ClCompile Include="j1Pathfinding.cpp">
       <Filter>Motor  ========\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Desenvolupament  ========\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="j1SceneManager.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>Desenvolupament  ========\Scenes</Filter>
-    </ClCompile>
+    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="j1SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -224,15 +218,9 @@
     <ClInclude Include="j1Pathfinding.h">
       <Filter>Motor  ========\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Desenvolupament  ========\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="j1SceneManager.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>Desenvolupament  ========\Scenes</Filter>
-    </ClInclude>
+    <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="j1SceneManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">

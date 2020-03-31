@@ -42,18 +42,18 @@ bool GameScene::Start()
 	Load_Forest_Map = true;
 	Change_Map = true;
 	Map_Manager();
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 0, 100 }, { 100, 100 }, App->entities, 10);
-	App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 200, 200 }, { 20, 20 }, App->entities, 5);
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { 400, 200 }, { 62, 118 }, App->entities, 10);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 600, 200 }, { 20, 20 }, App->entities);
-
-
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,	{    0,  100 }, { 100, 100 }, App->entities, 10);
+	App->entities->AddEntity(ENTITY_TYPE_PAINTER,	{  200,  200 }, {  20,  20 }, App->entities, 5);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  400,  200 }, {  62, 118 }, App->entities, 10);
+	App->entities->AddEntity(ENTITY_TYPE_SLIME,		{  600,  200 }, {  20,  20 }, App->entities);
+	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,	{ 1000, 1000 }, {  20,  20 }, App->entities);
+	
 
 	int wCACA, hCACA;
 	uchar* dataCACA = NULL;
 	if (App->map->CreateWalkabilityMap(wCACA, hCACA, &dataCACA))
 	{
-		App->pathfinding->SetMap(wCACA, hCACA, dataCACA);						//Sets a new walkability map with the map passed by CreateWalkabilityMap().
+		App->pathfinding->SetMap(wCACA, hCACA, dataCACA);						// Sets a new walkability map with the map passed by CreateWalkabilityMap().
 	}
 
 	return ret;
@@ -81,14 +81,12 @@ bool GameScene::PreUpdate()
 
 
 
-	// Debug pathfing ------------------
+	// Debug pathfinding ------------------
 	static iPoint origin;
 	static bool origin_selected = false;
 
-	int x, y;
-	App->input->GetMousePosition(x, y);
-	iPoint p = App->render->ScreenToWorld(x, y);
-	p = App->map->WorldToMap(p.x, p.y);
+	fPoint mouseWP = App->input->GetMouseWorldPosition();
+	iPoint p = App->map->WorldToMap(mouseWP.x, mouseWP.y);
 
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
 	{
@@ -123,9 +121,9 @@ bool GameScene::Update(float dt)
 		App->SaveGame("save_game.xml");
 
 	if (App->input->GetKey(SDL_SCANCODE_T) == KEY_DOWN) {
-		int a, b;
+		float a, b;
 		App->input->GetMousePosition(a, b);
-		iPoint cd = App->render->ScreenToWorld(a, b);
+		fPoint cd = App->render->ScreenToWorld(a, b);
 		float c, d;
 		c = cd.x;
 		d = cd.y;
@@ -141,9 +139,9 @@ bool GameScene::Update(float dt)
 	}*/
 
 	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN) {
-		int a, b;
+		float a, b;
 		App->input->GetMousePosition(a, b);
-		iPoint cd = App->render->ScreenToWorld(a, b);
+		fPoint cd = App->render->ScreenToWorld(a, b);
 		float c, d;
 		c = cd.x;
 		d = cd.y;
@@ -153,33 +151,24 @@ bool GameScene::Update(float dt)
 
 	App->map->Draw();
 
-	int x, y;
+	float x, y;
 	App->input->GetMousePosition(x, y);
 	iPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
+	fPoint map_coordinates2 = App->input->GetMouseWorldPosition();
+
 	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d, %d, %d",
 		App->map->data.width, App->map->data.height,
 		App->map->data.tile_width, App->map->data.tile_height,
 		App->map->data.tilesets.size(),
-		map_coordinates.x, map_coordinates.y);
+		map_coordinates.x, map_coordinates.y, map_coordinates2.x, map_coordinates2.y);
 
 	App->win->SetTitle(title.GetString());
 
 	// Debug pathfinding ------------------------------
-	//int x, y;
-	App->input->GetMousePosition(x, y);
-	iPoint p = App->render->ScreenToWorld(x, y);
-	p = App->map->WorldToMap(p.x, p.y);
-	p = App->map->MapToWorld(p.x, p.y);
+	//float x, y;
+
 
 	//App->render->Blit(debug_tex, p.x, p.y);
-
-	const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
-
-	for (uint i = 0; i < path->Count(); ++i)
-	{
-		iPoint pos = App->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-		//App->render->AddBlitEvent(0,debug_tex, pos.x, pos.y);
-	}
 
 	return ret;
 }
@@ -193,6 +182,9 @@ bool GameScene::PostUpdate()
 		Change_Map = true;
 		Load_Snow_Map = true;
 	}
+
+	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+		ret = false;
 
 	//ExecuteTransition();
 
