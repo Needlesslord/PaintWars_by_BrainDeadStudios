@@ -9,24 +9,25 @@
 #include "j1SceneManager.h"
 #include "j1EntityManager.h"
 #include "j1Pathfinding.h"
-#include "GameScene.h"
+#include "MenuScene.h"
 #include "TransitionManager.h"
+
 //#include "j1Transition.h"
 //#include "j1TransitionManager.h"
 
-GameScene::GameScene() : Scene(SCENES::GAME_SCENE)
+MenuScene::MenuScene() : Scene(SCENES::GAME_SCENE)
 {
 
 }
 
 // Destructor
-GameScene::~GameScene()
+MenuScene::~MenuScene()
 {
 
 }
 
 // Called before render is available
-bool GameScene::Awake(pugi::xml_node& config)
+bool MenuScene::Awake(pugi::xml_node& config)
 {
 	LOG("Loading FirstScene");
 	bool ret = true;
@@ -35,20 +36,20 @@ bool GameScene::Awake(pugi::xml_node& config)
 }
 
 // Called before the first frame
-bool GameScene::Start()
+bool MenuScene::Start()
 {
 	bool ret = true;
-	
+
 	//THESE BOOLS HAVE TO BE REMOVED ONCE WE HAVE THE MAIN MENU, BECAUSE WE WANT THE GAME TO LOAD THE MAP AFTER WE USE THE PLAY BUTTON NOT WHILE WE ARE IN THE MENU
 	Load_Forest_Map = true;
 	Change_Map = true;
 	Map_Manager();
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,	{    0,  100 }, { 100, 100 }, App->entities, 10);
-	App->entities->AddEntity(ENTITY_TYPE_PAINTER,	{  200,  200 }, {  20,  20 }, App->entities, 5);
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  400,  200 }, {  62, 118 }, App->entities, 10);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME,		{  600,  200 }, {  20,  20 }, App->entities);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,	{ 1000, 1000 }, {  20,  20 }, App->entities);
-	
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 0,  100 }, { 100, 100 }, App->entities, 10);
+	App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 200,  200 }, { 20,  20 }, App->entities, 5);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { 400,  200 }, { 62, 118 }, App->entities, 10);
+	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 600,  200 }, { 20,  20 }, App->entities);
+	App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 1000, 1000 }, { 20,  20 }, App->entities);
+
 
 	int wCACA, hCACA;
 	uchar* dataCACA = NULL;
@@ -61,7 +62,7 @@ bool GameScene::Start()
 }
 
 // Called each loop iteration
-bool GameScene::PreUpdate()
+bool MenuScene::PreUpdate()
 {
 	bool ret = true;
 
@@ -109,10 +110,10 @@ bool GameScene::PreUpdate()
 }
 
 // Called each loop iteration
-bool GameScene::Update(float dt)
+bool MenuScene::Update(float dt)
 {
 	bool ret = true;
-	
+
 	CameraDebugMovement(dt);
 
 	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
@@ -187,10 +188,10 @@ bool GameScene::Update(float dt)
 }
 
 // Called each loop iteration
-bool GameScene::PostUpdate()
+bool MenuScene::PostUpdate()
 {
 	bool ret = true;
-	
+
 	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN) {
 		Change_Map = true;
 		Load_Snow_Map = true;
@@ -199,13 +200,13 @@ bool GameScene::PostUpdate()
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
 
-	ExecuteTransition();
+	//ExecuteTransition();
 
 	return ret;
 }
 
 // Called before quitting
-bool GameScene::CleanUp()
+bool MenuScene::CleanUp()
 {
 	LOG("Freeing Scene");
 	bool ret = true;
@@ -235,7 +236,7 @@ bool GameScene::CleanUp()
 	return ret;
 }
 
-void GameScene::InitScene()
+void MenuScene::InitScene()
 {
 	//tileset_texture = App->tex->Load("maps/tiles_first_map.png", scene_renderer);	// This texture will be used SceneToTexture(). Needed to get a single whole texture of the map.
 
@@ -243,7 +244,7 @@ void GameScene::InitScene()
 	Create_Forest_Map();
 	//App->map->GetMapSize(map_width, map_height);
 	//App->map->GetTileOffset(x_offset, y_offset);
-	
+
 	//App->render->camera.x = map_width * 0.3f;										// This camera position gets the camera close to the center of the map.
 	//App->render->camera.y = -40;
 
@@ -257,7 +258,7 @@ void GameScene::InitScene()
 	App->render->camera.y = -40;*/
 }
 
-void GameScene::DrawScene()
+void MenuScene::DrawScene()
 {
 	App->map->Draw();
 
@@ -266,10 +267,10 @@ void GameScene::DrawScene()
 	/*if (scene_texture != nullptr)
 	{
 		App->render->Blit(scene_texture, -(map_width) * 0.5f, 0, NULL);
-	}*/	
+	}*/
 }
 
-void GameScene::Map_Manager() {
+void MenuScene::Map_Manager() {
 	////THESE FUNCTION HAS TO BE REMOVED ONCE WE HAVE THE MAIN MENU, BECAUSE WE WANT THE GAME TO LOAD THE MAP AFTER WE USE THE PLAY BUTTON NOT WHILE WE ARE IN THE MENU
 	if (Load_Forest_Map) {
 		App->map->Load("map_forest.tmx") == true;
@@ -288,7 +289,7 @@ void GameScene::Map_Manager() {
 	}
 }
 
-void GameScene::Create_Forest_Map()
+void MenuScene::Create_Forest_Map()
 {
 
 	App->map->CleanUp();
@@ -299,7 +300,7 @@ void GameScene::Create_Forest_Map()
 	Load_Forest_Map = false;
 }
 
-void GameScene::Create_Snow_Map()
+void MenuScene::Create_Snow_Map()
 {
 	App->map->CleanUp();
 	App->map->Load("map_snow.tmx") == true;
@@ -311,7 +312,7 @@ void GameScene::Create_Snow_Map()
 	Load_Snow_Map = false;
 }
 
-void GameScene::Create_Volcano_Map()
+void MenuScene::Create_Volcano_Map()
 {
 	App->map->CleanUp();
 	App->map->Load("map_forest.tmx") == true;
@@ -335,83 +336,82 @@ void GameScene::Create_Volcano_Map()
 //	return scene_texture;
 //}
 
-void GameScene::ExecuteTransition()
+void MenuScene::ExecuteTransition()
 {
 	if (!App->transition_manager->is_transitioning)
 	{
-		if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+		if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN)
 		{
-			App->transition_manager->CreateCut(SCENES::MENU_SCENE);
+			App->transition_manager->CreateCut(SCENES::GAME_SCENE);
 		}
 
 		if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
 		{
-			App->transition_manager->CreateFadeToColour(SCENES::MENU_SCENE);
+			App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
 		}
 
-	//	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true);
-	//	}
+		//	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
+		//	{
+		//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true);
+		//	}
 
-	//	if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true, true);
-	//	}
+		//	if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
+		//	{
+		//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true, true);
+		//	}
 
-	//	if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true);
-	//	}
+		//	if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
+		//	{
+		//		App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true);
+		//	}
 
-	//	if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true, true);
-	//	}
+		//	if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
+		//	{
+		//		App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true, true);
+		//	}
 
-	//	if (App->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateAlternatingBars(SCENES::SECOND_SCENE, 0.5f, true);
-	//	}
+		//	if (App->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
+		//	{
+		//		App->transition_manager->CreateAlternatingBars(SCENES::SECOND_SCENE, 0.5f, true);
+		//	}
 
-	//	if (App->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateExpandingBars(SCENES::SECOND_SCENE, 0.5f, true);
-	//	}
+		//	if (App->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
+		//	{
+		//		App->transition_manager->CreateExpandingBars(SCENES::SECOND_SCENE, 0.5f, true);
+		//	}
 
-	//	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN)
-	//	{
-	//		iPoint mouse_pos = App->input->GetMouseToWorld();
+		//	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN)
+		//	{
+		//		iPoint mouse_pos = App->input->GetMouseToWorld();
 
-	//		App->transition_manager->CreateZoomToMouse(SCENES::SECOND_SCENE, mouse_pos, 0.5f, true);
-	//	}
+		//		App->transition_manager->CreateZoomToMouse(SCENES::SECOND_SCENE, mouse_pos, 0.5f, true);
+		//	}
 
-	//	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
-	//	{
-	//		iPoint mouse_pos = App->input->GetMouseToWorld();
+		//	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+		//	{
+		//		iPoint mouse_pos = App->input->GetMouseToWorld();
 
-	//		App->transition_manager->CreateCameraToMouse(mouse_pos, 0.5f, true);
-	//	}
+		//		App->transition_manager->CreateCameraToMouse(mouse_pos, 0.5f, true);
+		//	}
 
 
-	//	// --- TRANSITION WITH TEXTURE METHODS (NOT IMPLEMENTED)
-	//	if (App->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN)
-	//	{
-	//		if (scene_texture != nullptr)
-	//		{
-	//			App->transition_manager->CreateDissolve(SCENES::SECOND_SCENE, 1.0f);
-	//		}
-	//	}
+		//	// --- TRANSITION WITH TEXTURE METHODS (NOT IMPLEMENTED)
+		//	if (App->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN)
+		//	{
+		//		if (scene_texture != nullptr)
+		//		{
+		//			App->transition_manager->CreateDissolve(SCENES::SECOND_SCENE, 1.0f);
+		//		}
+		//	}
 
-	//	if (App->input->GetMouseButtonDown(SDL_BUTTON_MIDDLE) == KEY_DOWN)
-	//	{
-	//		iPoint mouse_pos = App->input->GetMouseToWorld();
+		//	if (App->input->GetMouseButtonDown(SDL_BUTTON_MIDDLE) == KEY_DOWN)
+		//	{
+		//		iPoint mouse_pos = App->input->GetMouseToWorld();
 
-	//		if (scene_texture != nullptr)
-	//		{
-	//			App->transition_manager->CreateZoomToTexture(SCENES::SECOND_SCENE, mouse_pos);
-	//		}
-	//	}
-
+		//		if (scene_texture != nullptr)
+		//		{
+		//			App->transition_manager->CreateZoomToTexture(SCENES::SECOND_SCENE, mouse_pos);
+		//		}
+		//	}
+		}
 	}
-}

@@ -1,4 +1,5 @@
 #include "Transition.h"
+#include "p2Log.h"
 
 Transition::Transition(SCENES next_scene, float step_duration, bool non_lerp ) : 
 	next_scene(next_scene), 
@@ -74,6 +75,7 @@ float Transition::N_Lerp(float start, float end, float rate, bool smash_in)				/
 
 float Transition::GetCutoffRate(float step_duration, float dt)
 {
+	LOG("CUTOFF RATE ");
 	cutoff_rate = dt / step_duration;
 
 	return cutoff_rate;

@@ -37,7 +37,7 @@ public:
 	
 	float Lerp(float start, float end, float rate);									// Method that will be used to linearly interpolate the speed of a given transition.
 	float N_Lerp(float start, float end, float rate, bool smash_in = false);		// Method that will be used to non-linearly interpolate the speed of a given transition.
-	float GetCutoffRate(float step_duration, float dt = App->GetDT());				// Method that returns the cutoff rate for a given transition. Will use dt as the standard increase.
+	float GetCutoffRate(float step_duration, float dt = 0.016);				// Method that returns the cutoff rate for a given transition. Will use dt as the standard increase.
 
 public:
 	TRANSITION_STEP step;															// All the steps that a given transition will go through.

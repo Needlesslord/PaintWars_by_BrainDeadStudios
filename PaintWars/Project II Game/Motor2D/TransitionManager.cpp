@@ -9,6 +9,7 @@
 #include "ZoomToMouse.h"
 #include "ZoomToTexture.h"
 #include "Dissolve.h"
+#include "p2Log.h"
 
 TransitionManager::TransitionManager() : active_transition(nullptr), is_transitioning(false)
 {
@@ -73,6 +74,7 @@ Transition* TransitionManager::CreateFadeToColour(SCENES next_scene, float step_
 		active_transition = new FadeToColour(next_scene, step_duration, fade_colour);
 
 		is_transitioning = true;
+		LOG("IS TRANSITIONING = TRUE");
 	}
 
 	return active_transition;

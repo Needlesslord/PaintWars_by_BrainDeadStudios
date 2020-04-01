@@ -145,6 +145,9 @@
     <ClCompile Include="Dissolve.cpp">
       <Filter>Motor  ========\Tools</Filter>
     </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -311,6 +314,9 @@
     </ClInclude>
     <ClInclude Include="Dissolve.h">
       <Filter>Motor  ========\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScene.h">
+      <Filter>Motor  ========\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 #include "FadeToColour.h"
 #include "TransitionManager.h"
-
+#include "p2Log.h"
 FadeToColour::FadeToColour(SCENES next_scene, float step_duration, Color fade_colour) : Transition(next_scene, step_duration)
 , fade_colour(fade_colour)
 {	
@@ -19,17 +19,17 @@ void FadeToColour::StepTransition()
 	case TRANSITION_STEP::ENTERING:
 		
 		Entering();
-		
+		LOG("ENTERING TRANSITION");
 		break;
 
 	case TRANSITION_STEP::CHANGING:
-
+		LOG("CHANGING SCENE THROUGH TRANSITION");
 		Changing();
 
 		break;
 
 	case TRANSITION_STEP::EXITING:
-		
+		LOG("EXTITING TRANSITION");
 		Exiting();
 		
 		break;
