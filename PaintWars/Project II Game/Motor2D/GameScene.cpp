@@ -156,13 +156,25 @@ bool GameScene::Update(float dt)
 	iPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
 	fPoint map_coordinates2 = App->input->GetMouseWorldPosition();
 
-	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d, %d, %d",
+
+	static char title[256];
+
+	sprintf_s(title, 256, "Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d, %d, %d",
 		App->map->data.width, App->map->data.height,
 		App->map->data.tile_width, App->map->data.tile_height,
 		App->map->data.tilesets.size(),
 		map_coordinates.x, map_coordinates.y, map_coordinates2.x, map_coordinates2.y);
 
-	App->win->SetTitle(title.GetString());
+	App->win->SetTitle(title);
+
+
+	/*p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d, %d, %d",
+		App->map->data.width, App->map->data.height,
+		App->map->data.tile_width, App->map->data.tile_height,
+		App->map->data.tilesets.size(),
+		map_coordinates.x, map_coordinates.y, map_coordinates2.x, map_coordinates2.y);
+
+	App->win->SetTitle(title.GetString());*/
 
 	// Debug pathfinding ------------------------------
 	//float x, y;
