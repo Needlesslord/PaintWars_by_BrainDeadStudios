@@ -44,8 +44,8 @@ private:
 	pugi::xml_node	node;
 	std::string file;
 
-	uint win_height;
-	uint win_width;
+	int win_height;
+	int win_width;
 	int camera_speed;
 	int camera_offset;
 };

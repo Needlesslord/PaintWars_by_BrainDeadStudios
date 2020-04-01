@@ -94,13 +94,57 @@
     <ClCompile Include="Color.cpp">
       <Filter>Motor  ========\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="Spawner.cpp" />
     <ClCompile Include="j1Pathfinding.cpp">
       <Filter>Motor  ========\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="j1SceneManager.cpp" />
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="j1SceneManager.cpp">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Spawner.cpp">
+      <Filter>Motor  ========\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Transition.cpp">
+      <Filter>Motor  ========\Scenes\Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="TransitionManager.cpp">
+      <Filter>Motor  ========\Scenes\Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraToMouse.cpp">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Cut.cpp">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="FadeToColour.cpp">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Slide.cpp">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Wipe.cpp">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoomToMouse.cpp">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoomToTexture.cpp">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="AlternatingBars.cpp">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpandingBars.cpp">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Dissolve.cpp">
+      <Filter>Motor  ========\Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -214,13 +258,60 @@
     <ClInclude Include="j1App.h">
       <Filter>Motor  ========\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Spawner.h" />
     <ClInclude Include="j1Pathfinding.h">
       <Filter>Motor  ========\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="j1SceneManager.h" />
+    <ClInclude Include="GameScene.h">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="j1SceneManager.h">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Spawner.h">
+      <Filter>Motor  ========\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Transition.h">
+      <Filter>Motor  ========\Scenes\Transition</Filter>
+    </ClInclude>
+    <ClInclude Include="TransitionManager.h">
+      <Filter>Motor  ========\Scenes\Transition</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraToMouse.h">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Cut.h">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="FadeToColour.h">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Slide.h">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Wipe.h">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoomToMouse.h">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoomToTexture.h">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="AlternatingBars.h">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Bar.h">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpandingBars.h">
+      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Dissolve.h">
+      <Filter>Motor  ========\Tools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">
@@ -267,6 +358,9 @@
     </Filter>
     <Filter Include="Motor  ========\XML">
       <UniqueIdentifier>{ac70356d-d9bb-45be-99d7-0cd3367a3884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Motor  ========\Scenes\Transition\TransitionTypes">
+      <UniqueIdentifier>{c0d5e313-e0c5-4aca-9e0f-40d4dd75b2ab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

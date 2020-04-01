@@ -320,7 +320,7 @@ void GameScene::Create_Volcano_Map()
 //	return scene_texture;
 //}
 
-//void FirstScene::ExecuteTransition()
+//void GameScene::ExecuteTransition()
 //{
 //	if (!App->transition_manager->is_transitioning)
 //	{

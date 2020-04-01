@@ -427,6 +427,7 @@ bool j1Map::LoadTilesetAnimations(pugi::xml_node& tileset_node, TileSet* set)
 	return ret;
 }
 
+
 bool j1Map::LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set)
 {
 	bool ret = true;
@@ -565,4 +566,10 @@ bool j1Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer) const
 	}
 
 	return ret;
+}
+
+void j1Map::GetTileOffset(int& x, int& y) const
+{
+	x = App->map->data.tile_width * 0.5f;
+	y = App->map->data.tile_height * 0.5f;
 }

@@ -1,4 +1,12 @@
 #include "Color.h"
+#include "j1Module.h"
+
+Color GetRandomColour()
+{
+	Color color = Color((float)(std::rand() % 255), (float)(std::rand() % 255), (float)(std::rand() % 255));
+
+	return color;
+}
 
 Color Red = Color(255, 0, 0);
 Color Green = Color(0, 255, 0);

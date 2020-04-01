@@ -23,6 +23,8 @@ class j1Player;
 class j1GUI;
 class j1Fonts;
 class j1InGameUI;
+class TransitionManager;
+class SceneManager;
 
 class j1App 
 {
@@ -101,6 +103,8 @@ public:
 	j1GUI*				gui = NULL;
 	j1Fonts*			fonts = NULL;
 	j1InGameUI*			InGameUI = NULL;
+	TransitionManager*  transition_manager = NULL;
+	
 private:
 
 	std::list<j1Module*> modules;

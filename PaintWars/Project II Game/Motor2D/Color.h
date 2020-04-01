@@ -28,7 +28,7 @@ struct Color
 		return (r == v.r && g == v.g && b == v.b);
 	}
 };
-
+Color GetRandomColour();
 extern Color Red;
 extern Color Green;
 extern Color Blue;

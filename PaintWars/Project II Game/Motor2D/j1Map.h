@@ -126,7 +126,7 @@ public:
 	fPoint MapToWorld(int x, int y) const;
 	iPoint WorldToMap(float x, float y) const;
 	bool CreateWalkabilityMap(int& width, int& height, uchar** buffer) const;
-
+	void GetTileOffset(int& w, int& h) const;
 private:
 
 	bool LoadMap();
@@ -135,7 +135,7 @@ private:
 	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
 	bool LoadProperties(pugi::xml_node& node, Properties& properties);
 	bool LoadTilesetAnimations(pugi::xml_node& tileset_node, TileSet* set);
-
+	
 	TileSet* GetTilesetFromTileId(int id) const;
 
 public:
