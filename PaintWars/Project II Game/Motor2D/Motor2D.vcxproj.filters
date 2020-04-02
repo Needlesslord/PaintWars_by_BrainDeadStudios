@@ -148,6 +148,24 @@
     <ClCompile Include="MenuScene.cpp">
       <Filter>Motor  ========\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="ForestMapScene.cpp">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SnowMapScene.cpp">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="VolcanoMapScene.cpp">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="WinScene.cpp">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="LoseScene.cpp">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScene.cpp">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -316,6 +334,24 @@
       <Filter>Motor  ========\Tools</Filter>
     </ClInclude>
     <ClInclude Include="MenuScene.h">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ForestMapScene.h">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SnowMapScene.h">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="VolcanoMapScene.h">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="WinScene.h">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="LoseScene.h">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScene.h">
       <Filter>Motor  ========\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
