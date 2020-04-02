@@ -26,7 +26,7 @@ public:
 	//void DrawScene();								// Method that will draw all scene elements on screen.
 	//SDL_Texture* SceneToTexture();				// Method that will be used to get a texture from the current screen.
 
-	//void ExecuteTransition();						// Method that will trigger a new transition depending on the input received.
+	void ExecuteTransition();						// Method that will trigger a new transition depending on the input received.
 
 public:
 

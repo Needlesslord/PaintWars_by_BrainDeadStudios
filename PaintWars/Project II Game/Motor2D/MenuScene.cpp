@@ -80,12 +80,6 @@ bool MenuScene::PostUpdate()
 {
 	bool ret = true;
 
-
-	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN) {
-		Change_Map = true;
-		Load_Snow_Map = true;
-	}
-
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
 
@@ -99,6 +93,12 @@ bool MenuScene::CleanUp()
 {
 	LOG("Freeing Scene");
 	bool ret = true;
+
+	RELEASE(mainMenuButton);
+	RELEASE(newGameButton);
+	RELEASE(continueButton);
+	RELEASE(settingsButton);
+	RELEASE(exitButton);
 
 	if (scene_texture != nullptr)
 	{

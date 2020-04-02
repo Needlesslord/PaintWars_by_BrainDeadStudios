@@ -6,7 +6,7 @@
 #include "j1Render.h"
 #include "j1Window.h"
 #include "j1Fonts.h"
-#include "j1Scene.h"
+#include "Scene.h"
 
 
 #define MAX_KEYS 300
