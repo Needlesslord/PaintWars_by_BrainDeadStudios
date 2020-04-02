@@ -82,7 +82,9 @@ public:
 	virtual void Draw(SDL_Texture* sprites);
 	virtual void DebugDrawSelected();
 	virtual void OnCollision(ColliderGroup* c1, ColliderGroup* c2, CollisionState collisionState);
-	virtual void Move(fPoint destination);
+	virtual void CalculateMovementLogic();
+	virtual void Move(float dt);
+	virtual void SetDestination(iPoint des);
 
 	// Position and size
 	void SetPos(fPoint pos);
@@ -113,10 +115,14 @@ public:
 
 	bool isSelected = false;
 	bool isEntityFromPlayer = NULL;
+	bool isOnTheMove = false;
 
 	fPoint pos = { 0.0f,0.0f };
 
 	SDL_Color minimapDrawColor{ 0,0,0,0 };
+
+	// Collision
+	Collider* entityCollider = nullptr;
 
 protected:
 
@@ -129,15 +135,13 @@ protected:
 
 	j1Module* listener = nullptr; // callback
 
-	// Collision
-	Collider* entityCollider = nullptr;
 
-
-protected:
 
 	Animation North_Animation;
 	
 	fPoint past_frame_dest;
+
+
 };
 
 #endif //__Entity_H__

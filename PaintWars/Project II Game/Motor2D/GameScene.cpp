@@ -45,7 +45,7 @@ bool GameScene::Start()
 	Map_Manager();
 	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,	{    0,  100 }, { 100, 100 }, App->entities, 10);
 	App->entities->AddEntity(ENTITY_TYPE_PAINTER,	{  200,  200 }, {  20,  20 }, App->entities, 5);
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  400,  200 }, {  62, 118 }, App->entities, 10);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  400,  400 }, {  62, 118 }, App->entities, 10);
 	App->entities->AddEntity(ENTITY_TYPE_SLIME,		{  600,  200 }, {  20,  20 }, App->entities);
 	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,	{ 1000, 1000 }, {  20,  20 }, App->entities);
 	
