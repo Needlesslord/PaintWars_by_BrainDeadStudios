@@ -13,7 +13,7 @@ struct Properties
 {
 	struct Property
 	{
-		p2SString name;
+		std::string name;
 		int value;
 	};
 
@@ -39,7 +39,7 @@ struct Properties
 // ----------------------------------------------------
 struct MapLayer
 {
-	p2SString	name;
+	std::string	name;
 	int			width;
 	int			height;
 	uint*		data;
@@ -64,7 +64,7 @@ struct TileSet
 {
 	SDL_Rect GetTileRect(int id) const;
 	SDL_Rect GetAnimTileRect(int id, uint columns);
-	p2SString			name;
+	std::string			name;
 	int					firstgid;
 	int					margin;
 	int					spacing;
@@ -126,7 +126,7 @@ public:
 	fPoint MapToWorld(int x, int y) const;
 	iPoint WorldToMap(float x, float y) const;
 	bool CreateWalkabilityMap(int& width, int& height, uchar** buffer) const;
-
+	void GetTileOffset(int& w, int& h) const;
 private:
 
 	bool LoadMap();
@@ -135,7 +135,7 @@ private:
 	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
 	bool LoadProperties(pugi::xml_node& node, Properties& properties);
 	bool LoadTilesetAnimations(pugi::xml_node& tileset_node, TileSet* set);
-
+	
 	TileSet* GetTilesetFromTileId(int id) const;
 
 public:
@@ -146,7 +146,7 @@ public:
 private:
 
 	pugi::xml_document	map_file;
-	p2SString			folder;
+	std::string			folder;
 	bool				map_loaded;
 };
 

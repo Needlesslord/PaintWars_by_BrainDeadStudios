@@ -28,7 +28,10 @@ public:
 	void Create_Forest_Map();
 	void Create_Snow_Map();
 	void Create_Volcano_Map();
-
+	//SCENE TRANSITIONS
+	void InitScene();								// Method that will be used to initialize all scene elements.
+	void DrawScene();
+	void ExecuteTransition();
 
 public:
 	//void InitScene();								// Method that will be used to initialize all scene elements.

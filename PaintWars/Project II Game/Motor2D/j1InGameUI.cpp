@@ -10,7 +10,7 @@
 j1InGameUI::j1InGameUI() : j1Module()
 {
 
-	name.create("InGameUI");
+	name = ("InGameUI");
 }
 
 

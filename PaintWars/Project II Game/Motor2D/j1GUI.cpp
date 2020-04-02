@@ -14,7 +14,7 @@
 
 j1GUI::j1GUI() : j1Module()
 {
-	name.create("gui");
+	name = ("gui");
 }
 
 // Destructor

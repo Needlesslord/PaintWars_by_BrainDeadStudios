@@ -12,6 +12,7 @@ enum class SCENES
 {
 	MENU_SCENE,
 	GAME_SCENE,
+	MENU_SCENE,
 	NONE
 };
 

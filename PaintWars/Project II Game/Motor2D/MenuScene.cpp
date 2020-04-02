@@ -8,10 +8,9 @@
 #include "j1GUI.h"
 #include "j1SceneManager.h"
 #include "MenuScene.h"
-//#include "j1Transition.h"
-//#include "j1TransitionManager.h"
+#include "TransitionManager.h"
 
-MenuScene::MenuScene() : Scene(SCENES::MENU_SCENE)
+MenuScene::MenuScene() : Scene(SCENES::GAME_SCENE)
 {
 
 }
@@ -35,7 +34,6 @@ bool MenuScene::Awake(pugi::xml_node& config)
 bool MenuScene::Start()
 {
 	bool ret = true;
-	
 
 	mainMenuButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 350, 70 }, { 0, 0 }, false, true, { 0, 0, 350, 121 }, "Main Menu");
 
@@ -59,8 +57,6 @@ bool MenuScene::PreUpdate()
 {
 	bool ret = true;
 
-
-
 	return ret;
 }
 
@@ -76,9 +72,6 @@ bool MenuScene::Update(float dt)
 		App->scenes->SwitchScene(SCENES::GAME_SCENE);
 	}
 
-
-
-
 	return ret;
 }
 
@@ -86,6 +79,15 @@ bool MenuScene::Update(float dt)
 bool MenuScene::PostUpdate()
 {
 	bool ret = true;
+
+
+	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN) {
+		Change_Map = true;
+		Load_Snow_Map = true;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+		ret = false;
 
 	//ExecuteTransition();
 
@@ -97,7 +99,6 @@ bool MenuScene::CleanUp()
 {
 	LOG("Freeing Scene");
 	bool ret = true;
-
 
 	if (scene_texture != nullptr)
 	{
@@ -121,6 +122,7 @@ bool MenuScene::CleanUp()
 
 	return ret;
 }
+
 
 //void MenuScene::InitScene()
 //{
@@ -167,82 +169,83 @@ bool MenuScene::CleanUp()
 //	return scene_texture;
 //}
 
-//void MenuScene::ExecuteTransition()
-//{
-//	if (!App->transition_manager->is_transitioning)
-//	{
-//		if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
-//		{
-//			App->transition_manager->CreateCut(SCENES::SECOND_SCENE);
-//		}
-//
-//		if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
-//		{
-//			App->transition_manager->CreateFadeToColour(SCENES::SECOND_SCENE);
-//		}
-//
-//		if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
-//		{
-//			App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true);
-//		}
-//
-//		if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
-//		{
-//			App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true, true);
-//		}
-//
-//		if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
-//		{
-//			App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true);
-//		}
-//
-//		if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
-//		{
-//			App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true, true);
-//		}
-//
-//		if (App->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
-//		{
-//			App->transition_manager->CreateAlternatingBars(SCENES::SECOND_SCENE, 0.5f, true);
-//		}
-//
-//		if (App->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
-//		{
-//			App->transition_manager->CreateExpandingBars(SCENES::SECOND_SCENE, 0.5f, true);
-//		}
-//
-//		if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN)
-//		{
-//			iPoint mouse_pos = App->input->GetMouseToWorld();
-//
-//			App->transition_manager->CreateZoomToMouse(SCENES::SECOND_SCENE, mouse_pos, 0.5f, true);
-//		}
-//
-//		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
-//		{
-//			iPoint mouse_pos = App->input->GetMouseToWorld();
-//
-//			App->transition_manager->CreateCameraToMouse(mouse_pos, 0.5f, true);
-//		}
-//
-//
-//		// --- TRANSITION WITH TEXTURE METHODS (NOT IMPLEMENTED)
-//		if (App->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN)
-//		{
-//			if (scene_texture != nullptr)
-//			{
-//				App->transition_manager->CreateDissolve(SCENES::SECOND_SCENE, 1.0f);
-//			}
-//		}
-//
-//		if (App->input->GetMouseButtonDown(SDL_BUTTON_MIDDLE) == KEY_DOWN)
-//		{
-//			iPoint mouse_pos = App->input->GetMouseToWorld();
-//
-//			if (scene_texture != nullptr)
-//			{
-//				App->transition_manager->CreateZoomToTexture(SCENES::SECOND_SCENE, mouse_pos);
-//			}
-//		}
-//	}
-//}
+
+void MenuScene::ExecuteTransition()
+{
+	if (!App->transition_manager->is_transitioning)
+	{
+		if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN)
+		{
+			App->transition_manager->CreateCut(SCENES::GAME_SCENE);
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+		{
+			App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
+		}
+
+		//	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
+		//	{
+		//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true);
+		//	}
+
+		//	if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
+		//	{
+		//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true, true);
+		//	}
+
+		//	if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
+		//	{
+		//		App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true);
+		//	}
+
+		//	if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
+		//	{
+		//		App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true, true);
+		//	}
+
+		//	if (App->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
+		//	{
+		//		App->transition_manager->CreateAlternatingBars(SCENES::SECOND_SCENE, 0.5f, true);
+		//	}
+
+		//	if (App->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
+		//	{
+		//		App->transition_manager->CreateExpandingBars(SCENES::SECOND_SCENE, 0.5f, true);
+		//	}
+
+		//	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN)
+		//	{
+		//		iPoint mouse_pos = App->input->GetMouseToWorld();
+
+		//		App->transition_manager->CreateZoomToMouse(SCENES::SECOND_SCENE, mouse_pos, 0.5f, true);
+		//	}
+
+		//	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+		//	{
+		//		iPoint mouse_pos = App->input->GetMouseToWorld();
+
+		//		App->transition_manager->CreateCameraToMouse(mouse_pos, 0.5f, true);
+		//	}
+
+
+		//	// --- TRANSITION WITH TEXTURE METHODS (NOT IMPLEMENTED)
+		//	if (App->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN)
+		//	{
+		//		if (scene_texture != nullptr)
+		//		{
+		//			App->transition_manager->CreateDissolve(SCENES::SECOND_SCENE, 1.0f);
+		//		}
+		//	}
+
+		//	if (App->input->GetMouseButtonDown(SDL_BUTTON_MIDDLE) == KEY_DOWN)
+		//	{
+		//		iPoint mouse_pos = App->input->GetMouseToWorld();
+
+		//		if (scene_texture != nullptr)
+		//		{
+		//			App->transition_manager->CreateZoomToTexture(SCENES::SECOND_SCENE, mouse_pos);
+		//		}
+		//	}
+		}
+	}

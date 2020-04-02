@@ -23,6 +23,8 @@ class j1Player;
 class j1GUI;
 class j1Fonts;
 class j1InGameUI;
+class TransitionManager;
+class SceneManager;
 
 class j1App 
 {
@@ -58,7 +60,7 @@ public:
 
 	void LoadGame();
 	void SaveGame(const char*) const;
-	void GetSaveGames(std::list<p2SString>& list_to_fill) const;
+	void GetSaveGames(std::list<std::string>& list_to_fill) const;
 
 private:
 
@@ -101,19 +103,21 @@ public:
 	j1GUI*				gui = NULL;
 	j1Fonts*			fonts = NULL;
 	j1InGameUI*			InGameUI = NULL;
+	TransitionManager*  transition_manager = NULL;
+	
 private:
 
 	std::list<j1Module*> modules;
 	int					argc;
 	char**				args;
 
-	p2SString			title;
-	p2SString			organization;
+	std::string			title;
+	std::string			organization;
 
 	mutable bool		want_to_save = false;
 	bool				want_to_load = false;
-	p2SString			load_game;
-	mutable p2SString	save_game;
+	std::string			load_game;
+	mutable std::string	save_game;
 
 	j1Timer				startup_time;
 	j1Timer				frame_time;

@@ -10,7 +10,7 @@ j1Window::j1Window() : j1Module()
 {
 	window = NULL;
 	screen_surface = NULL;
-	name.create("window");
+	name = ("window");
 }
 
 // Destructor
@@ -102,11 +102,18 @@ void j1Window::SetTitle(const char* new_title)
 	SDL_SetWindowTitle(window, new_title);
 }
 
-void j1Window::GetWindowSize(uint& width, uint& height) const
+void j1Window::GetWindowSize(int & width, int & height) const
 {
 	width = this->width;
 	height = this->height;
 }
+
+void j1Window::GetWindowRect(SDL_Rect & rect) const
+{
+	rect = { 0, 0, width, height };
+}
+
+
 
 float j1Window::GetScale() const
 {

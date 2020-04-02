@@ -20,6 +20,8 @@
 #include "j1Fonts.h"
 #include "j1InGameUI.h"
 #include <thread>
+#include "TransitionManager.h"
+#include "j1SceneManager.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -38,6 +40,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	gui = new j1GUI();
 	fonts = new j1Fonts();
 	InGameUI = new j1InGameUI();
+	transition_manager = new TransitionManager();
+	
+
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 	AddModule(input);
@@ -53,6 +58,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(gui);
 	AddModule(fonts);
 	AddModule(InGameUI);
+	AddModule(transition_manager);
 
 	// render last to swap buffer
 	AddModule(render);
@@ -66,7 +72,7 @@ j1App::~j1App()
 
 	while(item != modules.begin())
 	{
-		RELEASE(*item);
+		RELEASE(*item); 
 		item--;
 	}
 
@@ -95,8 +101,8 @@ bool j1App::Awake()
 		// self-config
 		ret = true;
 		app_config = config.child("app");
-		title.create(app_config.child("title").child_value());
-		organization.create(app_config.child("organization").child_value());
+		title = (app_config.child("title").child_value());
+		organization = (app_config.child("organization").child_value());
 	}
 
 	if(ret == true)
@@ -106,7 +112,7 @@ bool j1App::Awake()
 
 		while(item != modules.end() && ret == true)
 		{
-			ret = (*item)->Awake(config.child((*item)->name.GetString()));
+			ret = (*item)->Awake(config.child((*item)->name.c_str()));
 			item++;
 		}
 	}
@@ -329,7 +335,7 @@ const char* j1App::GetArgv(int index) const
 // ---------------------------------------
 const char* j1App::GetTitle() const
 {
-	return title.GetString();
+	return title.c_str();
 }
 
 // ---------------------------------------
@@ -341,7 +347,7 @@ float j1App::GetDT() const
 // ---------------------------------------
 const char* j1App::GetOrganization() const
 {
-	return organization.GetString();
+	return organization.c_str();
 }
 
 // Load / Save
@@ -359,11 +365,11 @@ void j1App::SaveGame(const char* file) const
 	// from the "GetSaveGames" list ... should we overwrite ?
 
 	want_to_save = true;
-	save_game.create(file);
+	save_game = (file);
 }
 
 // ---------------------------------------
-void j1App::GetSaveGames(std::list<p2SString>& list_to_fill) const
+void j1App::GetSaveGames(std::list<std::string>& list_to_fill) const
 {
 	// need to add functionality to file_system module for this to work
 }
@@ -372,16 +378,16 @@ bool j1App::LoadGameNow()
 {
 	bool ret = false;
 
-	load_game.create("save_game.xml");
+	load_game = ("save_game.xml");
 
 	pugi::xml_document data;
 	pugi::xml_node root;
 
-	pugi::xml_parse_result result = data.load_file(load_game.GetString());
+	pugi::xml_parse_result result = data.load_file(load_game.c_str());
 
 	if (result != NULL)
 	{
-		LOG("Loading new Game State from %s...", load_game.GetString());
+		LOG("Loading new Game State from %s...", load_game.c_str());
 
 		root = data.child("game_state");
 
@@ -390,7 +396,7 @@ bool j1App::LoadGameNow()
 
 		while (item != modules.end() && ret == true)
 		{
-			ret = (*item)->Load(root.child((*item)->name.GetString()));
+			ret = (*item)->Load(root.child((*item)->name.c_str()));
 			item++;
 		}
 
@@ -398,10 +404,10 @@ bool j1App::LoadGameNow()
 		if (ret == true)
 			LOG("...finished loading");
 		else
-			LOG("...loading process interrupted with error on module %s", (item != modules.end()) ? (*item)->name.GetString() : "unknown");
+			LOG("...loading process interrupted with error on module %s", (item != modules.end()) ? (*item)->name.c_str() : "unknown");
 	}
 	else
-		LOG("Could not parse game state xml file %s. pugi error: %s", load_game.GetString(), result.description());
+		LOG("Could not parse game state xml file %s. pugi error: %s", load_game.c_str(), result.description());
 
 	want_to_load = false;
 	return ret;
@@ -411,7 +417,7 @@ bool j1App::SavegameNow() const
 {
 	bool ret = true;
 
-	LOG("Saving Game State to %s...", save_game.GetString());
+	LOG("Saving Game State to %s...", save_game.c_str());
 
 	// xml object were we will store all data
 	pugi::xml_document data;
@@ -423,17 +429,17 @@ bool j1App::SavegameNow() const
 
 	while (item != modules.end() && ret == true)
 	{
-		ret = (*item)->Save(root.append_child((*item)->name.GetString()));
+		ret = (*item)->Save(root.append_child((*item)->name.c_str()));
 		item++;
 	}
 
 	if (ret == true)
 	{
-		data.save_file(save_game.GetString());
+		data.save_file(save_game.c_str());
 		LOG("... finished saving", );
 	}
 	else
-		LOG("Save process halted from an error in module %s", (item != modules.end()) ? (*item)->name.GetString() : "unknown");
+		LOG("Save process halted from an error in module %s", (item != modules.end()) ? (*item)->name.c_str() : "unknown");
 
 	//data.reset();   AQUESTA MERDA D'AQUI FEIA QUE NO GUARDES
 	want_to_save = false;

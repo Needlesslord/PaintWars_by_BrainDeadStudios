@@ -13,7 +13,7 @@
 
 j1Input::j1Input() : j1Module()
 {
-	name.create("input");
+	name = ("input");
 	keyboard = new j1KeyState[MAX_KEYS];
 	memset(keyboard, KEY_IDLE, sizeof(j1KeyState) * MAX_KEYS);
 	memset(mouse_buttons, KEY_IDLE, sizeof(j1KeyState) * NUM_MOUSE_BUTTONS);
@@ -193,10 +193,10 @@ void j1Input::DisableTextInput() {
 
 	SDL_StopTextInput();
 	text_input = false;
-	App->input->text.Clear();
+	App->input->text.clear();
 }
 
-p2SString j1Input::GetText() {
+std::string j1Input::GetText() {
 
 	return text;
 }
@@ -206,18 +206,18 @@ int j1Input::GetCursorPosition() {
 	int width = 0;
 	int height = 0;
 
-	App->fonts->CalcSize(GetModifiedString().GetString(), width, height);
+	App->fonts->CalcSize(GetModifiedString().c_str(), width, height);
 
 	return width;
 }
 
-p2SString j1Input::GetModifiedString()
+std::string j1Input::GetModifiedString()
 {
 
 	if (cursor_position != 0) {
 
-		p2SString new_text(text.GetString());
-		new_text.Cut(text.Length() - cursor_position);
+		std::string new_text(text.c_str());
+		new_text = (text.length() - cursor_position);
 		return new_text;
 	}
 

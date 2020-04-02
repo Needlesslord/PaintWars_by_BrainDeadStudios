@@ -70,11 +70,11 @@ public:
 	void DisableTextInput();
 	int GetCursorPosition();
 
-	p2SString GetText();
-	p2SString GetModifiedString();
-
-	p2SString	final_text;
-	p2SString	text;
+	std::string GetText();
+	std::string GetModifiedString();
+	
+	std::string	final_text;
+	std::string	text;
 
 
 	float			ball_roll;
