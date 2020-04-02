@@ -1,11 +1,14 @@
 #include "j1App.h"
 #include "j1GUIButton.h"
 #include "j1Input.h"
+#include "j1Render.h"
+#include "j1Textures.h"
 #include "j1GUI.h"
 
 
 j1GUIButton::j1GUIButton() {
 	this->type = GUItype::GUI_BUTTON;
+	texture = App->tex->Load("textures/UI_atlas.png");
 }
 
 j1GUIButton::~j1GUIButton() {
@@ -21,6 +24,7 @@ bool j1GUIButton::Awake(pugi::xml_node&)
 
 bool j1GUIButton::Start()
 {
+
 	if (text != nullptr)
 		label = App->gui->ADD_ELEMENT(GUItype::GUI_LABEL, this, Map_Position, Inside_Position, true, true, { 0,0,0,0 }, text);
 

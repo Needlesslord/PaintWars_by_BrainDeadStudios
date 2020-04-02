@@ -4,7 +4,7 @@
 #include "TownHall.h"
 
 #include "j1Player.h"
-#include "j1Scene.h"
+#include "j1SceneManager.h"
 #include "j1Pathfinding.h"
 #include "j1Map.h"
 #include "j1Collision.h"

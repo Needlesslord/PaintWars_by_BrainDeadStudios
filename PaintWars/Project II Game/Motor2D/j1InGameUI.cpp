@@ -2,6 +2,7 @@
 #include "j1InGameUI.h"
 #include "j1Window.h"
 #include "j1GUI.h"
+#include "j1SceneManager.h"
 
 
 
@@ -57,8 +58,8 @@ bool j1InGameUI::CleanUp()
 //UI FUNCTIONS
 void j1InGameUI::Add_UI()
 {
-	menu.optionsButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, {width - 200,50 }, { 0,0 }, true, true, { 0,0,100,50 },"", this);
-	menu.continueButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, {width-200,500 }, { 0,0 }, true, false, { 0, 0,100,50 }, "", this);
+	//menu.optionsButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, {width - 200,50 }, { 0,0 }, true, true, { 0,0,100,50 },"", this);
+	//menu.continueButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, {width-200,500 }, { 0,0 }, true, false, { 0, 0,100,50 }, "", this);
 	
 }
 

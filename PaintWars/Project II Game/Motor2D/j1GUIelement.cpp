@@ -5,18 +5,18 @@
 #include "j1App.h"
 #include "j1Input.h"
 #include "j1Render.h"
+#include "j1Textures.h"
 #include "j1Window.h"
-#include "j1Scene.h"
+#include "j1SceneManager.h"
 
 
 j1GUIelement::~j1GUIelement()
 {
-
+	
 }
 
 bool j1GUIelement::Start()
 {
-
 
 	return true;
 }
@@ -24,14 +24,13 @@ bool j1GUIelement::Start()
 
 void j1GUIelement::Draw()
 {
-
 	if (above && interactable)
 	{
-		App->render->DrawQuad({ Map_Position.x, Map_Position.y - App->render->camera.y, rect.w, rect.h }, 236, 250, 31, 255, true, false, false, true);
-		App->render->DrawQuad({ Map_Position.x, Map_Position.y - App->render->camera.y, rect.w, rect.h }, 236, 250, 31, 140, true, true, false, true);
+		App->render->AddBlitEvent(2, texture, Map_Position.x, Map_Position.y - App->render->camera.y, hover_tex, false, true);
 	}
-	else {
-		App->render->DrawQuad({ Map_Position.x, Map_Position.y - App->render->camera.y, rect.w, rect.h }, 236, 250, 31, 140, true, true, false, true);
+	else 
+	{
+		App->render->AddBlitEvent(2, texture, Map_Position.x, Map_Position.y - App->render->camera.y, rect, false, true);
 	}
 }
 

@@ -72,6 +72,9 @@ public:
 	SDL_Rect rect = { 0,0,0,0 };
 	SDL_Texture* texture = nullptr;
 
+	SDL_Rect hover_tex;
+	SDL_Rect click_tex;
+
 };
 
 #endif // __j1GUIELEMENT_H__

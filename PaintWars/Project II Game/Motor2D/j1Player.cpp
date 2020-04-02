@@ -7,7 +7,7 @@
 #include "j1Render.h"
 #include "j1Window.h"
 #include "j1Player.h"
-#include "j1Scene.h"
+#include "j1SceneManager.h"
 #include "j1EntityManager.h"
 #include "j1Window.h"
 #include "j1GUI.h"
@@ -97,34 +97,37 @@ bool j1Player::CleanUp()
 
 void j1Player::Camera_Control(float dt)
 {
-	if (mouse_position.x == 0 && App->render->camera.x<=3750) 
-		App->render->camera.x += camera_speed*dt*1000;
+	if (App->scenes->current_scene->scene_name == SCENES::GAME_SCENE)
+	{
+		if (mouse_position.x == 0 && App->render->camera.x <= 3750)
+			App->render->camera.x += camera_speed * dt * 1000;
 
-	if (mouse_position.y == 0) 
-		App->render->camera.y += camera_speed*dt*1000;
+		if (mouse_position.y == 0)
+			App->render->camera.y += camera_speed * dt * 1000;
 
-	if (mouse_position.x > (win_width - camera_offset)/App->win->scale)
-		App->render->camera.x -= camera_speed*dt*1000;
+		if (mouse_position.x > (win_width - camera_offset) / App->win->scale)
+			App->render->camera.x -= camera_speed * dt * 1000;
 
-	if (mouse_position.y > (win_height - camera_offset)/App->win->scale)
-		App->render->camera.y -= camera_speed*dt*1000;
+		if (mouse_position.y > (win_height - camera_offset) / App->win->scale)
+			App->render->camera.y -= camera_speed * dt * 1000;
 
-	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
-		App->render->camera.y += camera_speed * dt * 1000;
+		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+			App->render->camera.y += camera_speed * dt * 1000;
 
-	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-		App->render->camera.y -= camera_speed * dt * 1000;
+		if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+			App->render->camera.y -= camera_speed * dt * 1000;
 
-	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-		App->render->camera.x += camera_speed * dt * 1000;
+		if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+			App->render->camera.x += camera_speed * dt * 1000;
 
-	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-		App->render->camera.x -= camera_speed * dt * 1000;
+		if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
+			App->render->camera.x -= camera_speed * dt * 1000;
 
-	if (App->input->GetKey(SDL_SCANCODE_F9) == KEY_REPEAT) {
+		if (App->input->GetKey(SDL_SCANCODE_F9) == KEY_REPEAT) {
 
-		App->render->camera.x = 0;
-		App->render->camera.y = 0;
+			App->render->camera.x = 0;
+			App->render->camera.y = 0;
+		}
 	}
 }
 

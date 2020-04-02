@@ -1,5 +1,6 @@
 #include "j1SceneManager.h"
 #include "GameScene.h"
+#include "MenuScene.h"
 #include "j1Render.h"
 #include "j1Input.h"
 #include "p2Log.h"
@@ -190,17 +191,19 @@ Scene* j1SceneManager::CreateScene(SCENES scene_name)
 
 	switch (scene_name)
 	{
+
+	case SCENES::MENU_SCENE:
+
+		item = new MenuScene();
+
+		break;
+
 	case SCENES::GAME_SCENE:
 
 		item = new GameScene();
 		
 		break;
 
-	//case SCENES::SECOND_SCENE:
-	//	
-	//	item = new SecondScene();
-	//	
-	//break;
 	}
 
 	if (item != nullptr)
@@ -213,6 +216,7 @@ Scene* j1SceneManager::CreateScene(SCENES scene_name)
 
 void j1SceneManager::ScenePushbacks()
 {
+	CreateScene(SCENES::MENU_SCENE);
 	CreateScene(SCENES::GAME_SCENE);
 }
 

@@ -183,9 +183,6 @@ bool GameScene::PostUpdate()
 		Load_Snow_Map = true;
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		ret = false;
-
 	//ExecuteTransition();
 
 	return ret;

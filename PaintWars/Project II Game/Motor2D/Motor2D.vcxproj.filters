@@ -55,9 +55,6 @@
     <ClCompile Include="j1GUIbutton.cpp">
       <Filter>Motor  ========\UI</Filter>
     </ClCompile>
-    <ClCompile Include="j1GUI.cpp">
-      <Filter>Motor  ========\UI</Filter>
-    </ClCompile>
     <ClCompile Include="j1Fonts.cpp">
       <Filter>Motor  ========\UI</Filter>
     </ClCompile>
@@ -94,13 +91,27 @@
     <ClCompile Include="Color.cpp">
       <Filter>Motor  ========\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="Spawner.cpp" />
     <ClCompile Include="j1Pathfinding.cpp">
       <Filter>Motor  ========\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="j1SceneManager.cpp" />
+    <ClCompile Include="j1SceneManager.cpp">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Spawner.cpp">
+      <Filter>Motor  ========\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="j1GUI.cpp">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -181,9 +192,6 @@
     <ClInclude Include="j1GUIbutton.h">
       <Filter>Motor  ========\UI</Filter>
     </ClInclude>
-    <ClInclude Include="j1GUI.h">
-      <Filter>Motor  ========\UI</Filter>
-    </ClInclude>
     <ClInclude Include="j1Fonts.h">
       <Filter>Motor  ========\UI</Filter>
     </ClInclude>
@@ -214,13 +222,27 @@
     <ClInclude Include="j1App.h">
       <Filter>Motor  ========\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Spawner.h" />
     <ClInclude Include="j1Pathfinding.h">
       <Filter>Motor  ========\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="j1SceneManager.h" />
+    <ClInclude Include="j1SceneManager.h">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Spawner.h">
+      <Filter>Motor  ========\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScene.h">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="j1GUI.h">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">

@@ -32,8 +32,15 @@ bool j1GUI::Awake(pugi::xml_node& config)
 
 bool j1GUI::Start()
 {
+	bool ret = true;
+	std::list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin();
+	while (tmp != GUI_ELEMENTS.end())
+	{
+		ret = (*tmp)->Start();
+		tmp++;
+	}
 
-	return true;
+	return ret;
 }
 
 

@@ -64,7 +64,7 @@
     </spawn>
   </scene>
   <gui>
-    <atlas file="Sprites/GUI/UI_Character_Sprites.png"/>
+    <atlas file="textures/UI_atlas.png"/>
     <FX_Audios_UI>audio/FX/Click_Mouse.wav</FX_Audios_UI>
   </gui>
 
