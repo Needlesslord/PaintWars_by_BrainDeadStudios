@@ -1,4 +1,5 @@
-#include "j1GUIinputBox.h"
+#include "j1GUIElements.h"
+#include "j1GUI.h"
 #include "j1App.h"
 #include "j1Fonts.h"
 #include "j1Render.h"
@@ -6,31 +7,24 @@
 #include "j1Textures.h"
 #include "j1Window.h"
 
-j1GUIinputBox::j1GUIinputBox(char* text)
+j1InputBox::j1InputBox(char* text)
 {
 	this->type = GUItype::GUI_INPUTBOX;
 
 }
 
-j1GUIinputBox::~j1GUIinputBox() {
+j1InputBox::~j1InputBox() {
 
 }
 
-
-bool j1GUIinputBox::Awake(pugi::xml_node&)
+bool j1InputBox::Start()
 {
-
-	return true;
-}
-
-bool j1GUIinputBox::Start()
-{
-	string = App->gui->ADD_ELEMENT(GUItype::GUI_LABEL, this, Map_Position, { 0,3 }, true, enabled, { Inside_Position.x,Inside_Position.y,50,50 }, text);
+	string = App->gui->AddElement(GUItype::GUI_LABEL, this, map_position, { 0,3 }, true, enabled, { (int)inside_position.x, (int)inside_position.y, 50, 0 }, text);
 	return true;
 }
 
 
-bool j1GUIinputBox::PreUpdate()
+bool j1InputBox::PreUpdate()
 {
 	string->enabled = enabled;
 
@@ -47,7 +41,7 @@ bool j1GUIinputBox::PreUpdate()
 	return true;
 }
 
-bool j1GUIinputBox::Update(float dt)
+bool j1InputBox::Update(float dt)
 {
 
 	if (above)
@@ -64,14 +58,14 @@ bool j1GUIinputBox::Update(float dt)
 	return true;
 }
 
-bool j1GUIinputBox::PostUpdate()
+bool j1InputBox::PostUpdate()
 {
 	if (enabled) {
 		Draw();
 
 		if (focus)
 		{
-			SDL_Rect rect = { (string->Map_Position.x + string->rect.w) * App->win->GetScale() , (string->Map_Position.y + Inside_Position.y) * App->win->GetScale(), 2,  string->rect.h + 10 };
+			SDL_Rect rect = { (string->map_position.x + string->rect.w) * App->win->GetScale() , (string->map_position.y + inside_position.y) * App->win->GetScale(), 2,  string->rect.h + 10 };
 			App->render->DrawQuad(rect, 255, 255, 255, 255, true, false);
 		}
 	}
@@ -80,18 +74,18 @@ bool j1GUIinputBox::PostUpdate()
 	return true;
 }
 
-bool j1GUIinputBox::CleanUp()
+bool j1InputBox::CleanUp()
 {
 	return true;
 }
 
-void j1GUIinputBox::OnClick()
+void j1InputBox::OnClick()
 {
 	focus = true;
 
 }
 
-void j1GUIinputBox::OnRelease()
+void j1InputBox::OnRelease()
 {
 
 }

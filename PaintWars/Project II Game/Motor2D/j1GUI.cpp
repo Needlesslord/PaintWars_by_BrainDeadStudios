@@ -1,15 +1,10 @@
-#include "j1GUI.h"
 #include "j1App.h"
+#include "j1GUI.h"
+
 #include "j1Render.h"
 #include "j1Textures.h"
 #include "j1Fonts.h"
 #include "j1Input.h"
-#include "j1GUIbutton.h"
-#include "j1GUIinputBox.h"
-#include "j1GUIlabel.h"
-#include "j1GUIimage.h"
-
-#include "j1GUIscrollBar.h"
 
 
 j1GUI::j1GUI() : j1Module()
@@ -32,26 +27,19 @@ bool j1GUI::Awake(pugi::xml_node& config)
 
 bool j1GUI::Start()
 {
-	bool ret = true;
-	std::list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin();
-	while (tmp != GUI_ELEMENTS.end())
-	{
-		ret = (*tmp)->Start();
-		tmp++;
-	}
 
-	return ret;
+	return true;
 }
 
 
 bool j1GUI::PreUpdate()
 {
 	bool ret = true;
-	std::list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin();
-	while (tmp != GUI_ELEMENTS.end())
+	p2List_item<j1Element*>* tmp = GUI_ELEMENTS.start;
+	while (tmp != nullptr)
 	{
-		ret = (*tmp)->PreUpdate();
-		tmp++;
+		ret = tmp->data->PreUpdate();
+		tmp = tmp->next;
 	}
 
 	return ret;
@@ -63,11 +51,11 @@ bool j1GUI::Update(float dt)
 {
 
 	bool ret = true;
-	std::list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin();
-	while (tmp != GUI_ELEMENTS.end())
+	p2List_item<j1Element*>* tmp = GUI_ELEMENTS.start;
+	while (tmp != nullptr)
 	{
-		ret = (*tmp)->Update(dt);
-		tmp++;
+		ret = tmp->data->Update(dt);
+		tmp = tmp->next;
 	}
 
 	return ret;
@@ -80,11 +68,11 @@ bool j1GUI::PostUpdate()
 
 	bool ret = true;
 
-	std::list<j1GUIelement*>::iterator tmp = GUI_ELEMENTS.begin();
-	while (tmp != GUI_ELEMENTS.end())
+	p2List_item<j1Element*>* tmp = GUI_ELEMENTS.start;
+	while (tmp != nullptr)
 	{
-		ret = (*tmp)->PostUpdate();
-		tmp++;
+		ret = tmp->data->PostUpdate();
+		tmp = tmp->next;
 	}
 	return ret;
 
@@ -96,46 +84,62 @@ bool j1GUI::CleanUp()
 {
 	LOG("Freeing GUI");
 
-	for (std::list<j1GUIelement*>::iterator item = GUI_ELEMENTS.begin(); item != GUI_ELEMENTS.end(); item++)
+	for (p2List_item<j1Element*>* item = GUI_ELEMENTS.start; item; item = item->next)
 	{
-		(*item)->CleanUp();
+		item->data->CleanUp();
 	}
 	GUI_ELEMENTS.clear();
 	return true;
 }
 
+SDL_Texture* j1GUI::Load_Texture(TEXTURE textureType)
+{
+	switch (textureType)
+	{
+	case TEXTURE::BUTON:
+		texture_load = App->tex->Load("textures/UI/UI_Test.png");
+		break;
+	
+	case TEXTURE::OPTIONS:
+		texture_load = App->tex->Load("textures/UI/UI_Test.png");
+		break;
+	}
+
+	return texture_load;
+}
 
 
-j1GUIelement* j1GUI::ADD_ELEMENT(GUItype type, j1GUIelement* parent, iPoint Map_Position, iPoint Inside_Position, bool interactable, bool enabled, SDL_Rect section, char* text, j1Module* listener, bool X_drag, bool Y_drag, SCROLL_TYPE scrollType, bool decor)
+
+j1Element* j1GUI::AddElement(GUItype type, j1Element* parent, fPoint map_position, fPoint inside_position, bool interactable, bool enabled, SDL_Rect section, char* text, j1Module* listener, bool X_drag, bool Y_drag, SCROLL_TYPE scrollType, bool decor, TEXTURE textureType)
 {
 
-	j1GUIelement* temp = nullptr;
+	j1Element* temp = nullptr;
 
 	switch (type)
 	{
 
 	case GUItype::GUI_BUTTON:
-		temp = new j1GUIButton();
+		temp = new j1Button();
 		break;
 	case GUItype::GUI_INPUTBOX:
-		temp = new j1GUIinputBox(text);
+		temp = new j1InputBox(text);
 		break;
 	case GUItype::GUI_LABEL:
-		temp = new j1GUIlabel();
+		temp = new j1Label();
 		break;
 	case GUItype::GUI_IMAGE:
-		temp = new j1GUIimage();
+		temp = new j1Image();
 		break;
 	case GUItype::GUI_SCROLLBAR:
-		temp = new j1GUIscrollBar(scrollType);
+		temp = new j1ScrollBar(scrollType);
 		break;
 	}
 
 	if (temp)
 	{
 		temp->parent = parent;
-		temp->Map_Position = Map_Position;
-		temp->Inside_Position = Inside_Position;
+		temp->map_position = map_position;
+		temp->inside_position = inside_position;
 		temp->listener = listener;
 		temp->interactable = interactable;
 		temp->X_drag = X_drag;
@@ -144,8 +148,10 @@ j1GUIelement* j1GUI::ADD_ELEMENT(GUItype type, j1GUIelement* parent, iPoint Map_
 		temp->enabled = enabled;
 		temp->rect = section;
 		temp->text = text;
+		temp->textureType = textureType;
 
-		GUI_ELEMENTS.push_back(temp);
+
+		GUI_ELEMENTS.add(temp)->data->Start();
 	}
 
 	return temp;
@@ -162,7 +168,7 @@ bool j1GUI::Load(pugi::xml_node& file) {
 	return true;
 }
 
-void j1GUI::Update_Position(j1GUIelement* element, iPoint position, iPoint localPosition) {
-	element->Map_Position = position;
-	element->Inside_Position = localPosition;
+void j1GUI::UpdatePosition(j1Element* element, fPoint position, fPoint localPosition) {
+	element->map_position = position;
+	element->inside_position = localPosition;
 }
