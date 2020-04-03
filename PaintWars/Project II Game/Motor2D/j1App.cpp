@@ -341,7 +341,7 @@ const char* j1App::GetTitle() const
 // ---------------------------------------
 float j1App::GetDT() const
 {
-	return 0.0f;
+	return dt;
 }
 
 // ---------------------------------------
