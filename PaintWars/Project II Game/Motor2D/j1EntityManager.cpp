@@ -82,8 +82,8 @@ bool j1EntityManager::Update(float dt) {
 			float x, y;
 			App->input->GetMousePosition(x, y);
 			fPoint mapCoordinates = App->render->ScreenToWorld(x, y);
-			if (mapCoordinates.x > (*checkForSelectedEntities)->pos.x && mapCoordinates.x < (*checkForSelectedEntities)->pos.x + (*checkForSelectedEntities)->GetSize().x &&
-				mapCoordinates.y > (*checkForSelectedEntities)->pos.y && mapCoordinates.y < (*checkForSelectedEntities)->pos.y + (*checkForSelectedEntities)->GetSize().y) {
+			if (mapCoordinates.x > (*checkForSelectedEntities)->pos.x - (*checkForSelectedEntities)->GetSize().x / 2 && mapCoordinates.x < (*checkForSelectedEntities)->pos.x + (*checkForSelectedEntities)->GetSize().x / 2 &&
+				mapCoordinates.y > (*checkForSelectedEntities)->pos.y - (*checkForSelectedEntities)->GetSize().y / 2 && mapCoordinates.y < (*checkForSelectedEntities)->pos.y + (*checkForSelectedEntities)->GetSize().y / 2) {
 				if (!(*checkForSelectedEntities)->isSelected) {
 					SelectEntity(*checkForSelectedEntities, controlWasPressed);
 				}
@@ -146,18 +146,42 @@ bool j1EntityManager::Update(float dt) {
 	}
 
 
-	// Move units selected on right-click
+	// Change destination for units selected on right-click
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && !unitsSelected.empty()) {
-		list<Entity*>::iterator unitsToMove = unitsSelected.begin();
-		while (unitsToMove != unitsSelected.end()) {
-			float x, y;
-			App->input->GetMousePosition(x, y);
-			(*unitsToMove)->Move({ x, y });
-			unitsToMove++;
+		list<Entity*>::iterator unitsToRedirect = unitsSelected.begin();
+		while (unitsToRedirect != unitsSelected.end()) {
+			fPoint mouseWorldPosition = App->input->GetMouseWorldPosition();
+			iPoint mouseMapPosition = App->map->WorldToMap(mouseWorldPosition.x, mouseWorldPosition.y);
+			(*unitsToRedirect)->SetDestination(mouseMapPosition);
+			unitsToRedirect++;
 		}
 	}
 	
+	// Prepare Movement
+	list<Entity*>::iterator unitsToPrepareMove = activeUnits.begin();
+	while (unitsToPrepareMove != activeUnits.end()) {
+		(*unitsToPrepareMove)->CalculateMovementLogic();
 
+		unitsToPrepareMove++;
+	}
+
+	// Move
+	list<Entity*>::iterator unitsToMove = activeUnits.begin();
+	while (unitsToMove != activeUnits.end()) {
+		if ((*unitsToMove)->isOnTheMove)
+			(*unitsToMove)->Move(dt);
+
+		unitsToMove++;
+	}
+
+	// Move colliders
+	list<Entity*>::iterator collidersToMove = activeUnits.begin();
+	while (collidersToMove != activeUnits.end()) {
+		(*collidersToMove)->entityCollider->rect.x = (*collidersToMove)->pos.x - (*collidersToMove)->GetSize().x / 2;
+		(*collidersToMove)->entityCollider->rect.y = (*collidersToMove)->pos.y - (*collidersToMove)->GetSize().y / 2;
+
+		collidersToMove++;
+	}
 	return ret;
 }
 

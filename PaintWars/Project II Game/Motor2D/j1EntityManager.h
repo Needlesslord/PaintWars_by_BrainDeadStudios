@@ -2,7 +2,6 @@
 #define __j1ENTITY_FACTORY_H__
 
 #include "j1Module.h"
-#include "p2Point.h"
 
 
 	// Allies
