@@ -10,7 +10,7 @@
 #include "MenuScene.h"
 #include "TransitionManager.h"
 
-MenuScene::MenuScene() : Scene(SCENES::GAME_SCENE)
+MenuScene::MenuScene() : Scene(SCENES::MENU_SCENE)
 {
 
 }
