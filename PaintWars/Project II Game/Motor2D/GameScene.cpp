@@ -45,16 +45,20 @@ bool GameScene::Start()
 	Map_Manager();
 	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,	{    0,  100 }, { 100, 100 }, App->entities, 10);
 	App->entities->AddEntity(ENTITY_TYPE_PAINTER,	{  200,  200 }, {  20,  20 }, App->entities, 5);
+
 	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  400,  400 }, {  62, 118 }, App->entities, 10);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  700,  600 }, {  62, 118 }, App->entities);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{ 1000,  800 }, {  62, 118 }, App->entities);
+
 	App->entities->AddEntity(ENTITY_TYPE_SLIME,		{  600,  200 }, {  20,  20 }, App->entities);
 	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,	{ 1000, 1000 }, {  20,  20 }, App->entities);
 	
 
-	int wCACA, hCACA;
-	uchar* dataCACA = NULL;
-	if (App->map->CreateWalkabilityMap(wCACA, hCACA, &dataCACA))
+	int w, h;
+	uchar* data = NULL;
+	if (App->map->CreateWalkabilityMap(w, h, &data))
 	{
-		App->pathfinding->SetMap(wCACA, hCACA, dataCACA);						// Sets a new walkability map with the map passed by CreateWalkabilityMap().
+		App->pathfinding->SetMap(w, h, data);						// Sets a new walkability map with the map passed by CreateWalkabilityMap().
 	}
 
 	return ret;
@@ -166,7 +170,7 @@ bool GameScene::Update(float dt)
 		App->map->data.tilesets.size(),
 		map_coordinates.x, map_coordinates.y, map_coordinates2.x, map_coordinates2.y);
 
-	App->win->SetTitle(title);
+	//App->win->SetTitle(title);
 
 
 	/*p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d, %d, %d",

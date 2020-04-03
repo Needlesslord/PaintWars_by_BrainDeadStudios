@@ -23,6 +23,8 @@ Warrior::Warrior(fPoint pos, int damage, j1Module* listener) : Entity(pos, damag
 	this->currLife = maxLife - damage;
 	this->pos = pos;
 
+	speed = 100;
+
 	iPoint mapPos = App->map->WorldToMap(pos.x, pos.y);
 	destination = mapPos;
 
@@ -87,39 +89,40 @@ void Warrior::CalculateMovementLogic() {
 
 void Warrior::Move(float dt) {
 	fPoint worldDestination = App->map->MapToWorld(destination.x, destination.y);
+	iPoint mapPos = App->map->WorldToMap(pos.x, pos.y);
 	if (unitOrientation == UNIT_ORIENTATION_NONE) {
 		return;
 	}
 	else if (unitOrientation == UNIT_ORIENTATION_NORTH) {
-		pos.y -= 4;
+		pos.y -= speed * dt;
 		//if (pos.y < worldDestination.y) pos.y = worldDestination.y;
 	}
 	else if (unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
-		pos.y -= 2;
-		pos.x += 2;
+		pos.y -= speed * dt / 2;
+		pos.x += speed * dt / 2;
 	}
 	else if (unitOrientation == UNIT_ORIENTATION_EAST) {
-		pos.x += 4;
+		pos.x += speed * dt;
 	}
 	else if (unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
-		pos.y += 2;
-		pos.x += 2;
-		//if (pos.y > worldDestination.y) pos.y = worldDestination.y;
-		//if (pos.x > worldDestination.x) pos.x = worldDestination.x;
+		pos.y += speed * dt / 2;
+		pos.x += speed * dt / 2;
+		//if (pos.y > worldDestination.y) { pos.y = worldDestination.y; destination = mapPos; }
+		//if (pos.x > worldDestination.x) { pos.x = worldDestination.x; destination = mapPos; }
 	}
 	else if (unitOrientation == UNIT_ORIENTATION_SOUTH) {
-		pos.y += 4;
+		pos.y += speed * dt;
 	}
 	else if (unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
-		pos.y += 2;
-		pos.x -= 2;
+		pos.y += speed * dt / 2;
+		pos.x -= speed * dt / 2;
 	}
 	else if (unitOrientation == UNIT_ORIENTATION_WEST) {
-		pos.x -= 4;
+		pos.x -= speed * dt;
 	}
 	else if (unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
-		pos.y -= 2;
-		pos.x -= 2;
+		pos.y -= speed * dt / 2;
+		pos.x -= speed * dt / 2;
 		//if (pos.y < worldDestination.y) pos.y = worldDestination.y;
 		//if (pos.x < worldDestination.x) pos.x = worldDestination.x;
 	}

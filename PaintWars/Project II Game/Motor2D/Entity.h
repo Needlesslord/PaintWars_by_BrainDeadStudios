@@ -117,6 +117,8 @@ public:
 	bool isEntityFromPlayer = NULL;
 	bool isOnTheMove = false;
 
+	float speed = 0;
+
 	fPoint pos = { 0.0f,0.0f };
 
 	SDL_Color minimapDrawColor{ 0,0,0,0 };
