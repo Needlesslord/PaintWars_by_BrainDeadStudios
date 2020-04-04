@@ -156,6 +156,13 @@ void j1Input::GetMousePosition(float& x, float& y)
 	y = mouse_y;
 }
 
+void j1Input::GetMousePosition_UI(int & x, int & y)
+{
+	x = mouse_x;
+	y = mouse_y;
+}
+
+
 fPoint j1Input::GetMouseWorldPosition()
 {
 	fPoint ret;
@@ -206,8 +213,8 @@ int j1Input::GetCursorPosition() {
 	int width = 0;
 	int height = 0;
 
-	App->fonts->CalcSize(GetModifiedString().c_str(), width, height);
-
+	
+	
 	return width;
 }
 
