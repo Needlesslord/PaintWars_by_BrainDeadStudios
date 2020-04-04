@@ -72,8 +72,9 @@ j1App::~j1App()
 
 	while(item != modules.begin())
 	{
-		RELEASE(*item); 
 		item--;
+		RELEASE(*item); 
+	
 	}
 
 	modules.clear();

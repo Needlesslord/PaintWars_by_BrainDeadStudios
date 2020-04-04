@@ -11,7 +11,7 @@
 
 class j1App;
 struct Collider;
-class j1GUIelement;
+class j1Element;
 
 enum class GUI_Event
 {
@@ -88,7 +88,7 @@ public:
 
 	}
 
-	virtual void GUI_Event_Manager(GUI_Event type, j1GUIelement* element)
+	virtual void GUI_Event_Manager(GUI_Event type, j1Element* element)
 	{
 
 	}

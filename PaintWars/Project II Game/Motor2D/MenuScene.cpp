@@ -10,7 +10,7 @@
 #include "MenuScene.h"
 #include "TransitionManager.h"
 
-MenuScene::MenuScene() : Scene(SCENES::GAME_SCENE)
+MenuScene::MenuScene() : Scene(SCENES::MENU_SCENE)
 {
 
 }
@@ -35,19 +35,19 @@ bool MenuScene::Start()
 {
 	bool ret = true;
 
-	mainMenuButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 350, 70 }, { 0, 0 }, false, true, { 0, 0, 350, 121 }, "Main Menu");
+	//mainMenuButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 350, 70 }, { 0, 0 }, false, true, { 0, 0, 350, 121 }, "Main Menu");
 
-	newGameButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 370, 240 }, { 0,0 }, true, true, { 0, 445, 312, 108 }, "New Game", App->scenes);
-	newGameButton->hover_tex = { 350, 445, 312, 108 };
+	//newGameButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 370, 240 }, { 0,0 }, true, true, { 0, 445, 312, 108 }, "New Game", App->scenes);
+	//newGameButton->hover_tex = { 350, 445, 312, 108 };
 
-	continueButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 370, 380 }, { 0,0 }, true, true, { 0, 445, 312, 108 }, "Continue", App->scenes);
-	continueButton->hover_tex = { 350, 445, 312, 108 };
+	//continueButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 370, 380 }, { 0,0 }, true, true, { 0, 445, 312, 108 }, "Continue", App->scenes);
+	//continueButton->hover_tex = { 350, 445, 312, 108 };
 
-	settingsButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 370, 520 }, { 0,0 }, true, true, { 0, 445, 312, 108 }, "Settings", App->scenes);
-	settingsButton->hover_tex = { 350, 445, 312, 108 };
+	//settingsButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 370, 520 }, { 0,0 }, true, true, { 0, 445, 312, 108 }, "Settings", App->scenes);
+	//settingsButton->hover_tex = { 350, 445, 312, 108 };
 
-	exitButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 390, 650 }, { 0,0 }, true, true, { 0, 877, 275, 95 }, "EXIT", App->scenes);
-	exitButton->hover_tex = { 350, 877, 275, 95 };
+	//exitButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 390, 650 }, { 0,0 }, true, true, { 0, 877, 275, 95 }, "EXIT", App->scenes);
+	//exitButton->hover_tex = { 350, 877, 275, 95 };
 
 	return ret;
 }
@@ -94,11 +94,11 @@ bool MenuScene::CleanUp()
 	LOG("Freeing Scene");
 	bool ret = true;
 
-	RELEASE(mainMenuButton);
+	/*RELEASE(mainMenuButton);
 	RELEASE(newGameButton);
 	RELEASE(continueButton);
 	RELEASE(settingsButton);
-	RELEASE(exitButton);
+	RELEASE(exitButton);*/
 
 	if (scene_texture != nullptr)
 	{
