@@ -112,10 +112,10 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	/// Buildings
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
-		vector<Collider*> collider;
+		//vector<Collider*> collider;
 		SDL_Rect rect = { pos.x - GetSize().x/2, pos.y - GetSize().y / 2, GetSize().x, GetSize().y };
 		entityCollider = App->col->AddCollider(rect, collType, App->entities);
-		collider.push_back(entityCollider);
+		//collider.push_back(entityCollider);
 
 		return true;
 	}
@@ -123,20 +123,20 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	/// Units
 	else if (entityType == ENTITY_TYPE_PAINTER) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_UNIT;
-		vector<Collider*> collider;
+		//vector<Collider*> collider;
 		SDL_Rect rect = { pos.x - GetSize().x / 2, pos.y - GetSize().y / 2, GetSize().x, GetSize().y };
 		entityCollider = App->col->AddCollider(rect, collType, App->entities);
-		collider.push_back(entityCollider);
+		//collider.push_back(entityCollider);
 
 		return true;
 	}
 
 	else if (entityType == ENTITY_TYPE_WARRIOR) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_UNIT;
-		vector<Collider*> collider;
+		//vector<Collider*> collider;
 		SDL_Rect rect = { pos.x - GetSize().x / 2, pos.y - GetSize().y / 2, GetSize().x, GetSize().y };
 		entityCollider = App->col->AddCollider(rect, collType, App->entities);
-		collider.push_back(entityCollider);
+		//collider.push_back(entityCollider);
 
 		return true;
 	}
@@ -145,10 +145,10 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	/// Buildings
 	else if (entityType == ENTITY_TYPE_SPAWNER) {
 		COLLIDER_TYPE collType = COLLIDER_ENEMY_BUILDING;
-		vector<Collider*> collider;
+		//vector<Collider*> collider;
 		SDL_Rect rect = { pos.x - GetSize().x / 2, pos.y - GetSize().y / 2, GetSize().x, GetSize().y };
 		entityCollider = App->col->AddCollider(rect, collType, App->entities);
-		collider.push_back(entityCollider);
+		//collider.push_back(entityCollider);
 
 		return true;
 	}
@@ -156,10 +156,10 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	/// Units
 	else if (entityType == ENTITY_TYPE_SLIME) {
 		COLLIDER_TYPE collType = COLLIDER_ENEMY_UNIT;
-		vector<Collider*> collider;
+		//vector<Collider*> collider;
 		SDL_Rect rect = { pos.x - GetSize().x / 2, pos.y - GetSize().y / 2, GetSize().x, GetSize().y };
 		entityCollider = App->col->AddCollider(rect, collType, App->entities);
-		collider.push_back(entityCollider);
+		//collider.push_back(entityCollider);
 
 		return true;
 	}

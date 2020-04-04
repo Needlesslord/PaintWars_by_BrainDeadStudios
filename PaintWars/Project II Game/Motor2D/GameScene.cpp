@@ -39,6 +39,8 @@ bool GameScene::Start()
 {
 	bool ret = true;
 	
+	debug_tex = App->tex->Load("maps/path2.png");
+
 	//THESE BOOLS HAVE TO BE REMOVED ONCE WE HAVE THE MAIN MENU, BECAUSE WE WANT THE GAME TO LOAD THE MAP AFTER WE USE THE PLAY BUTTON NOT WHILE WE ARE IN THE MENU
 	Load_Forest_Map = true;
 	Change_Map = true;
@@ -60,6 +62,12 @@ bool GameScene::Start()
 	{
 		App->pathfinding->SetMap(w, h, data);						// Sets a new walkability map with the map passed by CreateWalkabilityMap().
 	}
+
+	//App->pathfinding->ChangeWalkability({ 7, 0 }, false);
+	//App->pathfinding->ChangeWalkability({ 7, 1 }, false);
+	//App->pathfinding->ChangeWalkability({ 7, 2 }, false);
+	//App->pathfinding->ChangeWalkability({ 7, 3 }, false);
+
 
 	return ret;
 }
@@ -170,7 +178,7 @@ bool GameScene::Update(float dt)
 		App->map->data.tilesets.size(),
 		map_coordinates.x, map_coordinates.y, map_coordinates2.x, map_coordinates2.y);
 
-	//App->win->SetTitle(title);
+	App->win->SetTitle(title);
 
 
 	/*p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d, %d, %d",
@@ -185,7 +193,17 @@ bool GameScene::Update(float dt)
 	//float x, y;
 
 
-	//App->render->Blit(debug_tex, p.x, p.y);
+	
+
+	// Debug pathfinding ------------------------------
+	float a, b;
+
+	// Debug pathfinding ------------------------------
+	App->input->GetMousePosition(a, b);
+	fPoint c = App->render->ScreenToWorld(a, b);
+	iPoint d = App->map->WorldToMap(c.x - App->render->camera.x, c.y - App->render->camera.y);
+	c = App->map->MapToWorld(d.x, d.y);
+	App->render->AddBlitEvent(1, debug_tex, c.x, c.y, { 0,0, 151, 107 });
 
 	return ret;
 }
@@ -235,6 +253,8 @@ bool GameScene::CleanUp()
 	{
 		SDL_FreeSurface(scene_surface);
 	}
+
+	App->tex->UnLoad(debug_tex);
 
 	return ret;
 }
