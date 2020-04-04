@@ -48,9 +48,7 @@ void Entity::CalculateMovementLogic(int p) {
 
 	App->pathfinding->CreatePath(map_coordinates, destination);
 	currentPath = *App->pathfinding->GetLastPath();
-	if (p == 1) {
-		currentPath.at(0)=currentPath.at(1);
-	}
+	
 
 	if (map_coordinates.x < destination.x) {
 		
@@ -238,10 +236,10 @@ void Entity::Move(float dt) {
 		pos.x -= speed * dt / 2;
 		pos.y -= speed * dt / 2;
 
-		if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
+		if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
 			pos.x = worldDestination.x + App->map->data.tile_width / 2;
 		}
-		if (pos.y > worldDestination.y + App->map->data.tile_height / 2) {
+		if (pos.y < worldDestination.y + App->map->data.tile_height / 2) {
 			pos.y = worldDestination.y + App->map->data.tile_height / 2;
 		}
 	}
