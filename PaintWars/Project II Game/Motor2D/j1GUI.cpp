@@ -103,6 +103,9 @@ SDL_Texture* j1GUI::Load_Texture(TEXTURE textureType)
 	case TEXTURE::OPTIONS:
 		texture_load = App->tex->Load("textures/UI/UI_Test.png");
 		break;
+
+	case TEXTURE::ATLAS:
+		texture_load = App->tex->Load("textures/UI/UI_atlas.png");
 	}
 
 	return texture_load;

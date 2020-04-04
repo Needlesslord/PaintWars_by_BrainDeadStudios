@@ -11,6 +11,7 @@
 #include "j1EntityManager.h"
 #include "Entity.h"
 #include "j1SceneManager.h"
+#include "TransitionManager.h"
 
 
 
@@ -81,14 +82,17 @@ bool j1InGameUI::CleanUp()
 void j1InGameUI::Add_UI()
 {
 	//MENU
-	menu.Menu_button = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, {width -50,10 }, { 0,0 }, true, true, { 0,0,40,40 }, "", this,false, false, SCROLL_TYPE::SCROLL_NONE,true, TEXTURE::OPTIONS);
-	menu.Return_button = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { MiddleScreenW + 25,MiddleScreenH-140 }, { 0,30 }, true, false, { 0,0,200,65 }, "MORE RESOURCES", this, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::BUTON);
-	menu.Resume_button = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { MiddleScreenW + 25,MiddleScreenH -60}, { 60,30 }, true, false, { 0,0,200,65 }, "RESUME", this, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::BUTON);
-	menu.Exit_button = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { MiddleScreenW + 25,MiddleScreenH + 15 }, {60,30 }, true, false, { 0,0,200,65 }, "FULLSCREEN", this, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::BUTON);
+	//menu.Menu_button = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, {width -50,10 }, { 0,0 }, true, true, { 0,0,40,40 }, "", this,false, false, SCROLL_TYPE::SCROLL_NONE,true, TEXTURE::OPTIONS);
+	//menu.Return_button = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { MiddleScreenW + 25,MiddleScreenH-140 }, { 0,30 }, true, false, { 0,0,200,65 }, "MORE RESOURCES", this, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::BUTON);
+	menu.Resume_button = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { MiddleScreenW+300 ,MiddleScreenH -80}, { 60,30 }, true, false, { 0,0,600,200 }, "RESUME", this, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::BUTON);
+	//menu.Return_button = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { MiddleScreenW  ,MiddleScreenH - 80 }, { 200,200 }, true, false, { 0,0,200,65 }, "RESUME", this, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::BUTON);
+	/*menu.Exit_button = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { MiddleScreenW + 25,MiddleScreenH + 15 }, {60,30 }, true, false, { 0,0,200,65 }, "FULLSCREEN", this, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::BUTON);
 	menu.Save = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { MiddleScreenW + 25,MiddleScreenH +90 }, { 60,30 }, true, false, { 0,0,200,65 }, "QUIT", this, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::BUTON);
 	menu.Load = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { MiddleScreenW + 25,MiddleScreenH +165}, { 35,30 }, true, false, { 0,0,200,65 }, "MAIN MENU", this, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::BUTON);
-	menu.Image = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { MiddleScreenW - 50,0 }, { 0,0 }, true, false, { 0, 0,350,500 },"", this, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::IMAGE);
+	menu.Image = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { MiddleScreenW - 50,0 }, { 0,0 }, true, false, { 0, 0,350,500 },"", this, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::IMAGE);*/
+	
 
+	//Main_Menu.Play_Main_Menu=App->gui->AddElement(GUItype::GUI_BUTTON,nullptr, { MiddleScreenW + 50 ,MiddleScreenH - 60 },{ 60,30 },true,false,)
 
 
 	///////////////////////////////
@@ -106,12 +110,12 @@ void j1InGameUI::Add_UI()
 void j1InGameUI::Activate_Menu()
 {
 	menu.Resume_button->enabled = !menu.Resume_button->enabled;
-	menu.Return_button->enabled = !menu.Return_button->enabled;
-	menu.Exit_button->enabled = !menu.Exit_button->enabled;
+	//menu.Return_button->enabled = !menu.Return_button->enabled;
+	/*menu.Exit_button->enabled = !menu.Exit_button->enabled;
 	menu.Load->enabled = !menu.Load->enabled;
 	menu.Save->enabled = !menu.Save->enabled;
 	menu.Image->enabled = !menu.Image->enabled;
-	menu.Scroll->enabled = !menu.Scroll->enabled;
+	menu.Scroll->enabled = !menu.Scroll->enabled;*/
 }
 
 void j1InGameUI::GUI_Event_Manager(GUI_Event type, j1Element* element)
@@ -132,7 +136,7 @@ void j1InGameUI::GUI_Event_Manager(GUI_Event type, j1Element* element)
 			quit = true;
 		}
 		if (element == menu.Resume_button) {
-			Activate_Menu();
+			App->transition_manager->CreateCut(SCENES::GAME_SCENE);
 		}
 		if (element == menu.Menu_button) {
 			

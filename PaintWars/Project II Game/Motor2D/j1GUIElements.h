@@ -39,6 +39,7 @@ enum class TEXTURE
 	IMAGE,
 	MAIN_IMAGE,
 	BOTON_SCROLL,
+	ATLAS,
 	NONE
 };
 

@@ -15,6 +15,10 @@ struct Game_Menu {
 	j1Element* Save;
 	j1Element* Load;
 	j1Element* Scroll;
+
+
+	j1Element* Play_Main_Menu;
+	j1Element* Exit_Main_Menu;
 };
 
 
@@ -75,6 +79,7 @@ private:
 
 	//menu ui
 	Game_Menu menu;
+	Game_Menu Main_Menu;
 	
 	In_Game_Basics basics;
 
