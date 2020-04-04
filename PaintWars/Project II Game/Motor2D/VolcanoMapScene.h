@@ -30,11 +30,11 @@ public:
 
 public:
 
-	j1GUIelement* mainMenuButton = nullptr;
-	j1GUIelement* newGameButton = nullptr;
-	j1GUIelement* continueButton = nullptr;
-	j1GUIelement* settingsButton = nullptr;
-	j1GUIelement* exitButton = nullptr;
+	j1Element* mainMenuButton = nullptr;
+	j1Element* newGameButton = nullptr;
+	j1Element* continueButton = nullptr;
+	j1Element* settingsButton = nullptr;
+	j1Element* exitButton = nullptr;
 
 };
 

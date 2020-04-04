@@ -1,44 +1,40 @@
-#ifndef __j1FONTS_H__
-#define __j1FONTS_H__
+#ifndef __J1FONTS_H__
+#define __J1FONTS_H__
 
 #include "j1Module.h"
 #include "SDL\include\SDL_pixels.h"
-#include <list>
 
-#define DEFAULT_FONT "fonts/open_sans/OpenSans-Regular.ttf"
-#define DEFAULT_FONT_SIZE 12
+#define MAX_FONTS 11
+#define MAX_FONT_CHARS 256
 
 struct SDL_Texture;
-struct _TTF_Font;
+
+struct Font
+{
+	char table[MAX_FONT_CHARS];
+	SDL_Texture* graphic = nullptr;
+	uint rows, len, char_w, char_h, row_chars;
+};
 
 class j1Fonts : public j1Module
 {
 public:
 
 	j1Fonts();
-
-	// Destructor
-	virtual ~j1Fonts();
-
-	// Called before render is available
-	bool Awake(pugi::xml_node&);
-
-	// Called before quitting
-	bool CleanUp();
+	~j1Fonts();
 
 	// Load Font
-	_TTF_Font* const Load(const char* path, int size = 12);
+	int Load(const char* texture_path, const char* characters, uint rows = 1);
+	void UnLoad(int font_id);
 
 	// Create a surface from text
-	SDL_Texture* Print(const char* text, SDL_Color color = { 255, 255, 255, 255 }, _TTF_Font* font = NULL);
-
-	bool CalcSize(const char* text, int& width, int& height, _TTF_Font* font = NULL) const;
+	void BlitText(int x, int y, int bmp_font_id, const char* text) const;
 
 
-public:
+private:
+	Font	 fonts[MAX_FONTS];
 
-	std::list<_TTF_Font*>	fonts;
-	_TTF_Font* default;
 };
 
-#endif // __j1FONTS_H__
+
+#endif // __j1Fonts_H__
