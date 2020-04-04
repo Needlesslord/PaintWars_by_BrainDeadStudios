@@ -164,19 +164,16 @@ bool GameScene::Update(float dt)
 
 	App->map->Draw();
 
-	float x, y;
-	App->input->GetMousePosition(x, y);
-	iPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
-	fPoint map_coordinates2 = App->input->GetMouseWorldPosition();
-
+	fPoint xy = App->input->GetMouseWorldPosition();
+	iPoint cameraW = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
+	iPoint map_coordinates = App->map->WorldToMap(xy.x - cameraW.x /*+ App->map->data.tile_width / 2*/, xy.y - cameraW.y + App->map->data.tile_height/2);
 
 	static char title[256];
-
-	sprintf_s(title, 256, "Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d, %d, %d",
+	sprintf_s(title, 256, "Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d,",
 		App->map->data.width, App->map->data.height,
 		App->map->data.tile_width, App->map->data.tile_height,
 		App->map->data.tilesets.size(),
-		map_coordinates.x, map_coordinates.y, map_coordinates2.x, map_coordinates2.y);
+		map_coordinates.x, map_coordinates.y);
 
 	App->win->SetTitle(title);
 
@@ -188,23 +185,15 @@ bool GameScene::Update(float dt)
 		map_coordinates.x, map_coordinates.y, map_coordinates2.x, map_coordinates2.y);
 
 	App->win->SetTitle(title.GetString());*/
-
-	// Debug pathfinding ------------------------------
-	//float x, y;
-
-
 	
-
+	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
+		debugTile = !debugTile;
+	}
 	// Debug pathfinding ------------------------------
-	float a, b;
-
-	// Debug pathfinding ------------------------------
-	App->input->GetMousePosition(a, b);
-	fPoint c = App->render->ScreenToWorld(a, b);
-	iPoint d = App->map->WorldToMap(c.x - App->render->camera.x, c.y - App->render->camera.y);
-	c = App->map->MapToWorld(d.x, d.y);
-	App->render->AddBlitEvent(1, debug_tex, c.x, c.y, { 0,0, 151, 107 });
-
+	if (debugTile) {
+		fPoint c = App->map->MapToWorld(map_coordinates.x, map_coordinates.y);
+		App->render->AddBlitEvent(1, debug_tex, c.x, c.y, { 0,0,150,75 });
+	}
 	return ret;
 }
 

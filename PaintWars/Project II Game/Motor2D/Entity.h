@@ -2,6 +2,8 @@
 #define __Entity_H__
 
 #include "p2Point.h"
+#include <vector>
+
 #include "Animation.h"
 
 #include "j1App.h"
@@ -137,7 +139,8 @@ protected:
 
 	j1Module* listener = nullptr; // callback
 
-
+	iPoint destination;
+	std::vector<iPoint>currentPath;
 
 	Animation North_Animation;
 	

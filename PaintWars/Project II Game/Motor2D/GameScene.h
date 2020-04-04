@@ -58,6 +58,10 @@ public:
 private:
 
 	SDL_Texture* debug_tex = nullptr;
+
+
+	bool debugTile = true;
+
 };
 
 #endif // __FIRSTSCENE_H__
