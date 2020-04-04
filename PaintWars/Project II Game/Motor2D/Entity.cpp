@@ -48,15 +48,19 @@ void Entity::CalculateMovementLogic(int p) {
 
 	App->pathfinding->CreatePath(map_coordinates, destination);
 	currentPath = *App->pathfinding->GetLastPath();
-	
+
+	for (int i = 0; i < p; i++)
+		currentPath.pop_back();
 
 	if (map_coordinates.x < destination.x) {
 		
 		if (map_coordinates.y < destination.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH;
+			destination.y -= p;
 		}
 		else if (map_coordinates.y > destination.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_EAST;
+			destination.x += -p;
 		}
 		else /*if (map_coordinates.y == destination.y)*/ {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH_EAST;
@@ -68,12 +72,15 @@ void Entity::CalculateMovementLogic(int p) {
 		
 		if (map_coordinates.y < destination.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_WEST;
+			destination.x += -p;
 		}
 		else if (map_coordinates.y > destination.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH;
+			destination.x += -p;
 		}
 		else/* if (map_coordinates.y == destination.y) */ {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH_WEST;
+			destination.x += -p;
 		}
 	}
 
