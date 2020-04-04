@@ -77,7 +77,6 @@ struct TileSet
 	int					num_tiles_height;
 	int					offset_x;
 	int					offset_y;
-	
 
 };
 
@@ -127,6 +126,7 @@ public:
 	iPoint WorldToMap(float x, float y) const;
 	bool CreateWalkabilityMap(int& width, int& height, uchar** buffer) const;
 	void GetTileOffset(int& w, int& h) const;
+
 private:
 
 	bool LoadMap();

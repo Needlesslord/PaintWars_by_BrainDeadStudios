@@ -4,6 +4,8 @@
 #include "j1Module.h"
 #include "Scene.h"
 
+struct SDL_Texture;
+
 class GameScene : public Scene
 {
 public:
@@ -53,6 +55,12 @@ public:
 	bool Load_Snow_Map;
 	bool Change_Map;
 
+private:
+
+	SDL_Texture* debug_tex = nullptr;
+
+
+	bool debugTile = true;
 
 };
 

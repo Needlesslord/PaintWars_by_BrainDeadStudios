@@ -11,18 +11,17 @@ public:
 	Warrior(fPoint pos, int currLife, j1Module* listener);
 	~Warrior();
 
-	void CalculateMovementLogic() override;
-	void Move(float dt) override;
-	void SetDestination(iPoint des) override;
+	//void CalculateMovementLogic() override;
+	//void Move(float dt) override;
+	//void SetDestination(iPoint des) override;
 
 public:
 
-	iPoint destination;
-	iPoint nextTile;
+	//iPoint destination;
 
 private:
 
-	std::vector<iPoint>currentPath;
+	//std::vector<iPoint>currentPath;
 
 	bool startTimer = true;
 

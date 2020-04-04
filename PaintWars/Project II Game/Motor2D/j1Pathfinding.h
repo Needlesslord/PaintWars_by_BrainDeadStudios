@@ -45,12 +45,14 @@ public:
 	// Utility: return the walkability value of a tile
 	uchar GetTileAt(const iPoint& pos) const;
 
+	void ChangeWalkability(const iPoint& pos, bool isBecomingWalkable);
+
 private:
 
 	// size of the map
 	uint width;
 	uint height;
-	// all map walkability values [0..255]
+	// Number of tiles in the map!!!		all map walkability values [0..255]
 	uchar* map;
 	// we store the created path here
    std::vector<iPoint> lastPath;

@@ -403,8 +403,8 @@ bool j1Map::LoadTilesetAnimations(pugi::xml_node& tileset_node, TileSet* set)
 			}
 			else
 			{
-				//animation.type = EntityType::NONE;
-				//animation.orientation = Orientation::NONE;
+				animation.type = ENTITY_TYPE::ENTITY_TYPE_NONE;
+				animation.orientation = UNIT_ORIENTATION::UNIT_ORIENTATION_NONE;
 			}
 
 			LOG("UEP, found an animating tile! Type: %d", animation.type);
@@ -530,7 +530,7 @@ bool j1Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer) const
 	{
 		MapLayer* layer = (*item);
 
-		if(layer->properties.Get("Navigation", 0) == 0)
+		if(layer->properties.Get("Navigation", 0) != 1)
 			continue;
 
 		uchar* map = new uchar[layer->width*layer->height];
