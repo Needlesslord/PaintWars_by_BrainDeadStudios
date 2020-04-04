@@ -148,6 +148,7 @@ bool j1EntityManager::Update(float dt) {
 
 	// Change destination for units selected on right-click
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && !unitsSelected.empty()) {
+		int orderOfPriority = 0;
 		list<Entity*>::iterator unitsToRedirect = unitsSelected.begin();
 		while (unitsToRedirect != unitsSelected.end()) {
 			fPoint xy = App->input->GetMouseWorldPosition();
@@ -155,7 +156,8 @@ bool j1EntityManager::Update(float dt) {
 			iPoint map_coordinates = App->map->WorldToMap(xy.x - cameraW.x /*+ App->map->data.tile_width / 2*/, xy.y - cameraW.y + App->map->data.tile_height / 2);
 
 			(*unitsToRedirect)->SetDestination(map_coordinates);
-			(*unitsToRedirect)->CalculateMovementLogic();
+			(*unitsToRedirect)->CalculateMovementLogic(orderOfPriority);
+			orderOfPriority++;
 			unitsToRedirect++;
 		}
 	}

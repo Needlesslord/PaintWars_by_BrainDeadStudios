@@ -15,6 +15,8 @@ Entity::Entity(fPoint pos, int damage, j1Module* listeners) : pos(pos), currLife
 {
 	if (this->currLife == 0)
 		this->currLife = this->maxLife;
+
+	isOnTheMove = false;
 }
 
 Entity::~Entity() {}
@@ -30,51 +32,63 @@ void Entity::DebugDrawSelected()
 
 void Entity::OnCollision(ColliderGroup* c1, ColliderGroup* c2, CollisionState collisionState) {}
 
-void Entity::CalculateMovementLogic() {
+void Entity::CalculateMovementLogic(int p) {
+
+	iPoint cameraW = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
+	iPoint map_coordinates = App->map->WorldToMap(pos.x - cameraW.x /*+ App->map->data.tile_width / 2*/, pos.y - cameraW.y + App->map->data.tile_height / 2);
 
 	iPoint mapPos = App->map->WorldToMap(pos.x, pos.y);
 	fPoint worldDestination = App->map->MapToWorld(destination.x, destination.y);
 
 	// If he's at the destination he doesn't have to move so we exit
-	if (destination == mapPos) {
+	if (destination == map_coordinates) {
 		isOnTheMove = false;
 		return;
 	}
 
-	App->pathfinding->CreatePath(mapPos, destination);
+	App->pathfinding->CreatePath(map_coordinates, destination);
 	currentPath = *App->pathfinding->GetLastPath();
+	if (p == 1) {
+		currentPath.at(0)=currentPath.at(1);
+	}
 
-
-	if (pos.x < worldDestination.x) {
-		*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_EAST;
-
-		if (pos.y < worldDestination.y) {
-			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH_EAST;
+	if (map_coordinates.x < destination.x) {
+		
+		if (map_coordinates.y < destination.y) {
+			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH;
 		}
-		else if (pos.y > worldDestination.y) {
-			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH_EAST;
+		else if (map_coordinates.y > destination.y) {
+			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_EAST;
+		}
+		else /*if (map_coordinates.y == destination.y)*/ {
+			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH_EAST;
+			destination.x += -p;
 		}
 	}
 
-	else if (pos.x > worldDestination.x) {
-		*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_WEST;
-
-		if (pos.y < worldDestination.y) {
-			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH_WEST;
+	else if (map_coordinates.x > destination.x) {
+		
+		if (map_coordinates.y < destination.y) {
+			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_WEST;
 		}
-		else if (pos.y > worldDestination.y) {
+		else if (map_coordinates.y > destination.y) {
+			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH;
+		}
+		else/* if (map_coordinates.y == destination.y) */ {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH_WEST;
 		}
 	}
 
-	else if (pos.x == worldDestination.x) {
-		*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;
+	else if (map_coordinates.x == destination.x) {
 
-		if (pos.y < worldDestination.y) {
-			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH;
+		if (map_coordinates.y < destination.y) {
+			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH_WEST;
 		}
-		else if (pos.y > worldDestination.y) {
-			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH;
+		else if (map_coordinates.y > destination.y) {
+			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH_EAST;
+		}
+		else /*if (map_coordinates.y == destination.y)*/ {
+			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;
 		}
 	}
 
@@ -90,9 +104,25 @@ void Entity::Move(float dt) {
 	else if (unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 		pos.y -= speed * dt;
-
+		
 		if (pos.y < worldDestination.y + App->map->data.tile_height / 2) {
 			pos.y = worldDestination.y + App->map->data.tile_height / 2;
+		}
+
+		if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
+			pos.x += speed * dt / 2;
+
+			if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
+				pos.x = worldDestination.x + App->map->data.tile_width / 2;
+			}
+		}
+
+		else if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
+			pos.x -= speed * dt / 2;
+
+			if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
+				pos.x = worldDestination.x + App->map->data.tile_width / 2;
+			}
 		}
 	}
 	else if (unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
@@ -113,6 +143,22 @@ void Entity::Move(float dt) {
 		if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
 			pos.x = worldDestination.x + App->map->data.tile_width / 2;
 		}
+
+		if (pos.y <= worldDestination.y + App->map->data.tile_height / 2) {
+			pos.y += speed * dt / 2;
+
+			if (pos.y >= worldDestination.y + App->map->data.tile_height / 2) {
+				pos.y = worldDestination.y + App->map->data.tile_height / 2;
+			}
+		}
+
+		else if (pos.y >= worldDestination.y + App->map->data.tile_height / 2) {
+			pos.y -= speed * dt / 2;
+
+			if (pos.y <= worldDestination.y + App->map->data.tile_height / 2) {
+				pos.y = worldDestination.y + App->map->data.tile_height / 2;
+			}
+		}
 	}
 	else if (unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
@@ -129,9 +175,26 @@ void Entity::Move(float dt) {
 	else if (unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 		pos.y += speed * dt;
-
+		
 		if (pos.y > worldDestination.y + App->map->data.tile_height / 2) {
 			pos.y = worldDestination.y + App->map->data.tile_height / 2;
+		}
+
+		if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
+			pos.x += speed * dt / 2;
+
+			if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
+				pos.x = worldDestination.x + App->map->data.tile_width / 2;
+			}
+		}
+
+		else if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
+			pos.x -= speed * dt / 2;
+
+			if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
+				pos.x = worldDestination.x + App->map->data.tile_width / 2;
+			}
+
 		}
 	}
 	else if (unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
@@ -153,19 +216,37 @@ void Entity::Move(float dt) {
 		if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
 			pos.x = worldDestination.x + App->map->data.tile_width / 2;
 		}
+
+		if (pos.y <= worldDestination.y + App->map->data.tile_height / 2) {
+			pos.y += speed * dt / 2;
+
+			if (pos.y >= worldDestination.y + App->map->data.tile_height / 2) {
+				pos.y = worldDestination.y + App->map->data.tile_height / 2;
+			}
+		}
+
+		else if (pos.y >= worldDestination.y + App->map->data.tile_height / 2) {
+			pos.y -= speed * dt / 2;
+
+			if (pos.y <= worldDestination.y + App->map->data.tile_height / 2) {
+				pos.y = worldDestination.y + App->map->data.tile_height / 2;
+			}
+		}
 	}
 	else if (unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 		pos.x -= speed * dt / 2;
 		pos.y -= speed * dt / 2;
 
-		if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
+		if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
 			pos.x = worldDestination.x + App->map->data.tile_width / 2;
 		}
-		if (pos.y < worldDestination.y + App->map->data.tile_height / 2) {
+		if (pos.y > worldDestination.y + App->map->data.tile_height / 2) {
 			pos.y = worldDestination.y + App->map->data.tile_height / 2;
 		}
 	}
+	//if (mapPos == destination)
+	//	isOnTheMove = false;
 }
 
 void Entity::SetDestination(iPoint des) {

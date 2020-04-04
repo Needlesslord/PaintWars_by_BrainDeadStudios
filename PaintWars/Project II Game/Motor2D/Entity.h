@@ -84,7 +84,7 @@ public:
 	virtual void Draw(SDL_Texture* sprites);
 	virtual void DebugDrawSelected();
 	virtual void OnCollision(ColliderGroup* c1, ColliderGroup* c2, CollisionState collisionState);
-	virtual void CalculateMovementLogic();
+	virtual void CalculateMovementLogic(int p);
 	virtual void Move(float dt);
 	virtual void SetDestination(iPoint des);
 
@@ -117,7 +117,7 @@ public:
 
 	bool isSelected = false;
 	bool isEntityFromPlayer = NULL;
-	bool isOnTheMove = false;
+	bool isOnTheMove;
 
 	float speed = 0;
 
