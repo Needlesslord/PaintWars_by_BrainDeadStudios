@@ -144,7 +144,21 @@ The artistic inspiration for this game comes from games like:
 
 ## Art Used
 
+### Ally Units
+  ![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project%20II%20Game/Game/textures/Spritesheet_warrior.png)
+  
+### Enemy Units
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project%20II%20Game/Game/textures/Spritesheet_slime.png)
 
+### Buildings
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project%20II%20Game/Game/textures/Spritesheet_buildings.png)
+
+### Map
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project%20II%20Game/Game/maps/tileset_forest_floor.png)
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project%20II%20Game/Game/maps/tileset_forest_trees.png)
+
+### UI Elements
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project%20II%20Game/Game/textures/UI_atlas.png)
 
 ***
 

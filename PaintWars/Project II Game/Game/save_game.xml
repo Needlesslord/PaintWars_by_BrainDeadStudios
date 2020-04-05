@@ -6,16 +6,17 @@
 	<audio>
 		<volume default="0" />
 	</audio>
-	<scene />
+	<scene_manager />
 	<map />
 	<:anonymous />
 	<entities />
 	<pathfinding />
 	<player />
 	<gui />
-	<fonts />
-	<InGameUI />
+	<:anonymous />
+	<:anonymous />
+	<:anonymous />
 	<renderer>
-		<camera x="131" y="-20" />
+		<camera x="136" y="141" />
 	</renderer>
 </game_state>
