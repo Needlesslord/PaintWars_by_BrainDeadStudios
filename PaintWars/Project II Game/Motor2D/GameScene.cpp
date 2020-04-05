@@ -63,10 +63,10 @@ bool GameScene::Start()
 		App->pathfinding->SetMap(w, h, data);						// Sets a new walkability map with the map passed by CreateWalkabilityMap().
 	}
 
-	//App->pathfinding->ChangeWalkability({ 7, 0 }, false);
-	//App->pathfinding->ChangeWalkability({ 7, 1 }, false);
-	//App->pathfinding->ChangeWalkability({ 7, 2 }, false);
-	//App->pathfinding->ChangeWalkability({ 7, 3 }, false);
+	App->pathfinding->ChangeWalkability({ 7, 0 }, false);
+	App->pathfinding->ChangeWalkability({ 7, 1 }, false);
+	App->pathfinding->ChangeWalkability({ 7, 2 }, false);
+	App->pathfinding->ChangeWalkability({ 7, 3 }, false);
 
 
 	return ret;
@@ -76,8 +76,6 @@ bool GameScene::Start()
 bool GameScene::PreUpdate()
 {
 	bool ret = true;
-
-
 
 	if (Change_Map == true) {
 		if (Load_Forest_Map) {
