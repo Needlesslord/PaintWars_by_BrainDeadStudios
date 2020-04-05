@@ -169,6 +169,9 @@
     <ClCompile Include="j1QuestManager.cpp">
       <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="j1Minimap.cpp">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -343,6 +346,9 @@
       <Filter>Motor  ========\UI</Filter>
     </ClInclude>
     <ClInclude Include="j1QuestManager.h">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Minimap.h">
       <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
   </ItemGroup>

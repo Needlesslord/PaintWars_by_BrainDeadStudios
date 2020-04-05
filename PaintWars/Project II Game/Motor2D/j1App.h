@@ -26,6 +26,7 @@ class j1InGameUI;
 class TransitionManager;
 class SceneManager;
 class j1QuestManager;
+class j1Minimap;
 
 class j1App 
 {
@@ -109,6 +110,7 @@ public:
 	j1InGameUI*			InGameUI = NULL;
 	TransitionManager*  transition_manager = NULL;
 	j1QuestManager*		quest_manager = NULL;
+	j1Minimap*			minimap = NULL;
 
 
 private:

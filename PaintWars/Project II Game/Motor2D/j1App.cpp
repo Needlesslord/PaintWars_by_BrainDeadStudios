@@ -23,6 +23,7 @@
 #include "TransitionManager.h"
 #include "j1SceneManager.h"
 #include "j1QuestManager.h"
+#include "j1Minimap.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -43,6 +44,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	InGameUI = new j1InGameUI();
 	transition_manager = new TransitionManager();
 	quest_manager = new j1QuestManager();
+	minimap = new j1Minimap();
 	
 
 	// Ordered for awake / Start / Update
@@ -62,6 +64,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(InGameUI);
 	AddModule(transition_manager);
 	AddModule(quest_manager);
+	AddModule(minimap);
 
 	// render last to swap buffer
 	AddModule(render);
