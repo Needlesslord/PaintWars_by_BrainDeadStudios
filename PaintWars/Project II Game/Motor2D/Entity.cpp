@@ -49,22 +49,32 @@ void Entity::CalculateMovementLogic(int p) {
 	App->pathfinding->CreatePath(map_coordinates, destination);
 	currentPath = *App->pathfinding->GetLastPath();
 
-	for (int i = 0; i < p; i++)
-		currentPath.pop_back();
+	if (p > 0) {
+		if (p < 9) {
+			iPoint closestDestination = App->pathfinding->FindClosestDestination(destination).at(p - 1);
+			destination = closestDestination;
+		}
+
+		/*else {
+			iPoint closestDestinationToClosestDestiantion = App->pathfinding->FindClosestDestination(App->pathfinding->FindClosestDestination(destination).at(0)).at(p-9);
+			destination = closestDestinationToClosestDestiantion;
+		}*/
+	}
+	
 
 	if (map_coordinates.x < destination.x) {
 		
 		if (map_coordinates.y < destination.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH;
-			destination.y -= p;
+			//destination.y -= p;
 		}
 		else if (map_coordinates.y > destination.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_EAST;
-			destination.x += -p;
+			//destination.x += -p;
 		}
 		else /*if (map_coordinates.y == destination.y)*/ {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH_EAST;
-			destination.x += -p;
+			//destination.x += -p;
 		}
 	}
 
@@ -72,15 +82,15 @@ void Entity::CalculateMovementLogic(int p) {
 		
 		if (map_coordinates.y < destination.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_WEST;
-			destination.x += -p;
+			//destination.x += -p;
 		}
 		else if (map_coordinates.y > destination.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH;
-			destination.x += -p;
+			//destination.x += -p;
 		}
 		else/* if (map_coordinates.y == destination.y) */ {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH_WEST;
-			destination.x += -p;
+			//destination.x += -p;
 		}
 	}
 
