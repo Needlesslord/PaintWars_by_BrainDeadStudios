@@ -25,6 +25,7 @@ class j1Fonts;
 class j1InGameUI;
 class TransitionManager;
 class SceneManager;
+class j1QuestManager;
 
 class j1App 
 {
@@ -61,6 +62,9 @@ public:
 	void LoadGame();
 	void SaveGame(const char*) const;
 	void GetSaveGames(std::list<std::string>& list_to_fill) const;
+
+	//Load quest file
+	pugi::xml_node LoadQuests(pugi::xml_document& quest_file) const;
 
 private:
 
@@ -104,7 +108,9 @@ public:
 	j1Fonts*			fonts = NULL;
 	j1InGameUI*			InGameUI = NULL;
 	TransitionManager*  transition_manager = NULL;
-	
+	j1QuestManager*		quest_manager = NULL;
+
+
 private:
 
 	std::list<j1Module*> modules;
