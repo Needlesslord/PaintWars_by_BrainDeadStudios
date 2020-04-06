@@ -214,13 +214,13 @@ All the FX used in the Pause Menu are the following:
 #### Ambient
 
  + Birds - https://www.audioblocks.com/stock-audio/sparrows-chirping---looping-sejzeu23uwbk0wxseff.html
- + Wind - 
+ + Wind - https://www.youtube.com/watch?v=9LfEyxl_f-U
  + Water (in water areas) - https://www.audioblocks.com/stock-audio/small-river-flowing-02-rxivya38vhk0wy4hbv.html
- + Bugs - 
+ + Bugs - https://www.youtube.com/watch?v=7DwPU-Vs2qI
  + Each Map:
-    - Forest: Leaves (in forest areas) - 
-    - Volcanic: Comets falling - 
-    - Snow: Wolfs' howls - 
+    - Forest: Leaves (in forest areas) - https://www.youtube.com/watch?v=9LfEyxl_f-U
+    - Volcanic: Comets falling - https://www.youtube.com/watch?v=l1itEswPrgI
+    - Snow: Wolfs' howls - https://www.youtube.com/watch?v=S0GBYdZB8EU
 
 #### Player
 
@@ -240,6 +240,7 @@ All the FX used in the Pause Menu are the following:
 
 #### Enemies
 
+ - Spawn - https://www.youtube.com/watch?v=ri234Cm3fK4
  - Spawn destroyed - 
  - Enemy death - 
  - Enemies:
@@ -252,7 +253,7 @@ All the FX used in the Pause Menu are the following:
     + Explosive Blop - 
     + Corrupted Knight - 
     + Dark Rider - 
-    + Paint Slime - 
+    + Paint Slime - https://www.youtube.com/watch?v=62mVmfrDTyE
 
 ### UI
 
@@ -272,7 +273,7 @@ All the FX used in the Pause Menu are the following:
  - Start building - 
  - Action finished - 
   - Buildings producing
-    + Hall - 
+    + Hall - https://www.audioblocks.com/stock-audio/marketplace-hall-ambience-01-blovet0huvbk0wy4huh.html
     + Housing - 
     + Paint Extractor - 
     + Wood Collector - 
