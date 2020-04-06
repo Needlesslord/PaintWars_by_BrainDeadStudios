@@ -153,7 +153,7 @@ void j1Player::Mouse_Cursor()
 {
 	mouse_position.x -= App->render->camera.x / App->win->GetScale();
 	mouse_position.y -= App->render->camera.y / App->win->GetScale();
-	App->render->AddBlitEvent(3,Tex_Player, mouse_position.x, mouse_position.y, texture_rect);
+	App->render->AddBlitEvent(5,Tex_Player, mouse_position.x, mouse_position.y, texture_rect);
 }
 
 void j1Player::Drag_Mouse()

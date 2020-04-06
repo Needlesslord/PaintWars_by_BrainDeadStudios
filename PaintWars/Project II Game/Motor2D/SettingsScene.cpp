@@ -7,22 +7,23 @@
 #include "j1Window.h"
 #include "j1GUI.h"
 #include "j1SceneManager.h"
-#include "StartScene.h"
+#include "j1Audio.h"
+#include "SettingsScene.h"
 #include "TransitionManager.h"
 
-StartScene::StartScene() : Scene(SCENES::START_SCENE)
+SettingsScene::SettingsScene() : Scene(SCENES::SETTINGS_SCENE)
 {
 
 }
 
 // Destructor
-StartScene::~StartScene()
+SettingsScene::~SettingsScene()
 {
 
 }
 
 // Called before render is available
-bool StartScene::Awake(pugi::xml_node& config)
+bool SettingsScene::Awake(pugi::xml_node& config)
 {
 	LOG("Loading MenuScene");
 	bool ret = true;
@@ -31,25 +32,39 @@ bool StartScene::Awake(pugi::xml_node& config)
 }
 
 // Called before the first frame
-bool StartScene::Start()
+bool SettingsScene::Start()
 {
 	bool ret = true;
 
-	continueButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 375, 230 }, { 30,25 }, true, true, { 0, 0, 263, 91 }, "CONTINUE", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
-	continueButton->hover_rect = { 263, 0, 263, 91 };
-	continueButton->click_rect = { 526, 0, 263, 91 };
+	musicLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 200, 200 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Music");
 
-	forestButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 385, 360 }, { 30,20 }, true, true, { 0, 334, 234, 79 }, "Forest", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
-	forestButton->hover_rect = { 263, 334, 234, 79 };
-	forestButton->click_rect = { 525, 334, 234, 79 };
+	vfxLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 200, 300 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "VFX");
 
-	snowButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 385, 470 }, { 60,20 }, true, true, { 0, 334, 234, 79 }, "Snow", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
-	snowButton->hover_rect = { 263, 334, 234, 79 };
-	snowButton->click_rect = { 525, 334, 234, 79 };
+	fullscreenLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 200, 400 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Fullscreen");
 
-	volcanoButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 385, 580 }, { 20,20 }, true, true, { 0, 334, 234, 79 }, "Volcano", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
-	volcanoButton->hover_rect = { 263, 334, 234, 79 };
-	volcanoButton->click_rect = { 525, 334, 234, 79 };
+	gpadLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 200, 500 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "GamePad");
+
+	musicScroll = App->gui->AddElement(GUItype::GUI_SCROLLBAR, nullptr, { 500, 200 }, { 20, -3 }, true, true, { 786, 59, 268, 25 }, " ", App->audio, true, false, SCROLL_TYPE::SCROLL_MUSIC, true, TEXTURE::ATLAS);
+	musicScroll->Button->rect = { 786, 0, 42, 35 };
+	musicScroll->Button->hover_rect = { 786, 0, 42, 35 };
+	musicScroll->Button->click_rect = { 786, 0, 42, 35 };
+
+	vfxScroll = App->gui->AddElement(GUItype::GUI_SCROLLBAR, nullptr, { 500, 300 }, { 20, -3 }, true, true, { 786, 59, 268, 25 }, " ", App->audio, true, false, SCROLL_TYPE::SCROLL_MUSIC, true, TEXTURE::ATLAS);
+	vfxScroll->Button->rect = { 786, 0, 42, 35 };
+	vfxScroll->Button->hover_rect = { 786, 0, 42, 35 };
+	vfxScroll->Button->click_rect = { 786, 0, 42, 35 };
+
+	fullscreenButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 520, 400 }, { 0,0 }, true, true, { 0, 1031, 182, 58 }, " ", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	fullscreenButton->hover_rect = { 0, 1031, 182, 58 };
+	fullscreenButton->click_rect = { 0, 1031, 182, 58 };
+
+	gpadButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 520, 500 }, { 0,0 }, true, true, { 0, 1031, 182, 58 }, " ", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	gpadButton->hover_rect = { 0, 1031, 182, 58 };
+	gpadButton->click_rect = { 0, 1031, 182, 58 };
+
+	resetButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 400, 600 }, { 30,15 }, true, true, { 0, 658, 207, 71 }, "Reset", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	resetButton->hover_rect = { 263, 658, 207, 71 };
+	resetButton->click_rect = { 525, 658, 207, 71 };
 
 	backButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 800, 680 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "BACK", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	backButton->hover_rect = { 263, 658, 207, 71 };
@@ -59,7 +74,7 @@ bool StartScene::Start()
 }
 
 // Called each loop iteration
-bool StartScene::PreUpdate()
+bool SettingsScene::PreUpdate()
 {
 	bool ret = true;
 
@@ -67,10 +82,10 @@ bool StartScene::PreUpdate()
 }
 
 // Called each loop iteration
-bool StartScene::Update(float dt)
+bool SettingsScene::Update(float dt)
 {
 	bool ret = true;
-
+	
 	CameraDebugMovement(dt);
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
@@ -82,11 +97,11 @@ bool StartScene::Update(float dt)
 }
 
 // Called each loop iteration
-bool StartScene::PostUpdate()
+bool SettingsScene::PostUpdate()
 {
 	bool ret = true;
 
-	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	if ( exit)
 		ret = false;
 
 	//ExecuteTransition();
@@ -95,16 +110,22 @@ bool StartScene::PostUpdate()
 }
 
 // Called before quitting
-bool StartScene::CleanUp()
+bool SettingsScene::CleanUp()
 {
 	LOG("Freeing Scene");
 	bool ret = true;
 
-	continueButton->CleanUp();
-	forestButton->CleanUp();
-	snowButton->CleanUp();
-	volcanoButton->CleanUp();
+	musicLabel->CleanUp();
+	vfxLabel->CleanUp();
+	fullscreenLabel->CleanUp();
+	gpadLabel->CleanUp();
+	musicScroll->CleanUp();
+	vfxScroll->CleanUp();
+	fullscreenButton->CleanUp();
+	gpadButton->CleanUp();
+	resetButton->CleanUp();
 	backButton->CleanUp();
+
 
 	if (scene_texture != nullptr)
 	{
@@ -130,23 +151,15 @@ bool StartScene::CleanUp()
 }
 
 
-void StartScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
+void SettingsScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 {
 	if (element == backButton && type == GUI_Event::EVENT_ONCLICK)
 	{
 		App->scenes->SwitchScene(SCENES::MENU_SCENE);
 	}
 
-	if (element == continueButton && type == GUI_Event::EVENT_ONCLICK)
-	{
-		App->scenes->SwitchScene(SCENES::GAME_SCENE);
-	}
-
-	if ((element == snowButton || element == forestButton || element == volcanoButton) && type == GUI_Event::EVENT_ONCLICK)
-	{
-		App->scenes->SwitchScene(SCENES::GAME_SCENE);
-	}
 }
+
 
 //void MenuScene::InitScene()
 //{
@@ -194,7 +207,7 @@ void StartScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 //}
 
 
-void StartScene::ExecuteTransition()
+void SettingsScene::ExecuteTransition()
 {
 	if (!App->transition_manager->is_transitioning)
 	{
@@ -271,5 +284,5 @@ void StartScene::ExecuteTransition()
 		//			App->transition_manager->CreateZoomToTexture(SCENES::SECOND_SCENE, mouse_pos);
 		//		}
 		//	}
+		}
 	}
-}

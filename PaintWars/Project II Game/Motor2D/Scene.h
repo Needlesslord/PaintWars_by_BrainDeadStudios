@@ -12,6 +12,8 @@ enum class SCENES
 {
 	MENU_SCENE,
 	GAME_SCENE,
+	SETTINGS_SCENE,
+	START_SCENE,
 	NONE
 };
 
@@ -32,6 +34,10 @@ public:
 	virtual void InitScene();									// Method that will be used to initialize the variables all the scenes.
 	virtual void DrawScene();									// Method that will draw the map and all other elements of the scene.
 	virtual SDL_Texture* SceneToTexture();						// Creates a unified texture from the current scene.
+
+
+	virtual void GUI_Event_Manager(GUI_Event type, j1Element* element);
+
 	
 	virtual void ExecuteTransition();							// Method that will trigger a new transition depending on the input received.
 	virtual void CameraDebugMovement(float dt);					// Method that will move the camera around depending on the input.

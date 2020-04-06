@@ -14,7 +14,7 @@
     <ProjectGuid>{2AF9969B-F202-497B-AF30-7BEF9CE8005E}</ProjectGuid>
     <RootNamespace>programacio_2</RootNamespace>
     <ProjectName>PaintWars_by_BrainDeadStudios</ProjectName>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -85,7 +85,6 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="ExpandingBars.cpp" />
     <ClCompile Include="FadeToColour.cpp" />
-    <ClCompile Include="ForestMapScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="j1Button.cpp" />
     <ClCompile Include="j1Collision.cpp" />
@@ -117,15 +116,14 @@
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="j1SceneManager.cpp" />
+    <ClCompile Include="SettingsScene.cpp" />
     <ClCompile Include="Slide.cpp" />
     <ClCompile Include="Slime.cpp" />
-    <ClCompile Include="SnowMapScene.cpp" />
     <ClCompile Include="Spawner.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="TownHall.cpp" />
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="TransitionManager.cpp" />
-    <ClCompile Include="VolcanoMapScene.cpp" />
     <ClCompile Include="Warrior.cpp" />
     <ClCompile Include="WinScene.cpp" />
     <ClCompile Include="Wipe.cpp" />
@@ -143,7 +141,6 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="ExpandingBars.h" />
     <ClInclude Include="FadeToColour.h" />
-    <ClInclude Include="ForestMapScene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="j1Collision.h" />
     <ClInclude Include="j1EntityManager.h" />
@@ -176,15 +173,14 @@
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="j1SceneManager.h" />
+    <ClInclude Include="SettingsScene.h" />
     <ClInclude Include="Slide.h" />
     <ClInclude Include="Slime.h" />
-    <ClInclude Include="SnowMapScene.h" />
     <ClInclude Include="Spawner.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="TownHall.h" />
     <ClInclude Include="Transition.h" />
     <ClInclude Include="TransitionManager.h" />
-    <ClInclude Include="VolcanoMapScene.h" />
     <ClInclude Include="Warrior.h" />
     <ClInclude Include="WinScene.h" />
     <ClInclude Include="Wipe.h" />

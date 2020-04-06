@@ -89,12 +89,16 @@ public:
 	bool decorative = false;
 
 	SDL_Rect rect = { 0,0,0,0 };
+	SDL_Rect hover_rect = { 0,0,0,0 };
+	SDL_Rect click_rect = { 0,0,0,0 };
 
 	int Value;
 	float Float_Value;
 
 	SDL_Texture* texture = nullptr;
-	SDL_Texture* texture_hover = nullptr;
+
+
+	j1Element* label = nullptr;
 };
 ////////////////////////////////////////////////////////////////
 class j1Button : public j1Element
@@ -114,9 +118,10 @@ public:
 	void MovingIt(float dt);
 	void OnRelease();
 
-private:
 
-	j1Element* label = nullptr;
+
+private:
+	
 	iPoint drag = { 0,0 };
 
 	bool dragging;

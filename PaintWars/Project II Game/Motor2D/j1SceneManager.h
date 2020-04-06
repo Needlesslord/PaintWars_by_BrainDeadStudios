@@ -34,9 +34,14 @@ public:
 
 	Scene*	CreateScene(SCENES scene_name);
 
+	void GUI_Event_Manager(GUI_Event type, j1Element* element);
+
 public:
 	Scene*					current_scene;							// The scene that is being currently loaded.
 	Scene*					next_scene;								// Buffer for the scene that will be loaded next.
+
+
+	bool exit;
 
 private:
 	std::vector<Scene*>		scenes;									// All the scenes of the game.

@@ -1,6 +1,8 @@
 #include "j1SceneManager.h"
 #include "GameScene.h"
 #include "MenuScene.h"
+#include "SettingsScene.h"
+#include "StartScene.h"
 #include "j1Render.h"
 #include "j1Input.h"
 #include "p2Log.h"
@@ -61,8 +63,8 @@ bool j1SceneManager::PostUpdate()
 
 	current_scene->PostUpdate();
 
-	/*if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		ret = false;*/
+	if ((App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && current_scene->scene_name != SCENES::GAME_SCENE) || exit)
+		ret = false;
 
 	return ret;
 }
@@ -81,6 +83,15 @@ bool j1SceneManager::CleanUp()
 
 	return ret;
 }
+
+
+
+void j1SceneManager::GUI_Event_Manager(GUI_Event type, j1Element* element)
+{
+	current_scene->GUI_Event_Manager(type, element);
+}
+
+
 
 // -------------- SCENE MANAGEMENT METHODS --------------
 
@@ -204,6 +215,18 @@ Scene* j1SceneManager::CreateScene(SCENES scene_name)
 		
 		break;
 
+	case SCENES::SETTINGS_SCENE:
+
+		item = new SettingsScene();
+
+		break;
+
+	case SCENES::START_SCENE:
+
+		item = new StartScene();
+
+		break;
+
 	}
 
 	if (item != nullptr)
@@ -218,6 +241,8 @@ void j1SceneManager::ScenePushbacks()
 {
 	CreateScene(SCENES::MENU_SCENE);
 	CreateScene(SCENES::GAME_SCENE);
+	CreateScene(SCENES::SETTINGS_SCENE);
+	CreateScene(SCENES::START_SCENE);
 }
 
 bool j1SceneManager::Load(pugi::xml_node& save) 

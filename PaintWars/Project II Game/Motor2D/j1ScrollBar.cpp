@@ -5,6 +5,7 @@
 #include "j1Render.h"
 #include "j1Input.h"
 #include "j1Audio.h"
+#include "j1Textures.h"
 
 
 j1ScrollBar::j1ScrollBar(SCROLL_TYPE TypeInput) {
@@ -19,8 +20,8 @@ j1ScrollBar::~j1ScrollBar() {
 
 bool j1ScrollBar::Start()
 {
-	Button = App->gui->AddElement(GUItype::GUI_BUTTON, this, map_position, inside_position, true, true, { 0, 0, 25 , 25 }, nullptr, this->listener, true, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::BOTON_SCROLL);
-	Button->map_position.y = map_position.y - Button->rect.h / 2 + this->rect.h / 2;
+	Button = App->gui->AddElement(GUItype::GUI_BUTTON, this, { map_position.x, map_position.y - 5 }, inside_position, true, true, { 0, 0, 25 , 25 }, nullptr, this->listener, true, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	Button->map_position.y = map_position.y - Button->rect.h / 2 + this->rect.h / 2 - 5;
 	Value = 0;
 
 
@@ -28,6 +29,8 @@ bool j1ScrollBar::Start()
 	if (textureType == TEXTURE::SCROLL)
 		texture = App->gui->Load_Texture(TEXTURE::SCROLL);
 
+	if (textureType == TEXTURE::ATLAS)
+		texture = App->gui->Load_Texture(TEXTURE::ATLAS);
 
 	return true;
 }
@@ -70,6 +73,8 @@ bool j1ScrollBar::PostUpdate()
 
 bool j1ScrollBar::CleanUp()
 {
+	App->tex->UnLoad(texture);
+	Button->CleanUp();
 	return true;
 }
 
@@ -77,18 +82,18 @@ bool j1ScrollBar::CleanUp()
 void j1ScrollBar::ScrollLimits() 
 {
 
-	if (Button->inside_position.x > 0)
+	if (Button->map_position.x > (this->map_position.x + this->rect.w))
 	{
-		Button->inside_position.x = 0;
+		Button->map_position.x = this->map_position.x + this->rect.w - Button->rect.w;
 
-		Button->map_position.x = Button->parent->map_position.x + Button->inside_position.x;
+		Button->inside_position.x = this->rect.w - Button->rect.w;
 
 	}
-	else if (Button->inside_position.x < (-this->rect.w + Button->rect.w))
+	else if (Button->map_position.x < this->map_position.x)
 	{
-		Button->inside_position.x = -this->rect.w + Button->rect.w;
+		Button->map_position.x = this->map_position.x;
 
-		Button->map_position.x = Button->parent->map_position.x - Button->inside_position.x;
+		Button->inside_position.x = 0;
 
 	}
 }

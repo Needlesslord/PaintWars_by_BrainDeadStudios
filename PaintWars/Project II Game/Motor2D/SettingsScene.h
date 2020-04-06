@@ -1,15 +1,15 @@
-#ifndef __MENUSCENE_H__
-#define __MENUSCENE_H__
+#ifndef __SETTINGSSCENE_H__
+#define __SETTINGSSCENE_H__
 
 #include "j1Module.h"
 #include "Scene.h"
 
-class MenuScene : public Scene
+class SettingsScene : public Scene
 {
 public:
 
-	MenuScene();									// Constructor
-	~MenuScene();									// Destructor
+	SettingsScene();									// Constructor
+	~SettingsScene();									// Destructor
 
 	bool Awake(pugi::xml_node& config);				// Called before render is available
 	bool Start();									// Called before the first frame
@@ -34,11 +34,16 @@ public:
 
 public:
 
-	j1Element* playButton = nullptr;
-	j1Element* scoreButton = nullptr;
-	j1Element* creditsButton = nullptr;
-	j1Element* settingsButton = nullptr;
-	j1Element* exitButton = nullptr;
+	j1Element* musicLabel = nullptr;
+	j1Element* vfxLabel = nullptr;
+	j1Element* fullscreenLabel = nullptr;
+	j1Element*gpadLabel = nullptr;
+	j1Element* musicScroll = nullptr;
+	j1Element* vfxScroll = nullptr;
+	j1Element* fullscreenButton = nullptr;
+	j1Element* gpadButton = nullptr;
+	j1Element* resetButton = nullptr;
+	j1Element* backButton = nullptr;
 
 };
 

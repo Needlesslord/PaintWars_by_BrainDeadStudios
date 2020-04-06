@@ -19,7 +19,7 @@ j1Label::~j1Label() {
 
 bool j1Label::Start()
 {
-	font_name = App->fonts->Load("textures/NameTile.png", "ABCDEFGHIJKLMNOPQRSTUWYZ0123456789-= ", 1);
+	font_name = App->fonts->Load("textures/font.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789= ", 2);
 	return true;
 }
 
@@ -48,6 +48,8 @@ bool j1Label::PostUpdate()
 
 bool j1Label::CleanUp()
 {
-	App->tex->UnLoad(texture);
+	App->fonts->UnLoad(font_name);
+	text = " ";
+
 	return true;
 }

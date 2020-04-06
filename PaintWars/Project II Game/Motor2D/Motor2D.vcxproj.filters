@@ -121,15 +121,6 @@
     <ClCompile Include="MenuScene.cpp">
       <Filter>Motor  ========\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ForestMapScene.cpp">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="SnowMapScene.cpp">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="VolcanoMapScene.cpp">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="WinScene.cpp">
       <Filter>Motor  ========\Scenes</Filter>
     </ClCompile>
@@ -165,6 +156,9 @@
     </ClCompile>
     <ClCompile Include="j1InGameUI.cpp">
       <Filter>Motor  ========\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsScene.cpp">
+      <Filter>Motor  ========\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -309,15 +303,6 @@
     <ClInclude Include="MenuScene.h">
       <Filter>Motor  ========\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="ForestMapScene.h">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="SnowMapScene.h">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="VolcanoMapScene.h">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="WinScene.h">
       <Filter>Motor  ========\Scenes</Filter>
     </ClInclude>
@@ -338,6 +323,9 @@
     </ClInclude>
     <ClInclude Include="j1InGameUI.h">
       <Filter>Motor  ========\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsScene.h">
+      <Filter>Motor  ========\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
