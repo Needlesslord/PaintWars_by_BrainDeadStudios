@@ -1,0 +1,52 @@
+<!-- Quest Data -->
+<quests>
+  <quest 
+	id="1"
+	title="Easy Target" 
+	type="4" 
+	trigger="1" 
+	description="Collect 5 of each fruit in Easy Mode" 
+	reward="1"
+	requisites="0"> 
+  </quest>
+
+  <quest 
+	id="2"
+	title="Blurred Lines" 
+	type="4"  
+	trigger="1" 
+	description="Collect 5 of each fruit in Intermediate Mode" 
+	reward="2"
+	requisites="1">  
+  </quest>
+  
+  <quest 
+	id="3"
+	title="Bullseye" 
+	type="4" 
+	trigger="1" 
+	description="Collect 5 of each fruit in Hard Mode" 
+	reward="3" 
+	requisites="2"> 
+  </quest>
+ 
+  <quest 
+	id="4"
+	title="Procedural Collector" 
+	type="4" 
+	trigger="1" 
+	description="Collect 5 of each fruit in order from Cherries to Mangoes" 
+	reward="4" 
+	requisites="0"> 
+  </quest>
+
+  <quest 
+	id="5"
+	title="Medal of Valor" 
+	type="4" 
+	trigger="1" 
+	description="Collect 5 of each fruit in Easy Mode" 
+	reward="5" 
+	requisites="4"> 
+  </quest>
+</quests>

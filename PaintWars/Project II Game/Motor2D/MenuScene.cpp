@@ -5,6 +5,7 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "j1Window.h"
+#include "j1GUIELements.h"
 #include "j1GUI.h"
 #include "j1SceneManager.h"
 #include "MenuScene.h"
@@ -35,19 +36,25 @@ bool MenuScene::Start()
 {
 	bool ret = true;
 
-	//mainMenuButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 350, 70 }, { 0, 0 }, false, true, { 0, 0, 350, 121 }, "Main Menu");
+	playButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 375, 130 }, { 70,25}, true, true, { 0, 0, 263, 91 }, "PLAY", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	playButton->hover_rect = { 263, 0, 263, 91 };
+	playButton->click_rect = { 526, 0, 263, 91 };
 
-	//newGameButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 370, 240 }, { 0,0 }, true, true, { 0, 445, 312, 108 }, "New Game", App->scenes);
-	//newGameButton->hover_tex = { 350, 445, 312, 108 };
+	settingsButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 390, 260 }, { 3,20 }, true, true, { 0, 334, 234, 79 }, "Settings", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	settingsButton->hover_rect = { 263, 334, 234, 79 };
+	settingsButton->click_rect = { 525, 334, 234, 79 };
 
-	//continueButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 370, 380 }, { 0,0 }, true, true, { 0, 445, 312, 108 }, "Continue", App->scenes);
-	//continueButton->hover_tex = { 350, 445, 312, 108 };
+	scoreButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 390, 370 }, { 50,20 }, true, true, { 0, 334, 234, 79 }, "Score", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	scoreButton->hover_rect = { 263, 334, 234, 79 };
+	scoreButton->click_rect = { 525, 334, 234, 79 };
 
-	//settingsButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 370, 520 }, { 0,0 }, true, true, { 0, 445, 312, 108 }, "Settings", App->scenes);
-	//settingsButton->hover_tex = { 350, 445, 312, 108 };
+	creditsButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 390, 480 }, { 25,20 }, true, true, { 0, 334, 234, 79 }, "Credits", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	creditsButton->hover_rect = { 263, 334, 234, 79 };
+	creditsButton->click_rect = { 525, 334, 234, 79 };
 
-	//exitButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 390, 650 }, { 0,0 }, true, true, { 0, 877, 275, 95 }, "EXIT", App->scenes);
-	//exitButton->hover_tex = { 350, 877, 275, 95 };
+	exitButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 405, 600 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "Exit", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	exitButton->hover_rect = { 263, 658, 207, 71 };
+	exitButton->click_rect = { 525, 658, 207, 71 };
 
 	return ret;
 }
@@ -69,7 +76,7 @@ bool MenuScene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		App->scenes->SwitchScene(SCENES::GAME_SCENE);
+		App->scenes->SwitchScene(SCENES::START_SCENE);
 	}
 
 	return ret;
@@ -80,7 +87,7 @@ bool MenuScene::PostUpdate()
 {
 	bool ret = true;
 
-	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	if ( exit)
 		ret = false;
 
 	//ExecuteTransition();
@@ -94,11 +101,11 @@ bool MenuScene::CleanUp()
 	LOG("Freeing Scene");
 	bool ret = true;
 
-	/*RELEASE(mainMenuButton);
-	RELEASE(newGameButton);
-	RELEASE(continueButton);
-	RELEASE(settingsButton);
-	RELEASE(exitButton);*/
+	playButton->CleanUp();
+	scoreButton->CleanUp();
+	creditsButton->CleanUp();
+	settingsButton->CleanUp();
+	exitButton->CleanUp();
 
 	if (scene_texture != nullptr)
 	{
@@ -121,6 +128,25 @@ bool MenuScene::CleanUp()
 	}
 
 	return ret;
+}
+
+
+void MenuScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
+{
+	if (element == playButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		App->scenes->SwitchScene(SCENES::START_SCENE);
+	}
+
+	if (element == settingsButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		App->scenes->SwitchScene(SCENES::SETTINGS_SCENE);
+	}
+
+	if (element == exitButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		App->scenes->exit = true;
+	}
 }
 
 

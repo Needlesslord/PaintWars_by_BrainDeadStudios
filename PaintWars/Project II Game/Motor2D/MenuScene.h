@@ -26,13 +26,17 @@ public:
 	//void DrawScene();								// Method that will draw all scene elements on screen.
 	//SDL_Texture* SceneToTexture();				// Method that will be used to get a texture from the current screen.
 
+
+	void GUI_Event_Manager(GUI_Event type, j1Element* element);
+
+
 	void ExecuteTransition();						// Method that will trigger a new transition depending on the input received.
 
 public:
 
-	j1Element* mainMenuButton = nullptr;
-	j1Element* newGameButton = nullptr;
-	j1Element* continueButton = nullptr;
+	j1Element* playButton = nullptr;
+	j1Element* scoreButton = nullptr;
+	j1Element* creditsButton = nullptr;
 	j1Element* settingsButton = nullptr;
 	j1Element* exitButton = nullptr;
 

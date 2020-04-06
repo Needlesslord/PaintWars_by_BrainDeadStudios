@@ -20,10 +20,12 @@ bool j1Button::Start()
 {
 	if (textureType == TEXTURE::BUTON) {
 		texture = App->gui->Load_Texture(TEXTURE::BUTON);
-		texture_hover = App->gui->Load_Texture(TEXTURE::BUTON_HOVER);
 	}
 
-	
+	if (textureType == TEXTURE::ATLAS) {
+
+		texture = App->gui->Load_Texture(TEXTURE::ATLAS);
+	}
 
 	
 
@@ -62,7 +64,10 @@ bool j1Button::Update(float dt)
 		if (above)
 		{
 			if (App->input->GetMouseButtonDown(1) == KEY_DOWN)
+			{
 				OnClick();
+			}
+			
 
 			if (App->input->GetMouseButtonDown(1) == KEY_REPEAT)
 			{
@@ -72,7 +77,6 @@ bool j1Button::Update(float dt)
 				iPoint mouseClick = { 0,0 };
 				App->input->GetMousePosition_UI(mouseClick.x, mouseClick.y);
 				drag = { mouseClick.x - ((int)this->map_position.x), mouseClick.y - ((int)this->map_position.y) };
-
 			}
 
 		}
@@ -92,10 +96,14 @@ bool j1Button::Update(float dt)
 	if (enabled) {
 
 
-		if (textureType == TEXTURE::BUTON) {
-			if (above && interactable)
+		if (textureType == TEXTURE::BUTON || textureType == TEXTURE::ATLAS) {
+			if (above && interactable && App->input->GetMouseButtonDown(1) == KEY_REPEAT)
 			{
-				App->render->AddBlitEvent(3, texture_hover, map_position.x - App->render->camera.x , map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
+				App->render->AddBlitEvent(3, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
+			}
+			else if (above && interactable)
+			{
+				App->render->AddBlitEvent(3, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, hover_rect, false, true, 0u, 0u, 0u, 255, true);
 			}
 			else {
 				App->render->AddBlitEvent(3, texture, map_position.x - App->render->camera.x , map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
@@ -138,6 +146,11 @@ bool j1Button::PostUpdate()
 
 bool j1Button::CleanUp()
 {
+	App->tex->UnLoad(texture);
+	texture = nullptr;
+	if (label != nullptr)
+	label->CleanUp();
+
 	return true;
 }
 

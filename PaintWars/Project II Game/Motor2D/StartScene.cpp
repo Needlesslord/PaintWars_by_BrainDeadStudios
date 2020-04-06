@@ -10,7 +10,7 @@
 #include "StartScene.h"
 #include "TransitionManager.h"
 
-StartScene::StartScene() : Scene(SCENES::GAME_SCENE)
+StartScene::StartScene() : Scene(SCENES::START_SCENE)
 {
 
 }
@@ -35,19 +35,25 @@ bool StartScene::Start()
 {
 	bool ret = true;
 
-	//mainMenuButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 350, 70 }, { 0, 0 }, false, true, { 0, 0, 350, 121 }, "Main Menu");
+	continueButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 375, 230 }, { 30,25 }, true, true, { 0, 0, 263, 91 }, "CONTINUE", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	continueButton->hover_rect = { 263, 0, 263, 91 };
+	continueButton->click_rect = { 526, 0, 263, 91 };
 
-	//newGameButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 370, 240 }, { 0,0 }, true, true, { 0, 445, 312, 108 }, "New Game", App->scenes);
-	//newGameButton->hover_tex = { 350, 445, 312, 108 };
+	forestButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 385, 360 }, { 30,20 }, true, true, { 0, 334, 234, 79 }, "Forest", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	forestButton->hover_rect = { 263, 334, 234, 79 };
+	forestButton->click_rect = { 525, 334, 234, 79 };
 
-	//continueButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 370, 380 }, { 0,0 }, true, true, { 0, 445, 312, 108 }, "Continue", App->scenes);
-	//continueButton->hover_tex = { 350, 445, 312, 108 };
+	snowButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 385, 470 }, { 60,20 }, true, true, { 0, 334, 234, 79 }, "Snow", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	snowButton->hover_rect = { 263, 334, 234, 79 };
+	snowButton->click_rect = { 525, 334, 234, 79 };
 
-	//settingsButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 370, 520 }, { 0,0 }, true, true, { 0, 445, 312, 108 }, "Settings", App->scenes);
-	//settingsButton->hover_tex = { 350, 445, 312, 108 };
+	volcanoButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 385, 580 }, { 20,20 }, true, true, { 0, 334, 234, 79 }, "Volcano", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	volcanoButton->hover_rect = { 263, 334, 234, 79 };
+	volcanoButton->click_rect = { 525, 334, 234, 79 };
 
-	//exitButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 390, 650 }, { 0,0 }, true, true, { 0, 877, 275, 95 }, "EXIT", App->scenes);
-	//exitButton->hover_tex = { 350, 877, 275, 95 };
+	backButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 800, 680 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "BACK", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	backButton->hover_rect = { 263, 658, 207, 71 };
+	backButton->click_rect = { 525, 658, 207, 71 };
 
 	return ret;
 }
@@ -94,11 +100,11 @@ bool StartScene::CleanUp()
 	LOG("Freeing Scene");
 	bool ret = true;
 
-	//RELEASE(mainMenuButton);
-	//RELEASE(newGameButton);
-	//RELEASE(continueButton);
-	//RELEASE(settingsButton);
-	//RELEASE(exitButton);
+	continueButton->CleanUp();
+	forestButton->CleanUp();
+	snowButton->CleanUp();
+	volcanoButton->CleanUp();
+	backButton->CleanUp();
 
 	if (scene_texture != nullptr)
 	{
@@ -123,6 +129,24 @@ bool StartScene::CleanUp()
 	return ret;
 }
 
+
+void StartScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
+{
+	if (element == backButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		App->scenes->SwitchScene(SCENES::MENU_SCENE);
+	}
+
+	if (element == continueButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		App->scenes->SwitchScene(SCENES::GAME_SCENE);
+	}
+
+	if ((element == snowButton || element == forestButton || element == volcanoButton) && type == GUI_Event::EVENT_ONCLICK)
+	{
+		App->scenes->SwitchScene(SCENES::GAME_SCENE);
+	}
+}
 
 //void MenuScene::InitScene()
 //{
