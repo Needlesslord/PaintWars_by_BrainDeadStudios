@@ -160,6 +160,9 @@
     <ClCompile Include="SettingsScene.cpp">
       <Filter>Motor  ========\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="j1QuestManager.cpp">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -326,6 +329,9 @@
     </ClInclude>
     <ClInclude Include="SettingsScene.h">
       <Filter>Motor  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="j1QuestManager.h">
+      <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

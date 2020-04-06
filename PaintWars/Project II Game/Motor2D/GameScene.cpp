@@ -39,6 +39,8 @@ bool GameScene::Start()
 {
 	bool ret = true;
 	
+	debug_tex = App->tex->Load("maps/path2.png");
+
 	//THESE BOOLS HAVE TO BE REMOVED ONCE WE HAVE THE MAIN MENU, BECAUSE WE WANT THE GAME TO LOAD THE MAP AFTER WE USE THE PLAY BUTTON NOT WHILE WE ARE IN THE MENU
 	Load_Forest_Map = true;
 	Change_Map = true;
@@ -61,6 +63,12 @@ bool GameScene::Start()
 		App->pathfinding->SetMap(w, h, data);						// Sets a new walkability map with the map passed by CreateWalkabilityMap().
 	}
 
+	App->pathfinding->ChangeWalkability({ 7, 0 }, false);
+	App->pathfinding->ChangeWalkability({ 7, 1 }, false);
+	App->pathfinding->ChangeWalkability({ 7, 2 }, false);
+	App->pathfinding->ChangeWalkability({ 7, 3 }, false);
+
+
 	return ret;
 }
 
@@ -68,8 +76,6 @@ bool GameScene::Start()
 bool GameScene::PreUpdate()
 {
 	bool ret = true;
-
-
 
 	if (Change_Map == true) {
 		if (Load_Forest_Map) {
@@ -156,21 +162,18 @@ bool GameScene::Update(float dt)
 
 	App->map->Draw();
 
-	float x, y;
-	App->input->GetMousePosition(x, y);
-	iPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
-	fPoint map_coordinates2 = App->input->GetMouseWorldPosition();
-
+	fPoint xy = App->input->GetMouseWorldPosition();
+	iPoint cameraW = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
+	iPoint map_coordinates = App->map->WorldToMap(xy.x - cameraW.x /*+ App->map->data.tile_width / 2*/, xy.y - cameraW.y + App->map->data.tile_height/2);
 
 	static char title[256];
-
-	sprintf_s(title, 256, "Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d, %d, %d",
+	sprintf_s(title, 256, "Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d,",
 		App->map->data.width, App->map->data.height,
 		App->map->data.tile_width, App->map->data.tile_height,
 		App->map->data.tilesets.size(),
-		map_coordinates.x, map_coordinates.y, map_coordinates2.x, map_coordinates2.y);
+		map_coordinates.x, map_coordinates.y);
 
-	//App->win->SetTitle(title);
+	App->win->SetTitle(title);
 
 
 	/*p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d, %d, %d",
@@ -180,13 +183,15 @@ bool GameScene::Update(float dt)
 		map_coordinates.x, map_coordinates.y, map_coordinates2.x, map_coordinates2.y);
 
 	App->win->SetTitle(title.GetString());*/
-
+	
+	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
+		debugTile = !debugTile;
+	}
 	// Debug pathfinding ------------------------------
-	//float x, y;
-
-
-	//App->render->Blit(debug_tex, p.x, p.y);
-
+	if (debugTile) {
+		fPoint c = App->map->MapToWorld(map_coordinates.x, map_coordinates.y);
+		App->render->AddBlitEvent(1, debug_tex, c.x, c.y, { 0,0,150,75 });
+	}
 	return ret;
 }
 
@@ -235,6 +240,8 @@ bool GameScene::CleanUp()
 	{
 		SDL_FreeSurface(scene_surface);
 	}
+
+	App->tex->UnLoad(debug_tex);
 
 	return ret;
 }

@@ -16,15 +16,14 @@ Slime::Slime(fPoint pos, int damage, j1Module* listener) : Entity(pos, damage, l
 	maxLife = 50;
 	this->currLife = maxLife - damage;
 	this->pos = pos;
+
+	speed = 300;
+	iPoint mapPos = App->map->WorldToMap(pos.x, pos.y);
+	destination = mapPos;
+
 	size = { 20, 20 };
 	isEntityFromPlayer = false;
 	CreateEntityCollider(pos);
 }
 
 Slime::~Slime() {}
-
-//void Slime::Move(iPoint destination) {
-//	iPoint posI;
-//	posI.x = pos.x; posI.y = pos.y;
-//	App->pathfinding->CreatePath(posI, destination);
-//}

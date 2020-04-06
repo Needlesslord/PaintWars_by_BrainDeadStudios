@@ -148,22 +148,27 @@ bool j1EntityManager::Update(float dt) {
 
 	// Change destination for units selected on right-click
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && !unitsSelected.empty()) {
+		int orderOfPriority = 0;
 		list<Entity*>::iterator unitsToRedirect = unitsSelected.begin();
 		while (unitsToRedirect != unitsSelected.end()) {
-			fPoint mouseWorldPosition = App->input->GetMouseWorldPosition();
-			iPoint mouseMapPosition = App->map->WorldToMap(mouseWorldPosition.x, mouseWorldPosition.y);
-			(*unitsToRedirect)->SetDestination(mouseMapPosition);
+			fPoint xy = App->input->GetMouseWorldPosition();
+			iPoint cameraW = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
+			iPoint map_coordinates = App->map->WorldToMap(xy.x - cameraW.x /*+ App->map->data.tile_width / 2*/, xy.y - cameraW.y + App->map->data.tile_height / 2);
+
+			(*unitsToRedirect)->SetDestination(map_coordinates);
+			(*unitsToRedirect)->CalculateMovementLogic(orderOfPriority);
+			orderOfPriority++;
 			unitsToRedirect++;
 		}
 	}
 	
 	// Prepare Movement
-	list<Entity*>::iterator unitsToPrepareMove = activeUnits.begin();
+	/*list<Entity*>::iterator unitsToPrepareMove = activeUnits.begin();
 	while (unitsToPrepareMove != activeUnits.end()) {
 		(*unitsToPrepareMove)->CalculateMovementLogic();
 
 		unitsToPrepareMove++;
-	}
+	}*/
 
 	// Move
 	list<Entity*>::iterator unitsToMove = activeUnits.begin();

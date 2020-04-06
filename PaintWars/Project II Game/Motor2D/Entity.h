@@ -2,6 +2,8 @@
 #define __Entity_H__
 
 #include "p2Point.h"
+#include <vector>
+
 #include "Animation.h"
 
 #include "j1App.h"
@@ -82,7 +84,7 @@ public:
 	virtual void Draw(SDL_Texture* sprites);
 	virtual void DebugDrawSelected();
 	virtual void OnCollision(ColliderGroup* c1, ColliderGroup* c2, CollisionState collisionState);
-	virtual void CalculateMovementLogic();
+	virtual void CalculateMovementLogic(int p);
 	virtual void Move(float dt);
 	virtual void SetDestination(iPoint des);
 
@@ -115,7 +117,7 @@ public:
 
 	bool isSelected = false;
 	bool isEntityFromPlayer = NULL;
-	bool isOnTheMove = false;
+	bool isOnTheMove;
 
 	float speed = 0;
 
@@ -137,7 +139,8 @@ protected:
 
 	j1Module* listener = nullptr; // callback
 
-
+	iPoint destination;
+	std::vector<iPoint>currentPath;
 
 	Animation North_Animation;
 	

@@ -59,6 +59,14 @@ uchar j1PathFinding::GetTileAt(const iPoint& pos) const
 	return INVALID_WALK_CODE;
 }
 
+void j1PathFinding::ChangeWalkability(const iPoint& pos, bool isBecomingWalkable) {
+	if(isBecomingWalkable)
+		map[(pos.y*width) + pos.x] = 1;
+
+	else
+		map[(pos.y*width) + pos.x] = INVALID_WALK_CODE;
+}
+
 // To request all tiles involved in the last generated path
 const std::vector<iPoint>* j1PathFinding::GetLastPath() const
 {
@@ -275,5 +283,38 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination) {
 	return ret;
 }
 
+std::vector<iPoint> j1PathFinding::FindClosestDestination(iPoint destination) {
+	std::vector<iPoint> ret;
+
+	PathList closestDestinations;
+
+	PathNode destinationNode;
+
+	destinationNode.pos.x = destination.x;
+	destinationNode.pos.y = destination.y;
+
+	destinationNode.FindWalkableAdjacents(closestDestinations);
+
+	while (closestDestinations.list.size() > 0) {
+		ret.push_back(closestDestinations.list.back().pos);
+		closestDestinations.list.pop_back();
+	}
+
+		//while (open.list.size() > 0) {
+		//	// We delete the lowest score tile from open and move it to closed, frontier-->visited 
+		//	PathNode* lowest = (PathNode*)open.GetNodeLowestScore();
+		//	closed.list.push_back(*lowest);
+
+		//	std::list<PathNode>::iterator it = open.list.begin();
+
+		//	while (it != open.list.end()) {
+		//		if (&(*it) == &(*lowest)) {
+		//			open.list.erase(it);
+		//			break;
+		//		}
+		//		it++;
+		//	}
 
 
+	return ret;
+}

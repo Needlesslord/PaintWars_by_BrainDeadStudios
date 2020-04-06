@@ -42,7 +42,7 @@ bool j1Player::Awake(pugi::xml_node& config)
 bool j1Player::Start() {
 	bool ret = true;
 	LOG("Player Started");
-	Tex_Player = App->tex->Load("textures/Cursor.png");
+	Tex_Player = App->tex->Load("textures/Cursor3.png");
 	App->win->GetWindowSize( win_width,win_height);
 	SDL_ShowCursor(SDL_DISABLE);
 

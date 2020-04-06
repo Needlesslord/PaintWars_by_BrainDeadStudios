@@ -19,6 +19,11 @@ Painter::Painter(fPoint pos, int damage, j1Module* listener) : Entity(pos, damag
 	maxLife = 10;
 	this->currLife = maxLife - damage;
 	this->pos = pos;
+
+	speed = 200;
+	iPoint mapPos = App->map->WorldToMap(pos.x, pos.y);
+	destination = mapPos;
+
 	size = { 20, 20 };
 	isEntityFromPlayer = true;
 	CreateEntityCollider(pos);
@@ -40,9 +45,3 @@ Painter::Painter(fPoint pos, int damage, j1Module* listener) : Entity(pos, damag
 }
 
 Painter::~Painter() {}
-
-//void Painter::Move(iPoint destination) {
-//	iPoint posI;
-//	posI.x = pos.x; posI.y = pos.y;
-//	App->pathfinding->CreatePath(posI, destination);
-//}

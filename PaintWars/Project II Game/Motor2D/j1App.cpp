@@ -22,6 +22,7 @@
 #include <thread>
 #include "TransitionManager.h"
 #include "j1SceneManager.h"
+#include "j1QuestManager.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -41,6 +42,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	fonts = new j1Fonts();
 	InGameUI = new j1InGameUI();
 	transition_manager = new TransitionManager();
+	quest_manager = new j1QuestManager();
 	
 
 	// Ordered for awake / Start / Update
@@ -59,6 +61,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(fonts);
 	AddModule(InGameUI);
 	AddModule(transition_manager);
+	AddModule(quest_manager);
 
 	// render last to swap buffer
 	AddModule(render);
@@ -174,6 +177,22 @@ pugi::xml_node j1App::LoadConfig(pugi::xml_document& config_file) const
 }
 
 // ---------------------------------------------
+
+pugi::xml_node j1App::LoadQuests(pugi::xml_document& file) const
+{
+	pugi::xml_node ret;
+
+	pugi::xml_parse_result result = file.load_file("quest_data.xml");
+
+	if (result == NULL)
+		LOG("Could not load  xml file <loadxmlfunction> pugi error: %s", result.description());
+	else
+		ret = file.child("quests");
+	LOG("XML LOADED");
+
+	return ret;
+}
+
 void j1App::PrepareUpdate()
 {
 	frame_count++;
@@ -226,7 +245,7 @@ void j1App::FinishUpdate()
 	sprintf_s(title, 256, "QR || FPS: %02u / EstFPS: %02u/ Av.FPS: %.2f / Last Frame Ms: %02u / Cap: %s / Vsync: -- / dt: %f",
 		frames_on_last_update, framerate_cap, avg_fps, last_frame_ms, cap, dt);
 
-	App->win->SetTitle(title);
+	//App->win->SetTitle(title);
 
 	
 	if ((framerate_cap > 0) && fpscap)

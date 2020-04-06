@@ -8,12 +8,15 @@
 #include "j1Collision.h"
 #include "j1Map.h"
 #include "j1EntityManager.h"
+#include "j1Pathfinding.h"
 #include "j1Player.h"
 
 Entity::Entity(fPoint pos, int damage, j1Module* listeners) : pos(pos), currLife(maxLife - damage), listener(listener)
 {
 	if (this->currLife == 0)
 		this->currLife = this->maxLife;
+
+	isOnTheMove = false;
 }
 
 Entity::~Entity() {}
@@ -29,11 +32,242 @@ void Entity::DebugDrawSelected()
 
 void Entity::OnCollision(ColliderGroup* c1, ColliderGroup* c2, CollisionState collisionState) {}
 
-void Entity::CalculateMovementLogic() {}
+void Entity::CalculateMovementLogic(int p) {
 
-void Entity::Move(float dt) {}
+	iPoint cameraW = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
+	iPoint map_coordinates = App->map->WorldToMap(pos.x - cameraW.x /*+ App->map->data.tile_width / 2*/, pos.y - cameraW.y + App->map->data.tile_height / 2);
 
-void Entity::SetDestination(iPoint des) {}
+	iPoint mapPos = App->map->WorldToMap(pos.x, pos.y);
+	fPoint worldDestination = App->map->MapToWorld(destination.x, destination.y);
+
+	// If he's at the destination he doesn't have to move so we exit
+	if (destination == map_coordinates) {
+		isOnTheMove = false;
+		return;
+	}
+
+	App->pathfinding->CreatePath(map_coordinates, destination);
+	currentPath = *App->pathfinding->GetLastPath();
+
+	if (p > 0) {
+		if (p < 9) {
+			iPoint closestDestination = App->pathfinding->FindClosestDestination(destination).at(p - 1);
+			destination = closestDestination;
+		}
+
+		/*else {
+			iPoint closestDestinationToClosestDestiantion = App->pathfinding->FindClosestDestination(App->pathfinding->FindClosestDestination(destination).at(0)).at(p-9);
+			destination = closestDestinationToClosestDestiantion;
+		}*/
+	}
+	
+
+	if (map_coordinates.x < destination.x) {
+		
+		if (map_coordinates.y < destination.y) {
+			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH;
+			//destination.y -= p;
+		}
+		else if (map_coordinates.y > destination.y) {
+			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_EAST;
+			//destination.x += -p;
+		}
+		else /*if (map_coordinates.y == destination.y)*/ {
+			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH_EAST;
+			//destination.x += -p;
+		}
+	}
+
+	else if (map_coordinates.x > destination.x) {
+		
+		if (map_coordinates.y < destination.y) {
+			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_WEST;
+			//destination.x += -p;
+		}
+		else if (map_coordinates.y > destination.y) {
+			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH;
+			//destination.x += -p;
+		}
+		else/* if (map_coordinates.y == destination.y) */ {
+			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH_WEST;
+			//destination.x += -p;
+		}
+	}
+
+	else if (map_coordinates.x == destination.x) {
+
+		if (map_coordinates.y < destination.y) {
+			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH_WEST;
+		}
+		else if (map_coordinates.y > destination.y) {
+			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH_EAST;
+		}
+		else /*if (map_coordinates.y == destination.y)*/ {
+			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;
+		}
+	}
+
+	isOnTheMove = true;
+}
+
+void Entity::Move(float dt) {
+	fPoint worldDestination = App->map->MapToWorld(destination.x, destination.y);
+	iPoint mapPos = App->map->WorldToMap(pos.x, pos.y);
+	if (unitOrientation == UNIT_ORIENTATION_NONE) {
+		return;
+	}
+	else if (unitOrientation == UNIT_ORIENTATION_NORTH) {
+
+		pos.y -= speed * dt;
+		
+		if (pos.y < worldDestination.y + App->map->data.tile_height / 2) {
+			pos.y = worldDestination.y + App->map->data.tile_height / 2;
+		}
+
+		if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
+			pos.x += speed * dt / 2;
+
+			if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
+				pos.x = worldDestination.x + App->map->data.tile_width / 2;
+			}
+		}
+
+		else if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
+			pos.x -= speed * dt / 2;
+
+			if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
+				pos.x = worldDestination.x + App->map->data.tile_width / 2;
+			}
+		}
+	}
+	else if (unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+		pos.x += speed * dt / 2;
+		pos.y -= speed * dt / 2;
+
+		if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
+			pos.x = worldDestination.x + App->map->data.tile_width / 2;
+		}
+		if (pos.y < worldDestination.y + App->map->data.tile_height / 2) {
+			pos.y = worldDestination.y + App->map->data.tile_height / 2;
+		}
+	}
+	else if (unitOrientation == UNIT_ORIENTATION_EAST) {
+
+		pos.x += speed * dt;
+
+		if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
+			pos.x = worldDestination.x + App->map->data.tile_width / 2;
+		}
+
+		if (pos.y <= worldDestination.y + App->map->data.tile_height / 2) {
+			pos.y += speed * dt / 2;
+
+			if (pos.y >= worldDestination.y + App->map->data.tile_height / 2) {
+				pos.y = worldDestination.y + App->map->data.tile_height / 2;
+			}
+		}
+
+		else if (pos.y >= worldDestination.y + App->map->data.tile_height / 2) {
+			pos.y -= speed * dt / 2;
+
+			if (pos.y <= worldDestination.y + App->map->data.tile_height / 2) {
+				pos.y = worldDestination.y + App->map->data.tile_height / 2;
+			}
+		}
+	}
+	else if (unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+		pos.x += speed * dt / 2;
+		pos.y += speed * dt / 2;
+
+		if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
+			pos.x = worldDestination.x + App->map->data.tile_width / 2;
+		}
+		if (pos.y > worldDestination.y + App->map->data.tile_height / 2) {
+			pos.y = worldDestination.y + App->map->data.tile_height / 2;
+		}
+	}
+	else if (unitOrientation == UNIT_ORIENTATION_SOUTH) {
+
+		pos.y += speed * dt;
+		
+		if (pos.y > worldDestination.y + App->map->data.tile_height / 2) {
+			pos.y = worldDestination.y + App->map->data.tile_height / 2;
+		}
+
+		if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
+			pos.x += speed * dt / 2;
+
+			if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
+				pos.x = worldDestination.x + App->map->data.tile_width / 2;
+			}
+		}
+
+		else if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
+			pos.x -= speed * dt / 2;
+
+			if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
+				pos.x = worldDestination.x + App->map->data.tile_width / 2;
+			}
+
+		}
+	}
+	else if (unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+		pos.x -= speed * dt / 2;
+		pos.y += speed * dt / 2;
+
+		if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
+			pos.x = worldDestination.x + App->map->data.tile_width / 2;
+		}
+		if (pos.y > worldDestination.y + App->map->data.tile_height / 2) {
+			pos.y = worldDestination.y + App->map->data.tile_height / 2;
+		}
+	}
+	else if (unitOrientation == UNIT_ORIENTATION_WEST) {
+
+		pos.x -= speed * dt;
+
+		if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
+			pos.x = worldDestination.x + App->map->data.tile_width / 2;
+		}
+
+		if (pos.y <= worldDestination.y + App->map->data.tile_height / 2) {
+			pos.y += speed * dt / 2;
+
+			if (pos.y >= worldDestination.y + App->map->data.tile_height / 2) {
+				pos.y = worldDestination.y + App->map->data.tile_height / 2;
+			}
+		}
+
+		else if (pos.y >= worldDestination.y + App->map->data.tile_height / 2) {
+			pos.y -= speed * dt / 2;
+
+			if (pos.y <= worldDestination.y + App->map->data.tile_height / 2) {
+				pos.y = worldDestination.y + App->map->data.tile_height / 2;
+			}
+		}
+	}
+	else if (unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+		pos.x -= speed * dt / 2;
+		pos.y -= speed * dt / 2;
+
+		if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
+			pos.x = worldDestination.x + App->map->data.tile_width / 2;
+		}
+		if (pos.y < worldDestination.y + App->map->data.tile_height / 2) {
+			pos.y = worldDestination.y + App->map->data.tile_height / 2;
+		}
+	}
+	//if (mapPos == destination)
+	//	isOnTheMove = false;
+}
+
+void Entity::SetDestination(iPoint des) {
+	this->destination = des;
+}
+
 // -------------------------------------------------------------
 
 // Position and size
@@ -112,10 +346,10 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	/// Buildings
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
-		vector<Collider*> collider;
+		//vector<Collider*> collider;
 		SDL_Rect rect = { pos.x - GetSize().x/2, pos.y - GetSize().y / 2, GetSize().x, GetSize().y };
 		entityCollider = App->col->AddCollider(rect, collType, App->entities);
-		collider.push_back(entityCollider);
+		//collider.push_back(entityCollider);
 
 		return true;
 	}
@@ -123,20 +357,20 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	/// Units
 	else if (entityType == ENTITY_TYPE_PAINTER) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_UNIT;
-		vector<Collider*> collider;
+		//vector<Collider*> collider;
 		SDL_Rect rect = { pos.x - GetSize().x / 2, pos.y - GetSize().y / 2, GetSize().x, GetSize().y };
 		entityCollider = App->col->AddCollider(rect, collType, App->entities);
-		collider.push_back(entityCollider);
+		//collider.push_back(entityCollider);
 
 		return true;
 	}
 
 	else if (entityType == ENTITY_TYPE_WARRIOR) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_UNIT;
-		vector<Collider*> collider;
+		//vector<Collider*> collider;
 		SDL_Rect rect = { pos.x - GetSize().x / 2, pos.y - GetSize().y / 2, GetSize().x, GetSize().y };
 		entityCollider = App->col->AddCollider(rect, collType, App->entities);
-		collider.push_back(entityCollider);
+		//collider.push_back(entityCollider);
 
 		return true;
 	}
@@ -145,10 +379,10 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	/// Buildings
 	else if (entityType == ENTITY_TYPE_SPAWNER) {
 		COLLIDER_TYPE collType = COLLIDER_ENEMY_BUILDING;
-		vector<Collider*> collider;
+		//vector<Collider*> collider;
 		SDL_Rect rect = { pos.x - GetSize().x / 2, pos.y - GetSize().y / 2, GetSize().x, GetSize().y };
 		entityCollider = App->col->AddCollider(rect, collType, App->entities);
-		collider.push_back(entityCollider);
+		//collider.push_back(entityCollider);
 
 		return true;
 	}
@@ -156,10 +390,10 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	/// Units
 	else if (entityType == ENTITY_TYPE_SLIME) {
 		COLLIDER_TYPE collType = COLLIDER_ENEMY_UNIT;
-		vector<Collider*> collider;
+		//vector<Collider*> collider;
 		SDL_Rect rect = { pos.x - GetSize().x / 2, pos.y - GetSize().y / 2, GetSize().x, GetSize().y };
 		entityCollider = App->col->AddCollider(rect, collType, App->entities);
-		collider.push_back(entityCollider);
+		//collider.push_back(entityCollider);
 
 		return true;
 	}
