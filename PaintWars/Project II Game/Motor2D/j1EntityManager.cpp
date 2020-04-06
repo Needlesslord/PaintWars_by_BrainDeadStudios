@@ -145,6 +145,7 @@ bool j1EntityManager::Update(float dt) {
 		entitiesToDraw++;
 	}
 
+ 	int a = activeEntities.size();
 
 	// Change destination for units selected on right-click
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && !unitsSelected.empty()) {
@@ -319,7 +320,7 @@ void j1EntityManager::SelectGroupEntities(SDL_Rect rect) {
 	if (!App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT)
 		UnselectAllEntities();
 
-	bool isSomeEntitySelected = false;
+	int entitiesForGroup = 0;
 
 	list<Entity*>::iterator chechUnitsToSelect = activeUnits.begin();
 	while (chechUnitsToSelect != activeUnits.end()) {
@@ -328,15 +329,17 @@ void j1EntityManager::SelectGroupEntities(SDL_Rect rect) {
 			rect.y < (*chechUnitsToSelect)->pos.y + (*chechUnitsToSelect)->GetSize().y &&
 			rect.h + rect.y >(*chechUnitsToSelect)->pos.y) {
 
-			unitsSelected.push_back((*chechUnitsToSelect));
-			entitiesSelected.push_back((*chechUnitsToSelect));
-			(*chechUnitsToSelect)->isSelected = true;
+			entitiesForGroup++;
 
-			isSomeEntitySelected = true;
+			if (entitiesForGroup < 10) { // This caps the maximum of units selected in a group to 9 so we can move them with ease
+				unitsSelected.push_back((*chechUnitsToSelect));
+				entitiesSelected.push_back((*chechUnitsToSelect));
+				(*chechUnitsToSelect)->isSelected = true;
+			}
 		}
 		chechUnitsToSelect++;
 	}
 
-	if (!isSomeEntitySelected)
+	if (entitiesForGroup == 0)
 		UnselectAllEntities();
 }

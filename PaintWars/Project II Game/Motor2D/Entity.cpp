@@ -23,7 +23,7 @@ Entity::~Entity() {}
 
 void Entity::Draw(SDL_Texture* sprites) {
 	if (sprites != nullptr)
-		App->render->AddBlitEvent(1, sprites, pos.x - size.x / 2, pos.y - size.y / 2, { 0, 0, size.x, size.y });
+		App->render->AddBlitEvent(1, sprites, pos.x - size.x / 2, pos.y - size.y / 1.5, { 0, 0, size.x, size.y });
 }
 
 void Entity::DebugDrawSelected()
@@ -45,20 +45,38 @@ void Entity::CalculateMovementLogic(int p) {
 		isOnTheMove = false;
 		return;
 	}
-
-	App->pathfinding->CreatePath(map_coordinates, destination);
+	int map;
+	map = App->pathfinding->CreatePath(map_coordinates, destination);
 	currentPath = *App->pathfinding->GetLastPath();
 
-	if (p > 0) {
+	if (map != -1 && p > 0) {
 		if (p < 9) {
 			iPoint closestDestination = App->pathfinding->FindClosestDestination(destination).at(p - 1);
 			destination = closestDestination;
 		}
 
-		/*else {
-			iPoint closestDestinationToClosestDestiantion = App->pathfinding->FindClosestDestination(App->pathfinding->FindClosestDestination(destination).at(0)).at(p-9);
-			destination = closestDestinationToClosestDestiantion;
-		}*/
+		else { // This can never be for now because the maximum of units selected is 9 so p will never be 9 or greater
+			// We store the 8 closest in a vector
+			std::vector<iPoint> closestDestinationList;
+			for (int i = 0; i < 8; i++) {
+				closestDestinationList.push_back(App->pathfinding->FindClosestDestination(destination).at(i));
+			}
+			
+			iPoint cD2cD;
+			bool exit = false;
+			for (int i = 0; i < 8; i++) {
+				if (exit) break;
+				cD2cD = App->pathfinding->FindClosestDestination(closestDestinationList.at(p - 9)).at(i);
+				for (int j = 0; j < 8; j++) {
+					if (cD2cD != closestDestinationList.at(j)) {
+						destination = cD2cD;
+
+						exit = true;
+						break;
+					}
+				}
+			}
+		}
 	}
 	
 
@@ -66,15 +84,12 @@ void Entity::CalculateMovementLogic(int p) {
 		
 		if (map_coordinates.y < destination.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH;
-			//destination.y -= p;
 		}
 		else if (map_coordinates.y > destination.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_EAST;
-			//destination.x += -p;
 		}
-		else /*if (map_coordinates.y == destination.y)*/ {
+		else {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH_EAST;
-			//destination.x += -p;
 		}
 	}
 
@@ -82,15 +97,12 @@ void Entity::CalculateMovementLogic(int p) {
 		
 		if (map_coordinates.y < destination.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_WEST;
-			//destination.x += -p;
 		}
 		else if (map_coordinates.y > destination.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH;
-			//destination.x += -p;
 		}
-		else/* if (map_coordinates.y == destination.y) */ {
+		else {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH_WEST;
-			//destination.x += -p;
 		}
 	}
 
@@ -102,7 +114,7 @@ void Entity::CalculateMovementLogic(int p) {
 		else if (map_coordinates.y > destination.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH_EAST;
 		}
-		else /*if (map_coordinates.y == destination.y)*/ {
+		else {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;
 		}
 	}
@@ -111,8 +123,10 @@ void Entity::CalculateMovementLogic(int p) {
 }
 
 void Entity::Move(float dt) {
+
 	fPoint worldDestination = App->map->MapToWorld(destination.x, destination.y);
 	iPoint mapPos = App->map->WorldToMap(pos.x, pos.y);
+
 	if (unitOrientation == UNIT_ORIENTATION_NONE) {
 		return;
 	}
@@ -260,8 +274,8 @@ void Entity::Move(float dt) {
 			pos.y = worldDestination.y + App->map->data.tile_height / 2;
 		}
 	}
-	//if (mapPos == destination)
-	//	isOnTheMove = false;
+	if (mapPos == destination)
+		isOnTheMove = false;
 }
 
 void Entity::SetDestination(iPoint des) {
