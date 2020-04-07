@@ -302,5 +302,9 @@ std::vector<iPoint> j1PathFinding::FindClosestDestination(iPoint destination) {
 		closestDestinations.list.pop_back();
 	}
 
+	/*while (ret.size() < 8) {
+		ret.push_back({ -1, -1 });
+	}*/
+
 	return ret;
 }
