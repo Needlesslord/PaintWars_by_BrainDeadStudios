@@ -229,7 +229,7 @@ All the FX used in the Pause Menu are the following:
 #### Units
 
  - Fight:
-    + Melee - 
+    + Melee - https://www.youtube.com/watch?v=t9jOmU-qgvM
     + Ranged - 
     + Special - 
  - Special units:
@@ -241,7 +241,7 @@ All the FX used in the Pause Menu are the following:
 #### Enemies
 
  - Spawn - https://www.youtube.com/watch?v=ri234Cm3fK4
- - Spawn destroyed - 
+ - Spawn destroyed - https://www.youtube.com/watch?v=f0gB369NYFA
  - Enemy death - 
  - Enemies:
     + Chroma-King - 
@@ -275,7 +275,7 @@ All the FX used in the Pause Menu are the following:
   - Buildings producing
     + Hall - https://www.audioblocks.com/stock-audio/marketplace-hall-ambience-01-blovet0huvbk0wy4huh.html
     + Housing - 
-    + Paint Extractor - 
+    + Paint Extractor - http://soundbible.com/904-Rock-Slide.html
     + Wood Collector - 
     + Metal Scrap - 
     + Titanium Extractor - 
