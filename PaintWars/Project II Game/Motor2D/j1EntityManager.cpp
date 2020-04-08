@@ -184,7 +184,7 @@ bool j1EntityManager::Update(float dt) {
 	list<Entity*>::iterator collidersToMove = activeUnits.begin();
 	while (collidersToMove != activeUnits.end()) {
 		(*collidersToMove)->entityCollider->rect.x = (*collidersToMove)->pos.x - (*collidersToMove)->GetSize().x / 2;
-		(*collidersToMove)->entityCollider->rect.y = (*collidersToMove)->pos.y - (*collidersToMove)->GetSize().y / 2;
+		(*collidersToMove)->entityCollider->rect.y = (*collidersToMove)->pos.y - (*collidersToMove)->GetSize().y / 1.5;
 
 		collidersToMove++;
 	}

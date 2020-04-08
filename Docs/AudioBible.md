@@ -190,23 +190,23 @@ All the FX used in game are the following:
 
 All the FX used in the Main Menu are the following:
 
-- Button Hover - 
-- Button select - 
+- Button Hover - https://www.youtube.com/watch?v=vcDr4ybHiMw
+- Button select - https://www.youtube.com/watch?v=xP2jZL0qUNo
 - Specific buttons select response:
-   + Quit game - 
-   + Play (used both on the play button and when selecting the map) - 
-   + Back - 
+   + Quit game - https://www.youtube.com/watch?v=cf6S-uErp2M
+   + Play (used both on the play button and when selecting the map) - https://www.youtube.com/watch?v=xP2jZL0qUNo
+   + Back - http://soundbible.com/1294-Button-Click-Off.html
 
 ### Pause Menu
 
 All the FX used in the Pause Menu are the following:
 
-- Button Hover - 
-- Button select - 
+- Button Hover - https://www.youtube.com/watch?v=vcDr4ybHiMw
+- Button select - https://www.youtube.com/watch?v=xP2jZL0qUNo
 - Specific buttons select response:
-   + Quit game / back to main menu - 
-   + Resume - 
-   + Restart - 
+   + Quit game / back to main menu - https://www.youtube.com/watch?v=cf6S-uErp2M
+   + Resume - http://soundbible.com/1280-Click-On.html
+   + Restart - https://www.youtube.com/watch?v=xP2jZL0qUNo
 
 ### In Game
 
@@ -235,14 +235,14 @@ All the FX used in the Pause Menu are the following:
  - Special units:
     + Painter - 
     + Explorer - 
- - Ally death - 
+ - Ally death - http://soundbible.com/1454-Pain.html
 
 
 #### Enemies
 
  - Spawn - https://www.youtube.com/watch?v=ri234Cm3fK4
  - Spawn destroyed - https://www.youtube.com/watch?v=f0gB369NYFA
- - Enemy death - 
+ - Enemy death - http://soundbible.com/1040-Zombie-Gets-Attacked.html
  - Enemies:
     + Chroma-King - 
     + Corruptor - 
@@ -257,15 +257,15 @@ All the FX used in the Pause Menu are the following:
 
 ### UI
 
- - Message - 
- - Close - 
- - Hover - 
- - Select option (in game) - 
- - Select option (UI general) - 
- - Fold/unfold menu - 
- - Time (sound to make every 5 min) - 
- - Quest achieved - 
- - Advancement - 
+ - Message - http://soundbible.com/1127-Computer-Error.html
+ - Close - http://soundbible.com/1294-Button-Click-Off.html
+ - Hover - https://www.youtube.com/watch?v=vcDr4ybHiMw
+ - Select option (in game) - https://www.youtube.com/watch?v=xP2jZL0qUNo
+ - Select option (UI general) - https://www.youtube.com/watch?v=xP2jZL0qUNo
+ - Fold/unfold menu - http://soundbible.com/1726-Karate-Kid-Punch.html
+ - Time (sound to make every 5 min) - https://www.youtube.com/watch?v=9ccvU9V3Uv4
+ - Quest achieved - http://soundbible.com/1823-Winning-Triumphal-Fanfare.html
+ - Advancement - https://www.youtube.com/watch?v=o54owbOXrro
 
 
 #### Others

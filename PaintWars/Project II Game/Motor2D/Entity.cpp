@@ -50,33 +50,35 @@ void Entity::CalculateMovementLogic(int p) {
 	currentPath = *App->pathfinding->GetLastPath();
 
 	if (map != -1 && p > 0) {
-		if (p < 9) {
-			iPoint closestDestination = App->pathfinding->FindClosestDestination(destination).at(p - 1);
-			destination = closestDestination;
-		}
-
-		else { // This can never be for now because the maximum of units selected is 9 so p will never be 9 or greater
-			// We store the 8 closest in a vector
-			std::vector<iPoint> closestDestinationList;
-			for (int i = 0; i < 8; i++) {
-				closestDestinationList.push_back(App->pathfinding->FindClosestDestination(destination).at(i));
-			}
-			
-			iPoint cD2cD;
-			bool exit = false;
-			for (int i = 0; i < 8; i++) {
-				if (exit) break;
-				cD2cD = App->pathfinding->FindClosestDestination(closestDestinationList.at(p - 9)).at(i);
-				for (int j = 0; j < 8; j++) {
-					if (cD2cD != closestDestinationList.at(j)) {
-						destination = cD2cD;
-
-						exit = true;
-						break;
-					}
-				}
+		if (p <= App->pathfinding->FindClosestDestination(destination).size()) {
+			if (App->pathfinding->IsWalkable(App->pathfinding->FindClosestDestination(destination).at(p - 1))) {
+				iPoint closestDestination = App->pathfinding->FindClosestDestination(destination).at(p - 1);
+				destination = closestDestination;
 			}
 		}
+
+		//else { // This can never be for now because the maximum of units selected is 9 so p will never be 9 or greater
+		//	// We store the 8 closest in a vector
+		//	std::vector<iPoint> closestDestinationList;
+		//	for (int i = 0; i < 8; i++) {
+		//		closestDestinationList.push_back(App->pathfinding->FindClosestDestination(destination).at(i));
+		//	}
+		//	
+		//	iPoint cD2cD;
+		//	bool exit = false;
+		//	for (int i = 0; i < 8; i++) {
+		//		if (exit) break;
+		//		cD2cD = App->pathfinding->FindClosestDestination(closestDestinationList.at(p - 9)).at(i);
+		//		for (int j = 0; j < 8; j++) {
+		//			if (cD2cD != closestDestinationList.at(j)) {
+		//				destination = cD2cD;
+
+		//				exit = true;
+		//				break;
+		//			}
+		//		}
+		//	}
+		//}
 	}
 	
 
@@ -139,6 +141,7 @@ void Entity::Move(float dt) {
 		}
 
 		if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
+
 			pos.x += speed * dt / 2;
 
 			if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
@@ -147,6 +150,7 @@ void Entity::Move(float dt) {
 		}
 
 		else if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
+
 			pos.x -= speed * dt / 2;
 
 			if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
@@ -155,6 +159,7 @@ void Entity::Move(float dt) {
 		}
 	}
 	else if (unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
 		pos.x += speed * dt / 2;
 		pos.y -= speed * dt / 2;
 
@@ -174,6 +179,7 @@ void Entity::Move(float dt) {
 		}
 
 		if (pos.y <= worldDestination.y + App->map->data.tile_height / 2) {
+
 			pos.y += speed * dt / 2;
 
 			if (pos.y >= worldDestination.y + App->map->data.tile_height / 2) {
@@ -182,6 +188,7 @@ void Entity::Move(float dt) {
 		}
 
 		else if (pos.y >= worldDestination.y + App->map->data.tile_height / 2) {
+
 			pos.y -= speed * dt / 2;
 
 			if (pos.y <= worldDestination.y + App->map->data.tile_height / 2) {
@@ -210,6 +217,7 @@ void Entity::Move(float dt) {
 		}
 
 		if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
+
 			pos.x += speed * dt / 2;
 
 			if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
@@ -218,6 +226,7 @@ void Entity::Move(float dt) {
 		}
 
 		else if (pos.x >= worldDestination.x + App->map->data.tile_width / 2) {
+
 			pos.x -= speed * dt / 2;
 
 			if (pos.x <= worldDestination.x + App->map->data.tile_width / 2) {
@@ -247,6 +256,7 @@ void Entity::Move(float dt) {
 		}
 
 		if (pos.y <= worldDestination.y + App->map->data.tile_height / 2) {
+
 			pos.y += speed * dt / 2;
 
 			if (pos.y >= worldDestination.y + App->map->data.tile_height / 2) {
@@ -255,6 +265,7 @@ void Entity::Move(float dt) {
 		}
 
 		else if (pos.y >= worldDestination.y + App->map->data.tile_height / 2) {
+
 			pos.y -= speed * dt / 2;
 
 			if (pos.y <= worldDestination.y + App->map->data.tile_height / 2) {
@@ -372,7 +383,7 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	else if (entityType == ENTITY_TYPE_PAINTER) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_UNIT;
 		//vector<Collider*> collider;
-		SDL_Rect rect = { pos.x - GetSize().x / 2, pos.y - GetSize().y / 2, GetSize().x, GetSize().y };
+		SDL_Rect rect = { pos.x - GetSize().x / 2, pos.y - GetSize().y / 1.5, GetSize().x, GetSize().y };
 		entityCollider = App->col->AddCollider(rect, collType, App->entities);
 		//collider.push_back(entityCollider);
 
@@ -382,7 +393,7 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	else if (entityType == ENTITY_TYPE_WARRIOR) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_UNIT;
 		//vector<Collider*> collider;
-		SDL_Rect rect = { pos.x - GetSize().x / 2, pos.y - GetSize().y / 2, GetSize().x, GetSize().y };
+		SDL_Rect rect = { pos.x - GetSize().x / 2, pos.y - GetSize().y / 1.5, GetSize().x, GetSize().y };
 		entityCollider = App->col->AddCollider(rect, collType, App->entities);
 		//collider.push_back(entityCollider);
 
@@ -405,7 +416,7 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	else if (entityType == ENTITY_TYPE_SLIME) {
 		COLLIDER_TYPE collType = COLLIDER_ENEMY_UNIT;
 		//vector<Collider*> collider;
-		SDL_Rect rect = { pos.x - GetSize().x / 2, pos.y - GetSize().y / 2, GetSize().x, GetSize().y };
+		SDL_Rect rect = { pos.x - GetSize().x / 2, pos.y - GetSize().y / 1.5, GetSize().x, GetSize().y };
 		entityCollider = App->col->AddCollider(rect, collType, App->entities);
 		//collider.push_back(entityCollider);
 
