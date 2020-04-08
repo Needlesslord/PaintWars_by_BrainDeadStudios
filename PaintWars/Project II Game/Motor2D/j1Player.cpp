@@ -47,6 +47,20 @@ bool j1Player::Start() {
 	SDL_ShowCursor(SDL_DISABLE);
 
 
+	paintCount.resource_type = RESOURCE_TYPE_PAINT;
+	paintCount.resourceCount = 0;
+
+	foodCount.resource_type = RESOURCE_TYPE_FOOD;
+	foodCount.resourceCount = 0;
+
+	woodCount.resource_type = RESOURCE_TYPE_WOOD;
+	woodCount.resourceCount = 0;
+
+	metalScrapCount.resource_type = RESOURCE_TYPE_METAL_SCRAP;
+	metalScrapCount.resourceCount = 0;
+
+	titaniumCount.resource_type = RESOURCE_TYPE_TITANIUM;
+	titaniumCount.resourceCount = 0;
 
 	return ret;
 }
@@ -99,6 +113,7 @@ void j1Player::Camera_Control(float dt)
 {
 	if (App->scenes->current_scene->scene_name == SCENES::GAME_SCENE)
 	{
+
 		if (mouse_position.x == 0 && App->render->camera.x <= 3750)
 		{
 			App->render->camera.x += camera_speed * dt * 1000;
@@ -133,6 +148,16 @@ void j1Player::Camera_Control(float dt)
 
 		if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 			App->render->camera.x -= camera_speed * dt * 1000;
+
+		if (App->render->camera.x < -2900) 
+			App->render->camera.x = -2900;
+		if (App->render->camera.x > 3800)
+			App->render->camera.x = 3800;
+		if (App->render->camera.y > 50)
+			App->render->camera.y = 50;
+		if (App->render->camera.y < -3150)
+			App->render->camera.y = -3150;
+
 
 		if (App->input->GetKey(SDL_SCANCODE_F9) == KEY_REPEAT) {
 

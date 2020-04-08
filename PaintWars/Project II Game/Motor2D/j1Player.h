@@ -8,6 +8,28 @@
 
 struct SDL_Texture;
 
+enum RESOURCE_TYPE {
+
+	RESOURCE_TYPE_PAINT,
+	RESOURCE_TYPE_FOOD,
+	RESOURCE_TYPE_WOOD,
+	RESOURCE_TYPE_METAL_SCRAP,
+	RESOURCE_TYPE_TITANIUM,
+	RESOURCE_TYPE_NUM_UNITS,
+	//RESOURCE_TYPE_RESEARCH,
+
+	RESOURCE_NO_TYPE
+
+};
+
+struct Resource
+{
+	RESOURCE_TYPE resource_type = RESOURCE_NO_TYPE;
+	uint resourceCount;
+	//uint researchLevel;
+
+};
+
 class j1Player : public j1Module
 {
 public:
@@ -31,6 +53,16 @@ private:
 	void Mouse_Cursor();
 	void Select_Entitites(SDL_Rect);
 	void Zoom();
+
+public:
+
+	Resource paintCount;
+	Resource foodCount;
+	Resource woodCount;
+	Resource metalScrapCount;
+	Resource titaniumCount;
+
+private:
 
 	SDL_Rect selector;
 	SDL_Rect texture_rect{ 0,0,300,300 };

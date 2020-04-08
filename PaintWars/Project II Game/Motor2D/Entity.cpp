@@ -49,79 +49,90 @@ void Entity::CalculateMovementLogic(int p) {
 	map = App->pathfinding->CreatePath(map_coordinates, destination);
 	currentPath = *App->pathfinding->GetLastPath();
 
-	if (map != -1 && p > 0) {
-		if (p <= App->pathfinding->FindClosestDestination(destination).size()) {
-			if (App->pathfinding->IsWalkable(App->pathfinding->FindClosestDestination(destination).at(p - 1))) {
-				iPoint closestDestination = App->pathfinding->FindClosestDestination(destination).at(p - 1);
-				destination = closestDestination;
+	if (map != -1) {
+
+		if (p > 0) {
+
+			if (p <= App->pathfinding->FindClosestDestination(destination).size()) {
+
+				if (App->pathfinding->IsWalkable(App->pathfinding->FindClosestDestination(destination).at(p - 1))) {
+
+					iPoint closestDestination = App->pathfinding->FindClosestDestination(destination).at(p - 1);
+					destination = closestDestination;
+				}
+			}
+
+			//else { // This can never be for now because the maximum of units selected is 9 so p will never be 9 or greater
+			//	// We store the 8 closest in a vector
+			//	std::vector<iPoint> closestDestinationList;
+			//	for (int i = 0; i < 8; i++) {
+			//		closestDestinationList.push_back(App->pathfinding->FindClosestDestination(destination).at(i));
+			//	}
+			//	
+			//	iPoint cD2cD;
+			//	bool exit = false;
+			//	for (int i = 0; i < 8; i++) {
+			//		if (exit) break;
+			//		cD2cD = App->pathfinding->FindClosestDestination(closestDestinationList.at(p - 9)).at(i);
+			//		for (int j = 0; j < 8; j++) {
+			//			if (cD2cD != closestDestinationList.at(j)) {
+			//				destination = cD2cD;
+
+			//				exit = true;
+			//				break;
+			//			}
+			//		}
+			//	}
+			//}
+		}
+
+
+		if (map_coordinates.x < destination.x) {
+
+			if (map_coordinates.y < destination.y) {
+				*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH;
+			}
+			else if (map_coordinates.y > destination.y) {
+				*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_EAST;
+			}
+			else {
+				*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH_EAST;
 			}
 		}
 
-		//else { // This can never be for now because the maximum of units selected is 9 so p will never be 9 or greater
-		//	// We store the 8 closest in a vector
-		//	std::vector<iPoint> closestDestinationList;
-		//	for (int i = 0; i < 8; i++) {
-		//		closestDestinationList.push_back(App->pathfinding->FindClosestDestination(destination).at(i));
-		//	}
-		//	
-		//	iPoint cD2cD;
-		//	bool exit = false;
-		//	for (int i = 0; i < 8; i++) {
-		//		if (exit) break;
-		//		cD2cD = App->pathfinding->FindClosestDestination(closestDestinationList.at(p - 9)).at(i);
-		//		for (int j = 0; j < 8; j++) {
-		//			if (cD2cD != closestDestinationList.at(j)) {
-		//				destination = cD2cD;
+		else if (map_coordinates.x > destination.x) {
 
-		//				exit = true;
-		//				break;
-		//			}
-		//		}
-		//	}
-		//}
-	}
-	
+			if (map_coordinates.y < destination.y) {
+				*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_WEST;
+			}
+			else if (map_coordinates.y > destination.y) {
+				*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH;
+			}
+			else {
+				*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH_WEST;
+			}
+		}
 
-	if (map_coordinates.x < destination.x) {
-		
-		if (map_coordinates.y < destination.y) {
-			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH;
+		else if (map_coordinates.x == destination.x) {
+
+			if (map_coordinates.y < destination.y) {
+				*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH_WEST;
+			}
+			else if (map_coordinates.y > destination.y) {
+				*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH_EAST;
+			}
+			else {
+				*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;
+			}
 		}
-		else if (map_coordinates.y > destination.y) {
-			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_EAST;
-		}
-		else {
-			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH_EAST;
-		}
+
+		isOnTheMove = true;
 	}
 
-	else if (map_coordinates.x > destination.x) {
-		
-		if (map_coordinates.y < destination.y) {
-			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_WEST;
-		}
-		else if (map_coordinates.y > destination.y) {
-			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH;
-		}
-		else {
-			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH_WEST;
-		}
+	else {
+		*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;
+		isOnTheMove = false;
 	}
-
-	else if (map_coordinates.x == destination.x) {
-
-		if (map_coordinates.y < destination.y) {
-			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH_WEST;
-		}
-		else if (map_coordinates.y > destination.y) {
-			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH_EAST;
-		}
-		else {
-			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;
-		}
-	}
-
-	isOnTheMove = true;
 }
 
 void Entity::Move(float dt) {
@@ -158,6 +169,7 @@ void Entity::Move(float dt) {
 			}
 		}
 	}
+
 	else if (unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 		pos.x += speed * dt / 2;
@@ -170,6 +182,7 @@ void Entity::Move(float dt) {
 			pos.y = worldDestination.y + App->map->data.tile_height / 2;
 		}
 	}
+
 	else if (unitOrientation == UNIT_ORIENTATION_EAST) {
 
 		pos.x += speed * dt;
