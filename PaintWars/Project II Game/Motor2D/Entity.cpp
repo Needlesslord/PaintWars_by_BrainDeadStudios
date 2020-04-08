@@ -23,7 +23,7 @@ Entity::~Entity() {}
 
 void Entity::Draw(SDL_Texture* sprites) {
 	if (sprites != nullptr)
-		App->render->AddBlitEvent(1, sprites, pos.x - size.x / 2, pos.y-size.y/1.5, { 0, 0, size.x, size.y });
+		App->render->AddBlitEvent(1, sprites, pos.x - size.x / 2, pos.y - size.y / 1.5, { 0, 0, size.x, size.y });
 }
 
 void Entity::DebugDrawSelected()
