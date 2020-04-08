@@ -7,17 +7,39 @@ In a world full of colour, a corruption spread, turning everything monochromatic
 
 *Paint Wars* is an isometric single player RTS game featuring a campaign with playable units, buildable structures and manageable resources where the player will have to fight against waves of enemies trying to destroy his base. The game is located in a paint themed world where resources, units and buildings will be related to paint.
 
+**DISCLAIMER:** This version is not the final one, so please do not mind bugs and lack of content. We are working on that! 
+*Current version: v0.15*
+
 
 ## Key Features
 
- - {Feature01}
- - {Feature02}
- - {Feature03}
- - {Feature04}
+ - UI and HUD
+     + Basic UI, with Main Menu (Play and Exit and Map selection) 
+     + Life Bars
+ - RESOURCES
+     + 7 different resources
+ - ENTITIES: Allies, buildings and enemies
+     + 2 different allied units: painter and warrior
+     + 1 allied building: Town Hall
+     + 1 enemy building: Spawner
+ - ACTIONS
+     + Movement and group movement
+ - MAPS
+     + Forest Map implemented
+ - SCENE MANAGER
+     + Different scenes for the game, menu, win/lose, start
+ - CAMERA
+     + Camera follows the mouse on the edges, needs polish (to stop)
  
 ## Controls
 
- - {ControlsScheme}
+ - LEFT CLICK - select
+ - RIGHT CLICK - select destination
+ - ESC - exit game
+ - RIGHT CLICK AND DRAG - multiple selection
+ - CTR - multiple selection
+ - UI - each button is self-explanatory, right clicking to select
+
 
 ## Developers
 
@@ -28,7 +50,7 @@ In a world full of colour, a corruption spread, turning everything monochromatic
       + [Github](https://github.com/EnricGDV)
       + [Linkedin](https://www.linkedin.com/in/enric-guillem-dur%C3%A1n-vilar-9a1932138/)
  - Marc Ariza - Lead Designer
-      + 
+      + [GitHub](https://github.com/MarcArizaAlborni)
       + [Linkedin](https://www.linkedin.com/in/marc-ariza-0b2b431a2/)
  - Tomás Carreras - Lead Coder
       + [Github](https://github.com/tomascarreras1000)
@@ -38,7 +60,7 @@ In a world full of colour, a corruption spread, turning everything monochromatic
       + [Linkedin](https://www.linkedin.com/in/alex-lopez-agudo-9777741a3)
  - Núria Lamonja - **Team Leader**, Management, Community Manager, Social Media, Co-Lead UI Designer, Music
       + [Github](https://github.com/Needlesslord)
-      + [Linkedin](https://es.linkedin.com/in/n%C3%BAria-lamonja-i-pujol-b149271a2)
+      + [Linkedin](https://es.linkedin.com/in/needlesslord)
 
 ## License
 

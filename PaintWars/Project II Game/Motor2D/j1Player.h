@@ -8,6 +8,28 @@
 
 struct SDL_Texture;
 
+enum RESOURCE_TYPE {
+
+	RESOURCE_PAINT,
+	RESOURCE_FOOD,
+	RESOURCE_WOOD,
+	RESOURCE_METALSCRAP,
+	RESOURCE_TITANIUM,
+	RESOURCE_NUM_UNITS,
+	RESOURCE_RESEARCH,
+
+	RESOURCE_NO_TYPE
+
+};
+
+struct Resource
+{
+	RESOURCE_TYPE resource_type = RESOURCE_NO_TYPE;
+	uint resourceCount;
+	uint researchLevel;
+
+};
+
 class j1Player : public j1Module
 {
 public:
