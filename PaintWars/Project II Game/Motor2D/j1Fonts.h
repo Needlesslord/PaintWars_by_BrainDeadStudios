@@ -4,7 +4,7 @@
 #include "j1Module.h"
 #include "SDL\include\SDL_pixels.h"
 
-#define MAX_FONTS 11
+#define MAX_FONTS 50
 #define MAX_FONT_CHARS 256
 
 struct SDL_Texture;
@@ -28,7 +28,7 @@ public:
 	void UnLoad(int font_id);
 
 	// Create a surface from text
-	void BlitText(int x, int y, int bmp_font_id, const char* text) const;
+	void BlitText(int x, int y, int bmp_font_id, const char* text, int layer) const;
 
 
 private:

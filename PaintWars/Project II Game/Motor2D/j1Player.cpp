@@ -100,16 +100,27 @@ void j1Player::Camera_Control(float dt)
 	if (App->scenes->current_scene->scene_name == SCENES::GAME_SCENE)
 	{
 		if (mouse_position.x == 0 && App->render->camera.x <= 3750)
+		{
 			App->render->camera.x += camera_speed * dt * 1000;
+		}
+
 
 		if (mouse_position.y == 0)
+		{
 			App->render->camera.y += camera_speed * dt * 1000;
+		}
+			
 
 		if (mouse_position.x > (win_width - camera_offset) / App->win->scale)
+		{
 			App->render->camera.x -= camera_speed * dt * 1000;
+		}
+			
 
 		if (mouse_position.y > (win_height - camera_offset) / App->win->scale)
+		{
 			App->render->camera.y -= camera_speed * dt * 1000;
+		}
 
 		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 			App->render->camera.y += camera_speed * dt * 1000;
@@ -153,7 +164,7 @@ void j1Player::Mouse_Cursor()
 {
 	mouse_position.x -= App->render->camera.x / App->win->GetScale();
 	mouse_position.y -= App->render->camera.y / App->win->GetScale();
-	App->render->AddBlitEvent(5,Tex_Player, mouse_position.x, mouse_position.y, texture_rect);
+	App->render->AddBlitEvent(10,Tex_Player, mouse_position.x, mouse_position.y, texture_rect);
 }
 
 void j1Player::Drag_Mouse()

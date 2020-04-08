@@ -113,7 +113,7 @@ SDL_Texture* j1GUI::Load_Texture(TEXTURE textureType)
 
 
 
-j1Element* j1GUI::AddElement(GUItype type, j1Element* parent, fPoint map_position, fPoint inside_position, bool interactable, bool enabled, SDL_Rect section, char* text, j1Module* listener, bool X_drag, bool Y_drag, SCROLL_TYPE scrollType, bool decor, TEXTURE textureType)
+j1Element* j1GUI::AddElement(GUItype type, j1Element* parent, fPoint map_position, fPoint inside_position, bool interactable, bool enabled, SDL_Rect section, char* text, j1Module* listener, bool X_drag, bool Y_drag, SCROLL_TYPE scrollType, bool decor, TEXTURE textureType, FONT fontType, int layer)
 {
 
 	j1Element* temp = nullptr;
@@ -142,6 +142,7 @@ j1Element* j1GUI::AddElement(GUItype type, j1Element* parent, fPoint map_positio
 	{
 		temp->parent = parent;
 		temp->map_position = map_position;
+		temp->init_map_position = map_position;
 		temp->inside_position = inside_position;
 		temp->listener = listener;
 		temp->interactable = interactable;
@@ -152,6 +153,8 @@ j1Element* j1GUI::AddElement(GUItype type, j1Element* parent, fPoint map_positio
 		temp->rect = section;
 		temp->text = text;
 		temp->textureType = textureType;
+		temp->fontType = fontType;
+		temp->layer = layer;
 
 
 		GUI_ELEMENTS.add(temp)->data->Start();

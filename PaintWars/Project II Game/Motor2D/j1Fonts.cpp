@@ -67,7 +67,7 @@ void j1Fonts::UnLoad(int font_id)
 }
 
 // Render text using a bitmap font
-void j1Fonts::BlitText(int x, int y, int font_id, const char* text) const
+void j1Fonts::BlitText(int x, int y, int font_id, const char* text, int layer) const
 {
 	if (text == nullptr || font_id < 0 || font_id >= MAX_FONTS || fonts[font_id].graphic == nullptr)
 	{
@@ -93,7 +93,7 @@ void j1Fonts::BlitText(int x, int y, int font_id, const char* text) const
 				rect.x = rect.w * (j % font->row_chars);//y position of the rectangle in the texture
 
 				//App->render->Blit(font->graphic, x + (rect.w * charPosX), y, &rect, 0, false);//Blit of the font, each letter goes on a greater x pos
-				App->render->AddBlitEvent(4, font->graphic, x + (rect.w * charPosX) - App->render->camera.x, y -App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
+				App->render->AddBlitEvent(layer, font->graphic, x + (rect.w * charPosX) - App->render->camera.x, y -App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
 				charPosX++;
 				break;
 			}

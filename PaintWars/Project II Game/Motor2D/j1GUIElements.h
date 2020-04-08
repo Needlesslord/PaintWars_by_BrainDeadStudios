@@ -21,6 +21,13 @@ enum class GUItype
 	GUI_TEXT
 };
 
+enum class FONT
+{
+	FONT_SMALL,
+	FONT_MEDIUM,
+	FONT_SMALL_WHITE
+};
+
 enum class SCROLL_TYPE
 {
 	SCROLL_NONE,
@@ -70,8 +77,11 @@ public:
 	j1Module* listener = nullptr;
 	GUItype type = GUItype::GUI_ERROR;
 	TEXTURE textureType = TEXTURE::NONE;
+	FONT fontType = FONT::FONT_MEDIUM;
 	fPoint map_position = { 0,0 };
+	fPoint init_map_position = { 0,0 };
 	fPoint inside_position = { 0,0 };
+	int layer = 3;
 
 	j1Element* Button = nullptr;
 
