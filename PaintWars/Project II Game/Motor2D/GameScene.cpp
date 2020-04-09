@@ -11,8 +11,8 @@
 #include "j1Pathfinding.h"
 #include "GameScene.h"
 #include "TransitionManager.h"
-//#include "j1Transition.h"
-//#include "j1TransitionManager.h"
+#include "j1GUIELements.h"
+#include "j1GUI.h"
 
 GameScene::GameScene() : Scene(SCENES::GAME_SCENE)
 {
@@ -68,6 +68,100 @@ bool GameScene::Start()
 	//App->pathfinding->ChangeWalkability({ 7, 2 }, false);
 	//App->pathfinding->ChangeWalkability({ 7, 3 }, false);
 
+
+	//////////////////
+	//      UI      //
+	//////////////////
+
+	//HUD - Bar
+	hudBarImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 984, 35 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+
+	//HUD - Quests
+	questsImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 50 }, { 0 , 0 }, false, true, { 0, 1388, 263, 265 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	questsLabel = App->gui->AddElement(GUItype::GUI_LABEL, questsImage , { 15 , 52 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "QUESTS", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	questsOpenButton = App->gui->AddElement(GUItype::GUI_BUTTON, questsImage, { 215, 250 }, { 200,200 }, true, true, { 317, 1388, 54, 55}, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
+	questsOpenButton->hover_rect = { 317, 1443, 54, 54 };
+	questsOpenButton->click_rect = { 317, 1497, 54, 54 };
+	questsCloseButton = App->gui->AddElement(GUItype::GUI_BUTTON, questsImage, { 215, 520 }, { 200,200 }, true, false, { 263, 1388, 54, 55 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
+	questsCloseButton->hover_rect = { 263, 1443, 54, 54 };
+	questsCloseButton->click_rect = { 263, 1497, 54, 54 };
+
+	//HUD - Buttons
+	homeButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 670, 50 }, { 0,0 }, true, true, { 785, 486, 74, 74 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	homeButton->hover_rect = { 785, 560, 74, 74 };
+	homeButton->click_rect = { 785, 634, 74, 74 };
+	shopButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 750, 50 }, { 0,0 }, true, true, { 785, 243, 74, 73 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	shopButton->hover_rect = { 785, 316, 74, 73 };
+	shopButton->click_rect = { 785, 389, 74, 73 };
+	pauseMenuButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 830, 50 }, { 0,0 }, true, true, { 933, 243, 74, 73 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	pauseMenuButton->hover_rect = { 932, 316, 74, 73 };
+	pauseMenuButton->click_rect = { 933, 389, 74, 73 };
+	restartButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 910, 50 }, { 0,0 }, true, true, { 859, 486, 74, 73 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	restartButton->hover_rect = { 859, 560, 74, 73 };
+	restartButton->click_rect = { 859, 634, 74, 73 };
+
+	//HUD - MiniMap
+	miniMapImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 750 , 510 }, { 0 , 0 }, false, true, { 0, 1388, 263, 240 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	
+	//Pause Menu
+	pauseMenuImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 200 , 100 }, { 0 , 0 }, false, false, { 263, 729, 452, 623 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 5);
+	pauseMenuLabel = App->gui->AddElement(GUItype::GUI_LABEL, pauseMenuImage, { 350 , 130 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "PAUSE", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 6);
+	resumeButton = App->gui->AddElement(GUItype::GUI_BUTTON, pauseMenuImage, { 310, 260 }, { 30,20 }, true, false, { 0, 91, 234, 80 }, "RESUME", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 6);
+	resumeButton->hover_rect = { 263, 91, 234, 80 };
+	resumeButton->click_rect = { 525, 91, 234, 80 };
+	saveButton = App->gui->AddElement(GUItype::GUI_BUTTON, pauseMenuImage, { 325, 350 }, { 50,15 }, true, false, { 0, 415, 207, 71 }, "Save", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 6);
+	saveButton->hover_rect = { 263, 415, 207, 71 };
+	saveButton->click_rect = { 525, 415, 207, 71 };
+	settingsButton = App->gui->AddElement(GUItype::GUI_BUTTON, pauseMenuImage, { 325, 430 }, { 15,20 }, true, false, { 0, 415, 207, 71 }, "Settings", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	settingsButton->hover_rect = { 263, 415, 207, 71 };
+	settingsButton->click_rect = { 525, 415, 207, 71 };
+	mainMenuButton = App->gui->AddElement(GUItype::GUI_BUTTON, pauseMenuImage, { 340, 520 }, { 30,15 }, true, false, { 1106, 359, 166, 56 }, "Title", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	mainMenuButton->hover_rect = { 1272, 359, 165, 56 };
+	mainMenuButton->click_rect = { 1437, 359, 166, 56 };
+	exitButton = App->gui->AddElement(GUItype::GUI_BUTTON, pauseMenuImage, { 340, 590 }, { 40,15 }, true, false, { 1106, 359, 166, 56 }, "EXIT", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	exitButton->hover_rect = { 1272, 359, 165, 56 };
+	exitButton->click_rect = { 1437, 359, 166, 56 };
+
+	//Pause Menu - Settings Menu
+	musicLabel = App->gui->AddElement(GUItype::GUI_LABEL, pauseMenuImage, { 255, 260 }, { 0, 0 }, false, false, { 0, 0, 0, 0 }, "Mus", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	vfxLabel = App->gui->AddElement(GUItype::GUI_LABEL, pauseMenuImage, { 255, 330 }, { 0, 0 }, false, false, { 0, 0, 0, 0 }, "VFX", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	fullscreenLabel = App->gui->AddElement(GUItype::GUI_LABEL, pauseMenuImage, { 255, 400 }, { 0, 0 }, false, false, { 0, 0, 0, 0 }, "Fullscr", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	gpadLabel = App->gui->AddElement(GUItype::GUI_LABEL, pauseMenuImage, { 255, 470 }, { 0, 0 }, false, false, { 0, 0, 0, 0 }, "GamePad", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	musicScroll = App->gui->AddElement(GUItype::GUI_SCROLLBAR, pauseMenuImage, { 335, 260 }, { 20, -3 }, true, false, { 786, 59, 268, 25 }, nullptr, App->audio, true, false, SCROLL_TYPE::SCROLL_MUSIC, true, TEXTURE::ATLAS);
+	musicScroll->Button->rect = { 786, 0, 42, 35 };
+	musicScroll->Button->hover_rect = { 786, 0, 42, 35 };
+	musicScroll->Button->click_rect = { 786, 0, 42, 35 };
+	vfxScroll = App->gui->AddElement(GUItype::GUI_SCROLLBAR, pauseMenuImage, { 335, 330 }, { 20, -3 }, true, false, { 786, 59, 268, 25 }, nullptr, App->audio, true, false, SCROLL_TYPE::SCROLL_MUSIC, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 6);
+	vfxScroll->Button->rect = { 786, 0, 42, 35 };
+	vfxScroll->Button->hover_rect = { 786, 0, 42, 35 };
+	vfxScroll->Button->click_rect = { 786, 0, 42, 35 };
+	fullscreenButton = App->gui->AddElement(GUItype::GUI_BUTTON, pauseMenuImage, { 435, 390 }, { 0,0 }, true, false, { 0, 1031, 182, 58 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 6);
+	fullscreenButton->hover_rect = { 0, 1031, 182, 58 };
+	fullscreenButton->click_rect = { 0, 1031, 182, 58 };
+	gpadButton = App->gui->AddElement(GUItype::GUI_BUTTON, pauseMenuImage, { 435, 460 }, { 0,0 }, true, false, { 0, 1031, 182, 58 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 6);
+	gpadButton->hover_rect = { 0, 1031, 182, 58 };
+	gpadButton->click_rect = { 0, 1031, 182, 58 };
+	resetButton = App->gui->AddElement(GUItype::GUI_BUTTON, pauseMenuImage, { 335, 530 }, { 30,15 }, true, false, { 1106, 359, 166, 56 }, "Reset", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	resetButton->hover_rect = { 1272, 359, 165, 56 };
+	resetButton->click_rect = { 1437, 359, 166, 56 };
+	backButton = App->gui->AddElement(GUItype::GUI_BUTTON, pauseMenuImage, { 455, 610 }, { 40,15 }, true, false, { 1106, 359, 166, 56 }, "BACK", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	backButton->hover_rect = { 1272, 359, 165, 56 };
+	backButton->click_rect = { 1437, 359, 166, 56 };
+
+	// Exit / Restart / Main Menu Menu
+	exitMenuImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 200 , 200 }, { 0 , 0 }, false, false, { 787, 729, 490, 336 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 5);
+	exitMenuLabel = App->gui->AddElement(GUItype::GUI_LABEL, exitMenuImage, { 350 , 215 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "EXIT", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 6);
+	exitTextLabel = App->gui->AddElement(GUItype::GUI_LABEL, exitMenuImage, { 280 , 350}, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "Are you sure", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 6);
+	yesButton = App->gui->AddElement(GUItype::GUI_BUTTON, exitMenuImage, { 270, 430 }, { 50,15 }, true, false, { 1106, 243, 165, 57 }, "YES", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	yesButton->hover_rect = { 1272, 243, 165, 57 };
+	yesButton->click_rect = { 1437, 243, 166, 57 };
+	noButton = App->gui->AddElement(GUItype::GUI_BUTTON, exitMenuImage, { 470, 430 }, { 60,15 }, true, false, { 1106, 359, 165, 57 }, "NO", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	noButton->hover_rect = { 1272, 359, 165, 57 };
+	noButton->click_rect = { 1437, 359, 166, 57 };
+
+	// Shop
+	shopImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 720 , 130 }, { 0 , 0 }, false, false, { 0, 1388, 263, 265 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	shopLabel = App->gui->AddElement(GUItype::GUI_LABEL, shopImage, { 722 , 132 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "SHOP", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
 
 	return ret;
 }
@@ -192,6 +286,17 @@ bool GameScene::Update(float dt)
 		fPoint c = App->map->MapToWorld(map_coordinates.x, map_coordinates.y);
 		App->render->AddBlitEvent(1, debug_tex, c.x, c.y, { 0,0,150,75 });
 	}
+
+
+
+	//UI
+	for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
+	{
+		App->gui->GUI_ELEMENTS[i]->map_position.x = App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
+		App->gui->GUI_ELEMENTS[i]->map_position.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;
+	}
+
+
 	return ret;
 }
 
@@ -221,6 +326,17 @@ bool GameScene::CleanUp()
 
 	App->map->CleanUp();
 
+
+
+	//UI
+	for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
+	{
+		App->gui->GUI_ELEMENTS[i]->CleanUp();
+	}
+
+
+
+
 	if (scene_texture != nullptr)
 	{
 		App->tex->UnLoad(scene_texture);
@@ -244,6 +360,248 @@ bool GameScene::CleanUp()
 	App->tex->UnLoad(debug_tex);
 
 	return ret;
+}
+
+void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
+{
+	if (element == questsOpenButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		questsImage->rect.h = 535;
+		questsCloseButton->enabled = true;
+		questsOpenButton->enabled = false;
+	}
+
+	if (element == questsCloseButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		questsImage->rect.h = 265;
+		questsOpenButton->enabled = true;
+		questsCloseButton->enabled = false;
+	}
+
+	if (element == homeButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		App->render->camera.x = 0;
+		App->render->camera.y = 0;
+	}
+
+	if (element == shopButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		shopMenu = !shopMenu;
+
+		if (shopMenu)
+		{
+
+		}
+		else
+		{
+
+		}
+	}
+
+	if (element == pauseMenuButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		pauseMenu = true;
+		pauseMenuImage->enabled = true;
+		pauseMenuLabel->enabled = true;
+		resumeButton->enabled = true;
+		saveButton->enabled = true;
+		settingsButton->enabled = true;
+		mainMenuButton->enabled = true;
+		exitButton->enabled = true;
+
+		homeButton->interactable = false;
+		pauseMenuButton->interactable = false;
+		shopButton->interactable = false;
+		restartButton->interactable = false;
+		questsOpenButton->interactable = false;
+		questsCloseButton->interactable = false;
+	}
+	
+	if (element == resumeButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		pauseMenu = false;
+		pauseMenuImage->enabled = false;
+		pauseMenuLabel->enabled = false;
+		saveButton->enabled = false;
+		settingsButton->enabled = false;
+		mainMenuButton->enabled = false;
+		exitButton->enabled = false;
+		resumeButton->enabled = false;
+
+		homeButton->interactable = true;
+		pauseMenuButton->interactable = true;
+		shopButton->interactable = true;
+		restartButton->interactable = true;
+		questsOpenButton->interactable = true;
+		questsCloseButton->interactable = true;
+	}
+
+
+	if (element == settingsButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		pauseMenu = false;
+		saveButton->enabled = false;
+		settingsButton->enabled = false;
+		mainMenuButton->enabled = false;
+		exitButton->enabled = false;
+		resumeButton->enabled = false;
+
+		settingsMenu = true;
+		musicLabel->enabled = true;
+		vfxLabel->enabled = true;
+		fullscreenLabel->enabled = true;
+		gpadLabel->enabled = true;
+		musicScroll->enabled = true;
+		vfxScroll->enabled = true;
+		fullscreenButton->enabled = true;
+		gpadButton->enabled = true;
+		resetButton->enabled = true;
+		backButton->enabled = true;
+	}
+
+	if (element == backButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+
+		pauseMenu = true;
+		resumeButton->enabled = true;
+		saveButton->enabled = true;
+		settingsButton->enabled = true;
+		mainMenuButton->enabled = true;
+		exitButton->enabled = true;
+
+		settingsMenu = false;
+		musicLabel->enabled = false;
+		vfxLabel->enabled = false;
+		fullscreenLabel->enabled = false;
+		gpadLabel->enabled = false;
+		musicScroll->enabled = false;
+		vfxScroll->enabled = false;
+		fullscreenButton->enabled = false;
+		gpadButton->enabled = false;
+		resetButton->enabled = false;
+		backButton->enabled = false;
+	}
+
+	if (element == restartButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		restartMenu = true;
+		exitMenuImage->enabled = true;
+		exitMenuLabel->enabled = true;
+		exitMenuLabel->text = "RESTART";
+		exitTextLabel->enabled = true;
+		yesButton->enabled = true;
+		noButton->enabled = true;
+
+		pauseMenu = false;
+		pauseMenuImage->enabled = false;
+		pauseMenuLabel->enabled = false;
+		saveButton->enabled = false;
+		settingsButton->enabled = false;
+		mainMenuButton->enabled = false;
+		exitButton->enabled = false;
+		resumeButton->enabled = false;
+	}
+
+	if (element == exitButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		exitMenu = true;
+		exitMenuImage->enabled = true;
+		exitMenuLabel->enabled = true;
+		exitMenuLabel->text = "EXIT";
+		exitTextLabel->enabled = true;
+		yesButton->enabled = true;
+		noButton->enabled = true;
+
+		pauseMenu = false;
+		pauseMenuImage->enabled = false;
+		pauseMenuLabel->enabled = false;
+		saveButton->enabled = false;
+		settingsButton->enabled = false;
+		mainMenuButton->enabled = false;
+		exitButton->enabled = false;
+		resumeButton->enabled = false;
+	}
+
+	if (element == mainMenuButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		mainMenu = true;
+		exitMenuImage->enabled = true;
+		exitMenuLabel->enabled = true;
+		exitMenuLabel->text = "TITLE";
+		exitTextLabel->enabled = true;
+		yesButton->enabled = true;
+		noButton->enabled = true;
+
+		pauseMenu = false;
+		pauseMenuImage->enabled = false;
+		pauseMenuLabel->enabled = false;
+		saveButton->enabled = false;
+		settingsButton->enabled = false;
+		mainMenuButton->enabled = false;
+		exitButton->enabled = false;
+		resumeButton->enabled = false;
+	}
+
+	if (element == yesButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		if (exitMenu)
+			App->scenes->exit = true;
+
+		if (restartMenu)
+		{
+
+		}
+
+		if (mainMenu)
+			App->scenes->SwitchScene(SCENES::MENU_SCENE);
+	}
+
+	if (element == noButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		if (exitMenu)
+		{
+			exitMenu = false;
+
+			pauseMenu = true;
+			pauseMenuImage->enabled = true;
+			pauseMenuLabel->enabled = true;
+			resumeButton->enabled = true;
+			saveButton->enabled = true;
+			settingsButton->enabled = true;
+			mainMenuButton->enabled = true;
+			exitButton->enabled = true;
+		}
+
+		if (restartMenu)
+			restartMenu = false;
+
+		if (mainMenu)
+		{
+			mainMenu = false;
+
+			pauseMenu = true;
+			pauseMenuImage->enabled = true;
+			pauseMenuLabel->enabled = true;
+			resumeButton->enabled = true;
+			saveButton->enabled = true;
+			settingsButton->enabled = true;
+			mainMenuButton->enabled = true;
+			exitButton->enabled = true;
+		}
+	
+		exitMenuImage->enabled = false;
+		exitMenuLabel->enabled = false;
+		exitTextLabel->enabled = false;
+		yesButton->enabled = false;
+		noButton->enabled = false;
+	}
+
+	if (element == shopButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		shopImage->enabled = !shopImage->enabled;
+		shopLabel->enabled = !shopLabel->enabled;
+	}
+
 }
 
 void GameScene::InitScene()
@@ -360,15 +718,15 @@ void GameScene::ExecuteTransition()
 			App->transition_manager->CreateFadeToColour(SCENES::MENU_SCENE);
 		}
 
-	//	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true);
-	//	}
+		if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
+		{
+			App->transition_manager->CreateSlide(SCENES::WIN_SCENE, 0.5f, true);
+		}
 
-	//	if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true, true);
-	//	}
+		if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
+		{
+			App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 0.5f, true, true);
+		}
 
 	//	if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
 	//	{

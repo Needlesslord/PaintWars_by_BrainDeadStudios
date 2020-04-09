@@ -10,7 +10,7 @@
 #include "LoseScene.h"
 #include "TransitionManager.h"
 
-LoseScene::LoseScene() : Scene(SCENES::GAME_SCENE)
+LoseScene::LoseScene() : Scene(SCENES::LOSE_SCENE)
 {
 
 }

@@ -23,6 +23,8 @@ public:
 
 	//CAMERA
 
+	//UI
+	void GUI_Event_Manager(GUI_Event type, j1Element* element);
 
 
 	//MAP & SCENE 
@@ -54,6 +56,81 @@ public:
 	bool Load_Volcano_Map;
 	bool Load_Snow_Map;
 	bool Change_Map;
+
+
+	//////////////////
+	//      UI      //
+	//////////////////
+
+	//HUD - Bar
+	j1Element* hudBarImage = nullptr;
+	j1Element* paintImage = nullptr;
+	j1Element* paintLabel = nullptr;
+	j1Element* woodImage = nullptr;
+	j1Element* woodLabel = nullptr;
+	j1Element* metalImage = nullptr;
+	j1Element* metalLabel = nullptr;
+	j1Element* titaniumImage = nullptr;
+	j1Element* titaniumLabel = nullptr;
+	j1Element* foodImage = nullptr;
+	j1Element* foodLabel = nullptr;
+	j1Element* researchImage = nullptr;
+	j1Element* researchLabel = nullptr;
+	j1Element* entitiesImage = nullptr;
+	j1Element* entitiesLabel = nullptr;
+
+	// HUD - Quests
+	j1Element* questsImage = nullptr;
+	j1Element* questsLabel = nullptr;
+	j1Element* questsOpenButton = nullptr;
+	j1Element* questsCloseButton = nullptr;
+
+	//HUD - Buttons
+	j1Element* homeButton = nullptr;
+	j1Element* pauseMenuButton = nullptr;
+	bool pauseMenu = false;
+	j1Element* shopButton = nullptr;
+	bool shopMenu = false;
+	j1Element* restartButton = nullptr;
+	bool restartMenu = false;
+
+	//HUD - Mini-map
+	j1Element* miniMapImage = nullptr;
+
+	//Pause Menu
+	j1Element* pauseMenuImage = nullptr;
+	j1Element* pauseMenuLabel = nullptr;
+	j1Element* resumeButton = nullptr;
+	j1Element* saveButton = nullptr;
+	j1Element* settingsButton = nullptr;
+	bool settingsMenu = false;
+	j1Element* mainMenuButton = nullptr;
+	bool mainMenu = false;
+	j1Element* exitButton = nullptr;
+	bool exitMenu = false;
+
+	//Pause Menu - Settings Menu
+	j1Element* musicLabel = nullptr;
+	j1Element* vfxLabel = nullptr;
+	j1Element* fullscreenLabel = nullptr;
+	j1Element* gpadLabel = nullptr;
+	j1Element* musicScroll = nullptr;
+	j1Element* vfxScroll = nullptr;
+	j1Element* fullscreenButton = nullptr;
+	j1Element* gpadButton = nullptr;
+	j1Element* resetButton = nullptr;
+	j1Element* backButton = nullptr;
+
+	// Exit / Restart / Main Menu Menu
+	j1Element* exitMenuImage = nullptr;
+	j1Element* exitMenuLabel = nullptr;
+	j1Element* exitTextLabel = nullptr;
+	j1Element* yesButton = nullptr;
+	j1Element* noButton = nullptr;
+
+	// Shop
+	j1Element* shopImage = nullptr;
+	j1Element* shopLabel = nullptr;
 
 private:
 
