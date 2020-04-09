@@ -718,15 +718,15 @@ void GameScene::ExecuteTransition()
 			App->transition_manager->CreateFadeToColour(SCENES::MENU_SCENE);
 		}
 
-	//	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true);
-	//	}
+		if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
+		{
+			App->transition_manager->CreateSlide(SCENES::WIN_SCENE, 0.5f, true);
+		}
 
-	//	if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true, true);
-	//	}
+		if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
+		{
+			App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 0.5f, true, true);
+		}
 
 	//	if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
 	//	{

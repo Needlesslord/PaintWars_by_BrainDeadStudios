@@ -10,7 +10,7 @@
 #include "WinScene.h"
 #include "TransitionManager.h"
 
-WinScene::WinScene() : Scene(SCENES::GAME_SCENE)
+WinScene::WinScene() : Scene(SCENES::WIN_SCENE)
 {
 
 }
