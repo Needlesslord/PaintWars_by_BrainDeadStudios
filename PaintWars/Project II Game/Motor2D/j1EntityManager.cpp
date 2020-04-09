@@ -43,7 +43,7 @@ bool j1EntityManager::Start() {
 	/// Units
 	painterTexture = App->tex->Load("textures/Painter.png");
 	warriorTexture = App->tex->Load("textures/Warrior.png");
-
+	warrior_Texture = App->tex->Load("textures/Warrior_Sprite.png");
 		// Enemies
 	/// Buildings
 	spawnerTexture = App->tex->Load("textures/Spawner.png");
@@ -280,7 +280,7 @@ bool j1EntityManager::Update(float dt) {
 				(*entitiesToDraw)->Draw(painterTexture);
 			}
 			else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_WARRIOR) {
-				(*entitiesToDraw)->Draw(warriorTexture);
+				(*entitiesToDraw)->Draw(warrior_Texture);
 			}
 			else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SPAWNER) {
 				(*entitiesToDraw)->Draw(spawnerTexture);
@@ -312,8 +312,8 @@ bool j1EntityManager::CleanUp() {
 	if (painterTexture != nullptr)
 		App->tex->UnLoad(painterTexture);
 
-	if (warriorTexture != nullptr)
-		App->tex->UnLoad(warriorTexture);
+	if (warrior_Texture != nullptr)
+		App->tex->UnLoad(warrior_Texture);
 
 	if (slimeTexture != nullptr)
 		App->tex->UnLoad(slimeTexture);
