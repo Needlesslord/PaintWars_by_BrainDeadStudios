@@ -91,6 +91,7 @@ protected:
 	/// Units
 	SDL_Texture* painterTexture = nullptr;
 	SDL_Texture* warriorTexture = nullptr;
+	SDL_Texture* warrior_Texture = nullptr;
 
 		// Enemies
 	/// Buildings
