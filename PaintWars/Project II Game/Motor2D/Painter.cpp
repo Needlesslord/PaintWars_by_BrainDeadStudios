@@ -10,7 +10,7 @@
 #include "j1Collision.h"
 #include "j1Textures.h"
 
-Painter::Painter(fPoint pos, int damage, j1Module* listener) : Entity(pos, damage, listener) {
+Painter::Painter(fPoint pos, int damage, j1Module* listener, Entity* creator) : Entity(pos, damage, listener, spawnedBy) {
 
 	// Handle data and initialize the Painter
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_PAINTER;
@@ -27,6 +27,8 @@ Painter::Painter(fPoint pos, int damage, j1Module* listener) : Entity(pos, damag
 	size = { 20, 20 };
 	isEntityFromPlayer = true;
 	CreateEntityCollider(pos);
+
+	isActive = true; //FOR NOW
 
 
 	for (std::vector<Animation>::iterator i = App->map->allAnimations.begin(); i != App->map->allAnimations.end(); i++)

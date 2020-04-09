@@ -45,15 +45,15 @@ bool GameScene::Start()
 	Load_Forest_Map = true;
 	Change_Map = true;
 	Map_Manager();
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,	{    0,  100 }, { 100, 100 }, App->entities, 10);
-	App->entities->AddEntity(ENTITY_TYPE_PAINTER,	{  200,  200 }, {  20,  20 }, App->entities, 5);
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,	{    0,  100 }, { 100, 100 }, App->entities, nullptr, 10, true);
+	App->entities->AddEntity(ENTITY_TYPE_PAINTER,	{  200,  200 }, {  20,  20 }, App->entities, nullptr,  5, true);
 
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  400,  400 }, {  62, 118 }, App->entities, 10);
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  700,  600 }, {  62, 118 }, App->entities);
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{ 1000,  800 }, {  62, 118 }, App->entities);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  400,  400 }, {  62, 118 }, App->entities, nullptr, 10, true);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  700,  600 }, {  62, 118 }, App->entities, nullptr,  0, true);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{ 1000,  800 }, {  62, 118 }, App->entities, nullptr,  0, true);
 
-	App->entities->AddEntity(ENTITY_TYPE_SLIME,		{  600,  200 }, {  20,  20 }, App->entities);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,	{ 1000, 1000 }, {  20,  20 }, App->entities);
+	App->entities->AddEntity(ENTITY_TYPE_SLIME,		{  600,  200 }, {  20,  20 }, App->entities, nullptr, true);
+	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,	{ 1000, 1000 }, {  20,  20 }, App->entities, nullptr, true);
 	
 
 	int w, h;
@@ -63,10 +63,10 @@ bool GameScene::Start()
 		App->pathfinding->SetMap(w, h, data);						// Sets a new walkability map with the map passed by CreateWalkabilityMap().
 	}
 
-	App->pathfinding->ChangeWalkability({ 7, 0 }, false);
-	App->pathfinding->ChangeWalkability({ 7, 1 }, false);
-	App->pathfinding->ChangeWalkability({ 7, 2 }, false);
-	App->pathfinding->ChangeWalkability({ 7, 3 }, false);
+	//App->pathfinding->ChangeWalkability({ 7, 0 }, false);
+	//App->pathfinding->ChangeWalkability({ 7, 1 }, false);
+	//App->pathfinding->ChangeWalkability({ 7, 2 }, false);
+	//App->pathfinding->ChangeWalkability({ 7, 3 }, false);
 
 
 	//////////////////
@@ -673,7 +673,7 @@ void GameScene::Create_Snow_Map()
 	App->map->CleanUp();
 	App->map->Load("map_snow.tmx") == true;
 
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { -200, 300 }, { 100, 100 }, App->entities, 10); //TESTING ONLY
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { -200, 300 }, { 100, 100 }, App->entities, nullptr, 10); //TESTING ONLY
 
 	Change_Map = false;
 	Snow_Map_Active = true;

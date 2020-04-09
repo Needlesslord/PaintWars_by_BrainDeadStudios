@@ -7,7 +7,7 @@
 #include "j1Collision.h"
 #include "j1Textures.h"
 
-Slime::Slime(fPoint pos, int damage, j1Module* listener) : Entity(pos, damage, listener) {
+Slime::Slime(fPoint pos, int damage, j1Module* listener) : Entity(pos, damage, listener, nullptr) {
 
 	// Handle data and initialize the Warrior
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_SLIME;

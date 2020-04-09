@@ -110,6 +110,9 @@ void j1Collision::DebugDraw() {
 		case COLLIDER_NEUTRAL:			// Grey
 			App->render->DrawQuad(colliders[i]->rect, 192, 192, 192, alpha);
 			break;
+		case COLLIDER_UI:
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha, true, true, false);
+			break;
 		}
 	}
 }

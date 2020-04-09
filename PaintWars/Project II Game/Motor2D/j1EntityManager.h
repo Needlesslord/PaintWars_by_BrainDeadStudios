@@ -51,7 +51,7 @@ public:
 	bool PostUpdate();
 	bool CleanUp();
 
-	Entity* AddEntity(ENTITY_TYPE entityType, fPoint pos, iPoint size, j1Module* listener = nullptr, int damage = 0);
+	Entity* AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module* listener = nullptr, Entity* creator = nullptr, int damage = 0, bool spawnAutomatically = false);
 
 	// Selects an Entity
 	bool SelectEntity(Entity* entity, bool controlWasPressed = false);
@@ -67,8 +67,7 @@ public:
 
 public:
 
-	
-	std::list<Entity*> toSpawnEntities;
+	std::list<Entity*> spawningEntities;
 	std::list<Entity*> activeEntities;
 	std::list<Entity*> activeBuildings;
 	std::list<Entity*> activeUnits;
@@ -80,6 +79,8 @@ public:
 	// Thsese two need to be public so that each entity can use it
 	SDL_Texture* fullLifeTexture = nullptr;
 	SDL_Texture* zeroLifeTexture = nullptr;
+
+	Collider* spawnEntityUIButton = nullptr;
 
 protected:
 
@@ -98,9 +99,14 @@ protected:
 	/// Units
 	SDL_Texture* slimeTexture = nullptr;
 
+	float spawningRate = 1.0f;
+	//float constructionRate = 1.0f;
+
+
 private:
 	float currentLifeSum;
 	float maxLifeSum;
+
 
 };
 
