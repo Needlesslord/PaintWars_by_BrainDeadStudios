@@ -46,7 +46,7 @@ void TownHall::SpawnEntity() {
 		uniitsIterator++;
 	}*/
 	if (!isSpawningAUnit) {
-		App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { pos.x + size.x / 2 - 31, pos.y + size.y }, { 62, 118 }, App->entities, this, 0);
+		App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { pos.x + size.x / 2 - 31, pos.y + size.y }, App->entities, this, 0);
 		isSpawningAUnit = true;
 	}
 }

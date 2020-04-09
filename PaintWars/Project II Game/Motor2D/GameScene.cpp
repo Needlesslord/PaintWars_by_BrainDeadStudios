@@ -45,15 +45,15 @@ bool GameScene::Start()
 	Load_Forest_Map = true;
 	Change_Map = true;
 	Map_Manager();
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,	{    0,  100 }, { 100, 100 }, App->entities, nullptr, 10, true);
-	App->entities->AddEntity(ENTITY_TYPE_PAINTER,	{  200,  200 }, {  20,  20 }, App->entities, nullptr,  5, true);
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,	{    0,  100 }, App->entities, nullptr, 10, true);
+	App->entities->AddEntity(ENTITY_TYPE_PAINTER,	{  200,  200 }, App->entities, nullptr,  5, true);
 
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  400,  400 }, {  62, 118 }, App->entities, nullptr, 10, true);
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  700,  600 }, {  62, 118 }, App->entities, nullptr,  0, true);
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{ 1000,  800 }, {  62, 118 }, App->entities, nullptr,  0, true);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  400,  400 }, App->entities, nullptr, 10, true);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  700,  600 }, App->entities, nullptr,  0, true);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{ 1000,  800 }, App->entities, nullptr,  0, true);
 
-	App->entities->AddEntity(ENTITY_TYPE_SLIME,		{  600,  200 }, {  20,  20 }, App->entities, nullptr, true);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,	{ 1000, 1000 }, {  20,  20 }, App->entities, nullptr, true);
+	App->entities->AddEntity(ENTITY_TYPE_SLIME,		{  600,  200 }, App->entities, nullptr, true);
+	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,	{ 1000, 1000 }, App->entities, nullptr, true);
 	
 
 	int w, h;
@@ -233,7 +233,7 @@ bool GameScene::Update(float dt)
 		c = cd.x;
 		d = cd.y;
 
-		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { c, d }, { 100, 100 }, App->entities);
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { c, d }, App->entities);
 	}
 
 	/*if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
@@ -251,7 +251,7 @@ bool GameScene::Update(float dt)
 		c = cd.x;
 		d = cd.y;
 
-		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { c, d }, { 20, 20 }, App->entities);
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { c, d }, App->entities);
 	}
 
 	App->map->Draw();
@@ -673,7 +673,7 @@ void GameScene::Create_Snow_Map()
 	App->map->CleanUp();
 	App->map->Load("map_snow.tmx") == true;
 
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { -200, 300 }, { 100, 100 }, App->entities, nullptr, 10); //TESTING ONLY
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { -200, 300 }, App->entities, nullptr, 10); //TESTING ONLY
 
 	Change_Map = false;
 	Snow_Map_Active = true;
