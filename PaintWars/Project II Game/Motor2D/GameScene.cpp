@@ -45,6 +45,8 @@ bool GameScene::Start()
 	Load_Forest_Map = true;
 	Change_Map = true;
 	Map_Manager();
+
+
 	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,	{    0,  100 }, App->entities, nullptr, 10, true);
 	App->entities->AddEntity(ENTITY_TYPE_PAINTER,	{  200,  200 }, App->entities, nullptr,  5, true);
 
