@@ -11,6 +11,8 @@ public:
 	TownHall(fPoint pos, int currLife, j1Module* listener);
 	~TownHall();
 
+	void SpawnEntity() override;
+
 public:
 
 private:

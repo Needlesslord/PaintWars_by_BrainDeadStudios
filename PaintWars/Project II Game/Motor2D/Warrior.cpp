@@ -12,7 +12,7 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 
-Warrior::Warrior(fPoint pos, int damage, j1Module* listener) : Entity(pos, damage, listener) {
+Warrior::Warrior(fPoint pos, int damage, j1Module* listener, Entity* creator) : Entity(pos, damage, listener, creator) {
 
 	// Handle data and initialize the Warrior
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_WARRIOR;
@@ -24,13 +24,14 @@ Warrior::Warrior(fPoint pos, int damage, j1Module* listener) : Entity(pos, damag
 	this->pos = pos;
 
 	speed = 300;
+	
+	spawningTime = 10.0f;
 
 	iPoint mapPos = App->map->WorldToMap(pos.x, pos.y);
 	destination = mapPos;
 
 	size = { 62, 118 };
 	isEntityFromPlayer = true;
-	CreateEntityCollider(pos);
 }
 
 Warrior::~Warrior() {}

@@ -10,7 +10,7 @@
 #include "j1Collision.h"
 #include "j1Textures.h"
 
-Spawner::Spawner(fPoint pos, int damage, j1Module* listener) : Entity(pos, damage, listener) {
+Spawner::Spawner(fPoint pos, int damage, j1Module* listener) : Entity(pos, damage, listener, nullptr) {
 
 	// Handle data and initialize the Spawner
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_SPAWNER;

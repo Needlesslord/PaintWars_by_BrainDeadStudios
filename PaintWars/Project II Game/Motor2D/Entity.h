@@ -79,7 +79,7 @@ class Entity
 {
 public:
 
-	Entity(fPoint pos, int currLife, j1Module* listener);
+	Entity(fPoint pos, int currLife, j1Module* listener, Entity* creator);
 	virtual ~Entity();
 	virtual void Draw(SDL_Texture* sprites);
 	virtual void DebugDrawSelected();
@@ -87,10 +87,10 @@ public:
 	virtual void CalculateMovementLogic(int p);
 	virtual void Move(float dt);
 	virtual void SetDestination(iPoint des);
+	virtual void SpawnEntity();
 
 	// Position and size
 	void SetPos(fPoint pos);
-	void AddToPos(fPoint pos);
 	fPoint GetPos() const;
 	iPoint GetSize() const;
 	iPoint GetOffsetSize() const;
@@ -108,6 +108,8 @@ public:
 	bool CreateEntityCollider(fPoint pos);
 
 	void ShowHealthBar();
+	void ShowUI();
+
 public:
 
 	const ENTITY_CATEGORY entityCategory = ENTITY_CATEGORY_NONE;
@@ -127,6 +129,13 @@ public:
 
 	// Collision
 	Collider* entityCollider = nullptr;
+
+	float spawningTime;
+	float spawningProgress;
+	bool isSpawningAUnit;
+	bool isActive;
+
+	Entity* spawnedBy;
 
 protected:
 
