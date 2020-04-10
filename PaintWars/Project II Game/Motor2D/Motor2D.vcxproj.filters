@@ -163,6 +163,9 @@
     <ClCompile Include="j1QuestManager.cpp">
       <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="PaintExtractor.cpp">
+      <Filter>Motor  ========\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -332,6 +335,9 @@
     </ClInclude>
     <ClInclude Include="j1QuestManager.h">
       <Filter>Motor  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="PaintExtractor.h">
+      <Filter>Motor  ========\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

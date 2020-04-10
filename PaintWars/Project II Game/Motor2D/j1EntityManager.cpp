@@ -39,7 +39,8 @@ bool j1EntityManager::Start() {
 		// Allies
 	/// Buildings
 	townHallTexture = App->tex->Load("textures/TownHall.png");
-	
+	paintExtractorTexture = App->tex->Load("textures/PaintExtractor.png");
+
 	/// Units
 	painterTexture = App->tex->Load("textures/Painter.png");
 	warriorTexture = App->tex->Load("textures/Warrior.png");
@@ -298,6 +299,9 @@ bool j1EntityManager::Update(float dt) {
 				if ((*entitiesToDraw)->entityType == ENTITY_TYPE_TOWN_HALL) {
 					(*entitiesToDraw)->Draw(townHallTexture);
 				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
+					(*entitiesToDraw)->Draw(paintExtractorTexture);
+				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINTER) {
 					(*entitiesToDraw)->Draw(painterTexture);
 				}
@@ -412,6 +416,9 @@ bool j1EntityManager::CleanUp() {
 	if (townHallTexture != nullptr)
 		App->tex->UnLoad(townHallTexture);
 
+	if (paintExtractorTexture != nullptr)
+		App->tex->UnLoad(paintExtractorTexture);
+
 	if (painterTexture != nullptr)
 		App->tex->UnLoad(painterTexture);
 
@@ -455,6 +462,8 @@ void j1EntityManager::UnselectAllEntities() {
 
 Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module* listener, Entity* creator, int damage,  bool spawnAutomatically) {
 
+	iPoint mapPos = App->map->WorldToMap(pos.x, pos.y);
+	fPoint worldPos = App->map->MapToWorld(mapPos.x, mapPos.y);
 		// Allies
 	/// Buildings
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
@@ -472,6 +481,23 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module*
 			spawningEntities.push_back((Entity*)townHall);
 
 		return (Entity*)townHall;
+	}
+	
+	else if (entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
+		PaintExtractor* paintExtractor = new PaintExtractor({ worldPos.x/* - size.x/2*/, worldPos.y/* - size.y/2 */ }, damage, this);
+
+		if (spawnAutomatically) {
+
+			activeEntities.push_back((Entity*)paintExtractor);
+			activeBuildings.push_back((Entity*)paintExtractor);
+			paintExtractor->isActive = true;
+			paintExtractor->CreateEntityCollider(worldPos);
+		}
+
+		else
+			spawningEntities.push_back((Entity*)paintExtractor);
+
+		return (Entity*)paintExtractor;
 	}
 
 	/// Units

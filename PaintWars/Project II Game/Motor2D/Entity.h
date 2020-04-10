@@ -59,6 +59,7 @@ enum ENTITY_TYPE {
 	// Allies
 	/// Buildings
 	ENTITY_TYPE_TOWN_HALL,
+	ENTITY_TYPE_PAINT_EXTRACTOR,
 
 	/// Units
 	ENTITY_TYPE_PAINTER,

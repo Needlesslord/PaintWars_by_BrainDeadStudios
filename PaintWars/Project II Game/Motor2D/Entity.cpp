@@ -388,6 +388,14 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 		return true;
 	}
 
+	else if (entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
+		COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
+		SDL_Rect rect = { pos.x /*- GetSize().x/2*/, pos.y/* - GetSize().y / 2*/, 150, 75 };
+		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+
+		return true;
+	}
+
 	/// Units
 	else if (entityType == ENTITY_TYPE_PAINTER) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_UNIT;

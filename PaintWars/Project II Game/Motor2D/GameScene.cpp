@@ -47,15 +47,16 @@ bool GameScene::Start()
 	Map_Manager();
 
 
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,	{    0,  100 }, App->entities, nullptr, 10, true);
-	App->entities->AddEntity(ENTITY_TYPE_PAINTER,	{  200,  200 }, App->entities, nullptr,  5, true);
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{    0,  100 }, App->entities, nullptr, 10, true);
+	App->entities->AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR,	{  200, 1000 }, App->entities, nullptr,  0, true);
+	App->entities->AddEntity(ENTITY_TYPE_PAINTER,			{  200,  200 }, App->entities, nullptr,  5, true);
 
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  400,  400 }, App->entities, nullptr, 10, true);
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  700,  600 }, App->entities, nullptr,  0, true);
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{ 1000,  800 }, App->entities, nullptr,  0, true);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  400,  400 }, App->entities, nullptr, 10, true);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  700,  600 }, App->entities, nullptr,  0, true);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{ 1000,  800 }, App->entities, nullptr,  0, true);
 
-	App->entities->AddEntity(ENTITY_TYPE_SLIME,		{  600,  200 }, App->entities, nullptr, true);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,	{ 1000, 1000 }, App->entities, nullptr, true);
+	App->entities->AddEntity(ENTITY_TYPE_SLIME,				{  600,  200 }, App->entities, nullptr, true);
+	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 1000, 1000 }, App->entities, nullptr, true);
 	
 
 	int w, h;

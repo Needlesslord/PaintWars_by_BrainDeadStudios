@@ -7,6 +7,7 @@
 	// Allies
 /// Buildings
 #include "TownHall.h"
+#include "PaintExtractor.h"
 
 /// Units
 #include "Painter.h"
@@ -88,6 +89,7 @@ protected:
 		// Allies
 	/// Buildings
 	SDL_Texture* townHallTexture = nullptr;
+	SDL_Texture* paintExtractorTexture = nullptr;
 
 	/// Units
 	SDL_Texture* painterTexture = nullptr;
