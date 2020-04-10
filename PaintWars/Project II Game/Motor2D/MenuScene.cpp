@@ -141,7 +141,7 @@ void MenuScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 
 	if (element == settingsButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		App->scenes->SwitchScene(SCENES::SETTINGS_SCENE);
+		App->transition_manager->CreateFadeToColour(SCENES::SETTINGS_SCENE);
 		
 	}
 

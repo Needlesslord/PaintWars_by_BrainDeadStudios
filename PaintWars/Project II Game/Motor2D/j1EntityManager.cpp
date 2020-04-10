@@ -228,7 +228,8 @@ bool j1EntityManager::Update(float dt) {
 				fPoint xy = App->input->GetMouseWorldPosition();
 				iPoint cameraW = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
 				iPoint map_coordinates = App->map->WorldToMap(xy.x - cameraW.x /*+ App->map->data.tile_width / 2*/, xy.y - cameraW.y + App->map->data.tile_height / 2);
-
+				map_coordinates.x=map_coordinates.x -1;
+				map_coordinates.y=map_coordinates.y -1 ;
 				(*unitsToRedirect)->SetDestination(map_coordinates);
 				(*unitsToRedirect)->CalculateMovementLogic(orderOfPriority);
 

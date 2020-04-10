@@ -261,6 +261,7 @@ void j1App::FinishUpdate()
 // Call modules before each loop iteration
 bool j1App::PreUpdate()
 {
+	Debug_Actions();
 	bool ret = true;
 	std::list<j1Module*>::iterator item;
 	item = modules.begin();
@@ -319,6 +320,8 @@ bool j1App::PostUpdate()
 
 		ret = (*item)->PostUpdate();
 	}
+
+
 
 	return ret;
 }
@@ -464,4 +467,12 @@ bool j1App::SavegameNow() const
 	//data.reset();   AQUESTA MERDA D'AQUI FEIA QUE NO GUARDES
 	want_to_save = false;
 	return ret;
+}
+
+void j1App::Debug_Actions()
+{
+	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN){
+		App->scenes->SwitchScene(SCENES::GAME_SCENE);
+    }
+	
 }
