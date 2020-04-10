@@ -58,7 +58,7 @@ public:
 	const char* GetTitle() const;
 	const char* GetOrganization() const;
 	float GetDT() const;
-
+	
 	void LoadGame();
 	void SaveGame(const char*) const;
 	void GetSaveGames(std::list<std::string>& list_to_fill) const;
@@ -89,7 +89,7 @@ private:
 	// Load / Save
 	bool LoadGameNow();
 	bool SavegameNow() const;
-
+	void Debug_Actions();
 public:
 
 	// Modules
@@ -139,6 +139,8 @@ public:
 	float dt = 0.1f;
 	uint32 getFpsCap() { return framerate_cap; };
 	void setFpsCap(uint32 fps);
+	bool DEBUG_ACTIVE;
+	bool PAUSE_ACTIVE;
 
 };
 

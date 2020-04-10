@@ -135,12 +135,14 @@ void MenuScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 {
 	if (element == playButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		App->scenes->SwitchScene(SCENES::START_SCENE);
+		//App->transition_manager->CreateFadeToColour(SCENES::START_SCENE);
+		App->transition_manager->CreateFadeToColour(SCENES::START_SCENE);
 	}
 
 	if (element == settingsButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		App->scenes->SwitchScene(SCENES::SETTINGS_SCENE);
+		App->transition_manager->CreateFadeToColour(SCENES::SETTINGS_SCENE);
+		
 	}
 
 	if (element == exitButton && type == GUI_Event::EVENT_ONCLICK)
@@ -210,30 +212,30 @@ void MenuScene::ExecuteTransition()
 			App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
 		}
 
-		//	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
-		//	{
-		//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true);
-		//	}
+			if (App->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN)
+			{
+				App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true);
+			}
 
-		//	if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
-		//	{
-		//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true, true);
-		//	}
+			if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
+			{
+				//App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true, true);
+			}
 
-		//	if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
-		//	{
-		//		App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true);
-		//	}
+			if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
+			{
+				//App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true);
+			}
 
-		//	if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
-		//	{
-		//		App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true, true);
-		//	}
+			if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
+			{
+				//App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true, true);
+			}
 
-		//	if (App->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
-		//	{
-		//		App->transition_manager->CreateAlternatingBars(SCENES::SECOND_SCENE, 0.5f, true);
-		//	}
+			if (App->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
+			{
+				//App->transition_manager->CreateAlternatingBars(SCENES::SECOND_SCENE, 0.5f, true);
+			}
 
 		//	if (App->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
 		//	{
