@@ -93,7 +93,7 @@ void j1Fonts::BlitText(int x, int y, int font_id, const char* text, int layer) c
 				rect.x = rect.w * (j % font->row_chars);//y position of the rectangle in the texture
 
 				//App->render->Blit(font->graphic, x + (rect.w * charPosX), y, &rect, 0, false);//Blit of the font, each letter goes on a greater x pos
-				App->render->AddBlitEvent(layer, font->graphic, x + (rect.w * charPosX) - App->render->camera.x, y -App->render->camera.y, rect, false, true, 0, 0, 0, 0, true,true);
+				App->render->AddBlitEvent(layer, font->graphic, x + (rect.w * charPosX) - App->render->camera.x, y -App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
 				charPosX++;
 				break;
 			}
