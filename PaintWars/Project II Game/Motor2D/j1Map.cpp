@@ -5,6 +5,7 @@
 #include "j1Textures.h"
 #include "j1Map.h"
 #include "animation.h"
+#include "j1Window.h"
 #include <math.h>
 #include "Entity.h"
 
@@ -59,6 +60,74 @@ void j1Map::Draw()
 			}
 		}
 	}
+
+
+
+	// Camera culling (This one doesn't work)
+
+	/*uint camera_rect_w;
+	uint camera_rect_h;
+
+	App->win->GetWindowSize(camera_rect_w, camera_rect_h);
+	
+	camera_collider.rect.w = camera_rect_w;
+	camera_collider.rect.h = camera_rect_h;
+
+	App->map->camera_collider.SetPos(-App->render->camera.x, -App->render->camera.y);
+
+	for (item; item != NULL; item = item->next) {
+
+		uint* gid = item->data->data;
+		uint i = 0;
+
+		if (item->data->properties.Get("Nodraw") != 0) {
+			continue;
+		}
+
+		for (uint y = 0; y < data.height; ++y)
+		{
+			for (uint x = 0; x < data.width; ++x)
+			{
+				iPoint tileCoords = MapToWorld(x, y);
+				float speed = 1.0f;
+
+				if (item->data->name == "Clouds")
+				{
+
+					speed = 0.50f;
+
+					tile_rect.x = (App->render->camera.x * speed) + data.tilesets[0]->GetPos(x, y).x - App->render->camera.x;
+					tile_rect.y = (App->render->camera.y * speed) + data.tilesets[0]->GetPos(x, y).y - App->render->camera.y;
+
+				}
+				else if (item->data->name == "Water")
+				{
+
+					speed = 0.75f;
+
+					tile_rect.x = (App->render->camera.x * speed) + data.tilesets[0]->GetPos(x, y).x - App->render->camera.x;
+					tile_rect.y = (App->render->camera.y * speed) + data.tilesets[0]->GetPos(x, y).y - App->render->camera.y;
+
+				}
+				else
+				{
+					tile_rect.x = data.tilesets[0]->GetPos(x, y).x;
+					tile_rect.y = data.tilesets[0]->GetPos(x, y).y;
+				}
+
+				tile_rect.h = App->map->data.tile_height;
+				tile_rect.w = App->map->data.tile_height;
+
+				if (camera_collider.CheckCollision(tile_rect))
+				{
+					App->render->Blit(data.tilesets[0]->texture, tileCoords.x, tileCoords.y, data.tilesets[0]->GetTileRectId(gid[i]), false, speed);
+				}
+
+				i++;
+			}
+		}
+
+	}*/
 }
 
 int Properties::Get(const char* value, int default_value) const
