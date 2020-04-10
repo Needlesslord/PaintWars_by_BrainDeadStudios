@@ -79,8 +79,8 @@ bool GameScene::Start()
 	hudBarImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 984, 35 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 
 	//HUD - Quests
-	questsImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 50 }, { 0 , 0 }, false, true, { 0, 1388, 263, 265 }, nullptr, nullptr, true, true, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
-	questsLabel = App->gui->AddElement(GUItype::GUI_LABEL, questsImage , { 15 , 52 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "QUESTS", nullptr, true,true, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	questsImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 50 }, { 0 , 0 }, false, true, { 0, 1388, 263, 265 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	questsLabel = App->gui->AddElement(GUItype::GUI_LABEL, questsImage , { 15 , 52 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "QUESTS", nullptr, false,false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
 	questsOpenButton = App->gui->AddElement(GUItype::GUI_BUTTON, questsImage, { 215, 250 }, { 200,200 }, true, true, { 317, 1388, 54, 55}, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
 	questsOpenButton->hover_rect = { 317, 1443, 54, 54 };
 	questsOpenButton->click_rect = { 317, 1497, 54, 54 };
