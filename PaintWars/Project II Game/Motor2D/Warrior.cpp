@@ -19,6 +19,7 @@ Warrior::Warrior(fPoint pos, int damage, j1Module* listener, Entity* creator) : 
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_DYNAMIC_ENTITY;
 	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_MINI;
 	*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;
+
 	maxLife = 30;
 	this->currLife = maxLife - damage;
 	this->pos = pos;

@@ -8,10 +8,10 @@ class TownHall : public Entity
 {
 public:
 
-	TownHall(fPoint pos, int currLife, j1Module* listener);
+	TownHall(fPoint pos, int currLife, j1Module* listener, Entity* creator = nullptr);
 	~TownHall();
 
-	void SpawnEntity() override;
+	void SpawnEntity(iPoint pos) override;
 
 public:
 

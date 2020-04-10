@@ -81,6 +81,7 @@ public:
 	SDL_Texture* zeroLifeTexture = nullptr;
 
 	Collider* spawnEntityUIButton = nullptr;
+	Collider* buildEntityUIButton = nullptr;
 
 protected:
 
@@ -101,7 +102,7 @@ protected:
 	SDL_Texture* slimeTexture = nullptr;
 
 	float spawningRate = 1.0f;
-	//float constructionRate = 1.0f;
+	float constructionRate = 1.0f;
 
 
 private:

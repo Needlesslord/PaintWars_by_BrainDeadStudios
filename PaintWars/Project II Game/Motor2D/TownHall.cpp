@@ -11,24 +11,28 @@
 #include "j1Collision.h"
 #include "j1Textures.h"
 
-TownHall::TownHall(fPoint pos, int damage, j1Module* listener) : Entity(pos, damage, listener, nullptr) {
+TownHall::TownHall(fPoint pos, int damage, j1Module* listener, Entity* creator) : Entity(pos, damage, listener, creator) {
 	
 	// Handle data and initialize the TH
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_TOWN_HALL;
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_STATIC_ENTITY;
 	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_VERY_BIG;
+
 	maxLife = 100;
 	this->currLife = maxLife - damage;
 	this->pos = pos;
+
+	constructionTime = 10.0f;
+
 	size = { 100, 100 };
 	isEntityFromPlayer = true;
+
 	isSpawningAUnit = false;
-	CreateEntityCollider(pos);
 }
 
 TownHall::~TownHall() {}
 
-void TownHall::SpawnEntity() {
+void TownHall::SpawnEntity(iPoint pos) {
 
 	bool canAffordIt = true;
 	if (!canAffordIt)
@@ -46,7 +50,7 @@ void TownHall::SpawnEntity() {
 		uniitsIterator++;
 	}*/
 	if (!isSpawningAUnit) {
-		App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { pos.x + size.x / 2 - 31, pos.y + size.y }, App->entities, this, 0);
+		App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { this->pos.x + size.x / 2 - 31, this->pos.y + size.y }, App->entities, this, 0);
 		isSpawningAUnit = true;
 	}
 }

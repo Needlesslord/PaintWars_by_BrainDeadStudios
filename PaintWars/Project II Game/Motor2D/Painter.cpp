@@ -5,6 +5,7 @@
 
 #include "j1Player.h"
 #include "Scene.h"
+#include "j1EntityManager.h"
 #include "j1Pathfinding.h"
 #include "j1Map.h"
 #include "j1Collision.h"
@@ -30,6 +31,7 @@ Painter::Painter(fPoint pos, int damage, j1Module* listener, Entity* creator) : 
 
 	isActive = true; //FOR NOW
 
+	isBuilding = false;
 
 	for (std::vector<Animation>::iterator i = App->map->allAnimations.begin(); i != App->map->allAnimations.end(); i++)
 	{
@@ -47,3 +49,19 @@ Painter::Painter(fPoint pos, int damage, j1Module* listener, Entity* creator) : 
 }
 
 Painter::~Painter() {}
+
+void Painter::SpawnEntity(iPoint pos) {
+
+	fPoint worldPos = App->map->MapToWorld(pos.x, pos.y);
+	
+
+	bool canAffordIt = true;
+	if (!canAffordIt)
+		return;
+
+	isSelectingPlacement = false;
+	if (!isBuilding) {
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, worldPos, App->entities, this, 0);
+		isBuilding = true;
+	}
+}

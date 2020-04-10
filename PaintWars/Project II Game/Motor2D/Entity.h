@@ -87,7 +87,7 @@ public:
 	virtual void CalculateMovementLogic(int p);
 	virtual void Move(float dt);
 	virtual void SetDestination(iPoint des);
-	virtual void SpawnEntity();
+	virtual void SpawnEntity(iPoint pos);
 
 	// Position and size
 	void SetPos(fPoint pos);
@@ -132,10 +132,18 @@ public:
 
 	float spawningTime;
 	float spawningProgress;
+
+	float constructionTime;
+	float constructionProgress;
+
 	bool isSpawningAUnit;
+	bool isBuilding;
 	bool isActive;
 
 	Entity* spawnedBy;
+	Entity* builtBy;
+
+	bool isSelectingPlacement = false;
 
 protected:
 

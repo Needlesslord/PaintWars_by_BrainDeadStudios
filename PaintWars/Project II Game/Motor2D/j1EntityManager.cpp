@@ -67,103 +67,48 @@ bool j1EntityManager::PreUpdate() {
 bool j1EntityManager::Update(float dt) {
 	bool ret = true;
 
-	
-
-	// Check if a unit was set to spawn
-
-
 	// Spawn entities that finished their spawning time
 	list<Entity*>::iterator checkForSpawningEntities = spawningEntities.begin();
 	while (checkForSpawningEntities != spawningEntities.end()) {
 
-		if ((*checkForSpawningEntities)->spawningProgress * spawningRate >= (*checkForSpawningEntities)->spawningTime) {
+		(*checkForSpawningEntities)->isActive = true;
+		activeEntities.push_back(*checkForSpawningEntities);
+		(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos);
+		spawningEntities.erase(checkForSpawningEntities);
 
-			(*checkForSpawningEntities)->isActive = true;
-			
-			if ((*checkForSpawningEntities)->entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY) {
-				activeEntities.push_back(*checkForSpawningEntities);
+		if ((*checkForSpawningEntities)->entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY) {
+
+			if ((*checkForSpawningEntities)->spawningProgress * spawningRate >= (*checkForSpawningEntities)->spawningTime) {
+
 				activeUnits.push_back(*checkForSpawningEntities);
+				(*checkForSpawningEntities)->spawnedBy->isSpawningAUnit = false;
 			}
-			
-			else if ((*checkForSpawningEntities)->entityCategory == ENTITY_CATEGORY_STATIC_ENTITY) {
-				activeEntities.push_back(*checkForSpawningEntities);
+
+			else if ((*checkForSpawningEntities)->spawningProgress * spawningRate < (*checkForSpawningEntities)->spawningTime) {
+
+				(*checkForSpawningEntities)->spawningProgress += spawningRate * dt;
+			}
+		}
+
+		else if ((*checkForSpawningEntities)->entityCategory == ENTITY_CATEGORY_STATIC_ENTITY) {
+
+			if ((*checkForSpawningEntities)->constructionProgress * constructionRate >= (*checkForSpawningEntities)->constructionTime) {
+
 				activeBuildings.push_back(*checkForSpawningEntities);
+				(*checkForSpawningEntities)->spawnedBy->isBuilding = false;
 			}
 
-			(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos);
-			(*checkForSpawningEntities)->spawnedBy->isSpawningAUnit = false;
+			else if ((*checkForSpawningEntities)->constructionProgress * constructionRate < (*checkForSpawningEntities)->constructionTime) {
 
-			spawningEntities.erase(checkForSpawningEntities);
+				(*checkForSpawningEntities)->constructionProgress += constructionRate * dt;
+			}
+		}
 	
-		}
-
-		else if ((*checkForSpawningEntities)->spawningProgress * spawningRate < (*checkForSpawningEntities)->spawningTime) {
-
-			(*checkForSpawningEntities)->spawningProgress += spawningRate * dt;
-		}
-
 		checkForSpawningEntities++;
+
 	}
 
-	// Check if there was any unit selected when LEFT MOUSE BUTTON was pressed and if not, unselect all
-	// If control was pressed as a unit was selected, the rest of selected units aren't unselected
-	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 
-		bool isSomethingSelected = false;
-
-		float x, y;
-		App->input->GetMousePosition(x, y);
-		fPoint mouseMapCoordinates = App->render->ScreenToWorld(x, y);
-		//mouseWorldCoordinates.x < spawnEntityUIButton->rect.x + spawnEntityUIButton->rect.w && mouseWorldCoordinates.x + mouseWorldCoordinates.w > spawnEntityUIButton->rect.x && mouseWorldCoordinates.y < spawnEntityUIButton->rect.y + spawnEntityUIButton->rect.h && mouseWorldCoordinates.h + mouseWorldCoordinates.y > spawnEntityUIButton->rect.y
-		if (spawnEntityUIButton != nullptr) {
-
-			fPoint mouseWorldCoordinates;
-			App->input->GetMousePosition(mouseWorldCoordinates.x, mouseWorldCoordinates.y);
-
-			if 	(mouseWorldCoordinates.x < spawnEntityUIButton->rect.x + spawnEntityUIButton->rect.w && mouseWorldCoordinates.x > spawnEntityUIButton->rect.x && 
-				mouseWorldCoordinates.y < spawnEntityUIButton->rect.y + spawnEntityUIButton->rect.h && mouseWorldCoordinates.y > spawnEntityUIButton->rect.y) {
-
-				// if(activeBuildings.size==1){ THIS IS NOT NEEDED BECAUSE IF THERE ISN'T ONLY ONE, THE COLLIDER WOULD BE NULLPTR
-				list<Entity*>::iterator buildingsToSpawnEntities = buildingsSelected.begin();
-				(*buildingsToSpawnEntities)->SpawnEntity();
-
-				isSomethingSelected = true;
-			}
-		}
-
-		if (!isSomethingSelected) {
-
-			bool controlWasPressed = false;
-
-			if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT)
-				controlWasPressed = true;
-
-			list<Entity*>::iterator checkForSelectedEntities = activeEntities.begin();
-			while (checkForSelectedEntities != activeEntities.end()) {
-	
-				if (
-					//mouseMapCoordinates.x > (*checkForSelectedEntities)->pos.x - (*checkForSelectedEntities)->GetSize().x/* / 2 */&& mouseMapCoordinates.x < (*checkForSelectedEntities)->pos.x + (*checkForSelectedEntities)->GetSize().x/* / 2 */&&
-					//mouseMapCoordinates.y > (*checkForSelectedEntities)->pos.y - (*checkForSelectedEntities)->GetSize().y/* / 2*/ && mouseMapCoordinates.y < (*checkForSelectedEntities)->pos.y + (*checkForSelectedEntities)->GetSize().y/* / 2*/
-					mouseMapCoordinates.x < (*checkForSelectedEntities)->pos.x + (*checkForSelectedEntities)->GetSize().x && mouseMapCoordinates.x > (*checkForSelectedEntities)->pos.x &&
-					mouseMapCoordinates.y < (*checkForSelectedEntities)->pos.y + (*checkForSelectedEntities)->GetSize().y && mouseMapCoordinates.y > (*checkForSelectedEntities)->pos.y
-					
-					) {
-
-					if (!(*checkForSelectedEntities)->isSelected) {
-						SelectEntity(*checkForSelectedEntities, controlWasPressed);
-					}
-
-					isSomethingSelected = true;
-
-					break;
-
-				}
-				checkForSelectedEntities++;
-			}
-		}
-		// Unselect all
-		if (!isSomethingSelected) UnselectAllEntities();
-	}
 
 	// Show Building UI if ONLY ONE BUILDING is selected
 	if (buildingsSelected.size() == 1) {
@@ -187,6 +132,56 @@ bool j1EntityManager::Update(float dt) {
 	}
 
 
+
+	// If there are only painters selected, show building UI
+	bool onlyPaintersSelected = false;
+	list<Entity*>::iterator paintersSelected = unitsSelected.begin();
+	while (paintersSelected != unitsSelected.end()) {
+
+		if ((*paintersSelected)->entityType == ENTITY_TYPE_PAINTER)
+			onlyPaintersSelected = true;
+		
+		else
+			onlyPaintersSelected = false;
+
+		paintersSelected++;
+	}
+
+	if (onlyPaintersSelected) {
+		paintersSelected = unitsSelected.begin();
+		//while (paintersSelected != unitsSelected.end()) { FOR NOW, WE'LL LET ONLY THE FIRST ONE TO BUILD
+			
+			(*paintersSelected)->ShowUI();
+
+		//	paintersSelected++;
+		//}
+	}
+
+	// We'll print the townhall hovering where it would be built
+	paintersSelected = unitsSelected.begin();
+	while (paintersSelected != unitsSelected.end()) {
+
+		if ((*paintersSelected)->isSelectingPlacement) {
+
+			fPoint mousePosition = App->input->GetMouseWorldPosition();
+			iPoint cameraOffset = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
+			iPoint mapCoordinates = App->map->WorldToMap(mousePosition.x - cameraOffset.x, mousePosition.y - cameraOffset.y + App->map->data.tile_height / 2);
+			fPoint mapWorldCoordinates = App->map->MapToWorld(mapCoordinates.x, mapCoordinates.y);
+
+			App->render->AddBlitEvent(1, townHallTexture, mapWorldCoordinates.x, mapWorldCoordinates.y, { 0,0,100,100 });
+
+			// If the Left click was pressed we'll check if it can in fact be built there
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+				(*paintersSelected)->SpawnEntity(mapCoordinates);
+			}
+		}
+
+		paintersSelected++;
+	}
+
+
+
+
 	// LifeBars from selected  on HUD
 	if (!entitiesSelected.empty()) {
 
@@ -207,6 +202,9 @@ bool j1EntityManager::Update(float dt) {
 		
 	}
 
+
+
+
 	// LifeBars from selected units on top of themselves
 	list<Entity*>::iterator selectedUnits = unitsSelected.begin();
 	while (selectedUnits != unitsSelected.end()) {
@@ -214,6 +212,10 @@ bool j1EntityManager::Update(float dt) {
 		(*selectedUnits)->ShowHealthBar();
 		selectedUnits++;
 	}
+
+
+
+
 
 	// Change destination for units selected on right-click
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && !unitsSelected.empty()) {
@@ -238,14 +240,6 @@ bool j1EntityManager::Update(float dt) {
 			unitsToRedirect++;
 		}
 	}
-	
-	// Prepare Movement
-	/*list<Entity*>::iterator unitsToPrepareMove = activeUnits.begin();
-	while (unitsToPrepareMove != activeUnits.end()) {
-		(*unitsToPrepareMove)->CalculateMovementLogic();
-
-		unitsToPrepareMove++;
-	}*/
 
 	// Move
 	list<Entity*>::iterator unitsToMove = activeUnits.begin();
@@ -257,6 +251,9 @@ bool j1EntityManager::Update(float dt) {
 		unitsToMove++;
 	}
 
+
+
+
 	// Move colliders
 	list<Entity*>::iterator collidersToMove = activeUnits.begin();
 	while (collidersToMove != activeUnits.end()) {
@@ -266,6 +263,10 @@ bool j1EntityManager::Update(float dt) {
 
 		collidersToMove++;
 	}
+
+
+
+
 
 	// Draw all active entities
 	list<Entity*>::iterator entitiesToDraw = activeEntities.begin();
@@ -298,7 +299,84 @@ bool j1EntityManager::Update(float dt) {
 }
 
 bool j1EntityManager::PostUpdate() {
+
 	bool ret = true;
+
+	// --------------------------------------------------------------------------------------------------------- //
+	//																											 //
+	// Check if there was anything selected when LEFT MOUSE BUTTON was pressed and if not, unselect all entities //
+	// If control was pressed as a unit was selected, the rest of selected units aren't unselected				 //
+	//																											 //
+	// --------------------------------------------------------------------------------------------------------- //
+
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+
+		bool isSomethingSelected = false;
+
+		float x, y;
+		App->input->GetMousePosition(x, y);
+		fPoint mouseMapCoordinates = App->render->ScreenToWorld(x, y);
+
+		fPoint mouseWorldCoordinates;
+		App->input->GetMousePosition(mouseWorldCoordinates.x, mouseWorldCoordinates.y);
+
+		// First we check if a button was pressed
+		if (spawnEntityUIButton != nullptr) {
+
+			if (mouseWorldCoordinates.x < spawnEntityUIButton->rect.x + spawnEntityUIButton->rect.w && mouseWorldCoordinates.x > spawnEntityUIButton->rect.x &&
+				mouseWorldCoordinates.y < spawnEntityUIButton->rect.y + spawnEntityUIButton->rect.h && mouseWorldCoordinates.y > spawnEntityUIButton->rect.y) {
+
+				// if(activeBuildings.size==1){ THIS IS NOT NEEDED BECAUSE IF THERE ISN'T ONLY ONE, THE COLLIDER WOULD BE NULLPTR
+				list<Entity*>::iterator buildingsToSpawnEntities = buildingsSelected.begin();
+				(*buildingsToSpawnEntities)->SpawnEntity({ 0,0 });
+
+				isSomethingSelected = true;
+			}
+		}
+		else if (buildEntityUIButton != nullptr) {
+
+			if (mouseWorldCoordinates.x < buildEntityUIButton->rect.x + buildEntityUIButton->rect.w && mouseWorldCoordinates.x > buildEntityUIButton->rect.x &&
+				mouseWorldCoordinates.y < buildEntityUIButton->rect.y + buildEntityUIButton->rect.h && mouseWorldCoordinates.y > buildEntityUIButton->rect.y) {
+
+				// For now only one
+				list<Entity*>::iterator unitsToBuildEntities = unitsSelected.begin();
+
+				if (!(*unitsToBuildEntities)->isSelectingPlacement)
+					(*unitsToBuildEntities)->isSelectingPlacement = true;
+
+				isSomethingSelected = true;
+			}
+		}
+
+		// If not, we check if any units were selected
+		if (!isSomethingSelected) {
+
+			bool controlWasPressed = false;
+
+			if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT)
+				controlWasPressed = true;
+
+			list<Entity*>::iterator checkForSelectedEntities = activeEntities.begin();
+			while (checkForSelectedEntities != activeEntities.end()) {
+
+				if (mouseMapCoordinates.x < (*checkForSelectedEntities)->pos.x + (*checkForSelectedEntities)->GetSize().x && mouseMapCoordinates.x >(*checkForSelectedEntities)->pos.x &&
+					mouseMapCoordinates.y < (*checkForSelectedEntities)->pos.y + (*checkForSelectedEntities)->GetSize().y && mouseMapCoordinates.y >(*checkForSelectedEntities)->pos.y) {
+
+					if (!(*checkForSelectedEntities)->isSelected)
+						SelectEntity(*checkForSelectedEntities, controlWasPressed);
+
+					isSomethingSelected = true;
+
+					break;
+				}
+				checkForSelectedEntities++;
+			}
+		}
+
+		// And if not, unselect all
+		if (!isSomethingSelected)
+			UnselectAllEntities();
+	}
 
 	return ret;
 }
@@ -355,9 +433,18 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module*
 		// Allies
 	/// Buildings
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
-		TownHall* townHall = new TownHall({ pos.x/* - size.x/2*/, pos.y/* - size.y/2 */}, damage, this);
-		activeEntities.push_back((Entity*)townHall);
-		activeBuildings.push_back((Entity*)townHall);
+		TownHall* townHall = new TownHall({ pos.x/* - size.x/2*/, pos.y/* - size.y/2 */}, damage, this, creator);
+
+		if (spawnAutomatically) {
+
+			activeEntities.push_back((Entity*)townHall);
+			activeBuildings.push_back((Entity*)townHall);
+			townHall->isActive = true;
+			townHall->CreateEntityCollider(pos);
+		}
+
+		else
+			spawningEntities.push_back((Entity*)townHall);
 
 		return (Entity*)townHall;
 	}
@@ -375,6 +462,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module*
 		Warrior* warrior = new Warrior({ pos.x/* - size.x / 2*/, pos.y/* - size.y / 2 */}, damage, this, creator);
 
 		if (spawnAutomatically) {
+
 			activeEntities.push_back((Entity*)warrior);
 			activeUnits.push_back((Entity*)warrior);
 			warrior->isActive = true;
