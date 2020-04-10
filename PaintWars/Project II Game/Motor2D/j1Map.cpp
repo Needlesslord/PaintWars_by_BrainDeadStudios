@@ -43,9 +43,9 @@ void j1Map::Draw()
 		if(layer->properties.Get("Nodraw") != 0)
 			continue;
 
-		for(int y = 0; y < data.height; ++y)
+		for(uint y = 0; y < data.height; ++y)
 		{
-			for(int x = 0; x < data.width; ++x)
+			for(uint x = 0; x < data.width; ++x)
 			{
 				int tile_id = layer->Get(x, y);
 				if(tile_id > 0)
@@ -55,7 +55,8 @@ void j1Map::Draw()
 					SDL_Rect r = tileset->GetTileRect(tile_id);
 					fPoint pos = MapToWorld(x, y);
 
-					App->render->AddBlitEvent(0,tileset->texture, pos.x, pos.y, r);
+					//App->render->AddBlitEvent(0, tileset->texture, pos.x - r.w / 2, pos.y - r.h / 2, r);
+					App->render->AddBlitEvent(0, tileset->texture, pos.x, pos.y, r);
 				}
 			}
 		}
@@ -63,71 +64,7 @@ void j1Map::Draw()
 
 
 
-	// Camera culling (This one doesn't work)
-
-	/*uint camera_rect_w;
-	uint camera_rect_h;
-
-	App->win->GetWindowSize(camera_rect_w, camera_rect_h);
 	
-	camera_collider.rect.w = camera_rect_w;
-	camera_collider.rect.h = camera_rect_h;
-
-	App->map->camera_collider.SetPos(-App->render->camera.x, -App->render->camera.y);
-
-	for (item; item != NULL; item = item->next) {
-
-		uint* gid = item->data->data;
-		uint i = 0;
-
-		if (item->data->properties.Get("Nodraw") != 0) {
-			continue;
-		}
-
-		for (uint y = 0; y < data.height; ++y)
-		{
-			for (uint x = 0; x < data.width; ++x)
-			{
-				iPoint tileCoords = MapToWorld(x, y);
-				float speed = 1.0f;
-
-				if (item->data->name == "Clouds")
-				{
-
-					speed = 0.50f;
-
-					tile_rect.x = (App->render->camera.x * speed) + data.tilesets[0]->GetPos(x, y).x - App->render->camera.x;
-					tile_rect.y = (App->render->camera.y * speed) + data.tilesets[0]->GetPos(x, y).y - App->render->camera.y;
-
-				}
-				else if (item->data->name == "Water")
-				{
-
-					speed = 0.75f;
-
-					tile_rect.x = (App->render->camera.x * speed) + data.tilesets[0]->GetPos(x, y).x - App->render->camera.x;
-					tile_rect.y = (App->render->camera.y * speed) + data.tilesets[0]->GetPos(x, y).y - App->render->camera.y;
-
-				}
-				else
-				{
-					tile_rect.x = data.tilesets[0]->GetPos(x, y).x;
-					tile_rect.y = data.tilesets[0]->GetPos(x, y).y;
-				}
-
-				tile_rect.h = App->map->data.tile_height;
-				tile_rect.w = App->map->data.tile_height;
-
-				if (camera_collider.CheckCollision(tile_rect))
-				{
-					App->render->Blit(data.tilesets[0]->texture, tileCoords.x, tileCoords.y, data.tilesets[0]->GetTileRectId(gid[i]), false, speed);
-				}
-
-				i++;
-			}
-		}
-
-	}*/
 }
 
 int Properties::Get(const char* value, int default_value) const
@@ -450,7 +387,7 @@ bool j1Map::LoadTilesetAnimations(pugi::xml_node& tileset_node, TileSet* set)
 {
 	bool ret = true;
 	uint columns = tileset_node.attribute("columns").as_uint();
-	LOG("UEP, mirant aver si hi ha animacions!, %d columns", columns);
+	
 	for (pugi::xml_node tile = tileset_node.child("tile"); tile != NULL; tile = tile.next_sibling("tile"))
 	{
 		if (tile != NULL && !tile.attribute("type").empty())
@@ -476,7 +413,7 @@ bool j1Map::LoadTilesetAnimations(pugi::xml_node& tileset_node, TileSet* set)
 				animation.orientation = UNIT_ORIENTATION::UNIT_ORIENTATION_NONE;
 			}
 
-			LOG("UEP, found an animating tile! Type: %d", animation.type);
+			
 			int nFrames = 0;
 			for (pugi::xml_node frame = animationNode.child("frame"); frame != NULL; frame = frame.next_sibling("frame"))
 			{
@@ -486,7 +423,7 @@ bool j1Map::LoadTilesetAnimations(pugi::xml_node& tileset_node, TileSet* set)
 				uint duration = frame.attribute("duration").as_uint();
 				animation.speed = duration;
 				nFrames++;
-				LOG("Uep! Parseao frame %d, %d %d %d %d %d ms ", nFrames, rect.x, rect.y, rect.w, rect.h, duration);
+				
 			}
 			allAnimations.push_back(animation);
 		}

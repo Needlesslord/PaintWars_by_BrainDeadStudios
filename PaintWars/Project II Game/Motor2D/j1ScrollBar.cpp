@@ -55,7 +55,7 @@ bool j1ScrollBar::Update(float dt)
 		
 	}
 	if (enabled == true)
-		App->render->AddBlitEvent(3, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
+		App->render->AddBlitEvent(3, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true,true);
 	
 
 	Float_Value = -((float(-Button->inside_position.x) / (float(-this->rect.w) + float(Button->rect.w))) * 100);
