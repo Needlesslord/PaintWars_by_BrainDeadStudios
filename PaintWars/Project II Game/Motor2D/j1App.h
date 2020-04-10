@@ -140,6 +140,7 @@ public:
 	uint32 getFpsCap() { return framerate_cap; };
 	void setFpsCap(uint32 fps);
 	bool DEBUG_ACTIVE;
+	bool PAUSE_ACTIVE;
 
 };
 

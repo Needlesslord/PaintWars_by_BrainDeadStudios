@@ -60,245 +60,277 @@ bool j1EntityManager::Start() {
 
 bool j1EntityManager::PreUpdate() {
 	bool ret = true;
-
+	if (App->PAUSE_ACTIVE == false) {}
 	return ret;
+	
 }
 
 bool j1EntityManager::Update(float dt) {
+	
 	bool ret = true;
 
-	
+	if (App->PAUSE_ACTIVE == false) {
 
-	// Check if a unit was set to spawn
+		// Check if a unit was set to spawn
 
 
-	// Spawn entities that finished their spawning time
-	list<Entity*>::iterator checkForSpawningEntities = spawningEntities.begin();
-	while (checkForSpawningEntities != spawningEntities.end()) {
+		// Spawn entities that finished their spawning time
+		list<Entity*>::iterator checkForSpawningEntities = spawningEntities.begin();
+		while (checkForSpawningEntities != spawningEntities.end()) {
 
-		if ((*checkForSpawningEntities)->spawningProgress * spawningRate >= (*checkForSpawningEntities)->spawningTime) {
+			if ((*checkForSpawningEntities)->spawningProgress * spawningRate >= (*checkForSpawningEntities)->spawningTime) {
 
-			(*checkForSpawningEntities)->isActive = true;
-			
-			if ((*checkForSpawningEntities)->entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY) {
-				activeEntities.push_back(*checkForSpawningEntities);
-				activeUnits.push_back(*checkForSpawningEntities);
+				(*checkForSpawningEntities)->isActive = true;
+
+				if ((*checkForSpawningEntities)->entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY) {
+					activeEntities.push_back(*checkForSpawningEntities);
+					activeUnits.push_back(*checkForSpawningEntities);
+				}
+
+				else if ((*checkForSpawningEntities)->entityCategory == ENTITY_CATEGORY_STATIC_ENTITY) {
+					activeEntities.push_back(*checkForSpawningEntities);
+					activeBuildings.push_back(*checkForSpawningEntities);
+				}
+
+				(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos);
+				(*checkForSpawningEntities)->spawnedBy->isSpawningAUnit = false;
+
+				spawningEntities.erase(checkForSpawningEntities);
+
 			}
-			
-			else if ((*checkForSpawningEntities)->entityCategory == ENTITY_CATEGORY_STATIC_ENTITY) {
-				activeEntities.push_back(*checkForSpawningEntities);
-				activeBuildings.push_back(*checkForSpawningEntities);
+
+			else if ((*checkForSpawningEntities)->spawningProgress * spawningRate < (*checkForSpawningEntities)->spawningTime) {
+
+				(*checkForSpawningEntities)->spawningProgress += spawningRate * dt;
 			}
 
-			(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos);
-			(*checkForSpawningEntities)->spawnedBy->isSpawningAUnit = false;
-
-			spawningEntities.erase(checkForSpawningEntities);
-	
+			checkForSpawningEntities++;
 		}
 
-		else if ((*checkForSpawningEntities)->spawningProgress * spawningRate < (*checkForSpawningEntities)->spawningTime) {
+		// Check if there was any unit selected when LEFT MOUSE BUTTON was pressed and if not, unselect all
+		// If control was pressed as a unit was selected, the rest of selected units aren't unselected
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 
-			(*checkForSpawningEntities)->spawningProgress += spawningRate * dt;
-		}
+			bool isSomethingSelected = false;
 
-		checkForSpawningEntities++;
-	}
+			float x, y;
+			App->input->GetMousePosition(x, y);
+			fPoint mouseMapCoordinates = App->render->ScreenToWorld(x, y);
+			//mouseWorldCoordinates.x < spawnEntityUIButton->rect.x + spawnEntityUIButton->rect.w && mouseWorldCoordinates.x + mouseWorldCoordinates.w > spawnEntityUIButton->rect.x && mouseWorldCoordinates.y < spawnEntityUIButton->rect.y + spawnEntityUIButton->rect.h && mouseWorldCoordinates.h + mouseWorldCoordinates.y > spawnEntityUIButton->rect.y
+			if (spawnEntityUIButton != nullptr) {
 
-	// Check if there was any unit selected when LEFT MOUSE BUTTON was pressed and if not, unselect all
-	// If control was pressed as a unit was selected, the rest of selected units aren't unselected
-	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+				fPoint mouseWorldCoordinates;
+				App->input->GetMousePosition(mouseWorldCoordinates.x, mouseWorldCoordinates.y);
 
-		bool isSomethingSelected = false;
+				if (mouseWorldCoordinates.x < spawnEntityUIButton->rect.x + spawnEntityUIButton->rect.w && mouseWorldCoordinates.x > spawnEntityUIButton->rect.x &&
+					mouseWorldCoordinates.y < spawnEntityUIButton->rect.y + spawnEntityUIButton->rect.h && mouseWorldCoordinates.y > spawnEntityUIButton->rect.y) {
 
-		float x, y;
-		App->input->GetMousePosition(x, y);
-		fPoint mouseMapCoordinates = App->render->ScreenToWorld(x, y);
-		//mouseWorldCoordinates.x < spawnEntityUIButton->rect.x + spawnEntityUIButton->rect.w && mouseWorldCoordinates.x + mouseWorldCoordinates.w > spawnEntityUIButton->rect.x && mouseWorldCoordinates.y < spawnEntityUIButton->rect.y + spawnEntityUIButton->rect.h && mouseWorldCoordinates.h + mouseWorldCoordinates.y > spawnEntityUIButton->rect.y
-		if (spawnEntityUIButton != nullptr) {
-
-			fPoint mouseWorldCoordinates;
-			App->input->GetMousePosition(mouseWorldCoordinates.x, mouseWorldCoordinates.y);
-
-			if 	(mouseWorldCoordinates.x < spawnEntityUIButton->rect.x + spawnEntityUIButton->rect.w && mouseWorldCoordinates.x > spawnEntityUIButton->rect.x && 
-				mouseWorldCoordinates.y < spawnEntityUIButton->rect.y + spawnEntityUIButton->rect.h && mouseWorldCoordinates.y > spawnEntityUIButton->rect.y) {
-
-				// if(activeBuildings.size==1){ THIS IS NOT NEEDED BECAUSE IF THERE ISN'T ONLY ONE, THE COLLIDER WOULD BE NULLPTR
-				list<Entity*>::iterator buildingsToSpawnEntities = buildingsSelected.begin();
-				(*buildingsToSpawnEntities)->SpawnEntity();
-
-				isSomethingSelected = true;
-			}
-		}
-
-		if (!isSomethingSelected) {
-
-			bool controlWasPressed = false;
-
-			if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT)
-				controlWasPressed = true;
-
-			list<Entity*>::iterator checkForSelectedEntities = activeEntities.begin();
-			while (checkForSelectedEntities != activeEntities.end()) {
-	
-				if (
-					//mouseMapCoordinates.x > (*checkForSelectedEntities)->pos.x - (*checkForSelectedEntities)->GetSize().x/* / 2 */&& mouseMapCoordinates.x < (*checkForSelectedEntities)->pos.x + (*checkForSelectedEntities)->GetSize().x/* / 2 */&&
-					//mouseMapCoordinates.y > (*checkForSelectedEntities)->pos.y - (*checkForSelectedEntities)->GetSize().y/* / 2*/ && mouseMapCoordinates.y < (*checkForSelectedEntities)->pos.y + (*checkForSelectedEntities)->GetSize().y/* / 2*/
-					mouseMapCoordinates.x < (*checkForSelectedEntities)->pos.x + (*checkForSelectedEntities)->GetSize().x && mouseMapCoordinates.x > (*checkForSelectedEntities)->pos.x &&
-					mouseMapCoordinates.y < (*checkForSelectedEntities)->pos.y + (*checkForSelectedEntities)->GetSize().y && mouseMapCoordinates.y > (*checkForSelectedEntities)->pos.y
-					
-					) {
-
-					if (!(*checkForSelectedEntities)->isSelected) {
-						SelectEntity(*checkForSelectedEntities, controlWasPressed);
-					}
+					// if(activeBuildings.size==1){ THIS IS NOT NEEDED BECAUSE IF THERE ISN'T ONLY ONE, THE COLLIDER WOULD BE NULLPTR
+					list<Entity*>::iterator buildingsToSpawnEntities = buildingsSelected.begin();
+					(*buildingsToSpawnEntities)->SpawnEntity();
 
 					isSomethingSelected = true;
-
-					break;
-
 				}
-				checkForSelectedEntities++;
 			}
+
+			if (!isSomethingSelected) {
+
+				bool controlWasPressed = false;
+
+				if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT)
+					controlWasPressed = true;
+
+				list<Entity*>::iterator checkForSelectedEntities = activeEntities.begin();
+				while (checkForSelectedEntities != activeEntities.end()) {
+
+					if (
+						//mouseMapCoordinates.x > (*checkForSelectedEntities)->pos.x - (*checkForSelectedEntities)->GetSize().x/* / 2 */&& mouseMapCoordinates.x < (*checkForSelectedEntities)->pos.x + (*checkForSelectedEntities)->GetSize().x/* / 2 */&&
+						//mouseMapCoordinates.y > (*checkForSelectedEntities)->pos.y - (*checkForSelectedEntities)->GetSize().y/* / 2*/ && mouseMapCoordinates.y < (*checkForSelectedEntities)->pos.y + (*checkForSelectedEntities)->GetSize().y/* / 2*/
+						mouseMapCoordinates.x < (*checkForSelectedEntities)->pos.x + (*checkForSelectedEntities)->GetSize().x && mouseMapCoordinates.x >(*checkForSelectedEntities)->pos.x &&
+						mouseMapCoordinates.y < (*checkForSelectedEntities)->pos.y + (*checkForSelectedEntities)->GetSize().y && mouseMapCoordinates.y >(*checkForSelectedEntities)->pos.y
+
+						) {
+
+						if (!(*checkForSelectedEntities)->isSelected) {
+							SelectEntity(*checkForSelectedEntities, controlWasPressed);
+						}
+
+						isSomethingSelected = true;
+
+						break;
+
+					}
+					checkForSelectedEntities++;
+				}
+			}
+			// Unselect all
+			if (!isSomethingSelected) UnselectAllEntities();
 		}
-		// Unselect all
-		if (!isSomethingSelected) UnselectAllEntities();
-	}
 
-	// Show Building UI if ONLY ONE BUILDING is selected
-	if (buildingsSelected.size() == 1) {
+		// Show Building UI if ONLY ONE BUILDING is selected
+		if (buildingsSelected.size() == 1) {
 
-		list<Entity*>::iterator buildingToShowUI = buildingsSelected.begin();
-		if ((*buildingToShowUI)->isSelected) {
-			(*buildingToShowUI)->ShowUI();
+			list<Entity*>::iterator buildingToShowUI = buildingsSelected.begin();
+			if ((*buildingToShowUI)->isSelected) {
+				(*buildingToShowUI)->ShowUI();
+			}
+
+			else {
+				spawnEntityUIButton = nullptr;
+				spawnEntityUIButton->to_delete = true;
+			}
 		}
 
 		else {
-			spawnEntityUIButton = nullptr;
-			spawnEntityUIButton->to_delete = true;
-		}
-	}
-
-	else {
-		if (spawnEntityUIButton != nullptr) {
-			spawnEntityUIButton->to_delete = true;
-			spawnEntityUIButton = nullptr;
-		}
-	}
-
-
-	// LifeBars from selected  on HUD
-	if (!entitiesSelected.empty()) {
-
-		list<Entity*>::iterator selectedEntities = entitiesSelected.begin();
-		currentLifeSum = 0;
-		maxLifeSum = 0;
-
-		while (selectedEntities != entitiesSelected.end()) {
-
-			currentLifeSum += (*selectedEntities)->GetCurrLife();
-			maxLifeSum += (*selectedEntities)->GetMaxLife();
-			selectedEntities++;
-		}
-
-		float caca = (currentLifeSum / maxLifeSum) * 200;
-		App->render->AddBlitEvent(1, zeroLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, 200, 15 }, false, true, 0);
-		App->render->AddBlitEvent(1, fullLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, (int)caca, 15 }, false, true, 0);
-		
-	}
-
-	// LifeBars from selected units on top of themselves
-	list<Entity*>::iterator selectedUnits = unitsSelected.begin();
-	while (selectedUnits != unitsSelected.end()) {
-
-		(*selectedUnits)->ShowHealthBar();
-		selectedUnits++;
-	}
-
-	// Change destination for units selected on right-click
-	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && !unitsSelected.empty()) {
-
-		int orderOfPriority = 0;
-		list<Entity*>::iterator unitsToRedirect = unitsSelected.begin();
-
-		while (unitsToRedirect != unitsSelected.end()) {
-
-			if ((*unitsToRedirect)->isActive) {
-
-				fPoint xy = App->input->GetMouseWorldPosition();
-				iPoint cameraW = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
-				iPoint map_coordinates = App->map->WorldToMap(xy.x - cameraW.x /*+ App->map->data.tile_width / 2*/, xy.y - cameraW.y + App->map->data.tile_height / 2);
-				map_coordinates.x=map_coordinates.x -1;
-				map_coordinates.y=map_coordinates.y -1 ;
-				(*unitsToRedirect)->SetDestination(map_coordinates);
-				(*unitsToRedirect)->CalculateMovementLogic(orderOfPriority);
-
-				orderOfPriority++;
-			}
-
-			unitsToRedirect++;
-		}
-	}
-	
-	// Prepare Movement
-	/*list<Entity*>::iterator unitsToPrepareMove = activeUnits.begin();
-	while (unitsToPrepareMove != activeUnits.end()) {
-		(*unitsToPrepareMove)->CalculateMovementLogic();
-
-		unitsToPrepareMove++;
-	}*/
-
-	// Move
-	list<Entity*>::iterator unitsToMove = activeUnits.begin();
-	while (unitsToMove != activeUnits.end()) {
-
-		if ((*unitsToMove)->isOnTheMove)
-			(*unitsToMove)->Move(dt);
-
-		unitsToMove++;
-	}
-
-	// Move colliders
-	list<Entity*>::iterator collidersToMove = activeUnits.begin();
-	while (collidersToMove != activeUnits.end()) {
-
-		(*collidersToMove)->entityCollider->rect.x = (*collidersToMove)->pos.x/* - (*collidersToMove)->GetSize().x / 2*/;
-		(*collidersToMove)->entityCollider->rect.y = (*collidersToMove)->pos.y/* - (*collidersToMove)->GetSize().y / 1.5*/;
-
-		collidersToMove++;
-	}
-
-	// Draw all active entities
-	list<Entity*>::iterator entitiesToDraw = activeEntities.begin();
-	while (entitiesToDraw != activeEntities.end()) {
-
-		if ((*entitiesToDraw)->isActive) {
-
-			if ((*entitiesToDraw)->entityType == ENTITY_TYPE_TOWN_HALL) {
-				(*entitiesToDraw)->Draw(townHallTexture);
-			}
-			else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINTER) {
-				(*entitiesToDraw)->Draw(painterTexture);
-			}
-			else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_WARRIOR) {
-				(*entitiesToDraw)->Draw(warrior_Texture);
-			}
-			else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SPAWNER) {
-				(*entitiesToDraw)->Draw(spawnerTexture);
-			}
-			else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SLIME) {
-				(*entitiesToDraw)->Draw(slimeTexture);
+			if (spawnEntityUIButton != nullptr) {
+				spawnEntityUIButton->to_delete = true;
+				spawnEntityUIButton = nullptr;
 			}
 		}
 
-		entitiesToDraw++;
 
+		// LifeBars from selected  on HUD
+		if (!entitiesSelected.empty()) {
+
+			list<Entity*>::iterator selectedEntities = entitiesSelected.begin();
+			currentLifeSum = 0;
+			maxLifeSum = 0;
+
+			while (selectedEntities != entitiesSelected.end()) {
+
+				currentLifeSum += (*selectedEntities)->GetCurrLife();
+				maxLifeSum += (*selectedEntities)->GetMaxLife();
+				selectedEntities++;
+			}
+
+			float caca = (currentLifeSum / maxLifeSum) * 200;
+			App->render->AddBlitEvent(1, zeroLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, 200, 15 }, false, true, 0);
+			App->render->AddBlitEvent(1, fullLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, (int)caca, 15 }, false, true, 0);
+
+		}
+
+		// LifeBars from selected units on top of themselves
+		list<Entity*>::iterator selectedUnits = unitsSelected.begin();
+		while (selectedUnits != unitsSelected.end()) {
+
+			(*selectedUnits)->ShowHealthBar();
+			selectedUnits++;
+		}
+
+		// Change destination for units selected on right-click
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && !unitsSelected.empty()) {
+
+			int orderOfPriority = 0;
+			list<Entity*>::iterator unitsToRedirect = unitsSelected.begin();
+
+			while (unitsToRedirect != unitsSelected.end()) {
+
+				if ((*unitsToRedirect)->isActive) {
+
+					fPoint xy = App->input->GetMouseWorldPosition();
+					iPoint cameraW = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
+					iPoint map_coordinates = App->map->WorldToMap(xy.x - cameraW.x /*+ App->map->data.tile_width / 2*/, xy.y - cameraW.y + App->map->data.tile_height / 2);
+					map_coordinates.x = map_coordinates.x - 1;
+					map_coordinates.y = map_coordinates.y - 1;
+					(*unitsToRedirect)->SetDestination(map_coordinates);
+					(*unitsToRedirect)->CalculateMovementLogic(orderOfPriority);
+
+					orderOfPriority++;
+				}
+
+				unitsToRedirect++;
+			}
+		}
+
+		// Prepare Movement
+		/*list<Entity*>::iterator unitsToPrepareMove = activeUnits.begin();
+		while (unitsToPrepareMove != activeUnits.end()) {
+			(*unitsToPrepareMove)->CalculateMovementLogic();
+
+			unitsToPrepareMove++;
+		}*/
+
+		// Move
+		list<Entity*>::iterator unitsToMove = activeUnits.begin();
+		while (unitsToMove != activeUnits.end()) {
+
+			if ((*unitsToMove)->isOnTheMove)
+				(*unitsToMove)->Move(dt);
+
+			unitsToMove++;
+		}
+
+		// Move colliders
+		list<Entity*>::iterator collidersToMove = activeUnits.begin();
+		while (collidersToMove != activeUnits.end()) {
+
+			(*collidersToMove)->entityCollider->rect.x = (*collidersToMove)->pos.x/* - (*collidersToMove)->GetSize().x / 2*/;
+			(*collidersToMove)->entityCollider->rect.y = (*collidersToMove)->pos.y/* - (*collidersToMove)->GetSize().y / 1.5*/;
+
+			collidersToMove++;
+		}
+
+		// Draw all active entities
+		list<Entity*>::iterator entitiesToDraw = activeEntities.begin();
+		while (entitiesToDraw != activeEntities.end()) {
+
+			if ((*entitiesToDraw)->isActive) {
+
+				if ((*entitiesToDraw)->entityType == ENTITY_TYPE_TOWN_HALL) {
+					(*entitiesToDraw)->Draw(townHallTexture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINTER) {
+					(*entitiesToDraw)->Draw(painterTexture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_WARRIOR) {
+					(*entitiesToDraw)->Draw(warrior_Texture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SPAWNER) {
+					(*entitiesToDraw)->Draw(spawnerTexture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SLIME) {
+					(*entitiesToDraw)->Draw(slimeTexture);
+				}
+			}
+
+			entitiesToDraw++;
+
+		}
 	}
 
+	if (App->PAUSE_ACTIVE == true) {
+		list<Entity*>::iterator entitiesToDraw = activeEntities.begin();
+		while (entitiesToDraw != activeEntities.end()) {
+
+			if ((*entitiesToDraw)->isActive) {
+
+				if ((*entitiesToDraw)->entityType == ENTITY_TYPE_TOWN_HALL) {
+					(*entitiesToDraw)->Draw(townHallTexture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINTER) {
+					(*entitiesToDraw)->Draw(painterTexture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_WARRIOR) {
+					(*entitiesToDraw)->Draw(warrior_Texture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SPAWNER) {
+					(*entitiesToDraw)->Draw(spawnerTexture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SLIME) {
+					(*entitiesToDraw)->Draw(slimeTexture);
+				}
+			}
+
+			entitiesToDraw++;
+
+		}
+	}
 	return ret;
 }
 
 bool j1EntityManager::PostUpdate() {
+	if (App->PAUSE_ACTIVE == false) {}
+	
 	bool ret = true;
 
 	return ret;
