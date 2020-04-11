@@ -145,16 +145,16 @@ void j1Render::AddBlitEvent(int layer, SDL_Texture* texture, int x, int y, const
 {
 	BlitEvent event{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
 	
-
+	
 	if (texture != nullptr)
 	{
-		 if (x > (-camera.x / App->win->GetScale()) - 300 && x < ((-camera.x + camera.w) / App->win->GetScale()) + 100 && y >(-camera.y / App->win->GetScale()) - 300 && y < ((-camera.y + camera.h) / App->win->GetScale()) + 100) {
+		 if (x > (-camera.x / App->win->GetScale()) - 220 && x < ((-camera.x + camera.w) / App->win->GetScale()) + 100 && y >(-camera.y / App->win->GetScale()) - 150 && y < ((-camera.y + camera.h) / App->win->GetScale()) + 100) {
 			blit_queue.insert(make_pair(layer, event));
 		}
 	}
 	else
 	{
-		if (section.x > (-camera.x / App->win->GetScale()) - 300 && section.x < (-camera.x + camera.w) / App->win->GetScale() && section.y >(-camera.y / App->win->GetScale()) - 300 && section.y < (-camera.y + camera.h) / App->win->GetScale()) {
+		if (section.x > (-camera.x / App->win->GetScale()) - 220 && section.x < (-camera.x + camera.w) / App->win->GetScale() && section.y >(-camera.y / App->win->GetScale()) - 150 && section.y < (-camera.y + camera.h) / App->win->GetScale()) {
 			blit_queue.insert(make_pair(layer, event));
 		}
 	}

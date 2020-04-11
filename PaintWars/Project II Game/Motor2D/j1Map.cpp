@@ -55,7 +55,7 @@ void j1Map::Draw()
 					SDL_Rect r = tileset->GetTileRect(tile_id);
 					fPoint pos = MapToWorld(x, y);
 
-					//App->render->AddBlitEvent(0, tileset->texture, pos.x - r.w / 2, pos.y - r.h / 2, r);
+					
 					App->render->AddBlitEvent(0, tileset->texture, pos.x, pos.y, r);
 				}
 			}
