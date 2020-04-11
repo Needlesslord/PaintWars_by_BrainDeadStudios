@@ -18,6 +18,17 @@
 	<:anonymous />
 	<:anonymous />
 	<renderer>
-		<camera x="0" y="0" />
+		<camera x="451" y="-50" />
+		<num_entities value="8" />
+		<active_entities>
+			<entity />
+			<entity />
+			<entity />
+			<entity entity_type="warrior" position_x="400" position_y="400" missing_hp="10" size_x="62" size_y="118" />
+			<entity entity_type="warrior" position_x="-150" position_y="824.5" missing_hp="0" size_x="62" size_y="118" />
+			<entity entity_type="warrior" position_x="1000" position_y="800" missing_hp="0" size_x="62" size_y="118" />
+			<entity />
+			<entity />
+		</active_entities>
 	</renderer>
 </game_state>

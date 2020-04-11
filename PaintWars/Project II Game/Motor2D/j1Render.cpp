@@ -4,6 +4,8 @@
 #include "j1Window.h"
 #include "j1Render.h"
 #include "j1Input.h"
+#include "Entity.h"
+#include "j1EntityManager.h"
 
 #define VSYNC true
 
@@ -90,8 +92,44 @@ bool j1Render::CleanUp()
 
 bool j1Render::Load(pugi::xml_node& data)
 {
+	
+	
+
 	camera.x = data.child("camera").attribute("x").as_int();
 	camera.y = data.child("camera").attribute("y").as_int();
+
+	float x, y;
+	int damage;
+	iPoint size;
+	const char* entityType;
+	int numEntities = 3;
+	 numEntities = data.child("num_entities").attribute("value").as_int();
+
+	
+
+	//pugi::xml_node entities = save.child("entities").child("warrior");
+	for (int i = 0; i < numEntities; i++) {
+
+		
+		//cycle_length = config.child("enemies").child("update_cycle_length").attribute("length").as_float(); //Fix pathfinding so it works with doLogic
+
+		//frame_cap = config.child("app").attribute("framerate_cap").as_uint();
+		//x = data.child("entity").attribute("position_x").as_float();
+		x=data.child("active_entities").child("entity").attribute("postition_x").as_float();
+		y = data.child("entity").attribute("position_y").as_float();
+		damage = data.attribute("missing_hp").as_int();
+		size.x = data.attribute("size_x").as_int();
+		size.y = data.attribute("size_y").as_int();
+
+		entityType = data.child("entity").attribute("entity_type").as_string("");
+
+		if (entityType == "warrior") {
+			
+			App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { x, y }, App->entities,nullptr,damage);
+		}
+
+		data = data.next_sibling();
+	}
 
 	return true;
 }
@@ -111,6 +149,34 @@ bool j1Render::Save(pugi::xml_node& data) const
 	pugi::xml_node cam = data.append_child("camera");
 	cam.append_attribute("x") = camera.x;
 	cam.append_attribute("y") = camera.y;
+
+	//cam.append_attribute("current_scene")=
+	pugi::xml_node numEntities = data.append_child("num_entities");
+	numEntities.append_attribute("value") = App->entities->activeEntities.size();
+
+	pugi::xml_node entities = data.append_child("active_entities");
+
+	list<Entity*>::const_iterator entitiesToSave = App->entities->activeEntities.begin();
+	while (entitiesToSave != App->entities->activeEntities.end()) {
+
+		pugi::xml_node entity = entities.append_child("entity");
+
+		if ((*entitiesToSave)->entityType == ENTITY_TYPE_WARRIOR) {
+			const char warrior[] = "warrior";
+			//entity.append_attribute("entity_type").as_string("warrior");
+			entity.append_attribute("entity_type")= warrior;
+			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
+			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+
+		entitiesToSave++;
+	}
+
+	
 
 	return true;
 }
