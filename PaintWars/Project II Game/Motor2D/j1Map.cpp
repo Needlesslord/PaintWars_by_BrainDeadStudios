@@ -5,6 +5,7 @@
 #include "j1Textures.h"
 #include "j1Map.h"
 #include "animation.h"
+#include "j1Window.h"
 #include <math.h>
 #include "Entity.h"
 
@@ -42,9 +43,9 @@ void j1Map::Draw()
 		if(layer->properties.Get("Nodraw") != 0)
 			continue;
 
-		for(int y = 0; y < data.height; ++y)
+		for(uint y = 0; y < data.height; ++y)
 		{
-			for(int x = 0; x < data.width; ++x)
+			for(uint x = 0; x < data.width; ++x)
 			{
 				int tile_id = layer->Get(x, y);
 				if(tile_id > 0)
@@ -54,11 +55,16 @@ void j1Map::Draw()
 					SDL_Rect r = tileset->GetTileRect(tile_id);
 					fPoint pos = MapToWorld(x, y);
 
-					App->render->AddBlitEvent(0,tileset->texture, pos.x, pos.y, r);
+					
+					App->render->AddBlitEvent(0, tileset->texture, pos.x, pos.y, r);
 				}
 			}
 		}
 	}
+
+
+
+	
 }
 
 int Properties::Get(const char* value, int default_value) const
@@ -381,7 +387,7 @@ bool j1Map::LoadTilesetAnimations(pugi::xml_node& tileset_node, TileSet* set)
 {
 	bool ret = true;
 	uint columns = tileset_node.attribute("columns").as_uint();
-	LOG("UEP, mirant aver si hi ha animacions!, %d columns", columns);
+	
 	for (pugi::xml_node tile = tileset_node.child("tile"); tile != NULL; tile = tile.next_sibling("tile"))
 	{
 		if (tile != NULL && !tile.attribute("type").empty())
@@ -407,7 +413,7 @@ bool j1Map::LoadTilesetAnimations(pugi::xml_node& tileset_node, TileSet* set)
 				animation.orientation = UNIT_ORIENTATION::UNIT_ORIENTATION_NONE;
 			}
 
-			LOG("UEP, found an animating tile! Type: %d", animation.type);
+			
 			int nFrames = 0;
 			for (pugi::xml_node frame = animationNode.child("frame"); frame != NULL; frame = frame.next_sibling("frame"))
 			{
@@ -417,7 +423,7 @@ bool j1Map::LoadTilesetAnimations(pugi::xml_node& tileset_node, TileSet* set)
 				uint duration = frame.attribute("duration").as_uint();
 				animation.speed = duration;
 				nFrames++;
-				LOG("Uep! Parseao frame %d, %d %d %d %d %d ms ", nFrames, rect.x, rect.y, rect.w, rect.h, duration);
+				
 			}
 			allAnimations.push_back(animation);
 		}

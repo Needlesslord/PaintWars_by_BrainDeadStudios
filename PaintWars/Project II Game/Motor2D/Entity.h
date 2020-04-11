@@ -59,6 +59,7 @@ enum ENTITY_TYPE {
 	// Allies
 	/// Buildings
 	ENTITY_TYPE_TOWN_HALL,
+	ENTITY_TYPE_PAINT_EXTRACTOR,
 
 	/// Units
 	ENTITY_TYPE_PAINTER,
@@ -79,7 +80,7 @@ class Entity
 {
 public:
 
-	Entity(fPoint pos, int currLife, j1Module* listener);
+	Entity(fPoint pos, int currLife, j1Module* listener, Entity* creator);
 	virtual ~Entity();
 	virtual void Draw(SDL_Texture* sprites);
 	virtual void DebugDrawSelected();
@@ -87,10 +88,10 @@ public:
 	virtual void CalculateMovementLogic(int p);
 	virtual void Move(float dt);
 	virtual void SetDestination(iPoint des);
+	virtual void SpawnEntity(iPoint pos);
 
 	// Position and size
 	void SetPos(fPoint pos);
-	void AddToPos(fPoint pos);
 	fPoint GetPos() const;
 	iPoint GetSize() const;
 	iPoint GetOffsetSize() const;
@@ -108,6 +109,8 @@ public:
 	bool CreateEntityCollider(fPoint pos);
 
 	void ShowHealthBar();
+	void ShowUI();
+
 public:
 
 	const ENTITY_CATEGORY entityCategory = ENTITY_CATEGORY_NONE;
@@ -127,6 +130,21 @@ public:
 
 	// Collision
 	Collider* entityCollider = nullptr;
+
+	float spawningTime;
+	float spawningProgress;
+
+	float constructionTime;
+	float constructionProgress;
+
+	bool isSpawningAUnit;
+	bool isBuilding;
+	bool isActive;
+
+	Entity* spawnedBy;
+	Entity* builtBy;
+
+	bool isSelectingPlacement = false;
 
 protected:
 

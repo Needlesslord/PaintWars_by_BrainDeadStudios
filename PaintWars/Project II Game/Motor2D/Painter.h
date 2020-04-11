@@ -8,9 +8,10 @@ class Painter : public Entity
 {
 public:
 
-	Painter(fPoint pos, int currLife, j1Module* listener);
+	Painter(fPoint pos, int currLife, j1Module* listener, Entity* creator);
 	~Painter();
-	//void Move(fPoint destination)override;
+	void SpawnEntity(iPoint pos) override;
+
 public:
 
 private:

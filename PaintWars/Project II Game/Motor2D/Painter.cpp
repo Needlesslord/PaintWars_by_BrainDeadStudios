@@ -5,12 +5,13 @@
 
 #include "j1Player.h"
 #include "Scene.h"
+#include "j1EntityManager.h"
 #include "j1Pathfinding.h"
 #include "j1Map.h"
 #include "j1Collision.h"
 #include "j1Textures.h"
 
-Painter::Painter(fPoint pos, int damage, j1Module* listener) : Entity(pos, damage, listener) {
+Painter::Painter(fPoint pos, int damage, j1Module* listener, Entity* creator) : Entity(pos, damage, listener, spawnedBy) {
 
 	// Handle data and initialize the Painter
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_PAINTER;
@@ -28,6 +29,9 @@ Painter::Painter(fPoint pos, int damage, j1Module* listener) : Entity(pos, damag
 	isEntityFromPlayer = true;
 	CreateEntityCollider(pos);
 
+	isActive = true; //FOR NOW
+
+	isBuilding = false;
 
 	for (std::vector<Animation>::iterator i = App->map->allAnimations.begin(); i != App->map->allAnimations.end(); i++)
 	{
@@ -45,3 +49,19 @@ Painter::Painter(fPoint pos, int damage, j1Module* listener) : Entity(pos, damag
 }
 
 Painter::~Painter() {}
+
+void Painter::SpawnEntity(iPoint pos) {
+
+	fPoint worldPos = App->map->MapToWorld(pos.x, pos.y);
+	
+
+	bool canAffordIt = true;
+	if (!canAffordIt)
+		return;
+
+	isSelectingPlacement = false;
+	if (!isBuilding) {
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, worldPos, App->entities, this, 0);
+		isBuilding = true;
+	}
+}

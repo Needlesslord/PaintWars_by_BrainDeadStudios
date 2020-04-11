@@ -7,6 +7,7 @@
 	// Allies
 /// Buildings
 #include "TownHall.h"
+#include "PaintExtractor.h"
 
 /// Units
 #include "Painter.h"
@@ -51,7 +52,7 @@ public:
 	bool PostUpdate();
 	bool CleanUp();
 
-	Entity* AddEntity(ENTITY_TYPE entityType, fPoint pos, iPoint size, j1Module* listener = nullptr, int damage = 0);
+	Entity* AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module* listener = nullptr, Entity* creator = nullptr, int damage = 0, bool spawnAutomatically = false);
 
 	// Selects an Entity
 	bool SelectEntity(Entity* entity, bool controlWasPressed = false);
@@ -67,8 +68,7 @@ public:
 
 public:
 
-	
-	std::list<Entity*> toSpawnEntities;
+	std::list<Entity*> spawningEntities;
 	std::list<Entity*> activeEntities;
 	std::list<Entity*> activeBuildings;
 	std::list<Entity*> activeUnits;
@@ -81,15 +81,20 @@ public:
 	SDL_Texture* fullLifeTexture = nullptr;
 	SDL_Texture* zeroLifeTexture = nullptr;
 
+	Collider* spawnEntityUIButton = nullptr;
+	Collider* buildEntityUIButton = nullptr;
+
 protected:
 
 		// Allies
 	/// Buildings
 	SDL_Texture* townHallTexture = nullptr;
+	SDL_Texture* paintExtractorTexture = nullptr;
 
 	/// Units
 	SDL_Texture* painterTexture = nullptr;
 	SDL_Texture* warriorTexture = nullptr;
+	SDL_Texture* warrior_Texture = nullptr;
 
 		// Enemies
 	/// Buildings
@@ -98,9 +103,14 @@ protected:
 	/// Units
 	SDL_Texture* slimeTexture = nullptr;
 
+	float spawningRate = 1.0f;
+	float constructionRate = 1.0f;
+
+
 private:
 	float currentLifeSum;
 	float maxLifeSum;
+
 
 };
 

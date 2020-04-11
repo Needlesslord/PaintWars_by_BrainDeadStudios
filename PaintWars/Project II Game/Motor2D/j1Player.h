@@ -5,6 +5,7 @@
 #include "p2Point.h"
 #include "p2Log.h"
 #include "SDL/include/SDL_rect.h"
+#include "GameScene.h"
 
 struct SDL_Texture;
 
@@ -41,7 +42,7 @@ public:
 	bool PreUpdate();
 	bool Update(float dt);
 	bool CleanUp();
-
+	
 	//LOADING AND SAVING OPTIONS
 	bool Save(pugi::xml_node& data);
 	bool Load(pugi::xml_node& data);	

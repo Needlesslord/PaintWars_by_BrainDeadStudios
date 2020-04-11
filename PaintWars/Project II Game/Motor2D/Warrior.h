@@ -8,20 +8,14 @@ class Warrior : public Entity
 {
 public:
 
-	Warrior(fPoint pos, int currLife, j1Module* listener);
+	Warrior(fPoint pos, int currLife, j1Module* listener, Entity* creator = nullptr);
 	~Warrior();
-
-	//void CalculateMovementLogic() override;
-	//void Move(float dt) override;
-	//void SetDestination(iPoint des) override;
-
-public:
-
-	//iPoint destination;
 
 private:
 
-	//std::vector<iPoint>currentPath;
+public:
+
+private:
 
 	bool startTimer = true;
 

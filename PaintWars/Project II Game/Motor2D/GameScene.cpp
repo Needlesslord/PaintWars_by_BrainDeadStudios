@@ -45,15 +45,18 @@ bool GameScene::Start()
 	Load_Forest_Map = true;
 	Change_Map = true;
 	Map_Manager();
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,	{    0,  100 }, { 100, 100 }, App->entities, 10);
-	App->entities->AddEntity(ENTITY_TYPE_PAINTER,	{  200,  200 }, {  20,  20 }, App->entities, 5);
 
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  400,  400 }, {  62, 118 }, App->entities, 10);
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{  700,  600 }, {  62, 118 }, App->entities);
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,	{ 1000,  800 }, {  62, 118 }, App->entities);
 
-	App->entities->AddEntity(ENTITY_TYPE_SLIME,		{  600,  200 }, {  20,  20 }, App->entities);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,	{ 1000, 1000 }, {  20,  20 }, App->entities);
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{    0,  100 }, App->entities, nullptr, 10, true);
+	App->entities->AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR,	{  200, 1000 }, App->entities, nullptr,  0, true);
+	App->entities->AddEntity(ENTITY_TYPE_PAINTER,			{  200,  200 }, App->entities, nullptr,  5, true);
+
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  400,  400 }, App->entities, nullptr, 10, true);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  700,  600 }, App->entities, nullptr,  0, true);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{ 1000,  800 }, App->entities, nullptr,  0, true);
+
+	App->entities->AddEntity(ENTITY_TYPE_SLIME,				{  600,  200 }, App->entities, nullptr, true);
+	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 1000, 1000 }, App->entities, nullptr, true);
 	
 
 	int w, h;
@@ -63,10 +66,10 @@ bool GameScene::Start()
 		App->pathfinding->SetMap(w, h, data);						// Sets a new walkability map with the map passed by CreateWalkabilityMap().
 	}
 
-	App->pathfinding->ChangeWalkability({ 7, 0 }, false);
-	App->pathfinding->ChangeWalkability({ 7, 1 }, false);
-	App->pathfinding->ChangeWalkability({ 7, 2 }, false);
-	App->pathfinding->ChangeWalkability({ 7, 3 }, false);
+	//App->pathfinding->ChangeWalkability({ 7, 0 }, false);
+	//App->pathfinding->ChangeWalkability({ 7, 1 }, false);
+	//App->pathfinding->ChangeWalkability({ 7, 2 }, false);
+	//App->pathfinding->ChangeWalkability({ 7, 3 }, false);
 
 
 	//////////////////
@@ -78,11 +81,11 @@ bool GameScene::Start()
 
 	//HUD - Quests
 	questsImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 50 }, { 0 , 0 }, false, true, { 0, 1388, 263, 265 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
-	questsLabel = App->gui->AddElement(GUItype::GUI_LABEL, questsImage , { 15 , 52 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "QUESTS", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
-	questsOpenButton = App->gui->AddElement(GUItype::GUI_BUTTON, questsImage, { 215, 250 }, { 200,200 }, true, true, { 317, 1388, 54, 55}, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
+	questsLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 15 , 52 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "QUESTS", nullptr, false,false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	questsOpenButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 215, 250 }, { 200,200 }, true, true, { 317, 1388, 54, 55}, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
 	questsOpenButton->hover_rect = { 317, 1443, 54, 54 };
 	questsOpenButton->click_rect = { 317, 1497, 54, 54 };
-	questsCloseButton = App->gui->AddElement(GUItype::GUI_BUTTON, questsImage, { 215, 520 }, { 200,200 }, true, false, { 263, 1388, 54, 55 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
+	questsCloseButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 215, 520 }, { 200,200 }, true, false, { 263, 1388, 54, 55 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
 	questsCloseButton->hover_rect = { 263, 1443, 54, 54 };
 	questsCloseButton->click_rect = { 263, 1497, 54, 54 };
 
@@ -233,7 +236,7 @@ bool GameScene::Update(float dt)
 		c = cd.x;
 		d = cd.y;
 
-		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { c, d }, { 100, 100 }, App->entities);
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { c, d }, App->entities);
 	}
 
 	/*if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
@@ -251,7 +254,7 @@ bool GameScene::Update(float dt)
 		c = cd.x;
 		d = cd.y;
 
-		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { c, d }, { 20, 20 }, App->entities);
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { c, d }, App->entities);
 	}
 
 	App->map->Draw();
@@ -289,12 +292,17 @@ bool GameScene::Update(float dt)
 
 
 
-	//UI
-	for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
-	{
-		App->gui->GUI_ELEMENTS[i]->map_position.x = App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
-		App->gui->GUI_ELEMENTS[i]->map_position.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;
-	}
+	////UI
+	//for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
+	//{
+	//	App->gui->GUI_ELEMENTS[i]->map_position.x = App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
+	//	App->gui->GUI_ELEMENTS[i]->map_position.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;
+	//	/*App->gui->GUI_ELEMENTS[i]->click_rect.x=App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
+	//	App->gui->GUI_ELEMENTS[i]->click_rect.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;
+	//	App->gui->GUI_ELEMENTS[i]->hover_rect.x= App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
+	//	App->gui->GUI_ELEMENTS[i]->hover_rect.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;*/
+	//	
+	//}
 
 
 	return ret;
@@ -400,6 +408,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 
 	if (element == pauseMenuButton && type == GUI_Event::EVENT_ONCLICK)
 	{
+		App->PAUSE_ACTIVE = true;
 		pauseMenu = true;
 		pauseMenuImage->enabled = true;
 		pauseMenuLabel->enabled = true;
@@ -419,6 +428,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 	
 	if (element == resumeButton && type == GUI_Event::EVENT_ONCLICK)
 	{
+		App->PAUSE_ACTIVE = false;
 		pauseMenu = false;
 		pauseMenuImage->enabled = false;
 		pauseMenuLabel->enabled = false;
@@ -673,7 +683,7 @@ void GameScene::Create_Snow_Map()
 	App->map->CleanUp();
 	App->map->Load("map_snow.tmx") == true;
 
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { -200, 300 }, { 100, 100 }, App->entities, 10); //TESTING ONLY
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { -200, 300 }, App->entities, nullptr, 10); //TESTING ONLY
 
 	Change_Map = false;
 	Snow_Map_Active = true;
@@ -718,15 +728,15 @@ void GameScene::ExecuteTransition()
 			App->transition_manager->CreateFadeToColour(SCENES::MENU_SCENE);
 		}
 
-	//	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true);
-	//	}
+		if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
+		{
+			App->transition_manager->CreateSlide(SCENES::WIN_SCENE, 0.5f, true);
+		}
 
-	//	if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true, true);
-	//	}
+		if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
+		{
+			App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 0.5f, true, true);
+		}
 
 	//	if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
 	//	{
