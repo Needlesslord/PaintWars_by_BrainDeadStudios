@@ -136,7 +136,8 @@ void MenuScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 	if (element == playButton && type == GUI_Event::EVENT_ONCLICK)
 	{
 		//App->transition_manager->CreateFadeToColour(SCENES::START_SCENE);
-		App->transition_manager->CreateFadeToColour(SCENES::START_SCENE);
+		//App->transition_manager->CreateFadeToColour(SCENES::START_SCENE);
+		App->transition_manager->CreateSlide(SCENES::START_SCENE, 0.5f, true);
 	}
 
 	if (element == settingsButton && type == GUI_Event::EVENT_ONCLICK)
