@@ -81,11 +81,11 @@ bool GameScene::Start()
 
 	//HUD - Quests
 	questsImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 50 }, { 0 , 0 }, false, true, { 0, 1388, 263, 265 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
-	questsLabel = App->gui->AddElement(GUItype::GUI_LABEL, questsImage , { 15 , 52 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "QUESTS", nullptr, false,false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
-	questsOpenButton = App->gui->AddElement(GUItype::GUI_BUTTON, questsImage, { 215, 250 }, { 200,200 }, true, true, { 317, 1388, 54, 55}, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
+	questsLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 15 , 52 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "QUESTS", nullptr, false,false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	questsOpenButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 215, 250 }, { 200,200 }, true, true, { 317, 1388, 54, 55}, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
 	questsOpenButton->hover_rect = { 317, 1443, 54, 54 };
 	questsOpenButton->click_rect = { 317, 1497, 54, 54 };
-	questsCloseButton = App->gui->AddElement(GUItype::GUI_BUTTON, questsImage, { 215, 520 }, { 200,200 }, true, false, { 263, 1388, 54, 55 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
+	questsCloseButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 215, 520 }, { 200,200 }, true, false, { 263, 1388, 54, 55 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
 	questsCloseButton->hover_rect = { 263, 1443, 54, 54 };
 	questsCloseButton->click_rect = { 263, 1497, 54, 54 };
 
@@ -408,6 +408,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 
 	if (element == pauseMenuButton && type == GUI_Event::EVENT_ONCLICK)
 	{
+		App->PAUSE_ACTIVE = true;
 		pauseMenu = true;
 		pauseMenuImage->enabled = true;
 		pauseMenuLabel->enabled = true;
@@ -427,6 +428,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 	
 	if (element == resumeButton && type == GUI_Event::EVENT_ONCLICK)
 	{
+		App->PAUSE_ACTIVE = false;
 		pauseMenu = false;
 		pauseMenuImage->enabled = false;
 		pauseMenuLabel->enabled = false;
