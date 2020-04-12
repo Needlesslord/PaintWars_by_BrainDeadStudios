@@ -79,16 +79,16 @@ bool GameScene::Start()
 	Map_Manager();
 
 
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{    0,  100 }, App->entities, nullptr, 10, true);
-	App->entities->AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR,	{  200, 1000 }, App->entities, nullptr,  0, true);
-	App->entities->AddEntity(ENTITY_TYPE_PAINTER,			{  200,  200 }, App->entities, nullptr,  5, true);
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{  1,  1 }, App->entities, nullptr, 10, true);
+	App->entities->AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR,	{  1,  3 }, App->entities, nullptr,  0, true);
+	App->entities->AddEntity(ENTITY_TYPE_PAINTER,			{  1,  5 }, App->entities, nullptr,  5, true);
 
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  400,  400 }, App->entities, nullptr, 10, true);
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  700,  600 }, App->entities, nullptr,  0, true);
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{ 1000,  800 }, App->entities, nullptr,  0, true);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  5,  4 }, App->entities, nullptr, 10, true);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  5,  7 }, App->entities, nullptr,  0, true);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  5, 10 }, App->entities, nullptr,  0, true);
 
-	App->entities->AddEntity(ENTITY_TYPE_SLIME,				{  600,  200 }, App->entities, nullptr, true);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 1000, 1000 }, App->entities, nullptr, true);
+	App->entities->AddEntity(ENTITY_TYPE_SLIME,				{ 10, 10 }, App->entities, nullptr, true);
+	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 12, 10 }, App->entities, nullptr, true);
 	
 
 	int w, h;
@@ -260,47 +260,22 @@ bool GameScene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 		App->SaveGame("save_game.xml");
 
-	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN) { //HERE
-		float a, b;
-		App->input->GetMousePosition(a, b);
-		fPoint cd = App->render->ScreenToWorld(a, b);
-		float c, d;
-		c = cd.x;
-		d = cd.y;
 
-		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { c, d }, App->entities);
-	}
-
-	/*if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
-		iPoint mouse_pos = App->input->GetMousePositionWorld();
-
-		App->render->camera.x = App->player->mouse_position.x;
-
-	}*/
-
-	if (App->input->GetKey(SDL_SCANCODE_B) == KEY_DOWN) { //HERE
-		float a, b;
-		App->input->GetMousePosition(a, b);
-		fPoint cd = App->render->ScreenToWorld(a, b);
-		float c, d;
-		c = cd.x;
-		d = cd.y;
-
-		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { c, d }, App->entities);
-	}
 
 	App->map->Draw();
 
 	fPoint xy = App->input->GetMouseWorldPosition();
 	iPoint cameraW = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
 	iPoint map_coordinates = App->map->WorldToMap(xy.x - cameraW.x /*+ App->map->data.tile_width / 2*/, xy.y - cameraW.y + App->map->data.tile_height/2);
+	fPoint worldCoordinates = App->map->MapToWorld(map_coordinates.x, map_coordinates.y);
 
 	static char title[256];
-	sprintf_s(title, 256, "Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d,",
+	sprintf_s(title, 256, "Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d, WorldPosition:%f,%f MouseWorldPosition: %f,%f",
 		App->map->data.width, App->map->data.height,
 		App->map->data.tile_width, App->map->data.tile_height,
 		App->map->data.tilesets.size(),
-		map_coordinates.x, map_coordinates.y);
+		map_coordinates.x, map_coordinates.y,
+		worldCoordinates.x, worldCoordinates.y, xy.x, xy.y);
 
 	App->win->SetTitle(title);
 
@@ -318,8 +293,30 @@ bool GameScene::Update(float dt)
 	}
 	// Debug pathfinding ------------------------------
 	if (debugTile) {
-		fPoint c = App->map->MapToWorld(map_coordinates.x, map_coordinates.y);
-		App->render->AddBlitEvent(1, debug_tex, c.x, c.y, { 0,0,150,75 });
+		fPoint c0 = App->map->MapToWorld(map_coordinates.x, map_coordinates.y);
+
+		list<Entity*>::iterator subject = App->entities->unitsSelected.begin();
+		iPoint mapPos = { (*subject)->currentTile.x, (*subject)->currentTile.y };
+
+		fPoint c1 = App->map->MapToWorld(mapPos.x + 1, mapPos.y);
+		fPoint c2 = App->map->MapToWorld(mapPos.x, mapPos.y + 1);;
+		fPoint c3 = App->map->MapToWorld(mapPos.x + 1, mapPos.y + 1);
+		fPoint c4 = App->map->MapToWorld(mapPos.x - 1, mapPos.y);
+		fPoint c5 = App->map->MapToWorld(mapPos.x, mapPos.y - 1);
+		fPoint c6 = App->map->MapToWorld(mapPos.x - 1, mapPos.y - 1);
+		fPoint c7 = App->map->MapToWorld(mapPos.x - 1, mapPos.y + 1);
+		fPoint c8 = App->map->MapToWorld(mapPos.x + 1, mapPos.y - 1);
+
+		App->render->AddBlitEvent(1, debug_tex, c0.x, c0.y, { 0,0,150,75 });
+		App->render->AddBlitEvent(1, debug_tex, c1.x, c1.y, { 0,0,150,75 });
+		App->render->AddBlitEvent(1, debug_tex, c2.x, c2.y, { 0,0,150,75 });
+		App->render->AddBlitEvent(1, debug_tex, c3.x, c3.y, { 0,0,150,75 });
+		App->render->AddBlitEvent(1, debug_tex, c4.x, c4.y, { 0,0,150,75 });
+		App->render->AddBlitEvent(1, debug_tex, c5.x, c5.y, { 0,0,150,75 });
+		App->render->AddBlitEvent(1, debug_tex, c6.x, c6.y, { 0,0,150,75 });
+		App->render->AddBlitEvent(1, debug_tex, c7.x, c7.y, { 0,0,150,75 });
+		App->render->AddBlitEvent(1, debug_tex, c8.x, c8.y, { 0,0,150,75 });
+
 	}
 
 

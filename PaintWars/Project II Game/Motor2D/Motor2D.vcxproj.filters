@@ -154,9 +154,6 @@
     <ClCompile Include="j1Fonts.cpp">
       <Filter>Motor  ========\UI</Filter>
     </ClCompile>
-    <ClCompile Include="j1InGameUI.cpp">
-      <Filter>Motor  ========\UI</Filter>
-    </ClCompile>
     <ClCompile Include="SettingsScene.cpp">
       <Filter>Motor  ========\Scenes</Filter>
     </ClCompile>
@@ -325,9 +322,6 @@
       <Filter>Motor  ========\UI</Filter>
     </ClInclude>
     <ClInclude Include="j1Fonts.h">
-      <Filter>Motor  ========\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="j1InGameUI.h">
       <Filter>Motor  ========\UI</Filter>
     </ClInclude>
     <ClInclude Include="SettingsScene.h">

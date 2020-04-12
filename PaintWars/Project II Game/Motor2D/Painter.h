@@ -8,7 +8,7 @@ class Painter : public Entity
 {
 public:
 
-	Painter(fPoint pos, int currLife, j1Module* listener, Entity* creator);
+	Painter(iPoint tile, int damage, j1Module* listener, Entity* creator = nullptr);
 	~Painter();
 	void SpawnEntity(iPoint pos) override;
 

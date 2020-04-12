@@ -8,7 +8,7 @@ class TownHall : public Entity
 {
 public:
 
-	TownHall(fPoint pos, int currLife, j1Module* listener, Entity* creator = nullptr);
+	TownHall(iPoint tile, int damage, j1Module* listener, Entity* creator = nullptr);
 	~TownHall();
 
 	void SpawnEntity(iPoint pos) override;

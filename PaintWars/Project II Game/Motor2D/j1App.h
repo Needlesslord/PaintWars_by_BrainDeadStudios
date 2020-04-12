@@ -22,7 +22,6 @@ class j1PathFinding;
 class j1Player;
 class j1GUI;
 class j1Fonts;
-class j1InGameUI;
 class TransitionManager;
 class SceneManager;
 class j1QuestManager;
@@ -106,7 +105,6 @@ public:
 	j1Player*			player = NULL;
 	j1GUI*				gui = NULL;
 	j1Fonts*			fonts = NULL;
-	j1InGameUI*			InGameUI = NULL;
 	TransitionManager*  transition_manager = NULL;
 	j1QuestManager*		quest_manager = NULL;
 

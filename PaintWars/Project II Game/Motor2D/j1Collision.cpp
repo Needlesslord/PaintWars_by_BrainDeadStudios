@@ -118,8 +118,7 @@ void j1Collision::DebugDraw() {
 }
 
 // Called before quitting
-bool j1Collision::CleanUp()
-{
+bool j1Collision::CleanUp() {
 
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 	{
@@ -141,10 +140,6 @@ Collider* j1Collision::AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* 
 	{
 		if (colliders[i] == nullptr)
 		{
-			rect.x = rect.x ;
-			rect.y = rect.y;
-			rect.w = rect.w;
-			rect.h = rect.h;
 			ret = colliders[i] = new Collider(rect, type, callback);
 			break;
 		}
@@ -153,11 +148,10 @@ Collider* j1Collision::AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* 
 	return ret;
 }
 
+
 // -----------------------------------------------------
 
 bool Collider::CheckCollision(const SDL_Rect& r) const
 {
 	return (rect.x < r.x + r.w && rect.x + rect.w > r.x && rect.y < r.y + r.h && rect.h + rect.y > r.y);
 }
-
-

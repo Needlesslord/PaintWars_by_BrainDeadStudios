@@ -12,7 +12,7 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 
-Warrior::Warrior(fPoint pos, int damage, j1Module* listener, Entity* creator) : Entity(pos, damage, listener, creator) {
+Warrior::Warrior(iPoint tile, int damage, j1Module* listener, Entity* creator) : Entity(tile, damage, listener, creator) {
 
 	// Handle data and initialize the Warrior
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_WARRIOR;
@@ -21,17 +21,22 @@ Warrior::Warrior(fPoint pos, int damage, j1Module* listener, Entity* creator) : 
 	*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;
 
 	maxLife = 30;
-	this->currLife = maxLife - damage;
-	this->pos = pos;
+	currLife = maxLife - damage;
 
-	speed = 300;
+	size = { 62, 118 };
+
+	currentTile = tile;
+	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);
+
+	pos.x = tileWorldPosition.x + App->map->data.tile_width / 2 - size.x / 2;
+	pos.y = tileWorldPosition.y + App->map->data.tile_height / 2 - size.y;
+
+	speed = 300.0f;
 	
 	spawningTime = 10.0f;
 
-	iPoint mapPos = App->map->WorldToMap(pos.x, pos.y);
-	destination = mapPos;
+	destination = currentTile;
 
-	size = { 62, 118 };
 	isEntityFromPlayer = true;
 }
 

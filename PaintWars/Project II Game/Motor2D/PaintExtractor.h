@@ -8,7 +8,7 @@ class PaintExtractor : public Entity
 {
 public:
 
-	PaintExtractor(fPoint pos, int currLife, j1Module* listener);
+	PaintExtractor(iPoint tile, int damage, j1Module* listener);
 	~PaintExtractor();
 
 public:

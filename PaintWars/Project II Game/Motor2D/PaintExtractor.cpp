@@ -9,7 +9,7 @@
 #include "j1Collision.h"
 #include "j1Textures.h"
 
-PaintExtractor::PaintExtractor(fPoint pos, int damage, j1Module* listener) : Entity(pos, damage, listener, nullptr) {
+PaintExtractor::PaintExtractor(iPoint tile, int damage, j1Module* listener) : Entity(tile, damage, listener, nullptr) {
 
 	// Handle data and initialize the PE
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_PAINT_EXTRACTOR;
@@ -17,12 +17,18 @@ PaintExtractor::PaintExtractor(fPoint pos, int damage, j1Module* listener) : Ent
 	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_VERY_BIG;
 
 	maxLife = 100;
-	this->currLife = maxLife - damage;
-	this->pos = pos;
+	currLife = maxLife - damage;
+
+	size = { 150, 75 };
+
+	currentTile = tile;
+	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);
+
+	pos.x = tileWorldPosition.x + App->map->data.tile_width / 2 - size.x / 2;
+	pos.y = tileWorldPosition.y + App->map->data.tile_height / 2 - size.y;
 
 	constructionTime = 10.0f;
 
-	size = { 100, 100 };
 	isEntityFromPlayer = true;
 }
 
