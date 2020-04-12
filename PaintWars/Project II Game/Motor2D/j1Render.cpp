@@ -45,8 +45,12 @@ bool j1Render::Awake(pugi::xml_node& config)
 	}
 	else
 	{
-		camera.w = App->win->screen_surface->w;
-		camera.h = App->win->screen_surface->h;
+		/*camera.w = (App->win->screen_surface->w)*2;
+		camera.h = (App->win->screen_surface->h)*2;*/
+		camera.w = (App->win->screen_surface->w);
+		camera.h = (App->win->screen_surface->h);
+		UI_Render_Window_w = App->win->screen_surface->w * 6;
+		UI_Render_Window_h = App->win->screen_surface->h * 6;
 		camera.x = 0;
 		camera.y = 0;
 	}
@@ -108,7 +112,7 @@ bool j1Render::Load(pugi::xml_node& data)
 	
 
 	//pugi::xml_node entities = save.child("entities").child("warrior");
-	for (int i = 0; i < numEntities; i++) {
+	for (int i = 0; i < numEntities; i++) { //YOU CANT DO A FOR IN XML LIKE THIS, WE HAVE TO SEARCH EACH NODE WITH THE SAME NAME 
 
 		
 		//cycle_length = config.child("enemies").child("update_cycle_length").attribute("length").as_float(); //Fix pathfinding so it works with doLogic
