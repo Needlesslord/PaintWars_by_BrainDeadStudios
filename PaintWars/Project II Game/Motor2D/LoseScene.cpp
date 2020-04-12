@@ -67,9 +67,9 @@ bool LoseScene::Update(float dt)
 
 	CameraDebugMovement(dt);
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) //HERE
 	{
-		App->scenes->SwitchScene(SCENES::GAME_SCENE);
+		App->transition_manager->CreateCut(SCENES::MENU_SCENE);
 	}
 
 	return ret;
@@ -174,15 +174,15 @@ void LoseScene::ExecuteTransition()
 {
 	if (!App->transition_manager->is_transitioning)
 	{
-		if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN)
-		{
-			App->transition_manager->CreateCut(SCENES::GAME_SCENE);
-		}
+		//if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN)
+		//{
+		//	App->transition_manager->CreateCut(SCENES::GAME_SCENE);
+		//}
 
-		if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
-		{
-			App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
-		}
+		//if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+		//{
+		//	App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
+		//}
 
 		//	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
 		//	{

@@ -14,6 +14,38 @@
 #include "j1GUIELements.h"
 #include "j1GUI.h"
 
+/*
+DEBUG KEYS
+
+H- POSITION 0,0
+F9- COLLIDERS
+F1- TILE MOUSE
+ENTER- GAME SCENE
+P- PAUSE
+KP MINUS/MP PLUS- CONTROL FRAMERATE (+/- 10)
+UP/DOWN/LEFT/RIGHT- CAMERA MOVEMENT
+N/M/R- ZOOM IN/OUT/RESET
+ESC- EXIT GAME
+S/L- SAVE/LOAD
+T-
+
+
+F7/F8- DIRECT WIN/LOSE
+
+
+GAME:
+A- CREATE TOWN HALL
+B- CREATE PAINTER
+
+
+
+LOSE:
+SPACE- MAIN MENU
+
+
+
+*/
+
 GameScene::GameScene() : Scene(SCENES::GAME_SCENE)
 {
 
@@ -228,7 +260,7 @@ bool GameScene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 		App->SaveGame("save_game.xml");
 
-	if (App->input->GetKey(SDL_SCANCODE_T) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN) { //HERE
 		float a, b;
 		App->input->GetMousePosition(a, b);
 		fPoint cd = App->render->ScreenToWorld(a, b);
@@ -246,7 +278,7 @@ bool GameScene::Update(float dt)
 
 	}*/
 
-	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_B) == KEY_DOWN) { //HERE
 		float a, b;
 		App->input->GetMousePosition(a, b);
 		fPoint cd = App->render->ScreenToWorld(a, b);
@@ -313,10 +345,10 @@ bool GameScene::PostUpdate()
 {
 	bool ret = true;
 	
-	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN) {
-		Change_Map = true;
-		Load_Snow_Map = true;
-	}
+	//if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN) {
+	//	Change_Map = true;
+	//	Load_Snow_Map = true;
+	//}
 
 	//if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 	//	ret = false;
@@ -718,22 +750,22 @@ void GameScene::ExecuteTransition()
 {
 	if (!App->transition_manager->is_transitioning)
 	{
-		if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
-		{
-			App->transition_manager->CreateCut(SCENES::MENU_SCENE);
-		}
+		//if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+		//{
+		//	App->transition_manager->CreateCut(SCENES::MENU_SCENE);
+		//}
 
-		if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
-		{
-			App->transition_manager->CreateFadeToColour(SCENES::MENU_SCENE);
-		}
+		//if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+		//{
+		//	App->transition_manager->CreateFadeToColour(SCENES::MENU_SCENE);
+		//}
 
-		if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
+		if (App->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
 		{
 			App->transition_manager->CreateSlide(SCENES::WIN_SCENE, 0.5f, true);
 		}
 
-		if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
+		if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
 		{
 			App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 0.5f, true, true);
 		}
