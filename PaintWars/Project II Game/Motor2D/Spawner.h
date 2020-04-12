@@ -8,7 +8,7 @@ class Spawner : public Entity
 {
 public:
 
-	Spawner(fPoint pos, int currLife, j1Module* listener);
+	Spawner(iPoint tile, int damage, j1Module* listener);
 	~Spawner();
 
 public:

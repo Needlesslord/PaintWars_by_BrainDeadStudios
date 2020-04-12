@@ -62,8 +62,18 @@ bool j1EntityManager::Start() {
 bool j1EntityManager::PreUpdate() {
 	bool ret = true;
 	if (App->PAUSE_ACTIVE == false) {}
+
+	list<Entity*>::iterator updateCurrentTile = activeUnits.begin();
+	while (updateCurrentTile != activeUnits.end()) {
+
+		iPoint mapPosition = App->map->WorldToMap((*updateCurrentTile)->pos.x - App->map->data.tile_width / 2 + (*updateCurrentTile)->GetSize().x / 2, (*updateCurrentTile)->pos.y - App->map->data.tile_height / 2 + (*updateCurrentTile)->GetSize().y);
+		(*updateCurrentTile)->currentTile.x = mapPosition.x + 1;
+		(*updateCurrentTile)->currentTile.y = mapPosition.y;
+
+		updateCurrentTile++;
+	}
+
 	return ret;
-	
 }
 
 bool j1EntityManager::Update(float dt) {
@@ -76,10 +86,10 @@ bool j1EntityManager::Update(float dt) {
 		list<Entity*>::iterator checkForSpawningEntities = spawningEntities.begin();
 		while (checkForSpawningEntities != spawningEntities.end()) {
 
-		
-
+			// The units first
 			if ((*checkForSpawningEntities)->entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY) {
 
+				// Check if they have to be spawned
 				if ((*checkForSpawningEntities)->spawningProgress * spawningRate >= (*checkForSpawningEntities)->spawningTime) {
 
 					activeUnits.push_back(*checkForSpawningEntities);
@@ -92,6 +102,7 @@ bool j1EntityManager::Update(float dt) {
 					spawningEntities.erase(checkForSpawningEntities);
 				}
 
+				// Increase the creation progress if not
 				else if ((*checkForSpawningEntities)->spawningProgress * spawningRate < (*checkForSpawningEntities)->spawningTime) {
 
 					(*checkForSpawningEntities)->spawningProgress += spawningRate * dt;
@@ -106,7 +117,7 @@ bool j1EntityManager::Update(float dt) {
 					activeEntities.push_back(*checkForSpawningEntities);
 
 					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos);
-					(*checkForSpawningEntities)->spawnedBy->isBuilding = false;
+					(*checkForSpawningEntities)->spawnedBy->isBuildingSomething = false;
 					(*checkForSpawningEntities)->isActive = true;
 
 					spawningEntities.erase(checkForSpawningEntities);
@@ -235,7 +246,6 @@ bool j1EntityManager::Update(float dt) {
 		// Change destination for units selected on right-click
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && !unitsSelected.empty()) {
 
-
 			int orderOfPriority = 0;
 			list<Entity*>::iterator unitsToRedirect = unitsSelected.begin();
 
@@ -245,10 +255,9 @@ bool j1EntityManager::Update(float dt) {
 
 					fPoint xy = App->input->GetMouseWorldPosition();
 					iPoint cameraW = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
-					iPoint map_coordinates = App->map->WorldToMap(xy.x - cameraW.x /*+ App->map->data.tile_width / 2*/, xy.y - cameraW.y + App->map->data.tile_height / 2);
-					map_coordinates.x = map_coordinates.x - 1;
-					map_coordinates.y = map_coordinates.y - 1;
-					(*unitsToRedirect)->SetDestination(map_coordinates);
+					iPoint mapCoordinates = App->map->WorldToMap(xy.x - cameraW.x, xy.y - cameraW.y + App->map->data.tile_height / 2);
+
+					(*unitsToRedirect)->SetDestination(mapCoordinates);
 					(*unitsToRedirect)->CalculateMovementLogic(orderOfPriority);
 
 					orderOfPriority++;
@@ -300,7 +309,7 @@ bool j1EntityManager::Update(float dt) {
 					(*entitiesToDraw)->Draw(townHallTexture);
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
-					(*entitiesToDraw)->Draw(paintExtractorTexture);
+					(*entitiesToDraw)->Draw(fullLifeTexture);// TODO: change
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINTER) {
 					(*entitiesToDraw)->Draw(painterTexture);
@@ -327,9 +336,39 @@ bool j1EntityManager::Update(float dt) {
 bool j1EntityManager::PostUpdate() {
 
 	if (App->PAUSE_ACTIVE == false) {}
-	
 
 	bool ret = true;
+
+
+
+	bool anySpawnerActive = false;
+	list<Entity*>::const_iterator checkForSpawners = activeBuildings.begin();
+	while (checkForSpawners != activeBuildings.end()) {
+
+		if ((*checkForSpawners)->entityType == ENTITY_TYPE_SPAWNER) {
+			anySpawnerActive = true;
+			break;
+		}
+		checkForSpawners++;
+	}
+	if (!anySpawnerActive)
+		TriggerEndGame(true);
+
+	bool anyTownhallActive = false;
+	list<Entity*>::const_iterator checkForTownhalls = activeBuildings.begin();
+	while (checkForTownhalls != activeBuildings.end()) {
+
+		if ((*checkForTownhalls)->entityType == ENTITY_TYPE_TOWN_HALL) {
+			anyTownhallActive = true;
+			break;
+		}
+		checkForTownhalls++;
+	}
+	if (!anyTownhallActive)
+		TriggerEndGame(false);
+
+
+
 
 	// --------------------------------------------------------------------------------------------------------- //
 	//																											 //
@@ -460,21 +499,19 @@ void j1EntityManager::UnselectAllEntities() {
 
 }
 
-Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module* listener, Entity* creator, int damage,  bool spawnAutomatically) {
+Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module* listener, Entity* creator, int damage,  bool spawnAutomatically) {
 
-	iPoint mapPos = App->map->WorldToMap(pos.x, pos.y);
-	fPoint worldPos = App->map->MapToWorld(mapPos.x, mapPos.y);
 		// Allies
 	/// Buildings
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
-		TownHall* townHall = new TownHall({ pos.x/* - size.x/2*/, pos.y/* - size.y/2 */}, damage, this, creator);
+		TownHall* townHall = new TownHall(tile, damage, this, creator);
 
 		if (spawnAutomatically) {
 
 			activeEntities.push_back((Entity*)townHall);
 			activeBuildings.push_back((Entity*)townHall);
 			townHall->isActive = true;
-			townHall->CreateEntityCollider(pos);
+			townHall->CreateEntityCollider(townHall->pos);
 		}
 
 		else
@@ -484,14 +521,14 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module*
 	}
 	
 	else if (entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
-		PaintExtractor* paintExtractor = new PaintExtractor({ worldPos.x/* - size.x/2*/, worldPos.y/* - size.y/2 */ }, damage, this);
+		PaintExtractor* paintExtractor = new PaintExtractor(tile, damage, this);
 
 		if (spawnAutomatically) {
 
 			activeEntities.push_back((Entity*)paintExtractor);
 			activeBuildings.push_back((Entity*)paintExtractor);
 			paintExtractor->isActive = true;
-			paintExtractor->CreateEntityCollider(worldPos);
+			paintExtractor->CreateEntityCollider(paintExtractor->pos);
 		}
 
 		else
@@ -502,7 +539,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module*
 
 	/// Units
 	else if (entityType == ENTITY_TYPE_PAINTER) {
-		Painter* painter = new Painter({ pos.x/* - size.x / 2*/, pos.y/* - size.y / 2 */}, damage, this, creator);
+		Painter* painter = new Painter(tile, damage, this, creator);
 		activeEntities.push_back((Entity*)painter);
 		activeUnits.push_back((Entity*)painter);
 
@@ -510,14 +547,14 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module*
 	}
 
 	else if (entityType == ENTITY_TYPE_WARRIOR) {
-		Warrior* warrior = new Warrior({ pos.x/* - size.x / 2*/, pos.y/* - size.y / 2 */}, damage, this, creator);
+		Warrior* warrior = new Warrior(tile, damage, this, creator);
 
 		if (spawnAutomatically) {
 
 			activeEntities.push_back((Entity*)warrior);
 			activeUnits.push_back((Entity*)warrior);
 			warrior->isActive = true;
-			warrior->CreateEntityCollider(pos);
+			warrior->CreateEntityCollider(warrior->pos);
 		}
 
 		else
@@ -529,7 +566,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module*
 		// Enemies
 	/// Buildings
 	if (entityType == ENTITY_TYPE_SPAWNER) {
-		Spawner* spawner = new Spawner({ pos.x/* - size.x / 2*/, pos.y/* - size.y / 2*/ }, damage, this);
+		Spawner* spawner = new Spawner(tile, damage, this);
 		activeEntities.push_back((Entity*)spawner);
 		activeBuildings.push_back((Entity*)spawner);
 
@@ -538,7 +575,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module*
 
 	/// Units
 	else if (entityType == ENTITY_TYPE_SLIME) {
-		Slime* slime = new Slime({ pos.x/* - size.x / 2*/, pos.y/* - size.y / 2*/ }, damage, this);
+		Slime* slime = new Slime(tile, damage, this);
 		activeEntities.push_back((Entity*)slime);
 		activeUnits.push_back((Entity*)slime);
 
@@ -595,4 +632,8 @@ void j1EntityManager::SelectGroupEntities(SDL_Rect rect) {
 
 	if (entitiesForGroup == 0)
 		UnselectAllEntities();
+}
+
+void j1EntityManager::TriggerEndGame(bool isVictory) {
+
 }

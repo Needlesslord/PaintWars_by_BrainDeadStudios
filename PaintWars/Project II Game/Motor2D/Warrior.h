@@ -8,7 +8,7 @@ class Warrior : public Entity
 {
 public:
 
-	Warrior(fPoint pos, int currLife, j1Module* listener, Entity* creator = nullptr);
+	Warrior(iPoint tile, int damage, j1Module* listener, Entity* creator = nullptr);
 	~Warrior();
 
 private:

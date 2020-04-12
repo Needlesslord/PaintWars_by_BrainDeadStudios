@@ -8,9 +8,9 @@ class Slime : public Entity
 {
 public:
 
-	Slime(fPoint pos, int currLife, j1Module* listener);
+	Slime(iPoint tile, int damage, j1Module* listener);
 	~Slime();
-	//void Move(iPoint destination)override;
+
 public:
 
 private:

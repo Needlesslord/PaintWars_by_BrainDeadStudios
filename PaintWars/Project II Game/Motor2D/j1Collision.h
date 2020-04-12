@@ -58,6 +58,7 @@ public:
 	void DebugDraw();
 	SDL_Rect rect;
 	bool debug = true;
+
 private:
 
 	Collider* colliders[MAX_COLLIDERS];

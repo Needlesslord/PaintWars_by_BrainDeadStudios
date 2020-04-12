@@ -14,7 +14,6 @@ class j1Module;
 struct SDL_Texture;
 
 struct Collider;
-struct ColliderGroup;
 
 enum CollisionState;
 
@@ -80,11 +79,11 @@ class Entity
 {
 public:
 
-	Entity(fPoint pos, int currLife, j1Module* listener, Entity* creator);
+	Entity(iPoint tile, int damage, j1Module* listener, Entity* creator);
 	virtual ~Entity();
-	virtual void Draw(SDL_Texture* sprites);
+	void Draw(SDL_Texture* sprites);
 	virtual void DebugDrawSelected();
-	virtual void OnCollision(ColliderGroup* c1, ColliderGroup* c2, CollisionState collisionState);
+	virtual void OnCollision(Collider* c1, Collider* c2, CollisionState collisionState);
 	virtual void CalculateMovementLogic(int p);
 	virtual void Move(float dt);
 	virtual void SetDestination(iPoint des);
@@ -106,6 +105,7 @@ public:
 
 	// Collision
 	Collider* GetEntityCollider() const;
+
 	bool CreateEntityCollider(fPoint pos);
 
 	void ShowHealthBar();
@@ -125,6 +125,7 @@ public:
 	float speed = 0;
 
 	fPoint pos = { 0.0f,0.0f };
+	iPoint currentTile = { 0,0 };
 
 	SDL_Color minimapDrawColor{ 0,0,0,0 };
 
@@ -138,7 +139,7 @@ public:
 	float constructionProgress;
 
 	bool isSpawningAUnit;
-	bool isBuilding;
+	bool isBuildingSomething;
 	bool isActive;
 
 	Entity* spawnedBy;

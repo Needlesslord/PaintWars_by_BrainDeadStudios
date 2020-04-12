@@ -11,7 +11,7 @@
 #include "j1Collision.h"
 #include "j1Textures.h"
 
-TownHall::TownHall(fPoint pos, int damage, j1Module* listener, Entity* creator) : Entity(pos, damage, listener, creator) {
+TownHall::TownHall(iPoint tile, int damage, j1Module* listener, Entity* creator) : Entity(tile, damage, listener, creator) {
 	
 	// Handle data and initialize the TH
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_TOWN_HALL;
@@ -19,12 +19,18 @@ TownHall::TownHall(fPoint pos, int damage, j1Module* listener, Entity* creator) 
 	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_VERY_BIG;
 
 	maxLife = 100;
-	this->currLife = maxLife - damage;
-	this->pos = pos;
+	currLife = maxLife - damage;
+
+	size = { 100, 100 };
+
+	currentTile = tile;
+	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);
+
+	pos.x = tileWorldPosition.x + App->map->data.tile_width / 2 - size.x / 2;
+	pos.y = tileWorldPosition.y + App->map->data.tile_height / 2 - size.y;
 
 	constructionTime = 10.0f;
 
-	size = { 100, 100 };
 	isEntityFromPlayer = true;
 
 	isSpawningAUnit = false;
@@ -49,8 +55,10 @@ void TownHall::SpawnEntity(iPoint pos) {
 		if()
 		uniitsIterator++;
 	}*/
+
+	// TODO: check this positions
 	if (!isSpawningAUnit) {
-		App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { this->pos.x + size.x / 2 - 31, this->pos.y + size.y }, App->entities, this, 0);
+		App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { this->currentTile.x + size.x / 2 - 31, this->currentTile.y + size.y }, App->entities, this, 0);
 		isSpawningAUnit = true;
 	}
 }

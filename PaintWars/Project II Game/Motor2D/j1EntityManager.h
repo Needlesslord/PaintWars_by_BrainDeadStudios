@@ -52,7 +52,7 @@ public:
 	bool PostUpdate();
 	bool CleanUp();
 
-	Entity* AddEntity(ENTITY_TYPE entityType, fPoint pos, j1Module* listener = nullptr, Entity* creator = nullptr, int damage = 0, bool spawnAutomatically = false);
+	Entity* AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module* listener = nullptr, Entity* creator = nullptr, int damage = 0, bool spawnAutomatically = false);
 
 	// Selects an Entity
 	bool SelectEntity(Entity* entity, bool controlWasPressed = false);
@@ -65,6 +65,10 @@ public:
 
 	bool Save(pugi::xml_node& save) const;
 	bool Load(pugi::xml_node& save);
+
+private:
+
+	void TriggerEndGame(bool isVictory);
 
 public:
 
