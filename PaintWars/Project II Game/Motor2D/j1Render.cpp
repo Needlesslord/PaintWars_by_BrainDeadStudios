@@ -4,6 +4,8 @@
 #include "j1Window.h"
 #include "j1Render.h"
 #include "j1Input.h"
+#include "Entity.h"
+#include "j1EntityManager.h"
 
 #define VSYNC true
 
@@ -43,8 +45,12 @@ bool j1Render::Awake(pugi::xml_node& config)
 	}
 	else
 	{
-		camera.w = App->win->screen_surface->w;
-		camera.h = App->win->screen_surface->h;
+		/*camera.w = (App->win->screen_surface->w)*2;
+		camera.h = (App->win->screen_surface->h)*2;*/
+		camera.w = (App->win->screen_surface->w);
+		camera.h = (App->win->screen_surface->h);
+		UI_Render_Window_w = App->win->screen_surface->w * 6;
+		UI_Render_Window_h = App->win->screen_surface->h * 6;
 		camera.x = 0;
 		camera.y = 0;
 	}
@@ -90,8 +96,44 @@ bool j1Render::CleanUp()
 
 bool j1Render::Load(pugi::xml_node& data)
 {
+	
+	
+
 	camera.x = data.child("camera").attribute("x").as_int();
 	camera.y = data.child("camera").attribute("y").as_int();
+
+	float x, y;
+	int damage;
+	iPoint size;
+	const char* entityType;
+	int numEntities = 3;
+	 numEntities = data.child("num_entities").attribute("value").as_int();
+
+	
+
+	//pugi::xml_node entities = save.child("entities").child("warrior");
+	for (int i = 0; i < numEntities; i++) { //YOU CANT DO A FOR IN XML LIKE THIS, WE HAVE TO SEARCH EACH NODE WITH THE SAME NAME 
+
+		
+		//cycle_length = config.child("enemies").child("update_cycle_length").attribute("length").as_float(); //Fix pathfinding so it works with doLogic
+
+		//frame_cap = config.child("app").attribute("framerate_cap").as_uint();
+		//x = data.child("entity").attribute("position_x").as_float();
+		x=data.child("active_entities").child("entity").attribute("postition_x").as_float();
+		y = data.child("entity").attribute("position_y").as_float();
+		damage = data.attribute("missing_hp").as_int();
+		size.x = data.attribute("size_x").as_int();
+		size.y = data.attribute("size_y").as_int();
+
+		entityType = data.child("entity").attribute("entity_type").as_string("");
+
+		if (entityType == "warrior") {
+			
+			App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { x, y }, App->entities,nullptr,damage);
+		}
+
+		data = data.next_sibling();
+	}
 
 	return true;
 }
@@ -111,6 +153,34 @@ bool j1Render::Save(pugi::xml_node& data) const
 	pugi::xml_node cam = data.append_child("camera");
 	cam.append_attribute("x") = camera.x;
 	cam.append_attribute("y") = camera.y;
+
+	//cam.append_attribute("current_scene")=
+	pugi::xml_node numEntities = data.append_child("num_entities");
+	numEntities.append_attribute("value") = App->entities->activeEntities.size();
+
+	pugi::xml_node entities = data.append_child("active_entities");
+
+	list<Entity*>::const_iterator entitiesToSave = App->entities->activeEntities.begin();
+	while (entitiesToSave != App->entities->activeEntities.end()) {
+
+		pugi::xml_node entity = entities.append_child("entity");
+
+		if ((*entitiesToSave)->entityType == ENTITY_TYPE_WARRIOR) {
+			const char warrior[] = "warrior";
+			//entity.append_attribute("entity_type").as_string("warrior");
+			entity.append_attribute("entity_type")= warrior;
+			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
+			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+
+		entitiesToSave++;
+	}
+
+	
 
 	return true;
 }
@@ -145,16 +215,16 @@ void j1Render::AddBlitEvent(int layer, SDL_Texture* texture, int x, int y, const
 {
 	BlitEvent event{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
 	
-
+	
 	if (texture != nullptr)
 	{
-		 if (x > (-camera.x / App->win->GetScale()) - 300 && x < ((-camera.x + camera.w) / App->win->GetScale()) + 100 && y >(-camera.y / App->win->GetScale()) - 300 && y < ((-camera.y + camera.h) / App->win->GetScale()) + 100) {
+		 if (x > (-camera.x / App->win->GetScale()) - 220 && x < ((-camera.x + camera.w) / App->win->GetScale()) + 100 && y >(-camera.y / App->win->GetScale()) - 150 && y < ((-camera.y + camera.h) / App->win->GetScale()) + 100) {
 			blit_queue.insert(make_pair(layer, event));
 		}
 	}
 	else
 	{
-		if (section.x > (-camera.x / App->win->GetScale()) - 300 && section.x < (-camera.x + camera.w) / App->win->GetScale() && section.y >(-camera.y / App->win->GetScale()) - 300 && section.y < (-camera.y + camera.h) / App->win->GetScale()) {
+		if (section.x > (-camera.x / App->win->GetScale()) - 220 && section.x < (-camera.x + camera.w) / App->win->GetScale() && section.y >(-camera.y / App->win->GetScale()) - 150 && section.y < (-camera.y + camera.h) / App->win->GetScale()) {
 			blit_queue.insert(make_pair(layer, event));
 		}
 	}

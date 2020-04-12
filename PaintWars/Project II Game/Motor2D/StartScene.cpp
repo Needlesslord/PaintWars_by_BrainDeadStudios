@@ -136,12 +136,14 @@ void StartScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 	{
 		//App->scenes->SwitchScene(SCENES::MENU_SCENE);
 		App->transition_manager->CreateFadeToColour(SCENES::MENU_SCENE);
+
 	}
 
 	if (element == continueButton && type == GUI_Event::EVENT_ONCLICK)
 	{
 		//App->scenes->SwitchScene(SCENES::GAME_SCENE);
-		App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
+		//App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
+		App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true);
 	}
 
 	if ((element == snowButton || element == forestButton || element == volcanoButton) && type == GUI_Event::EVENT_ONCLICK)

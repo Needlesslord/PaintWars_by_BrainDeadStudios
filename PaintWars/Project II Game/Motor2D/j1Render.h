@@ -54,6 +54,9 @@ public:
 	SDL_Rect		camera;
 	SDL_Rect		viewport;
 	SDL_Color		background;
+	int UI_Render_Window_w;
+	int UI_Render_Window_h;
+
 
 private:
 

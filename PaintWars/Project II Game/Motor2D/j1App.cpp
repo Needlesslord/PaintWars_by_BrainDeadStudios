@@ -18,7 +18,6 @@
 #include "j1Player.h"
 #include "j1GUI.h"
 #include "j1Fonts.h"
-#include "j1InGameUI.h"
 #include <thread>
 #include "TransitionManager.h"
 #include "j1SceneManager.h"
@@ -40,7 +39,6 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	player = new j1Player();
 	gui = new j1GUI();
 	fonts = new j1Fonts();
-	InGameUI = new j1InGameUI();
 	transition_manager = new TransitionManager();
 	quest_manager = new j1QuestManager();
 	
@@ -59,7 +57,6 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(player);
 	AddModule(gui);
 	AddModule(fonts);
-	AddModule(InGameUI);
 	AddModule(transition_manager);
 	AddModule(quest_manager);
 
