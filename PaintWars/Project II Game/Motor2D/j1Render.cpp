@@ -7,6 +7,9 @@
 #include "Entity.h"
 #include "j1EntityManager.h"
 
+// TODO: delete this
+#include "j1Map.h"
+
 #define VSYNC true
 
 using namespace std;
@@ -128,8 +131,8 @@ bool j1Render::Load(pugi::xml_node& data)
 		entityType = data.child("entity").attribute("entity_type").as_string("");
 
 		if (entityType == "warrior") {
-			
-			App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { x, y }, App->entities,nullptr,damage);
+			iPoint mapPos = App->map->WorldToMap(x, y);
+			App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { mapPos.x, mapPos.y }, App->entities, nullptr, damage);
 		}
 
 		data = data.next_sibling();

@@ -6,6 +6,7 @@
 #include "j1Render.h"
 #include "j1Window.h"
 #include "j1Map.h"
+#include "j1Player.h"
 #include "j1SceneManager.h"
 #include "j1EntityManager.h"
 #include "j1Pathfinding.h"
@@ -165,6 +166,23 @@ bool GameScene::Start()
 	// Shop
 	shopImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 720 , 130 }, { 0 , 0 }, false, false, { 0, 1388, 263, 265 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	shopLabel = App->gui->AddElement(GUItype::GUI_LABEL, shopImage, { 722 , 132 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "SHOP", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+
+
+
+	//////////////////
+	//	RESOURCES	//
+	//////////////////
+
+	App->player->paintCount.type = RESOURCE_TYPE_PAINT;
+	App->player->paintCount.count = 50;
+
+	App->player->woodCount.type = RESOURCE_TYPE_WOOD;
+	App->player->woodCount.count = 50;
+	
+	App->player->housingSpace.type = RESOURCE_TYPE_HOUSING;
+	App->player->housingSpace.count = 4;
+	App->player->housingSpace.maxCount = 5;
+
 
 	return ret;
 }

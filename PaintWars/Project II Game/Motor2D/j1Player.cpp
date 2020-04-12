@@ -49,21 +49,6 @@ bool j1Player::Start() {
 	SDL_ShowCursor(SDL_DISABLE);
 
 
-	paintCount.resource_type = RESOURCE_TYPE_PAINT;
-	paintCount.resourceCount = 0;
-
-	foodCount.resource_type = RESOURCE_TYPE_FOOD;
-	foodCount.resourceCount = 0;
-
-	woodCount.resource_type = RESOURCE_TYPE_WOOD;
-	woodCount.resourceCount = 0;
-
-	metalScrapCount.resource_type = RESOURCE_TYPE_METAL_SCRAP;
-	metalScrapCount.resourceCount = 0;
-
-	titaniumCount.resource_type = RESOURCE_TYPE_TITANIUM;
-	titaniumCount.resourceCount = 0;
-
 	return ret;
 }
 

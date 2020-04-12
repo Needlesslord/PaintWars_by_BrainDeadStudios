@@ -40,8 +40,11 @@ TownHall::~TownHall() {}
 
 void TownHall::SpawnEntity(iPoint pos) {
 
-	bool canAffordIt = true;
-	if (!canAffordIt)
+	if (App->player->paintCount.count > 5 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
+		App->player->paintCount.count -= 5;
+		App->player->housingSpace.count++;
+	}
+	else
 		return;
 
 	fPoint spawnWorldPosition = App->map->MapToWorld(pos.x, pos.y + size.y / 2);
@@ -58,7 +61,7 @@ void TownHall::SpawnEntity(iPoint pos) {
 
 	// TODO: check this positions
 	if (!isSpawningAUnit) {
-		App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { this->currentTile.x + size.x / 2 - 31, this->currentTile.y + size.y }, App->entities, this, 0);
+		App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
 		isSpawningAUnit = true;
 	}
 }
