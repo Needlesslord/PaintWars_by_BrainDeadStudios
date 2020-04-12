@@ -16,7 +16,7 @@ enum RESOURCE_TYPE {
 	RESOURCE_TYPE_WOOD,
 	RESOURCE_TYPE_METAL_SCRAP,
 	RESOURCE_TYPE_TITANIUM,
-	RESOURCE_TYPE_NUM_UNITS,
+	RESOURCE_TYPE_HOUSING,
 	//RESOURCE_TYPE_RESEARCH,
 
 	RESOURCE_NO_TYPE
@@ -25,8 +25,9 @@ enum RESOURCE_TYPE {
 
 struct Resource
 {
-	RESOURCE_TYPE resource_type = RESOURCE_NO_TYPE;
-	uint resourceCount;
+	RESOURCE_TYPE type = RESOURCE_NO_TYPE;
+	uint count;
+	uint maxCount;
 	//uint researchLevel;
 
 };
@@ -58,10 +59,8 @@ private:
 public:
 
 	Resource paintCount;
-	Resource foodCount;
 	Resource woodCount;
-	Resource metalScrapCount;
-	Resource titaniumCount;
+	Resource housingSpace;
 
 private:
 
