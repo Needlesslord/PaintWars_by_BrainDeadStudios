@@ -235,6 +235,17 @@ void j1Render::AddBlitEvent(int layer, SDL_Texture* texture, int x, int y, const
 
 }
 
+void j1Render::AddBlitEventforUI(int layer, SDL_Texture* texture, int x, int y, const SDL_Rect section, bool fliped, bool ui, float speed, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
+{
+	BlitEvent event{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
+
+	blit_queue.insert(make_pair(layer, event));
+	
+	
+
+
+}
+
 void j1Render::BlitAll()
 {
 	for (auto e = blit_queue.begin(); e != blit_queue.end(); e++)
@@ -248,12 +259,8 @@ void j1Render::BlitAll()
 			int event_y = e->second.y;
 			const SDL_Rect* event_rect = &e->second.section;
 			bool event_flip = e->second.fliped;
-			float event_speed = e->second.speed;
-			if (event_x > (-camera.x / App->win->GetScale()) - 200 && 
-				event_x < (-camera.x + camera.w) / App->win->GetScale() &&
-				event_y >(-camera.y / App->win->GetScale()) - 200 && 
-				event_y < (-camera.y + camera.h) / App->win->GetScale())
-				Blit(event_texture, event_x, event_y, event_rect, event_flip, event_ui, event_speed);
+
+			Blit(event_texture, event_x, event_y, event_rect, event_flip, event_ui);
 		}
 		else
 		{
@@ -262,11 +269,14 @@ void j1Render::BlitAll()
 			uint event_g = e->second.g;
 			uint event_b = e->second.b;
 			uint event_a = e->second.a;
+
 			DrawQuad(event_rect, event_r, event_g, event_b, event_a, event_ui);
 		}
 	}
-	if(blit_queue.size() != 0)
+	if (blit_queue.size() != 0)
+	{
 		blit_queue.erase(blit_queue.begin(), blit_queue.end());
+	}
 }
 
 bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section, bool fliped, bool ui, float speed, double angle, int pivot_x, int pivot_y) const
@@ -282,11 +292,12 @@ bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,
 	}
 	else
 	{
+		//speed = -1;
 		rect.x = (int)(camera.x * speed) + x;
 		rect.y = (int)(camera.y * speed) + y;
 	}
 
-	if(section != NULL)
+	if (section != NULL)
 	{
 		rect.w = section->w;
 		rect.h = section->h;
@@ -305,7 +316,7 @@ bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,
 	SDL_Point* p = NULL;
 	SDL_Point pivot;
 
-	if(pivot_x != INT_MAX && pivot_y != INT_MAX)
+	if (pivot_x != INT_MAX && pivot_y != INT_MAX)
 	{
 		pivot.x = pivot_x;
 		pivot.y = pivot_y;
@@ -317,7 +328,7 @@ bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,
 		flip = SDL_FLIP_NONE;
 	else
 		flip = SDL_FLIP_HORIZONTAL;
-		
+
 	if (SDL_RenderCopyEx(renderer, texture, section, &rect, angle, p, flip) != 0)
 	{
 		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
@@ -366,7 +377,7 @@ bool j1Render::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a
 		else if (guiHitBox)
 		{
 
-			rec.x = (int)(rect.x);
+			rec.x = (int)(camera.x+ rect.x);
 			rec.y = (int)(camera.y + rect.y);
 
 		}
@@ -394,12 +405,12 @@ bool j1Render::DrawLine(int x1, int y1, int x2, int y2, Uint8 r, Uint8 g, Uint8 
 
 	int result = -1;
 
-	if(use_camera)
+	if (use_camera)
 		result = SDL_RenderDrawLine(renderer, camera.x + x1 * scale, camera.y + y1 * scale, camera.x + x2 * scale, camera.y + y2 * scale);
 	else
 		result = SDL_RenderDrawLine(renderer, x1 * scale, y1 * scale, x2 * scale, y2 * scale);
 
-	if(result != 0)
+	if (result != 0)
 	{
 		LOG("Cannot draw quad to screen. SDL_RenderFillRect error: %s", SDL_GetError());
 		ret = false;
@@ -421,7 +432,7 @@ bool j1Render::DrawCircle(int x, int y, int radius, Uint8 r, Uint8 g, Uint8 b, U
 
 	float factor = (float)M_PI / 180.0f;
 
-	for(uint i = 0; i < 360; ++i)
+	for (uint i = 0; i < 360; ++i)
 	{
 		points[i].x = (int)(x + radius * cos(i * factor));
 		points[i].y = (int)(y + radius * sin(i * factor));
@@ -429,7 +440,7 @@ bool j1Render::DrawCircle(int x, int y, int radius, Uint8 r, Uint8 g, Uint8 b, U
 
 	result = SDL_RenderDrawPoints(renderer, points, 360);
 
-	if(result != 0)
+	if (result != 0)
 	{
 		LOG("Cannot draw quad to screen. SDL_RenderFillRect error: %s", SDL_GetError());
 		ret = false;

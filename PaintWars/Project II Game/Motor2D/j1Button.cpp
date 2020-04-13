@@ -99,31 +99,31 @@ bool j1Button::Update(float dt)
 		if (textureType == TEXTURE::BUTON || textureType == TEXTURE::ATLAS) {
 			if (above && interactable && App->input->GetMouseButtonDown(1) == KEY_REPEAT)
 			{
-				App->render->AddBlitEvent(layer, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
+				App->render->AddBlitEventforUI(layer, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
 			}
 			else if (above && interactable)
 			{
-				App->render->AddBlitEvent(layer, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, hover_rect, false, true, 0u, 0u, 0u, 255, true);
+				App->render->AddBlitEventforUI(layer, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, hover_rect, false, true, 0u, 0u, 0u, 255, true);
 			}
 			else {
-				App->render->AddBlitEvent(layer, texture, map_position.x - App->render->camera.x , map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
+				App->render->AddBlitEventforUI(layer, texture, map_position.x - App->render->camera.x , map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
 			}
 		}
 		else if (textureType == TEXTURE::BOTON_SCROLL) {
 
 		
 			if (inside_position.x > 0) {
-				App->render->AddBlitEvent(layer, texture, map_position.x - App->render->camera.x + inside_position.x, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
+				App->render->AddBlitEventforUI(layer, texture, map_position.x - App->render->camera.x + inside_position.x, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
 			}
 			else if (inside_position.x < -235) {
-				App->render->AddBlitEvent(layer, texture, map_position.x - App->render->camera.x + inside_position.x + 235, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
+				App->render->AddBlitEventforUI(layer, texture, map_position.x - App->render->camera.x + inside_position.x + 235, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
 			}
 			else 
-				App->render->AddBlitEvent(layer, texture, map_position.x - App->render->camera.x , map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
+				App->render->AddBlitEventforUI(layer, texture, map_position.x - App->render->camera.x , map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
 		}
 		else{
 
-			App->render->AddBlitEvent(layer, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
+			App->render->AddBlitEventforUI(layer, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
 
 		}
 

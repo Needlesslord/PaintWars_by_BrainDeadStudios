@@ -5,7 +5,10 @@
 #include "Scene.h"
 
 struct SDL_Texture;
-
+struct UI_HUD
+{
+	j1Element* Shop_Button;
+};
 class GameScene : public Scene
 {
 public:
@@ -58,9 +61,13 @@ public:
 	bool Change_Map;
 
 
+	
 	//////////////////
 	//      UI      //
 	//////////////////
+
+
+	UI_HUD UI_INGAME;
 
 	//HUD - Bar
 	j1Element* hudBarImage = nullptr;

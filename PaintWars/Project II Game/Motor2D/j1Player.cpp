@@ -144,7 +144,7 @@ void j1Player::Camera_Control(float dt)
 				App->render->camera.y = 50;
 			if (App->render->camera.y < -3150)
 				App->render->camera.y = -3150;
-
+			
 
 			if (App->input->GetKey(SDL_SCANCODE_H) == KEY_REPEAT) {
 
@@ -154,16 +154,32 @@ void j1Player::Camera_Control(float dt)
 		}
 
 		//UI
-		for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
-		{
-			App->gui->GUI_ELEMENTS[i]->map_position.x = App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
-			App->gui->GUI_ELEMENTS[i]->map_position.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;
-			/*App->gui->GUI_ELEMENTS[i]->click_rect.x=App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
-			App->gui->GUI_ELEMENTS[i]->click_rect.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;
-			App->gui->GUI_ELEMENTS[i]->hover_rect.x= App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
-			App->gui->GUI_ELEMENTS[i]->hover_rect.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;*/
+		//for (int i = 0; i < 21/*App->gui->GUI_ELEMENTS.count()*/; i++)
+		//{
+		//	if ((i > 9) && (i < 20)) {
+		//		App->gui->GUI_ELEMENTS[i]->map_position.x = App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
+		//		App->gui->GUI_ELEMENTS[i]->map_position.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;
+		//		/*App->gui->GUI_ELEMENTS[i]->click_rect.x=App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
+		//		App->gui->GUI_ELEMENTS[i]->click_rect.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;
+		//		App->gui->GUI_ELEMENTS[i]->hover_rect.x= App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
+		//		App->gui->GUI_ELEMENTS[i]->hover_rect.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;*/
+		//	}
+		//}
 
-		}
+
+		
+		
+
+		/*while (App->gui->GUI_ELEMENTS)
+		{
+			if (id < item->data->firstgid)
+			{
+				set = item->prev->data;
+				break;
+			}
+			set = item->data;
+			item = item->next;
+		}*/
 	}
 }
 

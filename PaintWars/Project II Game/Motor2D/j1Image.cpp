@@ -47,9 +47,9 @@ bool j1Image::Update(float dt) {
 
 	if (enabled) {
 		if (textureType == TEXTURE::MAIN_IMAGE || textureType == TEXTURE::ATLAS)
-		App->render->AddBlitEvent(2, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false,true, 0, 0, 0, 0, true);
+		App->render->AddBlitEventforUI(2, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false,true, 0, 0, 0, 0, true);
 		else
-		App->render->AddBlitEvent(3, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
+		App->render->AddBlitEventforUI(3, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
 	}
 
 
