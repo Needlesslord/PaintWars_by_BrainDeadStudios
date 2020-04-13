@@ -242,6 +242,20 @@ bool j1EntityManager::Update(float dt) {
 
 
 
+		// Extract Paint
+		list<Entity*>::iterator paintersToExtract = activeUnits.begin();
+		while (paintersToExtract != activeUnits.end()) {
+
+			// We try to extract and it will return if it can't
+			if ((*paintersToExtract)->entityType == ENTITY_TYPE_PAINTER) {
+
+				(*paintersToExtract)->ExtractPaint(dt);
+			}
+			paintersToExtract++;
+		}
+
+
+
 
 		// Change destination for units selected on right-click
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && !unitsSelected.empty()) {

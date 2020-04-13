@@ -75,3 +75,10 @@ void Painter::SpawnEntity(iPoint pos) {
 		isBuildingSomething = true;
 	}
 }
+
+void Painter::ExtractPaint(float dt) {
+
+	if (App->pathfinding->IsPaint(currentTile) && currentTile == destination) {
+		App->player->paintCount.count += extractionRate * dt;
+	}
+}

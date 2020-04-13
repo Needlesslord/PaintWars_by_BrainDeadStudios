@@ -47,9 +47,6 @@ void TownHall::SpawnEntity(iPoint pos) {
 	else
 		return;
 
-	fPoint spawnWorldPosition = App->map->MapToWorld(pos.x, pos.y + size.y / 2);
-	iPoint spawnMapPosition = App->map->WorldToMap(spawnWorldPosition.x, spawnWorldPosition.y);
-
 	// Spawn warrior
 
 	// First, we'll check there isn't a unit in the spawn position
@@ -61,7 +58,7 @@ void TownHall::SpawnEntity(iPoint pos) {
 
 	// TODO: check this positions
 	if (!isSpawningAUnit) {
-		App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
+		App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { currentTile.x + 2, currentTile.y + 2 }, App->entities, this, 0);
 		isSpawningAUnit = true;
 	}
 }

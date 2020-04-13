@@ -99,10 +99,10 @@ bool GameScene::Start()
 		App->pathfinding->SetMap(w, h, data);						// Sets a new walkability map with the map passed by CreateWalkabilityMap().
 	}
 
-	//App->pathfinding->ChangeWalkability({ 7, 0 }, false);
-	//App->pathfinding->ChangeWalkability({ 7, 1 }, false);
-	//App->pathfinding->ChangeWalkability({ 7, 2 }, false);
-	//App->pathfinding->ChangeWalkability({ 7, 3 }, false);
+	//App->pathfinding->ChangeToPaint({ 7, 0 });
+	//App->pathfinding->ChangeToPaint({ 7, 1 });
+	//App->pathfinding->ChangeToPaint({ 7, 2 });
+	//App->pathfinding->ChangeToPaint({ 7, 3 });
 
 
 	//////////////////

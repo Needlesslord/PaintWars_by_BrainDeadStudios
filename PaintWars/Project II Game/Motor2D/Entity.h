@@ -52,6 +52,7 @@ enum ENTITY_SIZE {
 };
 
 enum ENTITY_TYPE {
+
 	ENTITY_TYPE_NONE = 0,
 
 		// TODO: Add all entities here
@@ -71,7 +72,6 @@ enum ENTITY_TYPE {
 	/// Units
 	ENTITY_TYPE_SLIME,
 
-
 	ENTITY_TYPE_MAX = 500
 };
 
@@ -88,6 +88,7 @@ public:
 	virtual void Move(float dt);
 	virtual void SetDestination(iPoint des);
 	virtual void SpawnEntity(iPoint pos);
+	virtual void ExtractPaint(float dt);
 
 	// Position and size
 	void SetPos(fPoint pos);
@@ -146,6 +147,9 @@ public:
 	Entity* builtBy;
 
 	bool isSelectingPlacement = false;
+
+	// Paint speed
+	float extractionRate = 100.0f;
 
 protected:
 
