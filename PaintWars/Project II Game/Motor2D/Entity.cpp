@@ -397,7 +397,7 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 
 	else if (entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
-		SDL_Rect rect = { pos.x /*- GetSize().x/2*/, pos.y/* - GetSize().y / 2*/, 150, 75 };
+		SDL_Rect rect = { pos.x /*- GetSize().x/2*/, pos.y/* - GetSize().y / 2*/, GetSize().x, GetSize().y };
 		entityCollider = App->col->AddCollider(rect, collType, App->entities);
 
 		return true;

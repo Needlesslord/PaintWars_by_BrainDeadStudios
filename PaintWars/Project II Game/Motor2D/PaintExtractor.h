@@ -8,8 +8,9 @@ class PaintExtractor : public Entity
 {
 public:
 
-	PaintExtractor(iPoint tile, int damage, j1Module* listener);
+	PaintExtractor(iPoint tile, int damage, j1Module* listener, Entity* creator);
 	~PaintExtractor();
+	void ExtractPaint(float dt) override;
 
 public:
 

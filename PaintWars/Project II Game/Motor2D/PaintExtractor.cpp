@@ -7,9 +7,10 @@
 #include "j1SceneManager.h"
 #include "j1Map.h"
 #include "j1Collision.h"
+#include "j1Pathfinding.h"
 #include "j1Textures.h"
 
-PaintExtractor::PaintExtractor(iPoint tile, int damage, j1Module* listener) : Entity(tile, damage, listener, nullptr) {
+PaintExtractor::PaintExtractor(iPoint tile, int damage, j1Module* listener, Entity* creator) : Entity(tile, damage, listener, creator) {
 
 	// Handle data and initialize the PE
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_PAINT_EXTRACTOR;
@@ -19,7 +20,7 @@ PaintExtractor::PaintExtractor(iPoint tile, int damage, j1Module* listener) : En
 	maxLife = 100;
 	currLife = maxLife - damage;
 
-	size = { 150, 75 };
+	size = { 150, 150 };
 
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);
@@ -29,7 +30,14 @@ PaintExtractor::PaintExtractor(iPoint tile, int damage, j1Module* listener) : En
 
 	constructionTime = 10.0f;
 
+	extractionRate *= 2.0f;
+
 	isEntityFromPlayer = true;
 }
 
 PaintExtractor::~PaintExtractor() {}
+
+void PaintExtractor::ExtractPaint(float dt) {
+
+	App->player->paintCount.count += extractionRate * dt;
+}

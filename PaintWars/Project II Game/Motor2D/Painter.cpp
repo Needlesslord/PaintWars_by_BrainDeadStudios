@@ -11,7 +11,7 @@
 #include "j1Collision.h"
 #include "j1Textures.h"
 
-Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) : Entity(tile, damage, listener, spawnedBy) {
+Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) : Entity(tile, damage, listener, creator) {
 
 	// Handle data and initialize the Painter
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_PAINTER;
@@ -62,16 +62,17 @@ Painter::~Painter() {}
 
 void Painter::SpawnEntity(iPoint pos) {
 
-	fPoint worldPos = App->map->MapToWorld(pos.x, pos.y);
-	
-
-	bool canAffordIt = true;
-	if (!canAffordIt)
+	if (App->player->woodCount.count >= 20) {
+		App->player->woodCount.count -= 20;
+	}
+	else {
+		isSelectingPlacement = false;
 		return;
+	}
 
 	isSelectingPlacement = false;
 	if (!isBuildingSomething) {
-		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, pos, App->entities, this, 0);
+		App->entities->AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR, pos, App->entities, this, 0);
 		isBuildingSomething = true;
 	}
 }

@@ -194,11 +194,15 @@ bool j1EntityManager::Update(float dt) {
 				iPoint mapCoordinates = App->map->WorldToMap(mousePosition.x - cameraOffset.x, mousePosition.y - cameraOffset.y + App->map->data.tile_height / 2);
 				fPoint mapWorldCoordinates = App->map->MapToWorld(mapCoordinates.x, mapCoordinates.y);
 
-				App->render->AddBlitEvent(1, townHallTexture, mapWorldCoordinates.x, mapWorldCoordinates.y, { 0,0,100,100 });
+				App->render->AddBlitEvent(1, paintExtractorTexture, mapWorldCoordinates.x, mapWorldCoordinates.y, { 0,0,150,150 });
 
 				// If the Left click was pressed we'll check if it can in fact be built there
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
-					(*paintersSelected)->SpawnEntity(mapCoordinates);
+
+					if (App->pathfinding->IsPaint(mapCoordinates) || App->pathfinding->IsPaint({ mapCoordinates.x - 1, mapCoordinates.y - 1 })) {
+						
+						(*paintersSelected)->SpawnEntity(mapCoordinates);
+					}
 				}
 			}
 
@@ -221,9 +225,9 @@ bool j1EntityManager::Update(float dt) {
 				selectedEntities++;
 			}
 
-			float caca = (currentLifeSum / maxLifeSum) * 200;
+			float w = (currentLifeSum / maxLifeSum) * 200;
 			App->render->AddBlitEvent(1, zeroLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, 200, 15 }, false, true, 0);
-			App->render->AddBlitEvent(1, fullLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, (int)caca, 15 }, false, true, 0);
+			App->render->AddBlitEvent(1, fullLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, (int)w, 15 }, false, true, 0);
 
 		}
 
@@ -234,7 +238,6 @@ bool j1EntityManager::Update(float dt) {
 		list<Entity*>::iterator selectedUnits = unitsSelected.begin();
 		while (selectedUnits != unitsSelected.end()) {
 
-
 			(*selectedUnits)->ShowHealthBar();
 			selectedUnits++;
 		}
@@ -243,11 +246,11 @@ bool j1EntityManager::Update(float dt) {
 
 
 		// Extract Paint
-		list<Entity*>::iterator paintersToExtract = activeUnits.begin();
-		while (paintersToExtract != activeUnits.end()) {
+		list<Entity*>::iterator paintersToExtract = activeEntities.begin();
+		while (paintersToExtract != activeEntities.end()) {
 
 			// We try to extract and it will return if it can't
-			if ((*paintersToExtract)->entityType == ENTITY_TYPE_PAINTER) {
+			if ((*paintersToExtract)->entityType == ENTITY_TYPE_PAINTER || (*paintersToExtract)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
 
 				(*paintersToExtract)->ExtractPaint(dt);
 			}
@@ -280,14 +283,6 @@ bool j1EntityManager::Update(float dt) {
 				unitsToRedirect++;
 			}
 		}
-
-		// Prepare Movement
-		/*list<Entity*>::iterator unitsToPrepareMove = activeUnits.begin();
-		while (unitsToPrepareMove != activeUnits.end()) {
-			(*unitsToPrepareMove)->CalculateMovementLogic();
-
-			unitsToPrepareMove++;
-		}*/
 
 		// Move
 		list<Entity*>::iterator unitsToMove = activeUnits.begin();
@@ -323,7 +318,7 @@ bool j1EntityManager::Update(float dt) {
 					(*entitiesToDraw)->Draw(townHallTexture);
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
-					(*entitiesToDraw)->Draw(fullLifeTexture);// TODO: change
+					(*entitiesToDraw)->Draw(paintExtractorTexture);
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINTER) {
 					(*entitiesToDraw)->Draw(painterTexture);
@@ -354,7 +349,7 @@ bool j1EntityManager::PostUpdate() {
 	bool ret = true;
 
 
-
+	// WIN CONDITION
 	bool anySpawnerActive = false;
 	list<Entity*>::const_iterator checkForSpawners = activeBuildings.begin();
 	while (checkForSpawners != activeBuildings.end()) {
@@ -368,6 +363,7 @@ bool j1EntityManager::PostUpdate() {
 	if (!anySpawnerActive)
 		TriggerEndGame(true);
 
+	// LOSE CONDITION
 	bool anyTownhallActive = false;
 	list<Entity*>::const_iterator checkForTownhalls = activeBuildings.begin();
 	while (checkForTownhalls != activeBuildings.end()) {
@@ -390,6 +386,19 @@ bool j1EntityManager::PostUpdate() {
 	// If control was pressed as a unit was selected, the rest of selected units aren't unselected				 //
 	//																											 //
 	// --------------------------------------------------------------------------------------------------------- //
+	if (unitsSelected.size() > 0) {
+		list<Entity*>::iterator unitsToBuildEntities = unitsSelected.begin();
+
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN) {
+
+			if ((*unitsToBuildEntities)->isSelectingPlacement) {
+				(*unitsToBuildEntities)->isSelectingPlacement = false;
+			}
+		}
+		// If we are selcting a placement for a building and we try to select a place not fit to build it doesn't unselect the unit, VERY IMPORTANT!
+		if ((*unitsToBuildEntities)->isSelectingPlacement)
+			return ret;
+	}
 
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 
@@ -454,6 +463,7 @@ bool j1EntityManager::PostUpdate() {
 				checkForSelectedEntities++;
 			}
 		}
+
 
 		// And if not, unselect all
 		if (!isSomethingSelected)
@@ -535,7 +545,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 	}
 	
 	else if (entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
-		PaintExtractor* paintExtractor = new PaintExtractor(tile, damage, this);
+		PaintExtractor* paintExtractor = new PaintExtractor(tile, damage, this, creator);
 
 		if (spawnAutomatically) {
 
@@ -547,6 +557,10 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 
 		else
 			spawningEntities.push_back((Entity*)paintExtractor);
+
+		// Change the walkability to non walkable
+		App->pathfinding->ChangeWalkability(tile, false);
+		App->pathfinding->ChangeWalkability({ tile.x - 1,tile.y - 1 }, false);
 
 		return (Entity*)paintExtractor;
 	}
