@@ -80,7 +80,7 @@ bool GameScene::Start()
 	Map_Manager();
 
 
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{  1,  1 }, App->entities, nullptr, 10, true);
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{  15,  4 }, App->entities, nullptr, 10, true);
 	//App->entities->AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR,	{  1,  3 }, App->entities, nullptr,  0, true);
 	App->entities->AddEntity(ENTITY_TYPE_PAINTER,			{  1,  5 }, App->entities, nullptr,  5, true);
 
@@ -89,7 +89,7 @@ bool GameScene::Start()
 	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  5, 10 }, App->entities, nullptr,  0, true);
 
 	App->entities->AddEntity(ENTITY_TYPE_SLIME,				{ 10, 10 }, App->entities, nullptr, true);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 12, 10 }, App->entities, nullptr, true);
+	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 14,  8 }, App->entities, nullptr, true);
 	
 
 	int w, h;
@@ -293,13 +293,17 @@ bool GameScene::Update(float dt)
 	iPoint map_coordinates = App->map->WorldToMap(xy.x - cameraW.x /*+ App->map->data.tile_width / 2*/, xy.y - cameraW.y + App->map->data.tile_height/2);
 	fPoint worldCoordinates = App->map->MapToWorld(map_coordinates.x, map_coordinates.y);
 
+	iPoint transformer1, transformer2;
+	transformer1.x = worldCoordinates.x; transformer1.y = worldCoordinates.y;
+	transformer2.x = xy.x; transformer2.y = xy.y;
+
 	static char title[256];
-	sprintf_s(title, 256, "Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d, WorldPosition:%f,%f MouseWorldPosition: %f,%f",
-		App->map->data.width, App->map->data.height,
-		App->map->data.tile_width, App->map->data.tile_height,
-		App->map->data.tilesets.size(),
+	sprintf_s(title, 256, "Paint:%d, Wood:%d, Housing:%d/%d;           Tile:%d,%d;          WorldPosition:%d,%d;          MouseWorldPosition:%d,%d",
+		App->player->paintCount.count, App->player->woodCount.count,
+		App->player->housingSpace.count, App->player->housingSpace.maxCount,
 		map_coordinates.x, map_coordinates.y,
-		worldCoordinates.x, worldCoordinates.y, xy.x, xy.y);
+		transformer1.x, transformer1.y,
+		transformer2.x, transformer2.y);
 
 	App->win->SetTitle(title);
 
@@ -377,6 +381,10 @@ bool GameScene::PostUpdate()
 	ExecuteTransition();
 
 	return ret;
+}
+
+void GameScene::DebugDrawTile(iPoint tile) {
+	App->render->AddBlitEvent(1, debug_tex, tile.x, tile.y, { 0,0,150,75 });
 }
 
 // Called before quitting

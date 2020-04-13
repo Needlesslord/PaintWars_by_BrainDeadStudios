@@ -40,6 +40,8 @@ public:
 	void DrawScene();
 	void ExecuteTransition();
 
+	void DebugDrawTile(iPoint tile);
+
 public:
 	//void InitScene();								// Method that will be used to initialize all scene elements.
 	

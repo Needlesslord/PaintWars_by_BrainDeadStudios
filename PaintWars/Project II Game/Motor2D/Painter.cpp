@@ -16,7 +16,7 @@ Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 	// Handle data and initialize the Painter
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_PAINTER;
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_DYNAMIC_ENTITY;
-	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_MINI;
+	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_SMALL;
 	
 	maxLife = 10;
 	currLife = maxLife - damage;

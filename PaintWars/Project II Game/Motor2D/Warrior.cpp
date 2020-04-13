@@ -17,7 +17,7 @@ Warrior::Warrior(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 	// Handle data and initialize the Warrior
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_WARRIOR;
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_DYNAMIC_ENTITY;
-	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_MINI;
+	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_SMALL;
 	*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;
 
 	maxLife = 30;

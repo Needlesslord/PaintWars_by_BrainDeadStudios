@@ -9,6 +9,7 @@
 #include "Scene.h"
 #include "j1Map.h"
 #include "j1Pathfinding.h"
+#include "GameScene.h"
 #include "j1Collision.h"
 #include "j1Input.h"
 #include "j1Player.h"
@@ -34,6 +35,8 @@ bool j1EntityManager::Awake(pugi::xml_node& config) {
 bool j1EntityManager::Start() {
 	bool ret = true;
 
+	debug_tex = App->tex->Load("maps/path2.png");
+
 	// TODO: Initialize all textures
 
 		// Allies
@@ -45,6 +48,7 @@ bool j1EntityManager::Start() {
 	painterTexture = App->tex->Load("textures/Painter.png");
 	warriorTexture = App->tex->Load("textures/Warrior.png");
 	warrior_Texture = App->tex->Load("textures/Warrior_Sprite.png");
+
 		// Enemies
 	/// Buildings
 	spawnerTexture = App->tex->Load("textures/Spawner.png");
@@ -192,15 +196,22 @@ bool j1EntityManager::Update(float dt) {
 				fPoint mousePosition = App->input->GetMouseWorldPosition();
 				iPoint cameraOffset = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
 				iPoint mapCoordinates = App->map->WorldToMap(mousePosition.x - cameraOffset.x, mousePosition.y - cameraOffset.y + App->map->data.tile_height / 2);
+				
 				fPoint mapWorldCoordinates = App->map->MapToWorld(mapCoordinates.x, mapCoordinates.y);
 
-				App->render->AddBlitEvent(1, paintExtractorTexture, mapWorldCoordinates.x, mapWorldCoordinates.y, { 0,0,150,150 });
+				App->render->AddBlitEvent(1, debug_tex, mapWorldCoordinates.x - App->map->data.tile_width / 2,	mapWorldCoordinates.y - App->map->data.tile_height / 2,	{ 0,0,150,75 });
+				App->render->AddBlitEvent(1, debug_tex, mapWorldCoordinates.x + App->map->data.tile_width / 2,	mapWorldCoordinates.y - App->map->data.tile_height / 2,	{ 0,0,150,75 });
+				App->render->AddBlitEvent(1, debug_tex, mapWorldCoordinates.x,									mapWorldCoordinates.y - App->map->data.tile_height,		{ 0,0,150,75 });
+
+				App->render->AddBlitEvent(1, paintExtractorTexture, mapWorldCoordinates.x-125 + App->map->data.tile_width / 2, mapWorldCoordinates.y-250+ App->map->data.tile_height / 2, { 0,0,250,250 });
 
 				// If the Left click was pressed we'll check if it can in fact be built there
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 
-					if (App->pathfinding->IsPaint(mapCoordinates) || App->pathfinding->IsPaint({ mapCoordinates.x - 1, mapCoordinates.y - 1 })) {
-						
+					// The painter is not 1x1
+					if (App->pathfinding->IsPaint(mapCoordinates) || App->pathfinding->IsPaint({ mapCoordinates.x - 1, mapCoordinates.y - 1 }) ||
+						App->pathfinding->IsPaint({ mapCoordinates.x, mapCoordinates.y - 1 }) || App->pathfinding->IsPaint({ mapCoordinates.x - 1, mapCoordinates.y })) {
+
 						(*paintersSelected)->SpawnEntity(mapCoordinates);
 					}
 				}
@@ -212,7 +223,7 @@ bool j1EntityManager::Update(float dt) {
 
 
 
-		// LifeBars from selected  on HUD
+		// LifeBars from selected on HUD
 		if (!entitiesSelected.empty()) {
 			list<Entity*>::iterator selectedEntities = entitiesSelected.begin();
 			currentLifeSum = 0;
@@ -226,8 +237,8 @@ bool j1EntityManager::Update(float dt) {
 			}
 
 			float w = (currentLifeSum / maxLifeSum) * 200;
-			App->render->AddBlitEvent(1, zeroLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, 200, 15 }, false, true, 0);
-			App->render->AddBlitEvent(1, fullLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, (int)w, 15 }, false, true, 0);
+			App->render->AddBlitEventforUI(1, zeroLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, 200, 15 }, false, true, 0);
+			App->render->AddBlitEventforUI(1, fullLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, (int)w, 15 }, false, true, 0);
 
 		}
 
@@ -324,7 +335,7 @@ bool j1EntityManager::Update(float dt) {
 					(*entitiesToDraw)->Draw(painterTexture);
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_WARRIOR) {
-					(*entitiesToDraw)->Draw(warrior_Texture);
+					(*entitiesToDraw)->Draw(warriorTexture);
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SPAWNER) {
 					(*entitiesToDraw)->Draw(spawnerTexture);
