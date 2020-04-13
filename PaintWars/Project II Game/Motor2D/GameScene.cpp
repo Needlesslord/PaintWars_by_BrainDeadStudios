@@ -138,8 +138,17 @@ bool GameScene::Start()
 	restartButton->click_rect = { 859, 634, 74, 73 };
 
 	//HUD - MiniMap
-	miniMapImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 985 , 140 }, { 0 , 0 }, false, true, { 0, 1388, 263, 200 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	
+	miniMapMINI =App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 850 , 150 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_MINI);
+	miniMapMINI->click_rect = { 30, 15, 422,210 };
+	miniMapMINI->hover_rect = { 30, 15, 422,210 };
+
+	miniMapBack = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 0 , 0}, { 0 , 0 }, false, false, { 0, 0, 1345, 672 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_BACK);
+
+	miniMapFULL = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 50 , 75 }, { 0 , 0 }, true,false ,{ 87, 40, 1170,588 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_FULL);
+	miniMapFULL->click_rect = { 87, 40, 1170,588 };
+	miniMapFULL->hover_rect = { 87, 40, 1170,588 };
+
 	//Pause Menu
 	pauseMenuImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 400 , 70 }, { 0 , 0 }, false, false, { 263, 729, 452, 623 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 5);
 	pauseMenuLabel = App->gui->AddElement(GUItype::GUI_LABEL, pauseMenuImage, { 550 , 100 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "PAUSE", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 6);
@@ -433,6 +442,18 @@ bool GameScene::CleanUp()
 
 void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 {
+
+	if (element == miniMapMINI && type == GUI_Event::EVENT_ONCLICK) {
+		miniMapBack->enabled = true;
+		miniMapFULL->enabled = true;
+		miniMapMINI->enabled = false;
+	}
+
+	if (element == miniMapFULL && type == GUI_Event::EVENT_ONCLICK) {
+		miniMapMINI->enabled = true;
+		miniMapBack->enabled = false;
+		miniMapFULL->enabled = false;
+	}
 	if (element == questsOpenButton && type == GUI_Event::EVENT_ONCLICK)
 	{
 		questsImage->rect.h = 535;

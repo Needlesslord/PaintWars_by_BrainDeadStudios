@@ -109,7 +109,20 @@ SDL_Texture* j1GUI::Load_Texture(TEXTURE textureType)
 	case TEXTURE::ATLAS:
 		texture_load = App->tex->Load("textures/UI/UI_atlas.png");
 		break;
+
+	case TEXTURE::MINIMAP_FULL:
+		texture_load = App->tex->Load("textures/UI/Minimap_UI_FULL.png");
+		break;
+
+	case TEXTURE::MINIMAP_MINI:
+		texture_load = App->tex->Load("textures/UI/Minimap_UI_MINI.png");
+		break;
+
+	case TEXTURE::MINIMAP_BACK:
+		texture_load = App->tex->Load("textures/UI/Minimap_UI_BACK.png");
+		break;
 	}
+
 
 	return texture_load;
 }

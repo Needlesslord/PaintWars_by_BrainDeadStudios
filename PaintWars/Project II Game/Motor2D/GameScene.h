@@ -104,8 +104,9 @@ public:
 	bool restartMenu = false;
 
 	//HUD - Mini-map
-	j1Element* miniMapImage = nullptr;
-
+	j1Element* miniMapBack = nullptr;
+	j1Element* miniMapMINI = nullptr;
+	j1Element* miniMapFULL = nullptr;
 	//Pause Menu
 	j1Element* pauseMenuImage = nullptr;
 	j1Element* pauseMenuLabel = nullptr;
