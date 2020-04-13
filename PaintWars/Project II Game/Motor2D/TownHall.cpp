@@ -16,12 +16,12 @@ TownHall::TownHall(iPoint tile, int damage, j1Module* listener, Entity* creator)
 	// Handle data and initialize the TH
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_TOWN_HALL;
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_STATIC_ENTITY;
-	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_VERY_BIG;
+	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_BIG;
 
 	maxLife = 100;
 	currLife = maxLife - damage;
 
-	size = { 100, 100 };
+	size = { 277, 403 };
 
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);

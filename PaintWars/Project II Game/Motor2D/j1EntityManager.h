@@ -115,6 +115,7 @@ private:
 	float currentLifeSum;
 	float maxLifeSum;
 
+	SDL_Texture* debug_tex = nullptr;
 
 };
 
