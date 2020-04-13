@@ -43,18 +43,6 @@
     <ClCompile Include="j1EntityManager.cpp">
       <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="TownHall.cpp">
-      <Filter>Motor  ========\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Painter.cpp">
-      <Filter>Motor  ========\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Warrior.cpp">
-      <Filter>Motor  ========\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Slime.cpp">
-      <Filter>Motor  ========\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="animation.cpp">
       <Filter>Motor  ========\Tools</Filter>
     </ClCompile>
@@ -78,9 +66,6 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Motor  ========\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Spawner.cpp">
-      <Filter>Motor  ========\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Transition.cpp">
       <Filter>Motor  ========\Scenes\Transition</Filter>
@@ -160,8 +145,23 @@
     <ClCompile Include="j1QuestManager.cpp">
       <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Painter.cpp">
+      <Filter>Motor  ========\Entities\Allies\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Slime.cpp">
+      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
+    </ClCompile>
     <ClCompile Include="PaintExtractor.cpp">
-      <Filter>Motor  ========\Entities</Filter>
+      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Spawner.cpp">
+      <Filter>Motor  ========\Entities\Enemies\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Warrior.cpp">
+      <Filter>Motor  ========\Entities\Allies\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="TownHall.cpp">
+      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -231,18 +231,6 @@
     <ClInclude Include="j1EntityManager.h">
       <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="TownHall.h">
-      <Filter>Motor  ========\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Painter.h">
-      <Filter>Motor  ========\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Warrior.h">
-      <Filter>Motor  ========\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Slime.h">
-      <Filter>Motor  ========\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="j1Module.h">
       <Filter>Motor  ========\Core</Filter>
     </ClInclude>
@@ -260,9 +248,6 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Motor  ========\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Spawner.h">
-      <Filter>Motor  ========\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Transition.h">
       <Filter>Motor  ========\Scenes\Transition</Filter>
@@ -330,8 +315,23 @@
     <ClInclude Include="j1QuestManager.h">
       <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="Painter.h">
+      <Filter>Motor  ========\Entities\Allies\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Slime.h">
+      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
+    </ClInclude>
     <ClInclude Include="PaintExtractor.h">
-      <Filter>Motor  ========\Entities</Filter>
+      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Spawner.h">
+      <Filter>Motor  ========\Entities\Enemies\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Warrior.h">
+      <Filter>Motor  ========\Entities\Allies\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="TownHall.h">
+      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -382,6 +382,12 @@
     </Filter>
     <Filter Include="Motor  ========\UI">
       <UniqueIdentifier>{a4c0f4d8-6ace-4eb6-81f5-0798f120d611}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Motor  ========\Entities\Enemies\Buildings">
+      <UniqueIdentifier>{13e5bc83-539a-45b0-8880-e14b5699fde1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Motor  ========\Entities\Enemies\Units">
+      <UniqueIdentifier>{9a2d649c-0075-412e-9804-a9154a0b0958}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

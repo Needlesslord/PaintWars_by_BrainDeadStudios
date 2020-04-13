@@ -11,6 +11,7 @@ public:
 	Painter(iPoint tile, int damage, j1Module* listener, Entity* creator = nullptr);
 	~Painter();
 	void SpawnEntity(iPoint pos) override;
+	void ExtractPaint(float dt) override;
 
 public:
 

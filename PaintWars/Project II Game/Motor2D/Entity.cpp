@@ -315,6 +315,8 @@ void Entity::SetDestination(iPoint des) {
 
 void Entity::SpawnEntity(iPoint pos) {}
 
+void Entity::ExtractPaint(float dt) {}
+
 // -------------------------------------------------------------
 
 // Position and size

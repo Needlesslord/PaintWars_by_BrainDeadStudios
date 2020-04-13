@@ -8,6 +8,7 @@
 
 #define DEFAULT_PATH_LENGTH 50
 #define INVALID_WALK_CODE 255
+#define PAINT_WALK_CODE 100
 
 // ----------------------------------------------------------------------
 // Recommended reading:
@@ -39,8 +40,14 @@ public:
 	// Utility: return true if pos is inside the map boundaries
 	bool CheckBoundaries(const iPoint& pos) const;
 
-	// Utility: returns true is the tile is walkable
+	// Utility: returns true is the tile is walkable			OR PAINT
 	bool IsWalkable(const iPoint& pos) const;
+
+	// Utility: returns true if the tile is paint
+	bool IsPaint(const iPoint& pos) const;
+
+		// Utility: changes the walkability of a tile to paint
+		void ChangeToPaint(const iPoint& pos) const;
 
 	// Utility: return the walkability value of a tile
 	uchar GetTileAt(const iPoint& pos) const;
