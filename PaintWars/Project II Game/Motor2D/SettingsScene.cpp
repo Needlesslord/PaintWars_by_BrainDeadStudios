@@ -36,37 +36,37 @@ bool SettingsScene::Start()
 {
 	bool ret = true;
 
-	musicLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 200, 200 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Music");
+	musicLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 300, 150 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Music");
 
-	vfxLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 200, 300 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "VFX");
+	vfxLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 300, 250 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "VFX");
 
-	fullscreenLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 200, 400 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Fullscreen");
+	fullscreenLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 300, 350 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Fullscreen");
 
-	gpadLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 200, 500 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "GamePad");
+	gpadLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 300, 450 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "GamePad");
 
-	musicScroll = App->gui->AddElement(GUItype::GUI_SCROLLBAR, nullptr, { 500, 200 }, { 20, -3 }, true, true, { 786, 59, 268, 25 }, " ", App->audio, true, false, SCROLL_TYPE::SCROLL_MUSIC, true, TEXTURE::ATLAS);
+	musicScroll = App->gui->AddElement(GUItype::GUI_SCROLLBAR, nullptr, { 600, 150 }, { 20, -3 }, true, true, { 786, 59, 268, 25 }, nullptr, App->audio, true, false, SCROLL_TYPE::SCROLL_MUSIC, true, TEXTURE::ATLAS);
 	musicScroll->Button->rect = { 786, 0, 42, 35 };
 	musicScroll->Button->hover_rect = { 786, 0, 42, 35 };
 	musicScroll->Button->click_rect = { 786, 0, 42, 35 };
 
-	vfxScroll = App->gui->AddElement(GUItype::GUI_SCROLLBAR, nullptr, { 500, 300 }, { 20, -3 }, true, true, { 786, 59, 268, 25 }, " ", App->audio, true, false, SCROLL_TYPE::SCROLL_MUSIC, true, TEXTURE::ATLAS);
+	vfxScroll = App->gui->AddElement(GUItype::GUI_SCROLLBAR, nullptr, { 600, 250 }, { 20, -3 }, true, true, { 786, 59, 268, 25 }, nullptr, App->audio, true, false, SCROLL_TYPE::SCROLL_MUSIC, true, TEXTURE::ATLAS);
 	vfxScroll->Button->rect = { 786, 0, 42, 35 };
 	vfxScroll->Button->hover_rect = { 786, 0, 42, 35 };
 	vfxScroll->Button->click_rect = { 786, 0, 42, 35 };
 
-	fullscreenButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 520, 400 }, { 0,0 }, true, true, { 0, 1031, 182, 58 }, " ", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	fullscreenButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 620, 350 }, { 0,0 }, true, true, { 0, 1031, 182, 58 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	fullscreenButton->hover_rect = { 0, 1031, 182, 58 };
 	fullscreenButton->click_rect = { 0, 1031, 182, 58 };
 
-	gpadButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 520, 500 }, { 0,0 }, true, true, { 0, 1031, 182, 58 }, " ", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	gpadButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 620, 450 }, { 0,0 }, true, true, { 0, 1031, 182, 58 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	gpadButton->hover_rect = { 0, 1031, 182, 58 };
 	gpadButton->click_rect = { 0, 1031, 182, 58 };
 
-	resetButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 400, 600 }, { 30,15 }, true, true, { 0, 658, 207, 71 }, "Reset", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	resetButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 500, 550 }, { 30,15 }, true, true, { 0, 658, 207, 71 }, "Reset", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	resetButton->hover_rect = { 263, 658, 207, 71 };
 	resetButton->click_rect = { 525, 658, 207, 71 };
 
-	backButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 800, 680 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "BACK", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	backButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 900, 630 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "BACK", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	backButton->hover_rect = { 263, 658, 207, 71 };
 	backButton->click_rect = { 525, 658, 207, 71 };
 

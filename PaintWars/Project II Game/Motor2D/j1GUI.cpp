@@ -28,6 +28,8 @@ bool j1GUI::Awake(pugi::xml_node& config)
 bool j1GUI::Start()
 {
 
+
+
 	return true;
 }
 
@@ -103,9 +105,10 @@ SDL_Texture* j1GUI::Load_Texture(TEXTURE textureType)
 	case TEXTURE::OPTIONS:
 		texture_load = App->tex->Load("textures/UI/UI_Test.png");
 		break;
-
+		
 	case TEXTURE::ATLAS:
 		texture_load = App->tex->Load("textures/UI/UI_atlas.png");
+		break;
 	}
 
 	return texture_load;

@@ -36,23 +36,23 @@ bool MenuScene::Start()
 {
 	bool ret = true;
 
-	playButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 375, 130 }, { 70,25}, true, true, { 0, 0, 263, 91 }, "PLAY", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	playButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 475, 100 }, { 70,25}, true, true, { 0, 0, 263, 91 }, "PLAY", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	playButton->hover_rect = { 263, 0, 263, 91 };
 	playButton->click_rect = { 526, 0, 263, 91 };
 
-	settingsButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 390, 260 }, { 3,20 }, true, true, { 0, 334, 234, 79 }, "Settings", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	settingsButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 490, 230 }, { 3,20 }, true, true, { 0, 334, 234, 79 }, "Settings", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	settingsButton->hover_rect = { 263, 334, 234, 79 };
 	settingsButton->click_rect = { 525, 334, 234, 79 };
 
-	scoreButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 390, 370 }, { 50,20 }, true, true, { 0, 334, 234, 79 }, "Score", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	scoreButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 490, 340 }, { 50,20 }, true, true, { 0, 334, 234, 79 }, "Score", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	scoreButton->hover_rect = { 263, 334, 234, 79 };
 	scoreButton->click_rect = { 525, 334, 234, 79 };
 
-	creditsButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 390, 480 }, { 25,20 }, true, true, { 0, 334, 234, 79 }, "Credits", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	creditsButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 490, 450 }, { 25,20 }, true, true, { 0, 334, 234, 79 }, "Credits", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	creditsButton->hover_rect = { 263, 334, 234, 79 };
 	creditsButton->click_rect = { 525, 334, 234, 79 };
 
-	exitButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 405, 600 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "Exit", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	exitButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 505, 570 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "Exit", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	exitButton->hover_rect = { 263, 658, 207, 71 };
 	exitButton->click_rect = { 525, 658, 207, 71 };
 

@@ -35,23 +35,23 @@ bool StartScene::Start()
 {
 	bool ret = true;
 
-	continueButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 375, 230 }, { 30,25 }, true, true, { 0, 0, 263, 91 }, "CONTINUE", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	continueButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 475, 190 }, { 30,25 }, true, true, { 0, 0, 263, 91 }, "CONTINUE", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	continueButton->hover_rect = { 263, 0, 263, 91 };
 	continueButton->click_rect = { 526, 0, 263, 91 };
 
-	forestButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 385, 360 }, { 30,20 }, true, true, { 0, 334, 234, 79 }, "Forest", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	forestButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 485, 320 }, { 30,20 }, true, true, { 0, 334, 234, 79 }, "Forest", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	forestButton->hover_rect = { 263, 334, 234, 79 };
 	forestButton->click_rect = { 525, 334, 234, 79 };
 
-	snowButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 385, 470 }, { 60,20 }, true, true, { 0, 334, 234, 79 }, "Snow", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	snowButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 485, 430 }, { 60,20 }, true, true, { 0, 334, 234, 79 }, "Snow", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	snowButton->hover_rect = { 263, 334, 234, 79 };
 	snowButton->click_rect = { 525, 334, 234, 79 };
 
-	volcanoButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 385, 580 }, { 20,20 }, true, true, { 0, 334, 234, 79 }, "Volcano", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	volcanoButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 485, 540 }, { 20,20 }, true, true, { 0, 334, 234, 79 }, "Volcano", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	volcanoButton->hover_rect = { 263, 334, 234, 79 };
 	volcanoButton->click_rect = { 525, 334, 234, 79 };
 
-	backButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 800, 680 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "BACK", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	backButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 900, 640 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "BACK", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	backButton->hover_rect = { 263, 658, 207, 71 };
 	backButton->click_rect = { 525, 658, 207, 71 };
 

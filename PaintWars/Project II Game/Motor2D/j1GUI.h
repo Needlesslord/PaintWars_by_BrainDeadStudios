@@ -40,6 +40,7 @@ public:
 public:
 	//TEXTURES FOR UI
 	SDL_Texture* texture_load = nullptr;
+	SDL_Texture* atlas = nullptr;
 };
 
 #endif //  __j1GUI_H__
