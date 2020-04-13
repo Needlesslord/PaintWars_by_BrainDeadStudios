@@ -61,7 +61,11 @@ public:
 	Resource paintCount;
 	Resource woodCount;
 	Resource housingSpace;
+	int camera_speed;
+	int win_height;
+	int win_width;
 
+	int camera_offset;
 private:
 
 	SDL_Rect selector;
@@ -76,10 +80,7 @@ private:
 	pugi::xml_node	node;
 	std::string file;
 
-	int win_height;
-	int win_width;
-	int camera_speed;
-	int camera_offset;
+
 };
 
 #endif // __j1PLAYER_H__

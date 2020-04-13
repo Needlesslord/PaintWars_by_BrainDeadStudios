@@ -77,6 +77,9 @@ bool GameScene::Start()
 	//      UI      //
 	//////////////////
 
+	UI_INGAME.Shop_Button = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 0,0 }, { 0,0 }, true, true, { 785, 243, 74, 73 }, "", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+
+	
 	//HUD - Bar
 	hudBarImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 984, 35 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 
@@ -236,6 +239,11 @@ bool GameScene::PreUpdate()
 // Called each loop iteration
 bool GameScene::Update(float dt)
 {
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN) {
+		App->render->BlitAll();
+	}
+	/*UI_INGAME.Shop_Button->map_position.x = UI_INGAME.Shop_Button->init_map_position.x + App->render->camera.x;
+	UI_INGAME.Shop_Button->map_position.y = UI_INGAME.Shop_Button->init_map_position.y + App->render->camera.y;*/
 	bool ret = true;
 	
 	CameraDebugMovement(dt);
