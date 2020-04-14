@@ -143,11 +143,14 @@ bool GameScene::Start()
 	miniMapMINI->click_rect = { 30, 15, 422,210 };
 	miniMapMINI->hover_rect = { 30, 15, 422,210 };
 
+	miniMapCamera=App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, {1025, 150 }, { 0 , 0 }, false, true, { 0, 0, 70, 36 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_CAMERA);
+
 	miniMapBack = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 0 , 0}, { 0 , 0 }, false, false, { 0, 0, 1345, 672 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_BACK);
 
 	miniMapFULL = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 50 , 75 }, { 0 , 0 }, true,false ,{ 87, 40, 1170,588 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_FULL);
 	miniMapFULL->click_rect = { 87, 40, 1170,588 };
 	miniMapFULL->hover_rect = { 87, 40, 1170,588 };
+
 
 	//Pause Menu
 	pauseMenuImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 400 , 70 }, { 0 , 0 }, false, false, { 263, 729, 452, 623 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 5);
@@ -379,6 +382,9 @@ bool GameScene::PostUpdate()
 {
 	bool ret = true;
 	
+	miniMapCamera->map_position.x = miniMapCamera->init_map_position.x+App->render->camera.x*-0.05;
+	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*-0.05;
+
 	//if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN) {
 	//	Change_Map = true;
 	//	Load_Snow_Map = true;
@@ -447,12 +453,14 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 		miniMapBack->enabled = true;
 		miniMapFULL->enabled = true;
 		miniMapMINI->enabled = false;
+		miniMapCamera->enabled = false;
 	}
 
 	if (element == miniMapFULL && type == GUI_Event::EVENT_ONCLICK) {
 		miniMapMINI->enabled = true;
 		miniMapBack->enabled = false;
 		miniMapFULL->enabled = false;
+		miniMapCamera->enabled = true;
 	}
 	if (element == questsOpenButton && type == GUI_Event::EVENT_ONCLICK)
 	{
@@ -695,6 +703,13 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 		shopLabel->enabled = !shopLabel->enabled;
 	}
 
+}
+
+void GameScene::ManageMinimap()
+{
+	float CameraSpeed_Minimap = -0.05;
+	miniMapCamera->map_position.x = miniMapCamera->init_map_position.x + App->render->camera.x*CameraSpeed_Minimap;
+	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*CameraSpeed_Minimap;
 }
 
 void GameScene::InitScene()

@@ -482,4 +482,14 @@ void j1App::Debug_Actions()
 			PAUSE_ACTIVE = false;
 		}
 	}
+
+
+	if (App->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN) {
+		App->render->camera.x = 0;
+		App->render->camera.y = 0;
+
+		//App->scenes->SwitchScene(SCENES::GAME_SCENE);
+	}
+
+
 }
