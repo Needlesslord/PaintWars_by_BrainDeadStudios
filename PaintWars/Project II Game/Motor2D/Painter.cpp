@@ -39,8 +39,6 @@ Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 
 	CreateEntityCollider(pos);
 
-	isActive = true; //FOR NOW
-
 	isBuildingSomething = false;
 
 	for (std::vector<Animation>::iterator i = App->map->allAnimations.begin(); i != App->map->allAnimations.end(); i++)
@@ -83,3 +81,4 @@ void Painter::ExtractPaint(float dt) {
 		App->player->paintCount.count += extractionRate * dt;
 	}
 }
+

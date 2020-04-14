@@ -79,6 +79,13 @@ bool GameScene::Start()
 	Change_Map = true;
 	Map_Manager();
 
+	int w, h;
+	uchar* data = NULL;
+	if (App->map->CreateWalkabilityMap(w, h, &data))
+	{
+		App->pathfinding->SetMap(w, h, data);						// Sets a new walkability map with the map passed by CreateWalkabilityMap().
+
+	}
 
 	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{  15,  4 }, App->entities, nullptr, 10, true);
 	//App->entities->AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR,	{  1,  3 }, App->entities, nullptr,  0, true);
@@ -88,16 +95,9 @@ bool GameScene::Start()
 	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  5,  7 }, App->entities, nullptr,  0, true);
 	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  5, 10 }, App->entities, nullptr,  0, true);
 
-	App->entities->AddEntity(ENTITY_TYPE_SLIME,				{ 10, 10 }, App->entities, nullptr, true);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 14,  8 }, App->entities, nullptr, true);
+	App->entities->AddEntity(ENTITY_TYPE_SLIME,				{ 10, 10 }, App->entities, nullptr,  0, true);
+	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 12, 14 }, App->entities, nullptr,  0, true);
 	
-
-	int w, h;
-	uchar* data = NULL;
-	if (App->map->CreateWalkabilityMap(w, h, &data))
-	{
-		App->pathfinding->SetMap(w, h, data);						// Sets a new walkability map with the map passed by CreateWalkabilityMap().
-	}
 
 	App->pathfinding->ChangeToPaint({ 7, 0 });
 	App->pathfinding->ChangeToPaint({ 7, 1 });

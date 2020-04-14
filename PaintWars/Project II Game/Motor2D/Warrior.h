@@ -10,6 +10,7 @@ public:
 
 	Warrior(iPoint tile, int damage, j1Module* listener, Entity* creator = nullptr);
 	~Warrior();
+	void Attack(Entity* target, float dt); 
 
 private:
 

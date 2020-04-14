@@ -17,12 +17,15 @@ Entity::Entity(iPoint tile, int damage, j1Module* listeners, Entity* creator) : 
 		this->currLife = this->maxLife;
 
 	isOnTheMove = false;
-	isActive = false;
+	isAlive = true;
 	spawningProgress = 0;
 
 }
 
-Entity::~Entity() {}
+Entity::~Entity() {
+	if (entityCollider != nullptr)
+		entityCollider->to_delete = true;
+}
 
 void Entity::Draw(SDL_Texture* sprites) {
 	if (sprites != nullptr)
@@ -46,12 +49,29 @@ void Entity::CalculateMovementLogic(int p) {
 	map_coordinates = currentTile;
 	// If he's at the destination he doesn't have to move so we exit
 	if (destination == map_coordinates) {
+
 		isOnTheMove = false;
 		return;
 	}
+
+	if (App->pathfinding->IsSpawner(destination)) {
+
+		for (int i = 0; i < App->pathfinding->FindClosestDestination(destination).size(); i++) {
+
+			if (App->pathfinding->IsWalkable(App->pathfinding->FindClosestDestination(destination).at(i))) {
+
+				target = destination;
+				destination = App->pathfinding->FindClosestDestination(destination).at(0);
+				break;
+			}
+		}
+	}
+
 	int map;
 	map = App->pathfinding->CreatePath(map_coordinates, destination);
 	currentPath = *App->pathfinding->GetLastPath();
+
+	
 
 	if (map != -1) {
 
@@ -317,6 +337,8 @@ void Entity::SpawnEntity(iPoint pos) {}
 
 void Entity::ExtractPaint(float dt) {}
 
+void Entity::Attack(Entity* target, float dt) {}
+
 // -------------------------------------------------------------
 
 // Position and size
@@ -361,14 +383,14 @@ float Entity::GetCurrLife() const
 	return currLife;
 }
 
-void Entity::ApplyDamage(int damage)
+void Entity::ApplyDamage(float damage)
 {
 	currLife -= damage;
 	if (currLife < 0)
 		currLife = 0;
 }
 
-void Entity::ApplyHealth(int health) 
+void Entity::ApplyHealth(float health) 
 {
 	if (currLife + health >= maxLife)
 		currLife = maxLife;

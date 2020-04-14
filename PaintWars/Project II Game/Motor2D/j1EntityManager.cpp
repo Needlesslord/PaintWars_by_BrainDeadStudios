@@ -64,9 +64,11 @@ bool j1EntityManager::Start() {
 }
 
 bool j1EntityManager::PreUpdate() {
+
 	bool ret = true;
 	if (App->PAUSE_ACTIVE == false) {}
 
+	// Update the currentTile to the actual pos
 	list<Entity*>::iterator updateCurrentTile = activeUnits.begin();
 	while (updateCurrentTile != activeUnits.end()) {
 
@@ -101,7 +103,7 @@ bool j1EntityManager::Update(float dt) {
 
 					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos);
 					(*checkForSpawningEntities)->spawnedBy->isSpawningAUnit = false;
-					(*checkForSpawningEntities)->isActive = true;
+					(*checkForSpawningEntities)->isAlive = true;
 
 					spawningEntities.erase(checkForSpawningEntities);
 				}
@@ -122,7 +124,7 @@ bool j1EntityManager::Update(float dt) {
 
 					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos);
 					(*checkForSpawningEntities)->spawnedBy->isBuildingSomething = false;
-					(*checkForSpawningEntities)->isActive = true;
+					(*checkForSpawningEntities)->isAlive = true;
 
 					spawningEntities.erase(checkForSpawningEntities);
 				}
@@ -203,7 +205,7 @@ bool j1EntityManager::Update(float dt) {
 				App->render->AddBlitEvent(1, debug_tex, mapWorldCoordinates.x + App->map->data.tile_width / 2,	mapWorldCoordinates.y - App->map->data.tile_height / 2,	{ 0,0,150,75 });
 				App->render->AddBlitEvent(1, debug_tex, mapWorldCoordinates.x,									mapWorldCoordinates.y - App->map->data.tile_height,		{ 0,0,150,75 });
 
-				App->render->AddBlitEvent(1, paintExtractorTexture, mapWorldCoordinates.x-125 + App->map->data.tile_width / 2, mapWorldCoordinates.y-250+ App->map->data.tile_height / 2, { 0,0,250,250 });
+				App->render->AddBlitEvent(1, paintExtractorTexture, mapWorldCoordinates.x - 125 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 250 + App->map->data.tile_height / 2, { 0,0,250,250 });
 
 				// If the Left click was pressed we'll check if it can in fact be built there
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
@@ -270,6 +272,60 @@ bool j1EntityManager::Update(float dt) {
 
 
 
+		// Attack Mode
+		list<Entity*>::iterator unitsToFight = activeUnits.begin();
+		while (unitsToFight != activeUnits.end()) {
+
+			if ((*unitsToFight)->isEntityFromPlayer) {
+
+				if ((*unitsToFight)->currentTile == (*unitsToFight)->destination) {
+					
+					int x_distance, y_distance;
+
+					x_distance = (*unitsToFight)->currentTile.x - (*unitsToFight)->target.x;
+					y_distance = (*unitsToFight)->currentTile.y - (*unitsToFight)->target.y;
+
+					if (x_distance < 0)
+						x_distance *= (-1);
+
+					if (y_distance < 0)
+						y_distance *= (-1);
+
+					if (x_distance <= 1 && y_distance <= 1) {
+						
+						// If we should attack, we check to what
+						list<Entity*>::iterator checkWhichSpawner = activeBuildings.begin();
+						while (checkWhichSpawner != activeBuildings.end()) {
+
+							if ((*checkWhichSpawner)->entityType == ENTITY_TYPE_SPAWNER) {
+
+								fPoint targetWorldPos = App->map->MapToWorld((*unitsToFight)->target.x, (*unitsToFight)->target.y);
+								//targetWorldPos.x -= App->map->data.tile_width;
+								//targetWorldPos.y -= App->map->data.tile_height;
+
+								fPoint spawnerCurrentTileWorld = App->map->MapToWorld((*checkWhichSpawner)->currentTile.x - 1, (*checkWhichSpawner)->currentTile.y - 1);
+
+								if (targetWorldPos.x < spawnerCurrentTileWorld.x + (*checkWhichSpawner)->GetSize().x &&
+									targetWorldPos.x + App->map->data.tile_width > spawnerCurrentTileWorld.x &&
+									targetWorldPos.y < spawnerCurrentTileWorld.y + (*checkWhichSpawner)->GetSize().y &&
+									App->map->data.tile_height + targetWorldPos.y > spawnerCurrentTileWorld.y) {
+
+									(*unitsToFight)->Attack((*checkWhichSpawner), dt);
+								}
+							}
+							checkWhichSpawner++;
+						}
+
+						
+					}
+				}
+			}
+
+			unitsToFight++;
+		}
+
+
+
 
 		// Change destination for units selected on right-click
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && !unitsSelected.empty()) {
@@ -279,7 +335,7 @@ bool j1EntityManager::Update(float dt) {
 
 			while (unitsToRedirect != unitsSelected.end()) {
 
-				if ((*unitsToRedirect)->isActive) {
+				if ((*unitsToRedirect)->isAlive) {
 
 					fPoint xy = App->input->GetMouseWorldPosition();
 					iPoint cameraW = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
@@ -323,7 +379,7 @@ bool j1EntityManager::Update(float dt) {
 		list<Entity*>::iterator entitiesToDraw = activeEntities.begin();
 		while (entitiesToDraw != activeEntities.end()) {
 
-			if ((*entitiesToDraw)->isActive) {
+			if ((*entitiesToDraw)->isAlive) {
 
 				if ((*entitiesToDraw)->entityType == ENTITY_TYPE_TOWN_HALL) {
 					(*entitiesToDraw)->Draw(townHallTexture);
@@ -481,30 +537,80 @@ bool j1EntityManager::PostUpdate() {
 			UnselectAllEntities();
 	}
 
+
+	list<Entity*>::iterator checkForDeadUnits = activeUnits.begin();
+	while (checkForDeadUnits != activeUnits.end()) {
+
+		if ((*checkForDeadUnits)->GetCurrLife() <= 0) {
+
+			activeUnits.erase(checkForDeadUnits);
+		}
+		checkForDeadUnits++;
+	}
+
+	list<Entity*>::iterator checkForDeadBuildings = activeBuildings.begin();
+	while (checkForDeadBuildings != activeBuildings.end()) {
+
+		if ((*checkForDeadBuildings)->GetCurrLife() <= 0) {
+
+			activeBuildings.erase(checkForDeadBuildings);
+		}
+		checkForDeadBuildings++;
+	}
+	
+	list<Entity*>::iterator checkForDeadEntities = activeEntities.begin();
+	while (checkForDeadEntities != activeEntities.end()) {
+
+		if ((*checkForDeadEntities)->GetCurrLife() <= 0) {
+
+			(*checkForDeadEntities)->isAlive = false;
+			activeEntities.erase(checkForDeadEntities);	
+
+			(*checkForDeadEntities)->~Entity();
+		}
+		checkForDeadEntities++;
+	}
+
 	return ret;
 }
 
 bool j1EntityManager::CleanUp() {
 	bool ret = true;
 
-	if (townHallTexture != nullptr)
+	//if (townHallTexture != nullptr)
 		App->tex->UnLoad(townHallTexture);
 
-	if (paintExtractorTexture != nullptr)
+	//if (paintExtractorTexture != nullptr)
 		App->tex->UnLoad(paintExtractorTexture);
 
-	if (painterTexture != nullptr)
+	//if (painterTexture != nullptr)
 		App->tex->UnLoad(painterTexture);
 
-	if (warrior_Texture != nullptr)
+	//if (warrior_Texture != nullptr)
 		App->tex->UnLoad(warrior_Texture);
 
-	if (slimeTexture != nullptr)
+	//if (slimeTexture != nullptr)
 		App->tex->UnLoad(slimeTexture);
 
 	App->tex->UnLoad(fullLifeTexture);
 	App->tex->UnLoad(zeroLifeTexture);
 
+	list<Entity*>::iterator destroyEntities = activeEntities.begin();
+	while (destroyEntities != activeEntities.end()) {
+
+		(*destroyEntities)->entityCollider->to_delete = true;
+		delete (*destroyEntities);
+
+		destroyEntities++;
+	}
+
+	activeEntities.clear();
+	activeBuildings.clear();
+	activeUnits.clear();
+	entitiesSelected.clear();
+	unitsSelected.clear();
+	buildingsSelected.clear();
+	
 	return ret;
 }
 
@@ -534,7 +640,7 @@ void j1EntityManager::UnselectAllEntities() {
 
 }
 
-Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module* listener, Entity* creator, int damage,  bool spawnAutomatically) {
+Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module* listener, Entity* creator, float damage,  bool spawnAutomatically) {
 
 		// Allies
 	/// Buildings
@@ -545,12 +651,18 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 
 			activeEntities.push_back((Entity*)townHall);
 			activeBuildings.push_back((Entity*)townHall);
-			townHall->isActive = true;
+			townHall->isAlive = true;
 			townHall->CreateEntityCollider(townHall->pos);
 		}
 
 		else
 			spawningEntities.push_back((Entity*)townHall);
+
+		// Change the walkability to non walkable
+		App->pathfinding->ChangeWalkability(tile, false, townHall->entitySize);
+		//App->pathfinding->ChangeWalkability({ tile.x - 1, tile.y - 1 }, false);
+		//App->pathfinding->ChangeWalkability({ tile.x - 1, tile.y }, false);
+		//App->pathfinding->ChangeWalkability({ tile.x, tile.y - 1 }, false);
 
 		return (Entity*)townHall;
 	}
@@ -562,7 +674,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 
 			activeEntities.push_back((Entity*)paintExtractor);
 			activeBuildings.push_back((Entity*)paintExtractor);
-			paintExtractor->isActive = true;
+			paintExtractor->isAlive = true;
 			paintExtractor->CreateEntityCollider(paintExtractor->pos);
 		}
 
@@ -570,8 +682,10 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			spawningEntities.push_back((Entity*)paintExtractor);
 
 		// Change the walkability to non walkable
-		App->pathfinding->ChangeWalkability(tile, false);
-		App->pathfinding->ChangeWalkability({ tile.x - 1,tile.y - 1 }, false);
+		App->pathfinding->ChangeWalkability(tile, false, paintExtractor->entitySize);
+		//App->pathfinding->ChangeWalkability({ tile.x - 1, tile.y - 1 }, false);
+		//App->pathfinding->ChangeWalkability({ tile.x - 1, tile.y }, false);
+		//App->pathfinding->ChangeWalkability({ tile.x, tile.y - 1 }, false);
 
 		return (Entity*)paintExtractor;
 	}
@@ -592,7 +706,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 
 			activeEntities.push_back((Entity*)warrior);
 			activeUnits.push_back((Entity*)warrior);
-			warrior->isActive = true;
+			warrior->isAlive = true;
 			warrior->CreateEntityCollider(warrior->pos);
 		}
 
@@ -608,6 +722,9 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		Spawner* spawner = new Spawner(tile, damage, this);
 		activeEntities.push_back((Entity*)spawner);
 		activeBuildings.push_back((Entity*)spawner);
+
+		// Change the walkability to non walkable
+		App->pathfinding->ChangeToSpawner(tile);
 
 		return (Entity*)spawner;
 	}
