@@ -3,6 +3,8 @@
 #include "MenuScene.h"
 #include "SettingsScene.h"
 #include "StartScene.h"
+#include "LoseScene.h"
+#include "WinScene.h"
 #include "j1Render.h"
 #include "j1Input.h"
 #include "p2Log.h"
@@ -229,13 +231,13 @@ Scene* j1SceneManager::CreateScene(SCENES scene_name)
 
 	case SCENES::LOSE_SCENE:
 		
-		item = new StartScene();
+		item = new LoseScene();
 			
 		break;
 
 	case SCENES::WIN_SCENE:
 		
-		item = new StartScene();
+		item = new WinScene();
 			
 		break;
 	}

@@ -499,7 +499,7 @@ void j1App::Debug_Actions()
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN) {
-		App->transition_manager->CreateFadeToColour(SCENES::WIN_SCENE);
+		App->transition_manager->CreateSlide(SCENES::WIN_SCENE, 1.0f, true);
 	}
 	
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {

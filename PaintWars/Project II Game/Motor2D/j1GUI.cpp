@@ -133,6 +133,10 @@ SDL_Texture* j1GUI::Load_Texture(TEXTURE textureType)
 	case TEXTURE::WIN_SCREEN:
 		texture_load = App->tex->Load("textures/UI/Win_Screen.png");
 		break;
+
+	case TEXTURE::CONTINUE_LETTERS:
+		texture_load = App->tex->Load("textures/UI/Continue.png");
+		break;
 	}
 
 

@@ -38,10 +38,16 @@ bool LoseScene::Start()
 {
 	bool ret = true;
 
-	Lose_Scene_UI = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 0 , 0 }, { 0 , 0 }, false, true, { 0, 0, 1345, 672 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::LOSE_SCREEN);
+	Lose_Scene_UI = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 0 , 0 }, { 0 , 0 }, true, true, { 0, 0, 1278, 719}, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::LOSE_SCREEN);
+	
+	TryAgain = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 275, 600 }, { 30,25 }, true, true, { 285, 575,712 ,62 },nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::CONTINUE_LETTERS);
+	TryAgain->hover_rect = { 285, 97,712 ,62 };
+	TryAgain->click_rect = { 285, 97,712 ,62 };
+
 
 	if (App->audio->PlayingLoseMusic != true) {
 		Mix_HaltMusic();
+		App->audio->PlayingMenuMusic = false;
 		App->audio->PlayMusic("audio/music/LoseSceneMusic.ogg");
 		App->audio->PlayingLoseMusic = true;
 	}
@@ -134,7 +140,16 @@ bool LoseScene::CleanUp()
 void LoseScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 {
 
-	
+	if (element == TryAgain && type == GUI_Event::EVENT_ONCLICK)
+	{
+		Mix_HaltMusic();
+		if (App->audio->PlayingMenuMusic != true) {
+			App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
+			App->audio->PlayingMenuMusic = true;
+		}
+		App->audio->PlayingLoseMusic = false;
+		App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
+	}
 }
 
 
@@ -220,3 +235,4 @@ void LoseScene::ExecuteTransition()
 		//	}
 	}
 }
+

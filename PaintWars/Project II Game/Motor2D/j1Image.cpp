@@ -35,7 +35,11 @@ bool j1Image::Start()
 	if (textureType == TEXTURE::MINIMAP_CAMERA)
 		texture = App->gui->Load_Texture(TEXTURE::MINIMAP_CAMERA);
 
-	
+	if (textureType == TEXTURE::LOSE_SCREEN)
+		texture = App->gui->Load_Texture(TEXTURE::LOSE_SCREEN);
+
+	if (textureType == TEXTURE::WIN_SCREEN)
+		texture = App->gui->Load_Texture(TEXTURE::WIN_SCREEN);
 
 	
 
@@ -52,7 +56,10 @@ bool j1Image::Update(float dt) {
 
 
 	if (enabled) {
-		if (textureType == TEXTURE::MAIN_IMAGE || textureType == TEXTURE::ATLAS||textureType==TEXTURE::MINIMAP_BACK||textureType==TEXTURE::MINIMAP_CAMERA)
+		if (textureType == TEXTURE::MAIN_IMAGE || textureType == TEXTURE::ATLAS||textureType==TEXTURE::MINIMAP_BACK||textureType==TEXTURE::MINIMAP_CAMERA||
+			textureType==TEXTURE::LOSE_SCREEN || textureType == TEXTURE::WIN_SCREEN)
+
+
 		App->render->AddBlitEventforUI(2, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false,true, 0, 0, 0, 0, true);
 		else
 		App->render->AddBlitEventforUI(3, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
