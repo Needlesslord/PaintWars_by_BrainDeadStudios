@@ -33,7 +33,7 @@ bool j1Window::Awake(pugi::xml_node& config)
 	{
 		//Create window
 		Uint32 flags = SDL_WINDOW_SHOWN;
-		bool fullscreen = config.child("fullscreen").attribute("value").as_bool(false);
+	    fullscreen = config.child("fullscreen").attribute("value").as_bool(false);
 		bool borderless = config.child("borderless").attribute("value").as_bool(false);
 		bool resizable = config.child("resizable").attribute("value").as_bool(false);
 		bool fullscreen_window = config.child("fullscreen_window").attribute("value").as_bool(false);
@@ -118,4 +118,21 @@ void j1Window::GetWindowRect(SDL_Rect & rect) const
 float j1Window::GetScale() const
 {
 	return scale;
+}
+
+
+void j1Window::Fullscreen_Swap()
+{
+	if (fullscreen == false) {
+		Uint32 flags = SDL_WINDOW_SHOWN;
+		flags |= SDL_WINDOW_FULLSCREEN;
+		SDL_SetWindowFullscreen(window, flags);
+		fullscreen = true;
+	}
+	else {
+		SDL_SetWindowFullscreen(window, 0);
+		fullscreen = false;
+	}
+
+
 }

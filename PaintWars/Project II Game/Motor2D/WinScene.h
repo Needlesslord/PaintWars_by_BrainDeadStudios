@@ -1,5 +1,5 @@
-#ifndef __MENUSCENE_H__
-#define __MENUSCENE_H__
+#ifndef __WINSCENE_H__
+#define __WINSCENE_H__
 
 #include "j1Module.h"
 #include "Scene.h"
@@ -26,16 +26,20 @@ public:
 	//void DrawScene();								// Method that will draw all scene elements on screen.
 	//SDL_Texture* SceneToTexture();				// Method that will be used to get a texture from the current screen.
 
+	void GUI_Event_Manager(GUI_Event type, j1Element* element);
+
 	void ExecuteTransition();						// Method that will trigger a new transition depending on the input received.
 
 public:
 
-	j1Element* mainMenuButton = nullptr;
-	j1Element* newGameButton = nullptr;
 	j1Element* continueButton = nullptr;
-	j1Element* settingsButton = nullptr;
-	j1Element* exitButton = nullptr;
+	j1Element* forestButton = nullptr;
+	j1Element* snowButton = nullptr;
+	j1Element* volcanoButton = nullptr;
+	j1Element* backButton = nullptr;
+	j1Element* Win_Scene_UI = nullptr;
+	j1Element* ReturnVictorious = nullptr;
 
 };
 
-#endif // __FIRSTSCENE_H__
+#endif 

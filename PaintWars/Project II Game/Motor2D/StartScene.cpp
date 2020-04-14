@@ -9,6 +9,7 @@
 #include "j1SceneManager.h"
 #include "StartScene.h"
 #include "TransitionManager.h"
+#include "j1Audio.h"
 
 StartScene::StartScene() : Scene(SCENES::START_SCENE)
 {
@@ -54,6 +55,11 @@ bool StartScene::Start()
 	backButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 900, 640 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "BACK", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	backButton->hover_rect = { 263, 658, 207, 71 };
 	backButton->click_rect = { 525, 658, 207, 71 };
+
+	if (App->audio->PlayingMenuMusic != true) {
+		App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
+		App->audio->PlayingMenuMusic = true;
+	}
 
 	return ret;
 }

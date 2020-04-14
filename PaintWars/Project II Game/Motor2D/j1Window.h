@@ -32,6 +32,8 @@ public:
 	// Retrieve window scale
 	float GetScale() const;
 
+	void Fullscreen_Swap();
+
 public:
 	//The window we'll be rendering to
 	SDL_Window* window;
@@ -41,6 +43,7 @@ public:
 	float		scale;
 	int		width;
 	int		height;
+	bool fullscreen;
 private:
 	std::string	title;
 	

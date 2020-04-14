@@ -14,6 +14,7 @@
 #include "j1Input.h"
 #include "j1Player.h"
 #include "j1Window.h"
+#include "TransitionManager.h"
 
 #include "Entity.h"
 
@@ -415,34 +416,34 @@ bool j1EntityManager::PostUpdate() {
 
 	bool ret = true;
 
+	
+	//// WIN CONDITION   
+	//bool anySpawnerActive = false;
+	//list<Entity*>::const_iterator checkForSpawners = activeBuildings.begin();
+	//while (checkForSpawners != activeBuildings.end()) {
 
-	// WIN CONDITION
-	bool anySpawnerActive = false;
-	list<Entity*>::const_iterator checkForSpawners = activeBuildings.begin();
-	while (checkForSpawners != activeBuildings.end()) {
+	//	if ((*checkForSpawners)->entityType == ENTITY_TYPE_SPAWNER) {
+	//		anySpawnerActive = true;
+	//		break;
+	//	}
+	//	checkForSpawners++;
+	//}
+	//if (!anySpawnerActive)
+	//	TriggerEndGame(true);
 
-		if ((*checkForSpawners)->entityType == ENTITY_TYPE_SPAWNER) {
-			anySpawnerActive = true;
-			break;
-		}
-		checkForSpawners++;
-	}
-	if (!anySpawnerActive)
-		TriggerEndGame(true);
+	//// LOSE CONDITION
+	//bool anyTownhallActive = false;
+	//list<Entity*>::const_iterator checkForTownhalls = activeBuildings.begin();
+	//while (checkForTownhalls != activeBuildings.end()) {
 
-	// LOSE CONDITION
-	bool anyTownhallActive = false;
-	list<Entity*>::const_iterator checkForTownhalls = activeBuildings.begin();
-	while (checkForTownhalls != activeBuildings.end()) {
-
-		if ((*checkForTownhalls)->entityType == ENTITY_TYPE_TOWN_HALL) {
-			anyTownhallActive = true;
-			break;
-		}
-		checkForTownhalls++;
-	}
-	if (!anyTownhallActive)
-		TriggerEndGame(false);
+	//	if ((*checkForTownhalls)->entityType == ENTITY_TYPE_TOWN_HALL) {
+	//		anyTownhallActive = true;
+	//		break;
+	//	}
+	//	checkForTownhalls++;
+	//}
+	//if (!anyTownhallActive)
+	//	TriggerEndGame(false);
 
 
 
@@ -791,5 +792,15 @@ void j1EntityManager::SelectGroupEntities(SDL_Rect rect) {
 }
 
 void j1EntityManager::TriggerEndGame(bool isVictory) {
+
+
+	if (isVictory == false) {
+
+		App->transition_manager->CreateExpandingBars(SCENES::LOSE_SCENE, 0.5f, true);
+	}
+
+	else if(isVictory==true) {
+	   App->transition_manager->CreateExpandingBars(SCENES::WIN_SCENE, 0.5f, true);  //DOESNT WORK YET BECAUSE SPAWNERS NOT IMPLEMENTED
+	}
 
 }

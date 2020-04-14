@@ -14,6 +14,7 @@
 #include "TransitionManager.h"
 #include "j1GUIELements.h"
 #include "j1GUI.h"
+#include "SDL_mixer\include\SDL_mixer.h"
 
 /*
 DEBUG KEYS
@@ -30,7 +31,7 @@ ESC- EXIT GAME
 S/L- SAVE/LOAD
 T-
 
-
+F6- FULLSCREEN
 F7/F8- DIRECT WIN/LOSE
 
 
@@ -227,7 +228,14 @@ bool GameScene::Start()
 	App->player->housingSpace.type = RESOURCE_TYPE_HOUSING;
 	App->player->housingSpace.count = 4;
 	App->player->housingSpace.maxCount = 5;
+	if (App->audio->PlayingMenuMusic == true) {
+		Mix_HaltMusic();
+	}
 
+	if (App->audio->PlayingIngameAudio != true) {
+		App->audio->PlayMusic("audio/music/music_sadpiano.ogg");
+		App->audio->PlayingIngameAudio = true;
+	}
 
 	return ret;
 }
@@ -385,13 +393,7 @@ bool GameScene::PostUpdate()
 	miniMapCamera->map_position.x = miniMapCamera->init_map_position.x+App->render->camera.x*-0.05;
 	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*-0.05;
 
-	//if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN) {
-	//	Change_Map = true;
-	//	Load_Snow_Map = true;
-	//}
-
-	//if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-	//	ret = false;
+	WIN_LOSE_Manager();
 
 	ExecuteTransition();
 
@@ -624,6 +626,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 
 	if (element == mainMenuButton && type == GUI_Event::EVENT_ONCLICK)
 	{
+		
 		mainMenu = true;
 		exitMenuImage->enabled = true;
 		exitMenuLabel->enabled = true;
@@ -653,8 +656,10 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 
 		}
 
-		if (mainMenu)
+		if (mainMenu) {
 			App->scenes->SwitchScene(SCENES::MENU_SCENE);
+			Mix_HaltMusic();
+		}
 	}
 
 	if (element == noButton && type == GUI_Event::EVENT_ONCLICK)
@@ -891,4 +896,35 @@ void GameScene::ExecuteTransition()
 	//	}
 
 	}
+}
+
+void GameScene::WIN_LOSE_Manager()
+{
+	// WIN CONDITION
+	bool anySpawnerActive = false;
+	list<Entity*>::const_iterator checkForSpawners = App->entities->activeBuildings.begin();
+	while (checkForSpawners != App->entities->activeBuildings.end()) {
+
+		if ((*checkForSpawners)->entityType == ENTITY_TYPE_SPAWNER) {
+			anySpawnerActive = true;
+			break;
+		}
+		checkForSpawners++;
+	}
+	if (!anySpawnerActive)
+		App->entities->TriggerEndGame(true);
+
+	// LOSE CONDITION
+	bool anyTownhallActive = false;
+	list<Entity*>::const_iterator checkForTownhalls = App->entities->activeBuildings.begin();
+	while (checkForTownhalls != App->entities->activeBuildings.end()) {
+
+		if ((*checkForTownhalls)->entityType == ENTITY_TYPE_TOWN_HALL) {
+			anyTownhallActive = true;
+			break;
+		}
+		checkForTownhalls++;
+	}
+	if (!anyTownhallActive)
+		App->entities->TriggerEndGame(false);
 }
