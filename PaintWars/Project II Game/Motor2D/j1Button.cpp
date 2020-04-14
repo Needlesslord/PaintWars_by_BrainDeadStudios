@@ -42,7 +42,15 @@ bool j1Button::Start()
 		texture = App->gui->Load_Texture(TEXTURE::MINIMAP_CAMERA);
 	}
 
+	if (textureType == TEXTURE::WIN_SCREEN) {
+
+		texture = App->gui->Load_Texture(TEXTURE::WIN_SCREEN);
+	}
 	
+	if (textureType == TEXTURE::LOSE_SCREEN) {
+
+		texture = App->gui->Load_Texture(TEXTURE::LOSE_SCREEN);
+	}
 
 	if (textureType == TEXTURE::NEXT)
 		texture = App->gui->Load_Texture(TEXTURE::NEXT);
@@ -111,7 +119,7 @@ bool j1Button::Update(float dt)
 	if (enabled) {
 
 
-		if (textureType == TEXTURE::BUTON || textureType == TEXTURE::ATLAS || textureType==TEXTURE::MINIMAP_FULL|| textureType == TEXTURE::MINIMAP_MINI||textureType==TEXTURE::MINIMAP_CAMERA) {
+		if (textureType == TEXTURE::BUTON || textureType == TEXTURE::ATLAS || textureType==TEXTURE::MINIMAP_FULL|| textureType == TEXTURE::MINIMAP_MINI||textureType==TEXTURE::MINIMAP_CAMERA||textureType==TEXTURE::WIN_SCREEN|| textureType == TEXTURE::LOSE_SCREEN) {
 			if (above && interactable && App->input->GetMouseButtonDown(1) == KEY_REPEAT)
 			{
 				App->render->AddBlitEventforUI(layer, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);

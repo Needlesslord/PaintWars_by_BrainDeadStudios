@@ -125,6 +125,14 @@ SDL_Texture* j1GUI::Load_Texture(TEXTURE textureType)
 	case TEXTURE::MINIMAP_CAMERA:
 		texture_load = App->tex->Load("textures/UI/Minimap_UI_CAMERA.png");
 		break;
+
+	case TEXTURE::LOSE_SCREEN:
+		texture_load = App->tex->Load("textures/UI/Lose_Screen.png");
+		break;
+
+	case TEXTURE::WIN_SCREEN:
+		texture_load = App->tex->Load("textures/UI/Win_Screen.png");
+		break;
 	}
 
 

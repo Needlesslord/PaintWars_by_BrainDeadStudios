@@ -227,6 +227,17 @@ Scene* j1SceneManager::CreateScene(SCENES scene_name)
 
 		break;
 
+	case SCENES::LOSE_SCENE:
+		
+		item = new StartScene();
+			
+		break;
+
+	case SCENES::WIN_SCENE:
+		
+		item = new StartScene();
+			
+		break;
 	}
 
 	if (item != nullptr)
@@ -243,6 +254,8 @@ void j1SceneManager::ScenePushbacks()
 	CreateScene(SCENES::GAME_SCENE);
 	CreateScene(SCENES::SETTINGS_SCENE);
 	CreateScene(SCENES::START_SCENE);
+	CreateScene(SCENES::LOSE_SCENE);
+	CreateScene(SCENES::WIN_SCENE);
 }
 
 bool j1SceneManager::Load(pugi::xml_node& save) 

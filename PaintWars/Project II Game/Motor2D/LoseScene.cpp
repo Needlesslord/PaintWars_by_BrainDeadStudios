@@ -38,7 +38,7 @@ bool LoseScene::Start()
 {
 	bool ret = true;
 
-	Lose_Scene_UI = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 15 , 52 }, { 2 , 0 }, false,true, { 0, 0, 0, 0 }, "YOU LOSE", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
+	Lose_Scene_UI = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 0 , 0 }, { 0 , 0 }, false, true, { 0, 0, 1345, 672 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::LOSE_SCREEN);
 
 	if (App->audio->PlayingLoseMusic != true) {
 		Mix_HaltMusic();
