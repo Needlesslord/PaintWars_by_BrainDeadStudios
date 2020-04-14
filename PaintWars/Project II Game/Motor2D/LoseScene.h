@@ -18,7 +18,7 @@ public:
 	bool PostUpdate();								// Called before all Updates
 	bool CleanUp();									// Called before quitting
 
-
+	void GUI_Event_Manager(GUI_Event type, j1Element* element);
 
 public:
 	//void InitScene();								// Method that will be used to initialize all scene elements.
@@ -30,11 +30,9 @@ public:
 
 public:
 
-	j1Element* mainMenuButton = nullptr;
-	j1Element* newGameButton = nullptr;
-	j1Element* continueButton = nullptr;
-	j1Element* settingsButton = nullptr;
-	j1Element* exitButton = nullptr;
+	j1Element* Lose_Scene_UI = nullptr;
+	j1Element* Continue = nullptr;
+
 
 };
 

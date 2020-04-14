@@ -156,6 +156,10 @@ void MenuScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 	{
 		App->scenes->exit = true;
 	}
+
+	if (element == creditsButton && type == GUI_Event::EVENT_ONCLICK) {
+		ShellExecuteA(NULL, "open", "https://github.com/Needlesslord/BrainDeadStudios", NULL, NULL, SW_SHOWNORMAL);
+	}
 }
 
 

@@ -140,6 +140,20 @@ bool j1App::Start()
 // Called each loop iteration
 bool j1App::Update()
 {
+	if (App->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)
+		App->transition_manager->CreateFadeToColour(SCENES::LOSE_SCENE);
+
+	if (App->input->GetKey(SDL_SCANCODE_F12) == KEY_DOWN)
+		App->transition_manager->CreateFadeToColour(SCENES::WIN_SCENE);
+	
+
+	/*if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN) {
+		App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
+		
+	}*/
+
+
+
 	bool ret = true;
 	PrepareUpdate();
 
@@ -156,6 +170,8 @@ bool j1App::Update()
 		ret = PostUpdate();
 
 	FinishUpdate();
+
+
 	return ret;
 }
 

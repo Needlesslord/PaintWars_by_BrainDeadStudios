@@ -47,6 +47,8 @@ public:
 	int VolumeMusic;
 	bool PlayingMenuMusic;
 	bool PlayingIngameAudio;
+	bool PlayingLoseMusic;
+	bool PlayingWinMusic;
 
 private:
 
