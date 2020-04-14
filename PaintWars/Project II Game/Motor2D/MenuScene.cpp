@@ -10,6 +10,7 @@
 #include "j1SceneManager.h"
 #include "MenuScene.h"
 #include "TransitionManager.h"
+#include "j1Audio.h"
 
 MenuScene::MenuScene() : Scene(SCENES::MENU_SCENE)
 {
@@ -55,6 +56,11 @@ bool MenuScene::Start()
 	exitButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 505, 570 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "Exit", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	exitButton->hover_rect = { 263, 658, 207, 71 };
 	exitButton->click_rect = { 525, 658, 207, 71 };
+
+	if (App->audio->PlayingMenuMusic != true) {
+		App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
+		App->audio->PlayingMenuMusic = true;
+	}
 
 	return ret;
 }

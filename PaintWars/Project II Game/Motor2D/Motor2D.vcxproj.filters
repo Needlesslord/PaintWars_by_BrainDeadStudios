@@ -4,9 +4,6 @@
     <ClCompile Include="j1Window.cpp">
       <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="j1Audio.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
     <ClCompile Include="j1Input.cpp">
       <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
@@ -163,12 +160,12 @@
     <ClCompile Include="TownHall.cpp">
       <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClCompile>
+    <ClCompile Include="j1Audio.cpp">
+      <Filter>Motor  ========\Audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Audio.h">
       <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
     <ClInclude Include="j1Input.h">
@@ -333,6 +330,9 @@
     <ClInclude Include="TownHall.h">
       <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClInclude>
+    <ClInclude Include="j1Audio.h">
+      <Filter>Motor  ========\Audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">
@@ -388,6 +388,9 @@
     </Filter>
     <Filter Include="Motor  ========\Entities\Enemies\Units">
       <UniqueIdentifier>{9a2d649c-0075-412e-9804-a9154a0b0958}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Motor  ========\Audio">
+      <UniqueIdentifier>{98417039-82aa-4c2f-bef9-40141cefc085}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

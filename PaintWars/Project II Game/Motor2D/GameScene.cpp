@@ -14,6 +14,7 @@
 #include "TransitionManager.h"
 #include "j1GUIELements.h"
 #include "j1GUI.h"
+#include "SDL_mixer\include\SDL_mixer.h"
 
 /*
 DEBUG KEYS
@@ -227,7 +228,14 @@ bool GameScene::Start()
 	App->player->housingSpace.type = RESOURCE_TYPE_HOUSING;
 	App->player->housingSpace.count = 4;
 	App->player->housingSpace.maxCount = 5;
+	if (App->audio->PlayingMenuMusic == true) {
+		Mix_HaltMusic();
+	}
 
+	if (App->audio->PlayingIngameAudio != true) {
+		App->audio->PlayMusic("audio/music/music_sadpiano.ogg");
+		App->audio->PlayingIngameAudio = true;
+	}
 
 	return ret;
 }
@@ -624,6 +632,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 
 	if (element == mainMenuButton && type == GUI_Event::EVENT_ONCLICK)
 	{
+		
 		mainMenu = true;
 		exitMenuImage->enabled = true;
 		exitMenuLabel->enabled = true;
@@ -653,8 +662,10 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 
 		}
 
-		if (mainMenu)
+		if (mainMenu) {
 			App->scenes->SwitchScene(SCENES::MENU_SCENE);
+			Mix_HaltMusic();
+		}
 	}
 
 	if (element == noButton && type == GUI_Event::EVENT_ONCLICK)

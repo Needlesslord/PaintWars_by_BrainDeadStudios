@@ -44,6 +44,9 @@ public:
 
 public:
 	uint generalVolume = 0;
+	int VolumeMusic;
+	bool PlayingMenuMusic;
+	bool PlayingIngameAudio;
 
 private:
 
