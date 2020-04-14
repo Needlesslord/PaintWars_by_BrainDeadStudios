@@ -39,7 +39,7 @@ public:
 	void InitScene();								// Method that will be used to initialize all scene elements.
 	void DrawScene();
 	void ExecuteTransition();
-
+	void WIN_LOSE_Manager();
 	void DebugDrawTile(iPoint tile);
 
 public:
