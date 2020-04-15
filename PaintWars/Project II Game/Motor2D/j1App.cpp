@@ -479,35 +479,67 @@ bool j1App::SavegameNow() const
 
 void j1App::Debug_Actions()
 {
-	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN){
-		App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
-		//App->scenes->SwitchScene(SCENES::GAME_SCENE);
-    }
+	if (GOD_MODE != true) {
+		if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
+			App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
+			//App->scenes->SwitchScene(SCENES::GAME_SCENE);
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN) {
+			if (!PAUSE_ACTIVE) {
+				PAUSE_ACTIVE = true;
+			}
+			else {
+				PAUSE_ACTIVE = false;
+			}
+		}
+
+
+
+		if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) { //has to be changed to snow map when developed
+			App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 1.0f, true);
+
+		}
+		if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) { //has to be changed to volcano map when developed
+			App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 1.0f, true);
+
+		}
+		
+		if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
+			App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 1.0f, true);
+
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN) {
+			App->transition_manager->CreateSlide(SCENES::WIN_SCENE, 1.0f, true);
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
+
+			App->win->Fullscreen_Swap();
+		}
+
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
+		App->LoadGame();
+
 	
-	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN) {
-		if (!PAUSE_ACTIVE) {
-			PAUSE_ACTIVE = true;
+	if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
+		App->SaveGame("save_game.xml");
+	}
+
+
+	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN) {
+
+		if (GOD_MODE == true) {
+			GOD_MODE = false;
 		}
 		else {
-			PAUSE_ACTIVE = false;
+			GOD_MODE = true;
 		}
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
-		App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 1.0f, true);
 		
 	}
-
-	if (App->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN) {
-		App->transition_manager->CreateSlide(SCENES::WIN_SCENE, 1.0f, true);
-	}
-	
-	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
-
-		App->win->Fullscreen_Swap();
-	}
-	
-	
 
 
 }
