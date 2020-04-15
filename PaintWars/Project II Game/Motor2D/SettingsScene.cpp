@@ -158,6 +158,25 @@ void SettingsScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 		App->scenes->SwitchScene(SCENES::MENU_SCENE);
 	}
 
+	if (element == fullscreenButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		if (!App->win->fullscreen)
+		{
+			fullscreenButton->rect = { 0, 973, 182, 58 };
+			fullscreenButton->hover_rect = { 0, 973, 182, 58 };
+			fullscreenButton->click_rect = { 0, 973, 182, 58 };
+		}
+
+		if (App->win->fullscreen)
+		{
+			fullscreenButton->rect = { 0, 1031, 182, 58 };
+			fullscreenButton->hover_rect = { 0, 1031, 182, 58 };
+			fullscreenButton->click_rect = { 0, 1031, 182, 58 };
+		}
+
+
+		App->win->Fullscreen_Swap();
+	}
 }
 
 

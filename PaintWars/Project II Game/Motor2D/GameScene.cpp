@@ -115,12 +115,12 @@ bool GameScene::Start()
 	hudBarImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 
 	//HUD - Quests
-	questsImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 50 }, { 0 , 0 }, false, true, { 0, 1388, 263, 265 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	questsImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 50 }, { 0 , 0 }, false, true, { 0, 1388, 263, 40 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	questsLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 15 , 52 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "QUESTS", nullptr, false,false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
-	questsOpenButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 215, 250 }, { 200,200 }, true, true, { 317, 1388, 54, 55}, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
+	questsOpenButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 120, 65 }, { 200,200 }, true, true, { 317, 1388, 54, 55}, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
 	questsOpenButton->hover_rect = { 317, 1443, 54, 54 };
 	questsOpenButton->click_rect = { 317, 1497, 54, 54 };
-	questsCloseButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 215, 520 }, { 200,200 }, true, false, { 263, 1388, 54, 55 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
+	questsCloseButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 120, 380 }, { 200,200 }, true, false, { 263, 1388, 54, 55 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
 	questsCloseButton->hover_rect = { 263, 1443, 54, 54 };
 	questsCloseButton->click_rect = { 263, 1497, 54, 54 };
 
@@ -210,8 +210,8 @@ bool GameScene::Start()
 	noButton->click_rect = { 1437, 359, 166, 57 };
 
 	// Shop
-	shopImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 985 , 350 }, { 0 , 0 }, false, false, { 0, 1388, 263, 265 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
-	shopLabel = App->gui->AddElement(GUItype::GUI_LABEL, shopImage, { 985 , 352 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "SHOP", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	shopImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 450 }, { 0 , 0 }, false, false, { 0, 1388, 263, 265 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	shopLabel = App->gui->AddElement(GUItype::GUI_LABEL, shopImage, { 15 , 452 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "SHOP", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
 
 
 
@@ -469,14 +469,14 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 	}
 	if (element == questsOpenButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		questsImage->rect.h = 535;
+		questsImage->rect.h = 360;
 		questsCloseButton->enabled = true;
 		questsOpenButton->enabled = false;
 	}
 
 	if (element == questsCloseButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		questsImage->rect.h = 265;
+		questsImage->rect.h = 40;
 		questsOpenButton->enabled = true;
 		questsCloseButton->enabled = false;
 	}
@@ -557,9 +557,22 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 
 	if (element == fullscreenButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		fullscreenButton->rect = { 0, 973, 182, 58 };
-		fullscreenButton->hover_rect = { 0, 973, 182, 58 };
-		fullscreenButton->click_rect = { 0, 973, 182, 58 };
+		if (!App->win->fullscreen)
+		{
+			fullscreenButton->rect = { 0, 973, 182, 58 };
+			fullscreenButton->hover_rect = { 0, 973, 182, 58 };
+			fullscreenButton->click_rect = { 0, 973, 182, 58 };
+		}
+
+		if (App->win->fullscreen)
+		{
+			fullscreenButton->rect = { 0, 1031, 182, 58 };
+			fullscreenButton->hover_rect = { 0, 1031, 182, 58 };
+			fullscreenButton->click_rect = { 0, 1031, 182, 58 };
+		}
+		
+
+		App->win->Fullscreen_Swap();
 	}
 
 	if (element == backButton && type == GUI_Event::EVENT_ONCLICK)
