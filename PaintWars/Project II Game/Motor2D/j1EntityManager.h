@@ -10,6 +10,7 @@
 #include "PaintExtractor.h"
 #include "WoodProducer.h"
 #include "House.h"
+#include "Barracks.h"
 
 /// Units
 #include "Painter.h"
@@ -97,6 +98,7 @@ protected:
 	SDL_Texture* paintExtractorTexture = nullptr;
 	SDL_Texture* woodProducerTexture = nullptr;
 	SDL_Texture* houseTexture = nullptr;
+	SDL_Texture* barracksTexture = nullptr;
 
 	/// Units
 	SDL_Texture* painterTexture = nullptr;

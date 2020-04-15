@@ -58,7 +58,7 @@ void TownHall::SpawnEntity(iPoint pos) {
 
 	// TODO: check this positions
 	if (!isSpawningAUnit) {
-		App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { currentTile.x + 2, currentTile.y + 2 }, App->entities, this, 0);
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
 		isSpawningAUnit = true;
 	}
 }

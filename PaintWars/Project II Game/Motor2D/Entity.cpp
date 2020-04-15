@@ -443,6 +443,14 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 		return true;
 	}
 
+	else if (entityType == ENTITY_TYPE_BARRACKS) {
+		COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
+		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
+		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+
+		return true;
+	}
+
 	/// Units
 	else if (entityType == ENTITY_TYPE_PAINTER) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_UNIT;
@@ -494,16 +502,25 @@ void Entity::ShowUI() {
 
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
 
-		if (App->entities->spawnEntityUIButton == nullptr) {
+		if (App->entities->spawnEntityUIButton == nullptr) { // To spawn a painter
 			App->entities->spawnEntityUIButton = App->col->AddCollider({ 200, 800, 50, 50 }, COLLIDER_UI, App->entities);
 		}
 
 		App->render->AddBlitEventforUI(2, App->entities->fullLifeTexture, 200, 800, { 0,0,50,50 }, false, false, 0);
 	}
 	
+	else if (entityType == ENTITY_TYPE_BARRACKS) {
+
+		if (App->entities->spawnEntityUIButton == nullptr) { // To spawn a warrior
+			App->entities->spawnEntityUIButton = App->col->AddCollider({ 200, 800, 50, 50 }, COLLIDER_UI, App->entities);
+		}
+
+		App->render->AddBlitEventforUI(2, App->entities->fullLifeTexture, 200, 800, { 0,0,50,50 }, false, false, 0);
+	}
+
 	else if (entityType == ENTITY_TYPE_PAINTER) {
 
-		if (App->entities->buildEntityUIButton == nullptr) {
+		if (App->entities->buildEntityUIButton == nullptr) { // To build a TH
 			App->entities->buildEntityUIButton = App->col->AddCollider({ 200, 800, 50, 50 }, COLLIDER_UI, App->entities);
 		}
 

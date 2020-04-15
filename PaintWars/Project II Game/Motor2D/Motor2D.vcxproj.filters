@@ -169,6 +169,9 @@
     <ClCompile Include="WoodProducer.cpp">
       <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClCompile>
+    <ClCompile Include="Barracks.cpp">
+      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -343,6 +346,9 @@
       <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClInclude>
     <ClInclude Include="WoodProducer.h">
+      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Barracks.h">
       <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClInclude>
   </ItemGroup>
