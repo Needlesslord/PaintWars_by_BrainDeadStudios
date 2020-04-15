@@ -86,6 +86,7 @@
     <ClCompile Include="ExpandingBars.cpp" />
     <ClCompile Include="FadeToColour.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="House.cpp" />
     <ClCompile Include="j1Button.cpp" />
     <ClCompile Include="j1Collision.cpp" />
     <ClCompile Include="j1Element.cpp" />
@@ -128,6 +129,7 @@
     <ClCompile Include="Warrior.cpp" />
     <ClCompile Include="WinScene.cpp" />
     <ClCompile Include="Wipe.cpp" />
+    <ClCompile Include="WoodProducer.cpp" />
     <ClCompile Include="ZoomToMouse.cpp" />
     <ClCompile Include="ZoomToTexture.cpp" />
   </ItemGroup>
@@ -143,6 +145,7 @@
     <ClInclude Include="ExpandingBars.h" />
     <ClInclude Include="FadeToColour.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="House.h" />
     <ClInclude Include="j1Collision.h" />
     <ClInclude Include="j1EntityManager.h" />
     <ClInclude Include="j1Fonts.h" />
@@ -186,6 +189,7 @@
     <ClInclude Include="Warrior.h" />
     <ClInclude Include="WinScene.h" />
     <ClInclude Include="Wipe.h" />
+    <ClInclude Include="WoodProducer.h" />
     <ClInclude Include="ZoomToMouse.h" />
     <ClInclude Include="ZoomToTexture.h" />
   </ItemGroup>

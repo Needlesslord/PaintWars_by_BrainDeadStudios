@@ -58,6 +58,8 @@ enum ENTITY_TYPE {
 	/// Buildings
 	ENTITY_TYPE_TOWN_HALL,
 	ENTITY_TYPE_PAINT_EXTRACTOR,
+	ENTITY_TYPE_WOOD_PRODUCER,
+	ENTITY_TYPE_HOUSE,
 
 	/// Units
 	ENTITY_TYPE_PAINTER,
@@ -87,6 +89,7 @@ public:
 	virtual void SetDestination(iPoint des);
 	virtual void SpawnEntity(iPoint pos);
 	virtual void ExtractPaint(float dt);
+	virtual void ExtractWood(float dt);
 	virtual void Attack(Entity* target, float dt);
 
 	// Position and size
@@ -156,7 +159,7 @@ public:
 	bool isSelectingPlacement = false;
 
 	// Paint speed
-	float extractionRate = 100.0f;
+	float extractionRate = 0.0f;
 
 protected:
 
