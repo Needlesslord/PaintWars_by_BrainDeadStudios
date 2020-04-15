@@ -234,9 +234,10 @@ bool j1EntityManager::Update(float dt) {
 				selectedEntities++;
 			}
 
-			float w = (currentLifeSum / maxLifeSum) * 200;
-			App->render->AddBlitEventforUI(1, zeroLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, 200, 15 }, false, true, 0);
-			App->render->AddBlitEventforUI(1, fullLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, (int)w, 15 }, false, true, 0);
+		   float w = (currentLifeSum / maxLifeSum) * 200;
+		   App->entities->Entity_HP = w;
+			/*App->render->AddBlitEventforUI(1, zeroLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, 200, 15 }, false, true, 0);
+			App->render->AddBlitEventforUI(1, fullLifeTexture, 100+ App->render->camera.x*-2 / 2 , App->win->height - 100, { 0, 0, (int)w, 15 }, false, true, 0);*/
 
 		}
 
