@@ -479,7 +479,7 @@ bool j1App::SavegameNow() const
 
 void j1App::Debug_Actions()
 {
-	if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN){
+	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN){
 		App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
 		//App->scenes->SwitchScene(SCENES::GAME_SCENE);
     }
