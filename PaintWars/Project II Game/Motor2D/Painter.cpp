@@ -21,7 +21,7 @@ Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 	maxLife = 10;
 	currLife = maxLife - damage;
 	
-	size = { 20, 20 };
+	size = { 88, 118 };
 
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);
@@ -38,8 +38,6 @@ Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 	isEntityFromPlayer = true;
 
 	extractionRate = 25.0f;
-
-	CreateEntityCollider(pos);
 
 	isBuildingSomething = false;
 

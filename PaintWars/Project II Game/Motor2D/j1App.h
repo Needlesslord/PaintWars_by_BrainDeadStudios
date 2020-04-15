@@ -139,6 +139,7 @@ public:
 	void setFpsCap(uint32 fps);
 	bool DEBUG_ACTIVE;
 	bool PAUSE_ACTIVE;
+	bool GOD_MODE;
 
 };
 

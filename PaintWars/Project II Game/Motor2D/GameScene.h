@@ -142,13 +142,16 @@ public:
 	// Shop
 	j1Element* shopImage = nullptr;
 	j1Element* shopLabel = nullptr;
+	bool debugTile = true;
 
+
+	
 private:
 
 	SDL_Texture* debug_tex = nullptr;
 
-
-	bool debugTile = true;
+	
+	
 
 };
 

@@ -18,7 +18,7 @@ TownHall::TownHall(iPoint tile, int damage, j1Module* listener, Entity* creator)
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_STATIC_ENTITY;
 	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_BIG;
 
-	maxLife = 100;
+	maxLife = 300;
 	currLife = maxLife - damage;
 
 	size = { 277, 403 };
@@ -58,7 +58,7 @@ void TownHall::SpawnEntity(iPoint pos) {
 
 	// TODO: check this positions
 	if (!isSpawningAUnit) {
-		App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { currentTile.x + 2, currentTile.y + 2 }, App->entities, this, 0);
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
 		isSpawningAUnit = true;
 	}
 }

@@ -90,6 +90,8 @@ bool GameScene::Start()
 
 	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{ 15,  4 }, App->entities, nullptr, 10, true);
 	App->entities->AddEntity(ENTITY_TYPE_WOOD_PRODUCER,		{ 18, 18 }, App->entities, nullptr,  0, true);
+	App->entities->AddEntity(ENTITY_TYPE_BARRACKS,			{ 11,  6 }, App->entities, nullptr,  0, true);
+
 	App->entities->AddEntity(ENTITY_TYPE_PAINTER,			{  1,  5 }, App->entities, nullptr,  5, true);
 
 	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  5,  4 }, App->entities, nullptr, 10, true);
@@ -213,7 +215,7 @@ bool GameScene::Start()
 	shopImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 450 }, { 0 , 0 }, false, false, { 0, 1388, 263, 265 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	shopLabel = App->gui->AddElement(GUItype::GUI_LABEL, shopImage, { 15 , 452 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "SHOP", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
 
-
+	//shopLabel = App->gui->AddElement(GUItype::GUI_LABEL, shopImage, { 985 , 352 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
 
 	//////////////////
 	//	RESOURCES	//
@@ -301,11 +303,11 @@ bool GameScene::Update(float dt)
 	
 	CameraDebugMovement(dt);
 
-	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+	/*if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
 		App->LoadGame();
 
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
-		App->SaveGame("save_game.xml");
+		App->SaveGame("save_game.xml");*/
 
 
 
@@ -339,7 +341,8 @@ bool GameScene::Update(float dt)
 
 	App->win->SetTitle(title.GetString());*/
 	
-	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
+
+	if ((App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)&&(App->GOD_MODE!=true)) {
 		debugTile = !debugTile;
 	}
 	// Debug pathfinding ------------------------------
@@ -395,6 +398,9 @@ bool GameScene::PostUpdate()
 	
 	miniMapCamera->map_position.x = miniMapCamera->init_map_position.x+App->render->camera.x*-0.05;
 	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*-0.05;
+
+	
+	
 
 	WIN_LOSE_Manager();
 

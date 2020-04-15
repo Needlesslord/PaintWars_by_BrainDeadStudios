@@ -10,6 +10,7 @@
 #include "PaintExtractor.h"
 #include "WoodProducer.h"
 #include "House.h"
+#include "Barracks.h"
 
 /// Units
 #include "Painter.h"
@@ -89,6 +90,10 @@ public:
 	Collider* spawnEntityUIButton = nullptr;
 	Collider* buildEntityUIButton = nullptr;
 
+
+	//small fix hp bar when blit
+	float Entity_HP;
+
 protected:
 
 		// Allies
@@ -97,6 +102,7 @@ protected:
 	SDL_Texture* paintExtractorTexture = nullptr;
 	SDL_Texture* woodProducerTexture = nullptr;
 	SDL_Texture* houseTexture = nullptr;
+	SDL_Texture* barracksTexture = nullptr;
 
 	/// Units
 	SDL_Texture* painterTexture = nullptr;
@@ -112,7 +118,7 @@ protected:
 
 	float spawningRate = 1.0f;
 	float constructionRate = 1.0f;
-
+	
 
 private:
 

@@ -48,7 +48,7 @@ bool WinScene::Start()
 	if (App->audio->PlayingWinMusic != true) {
 		Mix_HaltMusic();
 		App->audio->PlayingWinMusic = false;
-		App->audio->PlayMusic("audio/music/LoseSceneMusic.ogg"); //Look for new music 
+		App->audio->PlayMusic("audio/music/WinSceneMusic.ogg"); //Look for new music 
 		App->audio->PlayingWinMusic = true;
 	}
 

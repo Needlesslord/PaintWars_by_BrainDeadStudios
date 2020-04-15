@@ -60,6 +60,7 @@ enum ENTITY_TYPE {
 	ENTITY_TYPE_PAINT_EXTRACTOR,
 	ENTITY_TYPE_WOOD_PRODUCER,
 	ENTITY_TYPE_HOUSE,
+	ENTITY_TYPE_BARRACKS,
 
 	/// Units
 	ENTITY_TYPE_PAINTER,
@@ -126,7 +127,7 @@ public:
 	bool isOnTheMove;
 
 	float speed = 0;
-
+	float Entity_HP;
 	fPoint pos = { 0.0f,0.0f };
 	iPoint currentTile = { 0,0 };
 

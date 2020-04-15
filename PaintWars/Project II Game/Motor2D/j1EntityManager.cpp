@@ -46,6 +46,7 @@ bool j1EntityManager::Start() {
 	paintExtractorTexture = App->tex->Load("textures/PaintExtractor.png");
 	woodProducerTexture = App->tex->Load("textures/WoodProducer.png");
 	houseTexture = App->tex->Load("textures/House.png");
+	barracksTexture = App->tex->Load("textures/Barracks.png");
 
 	/// Units
 	painterTexture = App->tex->Load("textures/Painter.png");
@@ -148,21 +149,13 @@ bool j1EntityManager::Update(float dt) {
 		if (buildingsSelected.size() == 1) {
 
 			list<Entity*>::iterator buildingToShowUI = buildingsSelected.begin();
-			if ((*buildingToShowUI)->isSelected) {
-				(*buildingToShowUI)->ShowUI();
-			}
-
-			else {
-				spawnEntityUIButton = nullptr;
-				spawnEntityUIButton->to_delete = true;
-			}
+			(*buildingToShowUI)->ShowUI();
 		}
 
-		else {
-			if (spawnEntityUIButton != nullptr) {
-				spawnEntityUIButton->to_delete = true;
-				spawnEntityUIButton = nullptr;
-			}
+		else if (spawnEntityUIButton != nullptr) {
+
+			spawnEntityUIButton->to_delete = true;
+			spawnEntityUIButton = nullptr;
 		}
 
 
@@ -241,9 +234,10 @@ bool j1EntityManager::Update(float dt) {
 				selectedEntities++;
 			}
 
-			float w = (currentLifeSum / maxLifeSum) * 200;
-			App->render->AddBlitEventforUI(1, zeroLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, 200, 15 }, false, true, 0);
-			App->render->AddBlitEventforUI(1, fullLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, (int)w, 15 }, false, true, 0);
+		   float w = (currentLifeSum / maxLifeSum) * 200;
+		   App->entities->Entity_HP = w;
+			/*App->render->AddBlitEventforUI(1, zeroLifeTexture, App->win->width / 2 - 100, App->win->height - 100, { 0, 0, 200, 15 }, false, true, 0);
+			App->render->AddBlitEventforUI(1, fullLifeTexture, 100+ App->render->camera.x*-2 / 2 , App->win->height - 100, { 0, 0, (int)w, 15 }, false, true, 0);*/
 
 		}
 
@@ -409,6 +403,9 @@ bool j1EntityManager::Update(float dt) {
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_HOUSE) {
 					(*entitiesToDraw)->Draw(houseTexture);
 				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_BARRACKS) {
+					(*entitiesToDraw)->Draw(barracksTexture);
+				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINTER) {
 					(*entitiesToDraw)->Draw(painterTexture);
 				}
@@ -504,7 +501,6 @@ bool j1EntityManager::PostUpdate() {
 			if (mouseWorldCoordinates.x < spawnEntityUIButton->rect.x + spawnEntityUIButton->rect.w && mouseWorldCoordinates.x > spawnEntityUIButton->rect.x &&
 				mouseWorldCoordinates.y < spawnEntityUIButton->rect.y + spawnEntityUIButton->rect.h && mouseWorldCoordinates.y > spawnEntityUIButton->rect.y) {
 
-				// if(activeBuildings.size==1){ THIS IS NOT NEEDED BECAUSE IF THERE ISN'T ONLY ONE, THE COLLIDER WOULD BE NULLPTR
 				list<Entity*>::iterator buildingsToSpawnEntities = buildingsSelected.begin();
 				(*buildingsToSpawnEntities)->SpawnEntity({ 0,0 });
 
@@ -602,6 +598,7 @@ bool j1EntityManager::CleanUp() {
 	App->tex->UnLoad(paintExtractorTexture);
 	App->tex->UnLoad(woodProducerTexture);
 	App->tex->UnLoad(houseTexture);
+	App->tex->UnLoad(barracksTexture);
 	App->tex->UnLoad(painterTexture);
 	App->tex->UnLoad(warrior_Texture);
 	App->tex->UnLoad(slimeTexture);
@@ -745,12 +742,42 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		return (Entity*)house;
 	}
 
+	else if (entityType == ENTITY_TYPE_BARRACKS) {
+
+		Barracks* barracks = new Barracks(tile, damage, this, creator);
+
+		if (spawnAutomatically) {
+
+			activeEntities.push_back((Entity*)barracks);
+			activeBuildings.push_back((Entity*)barracks);
+			barracks->isAlive = true;
+			barracks->CreateEntityCollider(barracks->pos);
+		}
+
+		else
+			spawningEntities.push_back((Entity*)barracks);
+
+		// Change the walkability to non walkable
+		App->pathfinding->ChangeWalkability(tile, false, barracks->entitySize);
+
+		return (Entity*)barracks;
+	}
+
 	/// Units
 	else if (entityType == ENTITY_TYPE_PAINTER) {
 
 		Painter* painter = new Painter(tile, damage, this, creator);
-		activeEntities.push_back((Entity*)painter);
-		activeUnits.push_back((Entity*)painter);
+
+		if (spawnAutomatically) {
+
+			activeEntities.push_back((Entity*)painter);
+			activeUnits.push_back((Entity*)painter);
+			painter->isAlive = true;
+			painter->CreateEntityCollider(painter->pos);
+		}
+
+		else
+			spawningEntities.push_back((Entity*)painter);
 
 		return (Entity*)painter;
 	}

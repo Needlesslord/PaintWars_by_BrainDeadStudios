@@ -78,6 +78,7 @@
   <ItemGroup>
     <ClCompile Include="AlternatingBars.cpp" />
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="Barracks.cpp" />
     <ClCompile Include="CameraToMouse.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Cut.cpp" />
@@ -137,6 +138,7 @@
     <ClInclude Include="AlternatingBars.h" />
     <ClInclude Include="animation.h" />
     <ClInclude Include="Bar.h" />
+    <ClInclude Include="Barracks.h" />
     <ClInclude Include="CameraToMouse.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Cut.h" />

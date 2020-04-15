@@ -17,7 +17,7 @@ Spawner::Spawner(iPoint tile, int damage, j1Module* listener) : Entity(tile, dam
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_STATIC_ENTITY;
 	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_MEDIUM;
 	
-	maxLife = 100;
+	maxLife = 500;
 	currLife = maxLife - damage;
 
 	size = { 250, 250 };
