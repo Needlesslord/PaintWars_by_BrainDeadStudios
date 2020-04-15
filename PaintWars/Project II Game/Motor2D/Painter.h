@@ -12,6 +12,7 @@ public:
 	~Painter();
 	void SpawnEntity(iPoint pos) override;
 	void ExtractPaint(float dt) override;
+	void ExtractWood(float dt) override;
 
 public:
 

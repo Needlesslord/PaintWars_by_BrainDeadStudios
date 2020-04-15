@@ -50,7 +50,7 @@ bool j1PathFinding::IsWalkable(const iPoint& pos) const {
 
 	//App->map->data.tilesets.
 	uchar t = GetTileAt(pos);
-	return t > 0 && ((t != INVALID_WALK_CODE && t != SPAWNER_WALK_CODE) || t == PAINT_WALK_CODE);
+	return t > 0 && ((t != INVALID_WALK_CODE && t != SPAWNER_WALK_CODE) || t == PAINT_WALK_CODE || t == WOOD_WALK_CODE);
 }
 
 // Utility: returns true is the tile is paint
@@ -58,6 +58,13 @@ bool j1PathFinding::IsPaint(const iPoint& pos) const {
 
 	uchar u = GetTileAt(pos);
 	return u > 0 && u == PAINT_WALK_CODE;
+}
+
+// Utility: returns true is the tile is wood
+bool j1PathFinding::IsWood(const iPoint& pos) const {
+
+	uchar u = GetTileAt(pos);
+	return u > 0 && u == WOOD_WALK_CODE;
 }
 
 // Utility: returns true is the tile is a spawner
@@ -71,6 +78,32 @@ bool j1PathFinding::IsSpawner(const iPoint& pos) const {
 void j1PathFinding::ChangeToPaint(const iPoint& pos) const {
 
 	map[(pos.y*width) + pos.x] = PAINT_WALK_CODE;
+}
+
+// Utility: changes the walkability of a tile to wood
+void j1PathFinding::ChangeToWood(const iPoint& pos) const {
+
+	iPoint adjacentPos1;
+	iPoint adjacentPos2;
+	iPoint adjacentPos3;
+	iPoint adjacentPos4;
+
+	adjacentPos1.x = pos.x + 1;	adjacentPos1.y = pos.y;
+	adjacentPos2.x = pos.x - 1;	adjacentPos2.y = pos.y;
+	adjacentPos3.x = pos.x;	adjacentPos3.y = pos.y + 1;
+	adjacentPos4.x = pos.x;	adjacentPos4.y = pos.y - 1;
+
+	if (IsWalkable(adjacentPos1)) 
+		map[(adjacentPos1.y*width) + adjacentPos1.x] = WOOD_WALK_CODE;
+
+	if (IsWalkable(adjacentPos2))
+		map[(adjacentPos2.y*width) + adjacentPos2.x] = WOOD_WALK_CODE;
+
+	if (IsWalkable(adjacentPos3))
+		map[(adjacentPos3.y*width) + adjacentPos3.x] = WOOD_WALK_CODE;
+
+	if (IsWalkable(adjacentPos4))
+		map[(adjacentPos4.y*width) + adjacentPos4.x] = WOOD_WALK_CODE;
 }
 
 // Utility: changes the walkability of a tile to a spawner-container tile

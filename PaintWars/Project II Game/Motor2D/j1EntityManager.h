@@ -8,6 +8,8 @@
 /// Buildings
 #include "TownHall.h"
 #include "PaintExtractor.h"
+#include "WoodProducer.h"
+#include "House.h"
 
 /// Units
 #include "Painter.h"
@@ -66,9 +68,8 @@ public:
 	bool Save(pugi::xml_node& save) const;
 	bool Load(pugi::xml_node& save);
 	void TriggerEndGame(bool isVictory);
-private:
 
-	
+private:
 
 public:
 
@@ -94,6 +95,8 @@ protected:
 	/// Buildings
 	SDL_Texture* townHallTexture = nullptr;
 	SDL_Texture* paintExtractorTexture = nullptr;
+	SDL_Texture* woodProducerTexture = nullptr;
+	SDL_Texture* houseTexture = nullptr;
 
 	/// Units
 	SDL_Texture* painterTexture = nullptr;
@@ -112,6 +115,7 @@ protected:
 
 
 private:
+
 	float currentLifeSum;
 	float maxLifeSum;
 

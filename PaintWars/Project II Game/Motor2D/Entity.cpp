@@ -337,6 +337,8 @@ void Entity::SpawnEntity(iPoint pos) {}
 
 void Entity::ExtractPaint(float dt) {}
 
+void Entity::ExtractWood(float dt) {}
+
 void Entity::Attack(Entity* target, float dt) {}
 
 // -------------------------------------------------------------
@@ -418,6 +420,22 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	}
 
 	else if (entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
+		COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
+		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
+		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+
+		return true;
+	}
+
+	else if (entityType == ENTITY_TYPE_WOOD_PRODUCER) {
+		COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
+		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
+		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+
+		return true;
+	}
+
+	else if (entityType == ENTITY_TYPE_HOUSE) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
 		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
 		entityCollider = App->col->AddCollider(rect, collType, App->entities);

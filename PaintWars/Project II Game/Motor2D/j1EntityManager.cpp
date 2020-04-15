@@ -44,6 +44,8 @@ bool j1EntityManager::Start() {
 	/// Buildings
 	townHallTexture = App->tex->Load("textures/TownHall.png");
 	paintExtractorTexture = App->tex->Load("textures/PaintExtractor.png");
+	woodProducerTexture = App->tex->Load("textures/WoodProducer.png");
+	houseTexture = App->tex->Load("textures/House.png");
 
 	/// Units
 	painterTexture = App->tex->Load("textures/Painter.png");
@@ -194,7 +196,7 @@ bool j1EntityManager::Update(float dt) {
 		paintersSelected = unitsSelected.begin();
 		while (paintersSelected != unitsSelected.end()) {
 
-			if ((*paintersSelected)->isSelectingPlacement) {
+			if ((*paintersSelected)->isSelectingPlacement) { // Selecting Placement FOR A PAINT EXTRACTOR
 
 				fPoint mousePosition = App->input->GetMouseWorldPosition();
 				iPoint cameraOffset = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
@@ -259,7 +261,7 @@ bool j1EntityManager::Update(float dt) {
 
 
 
-		// Extract Paint
+		// Extract Paint (Painters and PaintExtractor
 		list<Entity*>::iterator paintersToExtract = activeEntities.begin();
 		while (paintersToExtract != activeEntities.end()) {
 
@@ -270,6 +272,19 @@ bool j1EntityManager::Update(float dt) {
 			}
 			paintersToExtract++;
 		}
+
+		// Extract Wood  (ONLY PAINTERS CAN)
+		paintersToExtract = activeUnits.begin();
+		while (paintersToExtract != activeUnits.end()) {
+
+			// We try to extract and it will return if it can't
+			if ((*paintersToExtract)->entityType == ENTITY_TYPE_PAINTER) {
+
+				(*paintersToExtract)->ExtractWood(dt);
+			}
+			paintersToExtract++;
+		}
+
 
 
 
@@ -388,6 +403,12 @@ bool j1EntityManager::Update(float dt) {
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
 					(*entitiesToDraw)->Draw(paintExtractorTexture);
 				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_WOOD_PRODUCER) {
+					(*entitiesToDraw)->Draw(woodProducerTexture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_HOUSE) {
+					(*entitiesToDraw)->Draw(houseTexture);
+				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINTER) {
 					(*entitiesToDraw)->Draw(painterTexture);
 				}
@@ -403,8 +424,6 @@ bool j1EntityManager::Update(float dt) {
 			}
 
 			entitiesToDraw++;
-
-			//	}
 		}
 
 	return ret;
@@ -544,6 +563,7 @@ bool j1EntityManager::PostUpdate() {
 
 		if ((*checkForDeadUnits)->GetCurrLife() <= 0) {
 
+			App->player->housingSpace.count--;
 			activeUnits.erase(checkForDeadUnits);
 		}
 		checkForDeadUnits++;
@@ -578,20 +598,13 @@ bool j1EntityManager::PostUpdate() {
 bool j1EntityManager::CleanUp() {
 	bool ret = true;
 
-	//if (townHallTexture != nullptr)
-		App->tex->UnLoad(townHallTexture);
-
-	//if (paintExtractorTexture != nullptr)
-		App->tex->UnLoad(paintExtractorTexture);
-
-	//if (painterTexture != nullptr)
-		App->tex->UnLoad(painterTexture);
-
-	//if (warrior_Texture != nullptr)
-		App->tex->UnLoad(warrior_Texture);
-
-	//if (slimeTexture != nullptr)
-		App->tex->UnLoad(slimeTexture);
+	App->tex->UnLoad(townHallTexture);
+	App->tex->UnLoad(paintExtractorTexture);
+	App->tex->UnLoad(woodProducerTexture);
+	App->tex->UnLoad(houseTexture);
+	App->tex->UnLoad(painterTexture);
+	App->tex->UnLoad(warrior_Texture);
+	App->tex->UnLoad(slimeTexture);
 
 	App->tex->UnLoad(fullLifeTexture);
 	App->tex->UnLoad(zeroLifeTexture);
@@ -646,6 +659,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		// Allies
 	/// Buildings
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
+
 		TownHall* townHall = new TownHall(tile, damage, this, creator);
 
 		if (spawnAutomatically) {
@@ -661,14 +675,12 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 
 		// Change the walkability to non walkable
 		App->pathfinding->ChangeWalkability(tile, false, townHall->entitySize);
-		//App->pathfinding->ChangeWalkability({ tile.x - 1, tile.y - 1 }, false);
-		//App->pathfinding->ChangeWalkability({ tile.x - 1, tile.y }, false);
-		//App->pathfinding->ChangeWalkability({ tile.x, tile.y - 1 }, false);
-
+	
 		return (Entity*)townHall;
 	}
 	
 	else if (entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
+
 		PaintExtractor* paintExtractor = new PaintExtractor(tile, damage, this, creator);
 
 		if (spawnAutomatically) {
@@ -684,15 +696,58 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 
 		// Change the walkability to non walkable
 		App->pathfinding->ChangeWalkability(tile, false, paintExtractor->entitySize);
-		//App->pathfinding->ChangeWalkability({ tile.x - 1, tile.y - 1 }, false);
-		//App->pathfinding->ChangeWalkability({ tile.x - 1, tile.y }, false);
-		//App->pathfinding->ChangeWalkability({ tile.x, tile.y - 1 }, false);
 
 		return (Entity*)paintExtractor;
 	}
 
+	else if (entityType == ENTITY_TYPE_WOOD_PRODUCER) {
+
+		WoodProducer* woodProducer = new WoodProducer(tile, damage, this, creator);
+
+		if (spawnAutomatically) {
+
+			activeEntities.push_back((Entity*)woodProducer);
+			activeBuildings.push_back((Entity*)woodProducer);
+			woodProducer->isAlive = true;
+			woodProducer->CreateEntityCollider(woodProducer->pos);
+		}
+
+		else
+			spawningEntities.push_back((Entity*)woodProducer);
+
+		// Change the walkability to non walkable
+		App->pathfinding->ChangeWalkability(tile, false, woodProducer->entitySize);
+
+		// Change to Wood the 4 directly adjacent tiles
+		App->pathfinding->ChangeToWood(tile);
+
+		return (Entity*)woodProducer;
+	}
+
+	else if (entityType == ENTITY_TYPE_HOUSE) {
+
+		House* house = new House(tile, damage, this, creator);
+
+		if (spawnAutomatically) {
+
+			activeEntities.push_back((Entity*)house);
+			activeBuildings.push_back((Entity*)house);
+			house->isAlive = true;
+			house->CreateEntityCollider(house->pos);
+		}
+
+		else
+			spawningEntities.push_back((Entity*)house);
+
+		// Change the walkability to non walkable
+		App->pathfinding->ChangeWalkability(tile, false, house->entitySize);
+
+		return (Entity*)house;
+	}
+
 	/// Units
 	else if (entityType == ENTITY_TYPE_PAINTER) {
+
 		Painter* painter = new Painter(tile, damage, this, creator);
 		activeEntities.push_back((Entity*)painter);
 		activeUnits.push_back((Entity*)painter);
@@ -701,6 +756,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 	}
 
 	else if (entityType == ENTITY_TYPE_WARRIOR) {
+
 		Warrior* warrior = new Warrior(tile, damage, this, creator);
 
 		if (spawnAutomatically) {
@@ -720,6 +776,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		// Enemies
 	/// Buildings
 	if (entityType == ENTITY_TYPE_SPAWNER) {
+
 		Spawner* spawner = new Spawner(tile, damage, this);
 		activeEntities.push_back((Entity*)spawner);
 		activeBuildings.push_back((Entity*)spawner);
@@ -732,6 +789,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 
 	/// Units
 	else if (entityType == ENTITY_TYPE_SLIME) {
+
 		Slime* slime = new Slime(tile, damage, this);
 		activeEntities.push_back((Entity*)slime);
 		activeUnits.push_back((Entity*)slime);
