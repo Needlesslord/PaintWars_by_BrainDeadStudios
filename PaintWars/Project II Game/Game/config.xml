@@ -28,44 +28,18 @@
   </map>
 
   <entities>
-    <player  inipos_x="90.0f" inipos_y="250.0f" velocity_x="5" velocity_y="60" gravity="6"  DashDistance ="90" width="21" height="35">
-      <DashedBefore active ="false"/>
-      <CanDash active ="true"/>
-      <CanJump active ="false"/>
-      <JumpTicks active ="true"/>
-      <Adjust int ="8"/>
-    </player>
-    <skeleton width ="21" height="35"> </skeleton>
-    <slime width ="21" height="35"> </slime>
-    <skull width ="32" height="32"> </skull>
-    <bee width ="32" height="32"> </bee>
-    <MapEntity width="32" height="32"></MapEntity>
   </entities>
   <audio>
     <Volume></Volume>
     <Music>
-      <BackgroundMusic> name="BackgroundMusic" value="MusicLevel1.ogg"/></BackgroundMusic>
+
     </Music>
     <Fx>
-      <MovementSounds>audio/fx</MovementSounds>
+  
     </Fx>
   </audio>
-  <scene>
-    <spawn>
-      <Skeleton1 x="544" y="288"></Skeleton1>
-      <Skeleton2 x="1000" y="222"></Skeleton2>
-      <Skeleton3 x="1600" y="290"></Skeleton3>
-      <Skull1 x="900" y="100"></Skull1>
-      <Bee1 x="2300" y="120"></Bee1>
-      <Map1 x="710" y="250"></Map1>
-      <Map2 x="1150" y="200"></Map2>
-      <Map3 x="1800" y="200"></Map3>
-      <Map4 x="2250" y="230"></Map4>
-    </spawn>
-  </scene>
   <gui>
-    <atlas file="textures/UI_atlas.png"/>
-    <FX_Audios_UI>audio/FX/Click_Mouse.wav</FX_Audios_UI>
+
   </gui>
 
   

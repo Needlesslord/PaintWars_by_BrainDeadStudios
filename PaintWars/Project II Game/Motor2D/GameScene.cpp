@@ -16,6 +16,8 @@
 #include "j1GUI.h"
 #include "SDL_mixer\include\SDL_mixer.h"
 
+
+
 /*
 DEBUG KEYS
 
@@ -263,7 +265,7 @@ bool GameScene::PreUpdate()
 		else {}
 	}
 
-
+	
 
 	// Debug pathfinding ------------------
 	static iPoint origin;

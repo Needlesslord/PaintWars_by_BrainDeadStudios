@@ -3,7 +3,6 @@
 #include "j1App.h"
 #include "j1Audio.h"
 #include <list>
-
 #include "SDL/include/SDL.h"
 #include "SDL_mixer\include\SDL_mixer.h"
 #pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
@@ -54,8 +53,22 @@ bool j1Audio::Awake(pugi::xml_node& config)
 		ret = true;
 	}
 
+
+	Click_Button_Sound = Mix_LoadWAV("audio/fx/Click_Mouse.wav");
+	if (Click_Button_Sound == NULL)
+	{
+		LOG("Audio Click Mouse IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+		
+	}
+
+	
+	//AUDIO VOLUMES & STUFF
+	ChunkAudioManager();
 	VolumeMusic = 5;
 	Mix_VolumeMusic(VolumeMusic);
+
+
+
 	return ret;
 }
 
@@ -179,6 +192,11 @@ bool j1Audio::Load(pugi::xml_node& save) {
 	}
 
 	return true;
+}
+
+void j1Audio::ChunkAudioManager()
+{
+	Mix_VolumeChunk(Click_Button_Sound, 10);
 }
 
 bool j1Audio::Save(pugi::xml_node& save) const {

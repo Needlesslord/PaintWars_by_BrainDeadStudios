@@ -50,10 +50,18 @@ public:
 	bool PlayingLoseMusic;
 	bool PlayingWinMusic;
 
+
+
+	//AUDIO CHUNKS
+	Mix_Chunk* Click_Button_Sound;
+	Mix_Chunk* Transition_Sound;
+
+
 private:
 
 	_Mix_Music*			music = NULL;
 	list<Mix_Chunk*>	fx;
+	void ChunkAudioManager();
 };
 
 #endif // __j1AUDIO_H__

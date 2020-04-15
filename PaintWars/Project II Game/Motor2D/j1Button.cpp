@@ -6,6 +6,8 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "j1Window.h"
+#include "SDL_mixer\include\SDL_mixer.h"
+#include "j1Audio.h"
 
 
 j1Button::j1Button() {
@@ -91,6 +93,7 @@ bool j1Button::Update(float dt)
 		{
 			if (App->input->GetMouseButtonDown(1) == KEY_DOWN)
 			{
+				Mix_PlayChannel(-1, App->audio->Click_Button_Sound, 0);
 				OnClick();
 			}
 			
