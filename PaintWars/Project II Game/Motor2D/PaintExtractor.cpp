@@ -30,7 +30,7 @@ PaintExtractor::PaintExtractor(iPoint tile, int damage, j1Module* listener, Enti
 
 	constructionTime = 10.0f;
 
-	extractionRate *= 2.0f;
+	extractionRate = 50.0f;
 
 	isEntityFromPlayer = true;
 }

@@ -5,10 +5,13 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "j1Window.h"
+#include "j1GUIELements.h"
 #include "j1GUI.h"
 #include "j1SceneManager.h"
 #include "WinScene.h"
 #include "TransitionManager.h"
+#include "j1Audio.h"
+#include "SDL_mixer\include\SDL_mixer.h"
 
 WinScene::WinScene() : Scene(SCENES::WIN_SCENE)
 {
@@ -35,19 +38,20 @@ bool WinScene::Start()
 {
 	bool ret = true;
 
-	//mainMenuButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 350, 70 }, { 0, 0 }, false, true, { 0, 0, 350, 121 }, "Main Menu");
+	Win_Scene_UI = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 0 , 0 }, { 0 , 0 }, true, true, { 0, 0, 1278, 719 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::WIN_SCREEN);
 
-	//newGameButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 370, 240 }, { 0,0 }, true, true, { 0, 445, 312, 108 }, "New Game", App->scenes);
-	//newGameButton->hover_tex = { 350, 445, 312, 108 };
+	ReturnVictorious = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 300, 600 }, { 30,25 }, true, true, { 322, 398,630 ,58 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::CONTINUE_LETTERS);
+	ReturnVictorious->hover_rect = { 322, 237,630 ,58 };
+	ReturnVictorious->click_rect = { 322, 237,630 ,58 };
 
-	//continueButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 370, 380 }, { 0,0 }, true, true, { 0, 445, 312, 108 }, "Continue", App->scenes);
-	//continueButton->hover_tex = { 350, 445, 312, 108 };
 
-	//settingsButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 370, 520 }, { 0,0 }, true, true, { 0, 445, 312, 108 }, "Settings", App->scenes);
-	//settingsButton->hover_tex = { 350, 445, 312, 108 };
+	if (App->audio->PlayingWinMusic != true) {
+		Mix_HaltMusic();
+		App->audio->PlayingWinMusic = false;
+		App->audio->PlayMusic("audio/music/LoseSceneMusic.ogg"); //Look for new music 
+		App->audio->PlayingWinMusic = true;
+	}
 
-	//exitButton = App->gui->ADD_ELEMENT(GUItype::GUI_BUTTON, nullptr, { 390, 650 }, { 0,0 }, true, true, { 0, 877, 275, 95 }, "EXIT", App->scenes);
-	//exitButton->hover_tex = { 350, 877, 275, 95 };
 
 	return ret;
 }
@@ -69,7 +73,7 @@ bool WinScene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		App->scenes->SwitchScene(SCENES::GAME_SCENE);
+		App->scenes->SwitchScene(SCENES::START_SCENE);
 	}
 
 	return ret;
@@ -80,7 +84,7 @@ bool WinScene::PostUpdate()
 {
 	bool ret = true;
 
-	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	if (exit)
 		ret = false;
 
 	//ExecuteTransition();
@@ -94,11 +98,18 @@ bool WinScene::CleanUp()
 	LOG("Freeing Scene");
 	bool ret = true;
 
-	//RELEASE(mainMenuButton);
-	//RELEASE(newGameButton);
-	//RELEASE(continueButton);
-	//RELEASE(settingsButton);
-	//RELEASE(exitButton);
+
+
+
+
+	//UI
+	for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
+	{
+		App->gui->GUI_ELEMENTS[i]->CleanUp();
+	}
+
+
+
 
 	if (scene_texture != nullptr)
 	{
@@ -120,54 +131,29 @@ bool WinScene::CleanUp()
 		SDL_FreeSurface(scene_surface);
 	}
 
+
+
 	return ret;
 }
 
 
-//void MenuScene::InitScene()
-//{
-//	tileset_texture = App->tex->Load("maps/tiles_first_map.png", scene_renderer);	// This texture will be used SceneToTexture(). Needed to get a single whole texture of the map.
-//
-//	App->map->GetMapSize(map_width, map_height);
-//	App->map->GetTileOffset(x_offset, y_offset);
-//	
-//	App->render->camera.x = map_width * 0.3f;										// This camera position gets the camera close to the center of the map.
-//	App->render->camera.y = -40;
-//
-//	// --- TRANSITIONS WITH TEXTURE
-//	/*App->render->camera.x = map_width * 0.5f;										// This camera position is to have the renderer render all the scene_texture.
-//	App->render->camera.y = 0;
-//
-//	SceneToTexture();
-//
-//	App->render->camera.x = map_width * 0.3f;										// This camera position gets the camera close to the center of the map.
-//	App->render->camera.y = -40;*/
-//}
+void WinScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
+{
 
-//void MenuScene::DrawScene()
-//{
-//	App->map->Draw();
-//
-//
-//	// --- TRANSITIONS WITH TEXTURE
-//	/*if (scene_texture != nullptr)
-//	{
-//		App->render->Blit(scene_texture, -(map_width) * 0.5f, 0, NULL);
-//	}*/	
-//}
+	if (element == ReturnVictorious && type == GUI_Event::EVENT_ONCLICK)
+	{
+		Mix_HaltMusic();
+		if (App->audio->PlayingMenuMusic != true) {
+			App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
+			App->audio->PlayingMenuMusic = true;
+		}
+		App->audio->PlayingWinMusic = false;
+		App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
+	}
+}
 
 
-//SDL_Texture* MenuScene::SceneToTexture()
-//{
-//	App->render->CreateSubRenderer(map_width + x_offset, map_height + y_offset, scene_surface, scene_renderer);		// Both scene_surface and scene renderer are passed by reference.
-//
-//	tileset_texture = App->tex->Load("maps/tiles_first_map.png", scene_renderer);
-//	App->map->DrawToSubRenderer(scene_renderer, tileset_texture);
-//
-//	scene_texture = SDL_CreateTextureFromSurface(App->render->renderer, scene_surface);
-//
-//	return scene_texture;
-//}
+
 
 
 void WinScene::ExecuteTransition()
@@ -184,30 +170,30 @@ void WinScene::ExecuteTransition()
 			App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
 		}
 
-		//	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
-		//	{
-		//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true);
-		//	}
+		if (App->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN)
+		{
+			App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true);
+		}
 
-		//	if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
-		//	{
-		//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true, true);
-		//	}
+		if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
+		{
+			//App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true, true);
+		}
 
-		//	if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
-		//	{
-		//		App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true);
-		//	}
+		if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
+		{
+			//App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true);
+		}
 
-		//	if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
-		//	{
-		//		App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true, true);
-		//	}
+		if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
+		{
+			//App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true, true);
+		}
 
-		//	if (App->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
-		//	{
-		//		App->transition_manager->CreateAlternatingBars(SCENES::SECOND_SCENE, 0.5f, true);
-		//	}
+		if (App->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
+		{
+			//App->transition_manager->CreateAlternatingBars(SCENES::SECOND_SCENE, 0.5f, true);
+		}
 
 		//	if (App->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
 		//	{
@@ -249,3 +235,4 @@ void WinScene::ExecuteTransition()
 		//	}
 	}
 }
+

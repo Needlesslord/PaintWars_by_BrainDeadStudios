@@ -14,6 +14,7 @@
 #include "j1Input.h"
 #include "j1Player.h"
 #include "j1Window.h"
+#include "TransitionManager.h"
 
 #include "Entity.h"
 
@@ -43,6 +44,8 @@ bool j1EntityManager::Start() {
 	/// Buildings
 	townHallTexture = App->tex->Load("textures/TownHall.png");
 	paintExtractorTexture = App->tex->Load("textures/PaintExtractor.png");
+	woodProducerTexture = App->tex->Load("textures/WoodProducer.png");
+	houseTexture = App->tex->Load("textures/House.png");
 
 	/// Units
 	painterTexture = App->tex->Load("textures/Painter.png");
@@ -64,9 +67,11 @@ bool j1EntityManager::Start() {
 }
 
 bool j1EntityManager::PreUpdate() {
+
 	bool ret = true;
 	if (App->PAUSE_ACTIVE == false) {}
 
+	// Update the currentTile to the actual pos
 	list<Entity*>::iterator updateCurrentTile = activeUnits.begin();
 	while (updateCurrentTile != activeUnits.end()) {
 
@@ -101,7 +106,7 @@ bool j1EntityManager::Update(float dt) {
 
 					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos);
 					(*checkForSpawningEntities)->spawnedBy->isSpawningAUnit = false;
-					(*checkForSpawningEntities)->isActive = true;
+					(*checkForSpawningEntities)->isAlive = true;
 
 					spawningEntities.erase(checkForSpawningEntities);
 				}
@@ -122,7 +127,7 @@ bool j1EntityManager::Update(float dt) {
 
 					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos);
 					(*checkForSpawningEntities)->spawnedBy->isBuildingSomething = false;
-					(*checkForSpawningEntities)->isActive = true;
+					(*checkForSpawningEntities)->isAlive = true;
 
 					spawningEntities.erase(checkForSpawningEntities);
 				}
@@ -191,7 +196,7 @@ bool j1EntityManager::Update(float dt) {
 		paintersSelected = unitsSelected.begin();
 		while (paintersSelected != unitsSelected.end()) {
 
-			if ((*paintersSelected)->isSelectingPlacement) {
+			if ((*paintersSelected)->isSelectingPlacement) { // Selecting Placement FOR A PAINT EXTRACTOR
 
 				fPoint mousePosition = App->input->GetMouseWorldPosition();
 				iPoint cameraOffset = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
@@ -203,7 +208,7 @@ bool j1EntityManager::Update(float dt) {
 				App->render->AddBlitEvent(1, debug_tex, mapWorldCoordinates.x + App->map->data.tile_width / 2,	mapWorldCoordinates.y - App->map->data.tile_height / 2,	{ 0,0,150,75 });
 				App->render->AddBlitEvent(1, debug_tex, mapWorldCoordinates.x,									mapWorldCoordinates.y - App->map->data.tile_height,		{ 0,0,150,75 });
 
-				App->render->AddBlitEvent(1, paintExtractorTexture, mapWorldCoordinates.x-125 + App->map->data.tile_width / 2, mapWorldCoordinates.y-250+ App->map->data.tile_height / 2, { 0,0,250,250 });
+				App->render->AddBlitEvent(1, paintExtractorTexture, mapWorldCoordinates.x - 125 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 250 + App->map->data.tile_height / 2, { 0,0,250,250 });
 
 				// If the Left click was pressed we'll check if it can in fact be built there
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
@@ -256,7 +261,7 @@ bool j1EntityManager::Update(float dt) {
 
 
 
-		// Extract Paint
+		// Extract Paint (Painters and PaintExtractor
 		list<Entity*>::iterator paintersToExtract = activeEntities.begin();
 		while (paintersToExtract != activeEntities.end()) {
 
@@ -266,6 +271,73 @@ bool j1EntityManager::Update(float dt) {
 				(*paintersToExtract)->ExtractPaint(dt);
 			}
 			paintersToExtract++;
+		}
+
+		// Extract Wood  (ONLY PAINTERS CAN)
+		paintersToExtract = activeUnits.begin();
+		while (paintersToExtract != activeUnits.end()) {
+
+			// We try to extract and it will return if it can't
+			if ((*paintersToExtract)->entityType == ENTITY_TYPE_PAINTER) {
+
+				(*paintersToExtract)->ExtractWood(dt);
+			}
+			paintersToExtract++;
+		}
+
+
+
+
+		// Attack Mode
+		list<Entity*>::iterator unitsToFight = activeUnits.begin();
+		while (unitsToFight != activeUnits.end()) {
+
+			if ((*unitsToFight)->isEntityFromPlayer) {
+
+				if ((*unitsToFight)->currentTile == (*unitsToFight)->destination) {
+					
+					int x_distance, y_distance;
+
+					x_distance = (*unitsToFight)->currentTile.x - (*unitsToFight)->target.x;
+					y_distance = (*unitsToFight)->currentTile.y - (*unitsToFight)->target.y;
+
+					if (x_distance < 0)
+						x_distance *= (-1);
+
+					if (y_distance < 0)
+						y_distance *= (-1);
+
+					if (x_distance <= 1 && y_distance <= 1) {
+						
+						// If we should attack, we check to what
+						list<Entity*>::iterator checkWhichSpawner = activeBuildings.begin();
+						while (checkWhichSpawner != activeBuildings.end()) {
+
+							if ((*checkWhichSpawner)->entityType == ENTITY_TYPE_SPAWNER) {
+
+								fPoint targetWorldPos = App->map->MapToWorld((*unitsToFight)->target.x, (*unitsToFight)->target.y);
+								//targetWorldPos.x -= App->map->data.tile_width;
+								//targetWorldPos.y -= App->map->data.tile_height;
+
+								fPoint spawnerCurrentTileWorld = App->map->MapToWorld((*checkWhichSpawner)->currentTile.x - 1, (*checkWhichSpawner)->currentTile.y - 1);
+
+								if (targetWorldPos.x < spawnerCurrentTileWorld.x + (*checkWhichSpawner)->GetSize().x &&
+									targetWorldPos.x + App->map->data.tile_width > spawnerCurrentTileWorld.x &&
+									targetWorldPos.y < spawnerCurrentTileWorld.y + (*checkWhichSpawner)->GetSize().y &&
+									App->map->data.tile_height + targetWorldPos.y > spawnerCurrentTileWorld.y) {
+
+									(*unitsToFight)->Attack((*checkWhichSpawner), dt);
+								}
+							}
+							checkWhichSpawner++;
+						}
+
+						
+					}
+				}
+			}
+
+			unitsToFight++;
 		}
 
 
@@ -279,7 +351,7 @@ bool j1EntityManager::Update(float dt) {
 
 			while (unitsToRedirect != unitsSelected.end()) {
 
-				if ((*unitsToRedirect)->isActive) {
+				if ((*unitsToRedirect)->isAlive) {
 
 					fPoint xy = App->input->GetMouseWorldPosition();
 					iPoint cameraW = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
@@ -323,13 +395,19 @@ bool j1EntityManager::Update(float dt) {
 		list<Entity*>::iterator entitiesToDraw = activeEntities.begin();
 		while (entitiesToDraw != activeEntities.end()) {
 
-			if ((*entitiesToDraw)->isActive) {
+			if ((*entitiesToDraw)->isAlive) {
 
 				if ((*entitiesToDraw)->entityType == ENTITY_TYPE_TOWN_HALL) {
 					(*entitiesToDraw)->Draw(townHallTexture);
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
 					(*entitiesToDraw)->Draw(paintExtractorTexture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_WOOD_PRODUCER) {
+					(*entitiesToDraw)->Draw(woodProducerTexture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_HOUSE) {
+					(*entitiesToDraw)->Draw(houseTexture);
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINTER) {
 					(*entitiesToDraw)->Draw(painterTexture);
@@ -346,8 +424,6 @@ bool j1EntityManager::Update(float dt) {
 			}
 
 			entitiesToDraw++;
-
-			//	}
 		}
 
 	return ret;
@@ -359,34 +435,34 @@ bool j1EntityManager::PostUpdate() {
 
 	bool ret = true;
 
+	
+	//// WIN CONDITION   
+	//bool anySpawnerActive = false;
+	//list<Entity*>::const_iterator checkForSpawners = activeBuildings.begin();
+	//while (checkForSpawners != activeBuildings.end()) {
 
-	// WIN CONDITION
-	bool anySpawnerActive = false;
-	list<Entity*>::const_iterator checkForSpawners = activeBuildings.begin();
-	while (checkForSpawners != activeBuildings.end()) {
+	//	if ((*checkForSpawners)->entityType == ENTITY_TYPE_SPAWNER) {
+	//		anySpawnerActive = true;
+	//		break;
+	//	}
+	//	checkForSpawners++;
+	//}
+	//if (!anySpawnerActive)
+	//	TriggerEndGame(true);
 
-		if ((*checkForSpawners)->entityType == ENTITY_TYPE_SPAWNER) {
-			anySpawnerActive = true;
-			break;
-		}
-		checkForSpawners++;
-	}
-	if (!anySpawnerActive)
-		TriggerEndGame(true);
+	//// LOSE CONDITION
+	//bool anyTownhallActive = false;
+	//list<Entity*>::const_iterator checkForTownhalls = activeBuildings.begin();
+	//while (checkForTownhalls != activeBuildings.end()) {
 
-	// LOSE CONDITION
-	bool anyTownhallActive = false;
-	list<Entity*>::const_iterator checkForTownhalls = activeBuildings.begin();
-	while (checkForTownhalls != activeBuildings.end()) {
-
-		if ((*checkForTownhalls)->entityType == ENTITY_TYPE_TOWN_HALL) {
-			anyTownhallActive = true;
-			break;
-		}
-		checkForTownhalls++;
-	}
-	if (!anyTownhallActive)
-		TriggerEndGame(false);
+	//	if ((*checkForTownhalls)->entityType == ENTITY_TYPE_TOWN_HALL) {
+	//		anyTownhallActive = true;
+	//		break;
+	//	}
+	//	checkForTownhalls++;
+	//}
+	//if (!anyTownhallActive)
+	//	TriggerEndGame(false);
 
 
 
@@ -481,30 +557,74 @@ bool j1EntityManager::PostUpdate() {
 			UnselectAllEntities();
 	}
 
+
+	list<Entity*>::iterator checkForDeadUnits = activeUnits.begin();
+	while (checkForDeadUnits != activeUnits.end()) {
+
+		if ((*checkForDeadUnits)->GetCurrLife() <= 0) {
+
+			App->player->housingSpace.count--;
+			activeUnits.erase(checkForDeadUnits);
+		}
+		checkForDeadUnits++;
+	}
+
+	list<Entity*>::iterator checkForDeadBuildings = activeBuildings.begin();
+	while (checkForDeadBuildings != activeBuildings.end()) {
+
+		if ((*checkForDeadBuildings)->GetCurrLife() <= 0) {
+
+			activeBuildings.erase(checkForDeadBuildings);
+		}
+		checkForDeadBuildings++;
+	}
+	
+	list<Entity*>::iterator checkForDeadEntities = activeEntities.begin();
+	while (checkForDeadEntities != activeEntities.end()) {
+
+		if ((*checkForDeadEntities)->GetCurrLife() <= 0) {
+
+			(*checkForDeadEntities)->isAlive = false;
+			activeEntities.erase(checkForDeadEntities);	
+
+			(*checkForDeadEntities)->~Entity();
+		}
+		checkForDeadEntities++;
+	}
+
 	return ret;
 }
 
 bool j1EntityManager::CleanUp() {
 	bool ret = true;
 
-	if (townHallTexture != nullptr)
-		App->tex->UnLoad(townHallTexture);
-
-	if (paintExtractorTexture != nullptr)
-		App->tex->UnLoad(paintExtractorTexture);
-
-	if (painterTexture != nullptr)
-		App->tex->UnLoad(painterTexture);
-
-	if (warrior_Texture != nullptr)
-		App->tex->UnLoad(warrior_Texture);
-
-	if (slimeTexture != nullptr)
-		App->tex->UnLoad(slimeTexture);
+	App->tex->UnLoad(townHallTexture);
+	App->tex->UnLoad(paintExtractorTexture);
+	App->tex->UnLoad(woodProducerTexture);
+	App->tex->UnLoad(houseTexture);
+	App->tex->UnLoad(painterTexture);
+	App->tex->UnLoad(warrior_Texture);
+	App->tex->UnLoad(slimeTexture);
 
 	App->tex->UnLoad(fullLifeTexture);
 	App->tex->UnLoad(zeroLifeTexture);
 
+	list<Entity*>::iterator destroyEntities = activeEntities.begin();
+	while (destroyEntities != activeEntities.end()) {
+
+		(*destroyEntities)->entityCollider->to_delete = true;
+		delete (*destroyEntities);
+
+		destroyEntities++;
+	}
+
+	activeEntities.clear();
+	activeBuildings.clear();
+	activeUnits.clear();
+	entitiesSelected.clear();
+	unitsSelected.clear();
+	buildingsSelected.clear();
+	
 	return ret;
 }
 
@@ -534,35 +654,40 @@ void j1EntityManager::UnselectAllEntities() {
 
 }
 
-Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module* listener, Entity* creator, int damage,  bool spawnAutomatically) {
+Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module* listener, Entity* creator, float damage,  bool spawnAutomatically) {
 
 		// Allies
 	/// Buildings
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
+
 		TownHall* townHall = new TownHall(tile, damage, this, creator);
 
 		if (spawnAutomatically) {
 
 			activeEntities.push_back((Entity*)townHall);
 			activeBuildings.push_back((Entity*)townHall);
-			townHall->isActive = true;
+			townHall->isAlive = true;
 			townHall->CreateEntityCollider(townHall->pos);
 		}
 
 		else
 			spawningEntities.push_back((Entity*)townHall);
 
+		// Change the walkability to non walkable
+		App->pathfinding->ChangeWalkability(tile, false, townHall->entitySize);
+	
 		return (Entity*)townHall;
 	}
 	
 	else if (entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
+
 		PaintExtractor* paintExtractor = new PaintExtractor(tile, damage, this, creator);
 
 		if (spawnAutomatically) {
 
 			activeEntities.push_back((Entity*)paintExtractor);
 			activeBuildings.push_back((Entity*)paintExtractor);
-			paintExtractor->isActive = true;
+			paintExtractor->isAlive = true;
 			paintExtractor->CreateEntityCollider(paintExtractor->pos);
 		}
 
@@ -570,14 +695,59 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			spawningEntities.push_back((Entity*)paintExtractor);
 
 		// Change the walkability to non walkable
-		App->pathfinding->ChangeWalkability(tile, false);
-		App->pathfinding->ChangeWalkability({ tile.x - 1,tile.y - 1 }, false);
+		App->pathfinding->ChangeWalkability(tile, false, paintExtractor->entitySize);
 
 		return (Entity*)paintExtractor;
 	}
 
+	else if (entityType == ENTITY_TYPE_WOOD_PRODUCER) {
+
+		WoodProducer* woodProducer = new WoodProducer(tile, damage, this, creator);
+
+		if (spawnAutomatically) {
+
+			activeEntities.push_back((Entity*)woodProducer);
+			activeBuildings.push_back((Entity*)woodProducer);
+			woodProducer->isAlive = true;
+			woodProducer->CreateEntityCollider(woodProducer->pos);
+		}
+
+		else
+			spawningEntities.push_back((Entity*)woodProducer);
+
+		// Change the walkability to non walkable
+		App->pathfinding->ChangeWalkability(tile, false, woodProducer->entitySize);
+
+		// Change to Wood the 4 directly adjacent tiles
+		App->pathfinding->ChangeToWood(tile);
+
+		return (Entity*)woodProducer;
+	}
+
+	else if (entityType == ENTITY_TYPE_HOUSE) {
+
+		House* house = new House(tile, damage, this, creator);
+
+		if (spawnAutomatically) {
+
+			activeEntities.push_back((Entity*)house);
+			activeBuildings.push_back((Entity*)house);
+			house->isAlive = true;
+			house->CreateEntityCollider(house->pos);
+		}
+
+		else
+			spawningEntities.push_back((Entity*)house);
+
+		// Change the walkability to non walkable
+		App->pathfinding->ChangeWalkability(tile, false, house->entitySize);
+
+		return (Entity*)house;
+	}
+
 	/// Units
 	else if (entityType == ENTITY_TYPE_PAINTER) {
+
 		Painter* painter = new Painter(tile, damage, this, creator);
 		activeEntities.push_back((Entity*)painter);
 		activeUnits.push_back((Entity*)painter);
@@ -586,13 +756,14 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 	}
 
 	else if (entityType == ENTITY_TYPE_WARRIOR) {
+
 		Warrior* warrior = new Warrior(tile, damage, this, creator);
 
 		if (spawnAutomatically) {
 
 			activeEntities.push_back((Entity*)warrior);
 			activeUnits.push_back((Entity*)warrior);
-			warrior->isActive = true;
+			warrior->isAlive = true;
 			warrior->CreateEntityCollider(warrior->pos);
 		}
 
@@ -605,15 +776,20 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		// Enemies
 	/// Buildings
 	if (entityType == ENTITY_TYPE_SPAWNER) {
+
 		Spawner* spawner = new Spawner(tile, damage, this);
 		activeEntities.push_back((Entity*)spawner);
 		activeBuildings.push_back((Entity*)spawner);
+
+		// Change the walkability to non walkable
+		App->pathfinding->ChangeToSpawner(tile);
 
 		return (Entity*)spawner;
 	}
 
 	/// Units
 	else if (entityType == ENTITY_TYPE_SLIME) {
+
 		Slime* slime = new Slime(tile, damage, this);
 		activeEntities.push_back((Entity*)slime);
 		activeUnits.push_back((Entity*)slime);
@@ -674,5 +850,15 @@ void j1EntityManager::SelectGroupEntities(SDL_Rect rect) {
 }
 
 void j1EntityManager::TriggerEndGame(bool isVictory) {
+
+
+	if (isVictory == false) {
+
+		App->transition_manager->CreateExpandingBars(SCENES::LOSE_SCENE, 0.5f, true);
+	}
+
+	else if(isVictory==true) {
+	   App->transition_manager->CreateExpandingBars(SCENES::WIN_SCENE, 0.5f, true);  //DOESNT WORK YET BECAUSE SPAWNERS NOT IMPLEMENTED
+	}
 
 }

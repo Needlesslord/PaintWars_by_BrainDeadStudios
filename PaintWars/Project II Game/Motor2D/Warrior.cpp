@@ -37,7 +37,24 @@ Warrior::Warrior(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 
 	destination = currentTile;
 
+	attackDamage = 10.0f;
+	attackSpeed = 20.0f;
+	attackCooldown = attackSpeed;
+
 	isEntityFromPlayer = true;
 }
 
 Warrior::~Warrior() {}
+
+void Warrior::Attack(Entity* target, float dt) {
+
+	if (attackCooldown >= attackSpeed) {
+
+		target->ApplyDamage(attackDamage);
+		attackCooldown = 0.0f;
+	}
+
+	else {
+		attackCooldown += attackSpeed * dt;
+	}
+}

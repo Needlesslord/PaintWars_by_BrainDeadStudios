@@ -58,6 +58,8 @@ enum ENTITY_TYPE {
 	/// Buildings
 	ENTITY_TYPE_TOWN_HALL,
 	ENTITY_TYPE_PAINT_EXTRACTOR,
+	ENTITY_TYPE_WOOD_PRODUCER,
+	ENTITY_TYPE_HOUSE,
 
 	/// Units
 	ENTITY_TYPE_PAINTER,
@@ -87,6 +89,8 @@ public:
 	virtual void SetDestination(iPoint des);
 	virtual void SpawnEntity(iPoint pos);
 	virtual void ExtractPaint(float dt);
+	virtual void ExtractWood(float dt);
+	virtual void Attack(Entity* target, float dt);
 
 	// Position and size
 	void SetPos(fPoint pos);
@@ -99,8 +103,8 @@ public:
 	float GetMaxLife() const;
 	void SetCurrLife(int currLife);
 	float GetCurrLife() const;
-	void ApplyDamage(int damage);
-	void ApplyHealth(int health);
+	void ApplyDamage(float damage);
+	void ApplyHealth(float health);
 
 	// Collision
 	Collider* GetEntityCollider() const;
@@ -126,6 +130,14 @@ public:
 	fPoint pos = { 0.0f,0.0f };
 	iPoint currentTile = { 0,0 };
 
+	iPoint destination;
+	iPoint target;
+
+	float attackDamage = 0.0f;
+	float attackSpeed = 0.0f;
+	float attackCooldown = 1.0f;
+	//float attackProgress = 0.0f;
+
 	SDL_Color minimapDrawColor{ 0,0,0,0 };
 
 	// Collision
@@ -139,7 +151,7 @@ public:
 
 	bool isSpawningAUnit;
 	bool isBuildingSomething;
-	bool isActive;
+	bool isAlive;
 
 	Entity* spawnedBy;
 	Entity* builtBy;
@@ -147,7 +159,7 @@ public:
 	bool isSelectingPlacement = false;
 
 	// Paint speed
-	float extractionRate = 100.0f;
+	float extractionRate = 0.0f;
 
 protected:
 
@@ -160,7 +172,6 @@ protected:
 
 	j1Module* listener = nullptr; // callback
 
-	iPoint destination;
 	std::vector<iPoint>currentPath;
 
 	Animation North_Animation;

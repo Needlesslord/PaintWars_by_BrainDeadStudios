@@ -15,12 +15,12 @@ Spawner::Spawner(iPoint tile, int damage, j1Module* listener) : Entity(tile, dam
 	// Handle data and initialize the Spawner
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_SPAWNER;
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_STATIC_ENTITY;
-	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_VERY_BIG;
+	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_MEDIUM;
 	
 	maxLife = 100;
 	currLife = maxLife - damage;
 
-	size = { 100, 100 };
+	size = { 250, 250 };
 
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);

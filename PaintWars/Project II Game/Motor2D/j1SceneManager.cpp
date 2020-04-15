@@ -3,6 +3,8 @@
 #include "MenuScene.h"
 #include "SettingsScene.h"
 #include "StartScene.h"
+#include "LoseScene.h"
+#include "WinScene.h"
 #include "j1Render.h"
 #include "j1Input.h"
 #include "p2Log.h"
@@ -227,6 +229,17 @@ Scene* j1SceneManager::CreateScene(SCENES scene_name)
 
 		break;
 
+	case SCENES::LOSE_SCENE:
+		
+		item = new LoseScene();
+			
+		break;
+
+	case SCENES::WIN_SCENE:
+		
+		item = new WinScene();
+			
+		break;
 	}
 
 	if (item != nullptr)
@@ -243,6 +256,8 @@ void j1SceneManager::ScenePushbacks()
 	CreateScene(SCENES::GAME_SCENE);
 	CreateScene(SCENES::SETTINGS_SCENE);
 	CreateScene(SCENES::START_SCENE);
+	CreateScene(SCENES::LOSE_SCENE);
+	CreateScene(SCENES::WIN_SCENE);
 }
 
 bool j1SceneManager::Load(pugi::xml_node& save) 

@@ -37,9 +37,9 @@ Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 
 	isEntityFromPlayer = true;
 
-	CreateEntityCollider(pos);
+	extractionRate = 25.0f;
 
-	isActive = true; //FOR NOW
+	CreateEntityCollider(pos);
 
 	isBuildingSomething = false;
 
@@ -81,5 +81,12 @@ void Painter::ExtractPaint(float dt) {
 
 	if (App->pathfinding->IsPaint(currentTile) && currentTile == destination) {
 		App->player->paintCount.count += extractionRate * dt;
+	}
+}
+
+void Painter::ExtractWood(float dt) {
+
+	if (App->pathfinding->IsWood(currentTile) && currentTile == destination) {
+		App->player->woodCount.count += extractionRate * dt;
 	}
 }

@@ -4,6 +4,7 @@
 #include "j1PathFinding.h"
 #include "j1Map.h"
 #include <vector>
+#include "Entity.h"
 
 j1PathFinding::j1PathFinding() : j1Module(), map(NULL), lastPath(DEFAULT_PATH_LENGTH),width(0), height(0)
 {
@@ -49,7 +50,7 @@ bool j1PathFinding::IsWalkable(const iPoint& pos) const {
 
 	//App->map->data.tilesets.
 	uchar t = GetTileAt(pos);
-	return t > 0 && (t != INVALID_WALK_CODE || t == PAINT_WALK_CODE);
+	return t > 0 && ((t != INVALID_WALK_CODE && t != SPAWNER_WALK_CODE) || t == PAINT_WALK_CODE || t == WOOD_WALK_CODE);
 }
 
 // Utility: returns true is the tile is paint
@@ -59,10 +60,59 @@ bool j1PathFinding::IsPaint(const iPoint& pos) const {
 	return u > 0 && u == PAINT_WALK_CODE;
 }
 
+// Utility: returns true is the tile is wood
+bool j1PathFinding::IsWood(const iPoint& pos) const {
+
+	uchar u = GetTileAt(pos);
+	return u > 0 && u == WOOD_WALK_CODE;
+}
+
+// Utility: returns true is the tile is a spawner
+bool j1PathFinding::IsSpawner(const iPoint& pos) const {
+
+	uchar v = GetTileAt(pos);
+	return v > 0 && v == SPAWNER_WALK_CODE;
+}
+
 // Utility: changes the walkability of a tile to paint
 void j1PathFinding::ChangeToPaint(const iPoint& pos) const {
 
 	map[(pos.y*width) + pos.x] = PAINT_WALK_CODE;
+}
+
+// Utility: changes the walkability of a tile to wood
+void j1PathFinding::ChangeToWood(const iPoint& pos) const {
+
+	iPoint adjacentPos1;
+	iPoint adjacentPos2;
+	iPoint adjacentPos3;
+	iPoint adjacentPos4;
+
+	adjacentPos1.x = pos.x + 1;	adjacentPos1.y = pos.y;
+	adjacentPos2.x = pos.x - 1;	adjacentPos2.y = pos.y;
+	adjacentPos3.x = pos.x;	adjacentPos3.y = pos.y + 1;
+	adjacentPos4.x = pos.x;	adjacentPos4.y = pos.y - 1;
+
+	if (IsWalkable(adjacentPos1)) 
+		map[(adjacentPos1.y*width) + adjacentPos1.x] = WOOD_WALK_CODE;
+
+	if (IsWalkable(adjacentPos2))
+		map[(adjacentPos2.y*width) + adjacentPos2.x] = WOOD_WALK_CODE;
+
+	if (IsWalkable(adjacentPos3))
+		map[(adjacentPos3.y*width) + adjacentPos3.x] = WOOD_WALK_CODE;
+
+	if (IsWalkable(adjacentPos4))
+		map[(adjacentPos4.y*width) + adjacentPos4.x] = WOOD_WALK_CODE;
+}
+
+// Utility: changes the walkability of a tile to a spawner-container tile
+void j1PathFinding::ChangeToSpawner(const iPoint& pos) const {
+
+	map[(pos.y*width) + pos.x] = SPAWNER_WALK_CODE;
+	map[((pos.y - 1)*width) + (pos.x - 1)] = SPAWNER_WALK_CODE;
+	map[((pos.y - 1)*width) + pos.x] = SPAWNER_WALK_CODE;
+	map[(pos.y*width) + (pos.x - 1)] = SPAWNER_WALK_CODE;
 }
 
 // Utility: return the walkability value of a tile
@@ -74,12 +124,62 @@ uchar j1PathFinding::GetTileAt(const iPoint& pos) const
 	return INVALID_WALK_CODE;
 }
 
-void j1PathFinding::ChangeWalkability(const iPoint& pos, bool isBecomingWalkable) {
-	if(isBecomingWalkable)
-		map[(pos.y*width) + pos.x] = 1;
+void j1PathFinding::ChangeWalkability(const iPoint& pos, bool isBecomingWalkable, ENTITY_SIZE size) {
 
-	else
-		map[(pos.y*width) + pos.x] = INVALID_WALK_CODE;
+	if (size == ENTITY_SIZE_SMALL) {
+
+		if (isBecomingWalkable)
+			map[(pos.y*width) + pos.x] = 1;
+
+		else
+			map[(pos.y*width) + pos.x] = INVALID_WALK_CODE;
+	}
+
+	else if (size == ENTITY_SIZE_MEDIUM) {
+	
+		if (isBecomingWalkable) {
+
+			map[(pos.y*width) + pos.x] = 1;
+			map[((pos.y - 1)*width) + (pos.x - 1)] = 1;
+			map[((pos.y - 1)*width) + pos.x] = 1;
+			map[(pos.y*width) + (pos.x - 1)] = 1;
+		}
+		else {
+
+			map[(pos.y*width) + pos.x] = INVALID_WALK_CODE;
+			map[((pos.y - 1)*width) + (pos.x - 1)] = INVALID_WALK_CODE;
+			map[((pos.y - 1)*width) + pos.x] = INVALID_WALK_CODE;
+			map[(pos.y*width) + (pos.x - 1)] = INVALID_WALK_CODE;
+		}
+	}
+
+	else if (size == ENTITY_SIZE_BIG) {
+
+		if (isBecomingWalkable) {
+
+			map[(pos.y*width) + pos.x] = 1;
+			map[((pos.y - 1)*width) + (pos.x - 1)] = 1;
+			map[((pos.y - 1)*width) + pos.x] = 1;
+			map[(pos.y*width) + (pos.x - 1)] = 1;
+			map[((pos.y - 2)*width) + (pos.x - 2)] = 1;
+			map[((pos.y - 2)*width) + pos.x] = 1;
+			map[(pos.y*width) + (pos.x - 2)] = 1;
+			map[((pos.y - 2)*width) + (pos.x - 1)] = 1;
+			map[((pos.y - 1)*width) + (pos.x - 2)] = 1;
+		}
+		else {
+
+			map[(pos.y*width) + pos.x] = INVALID_WALK_CODE;
+			map[((pos.y - 1)*width) + (pos.x - 1)] = INVALID_WALK_CODE;
+			map[((pos.y - 1)*width) + pos.x] = INVALID_WALK_CODE;
+			map[(pos.y*width) + (pos.x - 1)] = INVALID_WALK_CODE;
+			map[((pos.y - 2)*width) + (pos.x - 2)] = INVALID_WALK_CODE;
+			map[((pos.y - 2)*width) + pos.x] = INVALID_WALK_CODE;
+			map[(pos.y*width) + (pos.x - 2)] = INVALID_WALK_CODE;
+			map[((pos.y - 2)*width) + (pos.x - 1)] = INVALID_WALK_CODE;
+			map[((pos.y - 1)*width) + (pos.x - 2)] = INVALID_WALK_CODE;
+		}
+	}
 }
 
 // To request all tiles involved in the last generated path

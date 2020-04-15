@@ -25,6 +25,9 @@ bool j1Label::Start()
 		font_name = App->fonts->Load("textures/font_small.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789= ", 2);
 	else if (fontType == FONT::FONT_SMALL_WHITE)
 		font_name = App->fonts->Load("textures/font_small_white.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789= ", 2);
+	//else if (fontType == FONT::FONT_LOSE_WIN)
+	//	font_name = App->fonts->Load("textures/font.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789= ",2);
+	
 
 	return true;
 }

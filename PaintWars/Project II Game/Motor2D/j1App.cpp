@@ -22,6 +22,7 @@
 #include "TransitionManager.h"
 #include "j1SceneManager.h"
 #include "j1QuestManager.h"
+#include "j1Window.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -140,6 +141,13 @@ bool j1App::Start()
 // Called each loop iteration
 bool j1App::Update()
 {
+	
+	
+
+	
+
+
+
 	bool ret = true;
 	PrepareUpdate();
 
@@ -156,6 +164,8 @@ bool j1App::Update()
 		ret = PostUpdate();
 
 	FinishUpdate();
+
+
 	return ret;
 }
 
@@ -469,7 +479,7 @@ bool j1App::SavegameNow() const
 
 void j1App::Debug_Actions()
 {
-	if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN){
+	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN){
 		App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
 		//App->scenes->SwitchScene(SCENES::GAME_SCENE);
     }
@@ -482,4 +492,22 @@ void j1App::Debug_Actions()
 			PAUSE_ACTIVE = false;
 		}
 	}
+
+	if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
+		App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 1.0f, true);
+		
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN) {
+		App->transition_manager->CreateSlide(SCENES::WIN_SCENE, 1.0f, true);
+	}
+	
+	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
+
+		App->win->Fullscreen_Swap();
+	}
+	
+	
+
+
 }

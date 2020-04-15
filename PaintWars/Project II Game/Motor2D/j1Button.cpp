@@ -27,7 +27,30 @@ bool j1Button::Start()
 		texture = App->gui->Load_Texture(TEXTURE::ATLAS);
 	}
 
+	if (textureType == TEXTURE::MINIMAP_FULL) {
+
+		texture = App->gui->Load_Texture(TEXTURE::MINIMAP_FULL);
+	}
+
+	if (textureType == TEXTURE::MINIMAP_MINI) {
+
+		texture = App->gui->Load_Texture(TEXTURE::MINIMAP_MINI);
+	}
+
+	if (textureType == TEXTURE::MINIMAP_CAMERA) {
+
+		texture = App->gui->Load_Texture(TEXTURE::MINIMAP_CAMERA);
+	}
+
+	if (textureType == TEXTURE::WIN_SCREEN) {
+
+		texture = App->gui->Load_Texture(TEXTURE::WIN_SCREEN);
+	}
 	
+	if (textureType == TEXTURE::LOSE_SCREEN) {
+
+		texture = App->gui->Load_Texture(TEXTURE::LOSE_SCREEN);
+	}
 
 	if (textureType == TEXTURE::NEXT)
 		texture = App->gui->Load_Texture(TEXTURE::NEXT);
@@ -40,6 +63,9 @@ bool j1Button::Start()
 	
 	if (textureType == TEXTURE::BOTON_SCROLL)
 		texture = App->gui->Load_Texture(TEXTURE::BOTON_SCROLL);
+
+	if (textureType == TEXTURE::CONTINUE_LETTERS)
+		texture = App->gui->Load_Texture(TEXTURE::CONTINUE_LETTERS);
 
 	if (text != nullptr)
 		label = App->gui->AddElement(GUItype::GUI_LABEL, this, map_position, inside_position, true, true, { 0,0,0,0 }, text, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, false, TEXTURE::NONE, fontType, layer+1);
@@ -96,7 +122,7 @@ bool j1Button::Update(float dt)
 	if (enabled) {
 
 
-		if (textureType == TEXTURE::BUTON || textureType == TEXTURE::ATLAS) {
+		if (textureType == TEXTURE::BUTON || textureType == TEXTURE::ATLAS || textureType==TEXTURE::MINIMAP_FULL|| textureType == TEXTURE::MINIMAP_MINI||textureType==TEXTURE::MINIMAP_CAMERA ||textureType == TEXTURE::CONTINUE_LETTERS) {
 			if (above && interactable && App->input->GetMouseButtonDown(1) == KEY_REPEAT)
 			{
 				App->render->AddBlitEventforUI(layer, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);

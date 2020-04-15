@@ -8,6 +8,8 @@
 /// Buildings
 #include "TownHall.h"
 #include "PaintExtractor.h"
+#include "WoodProducer.h"
+#include "House.h"
 
 /// Units
 #include "Painter.h"
@@ -52,7 +54,7 @@ public:
 	bool PostUpdate();
 	bool CleanUp();
 
-	Entity* AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module* listener = nullptr, Entity* creator = nullptr, int damage = 0, bool spawnAutomatically = false);
+	Entity* AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module* listener = nullptr, Entity* creator = nullptr, float damage = 0.0f, bool spawnAutomatically = false);
 
 	// Selects an Entity
 	bool SelectEntity(Entity* entity, bool controlWasPressed = false);
@@ -65,10 +67,9 @@ public:
 
 	bool Save(pugi::xml_node& save) const;
 	bool Load(pugi::xml_node& save);
+	void TriggerEndGame(bool isVictory);
 
 private:
-
-	void TriggerEndGame(bool isVictory);
 
 public:
 
@@ -94,6 +95,8 @@ protected:
 	/// Buildings
 	SDL_Texture* townHallTexture = nullptr;
 	SDL_Texture* paintExtractorTexture = nullptr;
+	SDL_Texture* woodProducerTexture = nullptr;
+	SDL_Texture* houseTexture = nullptr;
 
 	/// Units
 	SDL_Texture* painterTexture = nullptr;
@@ -112,6 +115,7 @@ protected:
 
 
 private:
+
 	float currentLifeSum;
 	float maxLifeSum;
 

@@ -14,6 +14,7 @@
 #include "TransitionManager.h"
 #include "j1GUIELements.h"
 #include "j1GUI.h"
+#include "SDL_mixer\include\SDL_mixer.h"
 
 /*
 DEBUG KEYS
@@ -30,7 +31,7 @@ ESC- EXIT GAME
 S/L- SAVE/LOAD
 T-
 
-
+F6- FULLSCREEN
 F7/F8- DIRECT WIN/LOSE
 
 
@@ -79,25 +80,25 @@ bool GameScene::Start()
 	Change_Map = true;
 	Map_Manager();
 
+	int w, h;
+	uchar* data = NULL;
+	if (App->map->CreateWalkabilityMap(w, h, &data))
+	{
+		App->pathfinding->SetMap(w, h, data);						// Sets a new walkability map with the map passed by CreateWalkabilityMap().
 
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{  15,  4 }, App->entities, nullptr, 10, true);
-	//App->entities->AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR,	{  1,  3 }, App->entities, nullptr,  0, true);
+	}
+
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{ 15,  4 }, App->entities, nullptr, 10, true);
+	App->entities->AddEntity(ENTITY_TYPE_WOOD_PRODUCER,		{ 18, 18 }, App->entities, nullptr,  0, true);
 	App->entities->AddEntity(ENTITY_TYPE_PAINTER,			{  1,  5 }, App->entities, nullptr,  5, true);
 
 	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  5,  4 }, App->entities, nullptr, 10, true);
 	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  5,  7 }, App->entities, nullptr,  0, true);
 	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  5, 10 }, App->entities, nullptr,  0, true);
 
-	App->entities->AddEntity(ENTITY_TYPE_SLIME,				{ 10, 10 }, App->entities, nullptr, true);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 14,  8 }, App->entities, nullptr, true);
+	App->entities->AddEntity(ENTITY_TYPE_SLIME,				{ 10, 10 }, App->entities, nullptr,  0, true);
+	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 12, 14 }, App->entities, nullptr,  0, true);
 	
-
-	int w, h;
-	uchar* data = NULL;
-	if (App->map->CreateWalkabilityMap(w, h, &data))
-	{
-		App->pathfinding->SetMap(w, h, data);						// Sets a new walkability map with the map passed by CreateWalkabilityMap().
-	}
 
 	App->pathfinding->ChangeToPaint({ 7, 0 });
 	App->pathfinding->ChangeToPaint({ 7, 1 });
@@ -138,8 +139,20 @@ bool GameScene::Start()
 	restartButton->click_rect = { 859, 634, 74, 73 };
 
 	//HUD - MiniMap
-	miniMapImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 985 , 140 }, { 0 , 0 }, false, true, { 0, 1388, 263, 200 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	
+	miniMapMINI =App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 850 , 150 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_MINI);
+	miniMapMINI->click_rect = { 30, 15, 422,210 };
+	miniMapMINI->hover_rect = { 30, 15, 422,210 };
+
+	miniMapCamera=App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, {1025, 150 }, { 0 , 0 }, false, true, { 0, 0, 70, 36 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_CAMERA);
+
+	miniMapBack = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 0 , 0}, { 0 , 0 }, false, false, { 0, 0, 1345, 672 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_BACK);
+
+	miniMapFULL = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 50 , 75 }, { 0 , 0 }, true,false ,{ 87, 40, 1170,588 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_FULL);
+	miniMapFULL->click_rect = { 87, 40, 1170,588 };
+	miniMapFULL->hover_rect = { 87, 40, 1170,588 };
+
+
 	//Pause Menu
 	pauseMenuImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 400 , 70 }, { 0 , 0 }, false, false, { 263, 729, 452, 623 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 5);
 	pauseMenuLabel = App->gui->AddElement(GUItype::GUI_LABEL, pauseMenuImage, { 550 , 100 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "PAUSE", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 6);
@@ -216,6 +229,16 @@ bool GameScene::Start()
 	App->player->housingSpace.count = 4;
 	App->player->housingSpace.maxCount = 5;
 
+
+	if (App->audio->PlayingMenuMusic == true) {
+		Mix_HaltMusic();
+		App->audio->PlayingMenuMusic = false;
+	}
+
+	if (App->audio->PlayingIngameAudio != true) {
+		App->audio->PlayMusic("audio/music/music_sadpiano.ogg");
+		App->audio->PlayingIngameAudio = true;
+	}
 
 	return ret;
 }
@@ -370,13 +393,10 @@ bool GameScene::PostUpdate()
 {
 	bool ret = true;
 	
-	//if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN) {
-	//	Change_Map = true;
-	//	Load_Snow_Map = true;
-	//}
+	miniMapCamera->map_position.x = miniMapCamera->init_map_position.x+App->render->camera.x*-0.05;
+	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*-0.05;
 
-	//if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-	//	ret = false;
+	WIN_LOSE_Manager();
 
 	ExecuteTransition();
 
@@ -433,6 +453,20 @@ bool GameScene::CleanUp()
 
 void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 {
+
+	if (element == miniMapMINI && type == GUI_Event::EVENT_ONCLICK) {
+		miniMapBack->enabled = true;
+		miniMapFULL->enabled = true;
+		miniMapMINI->enabled = false;
+		miniMapCamera->enabled = false;
+	}
+
+	if (element == miniMapFULL && type == GUI_Event::EVENT_ONCLICK) {
+		miniMapMINI->enabled = true;
+		miniMapBack->enabled = false;
+		miniMapFULL->enabled = false;
+		miniMapCamera->enabled = true;
+	}
 	if (element == questsOpenButton && type == GUI_Event::EVENT_ONCLICK)
 	{
 		questsImage->rect.h = 535;
@@ -595,6 +629,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 
 	if (element == mainMenuButton && type == GUI_Event::EVENT_ONCLICK)
 	{
+		
 		mainMenu = true;
 		exitMenuImage->enabled = true;
 		exitMenuLabel->enabled = true;
@@ -624,8 +659,11 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 
 		}
 
-		if (mainMenu)
-			App->scenes->SwitchScene(SCENES::MENU_SCENE);
+		if (mainMenu) {
+			App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
+			App->audio->PlayingMenuMusic = false;
+			Mix_HaltMusic();
+		}
 	}
 
 	if (element == noButton && type == GUI_Event::EVENT_ONCLICK)
@@ -659,6 +697,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 			settingsButton->enabled = true;
 			mainMenuButton->enabled = true;
 			exitButton->enabled = true;
+			
 		}
 	
 		exitMenuImage->enabled = false;
@@ -674,6 +713,13 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 		shopLabel->enabled = !shopLabel->enabled;
 	}
 
+}
+
+void GameScene::ManageMinimap()
+{
+	float CameraSpeed_Minimap = -0.05;
+	miniMapCamera->map_position.x = miniMapCamera->init_map_position.x + App->render->camera.x*CameraSpeed_Minimap;
+	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*CameraSpeed_Minimap;
 }
 
 void GameScene::InitScene()
@@ -855,4 +901,35 @@ void GameScene::ExecuteTransition()
 	//	}
 
 	}
+}
+
+void GameScene::WIN_LOSE_Manager()
+{
+	// WIN CONDITION
+	bool anySpawnerActive = false;
+	list<Entity*>::const_iterator checkForSpawners = App->entities->activeBuildings.begin();
+	while (checkForSpawners != App->entities->activeBuildings.end()) {
+
+		if ((*checkForSpawners)->entityType == ENTITY_TYPE_SPAWNER) {
+			anySpawnerActive = true;
+			break;
+		}
+		checkForSpawners++;
+	}
+	if (!anySpawnerActive)
+		App->entities->TriggerEndGame(true);
+
+	// LOSE CONDITION
+	bool anyTownhallActive = false;
+	list<Entity*>::const_iterator checkForTownhalls = App->entities->activeBuildings.begin();
+	while (checkForTownhalls != App->entities->activeBuildings.end()) {
+
+		if ((*checkForTownhalls)->entityType == ENTITY_TYPE_TOWN_HALL) {
+			anyTownhallActive = true;
+			break;
+		}
+		checkForTownhalls++;
+	}
+	if (!anyTownhallActive)
+		App->entities->TriggerEndGame(false);
 }
