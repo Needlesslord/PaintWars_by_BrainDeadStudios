@@ -18,7 +18,7 @@ TownHall::TownHall(iPoint tile, int damage, j1Module* listener, Entity* creator)
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_STATIC_ENTITY;
 	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_BIG;
 
-	maxLife = 100;
+	maxLife = 300;
 	currLife = maxLife - damage;
 
 	size = { 277, 403 };

@@ -17,7 +17,7 @@ WoodProducer::WoodProducer(iPoint tile, int damage, j1Module* listener, Entity* 
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_STATIC_ENTITY;
 	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_SMALL; // But it changes 4 more tile around it
 
-	maxLife = 100;
+	maxLife = 200;
 	currLife = maxLife - damage;
 
 	size = { 150, 75 }; // TODO
