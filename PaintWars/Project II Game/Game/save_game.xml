@@ -17,16 +17,9 @@
 	<:anonymous />
 	<:anonymous />
 	<renderer>
-		<camera x="0" y="0" />
-		<num_entities value="14" />
+		<camera x="422" y="50" />
+		<num_entities value="7" />
 		<active_entities>
-			<entity />
-			<entity />
-			<entity entity_type="warrior" position_x="119" position_y="256.5" missing_hp="10" size_x="62" size_y="118" />
-			<entity entity_type="warrior" position_x="-106" position_y="369" missing_hp="0" size_x="62" size_y="118" />
-			<entity entity_type="warrior" position_x="-331" position_y="481.5" missing_hp="0" size_x="62" size_y="118" />
-			<entity />
-			<entity />
 			<entity />
 			<entity />
 			<entity entity_type="warrior" position_x="119" position_y="256.5" missing_hp="10" size_x="62" size_y="118" />

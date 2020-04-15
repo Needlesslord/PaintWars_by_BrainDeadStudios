@@ -215,7 +215,7 @@ bool GameScene::Start()
 	shopImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 985 , 350 }, { 0 , 0 }, false, false, { 0, 1388, 263, 265 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	shopLabel = App->gui->AddElement(GUItype::GUI_LABEL, shopImage, { 985 , 352 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "SHOP", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
 
-
+	//shopLabel = App->gui->AddElement(GUItype::GUI_LABEL, shopImage, { 985 , 352 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
 
 	//////////////////
 	//	RESOURCES	//
@@ -303,11 +303,11 @@ bool GameScene::Update(float dt)
 	
 	CameraDebugMovement(dt);
 
-	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+	/*if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
 		App->LoadGame();
 
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
-		App->SaveGame("save_game.xml");
+		App->SaveGame("save_game.xml");*/
 
 
 
@@ -341,7 +341,8 @@ bool GameScene::Update(float dt)
 
 	App->win->SetTitle(title.GetString());*/
 	
-	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
+
+	if ((App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)&&(App->GOD_MODE!=true)) {
 		debugTile = !debugTile;
 	}
 	// Debug pathfinding ------------------------------
