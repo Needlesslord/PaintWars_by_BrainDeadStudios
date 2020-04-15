@@ -397,6 +397,9 @@ bool GameScene::PostUpdate()
 	miniMapCamera->map_position.x = miniMapCamera->init_map_position.x+App->render->camera.x*-0.05;
 	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*-0.05;
 
+	
+	
+
 	WIN_LOSE_Manager();
 
 	ExecuteTransition();

@@ -126,7 +126,7 @@ public:
 	bool isOnTheMove;
 
 	float speed = 0;
-
+	float Entity_HP;
 	fPoint pos = { 0.0f,0.0f };
 	iPoint currentTile = { 0,0 };
 

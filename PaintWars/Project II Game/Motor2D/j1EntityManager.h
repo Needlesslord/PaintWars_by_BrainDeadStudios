@@ -89,6 +89,10 @@ public:
 	Collider* spawnEntityUIButton = nullptr;
 	Collider* buildEntityUIButton = nullptr;
 
+
+	//small fix hp bar when blit
+	float Entity_HP;
+
 protected:
 
 		// Allies
@@ -112,7 +116,7 @@ protected:
 
 	float spawningRate = 1.0f;
 	float constructionRate = 1.0f;
-
+	
 
 private:
 
