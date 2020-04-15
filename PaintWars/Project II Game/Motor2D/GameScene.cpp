@@ -229,8 +229,10 @@ bool GameScene::Start()
 	App->player->housingSpace.count = 4;
 	App->player->housingSpace.maxCount = 5;
 
+
 	if (App->audio->PlayingMenuMusic == true) {
 		Mix_HaltMusic();
+		App->audio->PlayingMenuMusic = false;
 	}
 
 	if (App->audio->PlayingIngameAudio != true) {
@@ -658,7 +660,8 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 		}
 
 		if (mainMenu) {
-			App->scenes->SwitchScene(SCENES::MENU_SCENE);
+			App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
+			App->audio->PlayingMenuMusic = false;
 			Mix_HaltMusic();
 		}
 	}
@@ -694,6 +697,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 			settingsButton->enabled = true;
 			mainMenuButton->enabled = true;
 			exitButton->enabled = true;
+			
 		}
 	
 		exitMenuImage->enabled = false;
