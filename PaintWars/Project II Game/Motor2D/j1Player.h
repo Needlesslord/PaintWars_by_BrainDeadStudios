@@ -26,8 +26,8 @@ enum RESOURCE_TYPE {
 struct Resource
 {
 	RESOURCE_TYPE type = RESOURCE_NO_TYPE;
-	uint count;
-	uint maxCount;
+	float count;
+	float maxCount;
 	//uint researchLevel;
 
 };

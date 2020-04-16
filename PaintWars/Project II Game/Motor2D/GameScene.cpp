@@ -344,12 +344,12 @@ bool GameScene::Update(float dt)
 	transformer2.x = xy.x; transformer2.y = xy.y;
 
 	static char title[256];
-	sprintf_s(title, 256, "Paint:%d, Wood:%d, Housing:%d/%d;           Tile:%d,%d;          WorldPosition:%d,%d;          MouseWorldPosition:%d,%d",
+	sprintf_s(title, 256, "Paint:%f, Wood:%f, Housing:%f/%f;           Tile:%d,%d;          WorldPosition:%d,%d;          MouseWorldPosition:%d,%d,                DT is: %f",
 		App->player->paintCount.count, App->player->woodCount.count,
 		App->player->housingSpace.count, App->player->housingSpace.maxCount,
 		map_coordinates.x, map_coordinates.y,
 		transformer1.x, transformer1.y,
-		transformer2.x, transformer2.y);
+		transformer2.x, transformer2.y,dt);
 
 	App->win->SetTitle(title);
 
@@ -739,6 +739,36 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 			Mix_HaltMusic();
 		}
 	}
+
+	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_ONCLICK) {
+
+			if (App->entities->isSelectingPlacement != true) {
+				App->entities->isSelectingPlacement = true;
+				App->entities->hoveringEntityType = ENTITY_TYPE_PAINT_EXTRACTOR;
+			}
+
+	}
+
+	if (element == buyBarrackButton && type == GUI_Event::EVENT_ONCLICK) {
+
+			if (App->entities->isSelectingPlacement != true) {
+				App->entities->isSelectingPlacement = true;
+				App->entities->hoveringEntityType = ENTITY_TYPE_BARRACKS;
+			}
+
+	}
+	
+	if (element == buyWoodProducerButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->entities->isSelectingPlacement != true) {
+			App->entities->isSelectingPlacement = true;
+
+			App->entities->hoveringEntityType =ENTITY_TYPE_WOOD_PRODUCER;
+		}
+    }
+
+	
+
 
 	if (element == noButton && type == GUI_Event::EVENT_ONCLICK)
 	{

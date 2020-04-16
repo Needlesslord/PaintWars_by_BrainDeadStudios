@@ -10,6 +10,7 @@
 #include "j1Map.h"
 #include "j1Collision.h"
 #include "j1Textures.h"
+#include "j1Timer.h"
 
 Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) : Entity(tile, damage, listener, creator) {
 
@@ -37,7 +38,7 @@ Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 
 	isEntityFromPlayer = true;
 
-	extractionRate = 25.0f;
+	extractionRate = 2.5f;
 
 	isBuildingSomething = false;
 
@@ -59,32 +60,33 @@ Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 Painter::~Painter() {}
 
 void Painter::SpawnEntity(iPoint pos) {
-
+	App->entities->isSelectingPlacement = false;
 	if (App->player->woodCount.count >= 20) {
 		App->player->woodCount.count -= 20;
 	}
 	else {
-		isSelectingPlacement = false;
-		return;
+	 return;
 	}
 
-	isSelectingPlacement = false;
-	if (!isBuildingSomething) {
-		App->entities->AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR, pos, App->entities, this, 0);
-		isBuildingSomething = true;
-	}
+	
+	 
+	App->entities->AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR, pos, App->entities,nullptr, 0);
+	
+	
 }
 
 void Painter::ExtractPaint(float dt) {
 
 	if (App->pathfinding->IsPaint(currentTile) && currentTile == destination) {
-		App->player->paintCount.count += extractionRate * dt;
+		App->player->paintCount.count += 0.01;
 	}
 }
 
 void Painter::ExtractWood(float dt) {
+	
 
 	if (App->pathfinding->IsWood(currentTile) && currentTile == destination) {
-		App->player->woodCount.count += extractionRate * dt;
+		//App->player->woodCount.count += 0.01;
+		App->player->woodCount.count += extractionRate*dt;
 	}
 }
