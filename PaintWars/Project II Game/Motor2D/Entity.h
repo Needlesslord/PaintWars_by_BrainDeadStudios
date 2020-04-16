@@ -82,7 +82,7 @@ public:
 
 	Entity(iPoint tile, int damage, j1Module* listener, Entity* creator);
 	virtual ~Entity();
-	void Draw(SDL_Texture* sprites);
+	virtual void Draw(SDL_Texture* sprites);
 	virtual void DebugDrawSelected();
 	virtual void OnCollision(Collider* c1, Collider* c2, CollisionState collisionState);
 	virtual void CalculateMovementLogic(int p);
