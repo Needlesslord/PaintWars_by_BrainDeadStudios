@@ -36,7 +36,11 @@ void Entity::DebugDrawSelected()
 {
 }
 
-void Entity::OnCollision(Collider* c1, Collider* c2, CollisionState collisionState) {}
+void Entity::OnCollision(Collider* c1, Collider* c2, CollisionState collisionState) {
+
+
+  
+}
 
 void Entity::CalculateMovementLogic(int p) {
 

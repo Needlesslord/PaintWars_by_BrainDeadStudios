@@ -53,6 +53,13 @@ bool j1PathFinding::IsWalkable(const iPoint& pos) const {
 	return t > 0 && ((t != INVALID_WALK_CODE && t != SPAWNER_WALK_CODE) || t == PAINT_WALK_CODE || t == WOOD_WALK_CODE);
 }
 
+bool j1PathFinding::IsBuildable(const iPoint & pos) const
+{
+	uchar t = GetTileAt(pos);
+	return t > 0 && (t != INVALID_WALK_CODE && t != SPAWNER_WALK_CODE && t != PAINT_WALK_CODE && t != WOOD_WALK_CODE);
+	
+}
+
 // Utility: returns true is the tile is paint
 bool j1PathFinding::IsPaint(const iPoint& pos) const {
 

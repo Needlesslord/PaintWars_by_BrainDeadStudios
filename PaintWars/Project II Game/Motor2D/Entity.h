@@ -62,6 +62,7 @@ enum ENTITY_TYPE {
 	ENTITY_TYPE_HOUSE,
 	ENTITY_TYPE_BARRACKS,
 
+
 	/// Units
 	ENTITY_TYPE_PAINTER,
 	ENTITY_TYPE_WARRIOR,
@@ -157,7 +158,7 @@ public:
 	Entity* spawnedBy;
 	Entity* builtBy;
 
-	bool isSelectingPlacement = false;
+	
 
 	// Paint speed
 	float extractionRate = 0.0f;
