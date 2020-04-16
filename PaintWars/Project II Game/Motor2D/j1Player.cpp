@@ -237,11 +237,11 @@ void j1Player::Drag_Mouse()
 
 void j1Player::Zoom()
 {
-	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_REPEAT) //zoom IN
+	if (App->input->GetKey(SDL_SCANCODE_9) == KEY_REPEAT) //zoom IN
 	{
 		App->win->scale = App->win->scale + 0.001;
 	}
-	else if (App->input->GetKey(SDL_SCANCODE_M) == KEY_REPEAT)//zoom OUT
+	else if (App->input->GetKey(SDL_SCANCODE_0) == KEY_REPEAT)//zoom OUT
 	{
 		App->win->scale = App->win->scale - 0.001;
 	}
