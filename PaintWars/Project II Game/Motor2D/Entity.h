@@ -132,6 +132,7 @@ public:
 	iPoint currentTile = { 0,0 };
 
 	iPoint destination;
+	iPoint nextTile;
 	iPoint target;
 
 	float attackDamage = 0.0f;
@@ -174,6 +175,7 @@ protected:
 	j1Module* listener = nullptr; // callback
 
 	std::vector<iPoint>currentPath;
+	uint pathIterator;
 
 	Animation North_Animation;
 	

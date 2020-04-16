@@ -51,6 +51,7 @@ void Entity::CalculateMovementLogic(int p) {
 	if (destination == map_coordinates) {
 
 		isOnTheMove = false;
+		*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;
 		return;
 	}
 
@@ -70,7 +71,7 @@ void Entity::CalculateMovementLogic(int p) {
 	int map;
 	map = App->pathfinding->CreatePath(map_coordinates, destination);
 	currentPath = *App->pathfinding->GetLastPath();
-
+	pathIterator = 0;
 	
 
 	if (map != -1) {
@@ -161,12 +162,23 @@ void Entity::CalculateMovementLogic(int p) {
 
 void Entity::Move(float dt) {
 	
+	if (currentTile == nextTile) {
+		if (currentTile != destination)
+			pathIterator++;
+	}
+
 	fPoint fDestination= App->map->MapToWorld(destination.x, destination.y);
 	fPoint worldDestination;
 
 	worldDestination.x = fDestination.x + App->map->data.tile_width / 2 - size.x / 2;
 	worldDestination.y = fDestination.y + App->map->data.tile_height / 2 - size.y;
 	
+	nextTile = currentPath.at(pathIterator);
+	fPoint fNextTile = App->map->MapToWorld(nextTile.x, nextTile.y);
+	fPoint worldNextTile;
+	worldNextTile.x = fNextTile.x + App->map->data.tile_width / 2 - size.x / 2;
+	worldNextTile.y = fNextTile.y + App->map->data.tile_height / 2 - size.y;
+
 	if (unitOrientation == UNIT_ORIENTATION_NONE) {
 		return;
 	}
@@ -174,25 +186,25 @@ void Entity::Move(float dt) {
 
 		pos.y -= speed * dt;
 		
-		if (pos.y < worldDestination.y) {
-			pos.y = worldDestination.y;
+		if (pos.y < worldNextTile.y) {
+			pos.y = worldNextTile.y;
 		}
 
-		if (pos.x < worldDestination.x) {
+		if (pos.x < worldNextTile.x) {
 
 			pos.x += speed * dt / 2;
 
-			if (pos.x >= worldDestination.x) {
-				pos.x = worldDestination.x;
+			if (pos.x >= worldNextTile.x) {
+				pos.x = worldNextTile.x;
 			}
 		}
 
-		else if (pos.x > worldDestination.x) {
+		else if (pos.x > worldNextTile.x) {
 
 			pos.x -= speed * dt / 2;
 
-			if (pos.x <= worldDestination.x) {
-				pos.x = worldDestination.x;
+			if (pos.x <= worldNextTile.x) {
+				pos.x = worldNextTile.x;
 			}
 		}
 	}
@@ -202,11 +214,11 @@ void Entity::Move(float dt) {
 		pos.x += speed * dt / 2;
 		pos.y -= speed * dt / 2;
 
-		if (pos.x >= worldDestination.x) {
-			pos.x = worldDestination.x;
+		if (pos.x >= worldNextTile.x) {
+			pos.x = worldNextTile.x;
 		}
-		if (pos.y < worldDestination.y) {
-			pos.y = worldDestination.y;
+		if (pos.y < worldNextTile.y) {
+			pos.y = worldNextTile.y;
 		}
 	}
 
@@ -214,25 +226,25 @@ void Entity::Move(float dt) {
 
 		pos.x += speed * dt;
 
-		if (pos.x >= worldDestination.x) {
-			pos.x = worldDestination.x;
+		if (pos.x >= worldNextTile.x) {
+			pos.x = worldNextTile.x;
 		}
 
-		if (pos.y < worldDestination.y) {
+		if (pos.y < worldNextTile.y) {
 
 			pos.y += speed * dt / 2;
 
-			if (pos.y >= worldDestination.y) {
-				pos.y = worldDestination.y;
+			if (pos.y >= worldNextTile.y) {
+				pos.y = worldNextTile.y;
 			}
 		}
 
-		else if (pos.y > worldDestination.y) {
+		else if (pos.y > worldNextTile.y) {
 
 			pos.y -= speed * dt / 2;
 
-			if (pos.y <= worldDestination.y) {
-				pos.y = worldDestination.y;
+			if (pos.y <= worldNextTile.y) {
+				pos.y = worldNextTile.y;
 			}
 		}
 	}
@@ -241,36 +253,36 @@ void Entity::Move(float dt) {
 		pos.x += speed * dt / 2;
 		pos.y += speed * dt / 2;
 
-		if (pos.x >= worldDestination.x) {
-			pos.x = worldDestination.x;
+		if (pos.x >= worldNextTile.x) {
+			pos.x = worldNextTile.x;
 		}
-		if (pos.y > worldDestination.y) {
-			pos.y = worldDestination.y;
+		if (pos.y > worldNextTile.y) {
+			pos.y = worldNextTile.y;
 		}
 	}
 	else if (unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 		pos.y += speed * dt;
 		
-		if (pos.y > worldDestination.y) {
-			pos.y = worldDestination.y;
+		if (pos.y > worldNextTile.y) {
+			pos.y = worldNextTile.y;
 		}
 
 		if (pos.x <= worldDestination.x) {
 
 			pos.x += speed * dt / 2;
 
-			if (pos.x >= worldDestination.x) {
-				pos.x = worldDestination.x;
+			if (pos.x >= worldNextTile.x) {
+				pos.x = worldNextTile.x;
 			}
 		}
 
-		else if (pos.x >= worldDestination.x) {
+		else if (pos.x >= worldNextTile.x) {
 
 			pos.x -= speed * dt / 2;
 
-			if (pos.x <= worldDestination.x) {
-				pos.x = worldDestination.x;
+			if (pos.x <= worldNextTile.x) {
+				pos.x = worldNextTile.x;
 			}
 
 		}
@@ -280,36 +292,36 @@ void Entity::Move(float dt) {
 		pos.x -= speed * dt / 2;
 		pos.y += speed * dt / 2;
 
-		if (pos.x <= worldDestination.x) {
-			pos.x = worldDestination.x;
+		if (pos.x <= worldNextTile.x) {
+			pos.x = worldNextTile.x;
 		}
-		if (pos.y > worldDestination.y) {
-			pos.y = worldDestination.y;
+		if (pos.y > worldNextTile.y) {
+			pos.y = worldNextTile.y;
 		}
 	}
 	else if (unitOrientation == UNIT_ORIENTATION_WEST) {
 
 		pos.x -= speed * dt;
 
-		if (pos.x < worldDestination.x) {
-			pos.x = worldDestination.x;
+		if (pos.x < worldNextTile.x) {
+			pos.x = worldNextTile.x;
 		}
 		// TODO HERE
-		if (pos.y < worldDestination.y) {
+		if (pos.y < worldNextTile.y) {
 
 			pos.y += speed * dt / 2;
 
-			if (pos.y >= worldDestination.y) {
-				pos.y = worldDestination.y;
+			if (pos.y >= worldNextTile.y) {
+				pos.y = worldNextTile.y;
 			}
 		}
 
-		else if (pos.y > worldDestination.y) {
+		else if (pos.y > worldNextTile.y) {
 
 			pos.y -= speed * dt / 2;
 
-			if (pos.y <= worldDestination.y) {
-				pos.y = worldDestination.y;
+			if (pos.y <= worldNextTile.y) {
+				pos.y = worldNextTile.y;
 			}
 		}
 	}
@@ -318,13 +330,14 @@ void Entity::Move(float dt) {
 		pos.x -= speed * dt / 2;
 		pos.y -= speed * dt / 2;
 
-		if (pos.x < worldDestination.x) {
-			pos.x = worldDestination.x;
+		if (pos.x < worldNextTile.x) {
+			pos.x = worldNextTile.x;
 		}
-		if (pos.y < worldDestination.y) {
-			pos.y = worldDestination.y;
+		if (pos.y < worldNextTile.y) {
+			pos.y = worldNextTile.y;
 		}
 	}
+
 	/*if (currentTile == destination)
 		isOnTheMove = false;*/
 }
