@@ -73,17 +73,11 @@ public:
 
 	//HUD - Bar
 	j1Element* hudBarImage = nullptr;
-	j1Element* paintImage = nullptr;
 	j1Element* paintLabel = nullptr;
-	j1Element* woodImage = nullptr;
 	j1Element* woodLabel = nullptr;
-	j1Element* metalImage = nullptr;
 	j1Element* metalLabel = nullptr;
-	j1Element* titaniumImage = nullptr;
 	j1Element* titaniumLabel = nullptr;
-	j1Element* foodImage = nullptr;
 	j1Element* foodLabel = nullptr;
-	j1Element* researchImage = nullptr;
 	j1Element* researchLabel = nullptr;
 	j1Element* entitiesImage = nullptr;
 	j1Element* entitiesLabel = nullptr;
@@ -99,7 +93,6 @@ public:
 	j1Element* pauseMenuButton = nullptr;
 	bool pauseMenu = false;
 	j1Element* shopButton = nullptr;
-	bool shopMenu = false;
 	j1Element* restartButton = nullptr;
 	bool restartMenu = false;
 
@@ -142,6 +135,9 @@ public:
 	// Shop
 	j1Element* shopImage = nullptr;
 	j1Element* shopLabel = nullptr;
+	j1Element* buyPaintExtractorButton = nullptr;
+	j1Element* buyWoodProducerButton = nullptr;
+	j1Element* buyBarrackButton = nullptr;
 	bool debugTile = true;
 
 

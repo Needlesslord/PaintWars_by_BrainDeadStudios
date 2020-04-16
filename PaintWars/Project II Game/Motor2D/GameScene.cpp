@@ -117,6 +117,12 @@ bool GameScene::Start()
 	
 	//HUD - Bar
 	hudBarImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	paintLabel = App->gui->AddElement(GUItype::GUI_LABEL, hudBarImage, { 100 , 10 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	woodLabel = App->gui->AddElement(GUItype::GUI_LABEL, hudBarImage, { 200 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	metalLabel = App->gui->AddElement(GUItype::GUI_LABEL, hudBarImage, { 300 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	titaniumLabel = App->gui->AddElement(GUItype::GUI_LABEL, hudBarImage, { 400 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	researchLabel = App->gui->AddElement(GUItype::GUI_LABEL, hudBarImage, { 500 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	entitiesLabel = App->gui->AddElement(GUItype::GUI_LABEL, hudBarImage, { 670 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL);
 
 	//HUD - Quests
 	questsImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 50 }, { 0 , 0 }, false, true, { 0, 1388, 263, 40 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
@@ -214,8 +220,17 @@ bool GameScene::Start()
 	noButton->click_rect = { 1437, 359, 166, 57 };
 
 	// Shop
-	shopImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 450 }, { 0 , 0 }, false, false, { 0, 1388, 263, 265 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	shopImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 450 }, { 0 , 0 }, false, false, { 263, 1551, 263, 265 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	shopLabel = App->gui->AddElement(GUItype::GUI_LABEL, shopImage, { 15 , 452 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "SHOP", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	buyWoodProducerButton = App->gui->AddElement(GUItype::GUI_BUTTON, shopImage, { 15, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, false , false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyWoodProducerButton->hover_rect = { 0, 1966, 65, 82 };
+	buyWoodProducerButton->click_rect = { 65, 1966, 65, 82 };
+	buyPaintExtractorButton = App->gui->AddElement(GUItype::GUI_BUTTON, shopImage, { 80, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyPaintExtractorButton->hover_rect = { 0, 1966, 65, 82 };
+	buyPaintExtractorButton->click_rect = { 65, 1966, 65, 82 };
+	buyBarrackButton = App->gui->AddElement(GUItype::GUI_BUTTON, shopImage, { 145, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyBarrackButton->hover_rect = { 0, 1966, 65, 82 };
+	buyBarrackButton->click_rect = { 65, 1966, 65, 82 };
 
 	//shopLabel = App->gui->AddElement(GUItype::GUI_LABEL, shopImage, { 985 , 352 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
 
@@ -462,6 +477,8 @@ bool GameScene::CleanUp()
 void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 {
 
+	//Minimap
+
 	if (element == miniMapMINI && type == GUI_Event::EVENT_ONCLICK) {
 		miniMapBack->enabled = true;
 		miniMapFULL->enabled = true;
@@ -475,6 +492,10 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 		miniMapFULL->enabled = false;
 		miniMapCamera->enabled = true;
 	}
+
+
+	//Quests
+
 	if (element == questsOpenButton && type == GUI_Event::EVENT_ONCLICK)
 	{
 		questsImage->rect.h = 360;
@@ -489,16 +510,34 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 		questsCloseButton->enabled = false;
 	}
 
+
+	//HomeButton
+
 	if (element == homeButton && type == GUI_Event::EVENT_ONCLICK)
 	{
 		App->render->camera.x = 0;
 		App->render->camera.y = 0;
 	}
 
+
+	//Shop
+
 	if (element == shopButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		shopMenu = !shopMenu;
+		shopImage->enabled = !shopImage->enabled;
+		shopLabel->enabled = !shopLabel->enabled;
+		buyWoodProducerButton->enabled = !buyWoodProducerButton->enabled;
+		buyPaintExtractorButton->enabled = !buyPaintExtractorButton->enabled;
+		buyBarrackButton->enabled = !buyBarrackButton->enabled;
 	}
+
+	if (element == buyWoodProducerButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+
+	}
+
+
+	//Pause Menu
 
 	if (element == pauseMenuButton && type == GUI_Event::EVENT_ONCLICK)
 	{
@@ -605,6 +644,9 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 		resetButton->enabled = false;
 		backButton->enabled = false;
 	}
+
+
+	//Disclaimers
 
 	if (element == restartButton && type == GUI_Event::EVENT_ONCLICK)
 	{
@@ -728,11 +770,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 		noButton->enabled = false;
 	}
 
-	if (element == shopButton && type == GUI_Event::EVENT_ONCLICK)
-	{
-		shopImage->enabled = !shopImage->enabled;
-		shopLabel->enabled = !shopLabel->enabled;
-	}
+
 
 }
 
