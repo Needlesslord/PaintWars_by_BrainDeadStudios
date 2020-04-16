@@ -15,6 +15,10 @@
 #include "j1GUIELements.h"
 #include "j1GUI.h"
 #include "SDL_mixer\include\SDL_mixer.h"
+#include <string>
+#include <iostream>
+#include <sstream>
+
 
 
 
@@ -114,7 +118,7 @@ bool GameScene::Start()
 	//      UI      //
 	//////////////////
 
-	
+
 	//HUD - Bar
 	hudBarImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	paintLabel = App->gui->AddElement(GUItype::GUI_LABEL, hudBarImage, { 100 , 10 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL);
@@ -393,6 +397,13 @@ bool GameScene::Update(float dt)
 
 
 	////UI
+
+	std::stringstream str;
+	str << App->player->paintCount.count;
+	string a = str.str();
+	paintLabel->text = (char*)a.c_str();
+
+
 	//for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
 	//{
 	//	App->gui->GUI_ELEMENTS[i]->map_position.x = App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
