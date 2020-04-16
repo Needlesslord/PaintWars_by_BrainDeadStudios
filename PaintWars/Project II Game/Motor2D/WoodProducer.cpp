@@ -30,7 +30,7 @@ WoodProducer::WoodProducer(iPoint tile, int damage, j1Module* listener, Entity* 
 
 	constructionTime = 10.0f;
 
-	extractionRate = 50.0f; // TODO
+	
 
 	isEntityFromPlayer = true;
 }

@@ -13,6 +13,13 @@
 #define WOOD_WALK_CODE 253
 #define SPAWNER_WALK_CODE 252
 
+
+//WALKABILITY
+#define OCCUPIED 2
+#define WALKABLE 1
+#define NON_WALKABLE 0
+
+
 // ----------------------------------------------------------------------
 // Recommended reading:
 // Intro: http://www.raywenderlich.com/4946/introduction-to-a-pathfinding
@@ -49,7 +56,7 @@ public:
 	bool IsWalkable(const iPoint& pos) const;
 
 	// Utility: returns true is the tile is buildable
-	//bool IsBuildable(const iPoint& pos) const;
+	bool IsBuildable(const iPoint& pos) const;
 
 	// Utility: returns true if the tile is paint
 	bool IsPaint(const iPoint& pos) const;

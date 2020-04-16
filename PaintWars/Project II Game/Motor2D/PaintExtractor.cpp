@@ -30,7 +30,7 @@ PaintExtractor::PaintExtractor(iPoint tile, int damage, j1Module* listener, Enti
 
 	constructionTime = 10.0f;
 
-	extractionRate = 50.0f;
+	extractionRate = 5.0f;
 
 	isEntityFromPlayer = true;
 }
@@ -39,5 +39,5 @@ PaintExtractor::~PaintExtractor() {}
 
 void PaintExtractor::ExtractPaint(float dt) {
 
-	App->player->paintCount.count += extractionRate * dt;
+	App->player->paintCount.count += extractionRate*dt;
 }

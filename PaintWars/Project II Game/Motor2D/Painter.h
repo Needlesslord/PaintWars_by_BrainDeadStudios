@@ -3,7 +3,7 @@
 
 
 #include "Entity.h"
-
+#include "j1Timer.h"
 class Painter : public Entity
 {
 public:
@@ -19,7 +19,7 @@ public:
 private:
 
 	bool startTimer = true;
-
+	j1Timer Extaction_Timer;
 };
 
 #endif //__Painter_H__

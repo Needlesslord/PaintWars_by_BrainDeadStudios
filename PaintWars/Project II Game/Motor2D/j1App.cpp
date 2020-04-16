@@ -207,7 +207,7 @@ void j1App::PrepareUpdate()
 	last_sec_frame_count++;
 
 	dt = frame_time.ReadSec();
-	//LOG("DT: %f", dt);
+	
 	frame_time.Start();
 }
 
@@ -514,11 +514,14 @@ void j1App::Debug_Actions()
 			App->transition_manager->CreateSlide(SCENES::WIN_SCENE, 1.0f, true);
 		}
 
-		if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
+		
 
-			App->win->Fullscreen_Swap();
-		}
+	}
 
+
+	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
+
+		App->win->Fullscreen_Swap();
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)

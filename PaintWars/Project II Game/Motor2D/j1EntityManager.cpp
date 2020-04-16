@@ -127,7 +127,6 @@ bool j1EntityManager::Update(float dt) {
 					activeEntities.push_back(*checkForSpawningEntities);
 
 					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos);
-					(*checkForSpawningEntities)->spawnedBy->isBuildingSomething = false;
 					(*checkForSpawningEntities)->isAlive = true;
 
 					spawningEntities.erase(checkForSpawningEntities);
@@ -187,9 +186,9 @@ bool j1EntityManager::Update(float dt) {
 
 		// We'll print the townhall hovering where it would be built
 		paintersSelected = unitsSelected.begin();
-		while (paintersSelected != unitsSelected.end()) {
+		
 
-			if ((*paintersSelected)->isSelectingPlacement) { // Selecting Placement FOR A PAINT EXTRACTOR
+			if (isSelectingPlacement) { // Selecting Placement FOR A PAINT EXTRACTOR
 
 				fPoint mousePosition = App->input->GetMouseWorldPosition();
 				iPoint cameraOffset = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
@@ -207,16 +206,57 @@ bool j1EntityManager::Update(float dt) {
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 
 					// The painter is not 1x1
-					if (App->pathfinding->IsPaint(mapCoordinates) || App->pathfinding->IsPaint({ mapCoordinates.x - 1, mapCoordinates.y - 1 }) ||
-						App->pathfinding->IsPaint({ mapCoordinates.x, mapCoordinates.y - 1 }) || App->pathfinding->IsPaint({ mapCoordinates.x - 1, mapCoordinates.y })) {
+					if (hoveringEntityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
+						if (App->pathfinding->IsPaint(mapCoordinates) || App->pathfinding->IsPaint({ mapCoordinates.x - 1, mapCoordinates.y - 1 }) ||
+							App->pathfinding->IsPaint({ mapCoordinates.x, mapCoordinates.y - 1 }) || App->pathfinding->IsPaint({ mapCoordinates.x - 1, mapCoordinates.y })) {
 
-						(*paintersSelected)->SpawnEntity(mapCoordinates);
+							
+							if (App->player->woodCount.count >= 20) {
+								App->player->woodCount.count -= 20;
+								isSelectingPlacement = false;
+
+								AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR, mapCoordinates, App->entities, nullptr, 0);
+								hoveringEntityType == ENTITY_TYPE_NONE;
+
+								
+
+							}
+
+						}
 					}
+
+					else if (hoveringEntityType == ENTITY_TYPE_WOOD_PRODUCER) {
+						
+						 if (App->pathfinding->IsBuildable(mapCoordinates)) {
+
+							 if (App->player->paintCount.count >= 20) {
+								 isSelectingPlacement = false;
+								 App->player->paintCount.count -= 20;
+								 AddEntity(ENTITY_TYPE_WOOD_PRODUCER, mapCoordinates, App->entities, nullptr, 0);
+								 hoveringEntityType == ENTITY_TYPE_NONE;
+							 }
+						 }
+					}
+
+					else if (hoveringEntityType == ENTITY_TYPE_BARRACKS) {
+
+						if (App->pathfinding->IsBuildable(mapCoordinates) && App->pathfinding->IsBuildable({ mapCoordinates.x - 1, mapCoordinates.y - 1 }) &&
+							App->pathfinding->IsBuildable({ mapCoordinates.x, mapCoordinates.y - 1 }) && App->pathfinding->IsBuildable({ mapCoordinates.x - 1, mapCoordinates.y })) {
+
+							if (App->player->woodCount.count >= 50) {
+								isSelectingPlacement = false;
+								App->player->woodCount.count -= 50;
+								AddEntity(ENTITY_TYPE_BARRACKS, mapCoordinates, App->entities, nullptr, 0);
+								hoveringEntityType == ENTITY_TYPE_NONE;
+							}
+					   }
+					}
+					
 				}
 			}
 
-			paintersSelected++;
-		}
+			
+		
 
 
 
@@ -256,27 +296,27 @@ bool j1EntityManager::Update(float dt) {
 
 
 		// Extract Paint (Painters and PaintExtractor
-		list<Entity*>::iterator paintersToExtract = activeEntities.begin();
-		while (paintersToExtract != activeEntities.end()) {
+		list<Entity*>::iterator paintersToExtract_paint = activeEntities.begin();
+		while (paintersToExtract_paint != activeEntities.end()) {
 
 			// We try to extract and it will return if it can't
-			if ((*paintersToExtract)->entityType == ENTITY_TYPE_PAINTER || (*paintersToExtract)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
+			if ((*paintersToExtract_paint)->entityType == ENTITY_TYPE_PAINTER || (*paintersToExtract_paint)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
 
-				(*paintersToExtract)->ExtractPaint(dt);
+				(*paintersToExtract_paint)->ExtractPaint(dt);
 			}
-			paintersToExtract++;
+			paintersToExtract_paint++;
 		}
 
 		// Extract Wood  (ONLY PAINTERS CAN)
-		paintersToExtract = activeUnits.begin();
-		while (paintersToExtract != activeUnits.end()) {
+		list<Entity*>::iterator paintersToExtract_wood = activeUnits.begin();
+		while (paintersToExtract_wood != activeUnits.end()) {
 
 			// We try to extract and it will return if it can't
-			if ((*paintersToExtract)->entityType == ENTITY_TYPE_PAINTER) {
+			if ((*paintersToExtract_wood)->entityType == ENTITY_TYPE_PAINTER) {
 
-				(*paintersToExtract)->ExtractWood(dt);
+				(*paintersToExtract_wood)->ExtractWood(dt);
 			}
-			paintersToExtract++;
+			paintersToExtract_wood++;
 		}
 
 
@@ -470,19 +510,19 @@ bool j1EntityManager::PostUpdate() {
 	// If control was pressed as a unit was selected, the rest of selected units aren't unselected				 //
 	//																											 //
 	// --------------------------------------------------------------------------------------------------------- //
-	if (unitsSelected.size() > 0) {
-		list<Entity*>::iterator unitsToBuildEntities = unitsSelected.begin();
+	
+		
 
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN) {
 
-			if ((*unitsToBuildEntities)->isSelectingPlacement) {
-				(*unitsToBuildEntities)->isSelectingPlacement = false;
+			if (isSelectingPlacement) {
+				isSelectingPlacement = false;
 			}
 		}
 		// If we are selcting a placement for a building and we try to select a place not fit to build it doesn't unselect the unit, VERY IMPORTANT!
-		if ((*unitsToBuildEntities)->isSelectingPlacement)
+		if (isSelectingPlacement)
 			return ret;
-	}
+	
 
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 
@@ -513,10 +553,10 @@ bool j1EntityManager::PostUpdate() {
 				mouseWorldCoordinates.y < buildEntityUIButton->rect.y + buildEntityUIButton->rect.h && mouseWorldCoordinates.y > buildEntityUIButton->rect.y) {
 
 				// For now only one
-				list<Entity*>::iterator unitsToBuildEntities = unitsSelected.begin();
+				
 
-				if (!(*unitsToBuildEntities)->isSelectingPlacement)
-					(*unitsToBuildEntities)->isSelectingPlacement = true;
+				if (!isSelectingPlacement)
+					isSelectingPlacement = true;
 
 				isSomethingSelected = true;
 			}

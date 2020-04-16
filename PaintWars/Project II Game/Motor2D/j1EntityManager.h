@@ -94,6 +94,9 @@ public:
 	//small fix hp bar when blit
 	float Entity_HP;
 
+	bool isSelectingPlacement = false;
+	ENTITY_TYPE hoveringEntityType = ENTITY_TYPE::ENTITY_TYPE_NONE;
+
 protected:
 
 		// Allies
