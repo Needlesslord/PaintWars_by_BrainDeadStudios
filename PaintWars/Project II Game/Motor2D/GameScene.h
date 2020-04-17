@@ -144,6 +144,17 @@ public:
 	bool debugTile = true;
 
 
+	//Resource Values for Blit
+
+	char Wood_Amount_UI;
+
+	char Paint_Amount_UI;
+
+	char Titanium_Amount_UI;
+
+	char Housing_Amount_UI;
+
+	char Max_Housing_Amount_UI;
 	
 private:
 
