@@ -37,6 +37,11 @@ bool MenuScene::Start()
 {
 	bool ret = true;
 
+
+	background = App->tex->Load("textures/UI/background.png");
+
+
+
 	playButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 475, 100 }, { 70,25}, true, true, { 0, 0, 263, 91 }, "PLAY", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	playButton->hover_rect = { 263, 0, 263, 91 };
 	playButton->click_rect = { 526, 0, 263, 91 };
@@ -84,6 +89,9 @@ bool MenuScene::Update(float dt)
 	{
 		App->scenes->SwitchScene(SCENES::START_SCENE);
 	}
+
+
+	App->render->AddBlitEvent(1, background, 0, 0, { 0,0, App->win->width*2, App->win->height*2 });
 
 	return ret;
 }
