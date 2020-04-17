@@ -16,7 +16,7 @@ Barracks::Barracks(iPoint tile, int damage, j1Module* listener, Entity* creator)
 	// Handle data and initialize the TH
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_BARRACKS;
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_STATIC_ENTITY;
-	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_MEDIUM;
+	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_BIG;
 
 	maxLife = 200;
 	currLife = maxLife - damage;

@@ -121,8 +121,6 @@ void Entity::CalculateMovementLogic(int p) {
 
 void Entity::MovementLogic() {
 
-	
-
 	if (currentTile.x < nextTile.x) {
 
 		if (currentTile.y < nextTile.y) {
@@ -167,6 +165,7 @@ void Entity::Move(float dt) {
 	
 	fPoint fNextTile = App->map->MapToWorld(nextTile.x, nextTile.y);
 	fPoint nextTilePos;
+	
 	nextTilePos.x = fNextTile.x + App->map->data.tile_width / 2 - size.x / 2;
 	nextTilePos.y = fNextTile.y + App->map->data.tile_height / 2 - size.y;
 
@@ -185,7 +184,7 @@ void Entity::Move(float dt) {
 
 			pos.x += speed * dt;
 
-			if (pos.x >= nextTilePos.x) {
+			if (pos.x > nextTilePos.x) {
 				pos.x = nextTilePos.x;
 			}
 		}
@@ -194,7 +193,7 @@ void Entity::Move(float dt) {
 
 			pos.x -= speed * dt;
 
-			if (pos.x <= nextTilePos.x) {
+			if (pos.x < nextTilePos.x) {
 				pos.x = nextTilePos.x;
 			}
 		}
@@ -205,7 +204,7 @@ void Entity::Move(float dt) {
 		pos.x += speed * dt;
 		pos.y -= speed * dt / 2;
 
-		if (pos.x >= nextTilePos.x) {
+		if (pos.x > nextTilePos.x) {
 			pos.x = nextTilePos.x;
 		}
 		if (pos.y < nextTilePos.y) {
@@ -217,7 +216,7 @@ void Entity::Move(float dt) {
 
 		pos.x += speed * dt;
 
-		if (pos.x >= nextTilePos.x) {
+		if (pos.x > nextTilePos.x) {
 			pos.x = nextTilePos.x;
 		}
 
@@ -225,7 +224,7 @@ void Entity::Move(float dt) {
 
 			pos.y += speed * dt / 2;
 
-			if (pos.y >= nextTilePos.y) {
+			if (pos.y > nextTilePos.y) {
 				pos.y = nextTilePos.y;
 			}
 		}
@@ -234,7 +233,7 @@ void Entity::Move(float dt) {
 
 			pos.y -= speed * dt / 2;
 
-			if (pos.y <= nextTilePos.y) {
+			if (pos.y < nextTilePos.y) {
 				pos.y = nextTilePos.y;
 			}
 		}
@@ -244,7 +243,7 @@ void Entity::Move(float dt) {
 		pos.x += speed * dt;
 		pos.y += speed * dt / 2;
 
-		if (pos.x >= nextTilePos.x) {
+		if (pos.x > nextTilePos.x) {
 			pos.x = nextTilePos.x;
 		}
 		if (pos.y > nextTilePos.y) {
@@ -259,20 +258,20 @@ void Entity::Move(float dt) {
 			pos.y = nextTilePos.y;
 		}
 
-		if (pos.x <= nextTilePos.x) {
+		if (pos.x < nextTilePos.x) {
 
 			pos.x += speed * dt;
 
-			if (pos.x >= nextTilePos.x) {
+			if (pos.x > nextTilePos.x) {
 				pos.x = nextTilePos.x;
 			}
 		}
 
-		else if (pos.x >= nextTilePos.x) {
+		else if (pos.x > nextTilePos.x) {
 
 			pos.x -= speed * dt;
 
-			if (pos.x <= nextTilePos.x) {
+			if (pos.x < nextTilePos.x) {
 				pos.x = nextTilePos.x;
 			}
 
@@ -283,7 +282,7 @@ void Entity::Move(float dt) {
 		pos.x -= speed * dt;
 		pos.y += speed * dt / 2;
 
-		if (pos.x <= nextTilePos.x) {
+		if (pos.x < nextTilePos.x) {
 			pos.x = nextTilePos.x;
 		}
 		if (pos.y > nextTilePos.y) {
@@ -302,7 +301,7 @@ void Entity::Move(float dt) {
 
 			pos.y += speed * dt / 2;
 
-			if (pos.y >= nextTilePos.y) {
+			if (pos.y > nextTilePos.y) {
 				pos.y = nextTilePos.y;
 			}
 		}
@@ -311,7 +310,7 @@ void Entity::Move(float dt) {
 
 			pos.y -= speed * dt / 2;
 
-			if (pos.y <= nextTilePos.y) {
+			if (pos.y < nextTilePos.y) {
 				pos.y = nextTilePos.y;
 			}
 		}
@@ -332,9 +331,9 @@ void Entity::Move(float dt) {
 	currentTile.x = mapPosition.x + 1;
 	currentTile.y = mapPosition.y;
 
-	mapPosition = App->map->WorldToMap(nextTilePos.x - App->map->data.tile_width / 2 + GetSize().x / 2, nextTilePos.y - App->map->data.tile_height / 2 + GetSize().y);
-	nextTile.x = mapPosition.x + 1;
-	nextTile.y = mapPosition.y;
+	//mapPosition = App->map->WorldToMap(nextTilePos.x - App->map->data.tile_width / 2 + GetSize().x / 2, nextTilePos.y - App->map->data.tile_height / 2 + GetSize().y);
+	//nextTile.x = mapPosition.x + 1;
+	//nextTile.y = mapPosition.y;
 
 	if (currentTile == nextTile) {
 		if (currentTile != destination)
@@ -345,8 +344,17 @@ void Entity::Move(float dt) {
 		nextTile = currentPath.at(pathIterator);
 	}
 
-	/*if (currentTile == destination)
-		isOnTheMove = false;*/
+	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);
+
+	/*pos.x == tileWorldPosition.x + App->map->data.tile_width / 2 - GetSize().x / 2 &&
+	pos.y == tileWorldPosition.y + App->map->data.tile_height / 2 - GetSize().y*/
+
+	if (currentTile == destination && pos.x == tileWorldPosition.x + App->map->data.tile_width / 2 - GetSize().x / 2 &&
+		pos.y == tileWorldPosition.y + App->map->data.tile_height / 2 - GetSize().y) {
+		
+		isOnTheMove = false;
+		*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;
+	}
 }
 
 
