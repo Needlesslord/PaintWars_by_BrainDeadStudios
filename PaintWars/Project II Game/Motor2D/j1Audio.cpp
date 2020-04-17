@@ -61,6 +61,13 @@ bool j1Audio::Awake(pugi::xml_node& config)
 		
 	}
 
+	Warrior_Sound = Mix_LoadWAV("audio/fx/warrior_fx.wav");
+	if (Warrior_Sound == NULL)
+	{
+		LOG("Audio Warrior IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
 	
 	//AUDIO VOLUMES & STUFF
 	ChunkAudioManager();
