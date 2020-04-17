@@ -338,7 +338,10 @@ bool GameScene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 		App->SaveGame("save_game.xml");*/
 
+	/*if (App->input->GetKey(SDL_SCANCODE_K) == true) {
 
+		App->entities->CleanUp();
+	}*/
 
 	App->map->Draw();
 
@@ -753,6 +756,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 		}
 
 		if (mainMenu) {
+			App->entities->CleanUp();
 			App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
 			App->audio->PlayingMenuMusic = false;
 			Mix_HaltMusic();

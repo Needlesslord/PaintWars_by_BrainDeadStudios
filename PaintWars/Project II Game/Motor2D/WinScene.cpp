@@ -12,6 +12,7 @@
 #include "TransitionManager.h"
 #include "j1Audio.h"
 #include "SDL_mixer\include\SDL_mixer.h"
+#include "j1EntityManager.h"
 
 WinScene::WinScene() : Scene(SCENES::WIN_SCENE)
 {
@@ -71,10 +72,10 @@ bool WinScene::Update(float dt)
 
 	CameraDebugMovement(dt);
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	/*if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
 		App->scenes->SwitchScene(SCENES::START_SCENE);
-	}
+	}*/
 
 	return ret;
 }
@@ -148,6 +149,7 @@ void WinScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 			App->audio->PlayingMenuMusic = true;
 		}
 		App->audio->PlayingWinMusic = false;
+		App->entities->CleanUp();
 		App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
 	}
 }

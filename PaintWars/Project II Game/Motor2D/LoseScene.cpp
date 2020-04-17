@@ -12,6 +12,7 @@
 #include "TransitionManager.h"
 #include "j1Audio.h"
 #include "SDL_mixer\include\SDL_mixer.h"
+#include "j1EntityManager.h"
 
 LoseScene::LoseScene() : Scene(SCENES::LOSE_SCENE)
 {
@@ -71,10 +72,10 @@ bool LoseScene::Update(float dt)
 
 	CameraDebugMovement(dt);
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	/*if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
 		App->scenes->SwitchScene(SCENES::START_SCENE);
-	}
+	}*/
 
 	return ret;
 }
@@ -147,6 +148,7 @@ void LoseScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 			App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
 			App->audio->PlayingMenuMusic = true;
 		}
+		App->entities->CleanUp();
 		App->audio->PlayingLoseMusic = false;
 		App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
 	}
