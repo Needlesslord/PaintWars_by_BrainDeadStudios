@@ -3,12 +3,13 @@
 #include "p2Defs.h"
 #include "p2Log.h"
 #include "j1App.h"
-
+#include "Brofiler/Brofiler.h"
 // This is needed here because SDL redefines main function
 // do not add any other libraries here, instead put them in their modules
 #include "SDL/include/SDL.h"
 #pragma comment( lib, "SDL/libx86/SDL2.lib" )
 #pragma comment( lib, "SDL/libx86/SDL2main.lib" )
+#pragma comment(lib, "Brofiler/ProfilerCore32.lib")
 
 enum MainState
 {
@@ -25,11 +26,12 @@ j1App* App = NULL;
 
 int main(int argc, char* args[])
 {
+	
 	LOG("Engine starting ... %d");
 
 	MainState state = MainState::CREATE;
 	int result = EXIT_FAILURE;
-
+	
 	while(state != EXIT)
 	{
 		switch(state)
@@ -78,8 +80,13 @@ int main(int argc, char* args[])
 
 			// Loop all modules until we are asked to leave ---------------------
 			case LOOP:
-			if(App->Update() == false)
-				state = CLEAN;
+			{
+				BROFILER_FRAME("Main Game Loop()");
+				
+				if (App->Update() == false)
+					state = CLEAN;
+
+			}
 			break;
 
 			// Cleanup allocated memory -----------------------------------------

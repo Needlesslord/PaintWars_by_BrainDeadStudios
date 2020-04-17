@@ -15,7 +15,7 @@
 #include "j1Player.h"
 #include "j1Window.h"
 #include "TransitionManager.h"
-
+#include "Brofiler/Brofiler.h"
 #include "Entity.h"
 
 
@@ -34,6 +34,9 @@ bool j1EntityManager::Awake(pugi::xml_node& config) {
 }
 
 bool j1EntityManager::Start() {
+	
+	BROFILER_CATEGORY("Entity Manager Start--Entity Manager();", Profiler::Color::Blue);
+	
 	bool ret = true;
 
 	debug_tex = App->tex->Load("maps/path2.png");
@@ -68,7 +71,7 @@ bool j1EntityManager::Start() {
 }
 
 bool j1EntityManager::PreUpdate() {
-
+	BROFILER_CATEGORY("Entity Manager PreUpdate--Entity Manager();", Profiler::Color::BlueViolet);
 	bool ret = true;
 	if (App->PAUSE_ACTIVE == false) {}
 
@@ -87,7 +90,7 @@ bool j1EntityManager::PreUpdate() {
 }
 
 bool j1EntityManager::Update(float dt) {
-	
+	BROFILER_CATEGORY("Entity Manager Update-Entity Manager();", Profiler::Color::CornflowerBlue);
 	bool ret = true;
 
 	if (App->PAUSE_ACTIVE == false) {
@@ -465,7 +468,7 @@ bool j1EntityManager::Update(float dt) {
 }
 
 bool j1EntityManager::PostUpdate() {
-
+	BROFILER_CATEGORY("Entity Manager PostUpdate--Entity Manager();", Profiler::Color::DarkBlue);
 	if (App->PAUSE_ACTIVE == false) {}
 
 	bool ret = true;
@@ -630,6 +633,7 @@ bool j1EntityManager::PostUpdate() {
 }
 
 bool j1EntityManager::CleanUp() {
+	BROFILER_CATEGORY("Entity Manager CleanUp--Entity Manager();", Profiler::Color::LightBlue);
 	bool ret = true;
 
 	App->tex->UnLoad(townHallTexture);
@@ -690,7 +694,7 @@ void j1EntityManager::UnselectAllEntities() {
 }
 
 Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module* listener, Entity* creator, float damage,  bool spawnAutomatically) {
-
+	
 		// Allies
 	/// Buildings
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
