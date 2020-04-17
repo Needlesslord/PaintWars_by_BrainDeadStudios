@@ -20,7 +20,7 @@ void WarriorSprites()
 	//Idle 
 	warriorIdle.PushBack({ 1500, 0, 125, 244 });
 	warriorIdle.PushBack({ 1625, 0, 125, 244 });
-	warriorIdle.speed = 0.08f;
+	warriorIdle.speed = 1000.0f;
 
 	//MOVING
 
@@ -118,7 +118,7 @@ void PainterSprites()
 	//Idle
 	painterIdle.PushBack({ 1272, 0, 106, 222 });
 	painterIdle.PushBack({ 1378, 0, 106, 222 });
-	painterIdle.speed = 0.08f;
+	painterIdle.speed = 100.0f;
 
 
 	//MOVING

@@ -11,6 +11,7 @@
 #include "j1Collision.h"
 #include "j1Textures.h"
 #include "j1Timer.h"
+#include "j1Render.h"
 
 Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) : Entity(tile, damage, listener, creator) {
 
@@ -94,5 +95,5 @@ void Painter::ExtractWood(float dt) {
 
 void Painter::Draw(SDL_Texture* sprites)
 {
-	
+	App->render->AddBlitEvent(1, sprites, pos.x, pos.y, currentAnimation->GetCurrentFrame());
 }

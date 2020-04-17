@@ -11,7 +11,7 @@
 #include "j1Pathfinding.h"
 #include "j1Player.h"
 #include "Brofiler/Brofiler.h"
-#include "Sprites.h"
+
 
 Entity::Entity(iPoint tile, int damage, j1Module* listeners, Entity* creator) : currentTile(tile), currLife(maxLife - damage), listener(listener), spawnedBy(creator)
 {
@@ -130,32 +130,32 @@ void Entity::MovementLogic() {
 		if (currentTile.y < nextTile.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH;
 
-			if (entityType == ENTITY_TYPE_WARRIOR) {
+			/*if (entityType == ENTITY_TYPE_WARRIOR) {
 				currentAnimation = &warriorMovingSouth;
 			}
 			else if (entityType == ENTITY_TYPE_PAINTER) {
 				currentAnimation = &painterMovingSouth;
-			}
+			}*/
 		}
 		else if (currentTile.y > nextTile.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_EAST;
 
-			if (entityType == ENTITY_TYPE_WARRIOR) {
+			/*if (entityType == ENTITY_TYPE_WARRIOR) {
 				currentAnimation = &warriorMovingEast;
 			}
 			else if (entityType == ENTITY_TYPE_PAINTER) {
 				currentAnimation = &painterMovingEast;
-			}
+			}*/
 		}
 		else {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH_EAST;
 
-			if (entityType == ENTITY_TYPE_WARRIOR) {
+			/*if (entityType == ENTITY_TYPE_WARRIOR) {
 				currentAnimation = &warriorMovingSouthEast;
 			}
 			else if (entityType == ENTITY_TYPE_PAINTER) {
 				currentAnimation = &painterMovingSouthEast;
-			}
+			}*/
 		}
 	}
 
@@ -164,32 +164,32 @@ void Entity::MovementLogic() {
 		if (currentTile.y < nextTile.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_WEST;
 
-			if (entityType == ENTITY_TYPE_WARRIOR) {
+			/*if (entityType == ENTITY_TYPE_WARRIOR) {
 				currentAnimation = &warriorMovingWest;
 			}
 			else if (entityType == ENTITY_TYPE_PAINTER) {
 				currentAnimation = &painterMovingWest;
-			}
+			}*/
 		}
 		else if (currentTile.y > nextTile.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH;
 
-			if (entityType == ENTITY_TYPE_WARRIOR) {
+			/*if (entityType == ENTITY_TYPE_WARRIOR) {
 				currentAnimation = &warriorMovingNorth;
 			}
 			else if (entityType == ENTITY_TYPE_PAINTER) {
 				currentAnimation = &painterMovingNorth;
-			}
+			}*/
 		}
 		else {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH_WEST;
 
-			if (entityType == ENTITY_TYPE_WARRIOR) {
+			/*if (entityType == ENTITY_TYPE_WARRIOR) {
 				currentAnimation = &warriorMovingNorthWest;
 			}
 			else if (entityType == ENTITY_TYPE_PAINTER) {
 				currentAnimation = &painterMovingNorthWest;
-			}
+			}*/
 		}
 	}
 
@@ -198,22 +198,22 @@ void Entity::MovementLogic() {
 		if (currentTile.y < nextTile.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH_WEST;
 
-			if (entityType == ENTITY_TYPE_WARRIOR) {
+			/*if (entityType == ENTITY_TYPE_WARRIOR) {
 				currentAnimation = &warriorMovingSouthWest;
 			}
 			else if (entityType == ENTITY_TYPE_PAINTER) {
 				currentAnimation = &painterMovingSouthWest;
-			}
+			}*/
 		}
 		else if (currentTile.y > nextTile.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH_EAST;
 
-			if (entityType == ENTITY_TYPE_WARRIOR) {
+			/*if (entityType == ENTITY_TYPE_WARRIOR) {
 				currentAnimation = &warriorMovingNorthEast;
 			}
 			else if (entityType == ENTITY_TYPE_PAINTER) {
 				currentAnimation = &painterMovingNorthEast;
-			}
+			}*/
 		}
 		else {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;

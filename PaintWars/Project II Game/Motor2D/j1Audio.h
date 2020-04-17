@@ -54,6 +54,7 @@ public:
 
 	//AUDIO CHUNKS
 	Mix_Chunk* Click_Button_Sound;
+	Mix_Chunk* Warrior_Sound;
 	Mix_Chunk* Transition_Sound;
 
 

@@ -53,9 +53,10 @@ bool j1EntityManager::Start() {
 	barracksTexture = App->tex->Load("textures/Barracks.png");
 
 	/// Units
-	painterTexture = App->tex->Load("textures/Painter.png");
-	warriorTexture = App->tex->Load("textures/Warrior.png");
-	warrior_Texture = App->tex->Load("textures/Warrior_Sprite.png");
+	painterTexture = App->tex->Load("textures/Painter.png");	//TODO ELIMINAR
+	warriorTexture = App->tex->Load("textures/Warrior.png");	//TODO ELIMINAR
+	warrior_Texture = App->tex->Load("textures/Warrior_Sprite_Mod.png");
+	painter_Texture = App->tex->Load("textures/spritesheet_painter_mod.png");
 
 		// Enemies
 	/// Buildings
@@ -67,6 +68,10 @@ bool j1EntityManager::Start() {
 
 	fullLifeTexture = App->tex->Load("textures/FullLife.png");
 	zeroLifeTexture = App->tex->Load("textures/ZeroLife.png");
+
+
+	WarriorSprites();
+	PainterSprites();
 
 	return ret;
 }
@@ -452,10 +457,10 @@ bool j1EntityManager::Update(float dt) {
 					(*entitiesToDraw)->Draw(barracksTexture);
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINTER) {
-					(*entitiesToDraw)->Draw(painterTexture);
+					(*entitiesToDraw)->Draw(painter_Texture);
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_WARRIOR) {
-					(*entitiesToDraw)->Draw(warriorTexture);
+					(*entitiesToDraw)->Draw(warrior_Texture);
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SPAWNER) {
 					(*entitiesToDraw)->Draw(spawnerTexture);
