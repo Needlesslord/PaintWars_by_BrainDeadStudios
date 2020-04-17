@@ -26,6 +26,9 @@ bool j1Image::Start()
 	if (textureType == TEXTURE::MAIN_IMAGE)
 		texture = App->gui->Load_Texture(TEXTURE::MAIN_IMAGE);
 
+	if (textureType == TEXTURE::LOGO)
+		texture = App->gui->Load_Texture(TEXTURE::LOGO);
+
 	if (textureType == TEXTURE::ATLAS)
 		texture = App->gui->Load_Texture(TEXTURE::ATLAS);
 

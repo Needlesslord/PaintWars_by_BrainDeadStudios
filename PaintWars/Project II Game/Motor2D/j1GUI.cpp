@@ -137,6 +137,14 @@ SDL_Texture* j1GUI::Load_Texture(TEXTURE textureType)
 	case TEXTURE::CONTINUE_LETTERS:
 		texture_load = App->tex->Load("textures/UI/Continue.png");
 		break;
+
+	case TEXTURE::MAIN_IMAGE:
+		texture_load = App->tex->Load("textures/UI/background.png");
+		break;
+
+	case TEXTURE::LOGO:
+		texture_load = App->tex->Load("textures/Logo.png");
+		break;
 	}
 
 

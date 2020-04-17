@@ -172,6 +172,9 @@
     <ClCompile Include="Barracks.cpp">
       <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClCompile>
+    <ClCompile Include="GameLogoScene.cpp">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -353,6 +356,9 @@
     </ClInclude>
     <ClInclude Include="Sprites.h">
       <Filter>Motor  ========\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogoScene.h">
+      <Filter>Motor  ========\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -14,7 +14,7 @@
     <ProjectGuid>{2AF9969B-F202-497B-AF30-7BEF9CE8005E}</ProjectGuid>
     <RootNamespace>programacio_2</RootNamespace>
     <ProjectName>PaintWars_by_BrainDeadStudios</ProjectName>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -86,6 +86,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="ExpandingBars.cpp" />
     <ClCompile Include="FadeToColour.cpp" />
+    <ClCompile Include="GameLogoScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="j1Button.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="ExpandingBars.h" />
     <ClInclude Include="FadeToColour.h" />
+    <ClInclude Include="GameLogoScene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="House.h" />
     <ClInclude Include="j1Collision.h" />

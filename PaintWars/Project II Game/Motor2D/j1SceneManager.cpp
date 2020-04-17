@@ -240,6 +240,12 @@ Scene* j1SceneManager::CreateScene(SCENES scene_name)
 		item = new WinScene();
 			
 		break;
+
+	case SCENES::GAME_LOGO_SCENE:
+
+		item = new WinScene();
+
+		break;
 	}
 
 	if (item != nullptr)
@@ -252,6 +258,7 @@ Scene* j1SceneManager::CreateScene(SCENES scene_name)
 
 void j1SceneManager::ScenePushbacks()
 {
+	CreateScene(SCENES::GAME_LOGO_SCENE);
 	CreateScene(SCENES::MENU_SCENE);
 	CreateScene(SCENES::GAME_SCENE);
 	CreateScene(SCENES::SETTINGS_SCENE);

@@ -1,15 +1,15 @@
-#ifndef __MENUSCENE_H__
-#define __MENUSCENE_H__
+#ifndef __GAMELOGOSCENE_H__
+#define __GAMELOGOSCENE_H__
 
 #include "j1Module.h"
 #include "Scene.h"
 
-class MenuScene : public Scene
+class GameLogoScene : public Scene
 {
 public:
 
-	MenuScene();									// Constructor
-	~MenuScene();									// Destructor
+	GameLogoScene();									// Constructor
+	~GameLogoScene();									// Destructor
 
 	bool Awake(pugi::xml_node& config);				// Called before render is available
 	bool Start();									// Called before the first frame
@@ -34,12 +34,7 @@ public:
 
 public:
 
-	j1Element* playButton = nullptr;
-	j1Element* scoreButton = nullptr;
-	j1Element* creditsButton = nullptr;
-	j1Element* settingsButton = nullptr;
-	j1Element* exitButton = nullptr;
-	j1Element* backgroundImage = nullptr;
+	j1Element* gameLogoButton = nullptr;
 
 };
 
