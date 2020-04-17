@@ -18,6 +18,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include "Brofiler/Brofiler.h"
 
 
 
@@ -77,6 +78,7 @@ bool GameScene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool GameScene::Start()
 {
+	BROFILER_CATEGORY("Game Scene Start--Scenes();", Profiler::Color::White);
 	bool ret = true;
 	
 	debug_tex = App->tex->Load("maps/path2.png");
@@ -286,6 +288,7 @@ bool GameScene::Start()
 // Called each loop iteration
 bool GameScene::PreUpdate()
 {
+
 	bool ret = true;
 
 	if (Change_Map == true) {
@@ -332,6 +335,7 @@ bool GameScene::PreUpdate()
 // Called each loop iteration
 bool GameScene::Update(float dt)
 {
+	BROFILER_CATEGORY("Game Scene Update--Scenes();", Profiler::Color::GhostWhite);
 	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN) {
 		App->render->BlitAll();
 	}
@@ -442,6 +446,7 @@ bool GameScene::Update(float dt)
 // Called each loop iteration
 bool GameScene::PostUpdate()
 {
+	BROFILER_CATEGORY("Game Scene PostUpdate--Scenes();", Profiler::Color::FloralWhite);
 	bool ret = true;
 	
 	

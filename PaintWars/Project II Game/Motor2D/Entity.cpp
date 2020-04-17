@@ -10,6 +10,7 @@
 #include "j1EntityManager.h"
 #include "j1Pathfinding.h"
 #include "j1Player.h"
+#include "Brofiler/Brofiler.h"
 
 Entity::Entity(iPoint tile, int damage, j1Module* listeners, Entity* creator) : currentTile(tile), currLife(maxLife - damage), listener(listener), spawnedBy(creator)
 {
@@ -43,6 +44,7 @@ void Entity::OnCollision(Collider* c1, Collider* c2, CollisionState collisionSta
 }
 
 void Entity::CalculateMovementLogic(int p) {
+	BROFILER_CATEGORY("Calculate Movement Logic--Entities();", Profiler::Color::Red);
 
 	// If he's at the destination he doesn't have to move so we exit
 	if (destination == currentTile) {
@@ -120,7 +122,7 @@ void Entity::CalculateMovementLogic(int p) {
 }
 
 void Entity::MovementLogic() {
-
+	BROFILER_CATEGORY("Movement Logic--Entities();", Profiler::Color::OrangeRed);
 	if (currentTile.x < nextTile.x) {
 
 		if (currentTile.y < nextTile.y) {
@@ -162,7 +164,7 @@ void Entity::MovementLogic() {
 }
 
 void Entity::Move(float dt) {
-	
+	BROFILER_CATEGORY("Move--Entities();", Profiler::Color::PaleVioletRed);
 	fPoint fNextTile = App->map->MapToWorld(nextTile.x, nextTile.y);
 	fPoint nextTilePos;
 	
@@ -437,7 +439,7 @@ Collider* Entity::GetEntityCollider() const
 }
 
 bool Entity::CreateEntityCollider(fPoint pos) {
-
+	BROFILER_CATEGORY("Create Entity Collider--Entities();", Profiler::Color::IndianRed);
 		// Allies
 	/// Buildings
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
@@ -528,7 +530,7 @@ void Entity::ShowHealthBar() {
 }
 
 void Entity::ShowUI() {
-
+	BROFILER_CATEGORY("Show UI Entities--Entities();", Profiler::Color::DarkRed);
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
 
 		if (App->entities->spawnEntityUIButton == nullptr) { // To spawn a painter
