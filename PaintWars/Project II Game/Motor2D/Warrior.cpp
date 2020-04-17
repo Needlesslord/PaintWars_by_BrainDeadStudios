@@ -58,3 +58,8 @@ void Warrior::Attack(Entity* target, float dt) {
 		attackCooldown += attackSpeed * dt;
 	}
 }
+
+void Warrior::Draw(SDL_Texture* sprites)
+{
+	App->render->AddBlitEvent(1, sprites, pos.x, pos.y, currentAnimation->GetCurrentFrame());
+}
