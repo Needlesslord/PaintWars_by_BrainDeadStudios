@@ -64,3 +64,5 @@ bool j1Label::CleanUp()
 
 	return true;
 }
+
+

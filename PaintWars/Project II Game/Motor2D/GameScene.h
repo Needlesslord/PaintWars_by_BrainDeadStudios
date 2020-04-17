@@ -138,9 +138,23 @@ public:
 	j1Element* buyPaintExtractorButton = nullptr;
 	j1Element* buyWoodProducerButton = nullptr;
 	j1Element* buyBarrackButton = nullptr;
+	j1Element* buyHouseButton = nullptr;
+	j1Element* buyPainterButton = nullptr;
+	j1Element* buyWarriorButton = nullptr;
 	bool debugTile = true;
 
 
+	//Resource Values for Blit
+
+	char Wood_Amount_UI;
+
+	char Paint_Amount_UI;
+
+	char Titanium_Amount_UI;
+
+	char Housing_Amount_UI;
+
+	char Max_Housing_Amount_UI;
 	
 private:
 

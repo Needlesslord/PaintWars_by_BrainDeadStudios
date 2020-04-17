@@ -117,11 +117,11 @@ bool GameScene::Start()
 	//////////////////
 	//      UI      //
 	//////////////////
-
+	
 
 	//HUD - Bar
 	hudBarImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
-	paintLabel = App->gui->AddElement(GUItype::GUI_LABEL, hudBarImage, { 100 , 10 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	paintLabel = App->gui->AddElement(GUItype::GUI_LABEL, hudBarImage, { 100 , 10 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 },"0", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL);
 	woodLabel = App->gui->AddElement(GUItype::GUI_LABEL, hudBarImage, { 200 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL);
 	metalLabel = App->gui->AddElement(GUItype::GUI_LABEL, hudBarImage, { 300 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL);
 	titaniumLabel = App->gui->AddElement(GUItype::GUI_LABEL, hudBarImage, { 400 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL);
@@ -152,21 +152,7 @@ bool GameScene::Start()
 	restartButton->hover_rect = { 859, 560, 74, 73 };
 	restartButton->click_rect = { 859, 634, 74, 73 };
 
-	//HUD - MiniMap
 	
-	miniMapMINI =App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 850 , 150 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_MINI);
-	miniMapMINI->click_rect = { 30, 15, 422,210 };
-	miniMapMINI->hover_rect = { 30, 15, 422,210 };
-
-	miniMapCamera=App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, {1025, 150 }, { 0 , 0 }, false, true, { 0, 0, 70, 36 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_CAMERA);
-
-	miniMapBack = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 0 , 0}, { 0 , 0 }, false, false, { 0, 0, 1345, 672 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_BACK);
-
-	miniMapFULL = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 50 , 75 }, { 0 , 0 }, true,false ,{ 87, 40, 1170,588 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_FULL);
-	miniMapFULL->click_rect = { 87, 40, 1170,588 };
-	miniMapFULL->hover_rect = { 87, 40, 1170,588 };
-
-
 	//Pause Menu
 	pauseMenuImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 400 , 70 }, { 0 , 0 }, false, false, { 263, 729, 452, 623 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 5);
 	pauseMenuLabel = App->gui->AddElement(GUItype::GUI_LABEL, pauseMenuImage, { 550 , 100 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "PAUSE", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 6);
@@ -235,8 +221,39 @@ bool GameScene::Start()
 	buyBarrackButton = App->gui->AddElement(GUItype::GUI_BUTTON, shopImage, { 145, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyBarrackButton->hover_rect = { 0, 1966, 65, 82 };
 	buyBarrackButton->click_rect = { 65, 1966, 65, 82 };
+	buyHouseButton = App->gui->AddElement(GUItype::GUI_BUTTON, shopImage, { 210, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyHouseButton->hover_rect = { 0, 1966, 65, 82 };
+	buyHouseButton->click_rect = { 65, 1966, 65, 82 };
+	buyPainterButton = App->gui->AddElement(GUItype::GUI_BUTTON, shopImage, { 15, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyPainterButton->hover_rect = { 0, 1966, 65, 82 };
+	buyPainterButton->click_rect = { 65, 1966, 65, 82 };
+	buyWarriorButton = App->gui->AddElement(GUItype::GUI_BUTTON, shopImage, { 80, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyWarriorButton->hover_rect = { 0, 1966, 65, 82 };
+	buyWarriorButton->click_rect = { 65, 1966, 65, 82 };
 
 	//shopLabel = App->gui->AddElement(GUItype::GUI_LABEL, shopImage, { 985 , 352 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+
+
+
+
+	//HUD - MiniMap
+
+	miniMapMINI = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 850 , 150 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_MINI);
+	miniMapMINI->click_rect = { 30, 15, 422,210 };
+	miniMapMINI->hover_rect = { 30, 15, 422,210 };
+
+	miniMapCamera = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 1025, 150 }, { 0 , 0 }, false, true, { 0, 0, 70, 36 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_CAMERA);
+
+	miniMapBack = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 0 , 0 }, { 0 , 0 }, false, false, { 0, 0, 1800, 1300 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_BACK);
+
+	miniMapFULL = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 50 , 75 }, { 0 , 0 }, true, false, { 87, 40, 1170,588 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_FULL);
+	miniMapFULL->click_rect = { 87, 40, 1170,588 };
+	miniMapFULL->hover_rect = { 87, 40, 1170,588 };
+
+	
+
+
+
 
 	//////////////////
 	//	RESOURCES	//
@@ -330,7 +347,10 @@ bool GameScene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 		App->SaveGame("save_game.xml");*/
 
+	/*if (App->input->GetKey(SDL_SCANCODE_K) == true) {
 
+		App->entities->CleanUp();
+	}*/
 
 	App->map->Draw();
 
@@ -398,10 +418,10 @@ bool GameScene::Update(float dt)
 
 	////UI
 
-	std::stringstream str;
-	str << App->player->paintCount.count;
-	string a = str.str();
-	paintLabel->text = (char*)a.c_str();
+	//std::stringstream str;
+	//str << App->player->paintCount.count;
+	//string a = str.str();
+	//paintLabel->text = (char*)a.c_str();
 
 
 	//for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
@@ -424,6 +444,23 @@ bool GameScene::PostUpdate()
 {
 	bool ret = true;
 	
+	
+	if (App->input->GetKey(SDL_SCANCODE_M) == true) {
+
+		if (miniMapMINI->enabled == true) {
+			miniMapBack->enabled = true;
+			miniMapFULL->enabled = true;
+			miniMapMINI->enabled = false;
+			miniMapCamera->enabled = false;
+		}
+		else {
+			miniMapMINI->enabled = true;
+			miniMapBack->enabled = false;
+			miniMapFULL->enabled = false;
+			miniMapCamera->enabled = true;
+		}
+	}
+
 	miniMapCamera->map_position.x = miniMapCamera->init_map_position.x+App->render->camera.x*-0.05;
 	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*-0.05;
 
@@ -491,17 +528,11 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 	//Minimap
 
 	if (element == miniMapMINI && type == GUI_Event::EVENT_ONCLICK) {
-		miniMapBack->enabled = true;
-		miniMapFULL->enabled = true;
-		miniMapMINI->enabled = false;
-		miniMapCamera->enabled = false;
+		
 	}
 
 	if (element == miniMapFULL && type == GUI_Event::EVENT_ONCLICK) {
-		miniMapMINI->enabled = true;
-		miniMapBack->enabled = false;
-		miniMapFULL->enabled = false;
-		miniMapCamera->enabled = true;
+		
 	}
 
 
@@ -540,13 +571,64 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 		buyWoodProducerButton->enabled = !buyWoodProducerButton->enabled;
 		buyPaintExtractorButton->enabled = !buyPaintExtractorButton->enabled;
 		buyBarrackButton->enabled = !buyBarrackButton->enabled;
+		buyHouseButton->enabled = !buyHouseButton->enabled;
+		buyPainterButton->enabled = !buyPainterButton->enabled;
+		buyWarriorButton->enabled = !buyWarriorButton->enabled;
 	}
 
-	if (element == buyWoodProducerButton && type == GUI_Event::EVENT_ONCLICK)
-	{
+	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->entities->isSelectingPlacement != true) {
+			App->entities->isSelectingPlacement = true;
+			App->entities->hoveringEntityType = ENTITY_TYPE_PAINT_EXTRACTOR;
+		}
 
 	}
 
+	if (element == buyBarrackButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->entities->isSelectingPlacement != true) {
+			App->entities->isSelectingPlacement = true;
+			App->entities->hoveringEntityType = ENTITY_TYPE_BARRACKS;
+		}
+
+	}
+
+	if (element == buyWoodProducerButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->entities->isSelectingPlacement != true) {
+			App->entities->isSelectingPlacement = true;
+
+			App->entities->hoveringEntityType = ENTITY_TYPE_WOOD_PRODUCER;
+		}
+	}
+
+	if (element == buyHouseButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->entities->isSelectingPlacement != true) {
+			App->entities->isSelectingPlacement = true;
+
+			App->entities->hoveringEntityType = ENTITY_TYPE_HOUSE;
+		}
+	}
+
+	if (element == buyWoodProducerButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->entities->isSelectingPlacement != true) {
+			App->entities->isSelectingPlacement = true;
+
+			App->entities->hoveringEntityType = ENTITY_TYPE_PAINTER;
+		}
+	}
+
+	if (element == buyWoodProducerButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->entities->isSelectingPlacement != true) {
+			App->entities->isSelectingPlacement = true;
+
+			App->entities->hoveringEntityType = ENTITY_TYPE_WARRIOR;
+		}
+	}
 
 	//Pause Menu
 
@@ -734,41 +816,12 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 		}
 
 		if (mainMenu) {
+			App->entities->CleanUp();
 			App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
 			App->audio->PlayingMenuMusic = false;
 			Mix_HaltMusic();
 		}
 	}
-
-	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_ONCLICK) {
-
-			if (App->entities->isSelectingPlacement != true) {
-				App->entities->isSelectingPlacement = true;
-				App->entities->hoveringEntityType = ENTITY_TYPE_PAINT_EXTRACTOR;
-			}
-
-	}
-
-	if (element == buyBarrackButton && type == GUI_Event::EVENT_ONCLICK) {
-
-			if (App->entities->isSelectingPlacement != true) {
-				App->entities->isSelectingPlacement = true;
-				App->entities->hoveringEntityType = ENTITY_TYPE_BARRACKS;
-			}
-
-	}
-	
-	if (element == buyWoodProducerButton && type == GUI_Event::EVENT_ONCLICK) {
-
-		if (App->entities->isSelectingPlacement != true) {
-			App->entities->isSelectingPlacement = true;
-
-			App->entities->hoveringEntityType =ENTITY_TYPE_WOOD_PRODUCER;
-		}
-    }
-
-	
-
 
 	if (element == noButton && type == GUI_Event::EVENT_ONCLICK)
 	{
@@ -939,11 +992,13 @@ void GameScene::ExecuteTransition()
 		if (App->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
 		{
 			App->transition_manager->CreateSlide(SCENES::WIN_SCENE, 0.5f, true);
+			App->entities->CleanUp();
 		}
 
 		if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
 		{
 			App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 0.5f, true, true);
+			App->entities->CleanUp();
 		}
 
 	//	if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)

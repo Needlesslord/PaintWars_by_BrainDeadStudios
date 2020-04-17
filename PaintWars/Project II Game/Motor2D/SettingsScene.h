@@ -45,6 +45,8 @@ public:
 	j1Element* resetButton = nullptr;
 	j1Element* backButton = nullptr;
 
+	SDL_Texture* background = nullptr;
+
 };
 
 #endif // __FIRSTSCENE_H__

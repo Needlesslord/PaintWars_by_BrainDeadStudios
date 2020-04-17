@@ -36,6 +36,10 @@ bool StartScene::Start()
 {
 	bool ret = true;
 
+
+	background = App->tex->Load("textures/UI/background.png");
+
+
 	continueButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 475, 190 }, { 30,25 }, true, true, { 0, 0, 263, 91 }, "CONTINUE", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	continueButton->hover_rect = { 263, 0, 263, 91 };
 	continueButton->click_rect = { 526, 0, 263, 91 };
@@ -83,6 +87,10 @@ bool StartScene::Update(float dt)
 	{
 		App->scenes->SwitchScene(SCENES::GAME_SCENE);
 	}
+
+
+	
+
 
 	return ret;
 }
