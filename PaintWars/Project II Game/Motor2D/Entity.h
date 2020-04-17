@@ -179,7 +179,7 @@ protected:
 	std::vector<iPoint>currentPath;
 	uint pathIterator;
 
-	Animation North_Animation;
+	Animation* currentAnimation;
 	
 	fPoint past_frame_dest;
 
