@@ -992,11 +992,13 @@ void GameScene::ExecuteTransition()
 		if (App->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
 		{
 			App->transition_manager->CreateSlide(SCENES::WIN_SCENE, 0.5f, true);
+			App->entities->CleanUp();
 		}
 
 		if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
 		{
 			App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 0.5f, true, true);
+			App->entities->CleanUp();
 		}
 
 	//	if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)

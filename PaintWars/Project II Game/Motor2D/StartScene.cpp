@@ -89,7 +89,7 @@ bool StartScene::Update(float dt)
 	}
 
 
-	App->render->AddBlitEvent(1, background, 0, 0, { 0,0, App->win->width * 2, App->win->height * 2 });
+	
 
 
 	return ret;

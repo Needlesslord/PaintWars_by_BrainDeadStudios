@@ -920,11 +920,12 @@ void j1EntityManager::TriggerEndGame(bool isVictory) {
 
 
 	if (isVictory == false) {
-
+		App->entities->CleanUp();
 		App->transition_manager->CreateExpandingBars(SCENES::LOSE_SCENE, 0.5f, true);
 	}
 
 	else if(isVictory==true) {
+		App->entities->CleanUp();
 	   App->transition_manager->CreateExpandingBars(SCENES::WIN_SCENE, 0.5f, true);  //DOESNT WORK YET BECAUSE SPAWNERS NOT IMPLEMENTED
 	}
 
