@@ -36,6 +36,8 @@ bool SettingsScene::Start()
 {
 	bool ret = true;
 
+	background = App->tex->Load("textures/UI/background.png");
+
 	musicLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 300, 150 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Music");
 
 	vfxLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 300, 250 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "VFX");
@@ -92,6 +94,9 @@ bool SettingsScene::Update(float dt)
 	{
 		App->scenes->SwitchScene(SCENES::GAME_SCENE);
 	}
+
+
+	App->render->AddBlitEvent(1, background, 0, 0, { 0,0, App->win->width * 2, App->win->height * 2 });
 
 	return ret;
 }

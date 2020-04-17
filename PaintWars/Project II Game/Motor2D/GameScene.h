@@ -138,6 +138,9 @@ public:
 	j1Element* buyPaintExtractorButton = nullptr;
 	j1Element* buyWoodProducerButton = nullptr;
 	j1Element* buyBarrackButton = nullptr;
+	j1Element* buyHouseButton = nullptr;
+	j1Element* buyPainterButton = nullptr;
+	j1Element* buyWarriorButton = nullptr;
 	bool debugTile = true;
 
 

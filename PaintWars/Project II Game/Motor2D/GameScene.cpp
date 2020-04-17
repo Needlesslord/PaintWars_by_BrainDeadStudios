@@ -221,6 +221,15 @@ bool GameScene::Start()
 	buyBarrackButton = App->gui->AddElement(GUItype::GUI_BUTTON, shopImage, { 145, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyBarrackButton->hover_rect = { 0, 1966, 65, 82 };
 	buyBarrackButton->click_rect = { 65, 1966, 65, 82 };
+	buyHouseButton = App->gui->AddElement(GUItype::GUI_BUTTON, shopImage, { 210, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyHouseButton->hover_rect = { 0, 1966, 65, 82 };
+	buyHouseButton->click_rect = { 65, 1966, 65, 82 };
+	buyPainterButton = App->gui->AddElement(GUItype::GUI_BUTTON, shopImage, { 15, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyPainterButton->hover_rect = { 0, 1966, 65, 82 };
+	buyPainterButton->click_rect = { 65, 1966, 65, 82 };
+	buyWarriorButton = App->gui->AddElement(GUItype::GUI_BUTTON, shopImage, { 80, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyWarriorButton->hover_rect = { 0, 1966, 65, 82 };
+	buyWarriorButton->click_rect = { 65, 1966, 65, 82 };
 
 	//shopLabel = App->gui->AddElement(GUItype::GUI_LABEL, shopImage, { 985 , 352 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
 
@@ -409,10 +418,10 @@ bool GameScene::Update(float dt)
 
 	////UI
 
-	std::stringstream str;
-	str << App->player->paintCount.count;
-	string a = str.str();
-	paintLabel->text = (char*)a.c_str();
+	//std::stringstream str;
+	//str << App->player->paintCount.count;
+	//string a = str.str();
+	//paintLabel->text = (char*)a.c_str();
 
 
 	//for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
@@ -562,13 +571,64 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 		buyWoodProducerButton->enabled = !buyWoodProducerButton->enabled;
 		buyPaintExtractorButton->enabled = !buyPaintExtractorButton->enabled;
 		buyBarrackButton->enabled = !buyBarrackButton->enabled;
+		buyHouseButton->enabled = !buyHouseButton->enabled;
+		buyPainterButton->enabled = !buyPainterButton->enabled;
+		buyWarriorButton->enabled = !buyWarriorButton->enabled;
 	}
 
-	if (element == buyWoodProducerButton && type == GUI_Event::EVENT_ONCLICK)
-	{
+	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->entities->isSelectingPlacement != true) {
+			App->entities->isSelectingPlacement = true;
+			App->entities->hoveringEntityType = ENTITY_TYPE_PAINT_EXTRACTOR;
+		}
 
 	}
 
+	if (element == buyBarrackButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->entities->isSelectingPlacement != true) {
+			App->entities->isSelectingPlacement = true;
+			App->entities->hoveringEntityType = ENTITY_TYPE_BARRACKS;
+		}
+
+	}
+
+	if (element == buyWoodProducerButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->entities->isSelectingPlacement != true) {
+			App->entities->isSelectingPlacement = true;
+
+			App->entities->hoveringEntityType = ENTITY_TYPE_WOOD_PRODUCER;
+		}
+	}
+
+	if (element == buyHouseButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->entities->isSelectingPlacement != true) {
+			App->entities->isSelectingPlacement = true;
+
+			App->entities->hoveringEntityType = ENTITY_TYPE_HOUSE;
+		}
+	}
+
+	if (element == buyWoodProducerButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->entities->isSelectingPlacement != true) {
+			App->entities->isSelectingPlacement = true;
+
+			App->entities->hoveringEntityType = ENTITY_TYPE_PAINTER;
+		}
+	}
+
+	if (element == buyWoodProducerButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->entities->isSelectingPlacement != true) {
+			App->entities->isSelectingPlacement = true;
+
+			App->entities->hoveringEntityType = ENTITY_TYPE_WARRIOR;
+		}
+	}
 
 	//Pause Menu
 
@@ -762,36 +822,6 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 			Mix_HaltMusic();
 		}
 	}
-
-	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_ONCLICK) {
-
-			if (App->entities->isSelectingPlacement != true) {
-				App->entities->isSelectingPlacement = true;
-				App->entities->hoveringEntityType = ENTITY_TYPE_PAINT_EXTRACTOR;
-			}
-
-	}
-
-	if (element == buyBarrackButton && type == GUI_Event::EVENT_ONCLICK) {
-
-			if (App->entities->isSelectingPlacement != true) {
-				App->entities->isSelectingPlacement = true;
-				App->entities->hoveringEntityType = ENTITY_TYPE_BARRACKS;
-			}
-
-	}
-	
-	if (element == buyWoodProducerButton && type == GUI_Event::EVENT_ONCLICK) {
-
-		if (App->entities->isSelectingPlacement != true) {
-			App->entities->isSelectingPlacement = true;
-
-			App->entities->hoveringEntityType =ENTITY_TYPE_WOOD_PRODUCER;
-		}
-    }
-
-	
-
 
 	if (element == noButton && type == GUI_Event::EVENT_ONCLICK)
 	{

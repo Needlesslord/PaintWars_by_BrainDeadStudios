@@ -40,6 +40,8 @@ public:
 	j1Element* settingsButton = nullptr;
 	j1Element* exitButton = nullptr;
 
+	SDL_Texture* background = nullptr;
+
 };
 
 #endif // __FIRSTSCENE_H__
