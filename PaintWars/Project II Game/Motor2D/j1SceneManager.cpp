@@ -8,6 +8,7 @@
 #include "j1Render.h"
 #include "j1Input.h"
 #include "p2Log.h"
+#include "GameLogoScene.h"
 
 j1SceneManager::j1SceneManager() : current_scene(nullptr)
 {
@@ -243,7 +244,7 @@ Scene* j1SceneManager::CreateScene(SCENES scene_name)
 
 	case SCENES::GAME_LOGO_SCENE:
 
-		item = new WinScene();
+		item = new GameLogoScene();
 
 		break;
 	}

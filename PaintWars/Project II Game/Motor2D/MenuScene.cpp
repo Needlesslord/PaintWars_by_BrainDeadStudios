@@ -37,7 +37,7 @@ bool MenuScene::Start()
 {
 	bool ret = true;
 
-	backgroundImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, 263, 91 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MAIN_IMAGE);
+	backgroundImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MAIN_IMAGE);
 
 	playButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 475, 100 }, { 70,25}, true, true, { 0, 0, 263, 91 }, "PLAY", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	playButton->hover_rect = { 263, 0, 263, 91 };

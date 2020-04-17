@@ -36,7 +36,7 @@ bool SettingsScene::Start()
 {
 	bool ret = true;
 
-	background = App->tex->Load("textures/UI/background.png");
+	backgroundImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MAIN_IMAGE);
 
 	musicLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 300, 150 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Music");
 
@@ -95,9 +95,6 @@ bool SettingsScene::Update(float dt)
 		App->scenes->SwitchScene(SCENES::GAME_SCENE);
 	}
 
-
-	App->render->AddBlitEvent(1, background, 0, 0, { 0,0, App->win->width * 2, App->win->height * 2 });
-
 	return ret;
 }
 
@@ -120,16 +117,13 @@ bool SettingsScene::CleanUp()
 	LOG("Freeing Scene");
 	bool ret = true;
 
-	musicLabel->CleanUp();
-	vfxLabel->CleanUp();
-	fullscreenLabel->CleanUp();
-	gpadLabel->CleanUp();
-	musicScroll->CleanUp();
-	vfxScroll->CleanUp();
-	fullscreenButton->CleanUp();
-	gpadButton->CleanUp();
-	resetButton->CleanUp();
-	backButton->CleanUp();
+	for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
+	{
+		App->gui->GUI_ELEMENTS[i]->CleanUp();
+	}
+
+	RELEASE(vfxScroll);
+	RELEASE(musicScroll);
 
 
 	if (scene_texture != nullptr)

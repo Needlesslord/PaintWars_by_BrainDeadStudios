@@ -37,7 +37,7 @@ bool GameLogoScene::Start()
 {
 	bool ret = true;
 
-	gameLogoButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 200, 100 }, { 100,600 }, true, true, { 0, 0, 1259, 852 }, "Click on the Game Logo to go to the Main Menu", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::LOGO);
+	gameLogoButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 300, 100 }, { 0,500 }, true, true, { 0, 0, 630, 426 }, "Click on the Game Logo", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::LOGO, FONT::FONT_MEDIUM_WHITE, 1);
 	gameLogoButton->hover_rect = { 0, 0, 1259, 852 };
 	gameLogoButton->click_rect = { 0, 0, 1259, 852 };
 
@@ -120,7 +120,7 @@ void GameLogoScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 	if (element == gameLogoButton && type == GUI_Event::EVENT_ONCLICK)
 	{
 
-		App->transition_manager->CreateZoomToMouse(SCENES::START_SCENE, { 450,450 });
+		App->transition_manager->CreateAlternatingBars(SCENES::MENU_SCENE);
 	}
 }
 

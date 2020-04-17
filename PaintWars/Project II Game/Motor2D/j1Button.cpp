@@ -48,6 +48,11 @@ bool j1Button::Start()
 
 		texture = App->gui->Load_Texture(TEXTURE::WIN_SCREEN);
 	}
+
+	if (textureType == TEXTURE::LOGO) {
+
+		texture = App->gui->Load_Texture(TEXTURE::LOGO);
+	}
 	
 	if (textureType == TEXTURE::LOSE_SCREEN) {
 

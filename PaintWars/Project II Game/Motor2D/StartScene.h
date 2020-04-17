@@ -37,8 +37,7 @@ public:
 	j1Element* snowButton = nullptr;
 	j1Element* volcanoButton = nullptr;
 	j1Element* backButton = nullptr;
-
-	SDL_Texture* background = nullptr;
+	j1Element* backgroundImage = nullptr;
 
 };
 

@@ -45,7 +45,7 @@ public:
 	j1Element* resetButton = nullptr;
 	j1Element* backButton = nullptr;
 
-	SDL_Texture* background = nullptr;
+	j1Element* backgroundImage = nullptr;
 
 };
 
