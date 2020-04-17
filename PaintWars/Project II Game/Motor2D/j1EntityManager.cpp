@@ -422,6 +422,7 @@ bool j1EntityManager::Update(float dt) {
 		}
 
 
+
 		// Move colliders
 		list<Entity*>::iterator collidersToMove = activeUnits.begin();
 		while (collidersToMove != activeUnits.end()) {
@@ -431,7 +432,100 @@ bool j1EntityManager::Update(float dt) {
 
 			collidersToMove++;
 		}
+
+		std::list<Entity*>::iterator checkMovingAnimation = activeUnits.begin();
+		while (checkMovingAnimation != activeUnits.end()) {
+
+			if ((*checkMovingAnimation)->entityType == ENTITY_TYPE_WARRIOR) {
+
+				if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
+
+					(*checkMovingAnimation)->currentAnimation = &warriorMovingNorth;
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+					(*checkMovingAnimation)->currentAnimation = &warriorMovingNorthEast;
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
+
+					(*checkMovingAnimation)->currentAnimation = &warriorMovingEast;
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+					(*checkMovingAnimation)->currentAnimation = &warriorMovingSouthEast;
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
+
+					(*checkMovingAnimation)->currentAnimation = &warriorMovingSouth;
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+					(*checkMovingAnimation)->currentAnimation = &warriorMovingSouthWest;
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
+
+					(*checkMovingAnimation)->currentAnimation = &warriorMovingWest;
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+					(*checkMovingAnimation)->currentAnimation = &warriorMovingNorthWest;
+				}
+			}
+
+			else if ((*checkMovingAnimation)->entityType == ENTITY_TYPE_PAINTER) {
+
+				if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
+
+					(*checkMovingAnimation)->currentAnimation = &painterMovingNorth;
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+					(*checkMovingAnimation)->currentAnimation = &painterMovingNorthEast;
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
+
+					(*checkMovingAnimation)->currentAnimation = &painterMovingEast;
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+					(*checkMovingAnimation)->currentAnimation = &painterMovingSouthEast;
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
+
+					(*checkMovingAnimation)->currentAnimation = &painterMovingSouth;
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+					(*checkMovingAnimation)->currentAnimation = &painterMovingSouthWest;
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
+
+					(*checkMovingAnimation)->currentAnimation = &painterMovingWest;
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+					(*checkMovingAnimation)->currentAnimation = &painterMovingNorthWest;
+				}
+			}
+			checkMovingAnimation++;
+		}
 	}
+
+
 
 	//if (App->PAUSE_ACTIVE == true) {
 
