@@ -26,7 +26,7 @@ j1App* App = NULL;
 
 int main(int argc, char* args[])
 {
-	BROFILER_FRAME("Main Game Loop()");
+	
 	LOG("Engine starting ... %d");
 
 	MainState state = MainState::CREATE;
@@ -80,9 +80,13 @@ int main(int argc, char* args[])
 
 			// Loop all modules until we are asked to leave ---------------------
 			case LOOP:
-				//BROFILER_FRAME("Main Game Loop()");
-			if(App->Update() == false)
-				state = CLEAN;
+			{
+				BROFILER_FRAME("Main Game Loop()");
+				
+				if (App->Update() == false)
+					state = CLEAN;
+
+			}
 			break;
 
 			// Cleanup allocated memory -----------------------------------------
