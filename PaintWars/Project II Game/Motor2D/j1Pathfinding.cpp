@@ -5,6 +5,7 @@
 #include "j1Map.h"
 #include <vector>
 #include "Entity.h"
+#include "Brofiler/Brofiler.h"
 
 j1PathFinding::j1PathFinding() : j1Module(), map(NULL), lastPath(DEFAULT_PATH_LENGTH),width(0), height(0)
 {
@@ -133,6 +134,7 @@ uchar j1PathFinding::GetTileAt(const iPoint& pos) const
 
 void j1PathFinding::ChangeWalkability(const iPoint& pos, bool isBecomingWalkable, ENTITY_SIZE size) {
 
+	BROFILER_CATEGORY("Change Walkability--PATHFINDING();", Profiler::Color::Green);
 	if (size == ENTITY_SIZE_SMALL) {
 
 		if (isBecomingWalkable)
@@ -247,7 +249,7 @@ PathNode::PathNode(const PathNode& node) : g(node.g), h(node.h), pos(node.pos), 
 // ----------------------------------------------------------------------------------
 uint PathNode::FindWalkableAdjacents(PathList& listToFill) const {
 	iPoint cell;
-
+	BROFILER_CATEGORY("Find Walkable Adjacents --PATHFINDING();", Profiler::Color::LawnGreen)
 	// north
 	cell.create(pos.x, pos.y + 1);
 	if (App->pathfinding->IsWalkable(cell))
@@ -320,6 +322,7 @@ int PathNode::CalculateF(const iPoint& destination)
 // ----------------------------------------------------------------------------------
 int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination) {
 
+	BROFILER_CATEGORY("Create Path--PATHFINDING();", Profiler::Color::ForestGreen)
 	int ret = 1;
 
 	// If origin or destination are not walkable, return -1

@@ -10,6 +10,8 @@
 #include "j1EntityManager.h"
 #include "j1Pathfinding.h"
 #include "j1Player.h"
+#include "Brofiler/Brofiler.h"
+#include "Sprites.h"
 
 Entity::Entity(iPoint tile, int damage, j1Module* listeners, Entity* creator) : currentTile(tile), currLife(maxLife - damage), listener(listener), spawnedBy(creator)
 {
@@ -43,6 +45,7 @@ void Entity::OnCollision(Collider* c1, Collider* c2, CollisionState collisionSta
 }
 
 void Entity::CalculateMovementLogic(int p) {
+	BROFILER_CATEGORY("Calculate Movement Logic--Entities();", Profiler::Color::Red);
 
 	// If he's at the destination he doesn't have to move so we exit
 	if (destination == currentTile) {
@@ -111,6 +114,7 @@ void Entity::CalculateMovementLogic(int p) {
 		}
 
 		isOnTheMove = true;
+
 	}
 
 	else {
@@ -120,19 +124,38 @@ void Entity::CalculateMovementLogic(int p) {
 }
 
 void Entity::MovementLogic() {
-
-	
-
+	BROFILER_CATEGORY("Movement Logic--Entities();", Profiler::Color::OrangeRed);
 	if (currentTile.x < nextTile.x) {
 
 		if (currentTile.y < nextTile.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH;
+
+			if (entityType == ENTITY_TYPE_WARRIOR) {
+				currentAnimation = &warriorMovingSouth;
+			}
+			else if (entityType == ENTITY_TYPE_PAINTER) {
+				currentAnimation = &painterMovingSouth;
+			}
 		}
 		else if (currentTile.y > nextTile.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_EAST;
+
+			if (entityType == ENTITY_TYPE_WARRIOR) {
+				currentAnimation = &warriorMovingEast;
+			}
+			else if (entityType == ENTITY_TYPE_PAINTER) {
+				currentAnimation = &painterMovingEast;
+			}
 		}
 		else {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH_EAST;
+
+			if (entityType == ENTITY_TYPE_WARRIOR) {
+				currentAnimation = &warriorMovingSouthEast;
+			}
+			else if (entityType == ENTITY_TYPE_PAINTER) {
+				currentAnimation = &painterMovingSouthEast;
+			}
 		}
 	}
 
@@ -140,12 +163,33 @@ void Entity::MovementLogic() {
 
 		if (currentTile.y < nextTile.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_WEST;
+
+			if (entityType == ENTITY_TYPE_WARRIOR) {
+				currentAnimation = &warriorMovingWest;
+			}
+			else if (entityType == ENTITY_TYPE_PAINTER) {
+				currentAnimation = &painterMovingWest;
+			}
 		}
 		else if (currentTile.y > nextTile.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH;
+
+			if (entityType == ENTITY_TYPE_WARRIOR) {
+				currentAnimation = &warriorMovingNorth;
+			}
+			else if (entityType == ENTITY_TYPE_PAINTER) {
+				currentAnimation = &painterMovingNorth;
+			}
 		}
 		else {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH_WEST;
+
+			if (entityType == ENTITY_TYPE_WARRIOR) {
+				currentAnimation = &warriorMovingNorthWest;
+			}
+			else if (entityType == ENTITY_TYPE_PAINTER) {
+				currentAnimation = &painterMovingNorthWest;
+			}
 		}
 	}
 
@@ -153,9 +197,23 @@ void Entity::MovementLogic() {
 
 		if (currentTile.y < nextTile.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_SOUTH_WEST;
+
+			if (entityType == ENTITY_TYPE_WARRIOR) {
+				currentAnimation = &warriorMovingSouthWest;
+			}
+			else if (entityType == ENTITY_TYPE_PAINTER) {
+				currentAnimation = &painterMovingSouthWest;
+			}
 		}
 		else if (currentTile.y > nextTile.y) {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NORTH_EAST;
+
+			if (entityType == ENTITY_TYPE_WARRIOR) {
+				currentAnimation = &warriorMovingNorthEast;
+			}
+			else if (entityType == ENTITY_TYPE_PAINTER) {
+				currentAnimation = &painterMovingNorthEast;
+			}
 		}
 		else {
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;
@@ -164,9 +222,10 @@ void Entity::MovementLogic() {
 }
 
 void Entity::Move(float dt) {
-	
+	BROFILER_CATEGORY("Move--Entities();", Profiler::Color::PaleVioletRed);
 	fPoint fNextTile = App->map->MapToWorld(nextTile.x, nextTile.y);
 	fPoint nextTilePos;
+	
 	nextTilePos.x = fNextTile.x + App->map->data.tile_width / 2 - size.x / 2;
 	nextTilePos.y = fNextTile.y + App->map->data.tile_height / 2 - size.y;
 
@@ -185,7 +244,7 @@ void Entity::Move(float dt) {
 
 			pos.x += speed * dt;
 
-			if (pos.x >= nextTilePos.x) {
+			if (pos.x > nextTilePos.x) {
 				pos.x = nextTilePos.x;
 			}
 		}
@@ -194,7 +253,7 @@ void Entity::Move(float dt) {
 
 			pos.x -= speed * dt;
 
-			if (pos.x <= nextTilePos.x) {
+			if (pos.x < nextTilePos.x) {
 				pos.x = nextTilePos.x;
 			}
 		}
@@ -205,7 +264,7 @@ void Entity::Move(float dt) {
 		pos.x += speed * dt;
 		pos.y -= speed * dt / 2;
 
-		if (pos.x >= nextTilePos.x) {
+		if (pos.x > nextTilePos.x) {
 			pos.x = nextTilePos.x;
 		}
 		if (pos.y < nextTilePos.y) {
@@ -217,7 +276,7 @@ void Entity::Move(float dt) {
 
 		pos.x += speed * dt;
 
-		if (pos.x >= nextTilePos.x) {
+		if (pos.x > nextTilePos.x) {
 			pos.x = nextTilePos.x;
 		}
 
@@ -225,7 +284,7 @@ void Entity::Move(float dt) {
 
 			pos.y += speed * dt / 2;
 
-			if (pos.y >= nextTilePos.y) {
+			if (pos.y > nextTilePos.y) {
 				pos.y = nextTilePos.y;
 			}
 		}
@@ -234,7 +293,7 @@ void Entity::Move(float dt) {
 
 			pos.y -= speed * dt / 2;
 
-			if (pos.y <= nextTilePos.y) {
+			if (pos.y < nextTilePos.y) {
 				pos.y = nextTilePos.y;
 			}
 		}
@@ -244,7 +303,7 @@ void Entity::Move(float dt) {
 		pos.x += speed * dt;
 		pos.y += speed * dt / 2;
 
-		if (pos.x >= nextTilePos.x) {
+		if (pos.x > nextTilePos.x) {
 			pos.x = nextTilePos.x;
 		}
 		if (pos.y > nextTilePos.y) {
@@ -259,20 +318,20 @@ void Entity::Move(float dt) {
 			pos.y = nextTilePos.y;
 		}
 
-		if (pos.x <= nextTilePos.x) {
+		if (pos.x < nextTilePos.x) {
 
 			pos.x += speed * dt;
 
-			if (pos.x >= nextTilePos.x) {
+			if (pos.x > nextTilePos.x) {
 				pos.x = nextTilePos.x;
 			}
 		}
 
-		else if (pos.x >= nextTilePos.x) {
+		else if (pos.x > nextTilePos.x) {
 
 			pos.x -= speed * dt;
 
-			if (pos.x <= nextTilePos.x) {
+			if (pos.x < nextTilePos.x) {
 				pos.x = nextTilePos.x;
 			}
 
@@ -283,7 +342,7 @@ void Entity::Move(float dt) {
 		pos.x -= speed * dt;
 		pos.y += speed * dt / 2;
 
-		if (pos.x <= nextTilePos.x) {
+		if (pos.x < nextTilePos.x) {
 			pos.x = nextTilePos.x;
 		}
 		if (pos.y > nextTilePos.y) {
@@ -302,7 +361,7 @@ void Entity::Move(float dt) {
 
 			pos.y += speed * dt / 2;
 
-			if (pos.y >= nextTilePos.y) {
+			if (pos.y > nextTilePos.y) {
 				pos.y = nextTilePos.y;
 			}
 		}
@@ -311,7 +370,7 @@ void Entity::Move(float dt) {
 
 			pos.y -= speed * dt / 2;
 
-			if (pos.y <= nextTilePos.y) {
+			if (pos.y < nextTilePos.y) {
 				pos.y = nextTilePos.y;
 			}
 		}
@@ -332,9 +391,9 @@ void Entity::Move(float dt) {
 	currentTile.x = mapPosition.x + 1;
 	currentTile.y = mapPosition.y;
 
-	mapPosition = App->map->WorldToMap(nextTilePos.x - App->map->data.tile_width / 2 + GetSize().x / 2, nextTilePos.y - App->map->data.tile_height / 2 + GetSize().y);
-	nextTile.x = mapPosition.x + 1;
-	nextTile.y = mapPosition.y;
+	//mapPosition = App->map->WorldToMap(nextTilePos.x - App->map->data.tile_width / 2 + GetSize().x / 2, nextTilePos.y - App->map->data.tile_height / 2 + GetSize().y);
+	//nextTile.x = mapPosition.x + 1;
+	//nextTile.y = mapPosition.y;
 
 	if (currentTile == nextTile) {
 		if (currentTile != destination)
@@ -345,8 +404,17 @@ void Entity::Move(float dt) {
 		nextTile = currentPath.at(pathIterator);
 	}
 
-	/*if (currentTile == destination)
-		isOnTheMove = false;*/
+	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);
+
+	/*pos.x == tileWorldPosition.x + App->map->data.tile_width / 2 - GetSize().x / 2 &&
+	pos.y == tileWorldPosition.y + App->map->data.tile_height / 2 - GetSize().y*/
+
+	if (currentTile == destination && pos.x == tileWorldPosition.x + App->map->data.tile_width / 2 - GetSize().x / 2 &&
+		pos.y == tileWorldPosition.y + App->map->data.tile_height / 2 - GetSize().y) {
+		
+		isOnTheMove = false;
+		*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;
+	}
 }
 
 
@@ -429,7 +497,7 @@ Collider* Entity::GetEntityCollider() const
 }
 
 bool Entity::CreateEntityCollider(fPoint pos) {
-
+	BROFILER_CATEGORY("Create Entity Collider--Entities();", Profiler::Color::IndianRed);
 		// Allies
 	/// Buildings
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
@@ -520,7 +588,7 @@ void Entity::ShowHealthBar() {
 }
 
 void Entity::ShowUI() {
-
+	BROFILER_CATEGORY("Show UI Entities--Entities();", Profiler::Color::DarkRed);
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
 
 		if (App->entities->spawnEntityUIButton == nullptr) { // To spawn a painter
