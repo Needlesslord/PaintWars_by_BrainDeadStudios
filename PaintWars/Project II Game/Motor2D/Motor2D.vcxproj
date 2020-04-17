@@ -184,6 +184,7 @@
     <ClInclude Include="Slide.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="Spawner.h" />
+    <ClInclude Include="Sprites.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="TownHall.h" />
     <ClInclude Include="Transition.h" />

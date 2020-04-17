@@ -351,6 +351,9 @@
     <ClInclude Include="Barracks.h">
       <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClInclude>
+    <ClInclude Include="Sprites.h">
+      <Filter>Motor  ========\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">

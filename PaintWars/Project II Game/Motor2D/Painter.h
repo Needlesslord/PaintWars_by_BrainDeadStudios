@@ -13,6 +13,7 @@ public:
 	void SpawnEntity(iPoint pos) override;
 	void ExtractPaint(float dt) override;
 	void ExtractWood(float dt) override;
+	void Draw(SDL_Texture* sprites) override;
 
 public:
 

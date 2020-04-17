@@ -91,3 +91,8 @@ void Painter::ExtractWood(float dt) {
 		App->player->woodCount.count += extractionRate*dt;
 	}
 }
+
+void Painter::Draw(SDL_Texture* sprites)
+{
+	
+}

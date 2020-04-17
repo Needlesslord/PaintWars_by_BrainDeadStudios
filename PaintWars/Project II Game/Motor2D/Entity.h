@@ -160,7 +160,7 @@ public:
 	Entity* spawnedBy;
 	Entity* builtBy;
 
-	
+	Animation* currentAnimation;
 
 	// Paint speed
 	float extractionRate = 0.0f;
@@ -179,7 +179,7 @@ protected:
 	std::vector<iPoint>currentPath;
 	uint pathIterator;
 
-	Animation* currentAnimation;
+	
 	
 	fPoint past_frame_dest;
 

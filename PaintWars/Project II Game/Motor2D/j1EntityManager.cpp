@@ -17,6 +17,7 @@
 #include "TransitionManager.h"
 #include "Brofiler/Brofiler.h"
 #include "Entity.h"
+#include "Sprites.h"
 
 
 j1EntityManager::j1EntityManager()
@@ -76,14 +77,17 @@ bool j1EntityManager::PreUpdate() {
 	if (App->PAUSE_ACTIVE == false) {}
 
 	// Update the currentTile to the actual pos
-	list<Entity*>::iterator updateCurrentTile = activeUnits.begin();
-	while (updateCurrentTile != activeUnits.end()) {
+	list<Entity*>::iterator setDefaultAnimation = activeUnits.begin();
+	while (setDefaultAnimation != activeUnits.end()) {
 
-		/*iPoint mapPosition = App->map->WorldToMap((*updateCurrentTile)->pos.x - App->map->data.tile_width / 2 + (*updateCurrentTile)->GetSize().x / 2, (*updateCurrentTile)->pos.y - App->map->data.tile_height / 2 + (*updateCurrentTile)->GetSize().y);
-		(*updateCurrentTile)->currentTile.x = mapPosition.x + 1;
-		(*updateCurrentTile)->currentTile.y = mapPosition.y;*/
-
-		updateCurrentTile++;
+		if ((*setDefaultAnimation)->entityType == ENTITY_TYPE_WARRIOR) {
+			(*setDefaultAnimation)->currentAnimation = &warriorIdle;
+		}
+		else if ((*setDefaultAnimation)->entityType == ENTITY_TYPE_PAINTER) {
+			(*setDefaultAnimation)->currentAnimation = &painterIdle;
+		}
+		
+		setDefaultAnimation++;
 	}
 
 	return ret;
