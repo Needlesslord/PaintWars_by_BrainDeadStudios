@@ -96,7 +96,7 @@ bool GameScene::Start()
 
 	}
 
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{ 15,  4 }, App->entities, nullptr, 10, true);
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{ 45, 45 }, App->entities, nullptr, 10, true);
 	App->entities->AddEntity(ENTITY_TYPE_WOOD_PRODUCER,		{ 18, 18 }, App->entities, nullptr,  0, true);
 	App->entities->AddEntity(ENTITY_TYPE_BARRACKS,			{ 11,  6 }, App->entities, nullptr,  0, true);
 
@@ -107,7 +107,11 @@ bool GameScene::Start()
 	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  5, 10 }, App->entities, nullptr,  0, true);
 
 	App->entities->AddEntity(ENTITY_TYPE_SLIME,				{ 10, 10 }, App->entities, nullptr,  0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 12, 14 }, App->entities, nullptr,  0, true);
+	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 12, 14 }, App->entities, nullptr, 0, true);
+	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 45,  4 }, App->entities, nullptr, 0, true);
+	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 90,  4 }, App->entities, nullptr, 0, true);
+	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{  4, 90 }, App->entities, nullptr, 0, true);
+	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 80, 90 }, App->entities, nullptr, 0, true);
 	
 
 	App->pathfinding->ChangeToPaint({ 7, 0 });
