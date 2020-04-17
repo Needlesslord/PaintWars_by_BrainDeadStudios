@@ -76,9 +76,9 @@ bool j1EntityManager::PreUpdate() {
 	list<Entity*>::iterator updateCurrentTile = activeUnits.begin();
 	while (updateCurrentTile != activeUnits.end()) {
 
-		iPoint mapPosition = App->map->WorldToMap((*updateCurrentTile)->pos.x - App->map->data.tile_width / 2 + (*updateCurrentTile)->GetSize().x / 2, (*updateCurrentTile)->pos.y - App->map->data.tile_height / 2 + (*updateCurrentTile)->GetSize().y);
+		/*iPoint mapPosition = App->map->WorldToMap((*updateCurrentTile)->pos.x - App->map->data.tile_width / 2 + (*updateCurrentTile)->GetSize().x / 2, (*updateCurrentTile)->pos.y - App->map->data.tile_height / 2 + (*updateCurrentTile)->GetSize().y);
 		(*updateCurrentTile)->currentTile.x = mapPosition.x + 1;
-		(*updateCurrentTile)->currentTile.y = mapPosition.y;
+		(*updateCurrentTile)->currentTile.y = mapPosition.y;*/
 
 		updateCurrentTile++;
 	}
@@ -188,72 +188,67 @@ bool j1EntityManager::Update(float dt) {
 		paintersSelected = unitsSelected.begin();
 		
 
-			if (isSelectingPlacement) { // Selecting Placement FOR A PAINT EXTRACTOR
+		if (isSelectingPlacement) { // Selecting Placement FOR A PAINT EXTRACTOR
 
-				fPoint mousePosition = App->input->GetMouseWorldPosition();
-				iPoint cameraOffset = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
-				iPoint mapCoordinates = App->map->WorldToMap(mousePosition.x - cameraOffset.x, mousePosition.y - cameraOffset.y + App->map->data.tile_height / 2);
-				
-				fPoint mapWorldCoordinates = App->map->MapToWorld(mapCoordinates.x, mapCoordinates.y);
+			fPoint mousePosition = App->input->GetMouseWorldPosition();
+			iPoint cameraOffset = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
+			iPoint mapCoordinates = App->map->WorldToMap(mousePosition.x - cameraOffset.x, mousePosition.y - cameraOffset.y + App->map->data.tile_height / 2);
 
-				App->render->AddBlitEvent(1, debug_tex, mapWorldCoordinates.x - App->map->data.tile_width / 2,	mapWorldCoordinates.y - App->map->data.tile_height / 2,	{ 0,0,150,75 });
-				App->render->AddBlitEvent(1, debug_tex, mapWorldCoordinates.x + App->map->data.tile_width / 2,	mapWorldCoordinates.y - App->map->data.tile_height / 2,	{ 0,0,150,75 });
-				App->render->AddBlitEvent(1, debug_tex, mapWorldCoordinates.x,									mapWorldCoordinates.y - App->map->data.tile_height,		{ 0,0,150,75 });
+			fPoint mapWorldCoordinates = App->map->MapToWorld(mapCoordinates.x, mapCoordinates.y);
 
-				App->render->AddBlitEvent(1, paintExtractorTexture, mapWorldCoordinates.x - 125 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 250 + App->map->data.tile_height / 2, { 0,0,250,250 });
+			App->render->AddBlitEvent(1, debug_tex, mapWorldCoordinates.x - App->map->data.tile_width / 2, mapWorldCoordinates.y - App->map->data.tile_height / 2, { 0,0,150,75 });
+			App->render->AddBlitEvent(1, debug_tex, mapWorldCoordinates.x + App->map->data.tile_width / 2, mapWorldCoordinates.y - App->map->data.tile_height / 2, { 0,0,150,75 });
+			App->render->AddBlitEvent(1, debug_tex, mapWorldCoordinates.x, mapWorldCoordinates.y - App->map->data.tile_height, { 0,0,150,75 });
 
-				// If the Left click was pressed we'll check if it can in fact be built there
-				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+			App->render->AddBlitEvent(1, paintExtractorTexture, mapWorldCoordinates.x - 125 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 250 + App->map->data.tile_height / 2, { 0,0,250,250 });
 
-					// The painter is not 1x1
-					if (hoveringEntityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
-						if (App->pathfinding->IsPaint(mapCoordinates) || App->pathfinding->IsPaint({ mapCoordinates.x - 1, mapCoordinates.y - 1 }) ||
-							App->pathfinding->IsPaint({ mapCoordinates.x, mapCoordinates.y - 1 }) || App->pathfinding->IsPaint({ mapCoordinates.x - 1, mapCoordinates.y })) {
+			// If the Left click was pressed we'll check if it can in fact be built there
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 
-							
-							if (App->player->woodCount.count >= 20) {
-								App->player->woodCount.count -= 20;
-								isSelectingPlacement = false;
+				// The painter is not 1x1
+				if (hoveringEntityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
 
-								AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR, mapCoordinates, App->entities, nullptr, 0);
-								hoveringEntityType == ENTITY_TYPE_NONE;
+					if (App->pathfinding->IsPaint(mapCoordinates) || App->pathfinding->IsPaint({ mapCoordinates.x - 1, mapCoordinates.y - 1 }) ||
+						App->pathfinding->IsPaint({ mapCoordinates.x, mapCoordinates.y - 1 }) || App->pathfinding->IsPaint({ mapCoordinates.x - 1, mapCoordinates.y })) {
 
-								
+						if (App->player->woodCount.count >= 20) {
+							App->player->woodCount.count -= 20;
+							isSelectingPlacement = false;
 
-							}
-
+							AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR, mapCoordinates, App->entities, nullptr, 0);
+							hoveringEntityType == ENTITY_TYPE_NONE;
 						}
 					}
+				}
 
-					else if (hoveringEntityType == ENTITY_TYPE_WOOD_PRODUCER) {
-						
-						 if (App->pathfinding->IsBuildable(mapCoordinates)) {
+				else if (hoveringEntityType == ENTITY_TYPE_WOOD_PRODUCER) {
 
-							 if (App->player->paintCount.count >= 20) {
-								 isSelectingPlacement = false;
-								 App->player->paintCount.count -= 20;
-								 AddEntity(ENTITY_TYPE_WOOD_PRODUCER, mapCoordinates, App->entities, nullptr, 0);
-								 hoveringEntityType == ENTITY_TYPE_NONE;
-							 }
-						 }
+					if (App->pathfinding->IsBuildable(mapCoordinates)) {
+
+						if (App->player->paintCount.count >= 20) {
+							isSelectingPlacement = false;
+							App->player->paintCount.count -= 20;
+							AddEntity(ENTITY_TYPE_WOOD_PRODUCER, mapCoordinates, App->entities, nullptr, 0);
+							hoveringEntityType == ENTITY_TYPE_NONE;
+						}
 					}
+				}
 
-					else if (hoveringEntityType == ENTITY_TYPE_BARRACKS) {
+				else if (hoveringEntityType == ENTITY_TYPE_BARRACKS) {
 
-						if (App->pathfinding->IsBuildable(mapCoordinates) && App->pathfinding->IsBuildable({ mapCoordinates.x - 1, mapCoordinates.y - 1 }) &&
-							App->pathfinding->IsBuildable({ mapCoordinates.x, mapCoordinates.y - 1 }) && App->pathfinding->IsBuildable({ mapCoordinates.x - 1, mapCoordinates.y })) {
+					if (App->pathfinding->IsBuildable(mapCoordinates) && App->pathfinding->IsBuildable({ mapCoordinates.x - 1, mapCoordinates.y - 1 }) &&
+						App->pathfinding->IsBuildable({ mapCoordinates.x, mapCoordinates.y - 1 }) && App->pathfinding->IsBuildable({ mapCoordinates.x - 1, mapCoordinates.y })) {
 
-							if (App->player->woodCount.count >= 50) {
-								isSelectingPlacement = false;
-								App->player->woodCount.count -= 50;
-								AddEntity(ENTITY_TYPE_BARRACKS, mapCoordinates, App->entities, nullptr, 0);
-								hoveringEntityType == ENTITY_TYPE_NONE;
-							}
-					   }
+						if (App->player->woodCount.count >= 50) {
+							isSelectingPlacement = false;
+							App->player->woodCount.count -= 50;
+							AddEntity(ENTITY_TYPE_BARRACKS, mapCoordinates, App->entities, nullptr, 0);
+							hoveringEntityType == ENTITY_TYPE_NONE;
+						}
 					}
-					
 				}
 			}
+		}
 
 			
 		
@@ -405,8 +400,11 @@ bool j1EntityManager::Update(float dt) {
 		list<Entity*>::iterator unitsToMove = activeUnits.begin();
 		while (unitsToMove != activeUnits.end()) {
 
-			if ((*unitsToMove)->isOnTheMove)
+			if ((*unitsToMove)->isOnTheMove) {
+
+				(*unitsToMove)->MovementLogic();
 				(*unitsToMove)->Move(dt);
+			}
 
 			unitsToMove++;
 		}

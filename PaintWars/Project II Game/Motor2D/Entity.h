@@ -87,6 +87,7 @@ public:
 	virtual void DebugDrawSelected();
 	virtual void OnCollision(Collider* c1, Collider* c2, CollisionState collisionState);
 	virtual void CalculateMovementLogic(int p);
+	virtual void MovementLogic();
 	virtual void Move(float dt);
 	virtual void SetDestination(iPoint des);
 	virtual void SpawnEntity(iPoint pos);
