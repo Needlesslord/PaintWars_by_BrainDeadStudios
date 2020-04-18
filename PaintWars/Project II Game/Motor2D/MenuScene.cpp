@@ -117,6 +117,7 @@ bool MenuScene::CleanUp()
 	creditsButton->CleanUp();
 	settingsButton->CleanUp();
 	exitButton->CleanUp();
+	backgroundImage->CleanUp();
 
 	if (scene_texture != nullptr)
 	{

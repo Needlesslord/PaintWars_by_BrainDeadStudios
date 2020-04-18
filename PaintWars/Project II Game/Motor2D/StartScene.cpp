@@ -115,6 +115,7 @@ bool StartScene::CleanUp()
 	snowButton->CleanUp();
 	volcanoButton->CleanUp();
 	backButton->CleanUp();
+	backgroundImage->CleanUp();
 
 	if (scene_texture != nullptr)
 	{
