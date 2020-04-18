@@ -394,8 +394,9 @@ bool GameScene::Update(float dt)
 	if ((App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)&&(App->GOD_MODE!=true)) {
 		debugTile = !debugTile;
 	}
+
 	// Debug pathfinding ------------------------------
-	if (debugTile) {
+	/*if (debugTile) {
 		fPoint c0 = App->map->MapToWorld(map_coordinates.x, map_coordinates.y);
 
 		list<Entity*>::iterator subject = App->entities->unitsSelected.begin();
@@ -420,7 +421,7 @@ bool GameScene::Update(float dt)
 		App->render->AddBlitEvent(1, debug_tex, c7.x, c7.y, { 0,0,150,75 });
 		App->render->AddBlitEvent(1, debug_tex, c8.x, c8.y, { 0,0,150,75 });
 
-	}
+	}*/
 
 
 

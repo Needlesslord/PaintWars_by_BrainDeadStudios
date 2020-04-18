@@ -145,6 +145,10 @@ SDL_Texture* j1GUI::Load_Texture(TEXTURE textureType)
 	case TEXTURE::LOGO:
 		texture_load = App->tex->Load("textures/Logo.png");
 		break;
+
+	case TEXTURE::LOGO_LETTERS:
+		texture_load = App->tex->Load("textures/Logo_Start.png");
+		break;
 	}
 
 

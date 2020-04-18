@@ -35,6 +35,7 @@ public:
 public:
 
 	j1Element* gameLogoButton = nullptr;
+	j1Element* lettersLogoStart = nullptr;
 
 };
 

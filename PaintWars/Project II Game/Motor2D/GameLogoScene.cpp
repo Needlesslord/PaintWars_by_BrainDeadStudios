@@ -37,7 +37,7 @@ bool GameLogoScene::Start()
 {
 	bool ret = true;
 
-	gameLogoButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 300, 100 }, { 0,500 }, true, true, { 0, 0, 630, 426 }, "Click on the Game Logo", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::LOGO, FONT::FONT_MEDIUM_WHITE, 1);
+	gameLogoButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 300, 100 }, { 0,500 }, true, true, { 0, 0, 630, 426 }, "Click on the Logo to Start!", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::LOGO, FONT::FONT_MEDIUM_WHITE, 1);
 	gameLogoButton->hover_rect = { 0, 0, 1259, 852 };
 	gameLogoButton->click_rect = { 0, 0, 1259, 852 };
 
