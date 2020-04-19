@@ -65,6 +65,7 @@ bool j1EntityManager::Start() {
 	/// Units
 	slimeTexture = App->tex->Load("textures/Slime.png");
 
+	buildingTexture = App->tex->Load("textures/Building.png");
 
 	fullLifeTexture = App->tex->Load("textures/FullLife.png");
 	zeroLifeTexture = App->tex->Load("textures/ZeroLife.png");
@@ -145,7 +146,8 @@ bool j1EntityManager::Update(float dt) {
 				}
 
 				else if ((*checkForSpawningEntities)->constructionProgress * constructionRate < (*checkForSpawningEntities)->constructionTime) {
-
+							
+					App->render->AddBlitEvent(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,(*checkForSpawningEntities)->GetSize().x,(*checkForSpawningEntities)->GetSize().y });
 					(*checkForSpawningEntities)->constructionProgress += constructionRate * dt;
 				}
 			}
@@ -156,48 +158,10 @@ bool j1EntityManager::Update(float dt) {
 
 
 
-		// Show Building UI if ONLY ONE BUILDING is selected
-		if (buildingsSelected.size() == 1) {
-
-			list<Entity*>::iterator buildingToShowUI = buildingsSelected.begin();
-			(*buildingToShowUI)->ShowUI();
-		}
-
-		else if (spawnEntityUIButton != nullptr) {
-
-			spawnEntityUIButton->to_delete = true;
-			spawnEntityUIButton = nullptr;
-		}
-		//
 
 
-
-		// If there are only painters selected, show building UI
-		bool onlyPaintersSelected = false;
-		list<Entity*>::iterator paintersSelected = unitsSelected.begin();
-		while (paintersSelected != unitsSelected.end()) {
-
-			if ((*paintersSelected)->entityType == ENTITY_TYPE_PAINTER)
-				onlyPaintersSelected = true;
-
-			else
-				onlyPaintersSelected = false;
-
-			paintersSelected++;
-		}
-
-		if (onlyPaintersSelected) {
-			paintersSelected = unitsSelected.begin();
-			//while (paintersSelected != unitsSelected.end()) { FOR NOW, WE'LL LET ONLY THE FIRST ONE TO BUILD
-
-			(*paintersSelected)->ShowUI();
-
-			//	paintersSelected++;
-			//}
-		}
 
 		// We'll print the building hovering where it would be built
-		paintersSelected = unitsSelected.begin();
 
 		if (isSelectingPlacement) { // Selecting Placement FOR A PAINT EXTRACTOR
 
@@ -207,11 +171,25 @@ bool j1EntityManager::Update(float dt) {
 
 			fPoint mapWorldCoordinates = App->map->MapToWorld(mapCoordinates.x, mapCoordinates.y);
 
+			App->render->AddBlitEvent(1, debug_tex, mapWorldCoordinates.x, mapWorldCoordinates.y, { 0,0,150,75 });
 			App->render->AddBlitEvent(1, debug_tex, mapWorldCoordinates.x - App->map->data.tile_width / 2, mapWorldCoordinates.y - App->map->data.tile_height / 2, { 0,0,150,75 });
 			App->render->AddBlitEvent(1, debug_tex, mapWorldCoordinates.x + App->map->data.tile_width / 2, mapWorldCoordinates.y - App->map->data.tile_height / 2, { 0,0,150,75 });
 			App->render->AddBlitEvent(1, debug_tex, mapWorldCoordinates.x, mapWorldCoordinates.y - App->map->data.tile_height, { 0,0,150,75 });
 
-			App->render->AddBlitEvent(1, paintExtractorTexture, mapWorldCoordinates.x - 125 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 250 + App->map->data.tile_height / 2, { 0,0,250,250 });
+			
+			if (hoveringEntityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
+				App->render->AddBlitEvent(1, paintExtractorTexture, mapWorldCoordinates.x - 125 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 250 + App->map->data.tile_height / 2, { 0,0,250,250 });
+			}
+			else if (hoveringEntityType == ENTITY_TYPE_WOOD_PRODUCER) {
+				App->render->AddBlitEvent(1, woodProducerTexture, mapWorldCoordinates.x - 75 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 200 + App->map->data.tile_height / 2, { 0,0,150,200 });
+			}
+			else if (hoveringEntityType == ENTITY_TYPE_BARRACKS) {
+				App->render->AddBlitEvent(1, barracksTexture, mapWorldCoordinates.x - 125 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 250 + App->map->data.tile_height / 2, { 0,0,250,250 });
+			}
+			else if (hoveringEntityType == ENTITY_TYPE_HOUSE) {
+				App->render->AddBlitEvent(1, houseTexture, mapWorldCoordinates.x - 75 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 200 + App->map->data.tile_height / 2, { 0,0,150,200 });
+			}
+
 
 			// If the Left click was pressed we'll check if it can in fact be built there
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
@@ -254,6 +232,19 @@ bool j1EntityManager::Update(float dt) {
 							isSelectingPlacement = false;
 							App->player->woodCount.count -= 50;
 							AddEntity(ENTITY_TYPE_BARRACKS, mapCoordinates, App->entities, nullptr, 0);
+							hoveringEntityType == ENTITY_TYPE_NONE;
+						}
+					}
+				}
+
+				else if (hoveringEntityType == ENTITY_TYPE_HOUSE) {
+
+					if (App->pathfinding->IsBuildable(mapCoordinates)) {
+
+						if (App->player->woodCount.count >= 20) {
+							isSelectingPlacement = false;
+							App->player->woodCount.count -= 20;
+							AddEntity(ENTITY_TYPE_HOUSE, mapCoordinates, App->entities, nullptr, 0);
 							hoveringEntityType == ENTITY_TYPE_NONE;
 						}
 					}
@@ -585,61 +576,27 @@ bool j1EntityManager::PostUpdate() {
 
 	bool ret = true;
 
-	
-	//// WIN CONDITION   
-	//bool anySpawnerActive = false;
-	//list<Entity*>::const_iterator checkForSpawners = activeBuildings.begin();
-	//while (checkForSpawners != activeBuildings.end()) {
-
-	//	if ((*checkForSpawners)->entityType == ENTITY_TYPE_SPAWNER) {
-	//		anySpawnerActive = true;
-	//		break;
-	//	}
-	//	checkForSpawners++;
-	//}
-	//if (!anySpawnerActive)
-	//	TriggerEndGame(true);
-
-	//// LOSE CONDITION
-	//bool anyTownhallActive = false;
-	//list<Entity*>::const_iterator checkForTownhalls = activeBuildings.begin();
-	//while (checkForTownhalls != activeBuildings.end()) {
-
-	//	if ((*checkForTownhalls)->entityType == ENTITY_TYPE_TOWN_HALL) {
-	//		anyTownhallActive = true;
-	//		break;
-	//	}
-	//	checkForTownhalls++;
-	//}
-	//if (!anyTownhallActive)
-	//	TriggerEndGame(false);
-
-
-
-
 	// --------------------------------------------------------------------------------------------------------- //
 	//																											 //
 	// Check if there was anything selected when LEFT MOUSE BUTTON was pressed and if not, unselect all entities //
 	// If control was pressed as a unit was selected, the rest of selected units aren't unselected				 //
 	//																											 //
 	// --------------------------------------------------------------------------------------------------------- //
-	
-		
 
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN) {
 
-			if (isSelectingPlacement) {
-				isSelectingPlacement = false;
-			}
+
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN) {
+
+		if (isSelectingPlacement) {
+			isSelectingPlacement = false;
 		}
-		// If we are selcting a placement for a building and we try to select a place not fit to build it doesn't unselect the unit, VERY IMPORTANT!
-		if (isSelectingPlacement)
-			return ret;
-	
+	}
+	// If we are selcting a placement for a building and we try to select a place not fit to build it doesn't unselect the unit, VERY IMPORTANT!
+	if (isSelectingPlacement)
+		return ret;
+
 
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
-
-		bool isSomethingSelected = false;
 
 		float x, y;
 		App->input->GetMousePosition(x, y);
@@ -648,34 +605,9 @@ bool j1EntityManager::PostUpdate() {
 		fPoint mouseWorldCoordinates;
 		App->input->GetMousePosition(mouseWorldCoordinates.x, mouseWorldCoordinates.y);
 
-		// First we check if a button was pressed
-		if (spawnEntityUIButton != nullptr) {
+		bool isSomethingSelected = false;
 
-			if (mouseWorldCoordinates.x < spawnEntityUIButton->rect.x + spawnEntityUIButton->rect.w && mouseWorldCoordinates.x > spawnEntityUIButton->rect.x &&
-				mouseWorldCoordinates.y < spawnEntityUIButton->rect.y + spawnEntityUIButton->rect.h && mouseWorldCoordinates.y > spawnEntityUIButton->rect.y) {
-
-				list<Entity*>::iterator buildingsToSpawnEntities = buildingsSelected.begin();
-				(*buildingsToSpawnEntities)->SpawnEntity({ 0,0 });
-
-				isSomethingSelected = true;
-			}
-		}
-		else if (buildEntityUIButton != nullptr) {
-
-			if (mouseWorldCoordinates.x < buildEntityUIButton->rect.x + buildEntityUIButton->rect.w && mouseWorldCoordinates.x > buildEntityUIButton->rect.x &&
-				mouseWorldCoordinates.y < buildEntityUIButton->rect.y + buildEntityUIButton->rect.h && mouseWorldCoordinates.y > buildEntityUIButton->rect.y) {
-
-				// For now only one
-				
-
-				if (!isSelectingPlacement)
-					isSelectingPlacement = true;
-
-				isSomethingSelected = true;
-			}
-		}
-
-		// If not, we check if any units were selected
+		// We check if any units were selected
 		if (!isSomethingSelected) {
 
 			bool controlWasPressed = false;
@@ -727,14 +659,14 @@ bool j1EntityManager::PostUpdate() {
 		}
 		checkForDeadBuildings++;
 	}
-	
+
 	list<Entity*>::iterator checkForDeadEntities = activeEntities.begin();
 	while (checkForDeadEntities != activeEntities.end()) {
 
 		if ((*checkForDeadEntities)->GetCurrLife() <= 0) {
 
 			(*checkForDeadEntities)->isAlive = false;
-			activeEntities.erase(checkForDeadEntities);	
+			activeEntities.erase(checkForDeadEntities);
 
 			(*checkForDeadEntities)->~Entity();
 		}
@@ -756,6 +688,8 @@ bool j1EntityManager::CleanUp() {
 	App->tex->UnLoad(painterTexture);
 	App->tex->UnLoad(warrior_Texture);
 	App->tex->UnLoad(slimeTexture);
+
+	App->tex->UnLoad(buildingTexture);
 
 	App->tex->UnLoad(fullLifeTexture);
 	App->tex->UnLoad(zeroLifeTexture);

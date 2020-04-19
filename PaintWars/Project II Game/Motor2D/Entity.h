@@ -115,7 +115,6 @@ public:
 	bool CreateEntityCollider(fPoint pos);
 
 	void ShowHealthBar();
-	void ShowUI();
 
 public:
 
