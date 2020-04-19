@@ -83,8 +83,11 @@ void Entity::CalculateMovementLogic(int p) {
 
 				if (App->pathfinding->IsWalkable(App->pathfinding->FindClosestDestination(destination).at(p - 1))) {
 
-					iPoint closestDestination = App->pathfinding->FindClosestDestination(destination).at(p - 1);
-					destination = closestDestination;
+					destination = App->pathfinding->FindClosestDestination(destination).at(p - 1);
+					map = App->pathfinding->CreatePath(currentTile, destination);
+					currentPath = *App->pathfinding->GetLastPath();
+					pathIterator = 1;
+					nextTile = currentPath.at(pathIterator);
 				}
 			}
 
@@ -103,7 +106,6 @@ void Entity::CalculateMovementLogic(int p) {
 			//		for (int j = 0; j < 8; j++) {
 			//			if (cD2cD != closestDestinationList.at(j)) {
 			//				destination = cD2cD;
-
 			//				exit = true;
 			//				break;
 			//			}
@@ -539,34 +541,4 @@ void Entity::ShowHealthBar() {
 		App->render->AddBlitEvent(1, App->entities->zeroLifeTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, GetSize().x, 10 });
 	}
 	App->render->AddBlitEvent(1, App->entities->fullLifeTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, (int)((currLife/maxLife)*GetSize().x), 10 });
-}
-
-void Entity::ShowUI() {
-	BROFILER_CATEGORY("Show UI Entities--Entities();", Profiler::Color::DarkRed);
-	if (entityType == ENTITY_TYPE_TOWN_HALL) {
-
-		if (App->entities->spawnEntityUIButton == nullptr) { // To spawn a painter
-			App->entities->spawnEntityUIButton = App->col->AddCollider({ 200, 800, 50, 50 }, COLLIDER_UI, App->entities);
-		}
-
-		App->render->AddBlitEventforUI(2, App->entities->fullLifeTexture, 200, 800, { 0,0,50,50 }, false, false, 0);
-	}
-	
-	else if (entityType == ENTITY_TYPE_BARRACKS) {
-
-		if (App->entities->spawnEntityUIButton == nullptr) { // To spawn a warrior
-			App->entities->spawnEntityUIButton = App->col->AddCollider({ 200, 800, 50, 50 }, COLLIDER_UI, App->entities);
-		}
-
-		App->render->AddBlitEventforUI(2, App->entities->fullLifeTexture, 200, 800, { 0,0,50,50 }, false, false, 0);
-	}
-
-	else if (entityType == ENTITY_TYPE_PAINTER) {
-
-		if (App->entities->buildEntityUIButton == nullptr) { // To build a TH
-			App->entities->buildEntityUIButton = App->col->AddCollider({ 200, 800, 50, 50 }, COLLIDER_UI, App->entities);
-		}
-
-		App->render->AddBlitEventforUI(2, App->entities->fullLifeTexture, 200, 800, { 0,0,50,50 }, false, false, 0);
-	}
 }

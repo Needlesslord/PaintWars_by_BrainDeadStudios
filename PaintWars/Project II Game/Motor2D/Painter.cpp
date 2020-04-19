@@ -79,7 +79,7 @@ void Painter::SpawnEntity(iPoint pos) {
 
 void Painter::ExtractPaint(float dt) {
 
-	if (App->pathfinding->IsPaint(currentTile) && currentTile == destination) {
+	if (App->pathfinding->IsPaintShore(currentTile) && currentTile == destination) {
 		App->player->paintCount.count += 0.01;
 	}
 }

@@ -87,9 +87,6 @@ public:
 	SDL_Texture* fullLifeTexture = nullptr;
 	SDL_Texture* zeroLifeTexture = nullptr;
 
-	Collider* spawnEntityUIButton = nullptr;
-	Collider* buildEntityUIButton = nullptr;
-
 
 	//small fix hp bar when blit
 	float Entity_HP;
@@ -106,6 +103,7 @@ protected:
 	SDL_Texture* woodProducerTexture = nullptr;
 	SDL_Texture* houseTexture = nullptr;
 	SDL_Texture* barracksTexture = nullptr;
+	SDL_Texture* buildingTexture = nullptr;
 
 	/// Units
 	SDL_Texture* painterTexture = nullptr;

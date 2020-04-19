@@ -117,10 +117,198 @@ bool GameScene::Start()
 	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 80, 90 }, App->entities, nullptr, 0, true);
 	
 
-	App->pathfinding->ChangeToPaint({ 7, 0 });
-	App->pathfinding->ChangeToPaint({ 7, 1 });
-	App->pathfinding->ChangeToPaint({ 7, 2 });
-	App->pathfinding->ChangeToPaint({ 7, 3 });
+	//LAKE1 
+
+	App->pathfinding->ChangeToPaint({ 2, 3 });
+	App->pathfinding->ChangeToPaint({ 3, 3 });
+	App->pathfinding->ChangeToPaint({ 4, 3 });
+	App->pathfinding->ChangeToPaint({ 2, 4 });
+	App->pathfinding->ChangeToPaint({ 3, 4 });
+	App->pathfinding->ChangeToPaint({ 4, 4 });
+	App->pathfinding->ChangeToPaint({ 5, 4 });
+	App->pathfinding->ChangeToPaint({ 6, 4 });
+	App->pathfinding->ChangeToPaint({ 1, 5 });
+	App->pathfinding->ChangeToPaint({ 2, 5 });
+	App->pathfinding->ChangeToPaint({ 3, 5 });
+	App->pathfinding->ChangeToPaint({ 4, 5 });
+	App->pathfinding->ChangeToPaint({ 5, 5 });
+	App->pathfinding->ChangeToPaint({ 6, 5 });
+	App->pathfinding->ChangeToPaint({ 7, 5 });
+	App->pathfinding->ChangeToPaint({ 1, 6 });
+	App->pathfinding->ChangeToPaint({ 2, 6 });
+	App->pathfinding->ChangeToPaint({ 3, 6 });
+	App->pathfinding->ChangeToPaint({ 4, 6 });
+	App->pathfinding->ChangeToPaint({ 5, 6 });
+	App->pathfinding->ChangeToPaint({ 6, 6 });
+	App->pathfinding->ChangeToPaint({ 7, 6 });
+	App->pathfinding->ChangeToPaint({ 1, 7 });
+	App->pathfinding->ChangeToPaint({ 2, 7 });
+	App->pathfinding->ChangeToPaint({ 3, 7 });
+	App->pathfinding->ChangeToPaint({ 4, 7 });
+	App->pathfinding->ChangeToPaint({ 5, 7 });
+	App->pathfinding->ChangeToPaint({ 6, 7 });
+	App->pathfinding->ChangeToPaint({ 7, 7 });
+	App->pathfinding->ChangeToPaint({ 2, 8 });
+	App->pathfinding->ChangeToPaint({ 3, 8 });
+	App->pathfinding->ChangeToPaint({ 4, 8 });
+	App->pathfinding->ChangeToPaint({ 5, 8 });
+	App->pathfinding->ChangeToPaint({ 6, 8 });
+	App->pathfinding->ChangeToPaint({ 7, 8 });
+	App->pathfinding->ChangeToPaint({ 3, 9 });
+	App->pathfinding->ChangeToPaint({ 4, 9 });
+	App->pathfinding->ChangeToPaint({ 5, 9 });
+	
+	//LAKE 2
+
+	App->pathfinding->ChangeToPaint({ 30, 77 });
+	App->pathfinding->ChangeToPaint({ 31,77 });
+	App->pathfinding->ChangeToPaint({ 32,77 });
+	App->pathfinding->ChangeToPaint({ 33,77 });
+	App->pathfinding->ChangeToPaint({ 29, 78 });
+	App->pathfinding->ChangeToPaint({ 30, 78 });
+	App->pathfinding->ChangeToPaint({ 31, 78 });
+	App->pathfinding->ChangeToPaint({ 32, 78 });
+	App->pathfinding->ChangeToPaint({ 33, 78 });
+	App->pathfinding->ChangeToPaint({ 29, 79 });
+	App->pathfinding->ChangeToPaint({ 30, 79 });
+	App->pathfinding->ChangeToPaint({ 31, 79 });
+	App->pathfinding->ChangeToPaint({ 32, 79 });
+	App->pathfinding->ChangeToPaint({ 33, 79 });
+	App->pathfinding->ChangeToPaint({ 29, 80 });
+	App->pathfinding->ChangeToPaint({ 30, 80 });
+	App->pathfinding->ChangeToPaint({ 31, 80 });
+	App->pathfinding->ChangeToPaint({ 32, 80 });
+	App->pathfinding->ChangeToPaint({ 33, 80 });
+	App->pathfinding->ChangeToPaint({ 29,81 });
+	App->pathfinding->ChangeToPaint({ 30,81 });
+	App->pathfinding->ChangeToPaint({ 31,81 });
+	App->pathfinding->ChangeToPaint({ 32,81 });
+	App->pathfinding->ChangeToPaint({ 33,81 });
+	App->pathfinding->ChangeToPaint({ 30, 82 });
+	App->pathfinding->ChangeToPaint({ 31, 82 });
+	App->pathfinding->ChangeToPaint({32, 82 });
+
+
+	//LAKE 3
+
+	App->pathfinding->ChangeToPaint({ 51, 30 });
+	App->pathfinding->ChangeToPaint({ 52,30 });
+	App->pathfinding->ChangeToPaint({ 53,30 });
+	App->pathfinding->ChangeToPaint({ 51,31});
+	App->pathfinding->ChangeToPaint({ 52,31 });
+	App->pathfinding->ChangeToPaint({ 53,31 });
+	App->pathfinding->ChangeToPaint({ 54,31 });
+	App->pathfinding->ChangeToPaint({ 55,31 });
+	App->pathfinding->ChangeToPaint({ 50, 32 });
+	App->pathfinding->ChangeToPaint({ 51, 32 });
+	App->pathfinding->ChangeToPaint({ 52, 32 });
+	App->pathfinding->ChangeToPaint({ 53, 32 });
+	App->pathfinding->ChangeToPaint({ 54, 32 });
+	App->pathfinding->ChangeToPaint({ 55, 32 });
+	App->pathfinding->ChangeToPaint({ 56, 32 });
+	App->pathfinding->ChangeToPaint({ 50, 33 });
+	App->pathfinding->ChangeToPaint({ 51, 33 });
+	App->pathfinding->ChangeToPaint({ 52, 33 });
+	App->pathfinding->ChangeToPaint({ 53, 33 });
+	App->pathfinding->ChangeToPaint({ 54, 33 });
+	App->pathfinding->ChangeToPaint({ 55, 33 });
+	App->pathfinding->ChangeToPaint({ 56, 33 });
+	App->pathfinding->ChangeToPaint({ 50, 34 });
+	App->pathfinding->ChangeToPaint({ 51, 34 });
+	App->pathfinding->ChangeToPaint({ 52, 34 });
+	App->pathfinding->ChangeToPaint({ 53, 34 });
+	App->pathfinding->ChangeToPaint({ 54, 34 });
+	App->pathfinding->ChangeToPaint({ 55, 34 });
+	App->pathfinding->ChangeToPaint({ 56, 34 });
+	App->pathfinding->ChangeToPaint({ 51, 35 });
+	App->pathfinding->ChangeToPaint({ 52, 35 });
+	App->pathfinding->ChangeToPaint({ 53, 35 });
+	App->pathfinding->ChangeToPaint({ 54, 35 });
+	App->pathfinding->ChangeToPaint({ 55, 35 });
+	App->pathfinding->ChangeToPaint({ 56, 35 });
+	App->pathfinding->ChangeToPaint({ 52, 36 });
+	App->pathfinding->ChangeToPaint({ 53, 36 });
+	App->pathfinding->ChangeToPaint({ 54, 36 });
+
+
+
+	//LAKE 4
+
+	App->pathfinding->ChangeToPaint({ 65,67 });
+	App->pathfinding->ChangeToPaint({ 66,67 });
+	App->pathfinding->ChangeToPaint({ 67,67 });
+	App->pathfinding->ChangeToPaint({ 65,68 });
+	App->pathfinding->ChangeToPaint({ 66,68 });
+	App->pathfinding->ChangeToPaint({ 67,68 });
+	App->pathfinding->ChangeToPaint({ 68,68 });
+	App->pathfinding->ChangeToPaint({ 69,68 });
+	App->pathfinding->ChangeToPaint({ 64, 69 });
+	App->pathfinding->ChangeToPaint({ 65, 69 });
+	App->pathfinding->ChangeToPaint({ 66, 69 });
+	App->pathfinding->ChangeToPaint({ 67, 69 });
+	App->pathfinding->ChangeToPaint({ 68, 69 });
+	App->pathfinding->ChangeToPaint({ 70, 69 });
+	App->pathfinding->ChangeToPaint({ 64, 70 });
+	App->pathfinding->ChangeToPaint({ 65, 70 });
+	App->pathfinding->ChangeToPaint({ 66, 70 });
+	App->pathfinding->ChangeToPaint({ 67, 70 });
+	App->pathfinding->ChangeToPaint({ 68, 70 });
+	App->pathfinding->ChangeToPaint({ 69, 70 });
+	App->pathfinding->ChangeToPaint({ 70, 70 });
+	App->pathfinding->ChangeToPaint({ 64, 71 });
+	App->pathfinding->ChangeToPaint({ 65, 71 });
+	App->pathfinding->ChangeToPaint({ 66, 71 });
+	App->pathfinding->ChangeToPaint({ 67, 71 });
+	App->pathfinding->ChangeToPaint({ 68, 71 });
+	App->pathfinding->ChangeToPaint({ 69, 71 });
+	App->pathfinding->ChangeToPaint({ 70, 71 });
+	App->pathfinding->ChangeToPaint({ 65, 72 });
+	App->pathfinding->ChangeToPaint({ 66, 72 });
+	App->pathfinding->ChangeToPaint({ 67, 72 });
+	App->pathfinding->ChangeToPaint({ 68, 72 });
+	App->pathfinding->ChangeToPaint({ 69, 72 });
+	App->pathfinding->ChangeToPaint({ 70, 72 });
+	App->pathfinding->ChangeToPaint({ 66, 73 });
+	App->pathfinding->ChangeToPaint({ 67, 73 });
+	App->pathfinding->ChangeToPaint({ 68, 73 });
+
+
+	
+	//LAKE 5
+
+	App->pathfinding->ChangeToPaint({ 92,33 });
+	App->pathfinding->ChangeToPaint({ 93,33 });
+	App->pathfinding->ChangeToPaint({ 94,33 });
+	App->pathfinding->ChangeToPaint({ 95,33 });
+	App->pathfinding->ChangeToPaint({ 91, 34 });
+	App->pathfinding->ChangeToPaint({ 92, 34 });
+	App->pathfinding->ChangeToPaint({ 93, 34 });
+	App->pathfinding->ChangeToPaint({ 94, 34 });
+	App->pathfinding->ChangeToPaint({ 95, 34 });
+	App->pathfinding->ChangeToPaint({ 91, 35 });
+	App->pathfinding->ChangeToPaint({ 92, 35 });
+	App->pathfinding->ChangeToPaint({ 93, 35 });
+	App->pathfinding->ChangeToPaint({ 94, 35 });
+	App->pathfinding->ChangeToPaint({ 95, 35 });
+	App->pathfinding->ChangeToPaint({ 91, 36 });
+	App->pathfinding->ChangeToPaint({ 92, 36 });
+	App->pathfinding->ChangeToPaint({ 93, 36 });
+	App->pathfinding->ChangeToPaint({ 94, 36 });
+	App->pathfinding->ChangeToPaint({ 95, 36 });
+	App->pathfinding->ChangeToPaint({ 91, 37 });
+	App->pathfinding->ChangeToPaint({ 92, 37 });
+	App->pathfinding->ChangeToPaint({ 93, 37 });
+	App->pathfinding->ChangeToPaint({ 94, 37 });
+	App->pathfinding->ChangeToPaint({ 95, 37 });
+	App->pathfinding->ChangeToPaint({ 92,38 });
+	App->pathfinding->ChangeToPaint({ 93, 38 });
+	App->pathfinding->ChangeToPaint({ 94, 38 });
+
+
+
+
+
+	//CHANGING TILES TO PAINT TILE
 
 
 	//////////////////

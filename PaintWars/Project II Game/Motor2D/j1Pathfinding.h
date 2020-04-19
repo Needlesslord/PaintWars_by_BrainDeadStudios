@@ -10,8 +10,9 @@
 #define DEFAULT_PATH_LENGTH 50
 #define INVALID_WALK_CODE 255
 #define PAINT_WALK_CODE 254
-#define WOOD_WALK_CODE 253
-#define SPAWNER_WALK_CODE 252
+#define PAINT_SHORE_WALK_CODE 254
+#define WOOD_WALK_CODE 252
+#define SPAWNER_WALK_CODE 251
 
 
 //WALKABILITY
@@ -61,6 +62,9 @@ public:
 	// Utility: returns true if the tile is paint
 	bool IsPaint(const iPoint& pos) const;
 
+	// Utility: returns true if the tile is paint's shore
+	bool IsPaintShore(const iPoint& pos) const;
+
 	// Utility: returns true if the tile is wood
 	bool IsWood(const iPoint& pos) const;
 
@@ -70,6 +74,9 @@ public:
 	// Utility: changes the walkability of a tile to paint
 	void ChangeToPaint(const iPoint& pos) const;
 	
+	// Utility: changes the walkability of a tile to paint's shore
+	void ChangeToPaintShore(const iPoint& pos) const;
+
 	// Utility: changes the walkability of a tile to wood
 	void ChangeToWood(const iPoint& pos) const;
 	

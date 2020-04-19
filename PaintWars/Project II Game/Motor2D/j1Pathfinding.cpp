@@ -51,7 +51,7 @@ bool j1PathFinding::IsWalkable(const iPoint& pos) const {
 
 	//App->map->data.tilesets.
 	uchar t = GetTileAt(pos);
-	return t > 0 && ((t != INVALID_WALK_CODE && t != SPAWNER_WALK_CODE) || t == PAINT_WALK_CODE || t == WOOD_WALK_CODE);
+	return t > 0 && ((t != INVALID_WALK_CODE && t != SPAWNER_WALK_CODE && t != PAINT_WALK_CODE)  || t == WOOD_WALK_CODE || t == PAINT_SHORE_WALK_CODE);
 }
 
 bool j1PathFinding::IsBuildable(const iPoint & pos) const
@@ -66,6 +66,13 @@ bool j1PathFinding::IsPaint(const iPoint& pos) const {
 
 	uchar u = GetTileAt(pos);
 	return u > 0 && u == PAINT_WALK_CODE;
+}
+
+// Utility: returns true is the tile is paint's shore
+bool j1PathFinding::IsPaintShore(const iPoint& pos) const {
+
+	uchar u = GetTileAt(pos);
+	return u > 0 && u == PAINT_SHORE_WALK_CODE;
 }
 
 // Utility: returns true is the tile is wood
@@ -86,6 +93,12 @@ bool j1PathFinding::IsSpawner(const iPoint& pos) const {
 void j1PathFinding::ChangeToPaint(const iPoint& pos) const {
 
 	map[(pos.y*width) + pos.x] = PAINT_WALK_CODE;
+}
+
+// Utility: changes the walkability of a tile to paint's shore
+void j1PathFinding::ChangeToPaintShore(const iPoint& pos) const {
+
+	map[(pos.y*width) + pos.x] = PAINT_SHORE_WALK_CODE;
 }
 
 // Utility: changes the walkability of a tile to wood
