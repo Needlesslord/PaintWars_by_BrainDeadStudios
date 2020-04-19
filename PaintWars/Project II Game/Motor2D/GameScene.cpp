@@ -83,6 +83,9 @@ bool GameScene::Start()
 	
 	debug_tex = App->tex->Load("maps/path2.png");
 
+	App->render->camera.x = 575;
+	App->render->camera.y = -1200;
+
 	//THESE BOOLS HAVE TO BE REMOVED ONCE WE HAVE THE MAIN MENU, BECAUSE WE WANT THE GAME TO LOAD THE MAP AFTER WE USE THE PLAY BUTTON NOT WHILE WE ARE IN THE MENU
 	Load_Forest_Map = true;
 	Change_Map = true;
@@ -248,7 +251,7 @@ bool GameScene::Start()
 	miniMapMINI->click_rect = { 30, 15, 422,210 };
 	miniMapMINI->hover_rect = { 30, 15, 422,210 };
 
-	miniMapCamera = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 1025, 150 }, { 0 , 0 }, false, true, { 0, 0, 70, 36 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_CAMERA);
+	miniMapCamera = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 1025, 500 }, { 0 , 0 }, false, true, { 0, 0, 70, 36 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_CAMERA);
 
 	miniMapBack = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 0 , 0 }, { 0 , 0 }, false, false, { 0, 0, 1800, 1300 }, nullptr, nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_BACK);
 
