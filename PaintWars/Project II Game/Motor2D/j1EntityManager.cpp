@@ -372,7 +372,7 @@ bool j1EntityManager::Update(float dt) {
 									comprobar orientación (OJO: previousOrientation no unitOrientation!!!
 
 
-									Aquí compruebas las 8 direcciones y les pones su animación
+									Aqu?compruebas las 8 direcciones y les pones su animación
 
 
 
