@@ -63,9 +63,9 @@ bool j1Image::Update(float dt) {
 			textureType==TEXTURE::LOSE_SCREEN || textureType == TEXTURE::WIN_SCREEN || textureType == TEXTURE::LOGO)
 
 
-		App->render->AddBlitEventforUI(2, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false,true, 0, 0, 0, 0, true);
+		App->render->RenderQueueUI(2, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false,true, 0, 0, 0, 0, true);
 		else
-		App->render->AddBlitEventforUI(3, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
+		App->render->RenderQueueUI(3, texture, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
 	}
 
 

@@ -46,15 +46,15 @@ bool SettingsScene::Start()
 
 	gpadLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 300, 450 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "GamePad");
 
-	musicScroll = App->gui->AddElement(GUItype::GUI_SCROLLBAR, nullptr, { 600, 150 }, { 20, -3 }, true, true, { 786, 59, 268, 25 }, nullptr, App->audio, true, false, SCROLL_TYPE::SCROLL_MUSIC, true, TEXTURE::ATLAS);
+	/*musicScroll = App->gui->AddElement(GUItype::GUI_SCROLLBAR, nullptr, { 600, 150 }, { 20, -3 }, true, true, { 786, 59, 268, 25 }, nullptr, App->audio, true, false, SCROLL_TYPE::SCROLL_MUSIC, true, TEXTURE::ATLAS);
 	musicScroll->Button->rect = { 786, 0, 42, 35 };
 	musicScroll->Button->hover_rect = { 786, 0, 42, 35 };
-	musicScroll->Button->click_rect = { 786, 0, 42, 35 };
+	musicScroll->Button->click_rect = { 786, 0, 42, 35 };*/
 
-	vfxScroll = App->gui->AddElement(GUItype::GUI_SCROLLBAR, nullptr, { 600, 250 }, { 20, -3 }, true, true, { 786, 59, 268, 25 }, nullptr, App->audio, true, false, SCROLL_TYPE::SCROLL_MUSIC, true, TEXTURE::ATLAS);
+	/*vfxScroll = App->gui->AddElement(GUItype::GUI_SCROLLBAR, nullptr, { 600, 250 }, { 20, -3 }, true, true, { 786, 59, 268, 25 }, nullptr, App->audio, true, false, SCROLL_TYPE::SCROLL_MUSIC, true, TEXTURE::ATLAS);
 	vfxScroll->Button->rect = { 786, 0, 42, 35 };
 	vfxScroll->Button->hover_rect = { 786, 0, 42, 35 };
-	vfxScroll->Button->click_rect = { 786, 0, 42, 35 };
+	vfxScroll->Button->click_rect = { 786, 0, 42, 35 };*/
 
 	fullscreenButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 620, 350 }, { 0,0 }, true, true, { 0, 1031, 182, 58 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
 	fullscreenButton->hover_rect = { 0, 1031, 182, 58 };

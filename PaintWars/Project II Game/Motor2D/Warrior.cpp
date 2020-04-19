@@ -61,5 +61,5 @@ void Warrior::Attack(Entity* target, float dt) {
 
 void Warrior::Draw(SDL_Texture* sprites)
 {
-	App->render->AddBlitEvent(1, sprites, pos.x, pos.y, currentAnimation->GetCurrentFrame());
+	App->render->RenderQueue(1, sprites, pos.x, pos.y, currentAnimation->GetCurrentFrame());
 }

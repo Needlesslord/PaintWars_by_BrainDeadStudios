@@ -48,8 +48,7 @@ bool j1Render::Awake(pugi::xml_node& config)
 	}
 	else
 	{
-		/*camera.w = (App->win->screen_surface->w)*2;
-		camera.h = (App->win->screen_surface->h)*2;*/
+		
 		camera.w = (App->win->screen_surface->w);
 		camera.h = (App->win->screen_surface->h);
 		UI_Render_Window_w = App->win->screen_surface->w * 6;
@@ -198,10 +197,7 @@ void j1Render::SetViewPort(const SDL_Rect& rect)
 	SDL_RenderSetViewport(renderer, &rect);
 }
 
-void j1Render::ResetViewPort()
-{
-	SDL_RenderSetViewport(renderer, &viewport);
-}
+
 
 fPoint j1Render::ScreenToWorld(float x, float y) const
 {
@@ -213,8 +209,8 @@ fPoint j1Render::ScreenToWorld(float x, float y) const
 
 	return ret;
 }
-
-void j1Render::AddBlitEvent(int layer, SDL_Texture* texture, int x, int y, const SDL_Rect section, bool fliped, bool ui, float speed, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
+                       //This sort of rendering is from DolimeCorp (Santi's Group) its good because it orders rendering instead of rendering in order of call
+void j1Render::RenderQueue(int layer, SDL_Texture* texture, int x, int y, const SDL_Rect section, bool fliped, bool ui, float speed, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
 	BlitEvent event{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
 	
@@ -222,33 +218,29 @@ void j1Render::AddBlitEvent(int layer, SDL_Texture* texture, int x, int y, const
 	if (texture != nullptr)
 	{
 		 if (x > (-camera.x / App->win->GetScale()) - 220 && x < ((-camera.x + camera.w) / App->win->GetScale()) + 100 && y >(-camera.y / App->win->GetScale()) - 150 && y < ((-camera.y + camera.h) / App->win->GetScale()) + 100) {
-			blit_queue.insert(make_pair(layer, event));
+			 OrderToBlit.insert(make_pair(layer, event));
 		}
 	}
 	else
 	{
 		if (section.x > (-camera.x / App->win->GetScale()) - 220 && section.x < (-camera.x + camera.w) / App->win->GetScale() && section.y >(-camera.y / App->win->GetScale()) - 150 && section.y < (-camera.y + camera.h) / App->win->GetScale()) {
-			blit_queue.insert(make_pair(layer, event));
+			OrderToBlit.insert(make_pair(layer, event));
 		}
 	}
 
-
 }
 
-void j1Render::AddBlitEventforUI(int layer, SDL_Texture* texture, int x, int y, const SDL_Rect section, bool fliped, bool ui, float speed, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
+void j1Render::RenderQueueUI(int layer, SDL_Texture* texture, int x, int y, const SDL_Rect section, bool fliped, bool ui, float speed, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
 	BlitEvent event{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
 
-	blit_queue.insert(make_pair(layer, event));
+	OrderToBlit.insert(make_pair(layer, event));
 	
-	
-
-
-}
+	}
 
 void j1Render::BlitAll()
 {
-	for (auto e = blit_queue.begin(); e != blit_queue.end(); e++)
+	for (auto e = OrderToBlit.begin(); e != OrderToBlit.end(); e++)
 	{
 		SDL_Texture* event_texture = e->second.texture;
 		bool event_ui = e->second.ui;
@@ -273,30 +265,34 @@ void j1Render::BlitAll()
 			DrawQuad(event_rect, event_r, event_g, event_b, event_a, event_ui);
 		}
 	}
-	if (blit_queue.size() != 0)
+	if (OrderToBlit.size() != 0)
 	{
-		blit_queue.erase(blit_queue.begin(), blit_queue.end());
+		OrderToBlit.erase(OrderToBlit.begin(), OrderToBlit.end());
 	}
 }
 
 bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section, bool fliped, bool ui, float speed, double angle, int pivot_x, int pivot_y) const
 {
+
+
+
+
 	bool ret = true;
 	float scale = App->win->GetScale();
 
 	SDL_Rect rect;
-	if (!ui)
-	{
-		rect.x = (int)(camera.x * speed) + x * scale;
-		rect.y = (int)(camera.y * speed) + y * scale;
-	}
-	else
-	{
-		//speed = -1;
+	
+
+	if (ui) {
 		rect.x = (int)(camera.x * speed) + x;
 		rect.y = (int)(camera.y * speed) + y;
 	}
+	else if (!ui) {
+		rect.x = (int)(camera.x * speed) + x * scale;
+		rect.y = (int)(camera.y * speed) + y * scale;
 
+	}
+	
 	if (section != NULL)
 	{
 		rect.w = section->w;
@@ -395,56 +391,3 @@ bool j1Render::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a
 	return ret;
 }
 
-bool j1Render::DrawLine(int x1, int y1, int x2, int y2, Uint8 r, Uint8 g, Uint8 b, Uint8 a, bool use_camera) const
-{
-	bool ret = true;
-	float scale = App->win->GetScale();
-
-	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-	SDL_SetRenderDrawColor(renderer, r, g, b, a);
-
-	int result = -1;
-
-	if (use_camera)
-		result = SDL_RenderDrawLine(renderer, camera.x + x1 * scale, camera.y + y1 * scale, camera.x + x2 * scale, camera.y + y2 * scale);
-	else
-		result = SDL_RenderDrawLine(renderer, x1 * scale, y1 * scale, x2 * scale, y2 * scale);
-
-	if (result != 0)
-	{
-		LOG("Cannot draw quad to screen. SDL_RenderFillRect error: %s", SDL_GetError());
-		ret = false;
-	}
-
-	return ret;
-}
-
-bool j1Render::DrawCircle(int x, int y, int radius, Uint8 r, Uint8 g, Uint8 b, Uint8 a, bool use_camera) const
-{
-	bool ret = true;
-	float scale = App->win->GetScale();
-
-	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-	SDL_SetRenderDrawColor(renderer, r, g, b, a);
-
-	int result = -1;
-	SDL_Point points[360];
-
-	float factor = (float)M_PI / 180.0f;
-
-	for (uint i = 0; i < 360; ++i)
-	{
-		points[i].x = (int)(x + radius * cos(i * factor));
-		points[i].y = (int)(y + radius * sin(i * factor));
-	}
-
-	result = SDL_RenderDrawPoints(renderer, points, 360);
-
-	if (result != 0)
-	{
-		LOG("Cannot draw quad to screen. SDL_RenderFillRect error: %s", SDL_GetError());
-		ret = false;
-	}
-
-	return ret;
-}

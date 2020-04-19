@@ -168,18 +168,13 @@ j1Element* j1GUI::AddElement(GUItype type, j1Element* parent, fPoint map_positio
 	case GUItype::GUI_BUTTON:
 		temp = new j1Button();
 		break;
-	case GUItype::GUI_INPUTBOX:
-		temp = new j1InputBox(text);
-		break;
 	case GUItype::GUI_LABEL:
 		temp = new j1Label();
 		break;
 	case GUItype::GUI_IMAGE:
 		temp = new j1Image();
 		break;
-	case GUItype::GUI_SCROLLBAR:
-		temp = new j1ScrollBar(scrollType);
-		break;
+	
 	}
 
 	if (temp)

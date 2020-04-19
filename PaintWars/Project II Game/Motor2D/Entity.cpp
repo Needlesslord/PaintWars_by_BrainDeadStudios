@@ -31,7 +31,7 @@ Entity::~Entity() {
 
 void Entity::Draw(SDL_Texture* sprites) {
 	if (sprites != nullptr)
-		App->render->AddBlitEvent(1, sprites, pos.x, pos.y, { 0, 0, size.x, size.y });
+		App->render->RenderQueue(1, sprites, pos.x, pos.y, { 0, 0, size.x, size.y });
 }
 
 void Entity::DebugDrawSelected()
@@ -538,7 +538,7 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 
 void Entity::ShowHealthBar() {
 	if (GetCurrLife() != GetMaxLife()) {
-		App->render->AddBlitEvent(1, App->entities->zeroLifeTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, GetSize().x, 10 });
+		App->render->RenderQueue(1, App->entities->zeroLifeTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, GetSize().x, 10 });
 	}
-	App->render->AddBlitEvent(1, App->entities->fullLifeTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, (int)((currLife/maxLife)*GetSize().x), 10 });
+	App->render->RenderQueue(1, App->entities->fullLifeTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, (int)((currLife/maxLife)*GetSize().x), 10 });
 }

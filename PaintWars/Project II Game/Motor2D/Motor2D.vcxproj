@@ -96,7 +96,6 @@
     <ClCompile Include="j1Fonts.cpp" />
     <ClCompile Include="j1GUI.cpp" />
     <ClCompile Include="j1Image.cpp" />
-    <ClCompile Include="j1InputBox.cpp" />
     <ClCompile Include="j1Label.cpp" />
     <ClCompile Include="j1Main.cpp" />
     <ClCompile Include="j1App.cpp" />
@@ -107,7 +106,6 @@
     <ClCompile Include="j1PerfTimer.cpp" />
     <ClCompile Include="j1Player.cpp" />
     <ClCompile Include="j1QuestManager.cpp" />
-    <ClCompile Include="j1ScrollBar.cpp" />
     <ClCompile Include="j1Timer.cpp" />
     <ClCompile Include="LoseScene.cpp" />
     <ClCompile Include="MenuScene.cpp" />

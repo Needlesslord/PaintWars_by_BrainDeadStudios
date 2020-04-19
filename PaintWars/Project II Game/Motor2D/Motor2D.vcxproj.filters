@@ -121,13 +121,7 @@
     <ClCompile Include="j1Image.cpp">
       <Filter>Motor  ========\UI</Filter>
     </ClCompile>
-    <ClCompile Include="j1InputBox.cpp">
-      <Filter>Motor  ========\UI</Filter>
-    </ClCompile>
     <ClCompile Include="j1Label.cpp">
-      <Filter>Motor  ========\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="j1ScrollBar.cpp">
       <Filter>Motor  ========\UI</Filter>
     </ClCompile>
     <ClCompile Include="j1GUI.cpp">

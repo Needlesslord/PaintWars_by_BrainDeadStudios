@@ -166,8 +166,8 @@ void j1Player::Camera_Control(float dt)
 		//	}
 		//}
 
-		App->render->AddBlitEventforUI(1, App->entities->zeroLifeTexture, 550 + App->render->camera.x*-2 / 2, 50 + App->render->camera.y*-2 / 2, { 0, 0, 200, 15 }, false, true, 0);
-		App->render->AddBlitEventforUI(1, App->entities->fullLifeTexture, 550 + App->render->camera.x*-2 / 2,  50+App->render->camera.y*-2 / 2, { 0, 0, (int)App->entities->Entity_HP, 15 }, false, true, 0);
+		App->render->RenderQueueUI(1, App->entities->zeroLifeTexture, 550 + App->render->camera.x*-2 / 2, 50 + App->render->camera.y*-2 / 2, { 0, 0, 200, 15 }, false, true, 0);
+		App->render->RenderQueueUI(1, App->entities->fullLifeTexture, 550 + App->render->camera.x*-2 / 2,  50+App->render->camera.y*-2 / 2, { 0, 0, (int)App->entities->Entity_HP, 15 }, false, true, 0);
 		
 		
 
@@ -206,7 +206,7 @@ void j1Player::Mouse_Cursor()
 {
 	mouse_position.x -= App->render->camera.x / App->win->GetScale();
 	mouse_position.y -= App->render->camera.y / App->win->GetScale();
-	App->render->AddBlitEvent(10,Tex_Player, mouse_position.x, mouse_position.y, texture_rect);
+	App->render->RenderQueue(10,Tex_Player, mouse_position.x, mouse_position.y, texture_rect);
 	
 }
 
@@ -223,7 +223,7 @@ void j1Player::Drag_Mouse()
 	if (App->input->GetMouseButtonDown(1) == KEY_REPEAT)
 	{
 		selector = { (int)start_mouse_position.x, (int)start_mouse_position.y, (int)(mouse_position.x - start_mouse_position.x), (int)(mouse_position.y - start_mouse_position.y) };
-		App->render->AddBlitEvent(2, nullptr, 0,0, selector, false, false, 0.0f, 0u, 255u, 0u, 25u);
+		App->render->RenderQueue(2, nullptr, 0,0, selector, false, false, 0.0f, 0u, 255u, 0u, 25u);
 	}
 
 	if (App->input->GetMouseButtonDown(1) == KEY_UP)

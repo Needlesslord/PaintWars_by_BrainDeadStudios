@@ -95,5 +95,6 @@ void Painter::ExtractWood(float dt) {
 
 void Painter::Draw(SDL_Texture* sprites)
 {
-	App->render->AddBlitEvent(1, sprites, pos.x, pos.y, currentAnimation->GetCurrentFrame());
+	App->render->RenderQueue(1, sprites, pos.x, pos.y, currentAnimation->GetCurrentFrame());
+	
 }

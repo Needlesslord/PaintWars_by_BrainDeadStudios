@@ -118,7 +118,7 @@ public:
 	j1Element* vfxLabel = nullptr;
 	j1Element* fullscreenLabel = nullptr;
 	j1Element* gpadLabel = nullptr;
-	j1Element* musicScroll = nullptr;
+
 	j1Element* vfxScroll = nullptr;
 	j1Element* fullscreenButton = nullptr;
 	j1Element* gpadButton = nullptr;

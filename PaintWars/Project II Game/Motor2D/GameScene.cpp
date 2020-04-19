@@ -224,14 +224,7 @@ bool GameScene::Start()
 	vfxLabel = App->gui->AddElement(GUItype::GUI_LABEL, pauseMenuImage, { 455, 300 }, { 0, 0 }, false, false, { 0, 0, 0, 0 }, "VFX", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	fullscreenLabel = App->gui->AddElement(GUItype::GUI_LABEL, pauseMenuImage, { 455, 370 }, { 0, 0 }, false, false, { 0, 0, 0, 0 }, "Fullscr", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	gpadLabel = App->gui->AddElement(GUItype::GUI_LABEL, pauseMenuImage, { 455, 440 }, { 0, 0 }, false, false, { 0, 0, 0, 0 }, "GamePad", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	musicScroll = App->gui->AddElement(GUItype::GUI_SCROLLBAR, pauseMenuImage, { 535, 230 }, { 20, -3 }, true, false, { 786, 59, 268, 25 }, nullptr, App->audio, true, false, SCROLL_TYPE::SCROLL_MUSIC, true, TEXTURE::ATLAS);
-	musicScroll->Button->rect = { 786, 0, 42, 35 };
-	musicScroll->Button->hover_rect = { 786, 0, 42, 35 };
-	musicScroll->Button->click_rect = { 786, 0, 42, 35 };
-	vfxScroll = App->gui->AddElement(GUItype::GUI_SCROLLBAR, pauseMenuImage, { 535, 300 }, { 20, -3 }, true, false, { 786, 59, 268, 25 }, nullptr, App->audio, true, false, SCROLL_TYPE::SCROLL_MUSIC, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 6);
-	vfxScroll->Button->rect = { 786, 0, 42, 35 };
-	vfxScroll->Button->hover_rect = { 786, 0, 42, 35 };
-	vfxScroll->Button->click_rect = { 786, 0, 42, 35 };
+
 	fullscreenButton = App->gui->AddElement(GUItype::GUI_BUTTON, pauseMenuImage, { 635, 360 }, { 0,0 }, true, false, { 0, 1031, 182, 58 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 6);
 	fullscreenButton->hover_rect = { 0, 1031, 182, 58 };
 	fullscreenButton->click_rect = { 0, 1031, 182, 58 };
@@ -278,7 +271,6 @@ bool GameScene::Start()
 	buyWarriorButton->hover_rect = { 0, 1966, 65, 82 };
 	buyWarriorButton->click_rect = { 65, 1966, 65, 82 };
 
-	//shopLabel = App->gui->AddElement(GUItype::GUI_LABEL, shopImage, { 985 , 352 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "", nullptr, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
 
 
 
@@ -423,46 +415,14 @@ bool GameScene::Update(float dt)
 	App->win->SetTitle(title);
 
 
-	/*p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d, %d, %d",
-		App->map->data.width, App->map->data.height,
-		App->map->data.tile_width, App->map->data.tile_height,
-		App->map->data.tilesets.size(),
-		map_coordinates.x, map_coordinates.y, map_coordinates2.x, map_coordinates2.y);
-
-	App->win->SetTitle(title.GetString());*/
+	
 	
 
 	if ((App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)&&(App->GOD_MODE!=true)) {
 		debugTile = !debugTile;
 	}
 
-	// Debug pathfinding ------------------------------
-	/*if (debugTile) {
-		fPoint c0 = App->map->MapToWorld(map_coordinates.x, map_coordinates.y);
-
-		list<Entity*>::iterator subject = App->entities->unitsSelected.begin();
-		iPoint mapPos = { (*subject)->currentTile.x, (*subject)->currentTile.y };
-
-		fPoint c1 = App->map->MapToWorld(mapPos.x + 1, mapPos.y);
-		fPoint c2 = App->map->MapToWorld(mapPos.x, mapPos.y + 1);;
-		fPoint c3 = App->map->MapToWorld(mapPos.x + 1, mapPos.y + 1);
-		fPoint c4 = App->map->MapToWorld(mapPos.x - 1, mapPos.y);
-		fPoint c5 = App->map->MapToWorld(mapPos.x, mapPos.y - 1);
-		fPoint c6 = App->map->MapToWorld(mapPos.x - 1, mapPos.y - 1);
-		fPoint c7 = App->map->MapToWorld(mapPos.x - 1, mapPos.y + 1);
-		fPoint c8 = App->map->MapToWorld(mapPos.x + 1, mapPos.y - 1);
-
-		App->render->AddBlitEvent(1, debug_tex, c0.x, c0.y, { 0,0,150,75 });
-		App->render->AddBlitEvent(1, debug_tex, c1.x, c1.y, { 0,0,150,75 });
-		App->render->AddBlitEvent(1, debug_tex, c2.x, c2.y, { 0,0,150,75 });
-		App->render->AddBlitEvent(1, debug_tex, c3.x, c3.y, { 0,0,150,75 });
-		App->render->AddBlitEvent(1, debug_tex, c4.x, c4.y, { 0,0,150,75 });
-		App->render->AddBlitEvent(1, debug_tex, c5.x, c5.y, { 0,0,150,75 });
-		App->render->AddBlitEvent(1, debug_tex, c6.x, c6.y, { 0,0,150,75 });
-		App->render->AddBlitEvent(1, debug_tex, c7.x, c7.y, { 0,0,150,75 });
-		App->render->AddBlitEvent(1, debug_tex, c8.x, c8.y, { 0,0,150,75 });
-
-	}*/
+	
 
 
 
@@ -526,7 +486,7 @@ bool GameScene::PostUpdate()
 }
 
 void GameScene::DebugDrawTile(iPoint tile) {
-	App->render->AddBlitEvent(1, debug_tex, tile.x, tile.y, { 0,0,150,75 });
+	App->render->RenderQueue(1, debug_tex, tile.x, tile.y, { 0,0,150,75 });
 }
 
 // Called before quitting
@@ -738,8 +698,8 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 		vfxLabel->enabled = true;
 		fullscreenLabel->enabled = true;
 		gpadLabel->enabled = true;
-		musicScroll->enabled = true;
-		vfxScroll->enabled = true;
+		
+	
 		fullscreenButton->enabled = true;
 		gpadButton->enabled = true;
 		resetButton->enabled = true;
@@ -781,8 +741,8 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 		vfxLabel->enabled = false;
 		fullscreenLabel->enabled = false;
 		gpadLabel->enabled = false;
-		musicScroll->enabled = false;
-		vfxScroll->enabled = false;
+		
+		
 		fullscreenButton->enabled = false;
 		gpadButton->enabled = false;
 		resetButton->enabled = false;

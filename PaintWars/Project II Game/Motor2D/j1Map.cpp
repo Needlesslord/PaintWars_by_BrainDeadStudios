@@ -56,7 +56,7 @@ void j1Map::Draw()
 					fPoint pos = MapToWorld(x, y);
 
 					
-					App->render->AddBlitEvent(0, tileset->texture, pos.x, pos.y, r);
+					App->render->RenderQueue(0, tileset->texture, pos.x, pos.y, r);
 				}
 			}
 		}
