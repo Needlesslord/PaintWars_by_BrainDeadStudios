@@ -244,7 +244,7 @@ bool GameScene::Start()
 
 	//HUD - MiniMap
 
-	miniMapMINI = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 850 , 150 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_MINI);
+	miniMapMINI = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 850 , 500 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MINIMAP_MINI);
 	miniMapMINI->click_rect = { 30, 15, 422,210 };
 	miniMapMINI->hover_rect = { 30, 15, 422,210 };
 
