@@ -19,7 +19,7 @@
 #include "Entity.h"
 #include "Sprites.h"
 
-
+//testing testing testing
 j1EntityManager::j1EntityManager()
 {
 	name = ("entities");
@@ -168,7 +168,7 @@ bool j1EntityManager::Update(float dt) {
 			spawnEntityUIButton->to_delete = true;
 			spawnEntityUIButton = nullptr;
 		}
-
+		//
 
 
 
