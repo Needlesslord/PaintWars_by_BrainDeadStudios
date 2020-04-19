@@ -196,9 +196,8 @@ bool j1EntityManager::Update(float dt) {
 			//}
 		}
 
-		// We'll print the townhall hovering where it would be built
+		// We'll print the building hovering where it would be built
 		paintersSelected = unitsSelected.begin();
-		
 
 		if (isSelectingPlacement) { // Selecting Placement FOR A PAINT EXTRACTOR
 
@@ -368,6 +367,16 @@ bool j1EntityManager::Update(float dt) {
 									App->map->data.tile_height + targetWorldPos.y > spawnerCurrentTileWorld.y) {
 
 									(*unitsToFight)->Attack((*checkWhichSpawner), dt);
+									/*
+									(*unitsToFight)->currentAnimation = &warriorAttackingDIRECTION;
+									comprobar orientación (OJO: previousOrientation no unitOrientation!!!
+
+
+									Aquí compruebas las 8 direcciones y les pones su animación
+
+
+
+									*/
 								}
 							}
 							checkWhichSpawner++;

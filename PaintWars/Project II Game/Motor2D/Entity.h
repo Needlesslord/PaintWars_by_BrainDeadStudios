@@ -161,6 +161,7 @@ public:
 	Entity* builtBy;
 
 	Animation* currentAnimation;
+	UNIT_ORIENTATION previousOrientation = UNIT_ORIENTATION_NONE;
 
 	// Paint speed
 	float extractionRate = 0.0f;
