@@ -96,6 +96,7 @@ bool GameScene::Start()
 
 	}
 
+	
 	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{ 45, 45 }, App->entities, nullptr, 10, true);
 	App->entities->AddEntity(ENTITY_TYPE_WOOD_PRODUCER,		{ 18, 18 }, App->entities, nullptr,  0, true);
 	App->entities->AddEntity(ENTITY_TYPE_BARRACKS,			{ 11,  6 }, App->entities, nullptr,  0, true);
@@ -638,6 +639,20 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
 
 			App->entities->hoveringEntityType = ENTITY_TYPE_WARRIOR;
 		}
+	}
+
+	if (element == buyPainterButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 47,  45 }, App->entities, nullptr, 5, true);
+
+
+	}
+
+	if (element == buyWarriorButton && type == GUI_Event::EVENT_ONCLICK) {
+		
+		App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { 1,  5 }, App->entities, nullptr, 5, true);
+
+
 	}
 
 	//Pause Menu
