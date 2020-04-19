@@ -163,7 +163,7 @@ bool j1EntityManager::Update(float dt) {
 
 		// We'll print the building hovering where it would be built
 
-		if (isSelectingPlacement) { // Selecting Placement FOR A PAINT EXTRACTOR
+		if (isSelectingPlacement) { // Selecting Placement FOR A BUILDING
 
 			fPoint mousePosition = App->input->GetMouseWorldPosition();
 			iPoint cameraOffset = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
@@ -293,27 +293,27 @@ bool j1EntityManager::Update(float dt) {
 
 
 		// Extract Paint (Painters and PaintExtractor
-		list<Entity*>::iterator paintersToExtract_paint = activeEntities.begin();
-		while (paintersToExtract_paint != activeEntities.end()) {
+		list<Entity*>::iterator entitiesToExtractPaint = activeEntities.begin();
+		while (entitiesToExtractPaint != activeEntities.end()) {
 
 			// We try to extract and it will return if it can't
-			if ((*paintersToExtract_paint)->entityType == ENTITY_TYPE_PAINTER || (*paintersToExtract_paint)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
+			if ((*entitiesToExtractPaint)->entityType == ENTITY_TYPE_PAINTER || (*entitiesToExtractPaint)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
 
-				(*paintersToExtract_paint)->ExtractPaint(dt);
+				(*entitiesToExtractPaint)->ExtractPaint(dt);
 			}
-			paintersToExtract_paint++;
+			entitiesToExtractPaint++;
 		}
 
 		// Extract Wood  (ONLY PAINTERS CAN)
-		list<Entity*>::iterator paintersToExtract_wood = activeUnits.begin();
-		while (paintersToExtract_wood != activeUnits.end()) {
+		list<Entity*>::iterator paintersToExtractWood = activeUnits.begin();
+		while (paintersToExtractWood != activeUnits.end()) {
 
 			// We try to extract and it will return if it can't
-			if ((*paintersToExtract_wood)->entityType == ENTITY_TYPE_PAINTER) {
+			if ((*paintersToExtractWood)->entityType == ENTITY_TYPE_PAINTER) {
 
-				(*paintersToExtract_wood)->ExtractWood(dt);
+				(*paintersToExtractWood)->ExtractWood(dt);
 			}
-			paintersToExtract_wood++;
+			paintersToExtractWood++;
 		}
 
 
