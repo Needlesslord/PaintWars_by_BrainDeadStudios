@@ -5,8 +5,10 @@ name: Continuous Deployment
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
-  release:
-    types: [published]
+  push:
+    branches: [ origin/Releases ]
+    paths-ignore: 
+    - 'Docs/**'
       
     
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -21,11 +23,18 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@master
 
-     # TODO: Build project and zip generated files
-    - name: Build project
-      id: build_project
-      run: |
-        zip PaintWars_release.zip README.md
+    # Runs a single command using the runners shell
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.0
+        
+    - name: Checking msbuild path
+      run: echo "${{ steps.setup_msbuild.outputs.msbuildPath }}"
+
+    - name: Checking MSBuild version
+      run: msbuild -version
+    
+    - name: Building the project with release configuration
+      run: MSBuild PaintWars/Project_II_Game/Paint_Wars.sln /property:Configuration=Release
   
     - name: Upload Release Asset
       id: upload-release-asset 
@@ -33,7 +42,6 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ github.event.release.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps           
-        asset_path: ./PaintWars_release.zip
+        upload_url: ${{ github.event.release.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps           asset_path: ./PaintWars_release.zip
         asset_name: PaintWars_release.zip
         asset_content_type: application/zip
