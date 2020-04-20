@@ -1,26 +1,26 @@
 #include "p2Defs.h"
 #include "p2Log.h"
 
-#include "House.h"
+#include "Spawner.h"
 
 #include "j1Player.h"
 #include "j1SceneManager.h"
+#include "j1Pathfinding.h"
 #include "j1Map.h"
 #include "j1Collision.h"
-#include "j1Pathfinding.h"
 #include "j1Textures.h"
 
-House::House(iPoint tile, int damage, j1Module* listener, Entity* creator) : Entity(tile, damage, listener, creator) {
+Spawner::Spawner(iPoint tile, int damage, j1Module* listener) : Entity(tile, damage, listener, nullptr) {
 
-	// Handle data and initialize the House
-	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_HOUSE;
+	// Handle data and initialize the Spawner
+	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_SPAWNER;
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_STATIC_ENTITY;
-	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_SMALL;
-
-	maxLife = 100;
+	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_MEDIUM;
+	
+	maxLife = 500;
 	currLife = maxLife - damage;
 
-	size = { 150, 200 };
+	size = { 250, 600 };
 
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);
@@ -28,11 +28,11 @@ House::House(iPoint tile, int damage, j1Module* listener, Entity* creator) : Ent
 	pos.x = tileWorldPosition.x + App->map->data.tile_width / 2 - size.x / 2;
 	pos.y = tileWorldPosition.y + App->map->data.tile_height / 2 - size.y;
 
-	constructionTime = 5.0f;
+	constructionTime = 10.0f;
 
-	App->player->housingSpace.maxCount += 5;
+	isEntityFromPlayer = false;
 
-	isEntityFromPlayer = true;
+	CreateEntityCollider(pos);
 }
 
-House::~House() {}
+Spawner::~Spawner() {}
