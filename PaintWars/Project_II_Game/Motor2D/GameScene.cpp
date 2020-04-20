@@ -79,7 +79,6 @@ bool GameScene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool GameScene::Start()
 {
-	BROFILER_CATEGORY("Game Scene Start--Scenes();", Profiler::Color::White);
 	bool ret = true;
 	
 
@@ -100,13 +99,13 @@ bool GameScene::Start()
 
 	}
 
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{ 42, 42 }, App->entities, nullptr, 10, true);
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{ 42, 42 }, App->entities, nullptr, 0, true);
 	/*App->entities->AddEntity(ENTITY_TYPE_WOOD_PRODUCER,		{ 18, 18 }, App->entities, nullptr,  0, true);*/
 	/*App->entities->AddEntity(ENTITY_TYPE_BARRACKS,			{ 11,  6 }, App->entities, nullptr,  0, true);*/
 
-	App->entities->AddEntity(ENTITY_TYPE_PAINTER,			{  45,  40 }, App->entities, nullptr,  5, true);
+	App->entities->AddEntity(ENTITY_TYPE_PAINTER,			{  45,  40 }, App->entities, nullptr,  0, true);
 
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { 45,  30 }, App->entities, nullptr, 10, true);
+	//App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { 45,  30 }, App->entities, nullptr, 0, true);
 
 	/*App->entities->AddEntity(ENTITY_TYPE_SLIME,				{ 20, 40 }, App->entities, nullptr,  0, true);*/
 	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 40, 20 }, App->entities, nullptr, 0, true);
@@ -545,7 +544,22 @@ bool GameScene::Update(float dt)
 	
 	
 	
+	if (App->entities->entitiesSelected.size() == 1) {
 
+		list<Entity*>::iterator showHp = App->entities->entitiesSelected.begin();
+		int hp = (*showHp)->GetCurrLife();
+		int maxHp = (*showHp)->GetMaxLife();
+
+		static char conversor[256];
+		sprintf_s(conversor, 256, "%d %d", hp, maxHp);
+		EntityHP->text = conversor;
+	}
+	else {
+
+		static char conversor2[256];
+		sprintf_s(conversor2, 256, " ");
+		EntityHP->text = conversor2;
+	}
 	
 
 
