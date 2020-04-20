@@ -48,7 +48,7 @@ public:
 
 	void SetBackgroundColor(SDL_Color color);
 
-	void BlitEverythingOnList();
+	
 
 public:
 
@@ -62,7 +62,7 @@ public:
 
 private:
 
-	std::multimap<int, BlitEvent> OrderToBlit;
+	
 
 	
 

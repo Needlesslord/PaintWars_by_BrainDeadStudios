@@ -673,7 +673,7 @@ bool j1EntityManager::PostUpdate() {
 	}
 
 
-	App->player->Mouse_Cursor();
+	//App->player->Mouse_Cursor();
 
 
 	return ret;

@@ -377,7 +377,8 @@ bool GameScene::Update(float dt)
 {
 	BROFILER_CATEGORY("Game Scene Update--Scenes();", Profiler::Color::GhostWhite);
 	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN) {
-		App->render->BlitEverythingOnList();
+		
+
 	}
 	/*UI_INGAME.Shop_Button->map_position.x = UI_INGAME.Shop_Button->init_map_position.x + App->render->camera.x;
 	UI_INGAME.Shop_Button->map_position.y = UI_INGAME.Shop_Button->init_map_position.y + App->render->camera.y;*/

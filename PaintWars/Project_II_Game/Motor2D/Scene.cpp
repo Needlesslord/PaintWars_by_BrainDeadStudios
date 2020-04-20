@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "j1Render.h"
 #include "j1Input.h"
+#include "j1Player.h"
 
 Scene::Scene(SCENES scene_name) : scene_name(scene_name)
 , scene_surface(nullptr)
@@ -28,6 +29,7 @@ bool Scene::Start()
 
 bool Scene::PreUpdate()
 {
+	App->player->Mouse_Cursor();
 	return true;
 }
 

@@ -86,7 +86,7 @@ bool j1Player::Update(float dt)
 	Zoom();
 
 	//This functions should always be last//
-	Mouse_Cursor();
+	//Mouse_Cursor();
 	Drag_Mouse(); 
 
 	p2List_item<j1UIElement*>* UI_List = App->gui->GUI_ELEMENTS.start;
@@ -224,7 +224,7 @@ void j1Player::Mouse_Cursor()
 {
 	mouse_position.x -= App->render->camera.x / App->win->GetScale();
 	mouse_position.y -= App->render->camera.y / App->win->GetScale();
-	App->render->RenderQueue(10,Tex_Player, mouse_position.x, mouse_position.y, texture_rect);
+	App->render->RenderQueueUI(10,Tex_Player, mouse_position.x, mouse_position.y, texture_rect);
 	
 }
 

@@ -77,7 +77,7 @@ bool j1Render::PreUpdate()
 
 bool j1Render::Update(float dt)
 {
-	BlitEverythingOnList();
+	
 	return true;
 }
 
@@ -100,7 +100,7 @@ bool j1Render::CleanUp()
 bool j1Render::Load(pugi::xml_node& data)
 {
 
-
+	//aaaa
 
 	camera.x = data.child("camera").attribute("x").as_int();
 	camera.y = data.child("camera").attribute("y").as_int();
@@ -170,7 +170,7 @@ bool j1Render::Save(pugi::xml_node& data) const
 
 		if ((*entitiesToSave)->entityType == ENTITY_TYPE_WARRIOR) {
 			const char warrior[] = "warrior";
-			//entity.append_attribute("entity_type").as_string("warrior");
+
 			entity.append_attribute("entity_type") = warrior;
 			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
 			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
@@ -178,12 +178,8 @@ bool j1Render::Save(pugi::xml_node& data) const
 			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
 			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
 		}
-
-
 		entitiesToSave++;
 	}
-
-
 
 	return true;
 }
@@ -211,27 +207,16 @@ fPoint j1Render::ScreenToWorld(float x, float y) const
 	return ret;
 }
 
-
-
-////////////////////////////////////////////                        DISCLAIMER                         ////////////////////////////////////////////////////////////////////
-
-
-
-//We are currently using a render system  that sets blit queues to be able to order blit drawing on screen that has been 
-//Created by DOLIME CORPORATION (https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II) / All code related to rendering queues belongs to them!
 void j1Render::RenderQueue(int layer, SDL_Texture* texture, int x, int y, const SDL_Rect section, bool fliped, bool ui, float speed, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
 	const SDL_Rect* Point_Section = &section;
-
-
-	//BlitEvent WantToBlit{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
 
 	//This uses culling to know if it has to be blited or not
 	if (texture != nullptr)
 	{
 		if (x > (-camera.x / App->win->GetScale()) - 220 && x < ((-camera.x + camera.w) / App->win->GetScale()) + 100 && y >(-camera.y / App->win->GetScale()) - 150 && y < ((-camera.y + camera.h) / App->win->GetScale()) + 100) {
 
-			//OrderToBlit.insert(make_pair(layer, WantToBlit));
+			
 
 			Blit(texture, x, y, Point_Section, fliped, ui, speed);
 		}
@@ -239,7 +224,7 @@ void j1Render::RenderQueue(int layer, SDL_Texture* texture, int x, int y, const 
 	else
 	{
 		if (section.x > (-camera.x / App->win->GetScale()) - 220 && section.x < (-camera.x + camera.w) / App->win->GetScale() && section.y >(-camera.y / App->win->GetScale()) - 150 && section.y < (-camera.y + camera.h) / App->win->GetScale()) {
-			//OrderToBlit.insert(make_pair(layer, WantToBlit));
+			
 			Blit(texture, x, y, Point_Section, fliped, ui, speed);
 		}
 	}
@@ -249,46 +234,15 @@ void j1Render::RenderQueue(int layer, SDL_Texture* texture, int x, int y, const 
 void j1Render::RenderQueueUI(int layer, SDL_Texture* texture, int x, int y, const SDL_Rect section, bool fliped, bool ui, float speed, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
 	//No culling checked in UI because it moves with the camera
-	//BlitEvent WantToBlitUI{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
+	
 	const SDL_Rect* Point_Section = &section;
 
 	Blit(texture, x, y, Point_Section, fliped, ui, speed);
-	//OrderToBlit.insert(make_pair(layer, WantToBlitUI));
+	
 
 }
 
-void j1Render::BlitEverythingOnList()
-{
-	for (auto BlitIterator = OrderToBlit.begin(); BlitIterator != OrderToBlit.end(); BlitIterator++)
-	{
-		SDL_Texture* Texture_Iterated = BlitIterator->second.texture;
-		bool event_ui = BlitIterator->second.ui;
 
-		if (Texture_Iterated != nullptr)
-		{
-			int event_x = BlitIterator->second.x;
-			int event_y = BlitIterator->second.y;
-			const SDL_Rect* event_rect = &BlitIterator->second.section;
-			bool event_flip = BlitIterator->second.fliped;
-
-			Blit(Texture_Iterated, event_x, event_y, event_rect, event_flip, event_ui);
-		}
-		else
-		{
-			const SDL_Rect& event_rect = BlitIterator->second.section;
-			uint event_r = BlitIterator->second.r;
-			uint event_g = BlitIterator->second.g;
-			uint event_b = BlitIterator->second.b;
-			uint event_a = BlitIterator->second.a;
-
-			DrawQuad(event_rect, event_r, event_g, event_b, event_a, event_ui);
-		}
-	}
-	if (OrderToBlit.size() != 0)
-	{
-		OrderToBlit.erase(OrderToBlit.begin(), OrderToBlit.end());
-	}
-}
 
 bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section, bool fliped, bool ui, float speed, double angle, int pivot_x, int pivot_y) const
 {
@@ -350,7 +304,6 @@ bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,
 	return ret;
 }
 
-//////////////////////////////////////////////                            DISCLAIMER                     ////////////////////////////////////////////////////////////////////
 
 
 bool j1Render::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a, bool ui, bool filled, bool use_camera, bool guiHitBox) const
