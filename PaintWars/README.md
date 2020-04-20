@@ -84,12 +84,13 @@ In a world full of colour, a corruption spread, turning everything monochromatic
         - KP 3 add ranged -not implemented yet-
         - KP 4 add tank -not implemented yet-
         - KP 5 add explorer -not implemented yet-
-        - KP 0 kill selected unit
+        - KP 0 kill selected units
         buildings (on mouse position)
         - Crtl + KP 1 add paint extractor 
         - Crtl + KP 2 add wood producer
         - Crtl + KP 3 add barracks
         - Crtl + KP 4 add house
+        - Crtl + KP 0 kill selected buildings 
 
 
 ## Controls

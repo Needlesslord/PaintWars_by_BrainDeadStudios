@@ -540,6 +540,18 @@ void j1App::Debug_Actions()
 
 			//changes for each unit and building
 
+			if (!(App->entities->entitiesSelected.empty())) {
+				
+				std::list<Entity*>::iterator killEntitiesSelected = App->entities->entitiesSelected.begin();
+				while (killEntitiesSelected != App->entities->entitiesSelected.end()) {
+					
+					(*killEntitiesSelected)->isAlive = false;
+					
+					killEntitiesSelected++;
+				}
+			
+			}
+
 		}
 		//units --------------------------------------------------------------------------------
 		if (App->input->GetKey(SDL_SCANCODE_KP_1) == KEY_DOWN) {  //painter
