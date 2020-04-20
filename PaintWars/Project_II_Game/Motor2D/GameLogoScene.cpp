@@ -10,6 +10,7 @@
 #include "j1SceneManager.h"
 #include "GameLogoScene.h"
 #include "TransitionManager.h"
+#include "SDL_mixer\include\SDL_mixer.h"
 #include "j1Audio.h"
 
 GameLogoScene::GameLogoScene() : Scene(SCENES::MENU_SCENE)
@@ -127,10 +128,11 @@ void GameLogoScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	{
 
 		App->transition_manager->CreateAlternatingBars(SCENES::MENU_SCENE);
+		
 	}
 }
 
-
+//aaaa
 //void GameLogoScene::InitScene()
 //{
 //	tileset_texture = App->tex->Load("maps/tiles_first_map.png", scene_renderer);	// This texture will be used SceneToTexture(). Needed to get a single whole texture of the map.
