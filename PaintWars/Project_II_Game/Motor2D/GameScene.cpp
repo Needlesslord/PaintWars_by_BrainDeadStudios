@@ -341,8 +341,6 @@ bool GameScene::Start()
 	//upgradePaintExtractorButton->hover_rect = { 0, 1966, 65, 82 };
 	//upgradePaintExtractorButton->click_rect = { 65, 1966, 65, 82 };
 
-
-
 	//HUD - MiniMap
 
 	miniMapBackground = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 850 , 500 }, { 0 , 0 }, false, true, { 0, 1670, 422, 210 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
@@ -542,6 +540,31 @@ bool GameScene::Update(float dt)
 	
 
 	
+
+
+
+	// If only the TH is selected enable the button
+	list<Entity*>::iterator onlyTownhallSelected = App->entities->buildingsSelected.begin();
+	if (App->entities->buildingsSelected.size() == 1 && (*onlyTownhallSelected)->entityType == ENTITY_TYPE_TOWN_HALL) {
+		buyPainterButton->enabled = true;
+	}
+	else
+		buyPainterButton->enabled = false;
+
+
+
+	// If only the Barracks is selected enable the button
+	list<Entity*>::iterator onlyBarracksSelected = App->entities->buildingsSelected.begin();
+	if (App->entities->buildingsSelected.size() == 1 && (*onlyTownhallSelected)->entityType == ENTITY_TYPE_BARRACKS) {
+		buyWarriorButton->enabled = true;
+	}
+	else
+		buyWarriorButton->enabled = false;
+
+
+
+
+
 	////UI
 
 	//std::stringstream str;

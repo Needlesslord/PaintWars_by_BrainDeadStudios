@@ -19,6 +19,7 @@
 #include "Brofiler/Brofiler.h"
 #include "Entity.h"
 #include "Sprites.h"
+#include "j1UI_Manager.h"
 
 //testing testing testing
 j1EntityManager::j1EntityManager()
@@ -427,8 +428,8 @@ bool j1EntityManager::Update(float dt) {
 		list<Entity*>::iterator collidersToMove = activeUnits.begin();
 		while (collidersToMove != activeUnits.end()) {
 
-			(*collidersToMove)->entityCollider->rect.x = (*collidersToMove)->pos.x/* - (*collidersToMove)->GetSize().x / 2*/;
-			(*collidersToMove)->entityCollider->rect.y = (*collidersToMove)->pos.y/* - (*collidersToMove)->GetSize().y / 1.5*/;
+			(*collidersToMove)->entityCollider->rect.x = (*collidersToMove)->pos.x;
+			(*collidersToMove)->entityCollider->rect.y = (*collidersToMove)->pos.y;
 
 			collidersToMove++;
 		}
