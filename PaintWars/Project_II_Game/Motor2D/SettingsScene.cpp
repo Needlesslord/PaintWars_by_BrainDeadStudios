@@ -112,10 +112,8 @@ bool SettingsScene::CleanUp()
 	for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
 	{
 		App->gui->GUI_ELEMENTS[i]->CleanUp();
+		RELEASE(App->gui->GUI_ELEMENTS[i]);
 	}
-
-	RELEASE(vfxScroll);
-	RELEASE(musicScroll);
 
 
 	if (scene_texture != nullptr)

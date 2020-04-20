@@ -334,16 +334,16 @@ bool GameScene::Start()
 	buyHouseButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyHouseButton->hover_rect = { 0, 1966, 65, 82 };
 	buyHouseButton->click_rect = { 65, 1966, 65, 82 };
-	buyPainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 15, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyPainterButton->hover_rect = { 0, 1966, 65, 82 };
-	buyPainterButton->click_rect = { 65, 1966, 65, 82 };
-	buyWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 80, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyWarriorButton->hover_rect = { 0, 1966, 65, 82 };
-	buyWarriorButton->click_rect = { 65, 1966, 65, 82 };
-
-
+	upgradeWoodProducerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 567 }, { 0,0 }, true, true, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradeWoodProducerButton->hover_rect = { 0, 1966, 65, 82 };
+	upgradeWoodProducerButton->click_rect = { 65, 1966, 65, 82 };
+	upgradePaintExtractorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 567 }, { 0,0 }, true, true, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradePaintExtractorButton->hover_rect = { 0, 1966, 65, 82 };
+	upgradePaintExtractorButton->click_rect = { 65, 1966, 65, 82 };
 
 	//HUD - MiniMap
+
+	miniMapBackground = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 850 , 500 }, { 0 , 0 }, false, true, { 0, 1670, 422, 210 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
 
 	miniMapMINI = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 850 , 500 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, TEXTURE::MINIMAP_MINI);
 	miniMapMINI->click_rect = { 30, 15, 422,210 };
@@ -357,6 +357,21 @@ bool GameScene::Start()
 	miniMapFULL->click_rect = { 87, 40, 1170,588 };
 	miniMapFULL->hover_rect = { 87, 40, 1170,588 };
 
+
+	//Buildings
+
+	buyPainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 210, 485 }, { 0,0 }, true, true, { 130, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyPainterButton->hover_rect = { 390, 1966, 65, 82 };
+	buyPainterButton->click_rect = { 750, 1966, 65, 82 };
+	upgradePainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 275, 485 }, { 0,0 }, true, true, { 260, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradePainterButton->hover_rect = { 520, 1966, 65, 82 };
+	upgradePainterButton->click_rect = { 780, 1966, 65, 82 };
+	buyWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 210, 485 }, { 0,0 }, true, true, { 195, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyWarriorButton->hover_rect = { 455, 1966, 65, 82 };
+	buyWarriorButton->click_rect = { 715, 1966, 65, 82 };
+	upgradeWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 210, 485 }, { 0,0 }, true, true, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradeWarriorButton->hover_rect = { 585, 1966, 65, 82 };
+	upgradeWarriorButton->click_rect = { 845, 1966, 65, 82 };
 	
 
 
@@ -506,9 +521,23 @@ bool GameScene::Update(float dt)
 
 	App->win->SetTitle(title);
 
-	if ((App->player->gameTimer.ReadSec() / 60) >= 15.0f) {
-		App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 1.0f, true);
+	if ((App->player->gameTimer.ReadSec() / 60) >= 14.9f) {
+		Mix_PlayChannel(-1, App->audio->time_sound, 0);
+		if ((App->player->gameTimer.ReadSec() / 60) >= 15.0f) {
+			App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 1.0f, true);
+
+		}
 	}
+
+	if ((App->player->gameTimer.ReadSec() / 60) >= 0.05f) {
+
+		Mix_PlayChannel(-1, App->audio->birds_sound, 0);
+		Mix_PlayChannel(-1, App->audio->crickets_sound, 0);
+
+	}
+	
+	
+	
 
 	
 
@@ -611,6 +640,7 @@ bool GameScene::CleanUp()
 	for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
 	{
 		App->gui->GUI_ELEMENTS[i]->CleanUp();
+		//RELEASE(App->gui->GUI_ELEMENTS[i]);
 	}
 
 
@@ -691,8 +721,6 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		buyPaintExtractorButton->enabled = !buyPaintExtractorButton->enabled;
 		buyBarrackButton->enabled = !buyBarrackButton->enabled;
 		buyHouseButton->enabled = !buyHouseButton->enabled;
-		buyPainterButton->enabled = !buyPainterButton->enabled;
-		buyWarriorButton->enabled = !buyWarriorButton->enabled;
 	}
 
 	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_ONCLICK) {
@@ -700,6 +728,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		if (App->entities->isSelectingPlacement != true) {
 			App->entities->isSelectingPlacement = true;
 			App->entities->hoveringEntityType = ENTITY_TYPE_PAINT_EXTRACTOR;
+			Mix_PlayChannel(-1, App->audio->buy1_sound, 0);
 		}
 
 	}
@@ -709,6 +738,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		if (App->entities->isSelectingPlacement != true) {
 			App->entities->isSelectingPlacement = true;
 			App->entities->hoveringEntityType = ENTITY_TYPE_BARRACKS;
+			Mix_PlayChannel(-1, App->audio->buy2_sound, 0);
 		}
 
 	}
@@ -719,6 +749,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			App->entities->isSelectingPlacement = true;
 
 			App->entities->hoveringEntityType = ENTITY_TYPE_WOOD_PRODUCER;
+			Mix_PlayChannel(-1, App->audio->buy2_sound, 0);
 		}
 	}
 
@@ -728,6 +759,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			App->entities->isSelectingPlacement = true;
 
 			App->entities->hoveringEntityType = ENTITY_TYPE_HOUSE;
+			Mix_PlayChannel(-1, App->audio->buy2_sound, 0);
 		}
 	}
 
@@ -737,6 +769,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			App->entities->isSelectingPlacement = true;
 
 			App->entities->hoveringEntityType = ENTITY_TYPE_PAINTER;
+			Mix_PlayChannel(-1, App->audio->buy1_sound, 0);
 		}
 	}
 
@@ -746,6 +779,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			App->entities->isSelectingPlacement = true;
 
 			App->entities->hoveringEntityType = ENTITY_TYPE_WARRIOR;
+			Mix_PlayChannel(-1, App->audio->buy1_sound, 0);
 		}
 	}
 

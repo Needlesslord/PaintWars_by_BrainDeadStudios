@@ -2,7 +2,7 @@
 #include "p2Log.h"
 
 #include "TownHall.h"
-
+#include "SDL_mixer/include/SDL_mixer.h"
 #include "j1Player.h"
 #include "j1SceneManager.h"
 #include "j1EntityManager.h"
@@ -59,6 +59,7 @@ void TownHall::SpawnEntity(iPoint pos) {
 	// TODO: check this positions
 	if (!isSpawningAUnit) {
 		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
+		Mix_PlayChannel(-1, App->audio->spawnFromHall, 0);
 		isSpawningAUnit = true;
 	}
 }
