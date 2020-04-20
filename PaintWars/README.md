@@ -71,10 +71,6 @@ In a world full of colour, a corruption spread, turning everything monochromatic
         9 - barracks when creating a warrior
        10 - birds
        11 - crickets
-
-        - paint extractor
-        - painter collecting
-
      + Positioning (further fx sound less)
  - DEBUG
 	 + F2/F3 Game Scene
