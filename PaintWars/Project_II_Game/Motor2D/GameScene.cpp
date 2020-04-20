@@ -115,45 +115,115 @@ bool GameScene::Start()
 	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 80, 75 }, App->entities, nullptr, 0, true);
 	
 
-	//LAKE1 
-
-	App->pathfinding->ChangeToPaint({ 3, 3 });
-	App->pathfinding->ChangeToPaint({ 4, 3 });
-	App->pathfinding->ChangeToPaint({ 5, 3 });
-	App->pathfinding->ChangeToPaint({ 6, 3 });
-	App->pathfinding->ChangeToPaint({ 3, 4 });
+	//LAKE1
+	App->pathfinding->ChangeToPaintShore({ 3, 3 });
+	App->pathfinding->ChangeToPaintShore({ 4, 3 });
+	App->pathfinding->ChangeToPaintShore({ 5, 3 });
+	App->pathfinding->ChangeToPaintShore({ 6, 3 });
+	App->pathfinding->ChangeToPaintShore({ 3, 4 });
 	App->pathfinding->ChangeToPaint({ 4, 4 });
 	App->pathfinding->ChangeToPaint({ 5, 4 });
-	App->pathfinding->ChangeToPaint({ 6, 4 });
-	App->pathfinding->ChangeToPaint({ 3, 5 });
+	App->pathfinding->ChangeToPaintShore({ 6, 4 });
+	App->pathfinding->ChangeToPaintShore({ 3, 5 });
 	App->pathfinding->ChangeToPaint({ 4, 5 });
 	App->pathfinding->ChangeToPaint({ 5, 5 });
-	App->pathfinding->ChangeToPaint({ 6, 5 });
-	App->pathfinding->ChangeToPaint({ 3, 6 });
-	App->pathfinding->ChangeToPaint({ 4, 6 });
-	App->pathfinding->ChangeToPaint({ 5, 6 });
-	App->pathfinding->ChangeToPaint({ 6, 6 });
+	App->pathfinding->ChangeToPaintShore({ 6, 5 });
+	App->pathfinding->ChangeToPaintShore({ 3, 6 });
+	App->pathfinding->ChangeToPaintShore({ 4, 6 });
+	App->pathfinding->ChangeToPaintShore({ 5, 6 });
+	App->pathfinding->ChangeToPaintShore({ 6, 6 });
 
 	//LAKE2
-	
+	App->pathfinding->ChangeToPaint({ 32, 79 });
+	App->pathfinding->ChangeToPaint({ 32, 80 });
+	App->pathfinding->ChangeToPaint({ 33, 79 });
+	App->pathfinding->ChangeToPaint({ 33, 80 }); 
+	App->pathfinding->ChangeToPaintShore({ 31, 78 });
+	App->pathfinding->ChangeToPaintShore({ 31, 79 });
+	App->pathfinding->ChangeToPaintShore({ 31, 80 });
+	App->pathfinding->ChangeToPaintShore({ 31, 81 });
+	App->pathfinding->ChangeToPaintShore({ 32, 78 });
+	App->pathfinding->ChangeToPaintShore({ 32, 81 });
+	App->pathfinding->ChangeToPaintShore({ 33, 78 });
+	App->pathfinding->ChangeToPaintShore({ 33, 81 });
+	App->pathfinding->ChangeToPaintShore({ 34, 78 });
+	App->pathfinding->ChangeToPaintShore({ 34, 79 });
+	App->pathfinding->ChangeToPaintShore({ 34, 80 });
+	App->pathfinding->ChangeToPaintShore({ 34, 81 });
 
-	App->pathfinding->ChangeToPaint({ 3, 3 });
-	App->pathfinding->ChangeToPaint({ 4, 3 });
-	App->pathfinding->ChangeToPaint({ 5, 3 });
-	App->pathfinding->ChangeToPaint({ 6, 3 });
-	App->pathfinding->ChangeToPaint({ 3, 4 });
-	App->pathfinding->ChangeToPaint({ 4, 4 });
-	App->pathfinding->ChangeToPaint({ 5, 4 });
-	App->pathfinding->ChangeToPaint({ 6, 4 });
-	App->pathfinding->ChangeToPaint({ 3, 5 });
-	App->pathfinding->ChangeToPaint({ 4, 5 });
-	App->pathfinding->ChangeToPaint({ 5, 5 });
-	App->pathfinding->ChangeToPaint({ 6, 5 });
-	App->pathfinding->ChangeToPaint({ 3, 6 });
-	App->pathfinding->ChangeToPaint({ 4, 6 });
-	App->pathfinding->ChangeToPaint({ 5, 6 });
-	App->pathfinding->ChangeToPaint({ 6, 6 });
 
+	//LAKE3
+	App->pathfinding->ChangeToPaint({ 49, 32 });
+	App->pathfinding->ChangeToPaint({ 49, 33 });
+	App->pathfinding->ChangeToPaint({ 50, 32 });
+	App->pathfinding->ChangeToPaint({ 50, 33 });
+	App->pathfinding->ChangeToPaintShore({ 48, 31 });
+	App->pathfinding->ChangeToPaintShore({ 48, 32 });
+	App->pathfinding->ChangeToPaintShore({ 48, 33 });
+	App->pathfinding->ChangeToPaintShore({ 48, 34 });
+	App->pathfinding->ChangeToPaintShore({ 49, 31 });
+	App->pathfinding->ChangeToPaintShore({ 49, 34 });
+	App->pathfinding->ChangeToPaintShore({ 50, 31 });
+	App->pathfinding->ChangeToPaintShore({ 50, 34 });
+	App->pathfinding->ChangeToPaintShore({ 51, 31 });
+	App->pathfinding->ChangeToPaintShore({ 51, 32 });
+	App->pathfinding->ChangeToPaintShore({ 51, 33 });
+	App->pathfinding->ChangeToPaintShore({ 51, 34 });
+
+
+	//LAKE4
+	App->pathfinding->ChangeToPaint({ 64, 70 });
+	App->pathfinding->ChangeToPaint({ 65, 70 }); 
+	App->pathfinding->ChangeToPaint({ 66, 70 });
+	App->pathfinding->ChangeToPaint({ 67, 70 });
+	App->pathfinding->ChangeToPaint({ 64, 71 });
+	App->pathfinding->ChangeToPaint({ 65, 71 });
+	App->pathfinding->ChangeToPaint({ 66, 71 });
+	App->pathfinding->ChangeToPaint({ 67, 71 });
+	App->pathfinding->ChangeToPaintShore({ 63, 69 });
+	App->pathfinding->ChangeToPaintShore({ 64, 69 });
+	App->pathfinding->ChangeToPaintShore({ 65, 69 });
+	App->pathfinding->ChangeToPaintShore({ 66, 69 });
+	App->pathfinding->ChangeToPaintShore({ 67, 69 });
+	App->pathfinding->ChangeToPaintShore({ 68, 69 });
+	App->pathfinding->ChangeToPaintShore({ 63, 69 });
+	App->pathfinding->ChangeToPaintShore({ 68, 74 });
+	App->pathfinding->ChangeToPaintShore({ 63, 69 });
+	App->pathfinding->ChangeToPaintShore({ 68, 74 });
+	App->pathfinding->ChangeToPaintShore({ 63, 72 });
+	App->pathfinding->ChangeToPaintShore({ 64, 72 });
+	App->pathfinding->ChangeToPaintShore({ 65, 72 });
+	App->pathfinding->ChangeToPaintShore({ 66, 72 });
+	App->pathfinding->ChangeToPaintShore({ 67, 72 });
+	App->pathfinding->ChangeToPaintShore({ 68, 72 });
+
+
+
+	//LAKE5
+	App->pathfinding->ChangeToPaint({ 92, 37 });
+	App->pathfinding->ChangeToPaint({ 93, 37 });
+	App->pathfinding->ChangeToPaint({ 94, 37 });
+	App->pathfinding->ChangeToPaint({ 95, 37 });
+	App->pathfinding->ChangeToPaint({ 92, 38 });
+	App->pathfinding->ChangeToPaint({ 93, 38 });
+	App->pathfinding->ChangeToPaint({ 94, 38 });
+	App->pathfinding->ChangeToPaint({ 95, 38 });
+	App->pathfinding->ChangeToPaintShore({ 91, 36 });
+	App->pathfinding->ChangeToPaintShore({ 92, 36 });
+	App->pathfinding->ChangeToPaintShore({ 93, 36 });
+	App->pathfinding->ChangeToPaintShore({ 94, 36 });
+	App->pathfinding->ChangeToPaintShore({ 95, 36 });
+	App->pathfinding->ChangeToPaintShore({ 96, 36 });
+	App->pathfinding->ChangeToPaintShore({ 91, 37 });
+	App->pathfinding->ChangeToPaintShore({ 96, 37 });
+	App->pathfinding->ChangeToPaintShore({ 91, 38 });
+	App->pathfinding->ChangeToPaintShore({ 96, 38 });
+	App->pathfinding->ChangeToPaintShore({ 91, 39 });
+	App->pathfinding->ChangeToPaintShore({ 92, 39 });
+	App->pathfinding->ChangeToPaintShore({ 93, 39 });
+	App->pathfinding->ChangeToPaintShore({ 94, 39 });
+	App->pathfinding->ChangeToPaintShore({ 95, 39 });
+	App->pathfinding->ChangeToPaintShore({ 96, 39 });
 
 
 	//CHANGING TILES TO PAINT TILE
@@ -432,20 +502,12 @@ bool GameScene::Update(float dt)
 	sprintf_s(conversorChar3, 256, "%d", conversorInt3);
 	entitiesLabel->text = conversorChar3;
 
-	/*static char title[256];
-	sprintf_s(title, 256, "Paint:%f, Wood:%f, Housing:%f/%f;      Time:%d:%d      Tile:%d,%d;      WorldPosition:%d,%d;      MouseWorldPosition:%d,%d,      DT is: %f",
-		App->player->paintCount.count, App->player->woodCount.count,
-		App->player->housingSpace.count, App->player->housingSpace.maxCount,
-		minutes, seconds,
-		map_coordinates.x, map_coordinates.y,
-		transformer1.x, transformer1.y,
-		transformer2.x, transformer2.y,dt);
-
-	App->win->SetTitle(title);*/
+	static char title[256];
+	sprintf_s(title, 256, "WorldPosition:%d,%d", map_coordinates.x, map_coordinates.y);
+	App->win->SetTitle(title);
 
 	if ((App->player->gameTimer.ReadSec() / 60) >= 15.0f) {
 		App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 1.0f, true);
-
 	}
 
 	

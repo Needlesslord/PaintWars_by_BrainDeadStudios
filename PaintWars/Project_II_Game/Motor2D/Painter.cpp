@@ -43,20 +43,6 @@ Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 	extractionRate = 2.5f;
 
 	isBuildingSomething = false;
-
-	for (std::vector<Animation>::iterator i = App->map->allAnimations.begin(); i != App->map->allAnimations.end(); i++)
-	{
-		/*if (this->type == (i)->type)
-		{
-			if ((i)->orientation == ORIENTATION::ORIENTATION_NORTH)
-			{
-				this->north = i->GetAnimation(); continue;
-			}
-			
-		}*/
-	}
-
-
 }
 
 Painter::~Painter() {}
@@ -66,15 +52,10 @@ void Painter::SpawnEntity(iPoint pos) {
 	if (App->player->woodCount.count >= 20) {
 		App->player->woodCount.count -= 20;
 	}
-	else {
-	 return;
-	}
-
-	
+	else
+		return;
 	 
 	App->entities->AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR, pos, App->entities,nullptr, 0);
-	
-	
 }
 
 void Painter::ExtractPaint(float dt) {
@@ -93,8 +74,7 @@ void Painter::ExtractWood(float dt) {
 	}
 }
 
-void Painter::Draw(SDL_Texture* sprites)
-{
+void Painter::Draw(SDL_Texture* sprites) {
+
 	App->render->RenderQueue(1, sprites, pos.x, pos.y, currentAnimation->GetCurrentFrame());
-	
 }
