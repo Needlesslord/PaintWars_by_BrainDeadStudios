@@ -10,6 +10,7 @@
 #include "j1SceneManager.h"
 #include "GameLogoScene.h"
 #include "TransitionManager.h"
+#include "SDL_mixer\include\SDL_mixer.h"
 #include "j1Audio.h"
 
 GameLogoScene::GameLogoScene() : Scene(SCENES::MENU_SCENE)
@@ -127,6 +128,7 @@ void GameLogoScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	{
 
 		App->transition_manager->CreateAlternatingBars(SCENES::MENU_SCENE);
+		Mix_PlayChannel(1, App->audio->Hover_Logo_Sound, 0);
 	}
 }
 
