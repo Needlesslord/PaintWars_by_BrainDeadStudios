@@ -40,7 +40,7 @@ public:
 	void DrawScene();
 	void ExecuteTransition();
 	void WIN_LOSE_Manager();
-	void DebugDrawTile(iPoint tile);
+
 
 public:
 	//void InitScene();								// Method that will be used to initialize all scene elements.
@@ -141,7 +141,7 @@ public:
 	j1UIElement* buyHouseButton = nullptr;
 	j1UIElement* buyPainterButton = nullptr;
 	j1UIElement* buyWarriorButton = nullptr;
-	bool debugTile = true;
+
 
 
 	//Resource Values for Blit
@@ -158,7 +158,7 @@ public:
 	
 private:
 
-	SDL_Texture* debug_tex = nullptr;
+
 
 	
 	
