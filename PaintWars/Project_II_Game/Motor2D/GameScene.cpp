@@ -19,6 +19,7 @@
 #include <iostream>
 #include <sstream>
 #include "Brofiler/Brofiler.h"
+#include "j1Player.h"
 
 
 
@@ -405,6 +406,7 @@ bool GameScene::Start()
 
 	App->player->gameTimer.Start();
 
+	App->player->cricketsRepeat.Start();
 
 	return ret;
 }
@@ -533,8 +535,12 @@ bool GameScene::Update(float dt)
 	if ((App->player->gameTimer.ReadSec() / 60) >= 0.05f) {
 
 		Mix_PlayChannel(-1, App->audio->birds_sound, 0);
-		Mix_PlayChannel(-1, App->audio->crickets_sound, 0);
 
+
+		if (App->player->cricketsRepeat.Read()/60 > 1) {
+			Mix_PlayChannel(-1, App->audio->crickets_sound, 0);
+			App->player->cricketsRepeat.Start();
+		}
 	}
 	
 	
@@ -621,6 +627,8 @@ bool GameScene::PostUpdate()
 	WIN_LOSE_Manager();
 
 	ExecuteTransition();
+		
+	App->player->Mouse_Cursor();
 
 	return ret;
 }

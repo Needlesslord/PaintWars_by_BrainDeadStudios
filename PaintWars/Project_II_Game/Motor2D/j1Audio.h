@@ -66,6 +66,7 @@ public:
 	Mix_Chunk* spawnFromHall;
 	Mix_Chunk* birds_sound;
 	Mix_Chunk* crickets_sound;
+	Mix_Chunk* braindead_sound;
 	Mix_Chunk* Transition_Sound;
 
 
