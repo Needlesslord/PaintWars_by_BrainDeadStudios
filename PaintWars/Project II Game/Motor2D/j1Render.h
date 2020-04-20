@@ -48,7 +48,7 @@ public:
 
 	void SetBackgroundColor(SDL_Color color);
 
-	void BlitAll();
+	void BlitEverythingOnList();
 
 public:
 

@@ -76,7 +76,7 @@ bool j1Render::PreUpdate()
 
 bool j1Render::Update(float dt)
 {
-	BlitAll();
+	BlitEverythingOnList();
 	return true;
 }
 
@@ -220,19 +220,19 @@ fPoint j1Render::ScreenToWorld(float x, float y) const
 //Created by DOLIME CORPORATION (https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II) / All code related to rendering queues belongs to them!
 void j1Render::RenderQueue(int layer, SDL_Texture* texture, int x, int y, const SDL_Rect section, bool fliped, bool ui, float speed, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
-	BlitEvent event{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
+	BlitEvent WantToBlit{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
 	
-	
+	//This uses culling to know if it has to be blited or not
 	if (texture != nullptr)
 	{
 		 if (x > (-camera.x / App->win->GetScale()) - 220 && x < ((-camera.x + camera.w) / App->win->GetScale()) + 100 && y >(-camera.y / App->win->GetScale()) - 150 && y < ((-camera.y + camera.h) / App->win->GetScale()) + 100) {
-			 OrderToBlit.insert(make_pair(layer, event));
+			 OrderToBlit.insert(make_pair(layer, WantToBlit));
 		}
 	}
 	else
 	{
 		if (section.x > (-camera.x / App->win->GetScale()) - 220 && section.x < (-camera.x + camera.w) / App->win->GetScale() && section.y >(-camera.y / App->win->GetScale()) - 150 && section.y < (-camera.y + camera.h) / App->win->GetScale()) {
-			OrderToBlit.insert(make_pair(layer, event));
+			OrderToBlit.insert(make_pair(layer, WantToBlit));
 		}
 	}
 
@@ -240,35 +240,36 @@ void j1Render::RenderQueue(int layer, SDL_Texture* texture, int x, int y, const 
 
 void j1Render::RenderQueueUI(int layer, SDL_Texture* texture, int x, int y, const SDL_Rect section, bool fliped, bool ui, float speed, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
-	BlitEvent event{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
+	//No culling checked in UI because it moves with the camera
+	BlitEvent WantToBlitUI{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
 
-	OrderToBlit.insert(make_pair(layer, event));
+	OrderToBlit.insert(make_pair(layer, WantToBlitUI));
 	
 	}
 
-void j1Render::BlitAll()
+void j1Render::BlitEverythingOnList()
 {
-	for (auto e = OrderToBlit.begin(); e != OrderToBlit.end(); e++)
+	for (auto BlitIterator = OrderToBlit.begin(); BlitIterator != OrderToBlit.end(); BlitIterator++)
 	{
-		SDL_Texture* event_texture = e->second.texture;
-		bool event_ui = e->second.ui;
+		SDL_Texture* Texture_Iterated = BlitIterator->second.texture;
+		bool event_ui = BlitIterator->second.ui;
 
-		if (event_texture != nullptr)//differentiate texture blits from quad draws
+		if (Texture_Iterated != nullptr)
 		{
-			int event_x = e->second.x;
-			int event_y = e->second.y;
-			const SDL_Rect* event_rect = &e->second.section;
-			bool event_flip = e->second.fliped;
+			int event_x = BlitIterator->second.x;
+			int event_y = BlitIterator->second.y;
+			const SDL_Rect* event_rect = &BlitIterator->second.section;
+			bool event_flip = BlitIterator->second.fliped;
 
-			Blit(event_texture, event_x, event_y, event_rect, event_flip, event_ui);
+			Blit(Texture_Iterated, event_x, event_y, event_rect, event_flip, event_ui);
 		}
 		else
 		{
-			const SDL_Rect& event_rect = e->second.section;
-			uint event_r = e->second.r;
-			uint event_g = e->second.g;
-			uint event_b = e->second.b;
-			uint event_a = e->second.a;
+			const SDL_Rect& event_rect = BlitIterator->second.section;
+			uint event_r = BlitIterator->second.r;
+			uint event_g = BlitIterator->second.g;
+			uint event_b = BlitIterator->second.b;
+			uint event_a = BlitIterator->second.a;
 
 			DrawQuad(event_rect, event_r, event_g, event_b, event_a, event_ui);
 		}
@@ -281,9 +282,6 @@ void j1Render::BlitAll()
 
 bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section, bool fliped, bool ui, float speed, double angle, int pivot_x, int pivot_y) const
 {
-
-
-
 
 	bool ret = true;
 	float scale = App->win->GetScale();
