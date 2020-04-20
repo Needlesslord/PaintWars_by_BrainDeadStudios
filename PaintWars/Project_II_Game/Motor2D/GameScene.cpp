@@ -343,8 +343,6 @@ bool GameScene::Start()
 
 
 
-
-
 	//HUD - MiniMap
 
 	miniMapMINI = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 850 , 500 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, TEXTURE::MINIMAP_MINI);
@@ -513,6 +511,31 @@ bool GameScene::Update(float dt)
 	}
 
 	
+
+
+
+	// If only the TH is selected enable the button
+	list<Entity*>::iterator onlyTownhallSelected = App->entities->buildingsSelected.begin();
+	if (App->entities->buildingsSelected.size() == 1 && (*onlyTownhallSelected)->entityType == ENTITY_TYPE_TOWN_HALL) {
+		buyPainterButton->enabled = true;
+	}
+	else
+		buyPainterButton->enabled = false;
+
+
+
+	// If only the Barracks is selected enable the button
+	list<Entity*>::iterator onlyBarracksSelected = App->entities->buildingsSelected.begin();
+	if (App->entities->buildingsSelected.size() == 1 && (*onlyTownhallSelected)->entityType == ENTITY_TYPE_BARRACKS) {
+		buyWarriorButton->enabled = true;
+	}
+	else
+		buyWarriorButton->enabled = false;
+
+
+
+
+
 	////UI
 
 	//std::stringstream str;
