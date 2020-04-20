@@ -144,6 +144,8 @@ Since it is for the logo animation, only the 4 first seconds have been used. It 
 
 Can be found [here](https://www.bensound.com/royalty-free-music/track/all-that-chill-hop): https://www.bensound.com/royalty-free-music/track/all-that-chill-hop
 
+[FX for the Logo](https://www.fesliyanstudios.com/royalty-free-sound-effects-download/water-splashing-20)
+
 #### Game Animation
 
 The Duel - by Bensound

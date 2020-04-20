@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2AF9969B-F202-497B-AF30-7BEF9CE8005E}</ProjectGuid>
+    <RootNamespace>programacio_2</RootNamespace>
+    <ProjectName>PaintWars_by_BrainDeadStudios</ProjectName>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_ITERATOR_DEBUG_LEVEL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ShowIncludes>false</ShowIncludes>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <ShowIncludes>false</ShowIncludes>
+      <PreprocessorDefinitions>_ITERATOR_DEBUG_LEVEL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AlternatingBars.cpp" />
+    <ClCompile Include="animation.cpp" />
+    <ClCompile Include="Barracks.cpp" />
+    <ClCompile Include="CameraToMouse.cpp" />
+    <ClCompile Include="Color.cpp" />
+    <ClCompile Include="Cut.cpp" />
+    <ClCompile Include="Dissolve.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="ExpandingBars.cpp" />
+    <ClCompile Include="FadeToColour.cpp" />
+    <ClCompile Include="GameLogoScene.cpp" />
+    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="House.cpp" />
+    <ClCompile Include="j1ButtonUI.cpp" />
+    <ClCompile Include="j1Collision.cpp" />
+    <ClCompile Include="j1UIElements.cpp" />
+    <ClCompile Include="j1EntityManager.cpp" />
+    <ClCompile Include="j1FontsUI.cpp" />
+    <ClCompile Include="j1UI_Manager.cpp" />
+    <ClCompile Include="j1SpritesUI.cpp" />
+    <ClCompile Include="j1TextUI.cpp" />
+    <ClCompile Include="j1Main.cpp" />
+    <ClCompile Include="j1App.cpp" />
+    <ClCompile Include="j1Audio.cpp" />
+    <ClCompile Include="j1Input.cpp" />
+    <ClCompile Include="j1Map.cpp" />
+    <ClCompile Include="j1Pathfinding.cpp" />
+    <ClCompile Include="j1PerfTimer.cpp" />
+    <ClCompile Include="j1Player.cpp" />
+    <ClCompile Include="j1QuestManager.cpp" />
+    <ClCompile Include="j1Timer.cpp" />
+    <ClCompile Include="LoseScene.cpp" />
+    <ClCompile Include="MenuScene.cpp" />
+    <ClCompile Include="p2Log.cpp" />
+    <ClCompile Include="j1Render.cpp" />
+    <ClCompile Include="j1Textures.cpp" />
+    <ClCompile Include="j1Window.cpp" />
+    <ClCompile Include="Painter.cpp" />
+    <ClCompile Include="PaintExtractor.cpp" />
+    <ClCompile Include="PugiXml\src\pugixml.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="j1SceneManager.cpp" />
+    <ClCompile Include="SettingsScene.cpp" />
+    <ClCompile Include="Slide.cpp" />
+    <ClCompile Include="Slime.cpp" />
+    <ClCompile Include="Spawner.cpp" />
+    <ClCompile Include="StartScene.cpp" />
+    <ClCompile Include="TownHall.cpp" />
+    <ClCompile Include="Transition.cpp" />
+    <ClCompile Include="TransitionManager.cpp" />
+    <ClCompile Include="Warrior.cpp" />
+    <ClCompile Include="WinScene.cpp" />
+    <ClCompile Include="Wipe.cpp" />
+    <ClCompile Include="WoodProducer.cpp" />
+    <ClCompile Include="ZoomToMouse.cpp" />
+    <ClCompile Include="ZoomToTexture.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AlternatingBars.h" />
+    <ClInclude Include="animation.h" />
+    <ClInclude Include="Bar.h" />
+    <ClInclude Include="Barracks.h" />
+    <ClInclude Include="CameraToMouse.h" />
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="Cut.h" />
+    <ClInclude Include="Dissolve.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="ExpandingBars.h" />
+    <ClInclude Include="FadeToColour.h" />
+    <ClInclude Include="GameLogoScene.h" />
+    <ClInclude Include="GameScene.h" />
+    <ClInclude Include="House.h" />
+    <ClInclude Include="j1ButtonUI.h" />
+    <ClInclude Include="j1Collision.h" />
+    <ClInclude Include="j1EntityManager.h" />
+    <ClInclude Include="j1FontsUI.h" />
+    <ClInclude Include="j1UI_Manager.h" />
+    <ClInclude Include="j1SpritesUI.h" />
+    <ClInclude Include="j1TextUI.h" />
+    <ClInclude Include="j1UIElements.h" />
+    <ClInclude Include="j1Map.h" />
+    <ClInclude Include="j1Pathfinding.h" />
+    <ClInclude Include="j1PerfTimer.h" />
+    <ClInclude Include="j1Player.h" />
+    <ClInclude Include="j1QuestManager.h" />
+    <ClInclude Include="j1Timer.h" />
+    <ClInclude Include="LoseScene.h" />
+    <ClInclude Include="MenuScene.h" />
+    <ClInclude Include="p2DynArray.h" />
+    <ClInclude Include="j1Audio.h" />
+    <ClInclude Include="j1Input.h" />
+    <ClInclude Include="p2Log.h" />
+    <ClInclude Include="j1App.h" />
+    <ClInclude Include="p2Defs.h" />
+    <ClInclude Include="p2List.h" />
+    <ClInclude Include="j1Module.h" />
+    <ClInclude Include="p2Point.h" />
+    <ClInclude Include="j1Render.h" />
+    <ClInclude Include="j1Textures.h" />
+    <ClInclude Include="j1Window.h" />
+    <ClInclude Include="p2SString.h" />
+    <ClInclude Include="Painter.h" />
+    <ClInclude Include="PaintExtractor.h" />
+    <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
+    <ClInclude Include="PugiXml\src\pugixml.hpp" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="j1SceneManager.h" />
+    <ClInclude Include="SettingsScene.h" />
+    <ClInclude Include="Slide.h" />
+    <ClInclude Include="Slime.h" />
+    <ClInclude Include="Spawner.h" />
+    <ClInclude Include="Sprites.h" />
+    <ClInclude Include="StartScene.h" />
+    <ClInclude Include="TownHall.h" />
+    <ClInclude Include="Transition.h" />
+    <ClInclude Include="TransitionManager.h" />
+    <ClInclude Include="Warrior.h" />
+    <ClInclude Include="WinScene.h" />
+    <ClInclude Include="Wipe.h" />
+    <ClInclude Include="WoodProducer.h" />
+    <ClInclude Include="ZoomToMouse.h" />
+    <ClInclude Include="ZoomToTexture.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\Game\config.xml">
+      <SubType>Designer</SubType>
+    </Xml>
+    <Xml Include="..\Game\save_game.xml" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
