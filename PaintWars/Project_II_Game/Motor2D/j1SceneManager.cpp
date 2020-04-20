@@ -9,6 +9,7 @@
 #include "j1Input.h"
 #include "p2Log.h"
 #include "GameLogoScene.h"
+#include "j1Player.h"
 
 j1SceneManager::j1SceneManager() : current_scene(nullptr)
 {
