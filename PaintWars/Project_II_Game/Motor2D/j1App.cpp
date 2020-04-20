@@ -540,18 +540,6 @@ void j1App::Debug_Actions()
 
 			//changes for each unit and building
 
-			if (!(App->entities->entitiesSelected.empty())) {
-				
-				std::list<Entity*>::iterator killEntitiesSelected = App->entities->entitiesSelected.begin();
-				while (killEntitiesSelected != App->entities->entitiesSelected.end()) {
-					
-					(*killEntitiesSelected)->isAlive = false;
-					
-					killEntitiesSelected++;
-				}
-			
-			}
-
 		}
 		//units --------------------------------------------------------------------------------
 		if (App->input->GetKey(SDL_SCANCODE_KP_1) == KEY_DOWN) {  //painter
@@ -567,7 +555,17 @@ void j1App::Debug_Actions()
 		//if (App->input->GetKey(SDL_SCANCODE_KP_5) == KEY_DOWN) {  //explorer
 		//}
 		if (App->input->GetKey(SDL_SCANCODE_KP_0) == KEY_DOWN) {  //kill selected unit
+			
+			if (!(App->entities->unitsSelected.empty())) {
 
+				std::list<Entity*>::iterator killUnitSelected = App->entities->unitsSelected.begin();
+				while (killUnitSelected != App->entities->unitsSelected.end()) {
+
+					(*killUnitSelected)->isAlive = false;
+
+					killUnitSelected++;
+				}
+			}
 		}
 		//buildings --------------------------------------------------------------------------------
 		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_1) == KEY_DOWN) {  //paint extractor
@@ -581,6 +579,19 @@ void j1App::Debug_Actions()
 		}
 		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_4) == KEY_DOWN) {  //house
 			App->entities->AddEntity(ENTITY_TYPE_HOUSE, mapCoordinates, App->entities, nullptr, 0, true);
+		}
+		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_0) == KEY_DOWN) {  //kill buildings unit
+
+			if (!(App->entities->buildingsSelected.empty())) {
+
+				std::list<Entity*>::iterator killBuildingSelected = App->entities->buildingsSelected.begin();
+				while (killBuildingSelected != App->entities->buildingsSelected.end()) {
+
+					(*killBuildingSelected)->isAlive = false;
+
+					killBuildingSelected++;
+				}
+			}
 		}
 
 	}
