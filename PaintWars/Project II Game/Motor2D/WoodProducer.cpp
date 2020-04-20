@@ -20,7 +20,7 @@ WoodProducer::WoodProducer(iPoint tile, int damage, j1Module* listener, Entity* 
 	maxLife = 200;
 	currLife = maxLife - damage;
 
-	size = { 150, 200 }; // TODO
+	size = { 400, 400 }; // TODO
 
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);

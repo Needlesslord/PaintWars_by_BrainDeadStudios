@@ -20,7 +20,7 @@ Spawner::Spawner(iPoint tile, int damage, j1Module* listener) : Entity(tile, dam
 	maxLife = 500;
 	currLife = maxLife - damage;
 
-	size = { 250, 250 };
+	size = { 250, 600 };
 
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);

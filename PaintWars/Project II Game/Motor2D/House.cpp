@@ -20,7 +20,7 @@ House::House(iPoint tile, int damage, j1Module* listener, Entity* creator) : Ent
 	maxLife = 100;
 	currLife = maxLife - damage;
 
-	size = { 150, 200 };
+	size = { 400, 400 };
 
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);

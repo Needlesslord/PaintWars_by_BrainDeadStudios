@@ -24,7 +24,7 @@ Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 	maxLife = 10;
 	currLife = maxLife - damage;
 	
-	size = { 88, 118 };
+	size = { 70, 150 };
 
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);

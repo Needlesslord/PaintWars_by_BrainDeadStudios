@@ -21,7 +21,7 @@ TownHall::TownHall(iPoint tile, int damage, j1Module* listener, Entity* creator)
 	maxLife = 300;
 	currLife = maxLife - damage;
 
-	size = { 277, 403 };
+	size = { 400, 403 };
 
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);

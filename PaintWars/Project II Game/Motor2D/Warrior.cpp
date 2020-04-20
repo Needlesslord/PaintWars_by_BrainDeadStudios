@@ -23,12 +23,12 @@ Warrior::Warrior(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 	maxLife = 30;
 	currLife = maxLife - damage;
 
-	size = { 62, 118 };
+	size = { 70, 150 };
 
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);
 
-	pos.x = tileWorldPosition.x + App->map->data.tile_width / 2 - size.x / 2;
+	pos.x = tileWorldPosition.x + App->map->data.tile_width /  size.x ;
 	pos.y = tileWorldPosition.y + App->map->data.tile_height / 2 - size.y;
 
 	speed = 300.0f;
