@@ -8,24 +8,24 @@
 #include "j1UIElements.h"
 #include "j1UI_manager.h"
 #include "j1SceneManager.h"
-#include "GameLogoScene.h"
+#include "TeamLogoScene.h"
 #include "TransitionManager.h"
 #include "SDL_mixer\include\SDL_mixer.h"
 #include "j1Audio.h"
 
-GameLogoScene::GameLogoScene() : Scene(SCENES::GAME_LOGO_SCENE)
+TeamLogoScene::TeamLogoScene() : Scene(SCENES::TEAM_LOGO_SCENE)
 {
 
 }
 
 // Destructor
-GameLogoScene::~GameLogoScene()
+TeamLogoScene::~TeamLogoScene()
 {
 
 }
 
 // Called before render is available
-bool GameLogoScene::Awake(pugi::xml_node& config)
+bool TeamLogoScene::Awake(pugi::xml_node& config)
 {
 	LOG("Loading GameLogoScene");
 	bool ret = true;
@@ -34,13 +34,13 @@ bool GameLogoScene::Awake(pugi::xml_node& config)
 }
 
 // Called before the first frame
-bool GameLogoScene::Start()
+bool TeamLogoScene::Start()
 {
 	bool ret = true;
 
-	gameLogoButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 300, 100 }, { 0,500 }, true, true, { 0, 0, 630, 426 }, "Click on the Logo to Start!", App->scenes, TEXTURE::LOGO, FONT::FONT_MEDIUM_WHITE, 1);
-	gameLogoButton->hover_rect = { 0, 0, 630, 426 };
-	gameLogoButton->click_rect = { 0, 0, 630, 426 };
+	teamLogoButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, 1280, 720 }, nullptr, App->scenes, TEXTURE::TEAM_LOGO, FONT::FONT_MEDIUM_WHITE, 1);
+	teamLogoButton->hover_rect = { 0, 0, 1280, 720 };
+	teamLogoButton->click_rect = { 0, 0, 1280, 720 };
 
 	//if (App->audio->PlayingLogoMusic != true) {
 	//	App->audio->PlayingLogoMusic = false;
@@ -54,7 +54,7 @@ bool GameLogoScene::Start()
 }
 
 // Called each loop iteration
-bool GameLogoScene::PreUpdate()
+bool TeamLogoScene::PreUpdate()
 {
 	bool ret = true;
 
@@ -62,7 +62,7 @@ bool GameLogoScene::PreUpdate()
 }
 
 // Called each loop iteration
-bool GameLogoScene::Update(float dt)
+bool TeamLogoScene::Update(float dt)
 {
 	bool ret = true;
 	
@@ -81,7 +81,7 @@ bool GameLogoScene::Update(float dt)
 }
 
 // Called each loop iteration
-bool GameLogoScene::PostUpdate()
+bool TeamLogoScene::PostUpdate()
 {
 	bool ret = true;
 
@@ -94,12 +94,12 @@ bool GameLogoScene::PostUpdate()
 }
 
 // Called before quitting
-bool GameLogoScene::CleanUp()
+bool TeamLogoScene::CleanUp()
 {
 	LOG("Freeing Scene");
 	bool ret = true;
 
-	gameLogoButton->CleanUp();
+	teamLogoButton->CleanUp();
 
 	if (scene_texture != nullptr)
 	{
@@ -125,13 +125,13 @@ bool GameLogoScene::CleanUp()
 }
 
 
-void GameLogoScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
+void TeamLogoScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
-	if (element == gameLogoButton && type == GUI_Event::EVENT_ONCLICK)
+	if (element == teamLogoButton && type == GUI_Event::EVENT_ONCLICK)
 	{
 		App->audio->Click_Logo_Sound;  /*Mix_VolumeChunk(Click_Logo_Sound, 50);*/
 
-		App->transition_manager->CreateAlternatingBars(SCENES::MENU_SCENE);
+		App->transition_manager->CreateAlternatingBars(SCENES::GAME_LOGO_SCENE);
 		
 	}
 }
@@ -183,7 +183,7 @@ void GameLogoScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 //}
 
 
-void GameLogoScene::ExecuteTransition()
+void TeamLogoScene::ExecuteTransition()
 {
 	if (!App->transition_manager->is_transitioning)
 	{

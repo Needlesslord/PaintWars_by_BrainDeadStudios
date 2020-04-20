@@ -169,6 +169,9 @@
     <ClCompile Include="j1FontsUI.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="TeamLogoScene.cpp">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -362,6 +365,9 @@
     </ClInclude>
     <ClInclude Include="j1FontsUI.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TeamLogoScene.h">
+      <Filter>Motor  ========\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -144,6 +144,13 @@ public:
 	j1UIElement* buyHouseButton = nullptr;
 
 
+	// Buildings
+	j1UIElement* buyPainterButton = nullptr;
+	j1UIElement* buyWarriorButton = nullptr;
+	j1UIElement* upgradePainterButton = nullptr;
+	j1UIElement* upgradeWarriorButton = nullptr;
+
+
 
 	//Resource Values for Blit
 

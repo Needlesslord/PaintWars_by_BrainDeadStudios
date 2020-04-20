@@ -267,7 +267,6 @@ bool GameScene::Start()
 
 
 
-
 	//HUD - MiniMap
 
 	miniMapBackground = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 850 , 500 }, { 0 , 0 }, false, true, { 0, 1670, 422, 210 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
@@ -284,6 +283,21 @@ bool GameScene::Start()
 	miniMapFULL->click_rect = { 87, 40, 1170,588 };
 	miniMapFULL->hover_rect = { 87, 40, 1170,588 };
 
+
+	//Buildings
+
+	buyPainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 210, 485 }, { 0,0 }, true, true, { 130, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyPainterButton->hover_rect = { 390, 1966, 65, 82 };
+	buyPainterButton->click_rect = { 750, 1966, 65, 82 };
+	upgradePainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 275, 485 }, { 0,0 }, true, true, { 260, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradePainterButton->hover_rect = { 520, 1966, 65, 82 };
+	upgradePainterButton->click_rect = { 780, 1966, 65, 82 };
+	buyWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 210, 485 }, { 0,0 }, true, true, { 195, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyWarriorButton->hover_rect = { 455, 1966, 65, 82 };
+	buyWarriorButton->click_rect = { 715, 1966, 65, 82 };
+	upgradeWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 210, 485 }, { 0,0 }, true, true, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradeWarriorButton->hover_rect = { 585, 1966, 65, 82 };
+	upgradeWarriorButton->click_rect = { 845, 1966, 65, 82 };
 	
 
 

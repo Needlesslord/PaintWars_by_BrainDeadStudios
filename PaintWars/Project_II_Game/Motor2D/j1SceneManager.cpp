@@ -9,6 +9,7 @@
 #include "j1Input.h"
 #include "p2Log.h"
 #include "GameLogoScene.h"
+#include "TeamLogoScene.h"
 
 j1SceneManager::j1SceneManager() : current_scene(nullptr)
 {
@@ -247,6 +248,12 @@ Scene* j1SceneManager::CreateScene(SCENES scene_name)
 		item = new GameLogoScene();
 
 		break;
+
+	case SCENES::TEAM_LOGO_SCENE:
+
+		item = new TeamLogoScene();
+
+		break;
 	}
 
 	if (item != nullptr)
@@ -259,6 +266,7 @@ Scene* j1SceneManager::CreateScene(SCENES scene_name)
 
 void j1SceneManager::ScenePushbacks()
 {
+	CreateScene(SCENES::TEAM_LOGO_SCENE);
 	CreateScene(SCENES::GAME_LOGO_SCENE);
 	CreateScene(SCENES::MENU_SCENE);
 	CreateScene(SCENES::GAME_SCENE);

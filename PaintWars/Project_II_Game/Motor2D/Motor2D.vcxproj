@@ -123,6 +123,7 @@
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="Spawner.cpp" />
     <ClCompile Include="StartScene.cpp" />
+    <ClCompile Include="TeamLogoScene.cpp" />
     <ClCompile Include="TownHall.cpp" />
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="TransitionManager.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="Spawner.h" />
     <ClInclude Include="Sprites.h" />
     <ClInclude Include="StartScene.h" />
+    <ClInclude Include="TeamLogoScene.h" />
     <ClInclude Include="TownHall.h" />
     <ClInclude Include="Transition.h" />
     <ClInclude Include="TransitionManager.h" />
