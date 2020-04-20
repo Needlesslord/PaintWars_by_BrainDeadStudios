@@ -103,7 +103,7 @@ bool j1Player::Update(float dt)
 
 	}
 
-	
+	Select_Entities(selector);
 	return true;
 }
 
@@ -205,7 +205,7 @@ void j1Player::Camera_Control(float dt)
 	Mouse_Cursor();
 }
 
-void j1Player::Select_Entitites(SDL_Rect select_area)
+void j1Player::Select_Entities(SDL_Rect select_area)
 {
 	int buffer;
 	if (select_area.x > select_area.x + select_area.w)
@@ -230,6 +230,8 @@ void j1Player::Mouse_Cursor()
 	App->render->RenderQueueUI(10,Tex_Player, mouse_position.x, mouse_position.y, texture_rect);
 	
 }
+
+
 
 
 void j1Player::Zoom()
