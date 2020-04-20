@@ -707,8 +707,8 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 	if (element == homeButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		App->render->camera.x = 0;
-		App->render->camera.y = 0;
+		App->render->camera.x = 575;
+		App->render->camera.y = -1200;
 	}
 
 
