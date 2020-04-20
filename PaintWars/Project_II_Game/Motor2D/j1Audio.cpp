@@ -61,8 +61,8 @@ bool j1Audio::Awake(pugi::xml_node& config)
 		
 	}
 
-	Hover_Logo_Sound = Mix_LoadWAV("audio/fx/logoSplash_fx.wav");
-	if (Hover_Logo_Sound == NULL)
+	Click_Logo_Sound = Mix_LoadWAV("audio/fx/logoSplash_fx.wav");
+	if (Click_Logo_Sound == NULL)
 	{
 		LOG("Audio Hover Logo IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
 
@@ -211,7 +211,7 @@ bool j1Audio::Load(pugi::xml_node& save) {
 void j1Audio::ChunkAudioManager()
 {
 	Mix_VolumeChunk(Click_Button_Sound, 10);
-	Mix_VolumeChunk(Hover_Logo_Sound, 50);
+	Mix_VolumeChunk(Click_Logo_Sound, 50);
 }
 
 bool j1Audio::Save(pugi::xml_node& save) const {

@@ -27,4 +27,6 @@ private:
 	SDL_Texture* Sprites_UI_Texture_Letters_LOGO_SCENE = nullptr;
 	SDL_Texture* Sprites_UI_Texture_LogoImage_LOGO_SCENE = nullptr;
 	SDL_Texture* Sprites_UI_Texture_ContinueLetters_WIN_LOSE_SCENE = nullptr;
+
+	SDL_Texture* Sprites_UI_Texture_Background_Forest = nullptr;
 };

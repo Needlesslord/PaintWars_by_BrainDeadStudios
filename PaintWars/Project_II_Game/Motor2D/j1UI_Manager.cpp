@@ -169,6 +169,11 @@ SDL_Texture* j1UI_Manager::Get_Texture_From_Image(TEXTURE textureType)
 		return Minimap_Back_Load;
 		break;
 
+	case TEXTURE::BACKGROUND_FOREST:
+		Background_Forest_Sprite_Load = App->tex->Load("textures/UI/skyblue.png");
+		return Background_Forest_Sprite_Load;
+		break;
+
     default:
 
 		 LOG("SWITCH TO LOAD TEXTURES NOT WORKING?");

@@ -81,6 +81,7 @@ public:
 	j1UIElement* researchLabel = nullptr;
 	j1UIElement* entitiesImage = nullptr;
 	j1UIElement* entitiesLabel = nullptr;
+	j1UIElement* BackgroundForest = nullptr;
 
 	// HUD - Quests
 	j1UIElement* questsImage = nullptr;
