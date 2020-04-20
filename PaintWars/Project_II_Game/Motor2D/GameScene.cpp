@@ -428,10 +428,22 @@ bool GameScene::Update(float dt)
 
 	App->win->SetTitle(title);
 
-	if ((App->player->gameTimer.ReadSec() / 60) >= 15.0f) {
-		App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 1.0f, true);
+	if ((App->player->gameTimer.ReadSec() / 60) >= 14.9f) {
+		Mix_PlayChannel(-1, App->audio->time_sound, 0);
+		if ((App->player->gameTimer.ReadSec() / 60) >= 15.0f) {
+			App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 1.0f, true);
 
+		}
 	}
+
+	if ((App->player->gameTimer.ReadSec() / 60) >= 0.05f) {
+
+		Mix_PlayChannel(-1, App->audio->birds_sound, 0);
+		Mix_PlayChannel(-1, App->audio->crickets_sound, 0);
+	}
+	
+	
+	
 
 	
 	////UI
@@ -598,6 +610,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		if (App->entities->isSelectingPlacement != true) {
 			App->entities->isSelectingPlacement = true;
 			App->entities->hoveringEntityType = ENTITY_TYPE_PAINT_EXTRACTOR;
+			Mix_PlayChannel(-1, App->audio->buy1_sound, 0);
 		}
 
 	}
@@ -607,6 +620,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		if (App->entities->isSelectingPlacement != true) {
 			App->entities->isSelectingPlacement = true;
 			App->entities->hoveringEntityType = ENTITY_TYPE_BARRACKS;
+			Mix_PlayChannel(-1, App->audio->buy2_sound, 0);
 		}
 
 	}
@@ -617,6 +631,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			App->entities->isSelectingPlacement = true;
 
 			App->entities->hoveringEntityType = ENTITY_TYPE_WOOD_PRODUCER;
+			Mix_PlayChannel(-1, App->audio->buy2_sound, 0);
 		}
 	}
 
@@ -626,6 +641,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			App->entities->isSelectingPlacement = true;
 
 			App->entities->hoveringEntityType = ENTITY_TYPE_HOUSE;
+			Mix_PlayChannel(-1, App->audio->buy2_sound, 0);
 		}
 	}
 
@@ -635,6 +651,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			App->entities->isSelectingPlacement = true;
 
 			App->entities->hoveringEntityType = ENTITY_TYPE_PAINTER;
+			Mix_PlayChannel(-1, App->audio->buy1_sound, 0);
 		}
 	}
 
@@ -644,6 +661,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			App->entities->isSelectingPlacement = true;
 
 			App->entities->hoveringEntityType = ENTITY_TYPE_WARRIOR;
+			Mix_PlayChannel(-1, App->audio->buy1_sound, 0);
 		}
 	}
 

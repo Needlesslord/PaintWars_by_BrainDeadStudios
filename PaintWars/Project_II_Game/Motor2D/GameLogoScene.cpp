@@ -129,7 +129,7 @@ void GameLogoScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
 	if (element == gameLogoButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		App->audio->Click_Logo_Sound;  /*Mix_VolumeChunk(Click_Logo_Sound, 50);*/
+		Mix_PlayChannel(-1, App->audio->Click_Logo_Sound, 0);  /*Mix_VolumeChunk(Click_Logo_Sound, 50);*/
 
 		App->transition_manager->CreateAlternatingBars(SCENES::MENU_SCENE);
 		

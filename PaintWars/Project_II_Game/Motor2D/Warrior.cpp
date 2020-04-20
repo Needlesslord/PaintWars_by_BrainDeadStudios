@@ -1,9 +1,9 @@
 #include "p2Defs.h"
 #include "p2Log.h"
 #include <vector>
-
+#include "SDL_mixer/include/SDL_mixer.h"
 #include "Warrior.h"
-
+#include "j1Audio.h"
 #include "j1Player.h"
 #include "j1SceneManager.h"
 #include "j1Pathfinding.h"
@@ -52,6 +52,10 @@ void Warrior::Attack(Entity* target, float dt) {
 
 		target->ApplyDamage(attackDamage);
 		attackCooldown = 0.0f;
+		Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
+
+		if (target->GetCurrLife() <= 0)
+			Mix_PlayChannel(-1, App->audio->Spawner_Destroyed, 0);
 	}
 
 	else {
