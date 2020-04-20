@@ -216,7 +216,7 @@ fPoint j1Render::ScreenToWorld(float x, float y) const
 
 
 
- //We are currently using a render system  that sets blit queues to be able to order blit drawing on screen that has been 
+//We are currently using a render system  that sets blit queues to be able to order blit drawing on screen that has been 
 //Created by DOLIME CORPORATION (https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II) / All code related to rendering queues belongs to them!
 void j1Render::RenderQueue(int layer, SDL_Texture* texture, int x, int y, const SDL_Rect section, bool fliped, bool ui, float speed, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
@@ -341,6 +341,8 @@ bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,
 }
 
 //////////////////////////////////////////////                            DISCLAIMER                     ////////////////////////////////////////////////////////////////////
+
+
 bool j1Render::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a, bool ui, bool filled, bool use_camera, bool guiHitBox) const
 {
 	bool ret = true;

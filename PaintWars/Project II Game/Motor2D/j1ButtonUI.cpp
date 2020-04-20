@@ -25,63 +25,54 @@ bool j1ButtonUI::Start()
 		
 		if (Button_UI_Texture_General_ATLAS == NULL)
 			Button_UI_Texture_General_ATLAS = App->gui->Get_Texture_From_Image(TEXTURE::ATLAS);
-		
 		break;
 
 	case TEXTURE::MINIMAP_FULL:
 		
 		if (Button_UI_Texture_Minimap_FULL_SCALE == NULL)
 		Button_UI_Texture_Minimap_FULL_SCALE = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_FULL);
-		
 		break;
 
 	case TEXTURE::MINIMAP_MINI:
 		
 		if (Button_UI_Texture_Minimap_MINI_SCALE == NULL)
 		Button_UI_Texture_Minimap_MINI_SCALE = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_MINI);
-		
 		break;
 
 	case TEXTURE::MINIMAP_CAMERA:
 	
 		if (Button_UI_Texture_Minimap_CAMERA_FOLLOW == NULL)
 		Button_UI_Texture_Minimap_CAMERA_FOLLOW = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_CAMERA);
-		
 		break;
 
 	case TEXTURE::CONTINUE_LETTERS:
 		
 		if (Button_UI_Texture_ContinueLetters_WIN_LOSE_SCENE == NULL)
 		Button_UI_Texture_ContinueLetters_WIN_LOSE_SCENE = App->gui->Get_Texture_From_Image(TEXTURE::CONTINUE_LETTERS);
-		
 		break;
 
 	case TEXTURE::LOSE_SCREEN:
 		
 		if (Button_UI_Texture_Letters_LOSE_SCENE == NULL)
 		Button_UI_Texture_Letters_LOSE_SCENE = App->gui->Get_Texture_From_Image(TEXTURE::LOSE_SCREEN);
-		
 		break;
 
 	case TEXTURE::WIN_SCREEN:
 		
 		if (Button_UI_Texture_Letters_WIN_SCENE == NULL)
 		Button_UI_Texture_Letters_WIN_SCENE = App->gui->Get_Texture_From_Image(TEXTURE::WIN_SCREEN);
-		
 		break;
 
 	case TEXTURE::LOGO:
 		
 		if (Button_UI_Texture_LogoImage_LOGO_SCENE == NULL)
 		Button_UI_Texture_LogoImage_LOGO_SCENE = App->gui->Get_Texture_From_Image(TEXTURE::LOGO);
-		
 		break;
 
 	case TEXTURE::LOGO_LETTERS:
 		
 		if (Button_UI_Texture_Letters_LOGO_SCENE == NULL)
 		Button_UI_Texture_Letters_LOGO_SCENE = App->gui->Get_Texture_From_Image(TEXTURE::LOGO_LETTERS);
-		
 		break;
 	}
 	
