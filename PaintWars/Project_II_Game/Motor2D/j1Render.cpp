@@ -6,6 +6,7 @@
 #include "j1Input.h"
 #include "Entity.h"
 #include "j1EntityManager.h"
+#include "j1Player.h"
 
 // TODO: delete this
 #include "j1Map.h"
@@ -33,7 +34,7 @@ bool j1Render::Awake(pugi::xml_node& config)
 	// load flags
 	Uint32 flags = SDL_RENDERER_ACCELERATED;
 
-	if(config.child("vsync").attribute("value").as_bool(true) == true)
+	if (config.child("vsync").attribute("value").as_bool(true) == true)
 	{
 		flags |= SDL_RENDERER_PRESENTVSYNC;
 		LOG("Using vsync");
@@ -41,14 +42,14 @@ bool j1Render::Awake(pugi::xml_node& config)
 
 	renderer = SDL_CreateRenderer(App->win->window, -1, flags);
 
-	if(renderer == NULL)
+	if (renderer == NULL)
 	{
 		LOG("Could not create the renderer! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
 	else
 	{
-		
+
 		camera.w = (App->win->screen_surface->w);
 		camera.h = (App->win->screen_surface->h);
 		UI_Render_Window_w = App->win->screen_surface->w * 6;
@@ -84,7 +85,7 @@ bool j1Render::PostUpdate()
 {
 	SDL_SetRenderDrawColor(renderer, background.r, background.g, background.g, background.a);
 	SDL_RenderPresent(renderer);
-
+	
 
 	return true;
 }
@@ -98,8 +99,8 @@ bool j1Render::CleanUp()
 
 bool j1Render::Load(pugi::xml_node& data)
 {
-	
-	
+
+
 
 	camera.x = data.child("camera").attribute("x").as_int();
 	camera.y = data.child("camera").attribute("y").as_int();
@@ -109,19 +110,19 @@ bool j1Render::Load(pugi::xml_node& data)
 	iPoint size;
 	const char* entityType;
 	int numEntities = 3;
-	 numEntities = data.child("num_entities").attribute("value").as_int();
+	numEntities = data.child("num_entities").attribute("value").as_int();
 
-	
+
 
 	//pugi::xml_node entities = save.child("entities").child("warrior");
 	for (int i = 0; i < numEntities; i++) { //YOU CANT DO A FOR IN XML LIKE THIS, WE HAVE TO SEARCH EACH NODE WITH THE SAME NAME 
 
-		
+
 		//cycle_length = config.child("enemies").child("update_cycle_length").attribute("length").as_float(); //Fix pathfinding so it works with doLogic
 
 		//frame_cap = config.child("app").attribute("framerate_cap").as_uint();
 		//x = data.child("entity").attribute("position_x").as_float();
-		x=data.child("active_entities").child("entity").attribute("postition_x").as_float();
+		x = data.child("active_entities").child("entity").attribute("postition_x").as_float();
 		y = data.child("entity").attribute("position_y").as_float();
 		damage = data.attribute("missing_hp").as_int();
 		size.x = data.attribute("size_x").as_int();
@@ -149,7 +150,7 @@ bool j1Render::Save(pugi::xml_node& data) const
 	//pugi::xml_node cam = data.append_child("camera");  "camera" being the title, cam being the name of the node,
 	//just copy this and change camera name with what you want it to be called and the  node name
 
-    //2. Save the value inside that 
+	//2. Save the value inside that 
 	// to save a value you write ->  nodename.append_attribute("nameofthevalueinthesavefile")= name of the value in code
 
 	pugi::xml_node cam = data.append_child("camera");
@@ -170,7 +171,7 @@ bool j1Render::Save(pugi::xml_node& data) const
 		if ((*entitiesToSave)->entityType == ENTITY_TYPE_WARRIOR) {
 			const char warrior[] = "warrior";
 			//entity.append_attribute("entity_type").as_string("warrior");
-			entity.append_attribute("entity_type")= warrior;
+			entity.append_attribute("entity_type") = warrior;
 			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
 			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
 			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
@@ -182,7 +183,7 @@ bool j1Render::Save(pugi::xml_node& data) const
 		entitiesToSave++;
 	}
 
-	
+
 
 	return true;
 }
@@ -220,19 +221,26 @@ fPoint j1Render::ScreenToWorld(float x, float y) const
 //Created by DOLIME CORPORATION (https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II) / All code related to rendering queues belongs to them!
 void j1Render::RenderQueue(int layer, SDL_Texture* texture, int x, int y, const SDL_Rect section, bool fliped, bool ui, float speed, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
-	BlitEvent WantToBlit{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
-	
+	const SDL_Rect* Point_Section = &section;
+
+
+	//BlitEvent WantToBlit{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
+
 	//This uses culling to know if it has to be blited or not
 	if (texture != nullptr)
 	{
-		 if (x > (-camera.x / App->win->GetScale()) - 220 && x < ((-camera.x + camera.w) / App->win->GetScale()) + 100 && y >(-camera.y / App->win->GetScale()) - 150 && y < ((-camera.y + camera.h) / App->win->GetScale()) + 100) {
-			 OrderToBlit.insert(make_pair(layer, WantToBlit));
+		if (x > (-camera.x / App->win->GetScale()) - 220 && x < ((-camera.x + camera.w) / App->win->GetScale()) + 100 && y >(-camera.y / App->win->GetScale()) - 150 && y < ((-camera.y + camera.h) / App->win->GetScale()) + 100) {
+
+			//OrderToBlit.insert(make_pair(layer, WantToBlit));
+
+			Blit(texture, x, y, Point_Section, fliped, ui, speed);
 		}
 	}
 	else
 	{
 		if (section.x > (-camera.x / App->win->GetScale()) - 220 && section.x < (-camera.x + camera.w) / App->win->GetScale() && section.y >(-camera.y / App->win->GetScale()) - 150 && section.y < (-camera.y + camera.h) / App->win->GetScale()) {
-			OrderToBlit.insert(make_pair(layer, WantToBlit));
+			//OrderToBlit.insert(make_pair(layer, WantToBlit));
+			Blit(texture, x, y, Point_Section, fliped, ui, speed);
 		}
 	}
 
@@ -241,11 +249,13 @@ void j1Render::RenderQueue(int layer, SDL_Texture* texture, int x, int y, const 
 void j1Render::RenderQueueUI(int layer, SDL_Texture* texture, int x, int y, const SDL_Rect section, bool fliped, bool ui, float speed, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
 	//No culling checked in UI because it moves with the camera
-	BlitEvent WantToBlitUI{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
+	//BlitEvent WantToBlitUI{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
+	const SDL_Rect* Point_Section = &section;
 
-	OrderToBlit.insert(make_pair(layer, WantToBlitUI));
-	
-	}
+	Blit(texture, x, y, Point_Section, fliped, ui, speed);
+	//OrderToBlit.insert(make_pair(layer, WantToBlitUI));
+
+}
 
 void j1Render::BlitEverythingOnList()
 {
@@ -287,7 +297,7 @@ bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,
 	float scale = App->win->GetScale();
 
 	SDL_Rect rect;
-	
+
 
 	if (ui) {
 		rect.x = (int)(camera.x * speed) + x;
@@ -298,7 +308,7 @@ bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,
 		rect.y = (int)(camera.y * speed) + y * scale;
 
 	}
-	
+
 	if (section != NULL)
 	{
 		rect.w = section->w;
@@ -382,7 +392,7 @@ bool j1Render::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a
 		else if (guiHitBox)
 		{
 
-			rec.x = (int)(camera.x+ rect.x);
+			rec.x = (int)(camera.x + rect.x);
 			rec.y = (int)(camera.y + rect.y);
 
 		}

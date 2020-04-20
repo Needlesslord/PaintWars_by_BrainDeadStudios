@@ -79,14 +79,31 @@ bool j1Player::Load(pugi::xml_node& data)
 
 bool j1Player::Update(float dt)
 {
+	int z = 0;
 	App->input->GetMousePosition(mouse_position.x, mouse_position.y);
 
 	Camera_Control(dt);
 	Zoom();
 
 	//This functions should always be last//
-	Mouse_Cursor();
+	//Mouse_Cursor();
 	Drag_Mouse(); 
+
+	p2List_item<j1UIElement*>* UI_List = App->gui->GUI_ELEMENTS.start;
+	while (UI_List != NULL)
+	{
+		LOG("UI COUNT IS %d", z);
+		App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x;
+		App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y;
+
+
+		UI_List = UI_List->next;
+		++z;
+
+
+	}
+
+	App->player->Mouse_Cursor();
 	return true;
 }
 
