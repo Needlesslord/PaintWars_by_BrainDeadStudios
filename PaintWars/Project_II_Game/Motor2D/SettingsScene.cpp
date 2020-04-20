@@ -10,6 +10,7 @@
 #include "j1Audio.h"
 #include "SettingsScene.h"
 #include "TransitionManager.h"
+#include "j1Player.h"
 
 SettingsScene::SettingsScene() : Scene(SCENES::SETTINGS_SCENE)
 {
@@ -93,6 +94,7 @@ bool SettingsScene::Update(float dt)
 // Called each loop iteration
 bool SettingsScene::PostUpdate()
 {
+	App->player->Mouse_Cursor();
 	bool ret = true;
 
 	if ( exit)
