@@ -447,7 +447,8 @@ bool GameScene::Update(float dt)
 {
 	BROFILER_CATEGORY("Game Scene Update--Scenes();", Profiler::Color::GhostWhite);
 	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN) {
-		App->render->BlitEverythingOnList();
+		
+
 	}
 	/*UI_INGAME.Shop_Button->map_position.x = UI_INGAME.Shop_Button->init_map_position.x + App->render->camera.x;
 	UI_INGAME.Shop_Button->map_position.y = UI_INGAME.Shop_Button->init_map_position.y + App->render->camera.y;*/
@@ -504,6 +505,7 @@ bool GameScene::Update(float dt)
 
 	static char title[256];
 	sprintf_s(title, 256, "WorldPosition:%d,%d", map_coordinates.x, map_coordinates.y);
+
 	App->win->SetTitle(title);
 
 	if ((App->player->gameTimer.ReadSec() / 60) >= 15.0f) {
@@ -530,7 +532,7 @@ bool GameScene::Update(float dt)
 	//	
 	//}
 
-
+	
 	return ret;
 }
 

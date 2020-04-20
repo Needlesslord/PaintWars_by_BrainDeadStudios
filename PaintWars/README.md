@@ -1,4 +1,4 @@
-# PAINT WARS
+﻿# PAINT WARS
 ## by BrainDead Studios
 
 ## Description
@@ -84,13 +84,12 @@ In a world full of colour, a corruption spread, turning everything monochromatic
         - KP 3 add ranged -not implemented yet-
         - KP 4 add tank -not implemented yet-
         - KP 5 add explorer -not implemented yet-
-        - KP 0 kill selected units
+        - KP 0 kill selected unit
         buildings (on mouse position)
         - Crtl + KP 1 add paint extractor 
         - Crtl + KP 2 add wood producer
         - Crtl + KP 3 add barracks
         - Crtl + KP 4 add house
-        - Crtl + KP 0 kill selected buildings 
 
 
 ## Controls
@@ -192,8 +191,8 @@ SOFTWARE.
 
 All the data used (sprites, music, fx, etc), which are free to use, will be credited as well.
 
-There are several Parts in the code (Basic Code Structure, Render System with blit queue and Fonts with Text Bliting) that have been forked from DOLIME CORPORATION. 
-ALL code inside the disclaimer parts indicated in the code (Render System, Text Bltiting & UI Structure (Highly modified)  and core game structure belong to: [Dolime Corporation](https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II)
+There are several Parts in the code (Basic Code Structureand Fonts with Text Bliting) that have been forked from DOLIME CORPORATION. 
+ALL code inside the disclaimer parts indicated in the code ( Text Bltiting & UI Structure (Highly modified)  and core game structure belong to: [Dolime Corporation](https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II)
 They are also developing and RTS and we encourage you to check it out!
 
 ### Disclaimer
