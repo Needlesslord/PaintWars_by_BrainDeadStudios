@@ -86,7 +86,7 @@ bool j1Player::Update(float dt)
 	Zoom();
 
 	//This functions should always be last//
-	//Mouse_Cursor();
+	Mouse_Cursor();
 	Drag_Mouse(); 
 
 	p2List_item<j1UIElement*>* UI_List = App->gui->GUI_ELEMENTS.start;
@@ -103,7 +103,7 @@ bool j1Player::Update(float dt)
 
 	}
 
-	App->player->Mouse_Cursor();
+	
 	return true;
 }
 
