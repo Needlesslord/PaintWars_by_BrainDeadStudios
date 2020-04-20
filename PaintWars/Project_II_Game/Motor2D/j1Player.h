@@ -55,7 +55,7 @@ private:
 	
 	void Camera_Control(float dt);
 	
-	void Select_Entitites(SDL_Rect);
+	void Select_Entities(SDL_Rect select_area);
 	void Zoom();
 
 public:
