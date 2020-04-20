@@ -618,8 +618,8 @@ bool GameScene::PostUpdate()
 		}
 	}
 
-	miniMapCamera->map_position.x = miniMapCamera->init_map_position.x  +App->render->camera.x*-0.005;
-	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*-0.005;
+	//miniMapCamera->map_position.x = miniMapCamera->init_map_position.x  +App->render->camera.x*-0.005;
+	//miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*-0.005;
 
 	App->gui->GUI_ELEMENTS.find(miniMapCamera);
 	
