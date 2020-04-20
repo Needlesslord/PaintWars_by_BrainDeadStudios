@@ -88,36 +88,20 @@ bool j1Player::Update(float dt)
 	//This functions should always be last//
 	//Mouse_Cursor();
 	 
-	 
-	//p2List_item<j1UIElement*>* UI_List = App->gui->GUI_ELEMENTS.start;               WORK IN PROGRESS
-	//while (UI_List != NULL)
-	//{
-	//	LOG("UI COUNT IS %d", z);
-	//	if (z != 56) {
-	//		App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x;
-	//		App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y;
-	//	}
-	//	else {
-	//		/*App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + (App->render->camera.x)*0.0000000000000000000000000000000000000000000000000005;
-	//		App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + camera_speed * 0.05;*/
-
-	//	}
-	//	UI_List = UI_List->next;
-	//	++z;
-
-
-	//}
 
 	p2List_item<j1UIElement*>* UI_List = App->gui->GUI_ELEMENTS.start;
 	while (UI_List != NULL)
 	{
 		LOG("UI COUNT IS %d", z);
-		
+		if (z != 56) {
 			App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x;
 			App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y;
-	
+		}
+		else {
+			/*App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->map_position.x+ App->render->camera.x * 0.05;
+			App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.y + camera_speed * 0.05;*/
 
-	
+		}
 		UI_List = UI_List->next;
 		++z;
 
@@ -139,26 +123,13 @@ bool j1Player::CleanUp()
 
 void j1Player::Camera_Control(float dt)
 {
-
-	
-
-
 	if (App->scenes->current_scene->scene_name == SCENES::GAME_SCENE)
 	{
-		
-
 		if (App->PAUSE_ACTIVE==false) {
-
-			p2List_item<j1UIElement*>* UI_List = App->gui->GUI_ELEMENTS.start;
-
-
 
 			if (mouse_position.x == 0 && App->render->camera.x <= 3750)
 			{
 				App->render->camera.x += camera_speed * dt * 1000;
-
-				App->gui->GUI_ELEMENTS[56]->map_position.x = App->gui->GUI_ELEMENTS[56]->init_map_position.x + camera_speed*0.05*dt;
-				App->gui->GUI_ELEMENTS[56]->map_position.y = App->gui->GUI_ELEMENTS[56]->init_map_position.y + camera_speed *0.05;
 
 			}
 

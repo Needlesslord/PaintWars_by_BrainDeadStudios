@@ -618,12 +618,12 @@ bool GameScene::PostUpdate()
 		}
 	}
 
-	
+	miniMapCamera->map_position.x = miniMapCamera->init_map_position.x  +App->render->camera.x*-0.005;
+	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*-0.005;
 
 	App->gui->GUI_ELEMENTS.find(miniMapCamera);
-	App->render->camera.x;
-	App->render->camera.y;
-	 //575 -1200
+	
+	 
 
 	WIN_LOSE_Manager();
 
@@ -1042,8 +1042,8 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 void GameScene::ManageMinimap()
 {
 	float CameraSpeed_Minimap = 995;
-	//miniMapCamera->map_position.x =miniMapCamera->init_map_position.x + (App->render->camera.x)*0.0000000000000000000000000000000000000000000000000005; //WONT WORK
-	//miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->player->camera_speed * 0.05;
+	/*miniMapCamera->map_position.x = miniMapCamera->init_map_position.x + App->render->camera.x*CameraSpeed_Minimap;
+	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*CameraSpeed_Minimap;*/
 }
 
 void GameScene::InitScene()
