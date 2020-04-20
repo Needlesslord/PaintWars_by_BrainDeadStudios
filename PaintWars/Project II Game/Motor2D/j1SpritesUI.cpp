@@ -69,6 +69,13 @@ bool j1UISprites::Start()
 		Sprites_UI_Texture_Letters_WIN_SCENE = App->gui->Get_Texture_From_Image(TEXTURE::WIN_SCREEN_SPRITE);
 
 		break;
+
+	case TEXTURE::BACKGROUND_FOREST:
+
+		if (Sprites_UI_Texture_General_ATLAS == NULL)
+			Sprites_UI_Texture_General_ATLAS = App->gui->Get_Texture_From_Image(TEXTURE::BACKGROUND_FOREST);
+
+		break;
 	}
 	
 	return true;
@@ -119,6 +126,11 @@ bool j1UISprites::Update(float dt) {
 		App->render->RenderQueueUI(2, Sprites_UI_Texture_Letters_WIN_SCENE, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
 		break;
 
+	case TEXTURE::BACKGROUND_FOREST:
+
+		App->render->RenderQueueUI(2, Sprites_UI_Texture_Background_Forest, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
+		break;
+	
 	}
 
     return true; 
