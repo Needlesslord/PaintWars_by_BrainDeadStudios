@@ -128,11 +128,11 @@ void GameLogoScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	{
 
 		App->transition_manager->CreateAlternatingBars(SCENES::MENU_SCENE);
-		Mix_PlayChannel(1, App->audio->Hover_Logo_Sound, 0);
+		
 	}
 }
 
-
+//aaaa
 //void GameLogoScene::InitScene()
 //{
 //	tileset_texture = App->tex->Load("maps/tiles_first_map.png", scene_renderer);	// This texture will be used SceneToTexture(). Needed to get a single whole texture of the map.
