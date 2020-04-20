@@ -107,7 +107,10 @@ bool LoseScene::CleanUp()
 	for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
 	{
 		App->gui->GUI_ELEMENTS[i]->CleanUp();
+		//RELEASE(App->gui->GUI_ELEMENTS[i]);
 	}
+	
+	RELEASE(Lose_Scene_UI);
 
 
 

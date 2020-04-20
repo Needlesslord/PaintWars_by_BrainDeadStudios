@@ -13,7 +13,7 @@
 #include "SDL_mixer\include\SDL_mixer.h"
 #include "j1Audio.h"
 
-GameLogoScene::GameLogoScene() : Scene(SCENES::MENU_SCENE)
+GameLogoScene::GameLogoScene() : Scene(SCENES::GAME_LOGO_SCENE)
 {
 
 }

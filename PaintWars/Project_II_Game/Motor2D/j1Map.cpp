@@ -8,6 +8,7 @@
 #include "j1Window.h"
 #include <math.h>
 #include "Entity.h"
+#include "j1Collision.h"
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
@@ -40,8 +41,9 @@ void j1Map::Draw()
 	{
 		MapLayer* layer = (*item);
 
-		if(layer->properties.Get("Nodraw") != 0)
+		if(layer->properties.Get("Draw") == 0 && App->col->debug == false)
 			continue;
+
 
 		for(uint y = 0; y < data.height; ++y)
 		{

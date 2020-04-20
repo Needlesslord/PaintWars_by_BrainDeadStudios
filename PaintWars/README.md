@@ -1,4 +1,4 @@
-# PAINT WARS
+﻿# PAINT WARS
 ## by BrainDead Studios
 
 ## Description
@@ -102,6 +102,7 @@ From the shop, you can get different buiuldings:
    + house (built with wood): to increase your max number of units
    + barracks (built with wood): to create warriors
 Warriors are used to attack the spawners and destroy them to win the game.
+You can also upgrade units and some buildings.
 
  - LEFT CLICK - select
  - RIGHT CLICK - select destination / attack
@@ -191,8 +192,8 @@ SOFTWARE.
 
 All the data used (sprites, music, fx, etc), which are free to use, will be credited as well.
 
-There are several Parts in the code (Basic Code Structure, Render System with blit queue and Fonts with Text Bliting) that have been forked from DOLIME CORPORATION. 
-ALL code inside the disclaimer parts indicated in the code (Render System, Text Bltiting & UI Structure (Highly modified)  and core game structure belong to: [Dolime Corporation](https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II)
+There are several Parts in the code (Basic Code Structureand Fonts with Text Bliting) that have been forked from DOLIME CORPORATION. 
+ALL code inside the disclaimer parts indicated in the code ( Text Bltiting & UI Structure (Highly modified)  and core game structure belong to: [Dolime Corporation](https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II)
 They are also developing and RTS and we encourage you to check it out!
 
 ### Disclaimer
