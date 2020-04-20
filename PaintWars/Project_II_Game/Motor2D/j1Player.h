@@ -71,6 +71,8 @@ public:
 
 	j1Timer gameTimer;
 
+	j1Timer cricketsRepeat;
+
 private:
 
 	SDL_Rect selector;

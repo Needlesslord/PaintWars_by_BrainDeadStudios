@@ -407,6 +407,7 @@ bool GameScene::Start()
 
 	App->player->gameTimer.Start();
 
+	App->player->cricketsRepeat.Start();
 
 	return ret;
 }
@@ -535,8 +536,12 @@ bool GameScene::Update(float dt)
 	if ((App->player->gameTimer.ReadSec() / 60) >= 0.05f) {
 
 		Mix_PlayChannel(-1, App->audio->birds_sound, 0);
-		Mix_PlayChannel(-1, App->audio->crickets_sound, 0);
 
+
+		if (App->player->cricketsRepeat.Read()/60 > 1) {
+			Mix_PlayChannel(-1, App->audio->crickets_sound, 0);
+			App->player->cricketsRepeat.Start();
+		}
 	}
 	
 	
@@ -711,8 +716,8 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 	if (element == homeButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		App->render->camera.x = 0;
-		App->render->camera.y = 0;
+		App->render->camera.x = 575;
+		App->render->camera.y = -1200;
 	}
 
 

@@ -364,11 +364,56 @@ bool j1EntityManager::Update(float dt) {
 									comprobar orientación (OJO: previousOrientation no unitOrientation!!!
 
 
-									Aqu?compruebas las 8 direcciones y les pones su animación
+									Aqu?compruebas las 8 direcciones y les pones su animación */
 
+									std::list<Entity*>::iterator checkAttackAnimation = activeUnits.begin();
+									while (checkAttackAnimation != activeUnits.end()) {
 
+										if ((*checkAttackAnimation)->entityType == ENTITY_TYPE_WARRIOR) {
 
-									*/
+											if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
+
+												(*checkAttackAnimation)->currentAnimation = &warriorAttackNorth;
+											}
+
+											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+												(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthEast;
+											}
+
+											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_EAST) {
+
+												(*checkAttackAnimation)->currentAnimation = &warriorAttackEast;
+											}
+
+											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+												(*checkAttackAnimation)->currentAnimation = &warriorAttackSouthEast;
+											}
+
+											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH) {
+
+												(*checkAttackAnimation)->currentAnimation = &warriorAttackSouth;
+											}
+
+											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+												(*checkAttackAnimation)->currentAnimation = &warriorAttackSouthWest;
+											}
+
+											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_WEST) {
+
+												(*checkAttackAnimation)->currentAnimation = &warriorAttackWest;
+											}
+
+											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+												(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthWest;
+											}
+										}
+										checkAttackAnimation++;
+									}
+									//---------------------------------------------------------//
 								}
 							}
 							checkWhichSpawner++;
