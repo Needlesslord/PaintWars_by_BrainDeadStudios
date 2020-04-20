@@ -5,7 +5,7 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "j1Window.h"
-#include "j1GUI.h"
+#include "j1UI_manager.h"
 #include "j1SceneManager.h"
 #include "j1Audio.h"
 #include "SettingsScene.h"
@@ -36,39 +36,31 @@ bool SettingsScene::Start()
 {
 	bool ret = true;
 
-	backgroundImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MAIN_IMAGE);
+	backgroundImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes,TEXTURE::MAIN_IMAGE);
 
-	musicLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 300, 150 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Music");
+	musicLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 300, 150 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Music");
 
-	vfxLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 300, 250 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "VFX");
+	vfxLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 300, 250 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "VFX");
 
-	fullscreenLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 300, 350 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Fullscreen");
+	fullscreenLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 300, 350 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Fullscreen");
 
-	gpadLabel = App->gui->AddElement(GUItype::GUI_LABEL, nullptr, { 300, 450 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "GamePad");
+	gpadLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 300, 450 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "GamePad");
 
-	/*musicScroll = App->gui->AddElement(GUItype::GUI_SCROLLBAR, nullptr, { 600, 150 }, { 20, -3 }, true, true, { 786, 59, 268, 25 }, nullptr, App->audio, true, false, SCROLL_TYPE::SCROLL_MUSIC, true, TEXTURE::ATLAS);
-	musicScroll->Button->rect = { 786, 0, 42, 35 };
-	musicScroll->Button->hover_rect = { 786, 0, 42, 35 };
-	musicScroll->Button->click_rect = { 786, 0, 42, 35 };*/
+	
 
-	/*vfxScroll = App->gui->AddElement(GUItype::GUI_SCROLLBAR, nullptr, { 600, 250 }, { 20, -3 }, true, true, { 786, 59, 268, 25 }, nullptr, App->audio, true, false, SCROLL_TYPE::SCROLL_MUSIC, true, TEXTURE::ATLAS);
-	vfxScroll->Button->rect = { 786, 0, 42, 35 };
-	vfxScroll->Button->hover_rect = { 786, 0, 42, 35 };
-	vfxScroll->Button->click_rect = { 786, 0, 42, 35 };*/
-
-	fullscreenButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 620, 350 }, { 0,0 }, true, true, { 0, 1031, 182, 58 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	fullscreenButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 620, 350 }, { 0,0 }, true, true, { 0, 1031, 182, 58 }, nullptr, App->scenes, TEXTURE::ATLAS);
 	fullscreenButton->hover_rect = { 0, 1031, 182, 58 };
 	fullscreenButton->click_rect = { 0, 1031, 182, 58 };
 
-	gpadButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 620, 450 }, { 0,0 }, true, true, { 0, 1031, 182, 58 }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	gpadButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 620, 450 }, { 0,0 }, true, true, { 0, 1031, 182, 58 }, nullptr, App->scenes, TEXTURE::ATLAS);
 	gpadButton->hover_rect = { 0, 1031, 182, 58 };
 	gpadButton->click_rect = { 0, 1031, 182, 58 };
 
-	resetButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 500, 550 }, { 30,15 }, true, true, { 0, 658, 207, 71 }, "Reset", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	resetButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 500, 550 }, { 30,15 }, true, true, { 0, 658, 207, 71 }, "Reset", App->scenes, TEXTURE::ATLAS);
 	resetButton->hover_rect = { 263, 658, 207, 71 };
 	resetButton->click_rect = { 525, 658, 207, 71 };
 
-	backButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 900, 630 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "BACK", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	backButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 900, 630 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "BACK", App->scenes, TEXTURE::ATLAS);
 	backButton->hover_rect = { 263, 658, 207, 71 };
 	backButton->click_rect = { 525, 658, 207, 71 };
 
@@ -150,11 +142,11 @@ bool SettingsScene::CleanUp()
 }
 
 
-void SettingsScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
+void SettingsScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
 	if (element == backButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		App->scenes->SwitchScene(SCENES::MENU_SCENE);
+		App->transition_manager->CreateFadeToColour(SCENES::MENU_SCENE);
 	}
 
 	if (element == fullscreenButton && type == GUI_Event::EVENT_ONCLICK)

@@ -20,8 +20,8 @@ class j1Map;
 class j1EntityManager;
 class j1PathFinding;
 class j1Player;
-class j1GUI;
-class j1Fonts;
+class j1UI_Manager;
+class j1FontsUI;
 class TransitionManager;
 class SceneManager;
 class j1QuestManager;
@@ -103,8 +103,8 @@ public:
 	j1EntityManager*	entities = nullptr;
 	j1PathFinding*		pathfinding = NULL;
 	j1Player*			player = NULL;
-	j1GUI*				gui = NULL;
-	j1Fonts*			fonts = NULL;
+	j1UI_Manager*		gui = NULL;
+	j1FontsUI*			fonts = NULL;
 	TransitionManager*  transition_manager = NULL;
 	j1QuestManager*		quest_manager = NULL;
 

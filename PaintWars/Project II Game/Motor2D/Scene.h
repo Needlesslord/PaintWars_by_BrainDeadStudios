@@ -39,7 +39,7 @@ public:
 	virtual SDL_Texture* SceneToTexture();						// Creates a unified texture from the current scene.
 
 
-	virtual void GUI_Event_Manager(GUI_Event type, j1Element* element);
+	virtual void GUI_Event_Manager(GUI_Event type, j1UIElement* element);
 
 	
 	virtual void ExecuteTransition();							// Method that will trigger a new transition depending on the input received.

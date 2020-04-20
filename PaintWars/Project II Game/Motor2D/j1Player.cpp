@@ -10,7 +10,7 @@
 #include "j1SceneManager.h"
 #include "j1EntityManager.h"
 #include "j1Window.h"
-#include "j1GUI.h"
+#include "j1UI_manager.h"
 #include "Scene.h"
 
 

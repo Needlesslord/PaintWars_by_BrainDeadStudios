@@ -27,19 +27,19 @@ public:
 	//SDL_Texture* SceneToTexture();				// Method that will be used to get a texture from the current screen.
 
 
-	void GUI_Event_Manager(GUI_Event type, j1Element* element);
+	void GUI_Event_Manager(GUI_Event type, j1UIElement* element);
 
 
 	void ExecuteTransition();						// Method that will trigger a new transition depending on the input received.
 
 public:
 
-	j1Element* playButton = nullptr;
-	j1Element* scoreButton = nullptr;
-	j1Element* creditsButton = nullptr;
-	j1Element* settingsButton = nullptr;
-	j1Element* exitButton = nullptr;
-	j1Element* backgroundImage = nullptr;
+	j1UIElement* playButton = nullptr;
+	j1UIElement* scoreButton = nullptr;
+	j1UIElement* creditsButton = nullptr;
+	j1UIElement* settingsButton = nullptr;
+	j1UIElement* exitButton = nullptr;
+	j1UIElement* backgroundImage = nullptr;
 
 };
 

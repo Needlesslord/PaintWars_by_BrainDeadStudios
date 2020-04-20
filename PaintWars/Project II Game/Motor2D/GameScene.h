@@ -7,7 +7,7 @@
 struct SDL_Texture;
 struct UI_HUD
 {
-	j1Element* Shop_Button;
+	j1UIElement* Shop_Button;
 };
 class GameScene : public Scene
 {
@@ -27,7 +27,7 @@ public:
 	//CAMERA
 
 	//UI
-	void GUI_Event_Manager(GUI_Event type, j1Element* element);
+	void GUI_Event_Manager(GUI_Event type, j1UIElement* element);
 	void ManageMinimap();
 
 	//MAP & SCENE 
@@ -72,75 +72,75 @@ public:
 	UI_HUD UI_INGAME;
 
 	//HUD - Bar
-	j1Element* hudBarImage = nullptr;
-	j1Element* paintLabel = nullptr;
-	j1Element* woodLabel = nullptr;
-	j1Element* metalLabel = nullptr;
-	j1Element* titaniumLabel = nullptr;
-	j1Element* foodLabel = nullptr;
-	j1Element* researchLabel = nullptr;
-	j1Element* entitiesImage = nullptr;
-	j1Element* entitiesLabel = nullptr;
+	j1UIElement* hudBarImage = nullptr;
+	j1UIElement* paintLabel = nullptr;
+	j1UIElement* woodLabel = nullptr;
+	j1UIElement* metalLabel = nullptr;
+	j1UIElement* titaniumLabel = nullptr;
+	j1UIElement* foodLabel = nullptr;
+	j1UIElement* researchLabel = nullptr;
+	j1UIElement* entitiesImage = nullptr;
+	j1UIElement* entitiesLabel = nullptr;
 
 	// HUD - Quests
-	j1Element* questsImage = nullptr;
-	j1Element* questsLabel = nullptr;
-	j1Element* questsOpenButton = nullptr;
-	j1Element* questsCloseButton = nullptr;
+	j1UIElement* questsImage = nullptr;
+	j1UIElement* questsLabel = nullptr;
+	j1UIElement* questsOpenButton = nullptr;
+	j1UIElement* questsCloseButton = nullptr;
 
 	//HUD - Buttons
-	j1Element* homeButton = nullptr;
-	j1Element* pauseMenuButton = nullptr;
+	j1UIElement* homeButton = nullptr;
+	j1UIElement* pauseMenuButton = nullptr;
 	bool pauseMenu = false;
-	j1Element* shopButton = nullptr;
-	j1Element* restartButton = nullptr;
+	j1UIElement* shopButton = nullptr;
+	j1UIElement* restartButton = nullptr;
 	bool restartMenu = false;
 
 	//HUD - Mini-map
-	j1Element* miniMapBack = nullptr;
-	j1Element* miniMapMINI = nullptr;
-	j1Element* miniMapFULL = nullptr;
-	j1Element* miniMapCamera = nullptr;
+	j1UIElement* miniMapBack = nullptr;
+	j1UIElement* miniMapMINI = nullptr;
+	j1UIElement* miniMapFULL = nullptr;
+	j1UIElement* miniMapCamera = nullptr;
 	//Pause Menu
-	j1Element* pauseMenuImage = nullptr;
-	j1Element* pauseMenuLabel = nullptr;
-	j1Element* resumeButton = nullptr;
-	j1Element* saveButton = nullptr;
-	j1Element* settingsButton = nullptr;
+	j1UIElement* pauseMenuImage = nullptr;
+	j1UIElement* pauseMenuLabel = nullptr;
+	j1UIElement* resumeButton = nullptr;
+	j1UIElement* saveButton = nullptr;
+	j1UIElement* settingsButton = nullptr;
 	bool settingsMenu = false;
-	j1Element* mainMenuButton = nullptr;
+	j1UIElement* mainMenuButton = nullptr;
 	bool mainMenu = false;
-	j1Element* exitButton = nullptr;
+	j1UIElement* exitButton = nullptr;
 	bool exitMenu = false;
 
 	//Pause Menu - Settings Menu
-	j1Element* musicLabel = nullptr;
-	j1Element* vfxLabel = nullptr;
-	j1Element* fullscreenLabel = nullptr;
-	j1Element* gpadLabel = nullptr;
+	j1UIElement* musicLabel = nullptr;
+	j1UIElement* vfxLabel = nullptr;
+	j1UIElement* fullscreenLabel = nullptr;
+	j1UIElement* gpadLabel = nullptr;
 
-	j1Element* vfxScroll = nullptr;
-	j1Element* fullscreenButton = nullptr;
-	j1Element* gpadButton = nullptr;
-	j1Element* resetButton = nullptr;
-	j1Element* backButton = nullptr;
+	j1UIElement* vfxScroll = nullptr;
+	j1UIElement* fullscreenButton = nullptr;
+	j1UIElement* gpadButton = nullptr;
+	j1UIElement* resetButton = nullptr;
+	j1UIElement* backButton = nullptr;
 
 	// Exit / Restart / Main Menu Menu
-	j1Element* exitMenuImage = nullptr;
-	j1Element* exitMenuLabel = nullptr;
-	j1Element* exitTextLabel = nullptr;
-	j1Element* yesButton = nullptr;
-	j1Element* noButton = nullptr;
+	j1UIElement* exitMenuImage = nullptr;
+	j1UIElement* exitMenuLabel = nullptr;
+	j1UIElement* exitTextLabel = nullptr;
+	j1UIElement* yesButton = nullptr;
+	j1UIElement* noButton = nullptr;
 
 	// Shop
-	j1Element* shopImage = nullptr;
-	j1Element* shopLabel = nullptr;
-	j1Element* buyPaintExtractorButton = nullptr;
-	j1Element* buyWoodProducerButton = nullptr;
-	j1Element* buyBarrackButton = nullptr;
-	j1Element* buyHouseButton = nullptr;
-	j1Element* buyPainterButton = nullptr;
-	j1Element* buyWarriorButton = nullptr;
+	j1UIElement* shopImage = nullptr;
+	j1UIElement* shopLabel = nullptr;
+	j1UIElement* buyPaintExtractorButton = nullptr;
+	j1UIElement* buyWoodProducerButton = nullptr;
+	j1UIElement* buyBarrackButton = nullptr;
+	j1UIElement* buyHouseButton = nullptr;
+	j1UIElement* buyPainterButton = nullptr;
+	j1UIElement* buyWarriorButton = nullptr;
 	bool debugTile = true;
 
 

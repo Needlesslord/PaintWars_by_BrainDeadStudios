@@ -112,24 +112,6 @@
     <ClCompile Include="StartScene.cpp">
       <Filter>Motor  ========\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="j1Button.cpp">
-      <Filter>Motor  ========\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Element.cpp">
-      <Filter>Motor  ========\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Image.cpp">
-      <Filter>Motor  ========\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Label.cpp">
-      <Filter>Motor  ========\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="j1GUI.cpp">
-      <Filter>Motor  ========\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Fonts.cpp">
-      <Filter>Motor  ========\UI</Filter>
-    </ClCompile>
     <ClCompile Include="SettingsScene.cpp">
       <Filter>Motor  ========\Scenes</Filter>
     </ClCompile>
@@ -168,6 +150,24 @@
     </ClCompile>
     <ClCompile Include="GameLogoScene.cpp">
       <Filter>Motor  ========\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="j1ButtonUI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="j1UIElements.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="j1UI_Manager.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="j1SpritesUI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="j1TextUI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="j1FontsUI.cpp">
+      <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -303,15 +303,6 @@
     <ClInclude Include="StartScene.h">
       <Filter>Motor  ========\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="j1GUIElements.h">
-      <Filter>Motor  ========\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="j1GUI.h">
-      <Filter>Motor  ========\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Fonts.h">
-      <Filter>Motor  ========\UI</Filter>
-    </ClInclude>
     <ClInclude Include="SettingsScene.h">
       <Filter>Motor  ========\Scenes</Filter>
     </ClInclude>
@@ -353,6 +344,24 @@
     </ClInclude>
     <ClInclude Include="GameLogoScene.h">
       <Filter>Motor  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="j1ButtonUI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="j1SpritesUI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="j1TextUI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="j1UI_Manager.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="j1UIElements.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="j1FontsUI.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -401,9 +410,6 @@
     <Filter Include="Motor  ========\Scenes\Transition\TransitionTypes">
       <UniqueIdentifier>{c0d5e313-e0c5-4aca-9e0f-40d4dd75b2ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Motor  ========\UI">
-      <UniqueIdentifier>{a4c0f4d8-6ace-4eb6-81f5-0798f120d611}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Motor  ========\Entities\Enemies\Buildings">
       <UniqueIdentifier>{13e5bc83-539a-45b0-8880-e14b5699fde1}</UniqueIdentifier>
     </Filter>
@@ -412,6 +418,9 @@
     </Filter>
     <Filter Include="Motor  ========\Audio">
       <UniqueIdentifier>{98417039-82aa-4c2f-bef9-40141cefc085}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{a162aec4-dff3-46c7-bee4-1a1963decebb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

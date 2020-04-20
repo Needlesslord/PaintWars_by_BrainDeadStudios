@@ -34,7 +34,7 @@ public:
 
 	Scene*	CreateScene(SCENES scene_name);
 
-	void GUI_Event_Manager(GUI_Event type, j1Element* element);
+	void GUI_Event_Manager(GUI_Event type, j1UIElement* element);
 
 public:
 	Scene*					current_scene;							// The scene that is being currently loaded.

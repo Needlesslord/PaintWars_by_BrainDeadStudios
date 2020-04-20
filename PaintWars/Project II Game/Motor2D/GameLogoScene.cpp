@@ -5,8 +5,8 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "j1Window.h"
-#include "j1GUIELements.h"
-#include "j1GUI.h"
+#include "j1UIElements.h"
+#include "j1UI_manager.h"
 #include "j1SceneManager.h"
 #include "GameLogoScene.h"
 #include "TransitionManager.h"
@@ -37,9 +37,9 @@ bool GameLogoScene::Start()
 {
 	bool ret = true;
 
-	gameLogoButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 300, 100 }, { 0,500 }, true, true, { 0, 0, 630, 426 }, "Click on the Logo to Start!", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::LOGO, FONT::FONT_MEDIUM_WHITE, 1);
-	gameLogoButton->hover_rect = { 0, 0, 1259, 852 };
-	gameLogoButton->click_rect = { 0, 0, 1259, 852 };
+	gameLogoButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 300, 100 }, { 0,500 }, true, true, { 0, 0, 630, 426 }, "Click on the Logo to Start!", App->scenes, TEXTURE::LOGO, FONT::FONT_MEDIUM_WHITE, 1);
+	gameLogoButton->hover_rect = { 0, 0, 630, 426 };
+	gameLogoButton->click_rect = { 0, 0, 630, 426 };
 
 	return ret;
 }
@@ -115,7 +115,7 @@ bool GameLogoScene::CleanUp()
 }
 
 
-void GameLogoScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
+void GameLogoScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
 	if (element == gameLogoButton && type == GUI_Event::EVENT_ONCLICK)
 	{

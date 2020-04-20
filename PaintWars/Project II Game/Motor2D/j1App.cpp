@@ -16,8 +16,8 @@
 #include "j1Pathfinding.h"
 #include "j1App.h"
 #include "j1Player.h"
-#include "j1GUI.h"
-#include "j1Fonts.h"
+#include "j1UI_Manager.h"
+#include "j1FontsUI.h"
 #include <thread>
 #include "TransitionManager.h"
 #include "j1SceneManager.h"
@@ -38,8 +38,8 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	entities = new j1EntityManager();
 	pathfinding = new j1PathFinding();
 	player = new j1Player();
-	gui = new j1GUI();
-	fonts = new j1Fonts();
+	gui = new j1UI_Manager();
+	fonts = new j1FontsUI();
 	transition_manager = new TransitionManager();
 	quest_manager = new j1QuestManager();
 	

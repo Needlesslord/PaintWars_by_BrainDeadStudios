@@ -9,19 +9,19 @@
 
 struct SDL_Texture;
 
-struct Font
+struct Font_Base
 {
 	char table[MAX_FONT_CHARS];
 	SDL_Texture* graphic = nullptr;
 	uint rows, len, char_w, char_h, row_chars;
 };
 
-class j1Fonts : public j1Module
+class j1FontsUI : public j1Module
 {
 public:
 
-	j1Fonts();
-	~j1Fonts();
+	j1FontsUI();
+	~j1FontsUI();
 
 	// Load Font
 	int Load(const char* texture_path, const char* characters, uint rows = 1);
@@ -32,7 +32,7 @@ public:
 
 
 private:
-	Font	 fonts[MAX_FONTS];
+	Font_Base	 fonts[MAX_FONTS];
 
 };
 

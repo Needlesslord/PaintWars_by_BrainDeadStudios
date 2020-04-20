@@ -5,7 +5,7 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "j1Window.h"
-#include "j1GUI.h"
+#include "j1UI_manager.h"
 #include "j1SceneManager.h"
 #include "StartScene.h"
 #include "TransitionManager.h"
@@ -37,26 +37,26 @@ bool StartScene::Start()
 	bool ret = true;
 
 
-	backgroundImage = App->gui->AddElement(GUItype::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::MAIN_IMAGE);
+	backgroundImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes,TEXTURE::MAIN_IMAGE);
 
 
-	continueButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 475, 190 }, { 30,25 }, true, true, { 0, 0, 263, 91 }, "CONTINUE", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	continueButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 475, 190 }, { 30,25 }, true, true, { 0, 0, 263, 91 }, "CONTINUE", App->scenes, TEXTURE::ATLAS);
 	continueButton->hover_rect = { 263, 0, 263, 91 };
 	continueButton->click_rect = { 526, 0, 263, 91 };
 
-	forestButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 485, 320 }, { 30,20 }, true, true, { 0, 334, 234, 79 }, "Forest", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	forestButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 485, 320 }, { 30,20 }, true, true, { 0, 334, 234, 79 }, "Forest", App->scenes, TEXTURE::ATLAS);
 	forestButton->hover_rect = { 263, 334, 234, 79 };
 	forestButton->click_rect = { 525, 334, 234, 79 };
 
-	snowButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 485, 430 }, { 60,20 }, true, true, { 0, 334, 234, 79 }, "Snow", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	snowButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 485, 430 }, { 60,20 }, true, true, { 0, 334, 234, 79 }, "Snow", App->scenes,  TEXTURE::ATLAS);
 	snowButton->hover_rect = { 263, 334, 234, 79 };
 	snowButton->click_rect = { 525, 334, 234, 79 };
 
-	volcanoButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 485, 540 }, { 20,20 }, true, true, { 0, 334, 234, 79 }, "Volcano", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	volcanoButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 485, 540 }, { 20,20 }, true, true, { 0, 334, 234, 79 }, "Volcano", App->scenes, TEXTURE::ATLAS);
 	volcanoButton->hover_rect = { 263, 334, 234, 79 };
 	volcanoButton->click_rect = { 525, 334, 234, 79 };
 
-	backButton = App->gui->AddElement(GUItype::GUI_BUTTON, nullptr, { 900, 640 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "BACK", App->scenes, false, false, SCROLL_TYPE::SCROLL_NONE, true, TEXTURE::ATLAS);
+	backButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 900, 640 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "BACK", App->scenes, TEXTURE::ATLAS);
 	backButton->hover_rect = { 263, 658, 207, 71 };
 	backButton->click_rect = { 525, 658, 207, 71 };
 
@@ -141,7 +141,7 @@ bool StartScene::CleanUp()
 }
 
 
-void StartScene::GUI_Event_Manager(GUI_Event type, j1Element* element)
+void StartScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
 	if (element == backButton && type == GUI_Event::EVENT_ONCLICK)
 	{

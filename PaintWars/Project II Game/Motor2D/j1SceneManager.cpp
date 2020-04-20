@@ -89,7 +89,7 @@ bool j1SceneManager::CleanUp()
 
 
 
-void j1SceneManager::GUI_Event_Manager(GUI_Event type, j1Element* element)
+void j1SceneManager::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
 	current_scene->GUI_Event_Manager(type, element);
 }

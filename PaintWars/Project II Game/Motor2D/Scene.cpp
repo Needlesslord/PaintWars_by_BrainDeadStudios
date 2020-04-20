@@ -63,7 +63,7 @@ SDL_Texture* Scene::SceneToTexture()
 	return ret;
 }
 
-void Scene::GUI_Event_Manager(GUI_Event type, j1Element* element)
+void Scene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
 
 }
