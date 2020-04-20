@@ -81,7 +81,7 @@ bool GameScene::Start()
 	BROFILER_CATEGORY("Game Scene Start--Scenes();", Profiler::Color::White);
 	bool ret = true;
 	
-	debug_tex = App->tex->Load("maps/path2.png");
+
 
 	App->render->camera.x = 575;
 	App->render->camera.y = -1200;
@@ -319,6 +319,9 @@ bool GameScene::Start()
 		App->audio->PlayingIngameAudio = true;
 	}
 
+	App->player->gameTimer.Start();
+
+
 	return ret;
 }
 
@@ -405,27 +408,22 @@ bool GameScene::Update(float dt)
 	transformer2.x = xy.x; transformer2.y = xy.y;
 
 	static char title[256];
-	sprintf_s(title, 256, "Paint:%f, Wood:%f, Housing:%f/%f;           Tile:%d,%d;          WorldPosition:%d,%d;          MouseWorldPosition:%d,%d,                DT is: %f",
+	sprintf_s(title, 256, "Paint:%f, Wood:%f, Housing:%f/%f;      Time:%f      Tile:%d,%d;      WorldPosition:%d,%d;      MouseWorldPosition:%d,%d,      DT is: %f",
 		App->player->paintCount.count, App->player->woodCount.count,
 		App->player->housingSpace.count, App->player->housingSpace.maxCount,
+		App->player->gameTimer.ReadSec()/60, 
 		map_coordinates.x, map_coordinates.y,
 		transformer1.x, transformer1.y,
 		transformer2.x, transformer2.y,dt);
 
 	App->win->SetTitle(title);
 
+	if ((App->player->gameTimer.ReadSec()/60)>=15) {
+		App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 1.0f, true);
 
-	
-	
-
-	if ((App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)&&(App->GOD_MODE!=true)) {
-		debugTile = !debugTile;
 	}
 
 	
-
-
-
 	////UI
 
 	//std::stringstream str;
@@ -485,9 +483,7 @@ bool GameScene::PostUpdate()
 	return ret;
 }
 
-void GameScene::DebugDrawTile(iPoint tile) {
-	App->render->RenderQueue(1, debug_tex, tile.x, tile.y, { 0,0,150,75 });
-}
+
 
 // Called before quitting
 bool GameScene::CleanUp()
@@ -528,7 +524,7 @@ bool GameScene::CleanUp()
 		SDL_FreeSurface(scene_surface);
 	}
 
-	App->tex->UnLoad(debug_tex);
+
 
 	return ret;
 }
@@ -646,6 +642,9 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	if (element == pauseMenuButton && type == GUI_Event::EVENT_ONCLICK)
 	{
 		App->PAUSE_ACTIVE = true;
+
+		App->player->gameTimer.Stop();
+
 		pauseMenu = true;
 		pauseMenuImage->enabled = true;
 		pauseMenuLabel->enabled = true;
@@ -666,6 +665,9 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	if (element == resumeButton && type == GUI_Event::EVENT_ONCLICK)
 	{
 		App->PAUSE_ACTIVE = false;
+
+		App->player->gameTimer.Resume();
+
 		pauseMenu = false;
 		pauseMenuImage->enabled = false;
 		pauseMenuLabel->enabled = false;

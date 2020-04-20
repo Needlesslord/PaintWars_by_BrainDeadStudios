@@ -66,6 +66,9 @@ public:
 	int win_width;
 
 	int camera_offset;
+
+	j1Timer gameTimer;
+
 private:
 
 	SDL_Rect selector;
