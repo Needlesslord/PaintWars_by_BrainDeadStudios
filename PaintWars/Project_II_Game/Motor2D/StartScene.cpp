@@ -37,7 +37,7 @@ bool StartScene::Start()
 	bool ret = true;
 
 
-	backgroundImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes,TEXTURE::MAIN_IMAGE);
+	backgroundImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes,TEXTURE::MAIN_IMAGE, FONT::FONT_MEDIUM, 1);
 
 
 	continueButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 475, 190 }, { 30,25 }, true, true, { 0, 0, 263, 91 }, "CONTINUE", App->scenes, TEXTURE::ATLAS);
@@ -117,6 +117,8 @@ bool StartScene::CleanUp()
 	backButton->CleanUp();
 	backgroundImage->CleanUp();
 
+	RELEASE(backgroundImage);
+
 	if (scene_texture != nullptr)
 	{
 		App->tex->UnLoad(scene_texture);
@@ -155,8 +157,6 @@ void StartScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		//App->scenes->SwitchScene(SCENES::GAME_SCENE);
 		//App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
 		App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true);
-		App->audio->PlayingMenuMusic = false;
-		App->audio->PlayingIngameAudio = false;
 	}
 
 	if ((element == snowButton || element == forestButton || element == volcanoButton) && type == GUI_Event::EVENT_ONCLICK)
