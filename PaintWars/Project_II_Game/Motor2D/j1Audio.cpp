@@ -69,10 +69,80 @@ bool j1Audio::Awake(pugi::xml_node& config)
 
 	}
 
-	Warrior_Sound = Mix_LoadWAV("audio/fx/warrior_fx.wav");
-	if (Warrior_Sound == NULL)
+	WarriorAttack_Sound = Mix_LoadWAV("audio/fx/warriorAttack_fx.wav");
+	if (WarriorAttack_Sound == NULL)
 	{
-		LOG("Audio Warrior IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+		LOG("Audio Warrior Attack IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
+	Spawner_Destroyed = Mix_LoadWAV("audio/fx/spawnDestruction_fx.wav");
+	if (Spawner_Destroyed == NULL)
+	{
+		LOG("Audio Spawner destroyed IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
+	time_sound = Mix_LoadWAV("audio/fx/ding_fx.wav");
+	if (time_sound == NULL)
+	{
+		LOG("Audio time IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
+	walkingPainter_sound = Mix_LoadWAV("audio/fx/walkingPainter_fx.wav");
+	if (walkingPainter_sound == NULL)
+	{
+		LOG("Audio Walking Painter IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
+	walkingWarrior_sound = Mix_LoadWAV("audio/fx/walkingWarrior_fx.wav");
+	if (walkingWarrior_sound == NULL)
+	{
+		LOG("Audio Walking Warrior IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
+	buy1_sound = Mix_LoadWAV("audio/fx/questAchieved_fx.wav");
+	if (buy1_sound == NULL)
+	{
+		LOG("Audio Buy1 IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
+	buy2_sound = Mix_LoadWAV("audio/fx/woodProducerBuy_fx.wav");
+	if (buy2_sound == NULL)
+	{
+		LOG("Audio Buy2 IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
+	spawnFromHall = Mix_LoadWAV("audio/fx/advancement_fx.wav");
+	if (spawnFromHall == NULL)
+	{
+		LOG("Audio Spawn From Hall IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
+	birds_sound = Mix_LoadWAV("audio/fx/birds_fx.wav");
+	if (birds_sound == NULL)
+	{
+		LOG("Audio Birds IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
+	crickets_sound = Mix_LoadWAV("audio/fx/crickets_fx.wav");
+	if (crickets_sound == NULL)
+	{
+		LOG("Audio Crickets IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
+	braindead_sound = Mix_LoadWAV("audio/fx/braindead.wav");
+	if (braindead_sound == NULL)
+	{
+		LOG("Audio Braindead IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
 
 	}
 
@@ -212,6 +282,17 @@ bool j1Audio::Load(pugi::xml_node& save) {
 void j1Audio::ChunkAudioManager()
 {
 	Mix_VolumeChunk(Click_Button_Sound, 10);
+	Mix_VolumeChunk(walkingPainter_sound, 4);
+	Mix_VolumeChunk(walkingWarrior_sound, 6);
+	Mix_VolumeChunk(WarriorAttack_Sound, 5);
+	Mix_VolumeChunk(buy1_sound, 6);
+	Mix_VolumeChunk(buy2_sound, 6);
+	Mix_VolumeChunk(spawnFromHall, 5);
+	Mix_VolumeChunk(time_sound, 5);
+	Mix_VolumeChunk(Spawner_Destroyed, 7);
+	Mix_VolumeChunk(birds_sound, 1);
+	Mix_VolumeChunk(crickets_sound, 2);
+	Mix_VolumeChunk(braindead_sound, 50);
 	
 	//if (!logoSound) {
 	//	Mix_VolumeChunk(Click_Logo_Sound, 50);

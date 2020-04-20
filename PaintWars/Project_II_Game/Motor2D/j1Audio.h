@@ -56,8 +56,17 @@ public:
 	//AUDIO CHUNKS
 	Mix_Chunk* Click_Button_Sound;
 	Mix_Chunk* Click_Logo_Sound;
-
-	Mix_Chunk* Warrior_Sound;
+	Mix_Chunk* Spawner_Destroyed;
+	Mix_Chunk* time_sound;
+	Mix_Chunk* WarriorAttack_Sound;
+	Mix_Chunk* walkingPainter_sound;
+	Mix_Chunk* walkingWarrior_sound;
+	Mix_Chunk* buy1_sound;
+	Mix_Chunk* buy2_sound;
+	Mix_Chunk* spawnFromHall;
+	Mix_Chunk* birds_sound;
+	Mix_Chunk* crickets_sound;
+	Mix_Chunk* braindead_sound;
 	Mix_Chunk* Transition_Sound;
 
 

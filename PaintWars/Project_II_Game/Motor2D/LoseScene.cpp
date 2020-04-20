@@ -13,6 +13,7 @@
 #include "j1Audio.h"
 #include "SDL_mixer\include\SDL_mixer.h"
 #include "j1EntityManager.h"
+#include "j1Player.h"
 
 LoseScene::LoseScene() : Scene(SCENES::LOSE_SCENE)
 {
@@ -83,6 +84,7 @@ bool LoseScene::Update(float dt)
 // Called each loop iteration
 bool LoseScene::PostUpdate()
 {
+	App->player->Mouse_Cursor();
 	bool ret = true;
 
 	if (exit)
@@ -107,7 +109,10 @@ bool LoseScene::CleanUp()
 	for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
 	{
 		App->gui->GUI_ELEMENTS[i]->CleanUp();
+		//RELEASE(App->gui->GUI_ELEMENTS[i]);
 	}
+	
+	RELEASE(Lose_Scene_UI);
 
 
 

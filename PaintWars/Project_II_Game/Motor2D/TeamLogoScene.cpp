@@ -5,71 +5,58 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "j1Window.h"
+#include "j1UIElements.h"
 #include "j1UI_manager.h"
 #include "j1SceneManager.h"
-#include "j1Audio.h"
-#include "SettingsScene.h"
+#include "TeamLogoScene.h"
 #include "TransitionManager.h"
-#include "j1Player.h"
+#include "SDL_mixer\include\SDL_mixer.h"
+#include "j1Audio.h"
 
-SettingsScene::SettingsScene() : Scene(SCENES::SETTINGS_SCENE)
+TeamLogoScene::TeamLogoScene() : Scene(SCENES::TEAM_LOGO_SCENE)
 {
 
 }
 
 // Destructor
-SettingsScene::~SettingsScene()
+TeamLogoScene::~TeamLogoScene()
 {
 
 }
 
 // Called before render is available
-bool SettingsScene::Awake(pugi::xml_node& config)
+bool TeamLogoScene::Awake(pugi::xml_node& config)
 {
-	LOG("Loading MenuScene");
+	LOG("Loading GameLogoScene");
 	bool ret = true;
 
 	return ret;
 }
 
 // Called before the first frame
-bool SettingsScene::Start()
+bool TeamLogoScene::Start()
 {
 	bool ret = true;
 
-	backgroundImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes,TEXTURE::MAIN_IMAGE);
+	teamLogoButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, 1280, 720 }, nullptr, App->scenes, TEXTURE::TEAM_LOGO, FONT::FONT_MEDIUM_WHITE, 1);
+	teamLogoButton->hover_rect = { 0, 0, 1280, 720 };
+	teamLogoButton->click_rect = { 0, 0, 1280, 720 };
 
-	musicLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 300, 150 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Music");
+	Mix_PlayChannel(-1, App->audio->braindead_sound, 0);
 
-	vfxLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 300, 250 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "VFX");
+	//if (App->audio->PlayingLogoMusic != true) {
+	//	App->audio->PlayingLogoMusic = false;
+	//	App->audio->PlayMusic("audio/music/logoSplash_fx.ogg");
+	//	App->audio->PlayingLogoMusic = true;
+	//}
 
-	fullscreenLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 300, 350 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Fullscreen");
 
-	gpadLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 300, 450 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "GamePad");
-
-	
-
-	fullscreenButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 620, 350 }, { 0,0 }, true, true, { 0, 1031, 182, 58 }, nullptr, App->scenes, TEXTURE::ATLAS);
-	fullscreenButton->hover_rect = { 0, 1031, 182, 58 };
-	fullscreenButton->click_rect = { 0, 1031, 182, 58 };
-
-	gpadButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 620, 450 }, { 0,0 }, true, true, { 0, 1031, 182, 58 }, nullptr, App->scenes, TEXTURE::ATLAS);
-	gpadButton->hover_rect = { 0, 1031, 182, 58 };
-	gpadButton->click_rect = { 0, 1031, 182, 58 };
-
-	resetButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 500, 550 }, { 30,15 }, true, true, { 0, 658, 207, 71 }, "Reset", App->scenes, TEXTURE::ATLAS);
-	resetButton->hover_rect = { 263, 658, 207, 71 };
-	resetButton->click_rect = { 525, 658, 207, 71 };
-
-	backButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 900, 630 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "BACK", App->scenes, TEXTURE::ATLAS);
-	backButton->hover_rect = { 263, 658, 207, 71 };
-	backButton->click_rect = { 525, 658, 207, 71 };
 
 	return ret;
 }
 
 // Called each loop iteration
-bool SettingsScene::PreUpdate()
+bool TeamLogoScene::PreUpdate()
 {
 	bool ret = true;
 
@@ -77,7 +64,7 @@ bool SettingsScene::PreUpdate()
 }
 
 // Called each loop iteration
-bool SettingsScene::Update(float dt)
+bool TeamLogoScene::Update(float dt)
 {
 	bool ret = true;
 	
@@ -85,16 +72,19 @@ bool SettingsScene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		App->scenes->SwitchScene(SCENES::GAME_SCENE);
+		App->audio->Click_Logo_Sound;  /*Mix_VolumeChunk(Click_Logo_Sound, 50);*/
+		App->scenes->SwitchScene(SCENES::MENU_SCENE);
 	}
+
+
+
 
 	return ret;
 }
 
 // Called each loop iteration
-bool SettingsScene::PostUpdate()
+bool TeamLogoScene::PostUpdate()
 {
-	App->player->Mouse_Cursor();
 	bool ret = true;
 
 	if ( exit)
@@ -106,17 +96,12 @@ bool SettingsScene::PostUpdate()
 }
 
 // Called before quitting
-bool SettingsScene::CleanUp()
+bool TeamLogoScene::CleanUp()
 {
 	LOG("Freeing Scene");
 	bool ret = true;
 
-	for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
-	{
-		App->gui->GUI_ELEMENTS[i]->CleanUp();
-		RELEASE(App->gui->GUI_ELEMENTS[i]);
-	}
-
+	teamLogoButton->CleanUp();
 
 	if (scene_texture != nullptr)
 	{
@@ -142,36 +127,19 @@ bool SettingsScene::CleanUp()
 }
 
 
-void SettingsScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
+void TeamLogoScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
-	if (element == backButton && type == GUI_Event::EVENT_ONCLICK)
+	if (element == teamLogoButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		App->transition_manager->CreateFadeToColour(SCENES::MENU_SCENE);
-	}
+		App->audio->Click_Logo_Sound;  /*Mix_VolumeChunk(Click_Logo_Sound, 50);*/
 
-	if (element == fullscreenButton && type == GUI_Event::EVENT_ONCLICK)
-	{
-		if (!App->win->fullscreen)
-		{
-			fullscreenButton->rect = { 0, 973, 182, 58 };
-			fullscreenButton->hover_rect = { 0, 973, 182, 58 };
-			fullscreenButton->click_rect = { 0, 973, 182, 58 };
-		}
-
-		if (App->win->fullscreen)
-		{
-			fullscreenButton->rect = { 0, 1031, 182, 58 };
-			fullscreenButton->hover_rect = { 0, 1031, 182, 58 };
-			fullscreenButton->click_rect = { 0, 1031, 182, 58 };
-		}
-
-
-		App->win->Fullscreen_Swap();
+		App->transition_manager->CreateAlternatingBars(SCENES::GAME_LOGO_SCENE);
+		
 	}
 }
 
-
-//void MenuScene::InitScene()
+//aaaa
+//void GameLogoScene::InitScene()
 //{
 //	tileset_texture = App->tex->Load("maps/tiles_first_map.png", scene_renderer);	// This texture will be used SceneToTexture(). Needed to get a single whole texture of the map.
 //
@@ -191,7 +159,7 @@ void SettingsScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 //	App->render->camera.y = -40;*/
 //}
 
-//void MenuScene::DrawScene()
+//void GameLogoScene::DrawScene()
 //{
 //	App->map->Draw();
 //
@@ -217,7 +185,7 @@ void SettingsScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 //}
 
 
-void SettingsScene::ExecuteTransition()
+void TeamLogoScene::ExecuteTransition()
 {
 	if (!App->transition_manager->is_transitioning)
 	{
@@ -231,30 +199,30 @@ void SettingsScene::ExecuteTransition()
 			App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
 		}
 
-		//	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
-		//	{
-		//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true);
-		//	}
+			if (App->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN)
+			{
+				App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true);
+			}
 
-		//	if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
-		//	{
-		//		App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true, true);
-		//	}
+			if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
+			{
+				//App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true, true);
+			}
 
-		//	if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
-		//	{
-		//		App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true);
-		//	}
+			if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
+			{
+				//App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true);
+			}
 
-		//	if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
-		//	{
-		//		App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true, true);
-		//	}
+			if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
+			{
+				//App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true, true);
+			}
 
-		//	if (App->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
-		//	{
-		//		App->transition_manager->CreateAlternatingBars(SCENES::SECOND_SCENE, 0.5f, true);
-		//	}
+			if (App->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
+			{
+				//App->transition_manager->CreateAlternatingBars(SCENES::SECOND_SCENE, 0.5f, true);
+			}
 
 		//	if (App->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
 		//	{

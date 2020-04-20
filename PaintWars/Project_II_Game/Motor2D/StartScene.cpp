@@ -10,6 +10,7 @@
 #include "StartScene.h"
 #include "TransitionManager.h"
 #include "j1Audio.h"
+#include "j1Player.h"
 
 StartScene::StartScene() : Scene(SCENES::START_SCENE)
 {
@@ -94,6 +95,7 @@ bool StartScene::Update(float dt)
 // Called each loop iteration
 bool StartScene::PostUpdate()
 {
+	App->player->Mouse_Cursor();
 	bool ret = true;
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)

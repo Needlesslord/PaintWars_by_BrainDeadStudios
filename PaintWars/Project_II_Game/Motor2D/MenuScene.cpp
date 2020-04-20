@@ -11,6 +11,7 @@
 #include "MenuScene.h"
 #include "TransitionManager.h"
 #include "j1Audio.h"
+#include "j1Player.h"
 
 MenuScene::MenuScene() : Scene(SCENES::MENU_SCENE)
 {
@@ -98,6 +99,8 @@ bool MenuScene::PostUpdate()
 {
 	bool ret = true;
 
+	App->player->Mouse_Cursor();
+
 	if ( exit)
 		ret = false;
 
@@ -118,6 +121,8 @@ bool MenuScene::CleanUp()
 	settingsButton->CleanUp();
 	exitButton->CleanUp();
 	backgroundImage->CleanUp();
+
+	RELEASE(backgroundImage);
 
 	if (scene_texture != nullptr)
 	{
