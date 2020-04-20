@@ -156,8 +156,24 @@ bool j1EntityManager::Update(float dt) {
 				}
 
 				else if ((*checkForSpawningEntities)->constructionProgress * constructionRate < (*checkForSpawningEntities)->constructionTime) {
-							
-					App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,(*checkForSpawningEntities)->GetSize().x,(*checkForSpawningEntities)->GetSize().y });
+
+					fPoint tileWorld = App->map->MapToWorld((*checkForSpawningEntities)->currentTile.x, (*checkForSpawningEntities)->currentTile.y);
+
+					if ((*checkForSpawningEntities)->entitySize == ENTITY_SIZE_SMALL) {
+						
+						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,150,150 });
+					}
+
+					else if ((*checkForSpawningEntities)->entitySize == ENTITY_SIZE_MEDIUM) {
+
+						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,300,300 });
+					}
+
+					else if ((*checkForSpawningEntities)->entitySize == ENTITY_SIZE_BIG) {
+
+						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,450,450 });
+					}
+					
 					(*checkForSpawningEntities)->constructionProgress += constructionRate * dt;
 				}
 			}
