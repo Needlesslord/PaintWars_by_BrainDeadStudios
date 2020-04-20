@@ -21,18 +21,11 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@master
 
-    # Runs a single command using the runners shell
-    - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v1.0.0
-        
-    - name: Checking msbuild path
-      run: echo "${{ steps.setup_msbuild.outputs.msbuildPath }}"
-
-    - name: Checking MSBuild version
-      run: msbuild -version
-    
-    - name: Building the project with release configuration
-      run: MSBuild PaintWars/Project_II_Game/Paint_Wars.sln /property:Configuration=Release
+     # TODO: Build project and zip generated files
+    - name: Build project
+      id: build_project
+      run: |
+        zip PaintWars_release.zip README.md
   
     - name: Upload Release Asset
       id: upload-release-asset 
