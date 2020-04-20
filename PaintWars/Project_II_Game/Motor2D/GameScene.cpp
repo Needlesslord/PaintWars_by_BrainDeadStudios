@@ -79,7 +79,7 @@ bool GameScene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool GameScene::Start()
 {
-	BROFILER_CATEGORY("Game Scene Start--Scenes();", Profiler::Color::White);
+	
 	bool ret = true;
 	
 
@@ -352,7 +352,7 @@ bool GameScene::Start()
 	miniMapMINI->click_rect = { 30, 15, 422,210 };
 	miniMapMINI->hover_rect = { 30, 15, 422,210 };
 
-	miniMapCamera = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1025, 500 }, { 0 , 0 }, false, true, { 0, 0, 70, 36 }, nullptr, nullptr, TEXTURE::MINIMAP_CAMERA);
+	miniMapCamera = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1600, -625 }, { 0 , 0 }, false, true, { 0, 0, 70, 36 }, nullptr, nullptr, TEXTURE::MINIMAP_CAMERA);
 
 	miniMapBack = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0 , 0 }, { 0 , 0 }, false, false, { 0, 0, 1800, 1300 }, nullptr, nullptr,  TEXTURE::MINIMAP_BACK_SPRITE);
 
@@ -454,6 +454,8 @@ bool GameScene::PreUpdate()
 		}
 	}
 
+	miniMapMINI->map_position.x;
+	miniMapMINI->map_position.y;
 
 
 	return ret;
@@ -547,9 +549,6 @@ bool GameScene::Update(float dt)
 	
 	
 
-	
-
-
 
 	// If only the TH is selected enable the button
 	list<Entity*>::iterator onlyTownhallSelected = App->entities->buildingsSelected.begin();
@@ -619,10 +618,10 @@ bool GameScene::PostUpdate()
 		}
 	}
 
-	miniMapCamera->map_position.x = miniMapCamera->init_map_position.x+App->render->camera.x*-0.05;
-	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*-0.05;
+	/*miniMapCamera->map_position.x = miniMapCamera->init_map_position.x+App->render->camera.x*-1;
+	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*-1;*/
 
-	
+	App->gui->GUI_ELEMENTS.find(miniMapCamera);
 	
 
 	WIN_LOSE_Manager();
@@ -1036,14 +1035,14 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	}
 
 
-
+	ManageMinimap();
 }
 
 void GameScene::ManageMinimap()
 {
-	float CameraSpeed_Minimap = -0.05;
-	miniMapCamera->map_position.x = miniMapCamera->init_map_position.x + App->render->camera.x*CameraSpeed_Minimap;
-	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*CameraSpeed_Minimap;
+	float CameraSpeed_Minimap = 995;
+	/*miniMapCamera->map_position.x = miniMapCamera->init_map_position.x + App->render->camera.x*CameraSpeed_Minimap;
+	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*CameraSpeed_Minimap;*/
 }
 
 void GameScene::InitScene()
