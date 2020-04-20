@@ -52,7 +52,7 @@ public:
 	void Mouse_Cursor();
 private:
 
-	void Drag_Mouse();
+	
 	void Camera_Control(float dt);
 	
 	void Select_Entitites(SDL_Rect);
