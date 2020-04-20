@@ -59,37 +59,62 @@ In a world full of colour, a corruption spread, turning everything monochromatic
  - AUDIO
      + Background music implemented for all the scenes
      + UI feedback
-     + FX (warrior attack, spawner destroyed)
+     + FX 
+        - warrior attack
+        - spawner destroyed
+        - painter movement
+        - warrior movement
+        - buying from shop
+        - timer (when 10 sec left, countdown every second)
+        - birds
+        - wood producer
+        - town hall when creating a painter
+        - barracks when creating a warrior
+        - paint extractor
+        - painter collecting
+        - spawner
+        - wind
+        - crickets
+        - water in lake areas
+        - finished action
      + Positioning (further fx sound less)
  - DEBUG
-     + F2 Game Scene
-     + F4 Save
-     + F5 Load (Load function not functional yet)
-     + F6 Full Screen
-     + F7 Direct Win
-     + F8 Direct Lose
-     + F9 Collisions
-     + F10 God Mode (add resources, buildings and units, can't lose, collisions)
-        resources
-        - 1 add 10 paint
-        - 2 add 10 wood
-        - 3 add 10 metal scrap -not implemented yet-
-        - 4 add 10 titanium -not implemented yet-
-        - 5 add 10 food -not implemented yet-
-        - 6 add 10 max housing
-        - 7 add 1 level of research (units will have the upgrades already)
-        units (on mouse position)
-        - KP 1 add painter
-        - KP 2 add warrior
-        - KP 3 add ranged -not implemented yet-
-        - KP 4 add tank -not implemented yet-
-        - KP 5 add explorer -not implemented yet-
-        - KP 0 kill selected unit
-        buildings (on mouse position)
-        - Crtl + KP 1 add paint extractor 
-        - Crtl + KP 2 add wood producer
-        - Crtl + KP 3 add barracks
-        - Crtl + KP 4 add house
+	 + F2/F3 Game Scene
+	 + F4 Save
+	 + F5 Load (Load function not functional yet)
+	 + F6 Full Screen
+	 + F7 Direct Win
+	 + F8 Direct Lose
+	 + F9 Collisions
+	 + F10 God Mode (add resources, buildings and units, can't lose, collisions)
+		resources
+		- 1 add 10 paint
+		- 2 add 10 wood
+		- 3 add 10 metal scrap -not implemented yet-
+		- 4 add 10 titanium -not implemented yet-
+		- 5 add 10 food -not implemented yet-
+		- 6 add 10 max housing
+		- 7 add 1 level of research (units will have the upgrades already)
+		units (on mouse position)
+		- KP 1 add painter
+		- KP 2 add warrior
+		- KP 3 add ranged -not implemented yet-
+		- KP 4 add tank -not implemented yet-
+		- KP 5 add explorer -not implemented yet-
+		- KP 0 kill selected units
+		buildings (on mouse position)
+		- Crtl + KP 1 add paint extractor
+		- Crtl + KP 2 add wood producer
+		- Crtl + KP 3 add barracks
+		- Crtl + KP 4 add house
+		- Crtl + KP 0 kill selected buildings
+	 + H Go to Town Hall
+	 + P Pause
+	 + S/L Save/Load (only save implemented)
+	 + ESC exit game (not in game scene)
+	 + N/M/R Zoom In/Out/Reset
+	 + KP MINUS/KP PLUS Control Framerate (+/- 10)
+         + UP/DOWN/LEFT/RIGHT Camera movement
 
 
 ## Controls
@@ -111,34 +136,42 @@ Warriors are used to attack the spawners and destroy them to win the game.
  - UI and HUD - each button is self-explanatory, right clicking to select and hover enabled
      + SHOP - to shop, click on the "Shop Button", and select what you want to build by dragging into the map, it will take a while to build (depending on research level)
 - DEBUG
-     + F2 Game Scene
+     + F2/F3 Game Scene
      + F4 Save
      + F5 Load (Load function not functional yet)
      + F6 Full Screen
      + F7 Direct Win
      + F8 Direct Lose
      + F9 Collisions
-     + F10 God Mode (add resources, buildings and units, can't lose)
-        resources
-        - 1 add 10 paint
-        - 2 add 10 wood
-        - 3 add 10 metal scrap -not implemented yet-
-        - 4 add 10 titanium -not implemented yet-
-        - 5 add 10 food -not implemented yet-
-        - 6 add 10 max housing
-        - 7 add 1 level of research (units will have the upgrades already)
-        units (on mouse position)
-        - KP 1 add painter
-        - KP 2 add warrior
-        - KP 3 add ranged -not implemented yet-
-        - KP 4 add tank -not implemented yet-
-        - KP 5 add explorer -not implemented yet-
-        - KP 0 kill selected unit
-        buildings (on mouse position)
-        - Crtl + KP 1 add paint extractor 
-        - Crtl + KP 2 add wood producer
-        - Crtl + KP 3 add barracks
-        - Crtl + KP 4 add house
+     + F10 God Mode (add resources, buildings and units, can't lose, collisions)
+         resources
+           - 1 add 10 paint
+           - 2 add 10 wood
+           - 3 add 10 metal scrap -not implemented yet-
+           - 4 add 10 titanium -not implemented yet-
+           - 5 add 10 food -not implemented yet-
+           - 6 add 10 max housing
+           - 7 add 1 level of research (units will have the upgrades already)
+         units (on mouse position)
+           - KP 1 add painter
+           - KP 2 add warrior
+           - KP 3 add ranged -not implemented yet-
+           - KP 4 add tank -not implemented yet-
+           - KP 5 add explorer -not implemented yet-
+           - KP 0 kill selected units
+         buildings (on mouse position)
+           - Crtl + KP 1 add paint extractor
+           - Crtl + KP 2 add wood producer
+           - Crtl + KP 3 add barracks
+           - Crtl + KP 4 add house
+           - Crtl + KP 0 kill selected buildings
+     + H Go to Town Hall
+     + P Pause
+     + S/L Save/Load (only save implemented)
+     + ESC exit game (not in game scene)
+     + N/M/R Zoom In/Out/Reset
+     + KP MINUS/KP PLUS Control Framerate (+/- 10)
+     + UP/DOWN/LEFT/RIGHT Camera movement
 
 ## Developers
 
