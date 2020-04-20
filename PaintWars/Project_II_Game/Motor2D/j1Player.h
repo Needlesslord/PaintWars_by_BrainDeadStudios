@@ -47,12 +47,14 @@ public:
 	//LOADING AND SAVING OPTIONS
 	bool Save(pugi::xml_node& data);
 	bool Load(pugi::xml_node& data);	
-	
+
+	//MOUSE
+	void Mouse_Cursor();
 private:
 
-	void Drag_Mouse();
+	
 	void Camera_Control(float dt);
-	void Mouse_Cursor();
+	
 	void Select_Entitites(SDL_Rect);
 	void Zoom();
 
