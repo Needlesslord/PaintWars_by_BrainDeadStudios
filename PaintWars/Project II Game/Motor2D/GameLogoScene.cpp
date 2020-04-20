@@ -41,6 +41,12 @@ bool GameLogoScene::Start()
 	gameLogoButton->hover_rect = { 0, 0, 630, 426 };
 	gameLogoButton->click_rect = { 0, 0, 630, 426 };
 
+	//if (App->audio->PlayingLogoMusic != true) {
+	//	App->audio->PlayingLogoMusic = false;
+	//	App->audio->PlayMusic("audio/music/logoSplash_fx.ogg");
+	//	App->audio->PlayingLogoMusic = true;
+	//}
+
 	return ret;
 }
 

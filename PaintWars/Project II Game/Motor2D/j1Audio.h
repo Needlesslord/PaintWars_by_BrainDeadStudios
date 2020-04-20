@@ -49,13 +49,17 @@ public:
 	bool PlayingIngameAudio;
 	bool PlayingLoseMusic;
 	bool PlayingWinMusic;
+	bool PlayingLogoMusic;
 
 
 
 	//AUDIO CHUNKS
 	Mix_Chunk* Click_Button_Sound;
+	Mix_Chunk* Hover_Logo_Sound;
+
 	Mix_Chunk* Warrior_Sound;
 	Mix_Chunk* Transition_Sound;
+
 
 
 private:
