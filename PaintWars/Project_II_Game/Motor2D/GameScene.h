@@ -44,7 +44,7 @@ public:
 
 public:
 	//void InitScene();								// Method that will be used to initialize all scene elements.
-	
+
 	//void DrawScene();								// Method that will draw all scene elements on screen.
 	//SDL_Texture* SceneToTexture();				// Method that will be used to get a texture from the current screen.
 
@@ -63,7 +63,7 @@ public:
 	bool Change_Map;
 
 
-	
+
 	//////////////////
 	//      UI      //
 	//////////////////
@@ -142,6 +142,8 @@ public:
 	j1UIElement* buyWoodProducerButton = nullptr;
 	j1UIElement* buyBarrackButton = nullptr;
 	j1UIElement* buyHouseButton = nullptr;
+	j1UIElement* upgradePaintExtractorButton = nullptr;
+	j1UIElement* upgradeWoodProducerButton = nullptr;
 
 
 	// Buildings
