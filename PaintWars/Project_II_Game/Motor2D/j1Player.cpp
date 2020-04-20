@@ -87,7 +87,7 @@ bool j1Player::Update(float dt)
 
 	//This functions should always be last//
 	//Mouse_Cursor();
-	Drag_Mouse(); 
+	 
 
 	p2List_item<j1UIElement*>* UI_List = App->gui->GUI_ELEMENTS.start;
 	while (UI_List != NULL)
@@ -200,6 +200,9 @@ void j1Player::Camera_Control(float dt)
 			item = item->next;
 		}*/
 	}
+
+
+	Mouse_Cursor();
 }
 
 void j1Player::Select_Entitites(SDL_Rect select_area)
@@ -228,30 +231,6 @@ void j1Player::Mouse_Cursor()
 	
 }
 
-void j1Player::Drag_Mouse()
-{
-
-	if (App->input->GetMouseButtonDown(1) == KEY_DOWN)
-	{
-		App->input->GetMousePosition(start_mouse_position.x, start_mouse_position.y);
-		start_mouse_position.x -= App->render->camera.x / App->win->GetScale();
-		start_mouse_position.y -= App->render->camera.y / App->win->GetScale();
-	}
-
-	if (App->input->GetMouseButtonDown(1) == KEY_REPEAT)
-	{
-		selector = { (int)start_mouse_position.x, (int)start_mouse_position.y, (int)(mouse_position.x - start_mouse_position.x), (int)(mouse_position.y - start_mouse_position.y) };
-		App->render->RenderQueue(2, nullptr, 0,0, selector, false, false, 0.0f, 0u, 255u, 0u, 25u);
-	}
-
-	if (App->input->GetMouseButtonDown(1) == KEY_UP)
-	{
-		if (selector.w > 1)
-			App->entities->SelectGroupEntities(selector);
-		//Select_Entitites(selector);
-	}
-
-}
 
 void j1Player::Zoom()
 {
