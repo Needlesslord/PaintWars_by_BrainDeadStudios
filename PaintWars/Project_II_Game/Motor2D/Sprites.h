@@ -25,16 +25,16 @@ void WarriorSprites()
 	//MOVING
 
 	//Moving Right
-	warriorMovingEast.PushBack({ 0, 148, 69, 149 });
-	warriorMovingEast.PushBack({ 69, 148, 69, 149 });
-	warriorMovingEast.PushBack({ 207, 148, 69, 149 });
-	warriorMovingEast.PushBack({ 276, 148, 69, 149 });
-	warriorMovingEast.PushBack({ 354, 148, 69, 149 });
-	warriorMovingEast.PushBack({ 423, 148, 69, 149 });
+	warriorMovingEast.PushBack({ 0, 148, 65, 153 });
+	warriorMovingEast.PushBack({ 75, 148, 65, 153 });
+	warriorMovingEast.PushBack({ 154, 148, 65, 153 });
+	warriorMovingEast.PushBack({ 233, 148, 65, 153 });
+	warriorMovingEast.PushBack({ 312, 148, 65, 153 });
+	warriorMovingEast.PushBack({ 390, 148, 65, 153 });
 	warriorMovingEast.speed = 500.0f;
 
 	//Moving Left
-	warriorMovingWest.PushBack({ 468, 148, 69, 149 });
+	warriorMovingWest.PushBack({ 470, 148, 64, 149 });
 	warriorMovingWest.PushBack({ 537, 244, 69, 149 });
 	warriorMovingWest.PushBack({ 606, 244, 69, 149 });
 	warriorMovingWest.PushBack({ 675, 244, 69, 149 });
