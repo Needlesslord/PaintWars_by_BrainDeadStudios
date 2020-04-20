@@ -41,4 +41,4 @@ jobs:
       run: msbuild -version
     
     - name: Building the project with release configuration
-      run: MSBuild PaintWars/Project%20II%20Game/Paint_Wars.sln /property:Configuration=Release
+      run: MSBuild PaintWars/Project\II\Game/Paint_Wars.sln /property:Configuration=Release
