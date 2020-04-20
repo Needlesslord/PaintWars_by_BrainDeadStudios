@@ -638,6 +638,17 @@ bool j1EntityManager::PostUpdate() {
 	}
 
 
+
+	list<Entity*>::iterator killEntities = activeEntities.begin();
+	while (killEntities != activeEntities.end()) {
+
+		if (!(*killEntities)->isAlive) {
+			(*killEntities)->SetCurrLife(-1);
+		}
+		killEntities++;
+	}
+
+
 	list<Entity*>::iterator checkForDeadUnits = activeUnits.begin();
 	while (checkForDeadUnits != activeUnits.end()) {
 

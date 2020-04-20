@@ -417,7 +417,22 @@ bool GameScene::Update(float dt)
 		}
 	}
 
-	static char title[256];
+	static char conversorChar1[256];
+	int conversorInt1 = App->player->paintCount.count;
+	sprintf_s(conversorChar1, 256, "%d", conversorInt1);
+	paintLabel->text = conversorChar1;
+
+	static char conversorChar2[256];
+	int conversorInt2 = App->player->woodCount.count;
+	sprintf_s(conversorChar2, 256, "%d", conversorInt2);
+	woodLabel->text = conversorChar2;
+
+	static char conversorChar3[256];
+	int conversorInt3 = App->player->housingSpace.count;
+	sprintf_s(conversorChar3, 256, "%d", conversorInt3);
+	entitiesLabel->text = conversorChar3;
+
+	/*static char title[256];
 	sprintf_s(title, 256, "Paint:%f, Wood:%f, Housing:%f/%f;      Time:%d:%d      Tile:%d,%d;      WorldPosition:%d,%d;      MouseWorldPosition:%d,%d,      DT is: %f",
 		App->player->paintCount.count, App->player->woodCount.count,
 		App->player->housingSpace.count, App->player->housingSpace.maxCount,
@@ -426,7 +441,7 @@ bool GameScene::Update(float dt)
 		transformer1.x, transformer1.y,
 		transformer2.x, transformer2.y,dt);
 
-	App->win->SetTitle(title);
+	App->win->SetTitle(title);*/
 
 	if ((App->player->gameTimer.ReadSec() / 60) >= 15.0f) {
 		App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 1.0f, true);
