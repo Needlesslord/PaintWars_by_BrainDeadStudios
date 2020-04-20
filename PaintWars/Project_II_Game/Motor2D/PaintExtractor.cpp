@@ -1,14 +1,15 @@
 #include "p2Defs.h"
 #include "p2Log.h"
-#include "j1Audio.h"
+
 #include "PaintExtractor.h"
-#include "SDL_mixer/include/SDL_mixer.h"
+
 #include "j1Player.h"
 #include "j1SceneManager.h"
 #include "j1Map.h"
 #include "j1Collision.h"
 #include "j1Pathfinding.h"
 #include "j1Textures.h"
+#include "j1EntityManager.h"
 
 PaintExtractor::PaintExtractor(iPoint tile, int damage, j1Module* listener, Entity* creator) : Entity(tile, damage, listener, creator) {
 
@@ -30,7 +31,9 @@ PaintExtractor::PaintExtractor(iPoint tile, int damage, j1Module* listener, Enti
 
 	constructionTime = 10.0f;
 
-	extractionRate = 5.0f;
+	extractionRate = 1.0f;
+	if (App->entities->paintExtractorUpgraded)
+		extractionRate *= 1.33f;
 
 	isEntityFromPlayer = true;
 }
@@ -40,5 +43,4 @@ PaintExtractor::~PaintExtractor() {}
 void PaintExtractor::ExtractPaint(float dt) {
 
 	App->player->paintCount.count += extractionRate*dt;
-	Mix_PlayChannel(-1, App->audio->paintExtractor_sound, 0);
 }

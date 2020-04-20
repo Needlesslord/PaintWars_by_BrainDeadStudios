@@ -11,7 +11,7 @@ public:
 	TownHall(iPoint tile, int damage, j1Module* listener, Entity* creator = nullptr);
 	~TownHall();
 
-	void SpawnEntity(iPoint pos) override;
+	void SpawnEntity() override;
 
 public:
 

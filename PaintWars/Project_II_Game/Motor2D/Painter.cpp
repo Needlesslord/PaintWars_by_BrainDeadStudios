@@ -2,7 +2,7 @@
 #include "p2Log.h"
 
 #include "Painter.h"
-#include "SDL_mixer/include/SDL_mixer.h"
+
 #include "j1Player.h"
 #include "Scene.h"
 #include "j1EntityManager.h"
@@ -40,29 +40,20 @@ Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 
 	isEntityFromPlayer = true;
 
-	extractionRate = 2.5f;
+	extractionRate = 0.5f;
+
+	if (App->entities->paintersUpgraded)
+		extractionRate *= 1.33f;
 
 	isBuildingSomething = false;
 }
 
 Painter::~Painter() {}
 
-void Painter::SpawnEntity(iPoint pos) {
-	App->entities->isSelectingPlacement = false;
-	if (App->player->woodCount.count >= 20) {
-		App->player->woodCount.count -= 20;
-	}
-	else
-		return;
-	 
-	App->entities->AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR, pos, App->entities,nullptr, 0);
-}
-
 void Painter::ExtractPaint(float dt) {
 
 	if (App->pathfinding->IsPaintShore(currentTile) && currentTile == destination) {
-		App->player->paintCount.count += 0.01;
-		Mix_PlayChannel(-1, App->audio->paintExtractor_sound, 0);
+		App->player->paintCount.count += extractionRate * dt;
 	}
 }
 
@@ -72,7 +63,6 @@ void Painter::ExtractWood(float dt) {
 	if (App->pathfinding->IsWood(currentTile) && currentTile == destination) {
 		//App->player->woodCount.count += 0.01;
 		App->player->woodCount.count += extractionRate*dt;
-		Mix_PlayChannel(-1, App->audio->woodProducer_sound, 0);
 	}
 }
 

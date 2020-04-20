@@ -16,7 +16,7 @@ Barracks::Barracks(iPoint tile, int damage, j1Module* listener, Entity* creator)
 	// Handle data and initialize the TH
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_BARRACKS;
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_STATIC_ENTITY;
-	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_BIG;
+	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_MEDIUM;
 
 	maxLife = 200;
 	currLife = maxLife - damage;
@@ -38,7 +38,7 @@ Barracks::Barracks(iPoint tile, int damage, j1Module* listener, Entity* creator)
 
 Barracks::~Barracks() {}
 
-void Barracks::SpawnEntity(iPoint pos) {
+void Barracks::SpawnEntity() {
 
 	if (App->player->paintCount.count > 20 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
 		App->player->paintCount.count -= 20;

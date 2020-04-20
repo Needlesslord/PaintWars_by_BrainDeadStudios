@@ -124,6 +124,14 @@ bool j1EntityManager::Update(float dt) {
 					(*checkForSpawningEntities)->spawnedBy->isSpawningAUnit = false;
 					(*checkForSpawningEntities)->isAlive = true;
 
+
+					if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_PAINTER)
+						(*checkForSpawningEntities)->currentAnimation = &painterIdle;
+
+					else if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_WARRIOR)
+						(*checkForSpawningEntities)->currentAnimation = &warriorIdle;
+
+
 					spawningEntities.erase(checkForSpawningEntities);
 				}
 
@@ -148,8 +156,24 @@ bool j1EntityManager::Update(float dt) {
 				}
 
 				else if ((*checkForSpawningEntities)->constructionProgress * constructionRate < (*checkForSpawningEntities)->constructionTime) {
-							
-					App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,(*checkForSpawningEntities)->GetSize().x,(*checkForSpawningEntities)->GetSize().y });
+
+					fPoint tileWorld = App->map->MapToWorld((*checkForSpawningEntities)->currentTile.x, (*checkForSpawningEntities)->currentTile.y);
+
+					if ((*checkForSpawningEntities)->entitySize == ENTITY_SIZE_SMALL) {
+						
+						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,150,150 });
+					}
+
+					else if ((*checkForSpawningEntities)->entitySize == ENTITY_SIZE_MEDIUM) {
+
+						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,300,300 });
+					}
+
+					else if ((*checkForSpawningEntities)->entitySize == ENTITY_SIZE_BIG) {
+
+						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,450,450 });
+					}
+					
 					(*checkForSpawningEntities)->constructionProgress += constructionRate * dt;
 				}
 			}
@@ -173,11 +197,11 @@ bool j1EntityManager::Update(float dt) {
 
 			fPoint mapWorldCoordinates = App->map->MapToWorld(mapCoordinates.x, mapCoordinates.y);
 
-			App->render->RenderQueue(1, debug_tex, mapWorldCoordinates.x, mapWorldCoordinates.y, { 0,0,150,75 });
-			App->render->RenderQueue(1, debug_tex, mapWorldCoordinates.x - App->map->data.tile_width / 2, mapWorldCoordinates.y - App->map->data.tile_height / 2, { 0,0,150,75 });
-			App->render->RenderQueue(1, debug_tex, mapWorldCoordinates.x + App->map->data.tile_width / 2, mapWorldCoordinates.y - App->map->data.tile_height / 2, { 0,0,150,75 });
-			App->render->RenderQueue(1, debug_tex, mapWorldCoordinates.x, mapWorldCoordinates.y - App->map->data.tile_height, { 0,0,150,75 });
-
+			//App->render->RenderQueue(1, debug_tex, mapWorldCoordinates.x, mapWorldCoordinates.y, { 0,0,150,75 });
+			//App->render->RenderQueue(1, debug_tex, mapWorldCoordinates.x - App->map->data.tile_width / 2, mapWorldCoordinates.y - App->map->data.tile_height / 2, { 0,0,150,75 });
+			//App->render->RenderQueue(1, debug_tex, mapWorldCoordinates.x + App->map->data.tile_width / 2, mapWorldCoordinates.y - App->map->data.tile_height / 2, { 0,0,150,75 });
+			//App->render->RenderQueue(1, debug_tex, mapWorldCoordinates.x, mapWorldCoordinates.y - App->map->data.tile_height, { 0,0,150,75 });
+			
 			
 			if (hoveringEntityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
 				App->render->RenderQueue(1, paintExtractorTexture, mapWorldCoordinates.x - 125 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 250 + App->map->data.tile_height / 2, { 0,0,250,250 });
@@ -189,7 +213,7 @@ bool j1EntityManager::Update(float dt) {
 				App->render->RenderQueue(1, barracksTexture, mapWorldCoordinates.x - 125 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 250 + App->map->data.tile_height / 2, { 0,0,250,250 });
 			}
 			else if (hoveringEntityType == ENTITY_TYPE_HOUSE) {
-				App->render->RenderQueue(1, houseTexture, mapWorldCoordinates.x - 75 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 200 + App->map->data.tile_height / 2, { 0,0,150,200 });
+				App->render->RenderQueue(1, houseTexture, mapWorldCoordinates.x - 200 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 400 + App->map->data.tile_height / 2, { 0,0,400,400 });
 			}
 
 
@@ -374,49 +398,41 @@ bool j1EntityManager::Update(float dt) {
 											if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
 
 												(*checkAttackAnimation)->currentAnimation = &warriorAttackNorth;
-												Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 											}
 
 											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 												(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthEast;
-												Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 											}
 
 											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_EAST) {
 
 												(*checkAttackAnimation)->currentAnimation = &warriorAttackEast;
-												Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 											}
 
 											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 												(*checkAttackAnimation)->currentAnimation = &warriorAttackSouthEast;
-												Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 											}
 
 											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH) {
 
 												(*checkAttackAnimation)->currentAnimation = &warriorAttackSouth;
-												Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 											}
 
 											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 												(*checkAttackAnimation)->currentAnimation = &warriorAttackSouthWest;
-												Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 											}
 
 											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_WEST) {
 
 												(*checkAttackAnimation)->currentAnimation = &warriorAttackWest;
-												Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 											}
 
 											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 												(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthWest;
-												Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 											}
 										}
 										checkAttackAnimation++;
@@ -936,6 +952,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeUnits.push_back((Entity*)painter);
 			painter->isAlive = true;
 			painter->CreateEntityCollider(painter->pos);
+			painter->currentAnimation = &painterIdle;
 		}
 
 		else
@@ -954,6 +971,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeUnits.push_back((Entity*)warrior);
 			warrior->isAlive = true;
 			warrior->CreateEntityCollider(warrior->pos);
+			warrior->currentAnimation = &warriorIdle;
 		}
 
 		else

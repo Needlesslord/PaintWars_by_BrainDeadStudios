@@ -92,23 +92,21 @@ bool j1Player::Update(float dt)
 	p2List_item<j1UIElement*>* UI_List = App->gui->GUI_ELEMENTS.start;
 	while (UI_List != NULL)
 	{
-		LOG("UI COUNT IS %d", z);
 		if (z != 56) {
+			LOG("UI COUNT IS %d", z);
 			App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x;
 			App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y;
 		}
 		else {
-			/*App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->map_position.x+ App->render->camera.x * 0.05;
-			App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.y + camera_speed * 0.05;*/
+			App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x*0.05;
+			App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y*0.05;
 
 		}
+
+
 		UI_List = UI_List->next;
 		++z;
-
-
 	}
-
-	
 
 	Select_Entities(selector);
 	return true;
@@ -130,7 +128,6 @@ void j1Player::Camera_Control(float dt)
 			if (mouse_position.x == 0 && App->render->camera.x <= 3750)
 			{
 				App->render->camera.x += camera_speed * dt * 1000;
-
 			}
 
 			if (mouse_position.y == 0)
@@ -174,8 +171,8 @@ void j1Player::Camera_Control(float dt)
 
 			if (App->input->GetKey(SDL_SCANCODE_H) == KEY_REPEAT) {
 
-				App->render->camera.x = 575;
-				App->render->camera.y = -1200;
+				App->render->camera.x = 0;
+				App->render->camera.y = 0;
 			}
 		}
 
