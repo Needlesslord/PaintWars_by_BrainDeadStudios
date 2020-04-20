@@ -124,14 +124,6 @@ bool j1EntityManager::Update(float dt) {
 					(*checkForSpawningEntities)->spawnedBy->isSpawningAUnit = false;
 					(*checkForSpawningEntities)->isAlive = true;
 
-
-					if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_PAINTER)
-						(*checkForSpawningEntities)->currentAnimation = &painterIdle;
-
-					else if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_WARRIOR)
-						(*checkForSpawningEntities)->currentAnimation = &warriorIdle;
-
-
 					spawningEntities.erase(checkForSpawningEntities);
 				}
 
@@ -156,24 +148,8 @@ bool j1EntityManager::Update(float dt) {
 				}
 
 				else if ((*checkForSpawningEntities)->constructionProgress * constructionRate < (*checkForSpawningEntities)->constructionTime) {
-
-					fPoint tileWorld = App->map->MapToWorld((*checkForSpawningEntities)->currentTile.x, (*checkForSpawningEntities)->currentTile.y);
-
-					if ((*checkForSpawningEntities)->entitySize == ENTITY_SIZE_SMALL) {
-						
-						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,150,150 });
-					}
-
-					else if ((*checkForSpawningEntities)->entitySize == ENTITY_SIZE_MEDIUM) {
-
-						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,300,300 });
-					}
-
-					else if ((*checkForSpawningEntities)->entitySize == ENTITY_SIZE_BIG) {
-
-						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,450,450 });
-					}
-					
+							
+					App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,(*checkForSpawningEntities)->GetSize().x,(*checkForSpawningEntities)->GetSize().y });
 					(*checkForSpawningEntities)->constructionProgress += constructionRate * dt;
 				}
 			}
@@ -960,7 +936,6 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeUnits.push_back((Entity*)painter);
 			painter->isAlive = true;
 			painter->CreateEntityCollider(painter->pos);
-			painter->currentAnimation = &painterIdle;
 		}
 
 		else
@@ -979,7 +954,6 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeUnits.push_back((Entity*)warrior);
 			warrior->isAlive = true;
 			warrior->CreateEntityCollider(warrior->pos);
-			warrior->currentAnimation = &warriorIdle;
 		}
 
 		else

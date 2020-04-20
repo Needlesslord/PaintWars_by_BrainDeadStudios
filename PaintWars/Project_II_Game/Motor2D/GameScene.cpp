@@ -22,44 +22,38 @@
 #include "j1Player.h"
 
 
+
+
 /*
 DEBUG KEYS
-	 + F2/F3 Game Scene
-	 + F4 Save
-	 + F5 Load (Load function not functional yet)
-	 + F6 Full Screen
-	 + F7 Direct Win
-	 + F8 Direct Lose
-	 + F9 Collisions
-	 + F10 God Mode (add resources, buildings and units, can't lose, collisions)
-		resources
-		- 1 add 10 paint
-		- 2 add 10 wood
-		- 3 add 10 metal scrap -not implemented yet-
-		- 4 add 10 titanium -not implemented yet-
-		- 5 add 10 food -not implemented yet-
-		- 6 add 10 max housing
-		- 7 add 1 level of research (units will have the upgrades already)
-		units (on mouse position)
-		- KP 1 add painter
-		- KP 2 add warrior
-		- KP 3 add ranged -not implemented yet-
-		- KP 4 add tank -not implemented yet-
-		- KP 5 add explorer -not implemented yet-
-		- KP 0 kill selected units
-		buildings (on mouse position)
-		- Crtl + KP 1 add paint extractor
-		- Crtl + KP 2 add wood producer
-		- Crtl + KP 3 add barracks
-		- Crtl + KP 4 add house
-		- Crtl + KP 0 kill selected buildings
-	 + H Go to Town Hall
-	 + P Pause
-	 + S/L Save/Load (only save implemented)
-	 + ESC exit game (not in game scene)
-	 + N/M/R Zoom In/Out/Reset
-	 + KP MINUS/KP PLUS Control Framerate (+/- 10)
-		 + UP/DOWN/LEFT/RIGHT Camera movement
+
+H- POSITION 0,0
+F9- COLLIDERS
+F1- TILE MOUSE
+ENTER- GAME SCENE
+P- PAUSE
+KP MINUS/MP PLUS- CONTROL FRAMERATE (+/- 10)
+UP/DOWN/LEFT/RIGHT- CAMERA MOVEMENT
+N/M/R- ZOOM IN/OUT/RESET
+ESC- EXIT GAME
+S/L- SAVE/LOAD
+T-
+
+F6- FULLSCREEN
+F7/F8- DIRECT WIN/LOSE
+
+
+GAME:
+A- CREATE TOWN HALL
+B- CREATE PAINTER
+
+
+
+LOSE:
+SPACE- MAIN MENU
+
+
+
 */
 
 GameScene::GameScene() : Scene(SCENES::GAME_SCENE)
@@ -85,6 +79,7 @@ bool GameScene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool GameScene::Start()
 {
+	
 	bool ret = true;
 	
 
@@ -105,13 +100,13 @@ bool GameScene::Start()
 
 	}
 
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{ 42, 42 }, App->entities, nullptr, 0, true);
+	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{ 42, 42 }, App->entities, nullptr, 10, true);
 	/*App->entities->AddEntity(ENTITY_TYPE_WOOD_PRODUCER,		{ 18, 18 }, App->entities, nullptr,  0, true);*/
 	/*App->entities->AddEntity(ENTITY_TYPE_BARRACKS,			{ 11,  6 }, App->entities, nullptr,  0, true);*/
 
-	App->entities->AddEntity(ENTITY_TYPE_PAINTER,			{  45,  40 }, App->entities, nullptr,  0, true);
+	App->entities->AddEntity(ENTITY_TYPE_PAINTER,			{  45,  40 }, App->entities, nullptr,  5, true);
 
-	//App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { 45,  30 }, App->entities, nullptr, 0, true);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { 45,  30 }, App->entities, nullptr, 10, true);
 
 	/*App->entities->AddEntity(ENTITY_TYPE_SLIME,				{ 20, 40 }, App->entities, nullptr,  0, true);*/
 	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 40, 20 }, App->entities, nullptr, 0, true);
@@ -357,7 +352,7 @@ bool GameScene::Start()
 	miniMapMINI->click_rect = { 30, 15, 422,210 };
 	miniMapMINI->hover_rect = { 30, 15, 422,210 };
 
-	miniMapCamera = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1025, 500 }, { 0 , 0 }, false, true, { 0, 0, 70, 36 }, nullptr, nullptr, TEXTURE::MINIMAP_CAMERA);
+	miniMapCamera = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1600, -625 }, { 0 , 0 }, false, true, { 0, 0, 70, 36 }, nullptr, nullptr, TEXTURE::MINIMAP_CAMERA);
 
 	miniMapBack = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0 , 0 }, { 0 , 0 }, false, false, { 0, 0, 1800, 1300 }, nullptr, nullptr,  TEXTURE::MINIMAP_BACK_SPRITE);
 
@@ -368,21 +363,22 @@ bool GameScene::Start()
 
 	//Buildings
 
-	upgradePainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, false, { 130, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradePainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, true, { 130, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradePainterButton->hover_rect = { 390, 1966, 65, 82 };
 	upgradePainterButton->click_rect = { 750, 1966, 65, 82 };
-	buyPainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 260, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyPainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, true, { 260, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyPainterButton->hover_rect = { 520, 1966, 65, 82 };
 	buyPainterButton->click_rect = { 780, 1966, 65, 82 };
-	upgradeWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, false, { 195, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradeWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, true, { 195, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradeWarriorButton->hover_rect = { 455, 1966, 65, 82 };
 	upgradeWarriorButton->click_rect = { 715, 1966, 65, 82 };
-	buyWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, true, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyWarriorButton->hover_rect = { 585, 1966, 65, 82 };
 	buyWarriorButton->click_rect = { 845, 1966, 65, 82 };
 	
 
-	
+
+
 
 	//////////////////
 	//	RESOURCES	//
@@ -458,6 +454,8 @@ bool GameScene::PreUpdate()
 		}
 	}
 
+	miniMapMINI->map_position.x;
+	miniMapMINI->map_position.y;
 
 
 	return ret;
@@ -550,71 +548,25 @@ bool GameScene::Update(float dt)
 	
 	
 	
-	if (App->entities->entitiesSelected.size() == 1) {
-
-		list<Entity*>::iterator showHp = App->entities->entitiesSelected.begin();
-		int hp = (*showHp)->GetCurrLife();
-		int maxHp = (*showHp)->GetMaxLife();
-
-		static char conversor[256];
-		sprintf_s(conversor, 256, "%d %d", hp, maxHp);
-		EntityHP->text = conversor;
-	}
-	else {
-
-		static char conversor2[256];
-		sprintf_s(conversor2, 256, " ");
-		EntityHP->text = conversor2;
-	}
-	
-
 
 
 	// If only the TH is selected enable the button
 	list<Entity*>::iterator onlyTownhallSelected = App->entities->buildingsSelected.begin();
 	if (App->entities->buildingsSelected.size() == 1 && (*onlyTownhallSelected)->entityType == ENTITY_TYPE_TOWN_HALL) {
-
 		buyPainterButton->enabled = true;
-		if (!App->entities->paintersUpgraded)
-			upgradePainterButton->enabled = true;
-
-		shopImage->enabled = false;
-		shopLabel->enabled = false;
-		buyWoodProducerButton->enabled = false;
-		buyPaintExtractorButton->enabled = false;
-		buyBarrackButton->enabled = false;
-		buyHouseButton->enabled = false;
-		upgradeWoodProducerButton->enabled = false;
-		upgradePaintExtractorButton->enabled = false;
 	}
-	else {
+	else
 		buyPainterButton->enabled = false;
-		upgradePainterButton->enabled = false;
-	}
 
 
 
 	// If only the Barracks is selected enable the button
 	list<Entity*>::iterator onlyBarracksSelected = App->entities->buildingsSelected.begin();
 	if (App->entities->buildingsSelected.size() == 1 && (*onlyTownhallSelected)->entityType == ENTITY_TYPE_BARRACKS) {
-
 		buyWarriorButton->enabled = true;
-		if (!App->entities->warriorsUpgraded)
-			upgradeWarriorButton->enabled = true;
-
-		shopImage->enabled = false;
-		shopLabel->enabled = false;
-		buyWoodProducerButton->enabled = false;
-		buyPaintExtractorButton->enabled = false;
-		buyBarrackButton->enabled = false;
-		buyHouseButton->enabled = false;
-		upgradeWoodProducerButton->enabled = false;
-		upgradePaintExtractorButton->enabled = false;
 	}
-	else {
+	else
 		buyWarriorButton->enabled = false;
-		upgradeWarriorButton->enabled = false;
-	}
 
 
 
@@ -666,11 +618,12 @@ bool GameScene::PostUpdate()
 		}
 	}
 
-	miniMapCamera->map_position.x = miniMapCamera->init_map_position.x+App->render->camera.x*-0.05;
-	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*-0.05;
+	//miniMapCamera->map_position.x = miniMapCamera->init_map_position.x  +App->render->camera.x*-0.005;
+	//miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*-0.005;
 
+	App->gui->GUI_ELEMENTS.find(miniMapCamera);
 	
-	
+	 
 
 	WIN_LOSE_Manager();
 
@@ -778,18 +731,8 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		buyPaintExtractorButton->enabled = !buyPaintExtractorButton->enabled;
 		buyBarrackButton->enabled = !buyBarrackButton->enabled;
 		buyHouseButton->enabled = !buyHouseButton->enabled;
-
-		if (!App->entities->woodProducersUpgraded && !upgradeWoodProducerButton->enabled)
-			upgradeWoodProducerButton->enabled = true;
-		else if(!App->entities->woodProducersUpgraded && upgradeWoodProducerButton->enabled)
-			upgradeWoodProducerButton->enabled = false;
-
-
-		if (!App->entities->paintExtractorUpgraded && !upgradePaintExtractorButton->enabled)
-			upgradePaintExtractorButton->enabled = true;
-		else if (!App->entities->paintExtractorUpgraded && upgradePaintExtractorButton->enabled)
-			upgradePaintExtractorButton->enabled = false;
-
+		upgradeWoodProducerButton->enabled = !upgradeWoodProducerButton->enabled;
+		upgradePaintExtractorButton->enabled = !upgradePaintExtractorButton->enabled;
 	}
 
 	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_ONCLICK) {
@@ -851,88 +794,6 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			Mix_PlayChannel(-1, App->audio->buy1_sound, 0);
 		}
 	}
-
-	if (element == upgradePaintExtractorButton && type == GUI_Event::EVENT_ONCLICK) {
-
-		if (App->player->paintCount.count >= 200) {
-
-			App->player->paintCount.count -= 200;
-			list<Entity*>::iterator upgradeAllPaintExtractor = App->entities->activeBuildings.begin();
-			while (upgradeAllPaintExtractor != App->entities->activeBuildings.end()) {
-
-				if ((*upgradeAllPaintExtractor)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
-
-					(*upgradeAllPaintExtractor)->extractionRate *= 1.33f;
-				}
-				upgradeAllPaintExtractor++;
-			}
-			upgradePaintExtractorButton->enabled = false;
-			App->entities->paintExtractorUpgraded = true;
-		}
-	}
-
-	if (element == upgradeWoodProducerButton && type == GUI_Event::EVENT_ONCLICK) {
-
-		if (App->player->paintCount.count >= 200) {
-
-			App->player->paintCount.count -= 200;
-			list<Entity*>::iterator upgradeAllWoodProducers = App->entities->activeBuildings.begin();
-			while (upgradeAllWoodProducers != App->entities->activeBuildings.end()) {
-
-				if ((*upgradeAllWoodProducers)->entityType == ENTITY_TYPE_WOOD_PRODUCER) {
-					(*upgradeAllWoodProducers)->SetMaxLife((*upgradeAllWoodProducers)->GetMaxLife()*1.5);
-					(*upgradeAllWoodProducers)->SetCurrLife((*upgradeAllWoodProducers)->GetMaxLife());
-				}
-				upgradeAllWoodProducers++;
-			}
-			upgradeWoodProducerButton->enabled = false;
-			App->entities->woodProducersUpgraded = true;
-		}
-	}
-
-	//Townhall shop
-
-	if (element == buyPainterButton && type == GUI_Event::EVENT_ONCLICK) {
-		list<Entity*>::iterator onlyTownhallSelected = App->entities->buildingsSelected.begin();
-		(*onlyTownhallSelected)->SpawnEntity();
-	}
-	else if (element == upgradePainterButton && type == GUI_Event::EVENT_ONCLICK) {
-
-		if (App->player->paintCount.count >= 200) {
-
-			App->player->paintCount.count -= 200;
-			list<Entity*>::iterator upgradeAllPainters = App->entities->activeUnits.begin();
-			while (upgradeAllPainters != App->entities->activeUnits.end()) {
-
-				(*upgradeAllPainters)->extractionRate *= 1.33f;
-				upgradeAllPainters++;
-			}
-			App->entities->paintersUpgraded = true;
-		}
-	}
-
-
-	//Barracks shop
-
-	if (element == buyWarriorButton && type == GUI_Event::EVENT_ONCLICK) {
-		list<Entity*>::iterator onlyBarracksSelected = App->entities->buildingsSelected.begin();
-		(*onlyBarracksSelected)->SpawnEntity();
-	}
-	else if (element == upgradeWarriorButton && type == GUI_Event::EVENT_ONCLICK) {
-
-		if (App->player->paintCount.count >= 200) {
-
-			App->player->paintCount.count -= 200;
-			list<Entity*>::iterator upgradeAllWarriors = App->entities->activeUnits.begin();
-			while (upgradeAllWarriors != App->entities->activeUnits.end()) {
-
-				(*upgradeAllWarriors)->attackDamage *= 1.5f;
-				upgradeAllWarriors++;
-			}
-			App->entities->warriorsUpgraded = true;
-		}
-	}
-
 
 	//Pause Menu
 
@@ -1175,14 +1036,14 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	}
 
 
-
+	ManageMinimap();
 }
 
 void GameScene::ManageMinimap()
 {
-	float CameraSpeed_Minimap = -0.05;
-	miniMapCamera->map_position.x = miniMapCamera->init_map_position.x + App->render->camera.x*CameraSpeed_Minimap;
-	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*CameraSpeed_Minimap;
+	float CameraSpeed_Minimap = 995;
+	/*miniMapCamera->map_position.x = miniMapCamera->init_map_position.x + App->render->camera.x*CameraSpeed_Minimap;
+	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*CameraSpeed_Minimap;*/
 }
 
 void GameScene::InitScene()
@@ -1398,16 +1259,3 @@ void GameScene::WIN_LOSE_Manager()
 	if (!anyTownhallActive)
 		App->entities->TriggerEndGame(false);
 }
-
-
-
-//bool EntityInCamera(Entity* entity) {
-//
-//	bool ret = true;
-//
-//	if (entity->pos.x < App->render->camera.x || entity->pos.x > App->render->camera.x + 720 || entity->pos.y < App->render->camera.y || entity->pos.y < App->render->camera.y + 1280) {
-//		ret = false;
-//	}
-//  
-//	return ret;
-//}

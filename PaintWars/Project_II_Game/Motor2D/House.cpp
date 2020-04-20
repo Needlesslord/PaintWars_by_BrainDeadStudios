@@ -15,7 +15,7 @@ House::House(iPoint tile, int damage, j1Module* listener, Entity* creator) : Ent
 	// Handle data and initialize the House
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_HOUSE;
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_STATIC_ENTITY;
-	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_BIG;
+	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_SMALL;
 
 	maxLife = 100;
 	currLife = maxLife - damage;

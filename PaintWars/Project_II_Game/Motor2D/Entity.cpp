@@ -21,6 +21,7 @@ Entity::Entity(iPoint tile, int damage, j1Module* listeners, Entity* creator) : 
 	isOnTheMove = false;
 	isAlive = true;
 	spawningProgress = 0;
+
 }
 
 Entity::~Entity() {
@@ -377,7 +378,7 @@ void Entity::SetDestination(iPoint des) {
 	this->destination = des;
 }
 
-void Entity::SpawnEntity() {}
+void Entity::SpawnEntity(iPoint pos) {}
 
 void Entity::ExtractPaint(float dt) {}
 

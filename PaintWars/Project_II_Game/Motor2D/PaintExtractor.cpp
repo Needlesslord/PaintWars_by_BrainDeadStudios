@@ -9,7 +9,6 @@
 #include "j1Collision.h"
 #include "j1Pathfinding.h"
 #include "j1Textures.h"
-#include "j1EntityManager.h"
 
 PaintExtractor::PaintExtractor(iPoint tile, int damage, j1Module* listener, Entity* creator) : Entity(tile, damage, listener, creator) {
 
@@ -32,8 +31,6 @@ PaintExtractor::PaintExtractor(iPoint tile, int damage, j1Module* listener, Enti
 	constructionTime = 10.0f;
 
 	extractionRate = 5.0f;
-	if (App->entities->paintExtractorUpgraded)
-		extractionRate *= 1.33f;
 
 	isEntityFromPlayer = true;
 }

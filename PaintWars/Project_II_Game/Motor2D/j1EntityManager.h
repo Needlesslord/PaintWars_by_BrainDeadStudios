@@ -94,11 +94,6 @@ public:
 	bool isSelectingPlacement = false;
 	ENTITY_TYPE hoveringEntityType = ENTITY_TYPE::ENTITY_TYPE_NONE;
 
-	bool warriorsUpgraded = false;
-	bool paintersUpgraded = false;
-	bool paintExtractorUpgraded = false;
-	bool woodProducersUpgraded = false;
-
 protected:
 
 		// Allies
