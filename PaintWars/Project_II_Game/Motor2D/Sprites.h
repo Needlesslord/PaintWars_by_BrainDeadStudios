@@ -17,6 +17,7 @@ Animation warriorMovingSouthWest;
 
 void WarriorSprites()
 {
+
 	//Idle 
 	warriorIdle.PushBack({ 945, 0, 76, 148 });
 	warriorIdle.PushBack({ 1021, 0, 76, 148 });
@@ -115,90 +116,6 @@ Animation painterMovingSouthWest;
 
 void PainterSprites()
 {
-	////Idle
-	//painterIdle.PushBack({ 1272, 0, 106, 222 });
-	//painterIdle.PushBack({ 1378, 0, 106, 222 });
-	//painterIdle.speed = 50.0f;
-
-
-	////MOVING
-
-	////Moving Right
-	//painterMovingEast.PushBack({ 0, 222, 106, 222 });
-	//painterMovingEast.PushBack({ 106, 222, 106, 222 });
-	//painterMovingEast.PushBack({ 212, 222, 106, 222 });
-	//painterMovingEast.PushBack({ 318, 222, 106, 222 });
-	//painterMovingEast.PushBack({ 424, 222, 106, 222 });
-	//painterMovingEast.PushBack({ 530, 222, 106, 222 });
-	//painterMovingEast.speed = 500.0f;
-
-	////Moving Left
-	//painterMovingWest.PushBack({ 636, 222, 106, 222 });
-	//painterMovingWest.PushBack({ 742, 222, 106, 222 });
-	//painterMovingWest.PushBack({ 848, 222, 106, 222 });
-	//painterMovingWest.PushBack({ 954, 222, 106, 222 });
-	//painterMovingWest.PushBack({ 1060, 222, 106, 222 });
-	//painterMovingWest.PushBack({ 1166, 222, 106, 222 });
-	//painterMovingWest.speed = 500.0f;
-
-	////Moving RightBack
-	//painterMovingNorthEast.PushBack({ 0, 444, 106, 222 });
-	//painterMovingNorthEast.PushBack({ 106, 444, 106, 222 });
-	//painterMovingNorthEast.PushBack({ 212, 444, 106, 222 });
-	//painterMovingNorthEast.PushBack({ 318, 444, 106, 222 });
-	//painterMovingNorthEast.PushBack({ 424, 444, 106, 222 });
-	//painterMovingNorthEast.PushBack({ 530, 444, 106, 222 });
-	//painterMovingNorthEast.speed = 500.0f;
-
-	////Moving LeftBack
-	//painterMovingNorthWest.PushBack({ 636, 444, 106, 222 });
-	//painterMovingNorthWest.PushBack({ 742, 444, 106, 222 });
-	//painterMovingNorthWest.PushBack({ 848, 444, 106, 222 });
-	//painterMovingNorthWest.PushBack({ 954, 444, 106, 222 });
-	//painterMovingNorthWest.PushBack({ 1060, 444, 106, 222 });
-	//painterMovingNorthWest.PushBack({ 1166, 444, 106, 222 });
-	//painterMovingNorthWest.speed = 500.0f;
-
-
-	////Moving RightFront
-	//painterMovingSouthEast.PushBack({ 0, 666, 106, 222 });
-	//painterMovingSouthEast.PushBack({ 106, 666, 106, 222 });
-	//painterMovingSouthEast.PushBack({ 212, 666, 106, 222 });
-	//painterMovingSouthEast.PushBack({ 318, 666, 106, 222 });
-	//painterMovingSouthEast.PushBack({ 424, 666, 106, 222 });
-	//painterMovingSouthEast.PushBack({ 530, 666, 106, 222 });
-	//painterMovingSouthEast.speed = 500.0f;
-
-	////Moving LeftFront
-	//painterMovingSouthWest.PushBack({ 636, 666, 106, 222 });
-	//painterMovingSouthWest.PushBack({ 742, 666, 106, 222 });
-	//painterMovingSouthWest.PushBack({ 848, 666, 106, 222 });
-	//painterMovingSouthWest.PushBack({ 954, 666, 106, 222 });
-	//painterMovingSouthWest.PushBack({ 1060, 666, 106, 222 });
-	//painterMovingSouthWest.PushBack({ 1166, 666, 106, 222 });
-	//painterMovingSouthWest.speed = 500.0f;
-
-	////Moving Back
-	//painterMovingNorth.PushBack({ 0, 888, 106, 222 });
-	//painterMovingNorth.PushBack({ 106, 888, 106, 222 });
-	//painterMovingNorth.PushBack({ 212, 888, 106, 222 });
-	//painterMovingNorth.PushBack({ 318, 888, 106, 222 });
-	//painterMovingNorth.PushBack({ 424, 888, 106, 222 });
-	//painterMovingNorth.PushBack({ 530, 888, 106, 222 });
-	//painterMovingNorth.speed = 500.0f;
-
-	////Moving Front
-	//painterMovingSouth.PushBack({ 636, 888, 106, 222 });
-	//painterMovingSouth.PushBack({ 742, 888, 106, 222 });
-	//painterMovingSouth.PushBack({ 848, 888, 106, 222 });
-	//painterMovingSouth.PushBack({ 954, 888, 106, 222 });
-	//painterMovingSouth.PushBack({ 1060, 888, 106, 222 });
-	//painterMovingSouth.PushBack({ 1166, 888, 106, 222 });
-	//painterMovingSouth.speed = 500.0f;
-
-
-
-
 
 
 
