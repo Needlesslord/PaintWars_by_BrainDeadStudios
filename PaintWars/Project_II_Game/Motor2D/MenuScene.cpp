@@ -11,6 +11,7 @@
 #include "MenuScene.h"
 #include "TransitionManager.h"
 #include "j1Audio.h"
+#include "j1Player.h"
 
 MenuScene::MenuScene() : Scene(SCENES::MENU_SCENE)
 {
@@ -97,6 +98,8 @@ bool MenuScene::Update(float dt)
 bool MenuScene::PostUpdate()
 {
 	bool ret = true;
+
+	App->player->Mouse_Cursor();
 
 	if ( exit)
 		ret = false;

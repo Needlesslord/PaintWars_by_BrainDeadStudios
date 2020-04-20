@@ -19,6 +19,7 @@
 #include <iostream>
 #include <sstream>
 #include "Brofiler/Brofiler.h"
+#include "j1Player.h"
 
 
 
@@ -626,6 +627,8 @@ bool GameScene::PostUpdate()
 	WIN_LOSE_Manager();
 
 	ExecuteTransition();
+		
+	App->player->Mouse_Cursor();
 
 	return ret;
 }

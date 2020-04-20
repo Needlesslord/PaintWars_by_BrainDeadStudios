@@ -13,6 +13,7 @@
 #include "j1Audio.h"
 #include "SDL_mixer\include\SDL_mixer.h"
 #include "j1EntityManager.h"
+#include "j1Player.h"
 
 WinScene::WinScene() : Scene(SCENES::WIN_SCENE)
 {
@@ -83,6 +84,7 @@ bool WinScene::Update(float dt)
 // Called each loop iteration
 bool WinScene::PostUpdate()
 {
+	App->player->Mouse_Cursor();
 	bool ret = true;
 
 	if (exit)

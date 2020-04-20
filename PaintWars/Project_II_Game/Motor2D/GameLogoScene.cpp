@@ -12,6 +12,7 @@
 #include "TransitionManager.h"
 #include "SDL_mixer\include\SDL_mixer.h"
 #include "j1Audio.h"
+#include "j1Player.h"
 
 GameLogoScene::GameLogoScene() : Scene(SCENES::GAME_LOGO_SCENE)
 {
@@ -73,7 +74,7 @@ bool GameLogoScene::Update(float dt)
 		App->audio->Click_Logo_Sound;  /*Mix_VolumeChunk(Click_Logo_Sound, 50);*/
 		App->scenes->SwitchScene(SCENES::MENU_SCENE);
 	}
-
+	App->player->Mouse_Cursor();
 
 
 
