@@ -220,26 +220,19 @@ fPoint j1Render::ScreenToWorld(float x, float y) const
 //Created by DOLIME CORPORATION (https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II) / All code related to rendering queues belongs to them!
 void j1Render::RenderQueue(int layer, SDL_Texture* texture, int x, int y, const SDL_Rect section, bool fliped, bool ui, float speed, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
-	const SDL_Rect* Point_Section = &section;
-
-
-	//BlitEvent WantToBlit{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
+	BlitEvent WantToBlit{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
 	
 	//This uses culling to know if it has to be blited or not
 	if (texture != nullptr)
 	{
 		 if (x > (-camera.x / App->win->GetScale()) - 220 && x < ((-camera.x + camera.w) / App->win->GetScale()) + 100 && y >(-camera.y / App->win->GetScale()) - 150 && y < ((-camera.y + camera.h) / App->win->GetScale()) + 100) {
-			
-			 //OrderToBlit.insert(make_pair(layer, WantToBlit));
-
-			 Blit(texture, x, y, Point_Section, fliped, ui, speed);
+			 OrderToBlit.insert(make_pair(layer, WantToBlit));
 		}
 	}
 	else
 	{
 		if (section.x > (-camera.x / App->win->GetScale()) - 220 && section.x < (-camera.x + camera.w) / App->win->GetScale() && section.y >(-camera.y / App->win->GetScale()) - 150 && section.y < (-camera.y + camera.h) / App->win->GetScale()) {
-			//OrderToBlit.insert(make_pair(layer, WantToBlit));
-			Blit(texture, x, y, Point_Section, fliped, ui, speed);
+			OrderToBlit.insert(make_pair(layer, WantToBlit));
 		}
 	}
 
@@ -248,11 +241,9 @@ void j1Render::RenderQueue(int layer, SDL_Texture* texture, int x, int y, const 
 void j1Render::RenderQueueUI(int layer, SDL_Texture* texture, int x, int y, const SDL_Rect section, bool fliped, bool ui, float speed, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
 	//No culling checked in UI because it moves with the camera
-	//BlitEvent WantToBlitUI{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
-	const SDL_Rect* Point_Section = &section;
+	BlitEvent WantToBlitUI{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
 
-	Blit(texture, x, y, Point_Section, fliped, ui, speed);
-	//OrderToBlit.insert(make_pair(layer, WantToBlitUI));
+	OrderToBlit.insert(make_pair(layer, WantToBlitUI));
 	
 	}
 

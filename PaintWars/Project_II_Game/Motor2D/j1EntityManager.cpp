@@ -672,7 +672,6 @@ bool j1EntityManager::PostUpdate() {
 		checkForDeadEntities++;
 	}
 
-	App->player->Mouse_Cursor();
 	return ret;
 }
 

@@ -165,7 +165,7 @@ bool GameScene::Start()
 	
 	
 	//HUD - Bar
-	hudBarImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr,{ 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
+	hudBarImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
 	paintLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 100 , 10 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 },"0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
 	woodLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 200 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
 	metalLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 300 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
@@ -490,7 +490,6 @@ bool GameScene::PostUpdate()
 
 	ExecuteTransition();
 
-	
 	return ret;
 }
 
