@@ -264,6 +264,12 @@ bool GameScene::Start()
 	buyHouseButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyHouseButton->hover_rect = { 0, 1966, 65, 82 };
 	buyHouseButton->click_rect = { 65, 1966, 65, 82 };
+	upgradeWoodProducerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 567 }, { 0,0 }, true, true, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradeWoodProducerButton->hover_rect = { 0, 1966, 65, 82 };
+	upgradeWoodProducerButton->click_rect = { 65, 1966, 65, 82 };
+	upgradePaintExtractorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 567 }, { 0,0 }, true, true, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradePaintExtractorButton->hover_rect = { 0, 1966, 65, 82 };
+	upgradePaintExtractorButton->click_rect = { 65, 1966, 65, 82 };
 
 
 
