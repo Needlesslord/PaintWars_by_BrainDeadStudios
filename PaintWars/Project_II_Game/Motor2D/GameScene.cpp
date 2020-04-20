@@ -100,14 +100,12 @@ bool GameScene::Start()
 	}
 
 	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{ 45, 45 }, App->entities, nullptr, 10, true);
-	App->entities->AddEntity(ENTITY_TYPE_WOOD_PRODUCER,		{ 18, 18 }, App->entities, nullptr,  0, true);
-	App->entities->AddEntity(ENTITY_TYPE_BARRACKS,			{ 11,  6 }, App->entities, nullptr,  0, true);
+	/*App->entities->AddEntity(ENTITY_TYPE_WOOD_PRODUCER,		{ 18, 18 }, App->entities, nullptr,  0, true);*/
+	/*App->entities->AddEntity(ENTITY_TYPE_BARRACKS,			{ 11,  6 }, App->entities, nullptr,  0, true);*/
 
-	App->entities->AddEntity(ENTITY_TYPE_PAINTER,			{  1,  5 }, App->entities, nullptr,  5, true);
+	App->entities->AddEntity(ENTITY_TYPE_PAINTER,			{  45,  40 }, App->entities, nullptr,  5, true);
 
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  5,  4 }, App->entities, nullptr, 10, true);
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  5,  7 }, App->entities, nullptr,  0, true);
-	App->entities->AddEntity(ENTITY_TYPE_WARRIOR,			{  5, 10 }, App->entities, nullptr,  0, true);
+	App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { 45,  30 }, App->entities, nullptr, 10, true);
 
 	App->entities->AddEntity(ENTITY_TYPE_SLIME,				{ 10, 10 }, App->entities, nullptr,  0, true);
 	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 12, 14 }, App->entities, nullptr, 0, true);
@@ -409,18 +407,28 @@ bool GameScene::Update(float dt)
 	transformer1.x = worldCoordinates.x; transformer1.y = worldCoordinates.y;
 	transformer2.x = xy.x; transformer2.y = xy.y;
 
+	int seconds = App->player->gameTimer.ReadSec();
+	int minutes = 0;
+	for (int i = 0; i < 17; i++) {
+		if (seconds > 59) {
+			seconds -= 60;
+			if (minutes == i) 
+				minutes++;
+		}
+	}
+
 	static char title[256];
-	sprintf_s(title, 256, "Paint:%f, Wood:%f, Housing:%f/%f;      Time:%f      Tile:%d,%d;      WorldPosition:%d,%d;      MouseWorldPosition:%d,%d,      DT is: %f",
+	sprintf_s(title, 256, "Paint:%f, Wood:%f, Housing:%f/%f;      Time:%d:%d      Tile:%d,%d;      WorldPosition:%d,%d;      MouseWorldPosition:%d,%d,      DT is: %f",
 		App->player->paintCount.count, App->player->woodCount.count,
 		App->player->housingSpace.count, App->player->housingSpace.maxCount,
-		App->player->gameTimer.ReadSec()/60, 
+		minutes, seconds,
 		map_coordinates.x, map_coordinates.y,
 		transformer1.x, transformer1.y,
 		transformer2.x, transformer2.y,dt);
 
 	App->win->SetTitle(title);
 
-	if ((App->player->gameTimer.ReadSec()/60)>=15) {
+	if ((App->player->gameTimer.ReadSec() / 60) >= 15.0f) {
 		App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 1.0f, true);
 
 	}

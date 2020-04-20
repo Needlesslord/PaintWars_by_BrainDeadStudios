@@ -61,6 +61,8 @@ public:
 	Mix_Chunk* Transition_Sound;
 
 
+	bool logoSound;
+
 
 private:
 

@@ -37,6 +37,7 @@ public:
 	j1UIElement* gameLogoButton = nullptr;
 	j1UIElement* lettersLogoStart = nullptr;
 
+
 };
 
 #endif // __FIRSTSCENE_H__

@@ -5,6 +5,7 @@
 #include <list>
 #include "SDL/include/SDL.h"
 #include "SDL_mixer\include\SDL_mixer.h"
+#include "j1SceneManager.h"
 #pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
 
 using namespace std;
@@ -81,7 +82,7 @@ bool j1Audio::Awake(pugi::xml_node& config)
 	VolumeMusic = 5;
 	Mix_VolumeMusic(VolumeMusic);
 
-
+	logoSound = false;
 
 	return ret;
 }
@@ -211,7 +212,14 @@ bool j1Audio::Load(pugi::xml_node& save) {
 void j1Audio::ChunkAudioManager()
 {
 	Mix_VolumeChunk(Click_Button_Sound, 10);
-	Mix_VolumeChunk(Click_Logo_Sound, 50);
+	
+	//if (!logoSound) {
+	//	Mix_VolumeChunk(Click_Logo_Sound, 50);
+	//	logoSound = true;
+	//}
+	//else {
+	//	Mix_VolumeChunk(Click_Logo_Sound, 0);
+	//}
 }
 
 bool j1Audio::Save(pugi::xml_node& save) const {
