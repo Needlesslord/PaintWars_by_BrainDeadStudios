@@ -118,6 +118,13 @@ bool j1Audio::Awake(pugi::xml_node& config)
 
 	}
 
+	woodProducer_sound = Mix_LoadWAV("audio/fx/woodProducer_fx.wav");
+	if (woodProducer_sound == NULL)
+	{
+		LOG("Audio Wood Producer IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
 	spawnFromHall = Mix_LoadWAV("audio/fx/advancement_fx.wav");
 	if (spawnFromHall == NULL)
 	{
@@ -143,6 +150,13 @@ bool j1Audio::Awake(pugi::xml_node& config)
 	if (braindead_sound == NULL)
 	{
 		LOG("Audio Braindead IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
+	paintExtractor_sound = Mix_LoadWAV("audio/fx/extractPaint.wav");
+	if (paintExtractor_sound == NULL)
+	{
+		LOG("Audio Paint Extractor IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
 
 	}
 
@@ -282,17 +296,19 @@ bool j1Audio::Load(pugi::xml_node& save) {
 void j1Audio::ChunkAudioManager()
 {
 	Mix_VolumeChunk(Click_Button_Sound, 10);
-	Mix_VolumeChunk(walkingPainter_sound, 4);
+	Mix_VolumeChunk(walkingPainter_sound, 6);
 	Mix_VolumeChunk(walkingWarrior_sound, 6);
-	Mix_VolumeChunk(WarriorAttack_Sound, 5);
+	Mix_VolumeChunk(WarriorAttack_Sound, 8);
 	Mix_VolumeChunk(buy1_sound, 6);
 	Mix_VolumeChunk(buy2_sound, 6);
 	Mix_VolumeChunk(spawnFromHall, 5);
 	Mix_VolumeChunk(time_sound, 5);
 	Mix_VolumeChunk(Spawner_Destroyed, 7);
 	Mix_VolumeChunk(birds_sound, 1);
-	Mix_VolumeChunk(crickets_sound, 2);
+	Mix_VolumeChunk(crickets_sound, 1);
 	Mix_VolumeChunk(braindead_sound, 50);
+	Mix_VolumeChunk(paintExtractor_sound, 6);
+	Mix_VolumeChunk(woodProducer_sound, 6);
 	
 	//if (!logoSound) {
 	//	Mix_VolumeChunk(Click_Logo_Sound, 50);

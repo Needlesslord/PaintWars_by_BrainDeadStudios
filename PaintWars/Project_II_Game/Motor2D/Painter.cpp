@@ -2,7 +2,7 @@
 #include "p2Log.h"
 
 #include "Painter.h"
-
+#include "SDL_mixer/include/SDL_mixer.h"
 #include "j1Player.h"
 #include "Scene.h"
 #include "j1EntityManager.h"
@@ -54,6 +54,7 @@ void Painter::ExtractPaint(float dt) {
 
 	if (App->pathfinding->IsPaintShore(currentTile) && currentTile == destination) {
 		App->player->paintCount.count += 0.01;
+		Mix_PlayChannel(-1, App->audio->paintExtractor_sound, 0);
 	}
 }
 
@@ -63,6 +64,7 @@ void Painter::ExtractWood(float dt) {
 	if (App->pathfinding->IsWood(currentTile) && currentTile == destination) {
 		//App->player->woodCount.count += 0.01;
 		App->player->woodCount.count += extractionRate*dt;
+		Mix_PlayChannel(-1, App->audio->woodProducer_sound, 0);
 	}
 }
 

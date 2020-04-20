@@ -398,41 +398,49 @@ bool j1EntityManager::Update(float dt) {
 											if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
 
 												(*checkAttackAnimation)->currentAnimation = &warriorAttackNorth;
+												Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 											}
 
 											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 												(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthEast;
+												Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 											}
 
 											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_EAST) {
 
 												(*checkAttackAnimation)->currentAnimation = &warriorAttackEast;
+												Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 											}
 
 											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 												(*checkAttackAnimation)->currentAnimation = &warriorAttackSouthEast;
+												Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 											}
 
 											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH) {
 
 												(*checkAttackAnimation)->currentAnimation = &warriorAttackSouth;
+												Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 											}
 
 											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 												(*checkAttackAnimation)->currentAnimation = &warriorAttackSouthWest;
+												Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 											}
 
 											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_WEST) {
 
 												(*checkAttackAnimation)->currentAnimation = &warriorAttackWest;
+												Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 											}
 
 											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 												(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthWest;
+												Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 											}
 										}
 										checkAttackAnimation++;
