@@ -1,4 +1,4 @@
-﻿# PAINT WARS
+# PAINT WARS
 ## by BrainDead Studios
 
 ## Description
@@ -17,7 +17,7 @@ In a world full of colour, a corruption spread, turning everything monochromatic
  - GENERAL
      + Logo for the team
      + Logo for the game
-     + FX for the Game Logo
+     + FX for the Game Logo and Team Logo
      + Social Media Updated
      + Animations
      + Game resoulution at 1280x720px@60fps (Window and Full Screen supported)
@@ -59,37 +59,60 @@ In a world full of colour, a corruption spread, turning everything monochromatic
  - AUDIO
      + Background music implemented for all the scenes
      + UI feedback
-     + FX (warrior attack, spawner destroyed)
+     + FX 
+        1 - warrior attack
+        2 - spawner destroyed
+        3 - painter movement
+        4 - warrior movement
+        5 - buying from shop
+        6 - timer (when 10 sec left, countdown every second)
+        7 - wood producer
+        8 - town hall when creating a painter
+        9 - barracks when creating a warrior
+       10 - birds
+       11 - crickets
+
+        - paint extractor
+        - painter collecting
+
      + Positioning (further fx sound less)
  - DEBUG
-     + F2 Game Scene
-     + F4 Save
-     + F5 Load (Load function not functional yet)
-     + F6 Full Screen
-     + F7 Direct Win
-     + F8 Direct Lose
-     + F9 Collisions
-     + F10 God Mode (add resources, buildings and units, can't lose, collisions)
-        resources
-        - 1 add 10 paint
-        - 2 add 10 wood
-        - 3 add 10 metal scrap -not implemented yet-
-        - 4 add 10 titanium -not implemented yet-
-        - 5 add 10 food -not implemented yet-
-        - 6 add 10 max housing
-        - 7 add 1 level of research (units will have the upgrades already)
-        units (on mouse position)
-        - KP 1 add painter
-        - KP 2 add warrior
-        - KP 3 add ranged -not implemented yet-
-        - KP 4 add tank -not implemented yet-
-        - KP 5 add explorer -not implemented yet-
-        - KP 0 kill selected unit
-        buildings (on mouse position)
-        - Crtl + KP 1 add paint extractor 
-        - Crtl + KP 2 add wood producer
-        - Crtl + KP 3 add barracks
-        - Crtl + KP 4 add house
+	 + F2/F3 Game Scene
+	 + F4 Save
+	 + F5 Load (Load function not functional yet)
+	 + F6 Full Screen
+	 + F7 Direct Win
+	 + F8 Direct Lose
+	 + F9 Collisions
+	 + F10 God Mode (add resources, buildings and units, can't lose, collisions)
+		resources
+		- 1 add 10 paint
+		- 2 add 10 wood
+		- 3 add 10 metal scrap -not implemented yet-
+		- 4 add 10 titanium -not implemented yet-
+		- 5 add 10 food -not implemented yet-
+		- 6 add 10 max housing
+		- 7 add 1 level of research (units will have the upgrades already)
+		units (on mouse position)
+		- KP 1 add painter
+		- KP 2 add warrior
+		- KP 3 add ranged -not implemented yet-
+		- KP 4 add tank -not implemented yet-
+		- KP 5 add explorer -not implemented yet-
+		- KP 0 kill selected units
+		buildings (on mouse position)
+		- Crtl + KP 1 add paint extractor
+		- Crtl + KP 2 add wood producer
+		- Crtl + KP 3 add barracks
+		- Crtl + KP 4 add house
+		- Crtl + KP 0 kill selected buildings
+	 + H Go to Town Hall
+	 + P Pause
+	 + S/L Save/Load (only save implemented)
+	 + ESC exit game (not in game scene)
+	 + N/M/R Zoom In/Out/Reset
+	 + KP MINUS/KP PLUS Control Framerate (+/- 10)
+         + UP/DOWN/LEFT/RIGHT Camera movement
 
 
 ## Controls
@@ -102,7 +125,6 @@ From the shop, you can get different buiuldings:
    + house (built with wood): to increase your max number of units
    + barracks (built with wood): to create warriors
 Warriors are used to attack the spawners and destroy them to win the game.
-You can also upgrade units and some buildings.
 
  - LEFT CLICK - select
  - RIGHT CLICK - select destination / attack
@@ -112,34 +134,42 @@ You can also upgrade units and some buildings.
  - UI and HUD - each button is self-explanatory, right clicking to select and hover enabled
      + SHOP - to shop, click on the "Shop Button", and select what you want to build by dragging into the map, it will take a while to build (depending on research level)
 - DEBUG
-     + F2 Game Scene
+     + F2/F3 Game Scene
      + F4 Save
      + F5 Load (Load function not functional yet)
      + F6 Full Screen
      + F7 Direct Win
      + F8 Direct Lose
      + F9 Collisions
-     + F10 God Mode (add resources, buildings and units, can't lose)
-        resources
-        - 1 add 10 paint
-        - 2 add 10 wood
-        - 3 add 10 metal scrap -not implemented yet-
-        - 4 add 10 titanium -not implemented yet-
-        - 5 add 10 food -not implemented yet-
-        - 6 add 10 max housing
-        - 7 add 1 level of research (units will have the upgrades already)
-        units (on mouse position)
-        - KP 1 add painter
-        - KP 2 add warrior
-        - KP 3 add ranged -not implemented yet-
-        - KP 4 add tank -not implemented yet-
-        - KP 5 add explorer -not implemented yet-
-        - KP 0 kill selected unit
-        buildings (on mouse position)
-        - Crtl + KP 1 add paint extractor 
-        - Crtl + KP 2 add wood producer
-        - Crtl + KP 3 add barracks
-        - Crtl + KP 4 add house
+     + F10 God Mode (add resources, buildings and units, can't lose, collisions)
+         resources
+           - 1 add 10 paint
+           - 2 add 10 wood
+           - 3 add 10 metal scrap -not implemented yet-
+           - 4 add 10 titanium -not implemented yet-
+           - 5 add 10 food -not implemented yet-
+           - 6 add 10 max housing
+           - 7 add 1 level of research (units will have the upgrades already)
+         units (on mouse position)
+           - KP 1 add painter
+           - KP 2 add warrior
+           - KP 3 add ranged -not implemented yet-
+           - KP 4 add tank -not implemented yet-
+           - KP 5 add explorer -not implemented yet-
+           - KP 0 kill selected units
+         buildings (on mouse position)
+           - Crtl + KP 1 add paint extractor
+           - Crtl + KP 2 add wood producer
+           - Crtl + KP 3 add barracks
+           - Crtl + KP 4 add house
+           - Crtl + KP 0 kill selected buildings
+     + H Go to Town Hall
+     + P Pause
+     + S/L Save/Load (only save implemented)
+     + ESC exit game (not in game scene)
+     + N/M/R Zoom In/Out/Reset
+     + KP MINUS/KP PLUS Control Framerate (+/- 10)
+     + UP/DOWN/LEFT/RIGHT Camera movement
 
 ## Developers
 
@@ -192,8 +222,8 @@ SOFTWARE.
 
 All the data used (sprites, music, fx, etc), which are free to use, will be credited as well.
 
-There are several Parts in the code (Basic Code Structureand Fonts with Text Bliting) that have been forked from DOLIME CORPORATION. 
-ALL code inside the disclaimer parts indicated in the code ( Text Bltiting & UI Structure (Highly modified)  and core game structure belong to: [Dolime Corporation](https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II)
+There are several Parts in the code (Basic Code Structure, Render System with blit queue and Fonts with Text Bliting) that have been forked from DOLIME CORPORATION. 
+ALL code inside the disclaimer parts indicated in the code (Render System, Text Bltiting & UI Structure (Highly modified)  and core game structure belong to: [Dolime Corporation](https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II)
 They are also developing and RTS and we encourage you to check it out!
 
 ### Disclaimer
