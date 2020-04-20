@@ -480,6 +480,7 @@ bool j1App::SavegameNow() const
 void j1App::Debug_Actions()
 {
 	if (GOD_MODE != true) {
+
 		if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
 			App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
 			//App->scenes->SwitchScene(SCENES::GAME_SCENE);
@@ -493,8 +494,6 @@ void j1App::Debug_Actions()
 				PAUSE_ACTIVE = false;
 			}
 		}
-
-
 
 		if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) { //has to be changed to snow map when developed
 			App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 1.0f, true);
@@ -514,7 +513,62 @@ void j1App::Debug_Actions()
 			App->transition_manager->CreateSlide(SCENES::WIN_SCENE, 1.0f, true);
 		}
 
-		
+
+
+	}
+	else {
+
+		fPoint mousePosition = App->input->GetMouseWorldPosition();
+		iPoint cameraOffset = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
+		iPoint mapCoordinates = App->map->WorldToMap(mousePosition.x - cameraOffset.x, mousePosition.y - cameraOffset.y + App->map->data.tile_height / 2);
+
+		//resources --------------------------------------------------------------------------------
+		if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {  //paint
+			App->player->paintCount.count += 10;
+		}
+		if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {  //wood
+			App->player->woodCount.count += 10;
+		}
+		//if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) {  //metal scrap
+		//}
+		//if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN) {  //titanium
+		//}
+		//if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN) {  //food
+		//}
+		if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN) {  //housing
+			App->player->housingSpace.maxCount += 10;
+		}
+		if (App->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN) {  //research
+
+			//changes for each unit and building
+
+		}
+		//units --------------------------------------------------------------------------------
+		if (App->input->GetKey(SDL_SCANCODE_KP_1) == KEY_DOWN) {  //painter
+			App->entities->AddEntity(ENTITY_TYPE_PAINTER, mapCoordinates, App->entities, nullptr, 0, true);
+		}
+		if (App->input->GetKey(SDL_SCANCODE_KP_2) == KEY_DOWN) {  //warrior
+			App->entities->AddEntity(ENTITY_TYPE_WARRIOR, mapCoordinates, App->entities, nullptr, 0, true);
+		}
+		//if (App->input->GetKey(SDL_SCANCODE_KP_3) == KEY_DOWN) {  //ranged
+		//}
+		//if (App->input->GetKey(SDL_SCANCODE_KP_4) == KEY_DOWN) {  //tank
+		//}
+		//if (App->input->GetKey(SDL_SCANCODE_KP_5) == KEY_DOWN) {  //explorer
+		//}
+		//buildings --------------------------------------------------------------------------------
+		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_1) == KEY_DOWN) {  //paint extractor
+			App->entities->AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR, mapCoordinates, App->entities, nullptr, 0, true);
+		}
+		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_2) == KEY_DOWN) {  //wood producer
+			App->entities->AddEntity(ENTITY_TYPE_WOOD_PRODUCER, mapCoordinates, App->entities, nullptr, 0, true);
+		}
+		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_3) == KEY_DOWN) {  //barracks
+			App->entities->AddEntity(ENTITY_TYPE_BARRACKS, mapCoordinates, App->entities, nullptr, 0, true);
+		}
+		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_4) == KEY_DOWN) {  //house
+			App->entities->AddEntity(ENTITY_TYPE_HOUSE, mapCoordinates, App->entities, nullptr, 0, true);
+		}
 
 	}
 
@@ -537,9 +591,11 @@ void j1App::Debug_Actions()
 
 		if (GOD_MODE == true) {
 			GOD_MODE = false;
+			App->player->gameTimer.Resume();
 		}
 		else {
 			GOD_MODE = true;
+			App->player->gameTimer.Stop();
 		}
 		
 	}
