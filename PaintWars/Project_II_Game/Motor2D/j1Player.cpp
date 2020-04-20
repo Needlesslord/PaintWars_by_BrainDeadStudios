@@ -184,8 +184,8 @@ void j1Player::Camera_Control(float dt)
 		//	}
 		//}
 
-		App->render->RenderQueueUI(1, App->entities->zeroLifeTexture, 550 + App->render->camera.x*-2 / 2, 50 + App->render->camera.y*-2 / 2, { 0, 0, 200, 15 }, false, true, 0);
-		App->render->RenderQueueUI(1, App->entities->fullLifeTexture, 550 + App->render->camera.x*-2 / 2,  50+App->render->camera.y*-2 / 2, { 0, 0, (int)App->entities->Entity_HP, 15 }, false, true, 0);
+		/*App->render->RenderQueueUI(1, App->entities->zeroLifeTexture, 550 + App->render->camera.x*-2 / 2, 50 + App->render->camera.y*-2 / 2, { 0, 0, 200, 15 }, false, true, 0);
+		App->render->RenderQueueUI(1, App->entities->fullLifeTexture, 550 + App->render->camera.x*-2 / 2,  50+App->render->camera.y*-2 / 2, { 0, 0, (int)App->entities->Entity_HP, 15 }, false, true, 0);*/
 		
 		
 

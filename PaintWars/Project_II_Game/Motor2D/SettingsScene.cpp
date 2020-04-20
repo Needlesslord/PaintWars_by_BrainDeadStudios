@@ -146,7 +146,8 @@ void SettingsScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
 	if (element == backButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		App->transition_manager->CreateFadeToColour(SCENES::MENU_SCENE);
+		//App->transition_manager->CreateFadeToColour(SCENES::MENU_SCENE);
+		App->transition_manager->CreateSlide(SCENES::MENU_SCENE);
 	}
 
 	if (element == fullscreenButton && type == GUI_Event::EVENT_ONCLICK)

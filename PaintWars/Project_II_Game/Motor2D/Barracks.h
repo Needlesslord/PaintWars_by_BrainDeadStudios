@@ -11,7 +11,7 @@ public:
 	Barracks(iPoint tile, int damage, j1Module* listener, Entity* creator = nullptr);
 	~Barracks();
 
-	void SpawnEntity(iPoint pos) override;
+	void SpawnEntity() override;
 
 public:
 

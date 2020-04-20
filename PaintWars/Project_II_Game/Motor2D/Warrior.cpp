@@ -11,6 +11,7 @@
 #include "j1Collision.h"
 #include "j1Textures.h"
 #include "j1Render.h"
+#include "j1EntityManager.h"
 
 Warrior::Warrior(iPoint tile, int damage, j1Module* listener, Entity* creator) : Entity(tile, damage, listener, creator) {
 
@@ -38,6 +39,10 @@ Warrior::Warrior(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 	destination = currentTile;
 
 	attackDamage = 10.0f;
+
+	if (App->entities->warriorsUpgraded)
+		attackDamage *= 1.5f;
+
 	attackSpeed = 20.0f;
 	attackCooldown = attackSpeed;
 

@@ -124,6 +124,14 @@ bool j1EntityManager::Update(float dt) {
 					(*checkForSpawningEntities)->spawnedBy->isSpawningAUnit = false;
 					(*checkForSpawningEntities)->isAlive = true;
 
+
+					if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_PAINTER)
+						(*checkForSpawningEntities)->currentAnimation = &painterIdle;
+
+					else if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_WARRIOR)
+						(*checkForSpawningEntities)->currentAnimation = &warriorIdle;
+
+
 					spawningEntities.erase(checkForSpawningEntities);
 				}
 
@@ -736,8 +744,7 @@ bool j1EntityManager::PostUpdate() {
 		checkForDeadEntities++;
 	}
 
-	//App->player->Mouse_Cursor();
-	//App->player->Mouse_Cursor();
+	
 
 
 	return ret;
@@ -929,6 +936,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeUnits.push_back((Entity*)painter);
 			painter->isAlive = true;
 			painter->CreateEntityCollider(painter->pos);
+			painter->currentAnimation = &painterIdle;
 		}
 
 		else
@@ -947,6 +955,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeUnits.push_back((Entity*)warrior);
 			warrior->isAlive = true;
 			warrior->CreateEntityCollider(warrior->pos);
+			warrior->currentAnimation = &warriorIdle;
 		}
 
 		else

@@ -9,6 +9,7 @@
 #include "j1Collision.h"
 #include "j1Pathfinding.h"
 #include "j1Textures.h"
+#include "j1EntityManager.h"
 
 WoodProducer::WoodProducer(iPoint tile, int damage, j1Module* listener, Entity* creator) : Entity(tile, damage, listener, creator) {
 
@@ -18,6 +19,9 @@ WoodProducer::WoodProducer(iPoint tile, int damage, j1Module* listener, Entity* 
 	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_SMALL; // But it changes 4 more tile around it
 
 	maxLife = 200;
+	if (App->entities->woodProducersUpgraded)
+		maxLife *= 1.5;
+	
 	currLife = maxLife - damage;
 
 	size = { 400, 400 }; // TODO

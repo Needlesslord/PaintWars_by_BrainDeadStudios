@@ -38,7 +38,7 @@ Barracks::Barracks(iPoint tile, int damage, j1Module* listener, Entity* creator)
 
 Barracks::~Barracks() {}
 
-void Barracks::SpawnEntity(iPoint pos) {
+void Barracks::SpawnEntity() {
 
 	if (App->player->paintCount.count > 20 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
 		App->player->paintCount.count -= 20;
