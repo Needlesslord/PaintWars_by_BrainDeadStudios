@@ -47,6 +47,8 @@ bool GameLogoScene::Start()
 	//	App->audio->PlayingLogoMusic = true;
 	//}
 
+
+
 	return ret;
 }
 
@@ -67,6 +69,7 @@ bool GameLogoScene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
+		App->audio->Click_Logo_Sound;  /*Mix_VolumeChunk(Click_Logo_Sound, 50);*/
 		App->scenes->SwitchScene(SCENES::MENU_SCENE);
 	}
 
@@ -125,6 +128,7 @@ void GameLogoScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
 	if (element == gameLogoButton && type == GUI_Event::EVENT_ONCLICK)
 	{
+		App->audio->Click_Logo_Sound;  /*Mix_VolumeChunk(Click_Logo_Sound, 50);*/
 
 		App->transition_manager->CreateAlternatingBars(SCENES::MENU_SCENE);
 	}

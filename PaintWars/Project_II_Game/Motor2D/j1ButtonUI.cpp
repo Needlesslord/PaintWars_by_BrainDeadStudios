@@ -204,7 +204,7 @@ bool j1ButtonUI::Update(float dt)
 
 
 				App->render->RenderQueueUI(layer, Button_UI_Texture_LogoImage_LOGO_SCENE, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
-				Mix_PlayChannel(-1, App->audio->Click_Logo_Sound, 0);
+				Mix_PlayChannel(-1, App->audio->Click_Button_Sound, 0); //Click_Logo_Sound
 				Mouse_On_Click();
 
 			}
