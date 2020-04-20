@@ -90,7 +90,7 @@ public:
 	virtual void MovementLogic();
 	virtual void Move(float dt);
 	virtual void SetDestination(iPoint des);
-	virtual void SpawnEntity(iPoint pos);
+	virtual void SpawnEntity();
 	virtual void ExtractPaint(float dt);
 	virtual void ExtractWood(float dt);
 	virtual void Attack(Entity* target, float dt);

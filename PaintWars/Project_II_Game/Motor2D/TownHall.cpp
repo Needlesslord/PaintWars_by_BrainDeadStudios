@@ -38,7 +38,7 @@ TownHall::TownHall(iPoint tile, int damage, j1Module* listener, Entity* creator)
 
 TownHall::~TownHall() {}
 
-void TownHall::SpawnEntity(iPoint pos) {
+void TownHall::SpawnEntity() {
 
 	if (App->player->paintCount.count > 5 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
 		App->player->paintCount.count -= 5;

@@ -361,22 +361,21 @@ bool GameScene::Start()
 
 	//Buildings
 
-	upgradePainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, true, { 130, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradePainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, false, { 130, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradePainterButton->hover_rect = { 390, 1966, 65, 82 };
 	upgradePainterButton->click_rect = { 750, 1966, 65, 82 };
-	buyPainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, true, { 260, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyPainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 260, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyPainterButton->hover_rect = { 520, 1966, 65, 82 };
 	buyPainterButton->click_rect = { 780, 1966, 65, 82 };
-	upgradeWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, true, { 195, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradeWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, false, { 195, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradeWarriorButton->hover_rect = { 455, 1966, 65, 82 };
 	upgradeWarriorButton->click_rect = { 715, 1966, 65, 82 };
-	buyWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, true, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyWarriorButton->hover_rect = { 585, 1966, 65, 82 };
 	buyWarriorButton->click_rect = { 845, 1966, 65, 82 };
 	
 
-
-
+	
 
 	//////////////////
 	//	RESOURCES	//
@@ -547,20 +546,48 @@ bool GameScene::Update(float dt)
 	// If only the TH is selected enable the button
 	list<Entity*>::iterator onlyTownhallSelected = App->entities->buildingsSelected.begin();
 	if (App->entities->buildingsSelected.size() == 1 && (*onlyTownhallSelected)->entityType == ENTITY_TYPE_TOWN_HALL) {
+
 		buyPainterButton->enabled = true;
+		if (!App->entities->paintersUpgraded)
+			upgradePainterButton->enabled = true;
+
+		shopImage->enabled = false;
+		shopLabel->enabled = false;
+		buyWoodProducerButton->enabled = false;
+		buyPaintExtractorButton->enabled = false;
+		buyBarrackButton->enabled = false;
+		buyHouseButton->enabled = false;
+		upgradeWoodProducerButton->enabled = false;
+		upgradePaintExtractorButton->enabled = false;
 	}
-	else
+	else {
 		buyPainterButton->enabled = false;
+		upgradePainterButton->enabled = false;
+	}
 
 
 
 	// If only the Barracks is selected enable the button
 	list<Entity*>::iterator onlyBarracksSelected = App->entities->buildingsSelected.begin();
 	if (App->entities->buildingsSelected.size() == 1 && (*onlyTownhallSelected)->entityType == ENTITY_TYPE_BARRACKS) {
+
 		buyWarriorButton->enabled = true;
+		if (!App->entities->warriorsUpgraded)
+			upgradeWarriorButton->enabled = true;
+
+		shopImage->enabled = false;
+		shopLabel->enabled = false;
+		buyWoodProducerButton->enabled = false;
+		buyPaintExtractorButton->enabled = false;
+		buyBarrackButton->enabled = false;
+		buyHouseButton->enabled = false;
+		upgradeWoodProducerButton->enabled = false;
+		upgradePaintExtractorButton->enabled = false;
 	}
-	else
+	else {
 		buyWarriorButton->enabled = false;
+		upgradeWarriorButton->enabled = false;
+	}
 
 
 
@@ -722,8 +749,18 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		buyPaintExtractorButton->enabled = !buyPaintExtractorButton->enabled;
 		buyBarrackButton->enabled = !buyBarrackButton->enabled;
 		buyHouseButton->enabled = !buyHouseButton->enabled;
-		upgradeWoodProducerButton->enabled = !upgradeWoodProducerButton->enabled;
-		upgradePaintExtractorButton->enabled = !upgradePaintExtractorButton->enabled;
+
+		if (!App->entities->woodProducersUpgraded && !upgradeWoodProducerButton->enabled)
+			upgradeWoodProducerButton->enabled = true;
+		else if(!App->entities->woodProducersUpgraded && upgradeWoodProducerButton->enabled)
+			upgradeWoodProducerButton->enabled = false;
+
+
+		if (!App->entities->paintExtractorUpgraded && !upgradePaintExtractorButton->enabled)
+			upgradePaintExtractorButton->enabled = true;
+		else if (!App->entities->paintExtractorUpgraded && upgradePaintExtractorButton->enabled)
+			upgradePaintExtractorButton->enabled = false;
+
 	}
 
 	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_ONCLICK) {
@@ -785,6 +822,88 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			Mix_PlayChannel(-1, App->audio->buy1_sound, 0);
 		}
 	}
+
+	if (element == upgradePaintExtractorButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->player->paintCount.count >= 200) {
+
+			App->player->paintCount.count -= 200;
+			list<Entity*>::iterator upgradeAllPaintExtractor = App->entities->activeBuildings.begin();
+			while (upgradeAllPaintExtractor != App->entities->activeBuildings.end()) {
+
+				if ((*upgradeAllPaintExtractor)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
+
+					(*upgradeAllPaintExtractor)->extractionRate *= 1.33f;
+				}
+				upgradeAllPaintExtractor++;
+			}
+			upgradePaintExtractorButton->enabled = false;
+			App->entities->paintExtractorUpgraded = true;
+		}
+	}
+
+	if (element == upgradeWoodProducerButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->player->paintCount.count >= 200) {
+
+			App->player->paintCount.count -= 200;
+			list<Entity*>::iterator upgradeAllWoodProducers = App->entities->activeBuildings.begin();
+			while (upgradeAllWoodProducers != App->entities->activeBuildings.end()) {
+
+				if ((*upgradeAllWoodProducers)->entityType == ENTITY_TYPE_WOOD_PRODUCER) {
+					(*upgradeAllWoodProducers)->SetMaxLife((*upgradeAllWoodProducers)->GetMaxLife()*1.5);
+					(*upgradeAllWoodProducers)->SetCurrLife((*upgradeAllWoodProducers)->GetMaxLife());
+				}
+				upgradeAllWoodProducers++;
+			}
+			upgradeWoodProducerButton->enabled = false;
+			App->entities->woodProducersUpgraded = true;
+		}
+	}
+
+	//Townhall shop
+
+	if (element == buyPainterButton && type == GUI_Event::EVENT_ONCLICK) {
+		list<Entity*>::iterator onlyTownhallSelected = App->entities->buildingsSelected.begin();
+		(*onlyTownhallSelected)->SpawnEntity();
+	}
+	else if (element == upgradePainterButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->player->paintCount.count >= 200) {
+
+			App->player->paintCount.count -= 200;
+			list<Entity*>::iterator upgradeAllPainters = App->entities->activeUnits.begin();
+			while (upgradeAllPainters != App->entities->activeUnits.end()) {
+
+				(*upgradeAllPainters)->extractionRate *= 1.33f;
+				upgradeAllPainters++;
+			}
+			App->entities->paintersUpgraded = true;
+		}
+	}
+
+
+	//Barracks shop
+
+	if (element == buyWarriorButton && type == GUI_Event::EVENT_ONCLICK) {
+		list<Entity*>::iterator onlyBarracksSelected = App->entities->buildingsSelected.begin();
+		(*onlyBarracksSelected)->SpawnEntity();
+	}
+	else if (element == upgradeWarriorButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->player->paintCount.count >= 200) {
+
+			App->player->paintCount.count -= 200;
+			list<Entity*>::iterator upgradeAllWarriors = App->entities->activeUnits.begin();
+			while (upgradeAllWarriors != App->entities->activeUnits.end()) {
+
+				(*upgradeAllWarriors)->attackDamage *= 1.5f;
+				upgradeAllWarriors++;
+			}
+			App->entities->warriorsUpgraded = true;
+		}
+	}
+
 
 	//Pause Menu
 
