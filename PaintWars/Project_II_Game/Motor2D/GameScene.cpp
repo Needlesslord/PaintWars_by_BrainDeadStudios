@@ -19,6 +19,7 @@
 #include <iostream>
 #include <sstream>
 #include "Brofiler/Brofiler.h"
+#include "j1Player.h"
 
 
 
@@ -242,6 +243,7 @@ bool GameScene::Start()
 	titaniumLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 400 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
 	researchLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 500 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr,  TEXTURE::ATLAS, FONT::FONT_SMALL);
 	entitiesLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 670 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr,  TEXTURE::ATLAS, FONT::FONT_SMALL);
+	EntityHP = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 750 , 10 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "999", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
 	//BackgroundForest = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_FOREST);
 
 
@@ -404,6 +406,7 @@ bool GameScene::Start()
 
 	App->player->gameTimer.Start();
 
+	App->player->cricketsRepeat.Start();
 
 	return ret;
 }
@@ -532,8 +535,12 @@ bool GameScene::Update(float dt)
 	if ((App->player->gameTimer.ReadSec() / 60) >= 0.05f) {
 
 		Mix_PlayChannel(-1, App->audio->birds_sound, 0);
-		Mix_PlayChannel(-1, App->audio->crickets_sound, 0);
 
+
+		if (App->player->cricketsRepeat.Read()/60 > 1) {
+			Mix_PlayChannel(-1, App->audio->crickets_sound, 0);
+			App->player->cricketsRepeat.Start();
+		}
 	}
 	
 	
@@ -648,6 +655,8 @@ bool GameScene::PostUpdate()
 	WIN_LOSE_Manager();
 
 	ExecuteTransition();
+		
+	
 
 	return ret;
 }
@@ -734,8 +743,8 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 	if (element == homeButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		App->render->camera.x = 0;
-		App->render->camera.y = 0;
+		App->render->camera.x = 575;
+		App->render->camera.y = -1200;
 	}
 
 

@@ -42,6 +42,8 @@ bool TeamLogoScene::Start()
 	teamLogoButton->hover_rect = { 0, 0, 1280, 720 };
 	teamLogoButton->click_rect = { 0, 0, 1280, 720 };
 
+	Mix_PlayChannel(-1, App->audio->braindead_sound, 0);
+
 	//if (App->audio->PlayingLogoMusic != true) {
 	//	App->audio->PlayingLogoMusic = false;
 	//	App->audio->PlayMusic("audio/music/logoSplash_fx.ogg");

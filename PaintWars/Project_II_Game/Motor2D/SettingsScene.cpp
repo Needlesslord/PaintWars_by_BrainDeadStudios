@@ -10,6 +10,7 @@
 #include "j1Audio.h"
 #include "SettingsScene.h"
 #include "TransitionManager.h"
+#include "j1Player.h"
 
 SettingsScene::SettingsScene() : Scene(SCENES::SETTINGS_SCENE)
 {
@@ -93,6 +94,7 @@ bool SettingsScene::Update(float dt)
 // Called each loop iteration
 bool SettingsScene::PostUpdate()
 {
+	App->player->Mouse_Cursor();
 	bool ret = true;
 
 	if ( exit)
@@ -144,7 +146,8 @@ void SettingsScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
 	if (element == backButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		App->transition_manager->CreateFadeToColour(SCENES::MENU_SCENE);
+		//App->transition_manager->CreateFadeToColour(SCENES::MENU_SCENE);
+		App->transition_manager->CreateSlide(SCENES::MENU_SCENE);
 	}
 
 	if (element == fullscreenButton && type == GUI_Event::EVENT_ONCLICK)

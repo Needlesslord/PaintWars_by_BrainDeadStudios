@@ -68,6 +68,7 @@ public:
 	//      UI      //
 	//////////////////
 
+	j1UIElement* EntityHP = nullptr;
 
 	UI_HUD UI_INGAME;
 
