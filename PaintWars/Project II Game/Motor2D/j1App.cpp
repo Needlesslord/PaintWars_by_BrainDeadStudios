@@ -513,8 +513,6 @@ void j1App::Debug_Actions()
 			App->transition_manager->CreateSlide(SCENES::WIN_SCENE, 1.0f, true);
 		}
 
-
-
 	}
 	else {
 
@@ -556,6 +554,9 @@ void j1App::Debug_Actions()
 		//}
 		//if (App->input->GetKey(SDL_SCANCODE_KP_5) == KEY_DOWN) {  //explorer
 		//}
+		if (App->input->GetKey(SDL_SCANCODE_KP_0) == KEY_DOWN) {  //kill selected unit
+
+		}
 		//buildings --------------------------------------------------------------------------------
 		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_1) == KEY_DOWN) {  //paint extractor
 			App->entities->AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR, mapCoordinates, App->entities, nullptr, 0, true);
