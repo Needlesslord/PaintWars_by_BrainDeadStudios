@@ -139,6 +139,13 @@ bool j1Audio::Awake(pugi::xml_node& config)
 
 	}
 
+	braindead_sound = Mix_LoadWAV("audio/fx/braindead.wav");
+	if (braindead_sound == NULL)
+	{
+		LOG("Audio Braindead IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
 	
 	//AUDIO VOLUMES & STUFF
 	ChunkAudioManager();
@@ -285,6 +292,7 @@ void j1Audio::ChunkAudioManager()
 	Mix_VolumeChunk(Spawner_Destroyed, 7);
 	Mix_VolumeChunk(birds_sound, 1);
 	Mix_VolumeChunk(crickets_sound, 2);
+	Mix_VolumeChunk(braindead_sound, 50);
 	
 	//if (!logoSound) {
 	//	Mix_VolumeChunk(Click_Logo_Sound, 50);
