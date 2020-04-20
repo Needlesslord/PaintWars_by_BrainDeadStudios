@@ -18,8 +18,8 @@ Animation warriorMovingSouthWest;
 void WarriorSprites()
 {
 	//Idle 
-	warriorIdle.PushBack({ 1500, 0, 125, 244 });
-	warriorIdle.PushBack({ 1625, 0, 125, 244 });
+	warriorIdle.PushBack({ 1500, 5, 123, 239 });
+	warriorIdle.PushBack({ 1623, 5, 125, 239 });
 	warriorIdle.speed = 50.0f;
 
 	//MOVING
