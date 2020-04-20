@@ -29,8 +29,6 @@ jobs:
     # Runs a single command using the runners shell
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.0.0
-      with:
-        vs-version: "[15.9,16.6]"
         
     - name: Checking msbuild path
       run: echo "${{ steps.setup_msbuild.outputs.msbuildPath }}"
