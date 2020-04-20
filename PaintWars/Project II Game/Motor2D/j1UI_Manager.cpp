@@ -9,7 +9,8 @@
 #include "j1TextUI.h"
 #include "j1SpritesUI.h"
 
-
+////////////////////////////////////////////////////////////                    /DISCLAIMER                    ///////////////////////////////////////////////////////////
+//The very basic structure of the UI belongs to DOLIME CORPORATION (https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II)
 j1UI_Manager::j1UI_Manager() : j1Module()
 {
 	name = ("gui");
