@@ -10,6 +10,16 @@
 #pragma comment( lib, "SDL/libx86/SDL2.lib" )
 #pragma comment( lib, "SDL/libx86/SDL2main.lib" )
 #pragma comment(lib, "Brofiler/ProfilerCore32.lib")
+//
+
+
+////////////////////////////////////////////////////////                        DISCLAIMER                          ///////////////////////////////////////////////////////////////
+//The CORE BASIC GAME STRUCTURE has been forked from DOLIME CORPORATION (https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II) All code related to these parts belongs to them!
+
+
+
+
+
 
 enum MainState
 {
@@ -117,3 +127,6 @@ int main(int argc, char* args[])
 	// Dump memory leaks
 	return result;
 }
+
+
+////////////////////////////////////////////////////////                        DISCLAIMER                          ///////////////////////////////////////////////////////////////

@@ -65,8 +65,8 @@ In a world full of colour, a corruption spread, turning everything monochromatic
 
 
 
-## DISCLAIMER:** There are several Parts in the code (Very basic code with main game loop, Render System and Fonts with Text Bliting that have been forked from DOLIME CORPORATION 
- ALL code isnide the disclaimer parts indicated in the code (Render System, Text Bltiting and core main game loop belong to : Dolime Corporation: https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II
+## DISCLAIMER:** There are several Parts in the code (Basic Code Structure, Render System with blit queue and Fonts with Text Bliting) that have been forked from DOLIME CORPORATION 
+ ALL code inside the disclaimer parts indicated in the code (Render System, Text Bltiting and core game structure belong to : Dolime Corporation: https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II
 
 
 ## License
