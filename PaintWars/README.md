@@ -102,6 +102,7 @@ From the shop, you can get different buiuldings:
    + house (built with wood): to increase your max number of units
    + barracks (built with wood): to create warriors
 Warriors are used to attack the spawners and destroy them to win the game.
+You can also upgrade units and some buildings.
 
  - LEFT CLICK - select
  - RIGHT CLICK - select destination / attack
