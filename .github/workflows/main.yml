@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Continuous Integration
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -29,8 +29,6 @@ jobs:
     # Runs a single command using the runners shell
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.0.0
-      with:
-        vs-version: "[15.9,16.6]"
         
     - name: Checking msbuild path
       run: echo "${{ steps.setup_msbuild.outputs.msbuildPath }}"
@@ -39,4 +37,4 @@ jobs:
       run: msbuild -version
     
     - name: Building the project with release configuration
-      run: MSBuild Paint_Wars.sln /property:Configuration=Release
+      run: MSBuild PaintWars/Project_II_GamePaint_Wars.sln /property:Configuration=Release
