@@ -109,6 +109,8 @@ bool WinScene::CleanUp()
 		App->gui->GUI_ELEMENTS[i]->CleanUp();
 	}
 
+	RELEASE(Win_Scene_UI);
+
 
 
 

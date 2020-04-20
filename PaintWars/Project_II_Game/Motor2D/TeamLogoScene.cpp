@@ -8,67 +8,53 @@
 #include "j1UIElements.h"
 #include "j1UI_manager.h"
 #include "j1SceneManager.h"
-#include "MenuScene.h"
+#include "TeamLogoScene.h"
 #include "TransitionManager.h"
+#include "SDL_mixer\include\SDL_mixer.h"
 #include "j1Audio.h"
 
-MenuScene::MenuScene() : Scene(SCENES::MENU_SCENE)
+TeamLogoScene::TeamLogoScene() : Scene(SCENES::TEAM_LOGO_SCENE)
 {
 
 }
 
 // Destructor
-MenuScene::~MenuScene()
+TeamLogoScene::~TeamLogoScene()
 {
 
 }
 
 // Called before render is available
-bool MenuScene::Awake(pugi::xml_node& config)
+bool TeamLogoScene::Awake(pugi::xml_node& config)
 {
-	LOG("Loading MenuScene");
+	LOG("Loading GameLogoScene");
 	bool ret = true;
 
 	return ret;
 }
 
 // Called before the first frame
-bool MenuScene::Start()
+bool TeamLogoScene::Start()
 {
 	bool ret = true;
 
-	backgroundImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, TEXTURE::MAIN_IMAGE);
+	teamLogoButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, 1280, 720 }, nullptr, App->scenes, TEXTURE::TEAM_LOGO, FONT::FONT_MEDIUM_WHITE, 1);
+	teamLogoButton->hover_rect = { 0, 0, 1280, 720 };
+	teamLogoButton->click_rect = { 0, 0, 1280, 720 };
 
-	playButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 475, 100 }, { 70,25}, true, true, { 0, 0, 263, 91 }, "PLAY", App->scenes, TEXTURE::ATLAS);
-	playButton->hover_rect = { 263, 0, 263, 91 };
-	playButton->click_rect = { 526, 0, 263, 91 };
+	//if (App->audio->PlayingLogoMusic != true) {
+	//	App->audio->PlayingLogoMusic = false;
+	//	App->audio->PlayMusic("audio/music/logoSplash_fx.ogg");
+	//	App->audio->PlayingLogoMusic = true;
+	//}
 
-	settingsButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 490, 230 }, { 3,20 }, true, true, { 0, 334, 234, 79 }, "Settings", App->scenes, TEXTURE::ATLAS);
-	settingsButton->hover_rect = { 263, 334, 234, 79 };
-	settingsButton->click_rect = { 525, 334, 234, 79 };
 
-	scoreButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 490, 340 }, { 50,20 }, true, true, { 0, 334, 234, 79 }, "Score", App->scenes, TEXTURE::ATLAS);
-	scoreButton->hover_rect = { 263, 334, 234, 79 };
-	scoreButton->click_rect = { 525, 334, 234, 79 };
-
-	creditsButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 490, 450 }, { 25,20 }, true, true, { 0, 334, 234, 79 }, "Credits", App->scenes, TEXTURE::ATLAS);
-	creditsButton->hover_rect = { 263, 334, 234, 79 };
-	creditsButton->click_rect = { 525, 334, 234, 79 };
-
-	exitButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 505, 570 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "Exit", App->scenes, TEXTURE::ATLAS);
-	exitButton->hover_rect = { 263, 658, 207, 71 };
-	exitButton->click_rect = { 525, 658, 207, 71 };
-
-	if (App->audio->PlayingMenuMusic != true) {
-		App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
-		App->audio->PlayingMenuMusic = true;
-	}
 
 	return ret;
 }
 
 // Called each loop iteration
-bool MenuScene::PreUpdate()
+bool TeamLogoScene::PreUpdate()
 {
 	bool ret = true;
 
@@ -76,7 +62,7 @@ bool MenuScene::PreUpdate()
 }
 
 // Called each loop iteration
-bool MenuScene::Update(float dt)
+bool TeamLogoScene::Update(float dt)
 {
 	bool ret = true;
 	
@@ -84,7 +70,8 @@ bool MenuScene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		App->scenes->SwitchScene(SCENES::START_SCENE);
+		App->audio->Click_Logo_Sound;  /*Mix_VolumeChunk(Click_Logo_Sound, 50);*/
+		App->scenes->SwitchScene(SCENES::MENU_SCENE);
 	}
 
 
@@ -94,7 +81,7 @@ bool MenuScene::Update(float dt)
 }
 
 // Called each loop iteration
-bool MenuScene::PostUpdate()
+bool TeamLogoScene::PostUpdate()
 {
 	bool ret = true;
 
@@ -107,19 +94,12 @@ bool MenuScene::PostUpdate()
 }
 
 // Called before quitting
-bool MenuScene::CleanUp()
+bool TeamLogoScene::CleanUp()
 {
 	LOG("Freeing Scene");
 	bool ret = true;
 
-	playButton->CleanUp();
-	scoreButton->CleanUp();
-	creditsButton->CleanUp();
-	settingsButton->CleanUp();
-	exitButton->CleanUp();
-	backgroundImage->CleanUp();
-
-	RELEASE(backgroundImage);
+	teamLogoButton->CleanUp();
 
 	if (scene_texture != nullptr)
 	{
@@ -145,33 +125,19 @@ bool MenuScene::CleanUp()
 }
 
 
-void MenuScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
+void TeamLogoScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
-	if (element == playButton && type == GUI_Event::EVENT_ONCLICK)
+	if (element == teamLogoButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		//App->transition_manager->CreateFadeToColour(SCENES::START_SCENE);
-		//App->transition_manager->CreateFadeToColour(SCENES::START_SCENE);
-		App->transition_manager->CreateSlide(SCENES::START_SCENE, 0.5f, true);
-	}
+		App->audio->Click_Logo_Sound;  /*Mix_VolumeChunk(Click_Logo_Sound, 50);*/
 
-	if (element == settingsButton && type == GUI_Event::EVENT_ONCLICK)
-	{
-		App->transition_manager->CreateFadeToColour(SCENES::SETTINGS_SCENE);
+		App->transition_manager->CreateAlternatingBars(SCENES::GAME_LOGO_SCENE);
 		
-	}
-
-	if (element == exitButton && type == GUI_Event::EVENT_ONCLICK)
-	{
-		App->scenes->exit = true;
-	}
-
-	if (element == creditsButton && type == GUI_Event::EVENT_ONCLICK) {
-		ShellExecuteA(NULL, "open", "https://github.com/Needlesslord/BrainDeadStudios", NULL, NULL, SW_SHOWNORMAL);
 	}
 }
 
-
-//void MenuScene::InitScene()
+//aaaa
+//void GameLogoScene::InitScene()
 //{
 //	tileset_texture = App->tex->Load("maps/tiles_first_map.png", scene_renderer);	// This texture will be used SceneToTexture(). Needed to get a single whole texture of the map.
 //
@@ -191,7 +157,7 @@ void MenuScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 //	App->render->camera.y = -40;*/
 //}
 
-//void MenuScene::DrawScene()
+//void GameLogoScene::DrawScene()
 //{
 //	App->map->Draw();
 //
@@ -217,7 +183,7 @@ void MenuScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 //}
 
 
-void MenuScene::ExecuteTransition()
+void TeamLogoScene::ExecuteTransition()
 {
 	if (!App->transition_manager->is_transitioning)
 	{

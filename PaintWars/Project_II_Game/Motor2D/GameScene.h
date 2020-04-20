@@ -102,6 +102,8 @@ public:
 	j1UIElement* miniMapMINI = nullptr;
 	j1UIElement* miniMapFULL = nullptr;
 	j1UIElement* miniMapCamera = nullptr;
+	j1UIElement* miniMapBackground = nullptr;
+
 	//Pause Menu
 	j1UIElement* pauseMenuImage = nullptr;
 	j1UIElement* pauseMenuLabel = nullptr;
@@ -140,8 +142,13 @@ public:
 	j1UIElement* buyWoodProducerButton = nullptr;
 	j1UIElement* buyBarrackButton = nullptr;
 	j1UIElement* buyHouseButton = nullptr;
+
+
+	// Buildings
 	j1UIElement* buyPainterButton = nullptr;
 	j1UIElement* buyWarriorButton = nullptr;
+	j1UIElement* upgradePainterButton = nullptr;
+	j1UIElement* upgradeWarriorButton = nullptr;
 
 
 

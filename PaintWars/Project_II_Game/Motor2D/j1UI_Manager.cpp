@@ -164,6 +164,11 @@ SDL_Texture* j1UI_Manager::Get_Texture_From_Image(TEXTURE textureType)
 		return Logo_Letters;
 		break;
 
+	case TEXTURE::TEAM_LOGO:
+		Logo_Letters = App->tex->Load("textures/Logo_BrainDead.png");
+		return Logo_Letters;
+		break;
+
 	case TEXTURE::MINIMAP_BACK_SPRITE:
 		Minimap_Back_Load = App->tex->Load("textures/Logo_Start.png");
 		return Minimap_Back_Load;

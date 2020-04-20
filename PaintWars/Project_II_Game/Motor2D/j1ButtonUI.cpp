@@ -74,6 +74,12 @@ bool j1ButtonUI::Start()
 		if (Button_UI_Texture_Letters_LOGO_SCENE == NULL)
 		Button_UI_Texture_Letters_LOGO_SCENE = App->gui->Get_Texture_From_Image(TEXTURE::LOGO_LETTERS);
 		break;
+
+	case TEXTURE::TEAM_LOGO:
+
+		if (Button_UI_Texture_TeamLogoImage_TEAM_LOGO_SCENE == NULL)
+			Button_UI_Texture_TeamLogoImage_TEAM_LOGO_SCENE = App->gui->Get_Texture_From_Image(TEXTURE::TEAM_LOGO);
+		break;
 	}
 	
 
@@ -219,6 +225,27 @@ bool j1ButtonUI::Update(float dt)
 			}
 			break;
 
+
+		case TEXTURE::TEAM_LOGO:
+			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+
+
+				App->render->RenderQueueUI(layer, Button_UI_Texture_TeamLogoImage_TEAM_LOGO_SCENE, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
+
+				Mix_PlayChannel(-1, App->audio->Click_Button_Sound, 0); //Click_Logo_Sound
+
+				Mouse_On_Click();
+
+			}
+			else if (above && interactable) {
+				App->render->RenderQueueUI(layer, Button_UI_Texture_TeamLogoImage_TEAM_LOGO_SCENE, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, hover_rect, false, true, 0u, 0u, 0u, 255, true);
+
+			}
+			else {
+				App->render->RenderQueueUI(layer, Button_UI_Texture_TeamLogoImage_TEAM_LOGO_SCENE, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
+			}
+			break;
+
 		}
 
 
@@ -247,6 +274,7 @@ bool j1ButtonUI::CleanUp()
 	App->tex->UnLoad(Button_UI_Texture_Letters_LOGO_SCENE);
 	App->tex->UnLoad(Button_UI_Texture_LogoImage_LOGO_SCENE);
 	App->tex->UnLoad(Button_UI_Texture_ContinueLetters_WIN_LOSE_SCENE);
+	App->tex->UnLoad(Button_UI_Texture_TeamLogoImage_TEAM_LOGO_SCENE);
 
 
 	Button_UI_Texture_General_ATLAS = nullptr;
@@ -258,6 +286,7 @@ bool j1ButtonUI::CleanUp()
 	Button_UI_Texture_Letters_LOGO_SCENE = nullptr;
 	Button_UI_Texture_LogoImage_LOGO_SCENE = nullptr;
 	Button_UI_Texture_ContinueLetters_WIN_LOSE_SCENE = nullptr;
+	Button_UI_Texture_TeamLogoImage_TEAM_LOGO_SCENE = nullptr;
 
 	if (label != nullptr)
 	label->CleanUp();
