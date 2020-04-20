@@ -14,6 +14,8 @@ j1FontsUI::j1FontsUI() : j1Module()
 j1FontsUI::~j1FontsUI()
 {}
 
+//The blit sytem for fonts  we are using in the render  with Blit Text and all the code related to creation of text in this game 
+//belongs to Dolime Corporation (https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II) All code related to Text bliting using labels belongs to them!
 // Load new texture from file path
 int j1FontsUI::Load(const char* texture_path, const char* characters, uint rows)
 {
@@ -65,10 +67,6 @@ void j1FontsUI::UnLoad(int font_id)
 
 	}
 }
-
-//This is from DOLIME GRUP (YES INTENDED) because we dont want to steal their job, but we want to use it so we just use it.  No point on crying about someone
-//using something yours if your way to do it is better BUT AS THEY WANT ALL CREDIT-> CREATED BY DOLIME CORPORATION
-//NO POINT ON CHANGING VARS THE STRCUTURE IS IDENTICAL YES WE ARE USING THE CODE FOR FONTS FROM DOLIME CORPORATION
 void j1FontsUI::BlitText(int x, int y, int font_id, const char* text, int layer) const
 {
 	if (text == nullptr || font_id < 0 || font_id >= MAX_FONTS || fonts[font_id].graphic == nullptr)
@@ -104,3 +102,4 @@ void j1FontsUI::BlitText(int x, int y, int font_id, const char* text, int layer)
 
 	}
 }
+//////////////////////////////////////////                  DISCLAIMER                       /////////////////////////////////////////////////////////

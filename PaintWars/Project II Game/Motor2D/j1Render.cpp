@@ -209,7 +209,15 @@ fPoint j1Render::ScreenToWorld(float x, float y) const
 
 	return ret;
 }
-                       //This sort of rendering is from DolimeCorp (Santi's Group) its good because it orders rendering instead of rendering in order of call
+
+
+
+////////////////////////////////////////////                        DISCLAIMER                         ////////////////////////////////////////////////////////////////////
+
+
+
+ //We are currently using a render system  that sets blit queues to be able to order blit drawing on screen that has been 
+//Created by DOLIME CORPORATION (https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II) / All code related to rendering queues belongs to them!
 void j1Render::RenderQueue(int layer, SDL_Texture* texture, int x, int y, const SDL_Rect section, bool fliped, bool ui, float speed, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
 	BlitEvent event{ texture, x, y, section, fliped, ui, speed, r, g, b, a };
@@ -334,6 +342,7 @@ bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,
 	return ret;
 }
 
+//////////////////////////////////////////////                            DISCLAIMER                     ////////////////////////////////////////////////////////////////////
 bool j1Render::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a, bool ui, bool filled, bool use_camera, bool guiHitBox) const
 {
 	bool ret = true;

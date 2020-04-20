@@ -1,4 +1,4 @@
-# PAINT WARS
+﻿# PAINT WARS
 ## by BrainDead Studios
 
 ## Description
@@ -61,6 +61,13 @@ In a world full of colour, a corruption spread, turning everything monochromatic
  - Núria Lamonja - **Team Leader**, Management, Community Manager, Social Media, Co-Lead UI Designer, Music
       + [Github](https://github.com/Needlesslord)
       + [Linkedin](https://es.linkedin.com/in/needlesslord)
+
+
+
+
+## DISCLAIMER:** There are several Parts in the code (Very basic code with main game loop, Render System and Fonts with Text Bliting that have been forked from DOLIME CORPORATION 
+ ALL code isnide the disclaimer parts indicated in the code (Render System, Text Bltiting and core main game loop belong to : Dolime Corporation: https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II
+
 
 ## License
 

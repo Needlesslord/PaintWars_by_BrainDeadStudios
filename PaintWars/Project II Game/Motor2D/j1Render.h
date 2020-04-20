@@ -58,7 +58,7 @@ public:
 	SDL_Color		background;
 	int UI_Render_Window_w;
 	int UI_Render_Window_h;
-	bool Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section = NULL, bool fliped = false, bool ui = false, float speed = 1.0f, double angle = 0, int pivot_x = INT_MAX, int pivot_y = INT_MAX)	 const;
+	bool Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section, bool fliped = false, bool ui = false, float speed = 1.0f, double angle = 0, int pivot_x = INT_MAX, int pivot_y = INT_MAX)	 const;
 
 private:
 
