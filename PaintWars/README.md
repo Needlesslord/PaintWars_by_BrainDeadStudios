@@ -21,31 +21,37 @@ In a world full of colour, a corruption spread, turning everything monochromatic
      + Social Media Updated
      + Animations
      + Game resoulution at 1280x720px@60fps (Window and Full Screen supported)
-     + Automatic Continuous Integration and Deployment
+     + Automatic Continuous Integration
+     + Deployment (not fully implemented)
  - UI and HUD
      + Basic UI, with Main Menu (Play and Exit, Settings -not all functional, only Full Screen-, Credits -link to repository- and Map selection -all take to Forest Map-) with background
      + Life Bars
      + HUD: Quests (drop-down menu), buttons on the right (in order: go to Town Hall, Shop, Pause, Start over -only "no" functional), resources
-     + Minimap: can be made bigger/smaller with [M], shows where in the map you are
+        - Labels: num paint, num wood, num metal scrap, num titanium, num research, num units, actual health and max health
+     + Minimap: can be made bigger/smaller with [M], shows where in the map you are (not fully working the camera on the minimap)
      + Visual and acustic feedback
  - RESOURCES
      + 4 different resources working: paint, wood, max units, research (to improve units/buildings)
      + 3 resources not fully implemented: metal scrap, food, titanium
  - ENTITIES: Allies, buildings and enemies
      + 2 different allied units: painter (collect paint from lakes) and warrior (attack spawners)
-     + 4 allied buildings:
+     + 5 allied buildings:
        - Town Hall: Not buildable, if destroyed LOSE
        - Paint Extractor: To get paint (only buildable on lakes)
        - Wood Producer: To get wood
        - Barracks: To create warriors
-     + 1 enemy building: Spawner (5, if destroyed WIN)
+       - House: to incremente the max units
+     + 1 enemy building: Spawner (5 in total in the map, if destroyed WIN)
  - ACTIONS
      + Movement and group movement
-     + Collect paint (with painters)
-     + Collect wood 
+     + Collect paint (with painters and Paint Extractors, only from Paint Ponds)
+     + Collect wood (with Wood Producers, they create tiles around them where Painters get the wood from)
      + Destroy spawners (with warriors)
      + Pathfinding
-     + Win/Lose conditions (Town Hall destroyed OR more than 15 min LOSE, 5 Spawners destroyed WIN) with victory/lose custom messages and font
+     + Win/Lose conditions (Town Hall destroyed OR more than 15 min LOSE, 5 Spawners destroyed WIN) with victory/lose custom messages, backgrounds and font
+     + Build buildings with resources from the shop
+     + Create units with resources from buildings 
+     + Research: improve buildings from the shop, improve units from buildings
  - MAPS
      + Forest Map implemented
  - SCENE MANAGER
@@ -56,6 +62,7 @@ In a world full of colour, a corruption spread, turning everything monochromatic
      + Starts on the Town Hall
      + It can also move with the arrows
      + Culling
+     + Limits
  - AUDIO
      + Background music implemented for all the scenes
      + UI feedback
@@ -71,11 +78,9 @@ In a world full of colour, a corruption spread, turning everything monochromatic
         9 - barracks when creating a warrior
        10 - birds
        11 - crickets
-
-        - paint extractor
-        - painter collecting
-
-     + Positioning (further fx sound less)
+       12 - painter recollecting
+       13 - paint extractor
+     + Positioning (further fx's sound less)
  - DEBUG
 	 + F2/F3 Game Scene
 	 + F4 Save
@@ -129,8 +134,7 @@ Warriors are used to attack the spawners and destroy them to win the game.
  - LEFT CLICK - select
  - RIGHT CLICK - select destination / attack
  - ESC - exit game (not on Game scene)
- - RIGHT CLICK AND DRAG - multiple selection
- - CTR - multiple selection
+ - CTR + LEFT CLICK- multiple selection
  - UI and HUD - each button is self-explanatory, right clicking to select and hover enabled
      + SHOP - to shop, click on the "Shop Button", and select what you want to build by dragging into the map, it will take a while to build (depending on research level)
 - DEBUG
@@ -222,8 +226,8 @@ SOFTWARE.
 
 All the data used (sprites, music, fx, etc), which are free to use, will be credited as well.
 
-There are several Parts in the code (Basic Code Structure, Render System with blit queue and Fonts with Text Bliting) that have been forked from DOLIME CORPORATION. 
-ALL code inside the disclaimer parts indicated in the code (Render System, Text Bltiting & UI Structure (Highly modified)  and core game structure belong to: [Dolime Corporation](https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II)
+There are several Parts in the code (Base Code Structure and Fonts with Text Bliting) that have been forked from DOLIME CORPORATION in an early stage of development. 
+ALL code inside the disclaimer parts indicated in the code (Text Blititing & UI Base (Highly modified) and core game structure) belong to: [Dolime Corporation](https://github.com/Sanmopre/DOLIME-CORP-PROJECT-II)
 They are also developing and RTS and we encourage you to check it out!
 
 ### Disclaimer
