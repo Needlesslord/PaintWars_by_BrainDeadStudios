@@ -334,16 +334,17 @@ bool GameScene::Start()
 	buyHouseButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyHouseButton->hover_rect = { 0, 1966, 65, 82 };
 	buyHouseButton->click_rect = { 65, 1966, 65, 82 };
-	upgradeWoodProducerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 567 }, { 0,0 }, true, true, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradeWoodProducerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradeWoodProducerButton->hover_rect = { 0, 1966, 65, 82 };
 	upgradeWoodProducerButton->click_rect = { 65, 1966, 65, 82 };
-	upgradePaintExtractorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 567 }, { 0,0 }, true, true, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradePaintExtractorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradePaintExtractorButton->hover_rect = { 0, 1966, 65, 82 };
 	upgradePaintExtractorButton->click_rect = { 65, 1966, 65, 82 };
 
+
 	//HUD - MiniMap
 
-	miniMapBackground = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 850 , 500 }, { 0 , 0 }, false, true, { 0, 1670, 422, 210 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
+	miniMapBackground = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 850 , 500 }, { 0 , 0 }, false, true, { 0, 1750, 422, 210 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
 
 	miniMapMINI = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 850 , 500 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, TEXTURE::MINIMAP_MINI);
 	miniMapMINI->click_rect = { 30, 15, 422,210 };
@@ -360,18 +361,18 @@ bool GameScene::Start()
 
 	//Buildings
 
-	buyPainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 210, 485 }, { 0,0 }, true, true, { 130, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyPainterButton->hover_rect = { 390, 1966, 65, 82 };
-	buyPainterButton->click_rect = { 750, 1966, 65, 82 };
-	upgradePainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 275, 485 }, { 0,0 }, true, true, { 260, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	upgradePainterButton->hover_rect = { 520, 1966, 65, 82 };
-	upgradePainterButton->click_rect = { 780, 1966, 65, 82 };
-	buyWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 210, 485 }, { 0,0 }, true, true, { 195, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyWarriorButton->hover_rect = { 455, 1966, 65, 82 };
-	buyWarriorButton->click_rect = { 715, 1966, 65, 82 };
-	upgradeWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 210, 485 }, { 0,0 }, true, true, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	upgradeWarriorButton->hover_rect = { 585, 1966, 65, 82 };
-	upgradeWarriorButton->click_rect = { 845, 1966, 65, 82 };
+	upgradePainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, true, { 130, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradePainterButton->hover_rect = { 390, 1966, 65, 82 };
+	upgradePainterButton->click_rect = { 750, 1966, 65, 82 };
+	buyPainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, true, { 260, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyPainterButton->hover_rect = { 520, 1966, 65, 82 };
+	buyPainterButton->click_rect = { 780, 1966, 65, 82 };
+	upgradeWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, true, { 195, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradeWarriorButton->hover_rect = { 455, 1966, 65, 82 };
+	upgradeWarriorButton->click_rect = { 715, 1966, 65, 82 };
+	buyWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, true, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyWarriorButton->hover_rect = { 585, 1966, 65, 82 };
+	buyWarriorButton->click_rect = { 845, 1966, 65, 82 };
 	
 
 
@@ -721,6 +722,8 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		buyPaintExtractorButton->enabled = !buyPaintExtractorButton->enabled;
 		buyBarrackButton->enabled = !buyBarrackButton->enabled;
 		buyHouseButton->enabled = !buyHouseButton->enabled;
+		upgradeWoodProducerButton->enabled = !upgradeWoodProducerButton->enabled;
+		upgradePaintExtractorButton->enabled = !upgradePaintExtractorButton->enabled;
 	}
 
 	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_ONCLICK) {
