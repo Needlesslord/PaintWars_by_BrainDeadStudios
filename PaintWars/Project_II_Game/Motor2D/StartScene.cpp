@@ -37,7 +37,7 @@ bool StartScene::Start()
 	bool ret = true;
 
 
-	backgroundImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes,TEXTURE::MAIN_IMAGE);
+	backgroundImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes,TEXTURE::MAIN_IMAGE, FONT::FONT_MEDIUM, 1);
 
 
 	continueButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 475, 190 }, { 30,25 }, true, true, { 0, 0, 263, 91 }, "CONTINUE", App->scenes, TEXTURE::ATLAS);
@@ -116,6 +116,8 @@ bool StartScene::CleanUp()
 	volcanoButton->CleanUp();
 	backButton->CleanUp();
 	backgroundImage->CleanUp();
+
+	RELEASE(backgroundImage);
 
 	if (scene_texture != nullptr)
 	{
