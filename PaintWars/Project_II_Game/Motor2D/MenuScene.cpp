@@ -119,6 +119,8 @@ bool MenuScene::CleanUp()
 	exitButton->CleanUp();
 	backgroundImage->CleanUp();
 
+	RELEASE(backgroundImage);
+
 	if (scene_texture != nullptr)
 	{
 		App->tex->UnLoad(scene_texture);

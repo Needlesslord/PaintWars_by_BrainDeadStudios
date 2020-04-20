@@ -264,18 +264,13 @@ bool GameScene::Start()
 	buyHouseButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyHouseButton->hover_rect = { 0, 1966, 65, 82 };
 	buyHouseButton->click_rect = { 65, 1966, 65, 82 };
-	buyPainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 15, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyPainterButton->hover_rect = { 0, 1966, 65, 82 };
-	buyPainterButton->click_rect = { 65, 1966, 65, 82 };
-	buyWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 80, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyWarriorButton->hover_rect = { 0, 1966, 65, 82 };
-	buyWarriorButton->click_rect = { 65, 1966, 65, 82 };
-
 
 
 
 
 	//HUD - MiniMap
+
+	miniMapBackground = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 850 , 500 }, { 0 , 0 }, false, true, { 0, 1670, 422, 210 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
 
 	miniMapMINI = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 850 , 500 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, TEXTURE::MINIMAP_MINI);
 	miniMapMINI->click_rect = { 30, 15, 422,210 };
@@ -509,6 +504,7 @@ bool GameScene::CleanUp()
 	for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
 	{
 		App->gui->GUI_ELEMENTS[i]->CleanUp();
+		//RELEASE(App->gui->GUI_ELEMENTS[i]);
 	}
 
 
@@ -589,8 +585,6 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		buyPaintExtractorButton->enabled = !buyPaintExtractorButton->enabled;
 		buyBarrackButton->enabled = !buyBarrackButton->enabled;
 		buyHouseButton->enabled = !buyHouseButton->enabled;
-		buyPainterButton->enabled = !buyPainterButton->enabled;
-		buyWarriorButton->enabled = !buyWarriorButton->enabled;
 	}
 
 	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_ONCLICK) {
