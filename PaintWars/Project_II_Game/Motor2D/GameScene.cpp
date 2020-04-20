@@ -115,45 +115,115 @@ bool GameScene::Start()
 	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 80, 75 }, App->entities, nullptr, 0, true);
 	
 
-	//LAKE1 
-
-	App->pathfinding->ChangeToPaint({ 3, 3 });
-	App->pathfinding->ChangeToPaint({ 4, 3 });
-	App->pathfinding->ChangeToPaint({ 5, 3 });
-	App->pathfinding->ChangeToPaint({ 6, 3 });
-	App->pathfinding->ChangeToPaint({ 3, 4 });
+	//LAKE1
+	App->pathfinding->ChangeToPaintShore({ 3, 3 });
+	App->pathfinding->ChangeToPaintShore({ 4, 3 });
+	App->pathfinding->ChangeToPaintShore({ 5, 3 });
+	App->pathfinding->ChangeToPaintShore({ 6, 3 });
+	App->pathfinding->ChangeToPaintShore({ 3, 4 });
 	App->pathfinding->ChangeToPaint({ 4, 4 });
 	App->pathfinding->ChangeToPaint({ 5, 4 });
-	App->pathfinding->ChangeToPaint({ 6, 4 });
-	App->pathfinding->ChangeToPaint({ 3, 5 });
+	App->pathfinding->ChangeToPaintShore({ 6, 4 });
+	App->pathfinding->ChangeToPaintShore({ 3, 5 });
 	App->pathfinding->ChangeToPaint({ 4, 5 });
 	App->pathfinding->ChangeToPaint({ 5, 5 });
-	App->pathfinding->ChangeToPaint({ 6, 5 });
-	App->pathfinding->ChangeToPaint({ 3, 6 });
-	App->pathfinding->ChangeToPaint({ 4, 6 });
-	App->pathfinding->ChangeToPaint({ 5, 6 });
-	App->pathfinding->ChangeToPaint({ 6, 6 });
+	App->pathfinding->ChangeToPaintShore({ 6, 5 });
+	App->pathfinding->ChangeToPaintShore({ 3, 6 });
+	App->pathfinding->ChangeToPaintShore({ 4, 6 });
+	App->pathfinding->ChangeToPaintShore({ 5, 6 });
+	App->pathfinding->ChangeToPaintShore({ 6, 6 });
 
 	//LAKE2
-	
+	App->pathfinding->ChangeToPaint({ 32, 79 });
+	App->pathfinding->ChangeToPaint({ 32, 80 });
+	App->pathfinding->ChangeToPaint({ 33, 79 });
+	App->pathfinding->ChangeToPaint({ 33, 80 }); 
+	App->pathfinding->ChangeToPaintShore({ 31, 78 });
+	App->pathfinding->ChangeToPaintShore({ 31, 79 });
+	App->pathfinding->ChangeToPaintShore({ 31, 80 });
+	App->pathfinding->ChangeToPaintShore({ 31, 81 });
+	App->pathfinding->ChangeToPaintShore({ 32, 78 });
+	App->pathfinding->ChangeToPaintShore({ 32, 81 });
+	App->pathfinding->ChangeToPaintShore({ 33, 78 });
+	App->pathfinding->ChangeToPaintShore({ 33, 81 });
+	App->pathfinding->ChangeToPaintShore({ 34, 78 });
+	App->pathfinding->ChangeToPaintShore({ 34, 79 });
+	App->pathfinding->ChangeToPaintShore({ 34, 80 });
+	App->pathfinding->ChangeToPaintShore({ 34, 81 });
 
-	App->pathfinding->ChangeToPaint({ 3, 3 });
-	App->pathfinding->ChangeToPaint({ 4, 3 });
-	App->pathfinding->ChangeToPaint({ 5, 3 });
-	App->pathfinding->ChangeToPaint({ 6, 3 });
-	App->pathfinding->ChangeToPaint({ 3, 4 });
-	App->pathfinding->ChangeToPaint({ 4, 4 });
-	App->pathfinding->ChangeToPaint({ 5, 4 });
-	App->pathfinding->ChangeToPaint({ 6, 4 });
-	App->pathfinding->ChangeToPaint({ 3, 5 });
-	App->pathfinding->ChangeToPaint({ 4, 5 });
-	App->pathfinding->ChangeToPaint({ 5, 5 });
-	App->pathfinding->ChangeToPaint({ 6, 5 });
-	App->pathfinding->ChangeToPaint({ 3, 6 });
-	App->pathfinding->ChangeToPaint({ 4, 6 });
-	App->pathfinding->ChangeToPaint({ 5, 6 });
-	App->pathfinding->ChangeToPaint({ 6, 6 });
 
+	//LAKE3
+	App->pathfinding->ChangeToPaint({ 49, 32 });
+	App->pathfinding->ChangeToPaint({ 49, 33 });
+	App->pathfinding->ChangeToPaint({ 50, 32 });
+	App->pathfinding->ChangeToPaint({ 50, 33 });
+	App->pathfinding->ChangeToPaintShore({ 48, 31 });
+	App->pathfinding->ChangeToPaintShore({ 48, 32 });
+	App->pathfinding->ChangeToPaintShore({ 48, 33 });
+	App->pathfinding->ChangeToPaintShore({ 48, 34 });
+	App->pathfinding->ChangeToPaintShore({ 49, 31 });
+	App->pathfinding->ChangeToPaintShore({ 49, 34 });
+	App->pathfinding->ChangeToPaintShore({ 50, 31 });
+	App->pathfinding->ChangeToPaintShore({ 50, 34 });
+	App->pathfinding->ChangeToPaintShore({ 51, 31 });
+	App->pathfinding->ChangeToPaintShore({ 51, 32 });
+	App->pathfinding->ChangeToPaintShore({ 51, 33 });
+	App->pathfinding->ChangeToPaintShore({ 51, 34 });
+
+
+	//LAKE4
+	App->pathfinding->ChangeToPaint({ 64, 70 });
+	App->pathfinding->ChangeToPaint({ 65, 70 }); 
+	App->pathfinding->ChangeToPaint({ 66, 70 });
+	App->pathfinding->ChangeToPaint({ 67, 70 });
+	App->pathfinding->ChangeToPaint({ 64, 71 });
+	App->pathfinding->ChangeToPaint({ 65, 71 });
+	App->pathfinding->ChangeToPaint({ 66, 71 });
+	App->pathfinding->ChangeToPaint({ 67, 71 });
+	App->pathfinding->ChangeToPaintShore({ 63, 69 });
+	App->pathfinding->ChangeToPaintShore({ 64, 69 });
+	App->pathfinding->ChangeToPaintShore({ 65, 69 });
+	App->pathfinding->ChangeToPaintShore({ 66, 69 });
+	App->pathfinding->ChangeToPaintShore({ 67, 69 });
+	App->pathfinding->ChangeToPaintShore({ 68, 69 });
+	App->pathfinding->ChangeToPaintShore({ 63, 69 });
+	App->pathfinding->ChangeToPaintShore({ 68, 74 });
+	App->pathfinding->ChangeToPaintShore({ 63, 69 });
+	App->pathfinding->ChangeToPaintShore({ 68, 74 });
+	App->pathfinding->ChangeToPaintShore({ 63, 72 });
+	App->pathfinding->ChangeToPaintShore({ 64, 72 });
+	App->pathfinding->ChangeToPaintShore({ 65, 72 });
+	App->pathfinding->ChangeToPaintShore({ 66, 72 });
+	App->pathfinding->ChangeToPaintShore({ 67, 72 });
+	App->pathfinding->ChangeToPaintShore({ 68, 72 });
+
+
+
+	//LAKE5
+	App->pathfinding->ChangeToPaint({ 92, 37 });
+	App->pathfinding->ChangeToPaint({ 93, 37 });
+	App->pathfinding->ChangeToPaint({ 94, 37 });
+	App->pathfinding->ChangeToPaint({ 95, 37 });
+	App->pathfinding->ChangeToPaint({ 92, 38 });
+	App->pathfinding->ChangeToPaint({ 93, 38 });
+	App->pathfinding->ChangeToPaint({ 94, 38 });
+	App->pathfinding->ChangeToPaint({ 95, 38 });
+	App->pathfinding->ChangeToPaintShore({ 91, 36 });
+	App->pathfinding->ChangeToPaintShore({ 92, 36 });
+	App->pathfinding->ChangeToPaintShore({ 93, 36 });
+	App->pathfinding->ChangeToPaintShore({ 94, 36 });
+	App->pathfinding->ChangeToPaintShore({ 95, 36 });
+	App->pathfinding->ChangeToPaintShore({ 96, 36 });
+	App->pathfinding->ChangeToPaintShore({ 91, 37 });
+	App->pathfinding->ChangeToPaintShore({ 96, 37 });
+	App->pathfinding->ChangeToPaintShore({ 91, 38 });
+	App->pathfinding->ChangeToPaintShore({ 96, 38 });
+	App->pathfinding->ChangeToPaintShore({ 91, 39 });
+	App->pathfinding->ChangeToPaintShore({ 92, 39 });
+	App->pathfinding->ChangeToPaintShore({ 93, 39 });
+	App->pathfinding->ChangeToPaintShore({ 94, 39 });
+	App->pathfinding->ChangeToPaintShore({ 95, 39 });
+	App->pathfinding->ChangeToPaintShore({ 96, 39 });
 
 
 	//CHANGING TILES TO PAINT TILE
@@ -264,18 +334,18 @@ bool GameScene::Start()
 	buyHouseButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyHouseButton->hover_rect = { 0, 1966, 65, 82 };
 	buyHouseButton->click_rect = { 65, 1966, 65, 82 };
-	buyPainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 15, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyPainterButton->hover_rect = { 0, 1966, 65, 82 };
-	buyPainterButton->click_rect = { 65, 1966, 65, 82 };
-	buyWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 80, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyWarriorButton->hover_rect = { 0, 1966, 65, 82 };
-	buyWarriorButton->click_rect = { 65, 1966, 65, 82 };
-
-
+	upgradeWoodProducerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 567 }, { 0,0 }, true, true, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradeWoodProducerButton->hover_rect = { 0, 1966, 65, 82 };
+	upgradeWoodProducerButton->click_rect = { 65, 1966, 65, 82 };
+	upgradePaintExtractorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 567 }, { 0,0 }, true, true, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradePaintExtractorButton->hover_rect = { 0, 1966, 65, 82 };
+	upgradePaintExtractorButton->click_rect = { 65, 1966, 65, 82 };
 
 
 
 	//HUD - MiniMap
+
+	miniMapBackground = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 850 , 500 }, { 0 , 0 }, false, true, { 0, 1670, 422, 210 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
 
 	miniMapMINI = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 850 , 500 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, TEXTURE::MINIMAP_MINI);
 	miniMapMINI->click_rect = { 30, 15, 422,210 };
@@ -289,6 +359,21 @@ bool GameScene::Start()
 	miniMapFULL->click_rect = { 87, 40, 1170,588 };
 	miniMapFULL->hover_rect = { 87, 40, 1170,588 };
 
+
+	//Buildings
+
+	buyPainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 210, 485 }, { 0,0 }, true, true, { 130, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyPainterButton->hover_rect = { 390, 1966, 65, 82 };
+	buyPainterButton->click_rect = { 750, 1966, 65, 82 };
+	upgradePainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 275, 485 }, { 0,0 }, true, true, { 260, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradePainterButton->hover_rect = { 520, 1966, 65, 82 };
+	upgradePainterButton->click_rect = { 780, 1966, 65, 82 };
+	buyWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 210, 485 }, { 0,0 }, true, true, { 195, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyWarriorButton->hover_rect = { 455, 1966, 65, 82 };
+	buyWarriorButton->click_rect = { 715, 1966, 65, 82 };
+	upgradeWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 210, 485 }, { 0,0 }, true, true, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradeWarriorButton->hover_rect = { 585, 1966, 65, 82 };
+	upgradeWarriorButton->click_rect = { 845, 1966, 65, 82 };
 	
 
 
@@ -418,20 +503,28 @@ bool GameScene::Update(float dt)
 		}
 	}
 
+	static char conversorChar1[256];
+	int conversorInt1 = App->player->paintCount.count;
+	sprintf_s(conversorChar1, 256, "%d", conversorInt1);
+	paintLabel->text = conversorChar1;
+
+	static char conversorChar2[256];
+	int conversorInt2 = App->player->woodCount.count;
+	sprintf_s(conversorChar2, 256, "%d", conversorInt2);
+	woodLabel->text = conversorChar2;
+
+	static char conversorChar3[256];
+	int conversorInt3 = App->player->housingSpace.count;
+	sprintf_s(conversorChar3, 256, "%d", conversorInt3);
+	entitiesLabel->text = conversorChar3;
+
 	static char title[256];
-	sprintf_s(title, 256, "Paint:%f, Wood:%f, Housing:%f/%f;      Time:%d:%d      Tile:%d,%d;      WorldPosition:%d,%d;      MouseWorldPosition:%d,%d,      DT is: %f",
-		App->player->paintCount.count, App->player->woodCount.count,
-		App->player->housingSpace.count, App->player->housingSpace.maxCount,
-		minutes, seconds,
-		map_coordinates.x, map_coordinates.y,
-		transformer1.x, transformer1.y,
-		transformer2.x, transformer2.y,dt);
+	sprintf_s(title, 256, "WorldPosition:%d,%d", map_coordinates.x, map_coordinates.y);
 
 	App->win->SetTitle(title);
 
 	if ((App->player->gameTimer.ReadSec() / 60) >= 15.0f) {
 		App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 1.0f, true);
-
 	}
 
 	
@@ -510,6 +603,7 @@ bool GameScene::CleanUp()
 	for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
 	{
 		App->gui->GUI_ELEMENTS[i]->CleanUp();
+		//RELEASE(App->gui->GUI_ELEMENTS[i]);
 	}
 
 
@@ -590,8 +684,6 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		buyPaintExtractorButton->enabled = !buyPaintExtractorButton->enabled;
 		buyBarrackButton->enabled = !buyBarrackButton->enabled;
 		buyHouseButton->enabled = !buyHouseButton->enabled;
-		buyPainterButton->enabled = !buyPainterButton->enabled;
-		buyWarriorButton->enabled = !buyWarriorButton->enabled;
 	}
 
 	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_ONCLICK) {
