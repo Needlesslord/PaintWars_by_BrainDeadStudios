@@ -32,7 +32,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	render = new j1Render();
 	tex = new j1Textures();
 	audio = new j1Audio();
-	scenes = new j1SceneManager();
+	scenes = new j1SceneManager();//RELEASE ERROR IN SCENE MANAGER?
 	map = new j1Map();
 	col = new j1Collision(); 
 	entities = new j1EntityManager();
