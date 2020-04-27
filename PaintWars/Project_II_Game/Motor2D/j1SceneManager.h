@@ -41,7 +41,7 @@ public:
 	Scene*					next_scene;								// Buffer for the scene that will be loaded next.
 
 
-	bool exit;
+	bool exit = false;
 
 private:
 	std::vector<Scene*>		scenes;									// All the scenes of the game.

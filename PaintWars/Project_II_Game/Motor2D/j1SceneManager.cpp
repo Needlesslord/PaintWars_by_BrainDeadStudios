@@ -68,8 +68,8 @@ bool j1SceneManager::PostUpdate()
 
 	current_scene->PostUpdate();
 
-	/*if ((App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && current_scene->scene_name != SCENES::GAME_SCENE) || exit)
-		ret = false;*/
+	if ((App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && current_scene->scene_name != SCENES::GAME_SCENE) || exit)
+		ret = false;
 
 	return ret;
 }
