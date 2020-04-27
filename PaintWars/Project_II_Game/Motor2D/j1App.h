@@ -100,7 +100,7 @@ public:
 	j1Collision*		col = NULL;
 	j1SceneManager*			scenes = NULL;
 	j1Map*				map = NULL;
-	j1EntityManager*	entities = nullptr;
+	j1EntityManager*	entities = NULL;
 	j1PathFinding*		pathfinding = NULL;
 	j1Player*			player = NULL;
 	j1UI_Manager*		gui = NULL;

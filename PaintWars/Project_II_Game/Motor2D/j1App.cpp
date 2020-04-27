@@ -36,7 +36,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	map = new j1Map();
 	col = new j1Collision(); 
 	entities = new j1EntityManager();
-	pathfinding = new j1PathFinding();
+	pathfinding = new j1PathFinding(); 
 	player = new j1Player();
 	gui = new j1UI_Manager();
 	fonts = new j1FontsUI();
@@ -144,24 +144,27 @@ bool j1App::Update()
 	
 	
 
-	
-
-
-
 	bool ret = true;
 	PrepareUpdate();
 
 	if(input->GetWindowEvent(WE_QUIT) == true)
 		ret = false;
 
-	if(ret == true)
+	if (ret == true) {
+		LOG("ENTERING PREUPDATE");
 		ret = PreUpdate();
-
-	if(ret == true)
+	}
+	if (ret == true) {
+		LOG("ENTERING UPDATE");
 		ret = DoUpdate();
+	}
+		
 
-	if(ret == true)
+	if (ret == true) {
+		LOG("ENTERING POSTUPDATE");
 		ret = PostUpdate();
+	}
+		
 
 	FinishUpdate();
 
@@ -282,7 +285,7 @@ bool j1App::PreUpdate()
 		if(pModule->active == false) {
 			continue;
 		}
-
+		LOG("Iterating through pre update modules");
 		ret = (*item)->PreUpdate();
 	}
 
@@ -304,7 +307,7 @@ bool j1App::DoUpdate()
 		if(pModule->active == false) {
 			continue;
 		}
-
+		LOG("Iterating through  update modules");
 		ret = (*item)->Update(dt);
 	}
 
@@ -323,9 +326,12 @@ bool j1App::PostUpdate()
 		pModule = (*item);
 
 		if(pModule->active == false) {
+			LOG("ERROR when iterating post update modules");
 			continue;
+			
 		}
-
+		LOG("Iterating through post update modules");
+		
 		ret = (*item)->PostUpdate();
 	}
 
