@@ -37,9 +37,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	col = new j1Collision(); 
 	entities = new j1EntityManager();
 	pathfinding = new j1PathFinding(); 
-	player = new j1Player();
 	gui = new j1UI_Manager();
 	fonts = new j1FontsUI();
+	player = new j1Player();
 	transition_manager = new TransitionManager();
 	quest_manager = new j1QuestManager();
 	
@@ -58,6 +58,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(player);
 	AddModule(gui);
 	AddModule(fonts);
+	AddModule(player);
 	AddModule(transition_manager);
 	AddModule(quest_manager);
 
