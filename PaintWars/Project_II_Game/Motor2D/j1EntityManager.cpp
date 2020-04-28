@@ -306,13 +306,7 @@ bool j1EntityManager::Update(float dt) {
 
 
 
-		// LifeBars from selected units on top of themselves
-		list<Entity*>::iterator selectedUnits = unitsSelected.begin();
-		while (selectedUnits != unitsSelected.end()) {
-
-			(*selectedUnits)->ShowHealthBar();
-			selectedUnits++;
-		}
+		
 
 
 
@@ -652,6 +646,14 @@ bool j1EntityManager::Update(float dt) {
 			}
 
 			entitiesToDraw++;
+		}
+
+		// LifeBars from selected units on top of themselves
+		list<Entity*>::iterator selectedUnits = unitsSelected.begin();
+		while (selectedUnits != unitsSelected.end()) {
+
+			(*selectedUnits)->ShowHealthBar();
+			selectedUnits++;
 		}
 
 	return ret;
