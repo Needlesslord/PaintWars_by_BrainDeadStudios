@@ -521,7 +521,8 @@ bool GameScene::Update(float dt)
 
 	static char conversorChar3[256];
 	int conversorInt3 = App->player->housingSpace.count;
-	sprintf_s(conversorChar3, 256, "%d", conversorInt3);
+	int conversorInt4 = App->player->housingSpace.maxCount;
+	sprintf_s(conversorChar3, 256, "%d %d", conversorInt3, conversorInt4);
 	entitiesLabel->text = conversorChar3;
 
 	static char title[256];
