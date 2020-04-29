@@ -145,20 +145,36 @@ The artistic inspiration for this game comes from games like:
 ## Art Used
 
 ### Ally Units
-  ![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project%20II%20Game/Game/textures/Spritesheet_warrior.png)
+  ![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/textures/Warrior_Sprite_Mod.png)
+  ![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/textures/spritesheet_painter_mod.png)
   
 ### Enemy Units
-![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project%20II%20Game/Game/textures/Spritesheet_slime.png)
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/textures/UI/UI_atlas.png)
 
 ### Buildings
-![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project%20II%20Game/Game/textures/Spritesheet_buildings.png)
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/textures/Spritesheet_buildings.png)
 
 ### Map
-![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project%20II%20Game/Game/maps/tileset_forest_floor.png)
-![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project%20II%20Game/Game/maps/tileset_forest_trees.png)
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/textures/UI/Minimap_UI_FULL_old.png)
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/maps/tileset_forest_floor.png)
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/maps/tileset_forest_trees.png)
 
 ### UI Elements
-![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project%20II%20Game/Game/textures/UI_atlas.png)
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/textures/UI/UI_atlas.png)
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/textures/UI/Logo_Start.png)
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/textures/cursor3.png)
+
+### Backgrounds
+![Image](https://github.com/Needlesslord/BrainDeadStudios/tree/master/PaintWars/Project_II_Game/Game/textures/UI/)
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/textures/UI/Win_Screen.png)
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/textures/UI/Lose_Screen.png)
+
+### Fonts
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/textures/font.png)
+
+### Logos
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/textures/Logo_BrainDead.png)
+![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/textures/Logo.png)
 
 ***
 
