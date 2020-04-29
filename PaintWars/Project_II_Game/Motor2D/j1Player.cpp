@@ -92,15 +92,20 @@ bool j1Player::Update(float dt)
 	p2List_item<j1UIElement*>* UI_List = App->gui->GUI_ELEMENTS.start;
 	while (UI_List != NULL)
 	{
-		LOG("UI COUNT IS %d", z);
-		App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x;
-		App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y;
+		if (z != 56) {
+			LOG("UI COUNT IS %d", z);
+			App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x;
+			App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y;
+		}
+		else {
+			App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x*0.05;
+			App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y*0.05;
+
+		}
 
 
 		UI_List = UI_List->next;
 		++z;
-
-
 	}
 
 	Select_Entities(selector);
@@ -166,8 +171,8 @@ void j1Player::Camera_Control(float dt)
 
 			if (App->input->GetKey(SDL_SCANCODE_H) == KEY_REPEAT) {
 
-				App->render->camera.x = 0;
-				App->render->camera.y = 0;
+				App->render->camera.x = 575;
+				App->render->camera.y = -1200;
 			}
 		}
 
@@ -184,8 +189,8 @@ void j1Player::Camera_Control(float dt)
 		//	}
 		//}
 
-		App->render->RenderQueueUI(1, App->entities->zeroLifeTexture, 550 + App->render->camera.x*-2 / 2, 50 + App->render->camera.y*-2 / 2, { 0, 0, 200, 15 }, false, true, 0);
-		App->render->RenderQueueUI(1, App->entities->fullLifeTexture, 550 + App->render->camera.x*-2 / 2,  50+App->render->camera.y*-2 / 2, { 0, 0, (int)App->entities->Entity_HP, 15 }, false, true, 0);
+		/*App->render->RenderQueueUI(1, App->entities->zeroLifeTexture, 550 + App->render->camera.x*-2 / 2, 50 + App->render->camera.y*-2 / 2, { 0, 0, 200, 15 }, false, true, 0);
+		App->render->RenderQueueUI(1, App->entities->fullLifeTexture, 550 + App->render->camera.x*-2 / 2,  50+App->render->camera.y*-2 / 2, { 0, 0, (int)App->entities->Entity_HP, 15 }, false, true, 0);*/
 		
 		
 

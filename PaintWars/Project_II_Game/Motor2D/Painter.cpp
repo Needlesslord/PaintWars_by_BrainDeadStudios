@@ -40,28 +40,20 @@ Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 
 	isEntityFromPlayer = true;
 
-	extractionRate = 2.5f;
+	extractionRate = 0.5f;
+
+	if (App->entities->paintersUpgraded)
+		extractionRate *= 1.33f;
 
 	isBuildingSomething = false;
 }
 
 Painter::~Painter() {}
 
-void Painter::SpawnEntity(iPoint pos) {
-	App->entities->isSelectingPlacement = false;
-	if (App->player->woodCount.count >= 20) {
-		App->player->woodCount.count -= 20;
-	}
-	else
-		return;
-	 
-	App->entities->AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR, pos, App->entities,nullptr, 0);
-}
-
 void Painter::ExtractPaint(float dt) {
 
 	if (App->pathfinding->IsPaintShore(currentTile) && currentTile == destination) {
-		App->player->paintCount.count += 0.01;
+		App->player->paintCount.count += extractionRate * dt;
 	}
 }
 

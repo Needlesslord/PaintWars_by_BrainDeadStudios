@@ -41,6 +41,7 @@ public:
 	void ExecuteTransition();
 	void WIN_LOSE_Manager();
 
+	//bool EntityInCamera(Entity* entity);
 
 public:
 	//void InitScene();								// Method that will be used to initialize all scene elements.
@@ -68,6 +69,7 @@ public:
 	//      UI      //
 	//////////////////
 
+	j1UIElement* EntityHP = nullptr;
 
 	UI_HUD UI_INGAME;
 
