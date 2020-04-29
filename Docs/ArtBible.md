@@ -165,7 +165,7 @@ The artistic inspiration for this game comes from games like:
 ![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/textures/cursor3.png)
 
 ### Backgrounds
-![Image](https://github.com/Needlesslord/BrainDeadStudios/tree/master/PaintWars/Project_II_Game/Game/textures/UI/)
+![Image](https://github.com/Needlesslord/BrainDeadStudios/tree/master/PaintWars/Project_II_Game/Game/textures/UI/background.png)
 ![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/textures/UI/Win_Screen.png)
 ![Image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/PaintWars/Project_II_Game/Game/textures/UI/Lose_Screen.png)
 
