@@ -40,26 +40,14 @@ TownHall::~TownHall() {}
 
 void TownHall::SpawnEntity() {
 
-	if (App->player->paintCount.count > 5 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
+	// TODO: check this positions
+	if (!isSpawningAUnit && App->player->paintCount.count > 5 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
 		App->player->paintCount.count -= 5;
 		App->player->housingSpace.count++;
-	}
-	else
-		return;
-
-	// Spawn warrior
-
-	// First, we'll check there isn't a unit in the spawn position
-	/*list<Entity*>::iterator uniitsIterator = App->entities->activeUnits.begin();
-	while (uniitsIterator != App->entities->activeUnits.end()) {
-		if()
-		uniitsIterator++;
-	}*/
-
-	// TODO: check this positions
-	if (!isSpawningAUnit) {
 		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
 		Mix_PlayChannel(-1, App->audio->spawnFromHall, 0);
 		isSpawningAUnit = true;
 	}
+	else
+		return;
 }

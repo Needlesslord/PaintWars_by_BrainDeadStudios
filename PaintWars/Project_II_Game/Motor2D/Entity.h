@@ -85,7 +85,7 @@ public:
 	virtual ~Entity();
 	virtual void Draw(SDL_Texture* sprites);
 	virtual void DebugDrawSelected();
-	virtual void OnCollision(Collider* c1, Collider* c2, CollisionState collisionState);
+	virtual void OnCollision(Collider* c1, Collider* c2);
 	virtual void CalculateMovementLogic(int p);
 	virtual void MovementLogic();
 	virtual void Move(float dt);

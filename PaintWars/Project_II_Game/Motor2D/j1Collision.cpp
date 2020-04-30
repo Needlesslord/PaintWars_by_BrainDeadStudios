@@ -11,6 +11,7 @@ j1Collision::j1Collision()
 		colliders[i] = nullptr;
 
 	matrix[COLLIDER_ALLY_UNIT][COLLIDER_ALLY_UNIT] = true;
+	matrix[COLLIDER_ALLY_UNIT][COLLIDER_ALLY_BUILDING] = false;
 
 }
 

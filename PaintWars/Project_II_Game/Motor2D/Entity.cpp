@@ -37,9 +37,11 @@ void Entity::DebugDrawSelected()
 {
 }
 
-void Entity::OnCollision(Collider* c1, Collider* c2, CollisionState collisionState) {
+void Entity::OnCollision(Collider* c1, Collider* c2) {
 
-
+	if (1 == 2) {
+		c1->rect.x = 1;
+	}
   
 }
 
