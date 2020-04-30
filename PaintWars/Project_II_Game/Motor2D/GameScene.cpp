@@ -242,13 +242,13 @@ bool GameScene::Start()
 	
 	//HUD - Bar
 	hudBarImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
-	paintLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 100 , 10 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 },"0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	paintLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 100 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 },"0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
 	woodLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 200 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
 	metalLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 300 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
 	titaniumLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 400 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
 	researchLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 500 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr,  TEXTURE::ATLAS, FONT::FONT_SMALL);
 	entitiesLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 670 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr,  TEXTURE::ATLAS, FONT::FONT_SMALL);
-	EntityHP = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 750 , 10 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "999", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	EntityHP = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 750 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "999", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
 	//BackgroundForest = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_FOREST);
 
 
@@ -471,6 +471,11 @@ bool GameScene::Update(float dt)
 		
 
 	}
+
+	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) {
+
+		App->scenes->exit = true;
+	}
 	/*UI_INGAME.Shop_Button->map_position.x = UI_INGAME.Shop_Button->init_map_position.x + App->render->camera.x;
 	UI_INGAME.Shop_Button->map_position.y = UI_INGAME.Shop_Button->init_map_position.y + App->render->camera.y;*/
 	bool ret = true;
@@ -521,7 +526,8 @@ bool GameScene::Update(float dt)
 
 	static char conversorChar3[256];
 	int conversorInt3 = App->player->housingSpace.count;
-	sprintf_s(conversorChar3, 256, "%d", conversorInt3);
+	int conversorInt4 = App->player->housingSpace.maxCount;
+	sprintf_s(conversorChar3, 256, "%d %d", conversorInt3, conversorInt4);
 	entitiesLabel->text = conversorChar3;
 
 	static char title[256];

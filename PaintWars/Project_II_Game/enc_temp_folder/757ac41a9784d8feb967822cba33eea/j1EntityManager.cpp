@@ -147,7 +147,7 @@ bool j1EntityManager::Update(float dt) {
 				if ((*checkForSpawningEntities)->constructionProgress * constructionRate >= (*checkForSpawningEntities)->constructionTime) {
 
 					activeBuildings.push_back(*checkForSpawningEntities);
-					activeEntities.push_back(*checkForSpawningEntities);
+					activeEntities.push_front(*checkForSpawningEntities);
 
 					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos);
 					(*checkForSpawningEntities)->isAlive = true;
@@ -306,7 +306,13 @@ bool j1EntityManager::Update(float dt) {
 
 
 
-		
+		// LifeBars from selected units on top of themselves
+		list<Entity*>::iterator selectedUnits = unitsSelected.begin();
+		while (selectedUnits != unitsSelected.end()) {
+
+			(*selectedUnits)->ShowHealthBar();
+			selectedUnits++;
+		}
 
 
 
@@ -646,14 +652,6 @@ bool j1EntityManager::Update(float dt) {
 			}
 
 			entitiesToDraw++;
-		}
-
-		// LifeBars from selected units on top of themselves
-		list<Entity*>::iterator selectedUnits = unitsSelected.begin();
-		while (selectedUnits != unitsSelected.end()) {
-
-			(*selectedUnits)->ShowHealthBar();
-			selectedUnits++;
 		}
 
 	return ret;

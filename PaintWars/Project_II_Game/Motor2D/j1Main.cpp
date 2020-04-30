@@ -78,11 +78,13 @@ int main(int argc, char* args[])
 			LOG("START PHASE ===============================");
 			if(App->Start() == true)
 			{
+				
 				state = LOOP;
-				LOG("UPDATE PHASE ===============================");
+				LOG("START UPDATE PHASE ===============================");
 			}
 			else
 			{
+				
 				state = FAIL;
 				LOG("ERROR: Start failed");
 			}
@@ -92,7 +94,7 @@ int main(int argc, char* args[])
 			case LOOP:
 			{
 				BROFILER_FRAME("Main Game Loop()");
-				
+				LOG("LOOP PHASE");
 				if (App->Update() == false)
 					state = CLEAN;
 
