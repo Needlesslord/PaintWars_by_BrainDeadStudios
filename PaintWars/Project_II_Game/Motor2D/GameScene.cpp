@@ -527,7 +527,7 @@ bool GameScene::Update(float dt)
 	static char conversorChar3[256];
 	int conversorInt3 = App->player->housingSpace.count;
 	int conversorInt4 = App->player->housingSpace.maxCount;
-	sprintf_s(conversorChar3, 256, "%d %d", conversorInt3, conversorInt4);
+	sprintf_s(conversorChar3, 256, "%d/%d", conversorInt3, conversorInt4);
 	entitiesLabel->text = conversorChar3;
 
 	static char title[256];
@@ -563,7 +563,7 @@ bool GameScene::Update(float dt)
 		int maxHp = (*showHp)->GetMaxLife();
 
 		static char conversor[256];
-		sprintf_s(conversor, 256, "%d %d", hp, maxHp);
+		sprintf_s(conversor, 256, "%d/%d", hp, maxHp);
 		EntityHP->text = conversor;
 	}
 	else {

@@ -21,15 +21,15 @@ j1TextUI::~j1TextUI() {
 bool j1TextUI::Start()
 {
 	if(fontType == FONT::FONT_MEDIUM)
-		font_name = App->fonts->Load("textures/font.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789= ", 2);
+		font_name = App->fonts->Load("textures/font.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
 	else if (fontType == FONT::FONT_MEDIUM_WHITE)
-		font_name = App->fonts->Load("textures/font_white.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789= ", 2);
+		font_name = App->fonts->Load("textures/font_white.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
 	else if(fontType == FONT::FONT_SMALL)
-		font_name = App->fonts->Load("textures/font_small.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789= ", 2);
+		font_name = App->fonts->Load("textures/font_small.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
 	else if (fontType == FONT::FONT_SMALL_WHITE)
-		font_name = App->fonts->Load("textures/font_small_white.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789= ", 2);
+		font_name = App->fonts->Load("textures/font_small_white.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
 	else if (fontType == FONT::FONT_EXTRA_SMALL)
-		font_name = App->fonts->Load("textures/font_extra_small.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789= ", 2);
+		font_name = App->fonts->Load("textures/font_extra_small.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
 	
 
 	return true;
