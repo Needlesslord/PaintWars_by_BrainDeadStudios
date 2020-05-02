@@ -38,7 +38,9 @@ public:
 	j1UIElement* volcanoButton = nullptr;
 	j1UIElement* backButton = nullptr;
 	j1UIElement* backgroundImage = nullptr;
-
+	j1UIElement* Loading_1 = nullptr;
+	j1UIElement* Loading_2 = nullptr;
+	j1UIElement* Loading_3 = nullptr;
 };
 
 #endif // __FIRSTSCENE_H__
