@@ -1218,25 +1218,18 @@ void GameScene::DrawScene()
 	App->map->Draw();
 
 
-	// --- TRANSITIONS WITH TEXTURE
-	/*if (scene_texture != nullptr)
-	{
-		App->render->Blit(scene_texture, -(map_width) * 0.5f, 0, NULL);
-	}*/	
+
 }
 
 void GameScene::Map_Manager() {
 	////THESE FUNCTION HAS TO BE REMOVED ONCE WE HAVE THE MAIN MENU, BECAUSE WE WANT THE GAME TO LOAD THE MAP AFTER WE USE THE PLAY BUTTON NOT WHILE WE ARE IN THE MENU
 	if (Load_Forest_Map) {
-		App->map->Load("map_forest.tmx") == true;
 		Create_Forest_Map();
 	}
 	else if (Load_Volcano_Map) {
-		App->map->Load("map_forest.tmx") == true;
 		Create_Volcano_Map();
 	}
 	else if (Load_Snow_Map) {
-		App->map->Load("map_snow.tmx") == true;
 		Create_Snow_Map();
 	}
 	else {
@@ -1247,7 +1240,7 @@ void GameScene::Map_Manager() {
 void GameScene::Create_Forest_Map()
 {
 
-	App->map->CleanUp();
+	//App->map->CleanUp();
 	App->map->Load("map_forest.tmx") == true;
 
 	Change_Map = false;

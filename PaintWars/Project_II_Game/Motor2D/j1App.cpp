@@ -331,7 +331,7 @@ bool j1App::PostUpdate()
 			continue;
 			
 		}
-		LOG("Iterating through post update modules");
+		//LOG("Iterating through post update modules");
 		
 		ret = (*item)->PostUpdate();
 	}

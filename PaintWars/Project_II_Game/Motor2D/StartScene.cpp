@@ -61,6 +61,12 @@ bool StartScene::Start()
 	backButton->hover_rect = { 263, 658, 207, 71 };
 	backButton->click_rect = { 525, 658, 207, 71 };
 
+	//LOADING
+
+	Loading_1 = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 500, 300 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, TEXTURE::MAIN_IMAGE, FONT::FONT_MEDIUM, 1);
+	Loading_2 = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 500, 400 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, TEXTURE::MAIN_IMAGE, FONT::FONT_MEDIUM, 1);
+	Loading_3 = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 500, 500 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, TEXTURE::MAIN_IMAGE, FONT::FONT_MEDIUM, 1);
+
 	if (App->audio->PlayingMenuMusic != true) {
 		App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
 		App->audio->PlayingMenuMusic = true;
@@ -95,7 +101,7 @@ bool StartScene::Update(float dt)
 // Called each loop iteration
 bool StartScene::PostUpdate()
 {
-	App->player->Mouse_Cursor();
+	//App->player->Mouse_Cursor();
 	bool ret = true;
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
