@@ -63,9 +63,7 @@ bool StartScene::Start()
 
 	//LOADING
 
-	Loading_1 = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 500, 300 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, TEXTURE::MAIN_IMAGE, FONT::FONT_MEDIUM, 1);
-	Loading_2 = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 500, 400 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, TEXTURE::MAIN_IMAGE, FONT::FONT_MEDIUM, 1);
-	Loading_3 = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 500, 500 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, TEXTURE::MAIN_IMAGE, FONT::FONT_MEDIUM, 1);
+	
 
 	if (App->audio->PlayingMenuMusic != true) {
 		App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
