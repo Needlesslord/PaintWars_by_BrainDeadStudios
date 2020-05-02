@@ -88,7 +88,7 @@ bool GameScene::Start()
 	bool ret = true;
 	
 
-
+	App->PAUSE_ACTIVE = false;
 	App->render->camera.x = 575;
 	App->render->camera.y = -1200;
 
