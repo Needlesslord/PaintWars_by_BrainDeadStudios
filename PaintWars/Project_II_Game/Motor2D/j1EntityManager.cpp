@@ -39,9 +39,9 @@ bool j1EntityManager::Awake(pugi::xml_node& config) {
 bool j1EntityManager::Start() {
 	
 	BROFILER_CATEGORY("Entity Manager Start--Entity Manager();", Profiler::Color::Blue);
-	
+	//AS ENTITY MANAGER DOESNT GET REMOVED WHEN CLEANUP (THE MODULE ITSELF) IT WONT ACCES START AGAIN BECAUSE IT NEVER CLOSED......
 	bool ret = true;
-	LoadEntityTextures();
+	LoadEntityTextures(); //I MOVED EVERYTHING IN START TO A FUNCTION WHILE START IS NOT FIXED
 	
 
 	return ret;

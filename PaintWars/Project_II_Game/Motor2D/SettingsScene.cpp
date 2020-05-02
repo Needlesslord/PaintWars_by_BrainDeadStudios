@@ -85,7 +85,7 @@ bool SettingsScene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		App->scenes->SwitchScene(SCENES::GAME_SCENE);
+		App->scenes->SwitchScene(SCENES::MENU_SCENE);
 	}
 
 	return ret;
@@ -111,11 +111,22 @@ bool SettingsScene::CleanUp()
 	LOG("Freeing Scene");
 	bool ret = true;
 
-	for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
+	/*for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
 	{
 		App->gui->GUI_ELEMENTS[i]->CleanUp();
 		RELEASE(App->gui->GUI_ELEMENTS[i]);
-	}
+	}*/
+	musicLabel->CleanUp();
+	vfxLabel->CleanUp();
+	fullscreenLabel->CleanUp();
+	gpadLabel->CleanUp();
+	//musicScroll->CleanUp();
+	//vfxScroll->CleanUp();
+	fullscreenButton->CleanUp();
+	gpadButton->CleanUp();
+	resetButton->CleanUp();
+	backButton->CleanUp();
+	backgroundImage->CleanUp();
 
 
 	if (scene_texture != nullptr)
