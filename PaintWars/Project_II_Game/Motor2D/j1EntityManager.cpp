@@ -32,7 +32,7 @@ j1EntityManager::~j1EntityManager() {}
 
 bool j1EntityManager::Awake(pugi::xml_node& config) {
 	bool ret = true;
-
+	EntityTexturesAreLoaded = false;
 	return ret;
 }
 
@@ -41,40 +41,8 @@ bool j1EntityManager::Start() {
 	BROFILER_CATEGORY("Entity Manager Start--Entity Manager();", Profiler::Color::Blue);
 	
 	bool ret = true;
-
-	debug_tex = App->tex->Load("maps/path2.png");
-
-	// TODO: Initialize all textures
-
-		// Allies
-	/// Buildings
-	townHallTexture = App->tex->Load("textures/TownHall.png");
-	paintExtractorTexture = App->tex->Load("textures/PaintExtractor.png");
-	woodProducerTexture = App->tex->Load("textures/WoodProducer.png");
-	houseTexture = App->tex->Load("textures/House.png");
-	barracksTexture = App->tex->Load("textures/Barracks.png");
-
-	/// Units
-	painterTexture = App->tex->Load("textures/Painter.png");	//TODO ELIMINAR
-	warriorTexture = App->tex->Load("textures/Warrior.png");	//TODO ELIMINAR
-	warrior_Texture = App->tex->Load("textures/Warrior_Sprite_Mod.png");
-	painter_Texture = App->tex->Load("textures/spritesheet_painter_mod.png");
-
-		// Enemies
-	/// Buildings
-	spawnerTexture = App->tex->Load("textures/Spawner.png");
-
-	/// Units
-	slimeTexture = App->tex->Load("textures/Slime.png");
-
-	buildingTexture = App->tex->Load("textures/Building.png");
-
-	fullLifeTexture = App->tex->Load("textures/FullLife.png");
-	zeroLifeTexture = App->tex->Load("textures/ZeroLife.png");
-
-
-	WarriorSprites();
-	PainterSprites();
+	LoadEntityTextures();
+	
 
 	return ret;
 }
@@ -82,6 +50,12 @@ bool j1EntityManager::Start() {
 bool j1EntityManager::PreUpdate() {
 	BROFILER_CATEGORY("Entity Manager PreUpdate--Entity Manager();", Profiler::Color::BlueViolet);
 	bool ret = true;
+
+	/*if (EntityTexturesAreLoaded == false) {
+		EntityTexturesAreLoaded = true;
+		LoadEntityTextures();
+	}*/
+
 	if (App->PAUSE_ACTIVE == false) {}
 
 	// Update the currentTile to the actual pos
@@ -772,7 +746,7 @@ bool j1EntityManager::CleanUp() {
 	BROFILER_CATEGORY("Entity Manager CleanUp--Entity Manager();", Profiler::Color::LightBlue);
 	bool ret = true;
 
-	App->tex->UnLoad(townHallTexture);
+	/*App->tex->UnLoad(townHallTexture);
 	App->tex->UnLoad(paintExtractorTexture);
 	App->tex->UnLoad(woodProducerTexture);
 	App->tex->UnLoad(houseTexture);
@@ -784,7 +758,7 @@ bool j1EntityManager::CleanUp() {
 	App->tex->UnLoad(buildingTexture);
 
 	App->tex->UnLoad(fullLifeTexture);
-	App->tex->UnLoad(zeroLifeTexture);
+	App->tex->UnLoad(zeroLifeTexture);*/
 
 	list<Entity*>::iterator destroyEntities = activeEntities.begin();
 	while (destroyEntities != activeEntities.end()) {
@@ -802,6 +776,7 @@ bool j1EntityManager::CleanUp() {
 	unitsSelected.clear();
 	buildingsSelected.clear();
 	
+	EntityTexturesAreLoaded = false;
 	return ret;
 }
 
@@ -1071,4 +1046,43 @@ void j1EntityManager::TriggerEndGame(bool isVictory) {
 	   App->transition_manager->CreateExpandingBars(SCENES::WIN_SCENE, 0.5f, true);  //DOESNT WORK YET BECAUSE SPAWNERS NOT IMPLEMENTED
 	}
 
+}
+
+void j1EntityManager::LoadEntityTextures()
+{
+	debug_tex = App->tex->Load("maps/path2.png");
+
+	// TODO: Initialize all textures
+
+		// Allies
+	/// Buildings
+	townHallTexture = App->tex->Load("textures/TownHall.png");
+	paintExtractorTexture = App->tex->Load("textures/PaintExtractor.png");
+	woodProducerTexture = App->tex->Load("textures/WoodProducer.png");
+	houseTexture = App->tex->Load("textures/House.png");
+	barracksTexture = App->tex->Load("textures/Barracks.png");
+
+	/// Units
+	painterTexture = App->tex->Load("textures/Painter.png");	//TODO ELIMINAR
+	warriorTexture = App->tex->Load("textures/Warrior.png");	//TODO ELIMINAR
+	warrior_Texture = App->tex->Load("textures/Warrior_Sprite_Mod.png");
+	painter_Texture = App->tex->Load("textures/spritesheet_painter_mod.png");
+
+	// Enemies
+/// Buildings
+	spawnerTexture = App->tex->Load("textures/Spawner.png");
+
+	/// Units
+	slimeTexture = App->tex->Load("textures/Slime.png");
+
+	buildingTexture = App->tex->Load("textures/Building.png");
+
+	fullLifeTexture = App->tex->Load("textures/FullLife.png");
+	zeroLifeTexture = App->tex->Load("textures/ZeroLife.png");
+
+
+	WarriorSprites();
+	PainterSprites();
+
+	
 }
