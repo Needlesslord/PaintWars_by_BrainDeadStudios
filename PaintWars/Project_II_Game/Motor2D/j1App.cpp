@@ -581,7 +581,7 @@ void j1App::Debug_Actions()
 	}
 
 
-	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
+	if (App->gui->GUI_ELEMENTS.count() > 0 && App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
 
 		App->win->Fullscreen_Swap();
 	}

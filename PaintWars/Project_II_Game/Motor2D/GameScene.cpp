@@ -242,13 +242,13 @@ bool GameScene::Start()
 	
 	//HUD - Bar
 	hudBarImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
-	paintLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 100 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 },"0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
-	woodLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 200 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
-	metalLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 300 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
-	titaniumLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 400 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
-	researchLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 500 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr,  TEXTURE::ATLAS, FONT::FONT_SMALL);
-	entitiesLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 670 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr,  TEXTURE::ATLAS, FONT::FONT_SMALL);
-	EntityHP = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 750 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "999", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	paintLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 120 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 },"0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	woodLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 240 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	metalLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 360 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	titaniumLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 480 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	researchLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 600 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr,  TEXTURE::ATLAS, FONT::FONT_SMALL);
+	entitiesLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 720 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr,  TEXTURE::ATLAS, FONT::FONT_SMALL);
+	EntityHP = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 1050 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "999", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
 	//BackgroundForest = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_FOREST);
 
 
@@ -263,18 +263,18 @@ bool GameScene::Start()
 	questsCloseButton->click_rect = { 263, 1497, 54, 54 };
 
 	//HUD - Buttons
-	homeButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 950, 50 }, { 0,0 }, true, true, { 785, 486, 74, 74 }, nullptr, App->scenes,  TEXTURE::ATLAS);
-	homeButton->hover_rect = { 785, 560, 74, 74 };
-	homeButton->click_rect = { 785, 634, 74, 74 };
-	shopButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1030, 50 }, { 0,0 }, true, true, { 785, 243, 74, 73 }, nullptr, App->scenes, TEXTURE::ATLAS);
-	shopButton->hover_rect = { 785, 316, 74, 73 };
-	shopButton->click_rect = { 785, 389, 74, 73 };
-	pauseMenuButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1110, 50 }, { 0,0 }, true, true, { 933, 243, 74, 73 }, nullptr, App->scenes,  TEXTURE::ATLAS);
-	pauseMenuButton->hover_rect = { 932, 316, 74, 73 };
-	pauseMenuButton->click_rect = { 933, 389, 74, 73 };
-	restartButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1190, 50 }, { 0,0 }, true, true, { 859, 486, 74, 73 }, nullptr, App->scenes, TEXTURE::ATLAS);
-	restartButton->hover_rect = { 859, 560, 74, 73 };
-	restartButton->click_rect = { 859, 634, 74, 73 };
+	homeButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1020, 50 }, { 0,0 }, true, true, { 786, 486, 55, 55 }, nullptr, App->scenes,  TEXTURE::ATLAS);
+	homeButton->hover_rect = { 785, 560, 55, 55 };
+	homeButton->click_rect = { 785, 634, 55, 55 };
+	shopButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1080, 50 }, { 0,0 }, true, true, { 786, 243, 55, 55 }, nullptr, App->scenes, TEXTURE::ATLAS);
+	shopButton->hover_rect = { 785, 316, 55, 55 };
+	shopButton->click_rect = { 785, 389, 55, 55 };
+	pauseMenuButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1140, 50 }, { 0,0 }, true, true, { 933, 243, 55, 55 }, nullptr, App->scenes,  TEXTURE::ATLAS);
+	pauseMenuButton->hover_rect = { 933, 316, 55, 55 };
+	pauseMenuButton->click_rect = { 933, 389, 55, 55 };
+	restartButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1200, 50 }, { 0,0 }, true, true, { 859, 486, 55, 55 }, nullptr, App->scenes, TEXTURE::ATLAS);
+	restartButton->hover_rect = { 859, 560, 55, 55 };
+	restartButton->click_rect = { 859, 634, 55, 55 };
 
 	
 	//Pause Menu
