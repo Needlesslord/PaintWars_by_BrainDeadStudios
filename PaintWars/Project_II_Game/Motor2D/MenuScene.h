@@ -41,6 +41,17 @@ public:
 	j1UIElement* exitButton = nullptr;
 	j1UIElement* backgroundImage = nullptr;
 
+	j1UIElement* Play_Text = nullptr;
+	j1UIElement* Score_Text = nullptr;
+	j1UIElement* Settings_Text = nullptr;
+	j1UIElement* Exit_Text = nullptr;
+	j1UIElement* Credits_Text = nullptr;
+
+
+private:
+
+	bool ResetPosition;
+
 };
 
 #endif // __FIRSTSCENE_H__
