@@ -11,6 +11,7 @@
 #include "TransitionManager.h"
 #include "j1Audio.h"
 #include "j1Player.h"
+#include "SDL_mixer\include\SDL_mixer.h"
 
 StartScene::StartScene() : Scene(SCENES::START_SCENE)
 {
@@ -64,7 +65,7 @@ bool StartScene::Start()
 	//LOADING
 
 	
-
+	
 	if (App->audio->PlayingMenuMusic != true) {
 		App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
 		App->audio->PlayingMenuMusic = true;

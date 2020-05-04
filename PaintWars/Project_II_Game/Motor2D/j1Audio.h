@@ -50,6 +50,8 @@ public:
 	bool PlayingLoseMusic;
 	bool PlayingWinMusic;
 	bool PlayingLogoMusic;
+	bool PlayingSettingsMusic;
+	
 
 
 

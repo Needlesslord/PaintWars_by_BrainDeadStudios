@@ -65,6 +65,13 @@ bool SettingsScene::Start()
 	backButton->hover_rect = { 263, 658, 207, 71 };
 	backButton->click_rect = { 525, 658, 207, 71 };
 
+
+	if (App->audio->PlayingSettingsMusic != true) {
+		App->audio->PlayMusic("audio/music/SettingsSceneMusic.ogg");
+		App->audio->PlayingSettingsMusic = true;
+	}
+
+
 	return ret;
 }
 

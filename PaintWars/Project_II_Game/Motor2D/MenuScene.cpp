@@ -12,6 +12,7 @@
 #include "TransitionManager.h"
 #include "j1Audio.h"
 #include "j1Player.h"
+#include "SDL_mixer\include\SDL_mixer.h"
 
 MenuScene::MenuScene() : Scene(SCENES::MENU_SCENE)
 {
@@ -159,7 +160,8 @@ void MenuScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 	if (element == settingsButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		
+		Mix_HaltMusic();
+		App->audio->PlayingMenuMusic = false;
 		App->transition_manager->CreateSlide(SCENES::SETTINGS_SCENE, 0.5f, true);
 	}
 
@@ -173,51 +175,6 @@ void MenuScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	}
 }
 
-
-//void MenuScene::InitScene()
-//{
-//	tileset_texture = App->tex->Load("maps/tiles_first_map.png", scene_renderer);	// This texture will be used SceneToTexture(). Needed to get a single whole texture of the map.
-//
-//	App->map->GetMapSize(map_width, map_height);
-//	App->map->GetTileOffset(x_offset, y_offset);
-//	
-//	App->render->camera.x = map_width * 0.3f;										// This camera position gets the camera close to the center of the map.
-//	App->render->camera.y = -40;
-//
-//	// --- TRANSITIONS WITH TEXTURE
-//	/*App->render->camera.x = map_width * 0.5f;										// This camera position is to have the renderer render all the scene_texture.
-//	App->render->camera.y = 0;
-//
-//	SceneToTexture();
-//
-//	App->render->camera.x = map_width * 0.3f;										// This camera position gets the camera close to the center of the map.
-//	App->render->camera.y = -40;*/
-//}
-
-//void MenuScene::DrawScene()
-//{
-//	App->map->Draw();
-//
-//
-//	// --- TRANSITIONS WITH TEXTURE
-//	/*if (scene_texture != nullptr)
-//	{
-//		App->render->Blit(scene_texture, -(map_width) * 0.5f, 0, NULL);
-//	}*/	
-//}
-
-
-//SDL_Texture* MenuScene::SceneToTexture()
-//{
-//	App->render->CreateSubRenderer(map_width + x_offset, map_height + y_offset, scene_surface, scene_renderer);		// Both scene_surface and scene renderer are passed by reference.
-//
-//	tileset_texture = App->tex->Load("maps/tiles_first_map.png", scene_renderer);
-//	App->map->DrawToSubRenderer(scene_renderer, tileset_texture);
-//
-//	scene_texture = SDL_CreateTextureFromSurface(App->render->renderer, scene_surface);
-//
-//	return scene_texture;
-//}
 
 
 void MenuScene::ExecuteTransition()
