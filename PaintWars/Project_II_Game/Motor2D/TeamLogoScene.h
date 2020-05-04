@@ -37,6 +37,10 @@ public:
 	j1UIElement* teamLogoButton = nullptr;
 
 
+private:
+
+	bool ResetPosition;
+
 };
 
 #endif // __FIRSTSCENE_H__
