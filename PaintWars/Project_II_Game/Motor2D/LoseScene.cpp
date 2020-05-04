@@ -39,7 +39,7 @@ bool LoseScene::Awake(pugi::xml_node& config)
 bool LoseScene::Start()
 {
 	bool ret = true;
-
+	App->scenes->IN_GAME_SCENE = false;
 	Lose_Scene_UI = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0 , 0 }, { 0 , 0 }, true, true, { 0, 0, 1278, 719}, nullptr, nullptr, TEXTURE::LOSE_SCREEN_SPRITE);
 	
 	TryAgain = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 275, 600 }, { 30,25 }, true, true, { 285, 575,712 ,62 },nullptr, App->scenes, TEXTURE::CONTINUE_LETTERS);

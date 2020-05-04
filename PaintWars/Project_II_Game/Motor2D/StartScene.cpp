@@ -37,7 +37,7 @@ bool StartScene::Awake(pugi::xml_node& config)
 bool StartScene::Start()
 {
 	bool ret = true;
-
+	App->scenes->IN_GAME_SCENE = false;
 
 	backgroundImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes,TEXTURE::MAIN_IMAGE, FONT::FONT_MEDIUM, 1);
 

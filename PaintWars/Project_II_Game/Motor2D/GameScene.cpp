@@ -106,7 +106,7 @@ bool GameScene::Start()
 	Generate_Entities();
 	Generate_Tiles();
 
-
+	App->scenes->IN_GAME_SCENE = true;
 
 
 	//////////////////

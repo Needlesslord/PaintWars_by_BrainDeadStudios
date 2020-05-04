@@ -37,7 +37,7 @@ bool TeamLogoScene::Awake(pugi::xml_node& config)
 bool TeamLogoScene::Start()
 {
 	bool ret = true;
-
+	App->scenes->IN_GAME_SCENE = false;
 	teamLogoButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, 1280, 720 }, nullptr, App->scenes, TEXTURE::TEAM_LOGO, FONT::FONT_MEDIUM_WHITE, 1);
 	teamLogoButton->hover_rect = { 0, 0, 1280, 720 };
 	teamLogoButton->click_rect = { 0, 0, 1280, 720 };

@@ -88,26 +88,26 @@ bool j1Player::Update(float dt)
 	//This functions should always be last//
 	//Mouse_Cursor();
 	 
+	if (App->scenes->IN_GAME_SCENE == true) {
+		p2List_item<j1UIElement*>* UI_List = App->gui->GUI_ELEMENTS.start;
+		while (UI_List != NULL)
+		{
+			if (z != 56) {
+				LOG("UI COUNT IS %d", z);
+				App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x;
+				App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y;
+			}
+			else {
+				App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x*0.05;
+				App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y*0.05;
 
-	p2List_item<j1UIElement*>* UI_List = App->gui->GUI_ELEMENTS.start;
-	while (UI_List != NULL)
-	{
-		if (z != 56) {
-			LOG("UI COUNT IS %d", z);
-			App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x;
-			App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y;
+			}
+
+
+			UI_List = UI_List->next;
+			++z;
 		}
-		else {
-			App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x*0.05;
-			App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y*0.05;
-
-		}
-
-
-		UI_List = UI_List->next;
-		++z;
 	}
-
 	Select_Entities(selector);
 	return true;
 }

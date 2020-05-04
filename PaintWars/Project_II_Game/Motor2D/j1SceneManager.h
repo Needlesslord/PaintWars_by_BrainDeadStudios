@@ -50,6 +50,8 @@ public:
 	bool Load_Map_Volcano;
 
 
+	bool IN_GAME_SCENE;
+
 
 	bool exit;
 
