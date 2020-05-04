@@ -92,9 +92,7 @@ bool GameScene::Start()
 	App->render->camera.x = 575;
 	App->render->camera.y = -1200;
 
-	//THESE BOOLS HAVE TO BE REMOVED ONCE WE HAVE THE MAIN MENU, BECAUSE WE WANT THE GAME TO LOAD THE MAP AFTER WE USE THE PLAY BUTTON NOT WHILE WE ARE IN THE MENU
-	Load_Forest_Map = true;
-	Change_Map = true;
+	
 	Map_Manager();
 
 	int w, h;
@@ -105,134 +103,10 @@ bool GameScene::Start()
 
 	}
 
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{ 42, 42 }, App->entities, nullptr, 0, true);
-	/*App->entities->AddEntity(ENTITY_TYPE_WOOD_PRODUCER,		{ 18, 18 }, App->entities, nullptr,  0, true);*/
-	/*App->entities->AddEntity(ENTITY_TYPE_BARRACKS,			{ 11,  6 }, App->entities, nullptr,  0, true);*/
-
-	App->entities->AddEntity(ENTITY_TYPE_PAINTER,			{  45,  40 }, App->entities, nullptr,  0, true);
-
-	//App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { 45,  30 }, App->entities, nullptr, 0, true);
-
-	/*App->entities->AddEntity(ENTITY_TYPE_SLIME,				{ 20, 40 }, App->entities, nullptr,  0, true);*/
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 40, 20 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 13,  5 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 80,  4 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{  10, 90 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 80, 75 }, App->entities, nullptr, 0, true);
-	
-
-	//LAKE1
-	App->pathfinding->ChangeToPaintShore({ 3, 3 });
-	App->pathfinding->ChangeToPaintShore({ 4, 3 });
-	App->pathfinding->ChangeToPaintShore({ 5, 3 });
-	App->pathfinding->ChangeToPaintShore({ 6, 3 });
-	App->pathfinding->ChangeToPaintShore({ 3, 4 });
-	App->pathfinding->ChangeToPaint({ 4, 4 });
-	App->pathfinding->ChangeToPaint({ 5, 4 });
-	App->pathfinding->ChangeToPaintShore({ 6, 4 });
-	App->pathfinding->ChangeToPaintShore({ 3, 5 });
-	App->pathfinding->ChangeToPaint({ 4, 5 });
-	App->pathfinding->ChangeToPaint({ 5, 5 });
-	App->pathfinding->ChangeToPaintShore({ 6, 5 });
-	App->pathfinding->ChangeToPaintShore({ 3, 6 });
-	App->pathfinding->ChangeToPaintShore({ 4, 6 });
-	App->pathfinding->ChangeToPaintShore({ 5, 6 });
-	App->pathfinding->ChangeToPaintShore({ 6, 6 });
-
-	//LAKE2
-	App->pathfinding->ChangeToPaint({ 32, 79 });
-	App->pathfinding->ChangeToPaint({ 32, 80 });
-	App->pathfinding->ChangeToPaint({ 33, 79 });
-	App->pathfinding->ChangeToPaint({ 33, 80 }); 
-	App->pathfinding->ChangeToPaintShore({ 31, 78 });
-	App->pathfinding->ChangeToPaintShore({ 31, 79 });
-	App->pathfinding->ChangeToPaintShore({ 31, 80 });
-	App->pathfinding->ChangeToPaintShore({ 31, 81 });
-	App->pathfinding->ChangeToPaintShore({ 32, 78 });
-	App->pathfinding->ChangeToPaintShore({ 32, 81 });
-	App->pathfinding->ChangeToPaintShore({ 33, 78 });
-	App->pathfinding->ChangeToPaintShore({ 33, 81 });
-	App->pathfinding->ChangeToPaintShore({ 34, 78 });
-	App->pathfinding->ChangeToPaintShore({ 34, 79 });
-	App->pathfinding->ChangeToPaintShore({ 34, 80 });
-	App->pathfinding->ChangeToPaintShore({ 34, 81 });
+	Generate_Entities();
+	Generate_Tiles();
 
 
-	//LAKE3
-	App->pathfinding->ChangeToPaint({ 49, 32 });
-	App->pathfinding->ChangeToPaint({ 49, 33 });
-	App->pathfinding->ChangeToPaint({ 50, 32 });
-	App->pathfinding->ChangeToPaint({ 50, 33 });
-	App->pathfinding->ChangeToPaintShore({ 48, 31 });
-	App->pathfinding->ChangeToPaintShore({ 48, 32 });
-	App->pathfinding->ChangeToPaintShore({ 48, 33 });
-	App->pathfinding->ChangeToPaintShore({ 48, 34 });
-	App->pathfinding->ChangeToPaintShore({ 49, 31 });
-	App->pathfinding->ChangeToPaintShore({ 49, 34 });
-	App->pathfinding->ChangeToPaintShore({ 50, 31 });
-	App->pathfinding->ChangeToPaintShore({ 50, 34 });
-	App->pathfinding->ChangeToPaintShore({ 51, 31 });
-	App->pathfinding->ChangeToPaintShore({ 51, 32 });
-	App->pathfinding->ChangeToPaintShore({ 51, 33 });
-	App->pathfinding->ChangeToPaintShore({ 51, 34 });
-
-
-	//LAKE4
-	App->pathfinding->ChangeToPaint({ 64, 70 });
-	App->pathfinding->ChangeToPaint({ 65, 70 }); 
-	App->pathfinding->ChangeToPaint({ 66, 70 });
-	App->pathfinding->ChangeToPaint({ 67, 70 });
-	App->pathfinding->ChangeToPaint({ 64, 71 });
-	App->pathfinding->ChangeToPaint({ 65, 71 });
-	App->pathfinding->ChangeToPaint({ 66, 71 });
-	App->pathfinding->ChangeToPaint({ 67, 71 });
-	App->pathfinding->ChangeToPaintShore({ 63, 69 });
-	App->pathfinding->ChangeToPaintShore({ 64, 69 });
-	App->pathfinding->ChangeToPaintShore({ 65, 69 });
-	App->pathfinding->ChangeToPaintShore({ 66, 69 });
-	App->pathfinding->ChangeToPaintShore({ 67, 69 });
-	App->pathfinding->ChangeToPaintShore({ 68, 69 });
-	App->pathfinding->ChangeToPaintShore({ 63, 69 });
-	App->pathfinding->ChangeToPaintShore({ 68, 74 });
-	App->pathfinding->ChangeToPaintShore({ 63, 69 });
-	App->pathfinding->ChangeToPaintShore({ 68, 74 });
-	App->pathfinding->ChangeToPaintShore({ 63, 72 });
-	App->pathfinding->ChangeToPaintShore({ 64, 72 });
-	App->pathfinding->ChangeToPaintShore({ 65, 72 });
-	App->pathfinding->ChangeToPaintShore({ 66, 72 });
-	App->pathfinding->ChangeToPaintShore({ 67, 72 });
-	App->pathfinding->ChangeToPaintShore({ 68, 72 });
-
-
-
-	//LAKE5
-	App->pathfinding->ChangeToPaint({ 92, 37 });
-	App->pathfinding->ChangeToPaint({ 93, 37 });
-	App->pathfinding->ChangeToPaint({ 94, 37 });
-	App->pathfinding->ChangeToPaint({ 95, 37 });
-	App->pathfinding->ChangeToPaint({ 92, 38 });
-	App->pathfinding->ChangeToPaint({ 93, 38 });
-	App->pathfinding->ChangeToPaint({ 94, 38 });
-	App->pathfinding->ChangeToPaint({ 95, 38 });
-	App->pathfinding->ChangeToPaintShore({ 91, 36 });
-	App->pathfinding->ChangeToPaintShore({ 92, 36 });
-	App->pathfinding->ChangeToPaintShore({ 93, 36 });
-	App->pathfinding->ChangeToPaintShore({ 94, 36 });
-	App->pathfinding->ChangeToPaintShore({ 95, 36 });
-	App->pathfinding->ChangeToPaintShore({ 96, 36 });
-	App->pathfinding->ChangeToPaintShore({ 91, 37 });
-	App->pathfinding->ChangeToPaintShore({ 96, 37 });
-	App->pathfinding->ChangeToPaintShore({ 91, 38 });
-	App->pathfinding->ChangeToPaintShore({ 96, 38 });
-	App->pathfinding->ChangeToPaintShore({ 91, 39 });
-	App->pathfinding->ChangeToPaintShore({ 92, 39 });
-	App->pathfinding->ChangeToPaintShore({ 93, 39 });
-	App->pathfinding->ChangeToPaintShore({ 94, 39 });
-	App->pathfinding->ChangeToPaintShore({ 95, 39 });
-	App->pathfinding->ChangeToPaintShore({ 96, 39 });
-
-
-	//CHANGING TILES TO PAINT TILE
 
 
 	//////////////////
@@ -422,18 +296,7 @@ bool GameScene::PreUpdate()
 
 	bool ret = true;
 
-	if (Change_Map == true) {
-		if (Load_Forest_Map) {
-			Create_Forest_Map();
-		}
-		else if (Load_Volcano_Map) {
-			Create_Volcano_Map();
-		}
-		else if (Load_Snow_Map) {
-			Create_Snow_Map();
-		}
-		else {}
-	}
+
 
 	
 
@@ -476,22 +339,12 @@ bool GameScene::Update(float dt)
 
 		App->scenes->exit = true;
 	}
-	/*UI_INGAME.Shop_Button->map_position.x = UI_INGAME.Shop_Button->init_map_position.x + App->render->camera.x;
-	UI_INGAME.Shop_Button->map_position.y = UI_INGAME.Shop_Button->init_map_position.y + App->render->camera.y;*/
+	
 	bool ret = true;
 	
 	CameraDebugMovement(dt);
 
-	/*if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
-		App->LoadGame();
-
-	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
-		App->SaveGame("save_game.xml");*/
-
-	/*if (App->input->GetKey(SDL_SCANCODE_K) == true) {
-
-		App->entities->CleanUp();
-	}*/
+	
 
 	App->map->Draw();
 
@@ -626,24 +479,7 @@ bool GameScene::Update(float dt)
 
 
 
-	////UI
-
-	//std::stringstream str;
-	//str << App->player->paintCount.count;
-	//string a = str.str();
-	//paintLabel->text = (char*)a.c_str();
-
-
-	//for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
-	//{
-	//	App->gui->GUI_ELEMENTS[i]->map_position.x = App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
-	//	App->gui->GUI_ELEMENTS[i]->map_position.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;
-	//	/*App->gui->GUI_ELEMENTS[i]->click_rect.x=App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
-	//	App->gui->GUI_ELEMENTS[i]->click_rect.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;
-	//	App->gui->GUI_ELEMENTS[i]->hover_rect.x= App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
-	//	App->gui->GUI_ELEMENTS[i]->hover_rect.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;*/
-	//	
-	//}
+	
 
 	
 	return ret;
@@ -1193,24 +1029,7 @@ void GameScene::ManageMinimap()
 
 void GameScene::InitScene()
 {
-	//tileset_texture = App->tex->Load("maps/tiles_first_map.png", scene_renderer);	// This texture will be used SceneToTexture(). Needed to get a single whole texture of the map.
-
-	App->map->Load("map_forest.tmx") == true;
-	Create_Forest_Map();
-	//App->map->GetMapSize(map_width, map_height);
-	//App->map->GetTileOffset(x_offset, y_offset);
 	
-	//App->render->camera.x = map_width * 0.3f;										// This camera position gets the camera close to the center of the map.
-	//App->render->camera.y = -40;
-
-	// --- TRANSITIONS WITH TEXTURE
-	/*App->render->camera.x = map_width * 0.5f;										// This camera position is to have the renderer render all the scene_texture.
-	App->render->camera.y = 0;
-
-	SceneToTexture();
-
-	App->render->camera.x = map_width * 0.3f;										// This camera position gets the camera close to the center of the map.
-	App->render->camera.y = -40;*/
 }
 
 void GameScene::DrawScene()
@@ -1223,66 +1042,186 @@ void GameScene::DrawScene()
 
 void GameScene::Map_Manager() {
 	////THESE FUNCTION HAS TO BE REMOVED ONCE WE HAVE THE MAIN MENU, BECAUSE WE WANT THE GAME TO LOAD THE MAP AFTER WE USE THE PLAY BUTTON NOT WHILE WE ARE IN THE MENU
-	if (Load_Forest_Map) {
-		Create_Forest_Map();
+	if (App->scenes->Load_Map_Forest==true) {
+		Generate_Forest_Map();
 	}
-	else if (Load_Volcano_Map) {
-		Create_Volcano_Map();
+	else if (App->scenes->Load_Map_Snow == true) {
+		Generate_Snow_Map();
 	}
-	else if (Load_Snow_Map) {
-		Create_Snow_Map();
+	else if (App->scenes->Load_Map_Volcano == true) {
+		Generate_Volcano_Map();
 	}
 	else {
 		LOG("No map has been loaded in the scene");
 	}
 }
 
-void GameScene::Create_Forest_Map()
+void GameScene::Generate_Forest_Map()
 {
-
-	//App->map->CleanUp();
+	App->map->CleanUp();
 	App->map->Load("map_forest.tmx") == true;
-
-	Change_Map = false;
-	Forest_Map_Active = true;
-	Load_Forest_Map = false;
+	App->scenes->Load_Map_Forest = false;
+	App->scenes->Map_Forest_Active = true;
 }
 
-void GameScene::Create_Snow_Map()
+void GameScene::Generate_Snow_Map()
 {
 	App->map->CleanUp();
 	App->map->Load("map_snow.tmx") == true;
-
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { -200, 300 }, App->entities, nullptr, 10); //TESTING ONLY
-
-	Change_Map = false;
-	Snow_Map_Active = true;
-	Load_Snow_Map = false;
+	App->scenes->Load_Map_Snow = false;
+	App->scenes->Map_Snow_Active = true;
 }
 
-void GameScene::Create_Volcano_Map()
+void GameScene::Generate_Volcano_Map()
 {
 	App->map->CleanUp();
-	App->map->Load("map_forest.tmx") == true;
+	App->map->Load("map_volcano.tmx") == true;
+	App->scenes->Load_Map_Volcano = false;
+	App->scenes->Map_Volcano_Active = true;
+}
+
+void GameScene::Generate_Entities()
+{
+	if (App->scenes->Map_Forest_Active==true) {
+
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 42, 42 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 45,  40 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 40, 20 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 13,  5 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80,  4 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 10, 90 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80, 75 }, App->entities, nullptr, 0, true);
+	}
+	else if (App->scenes->Map_Snow_Active == true) {
+
+	}
+	else if (App->scenes->Map_Volcano_Active == true) {
+
+	}
+}
+
+void GameScene::Generate_Tiles()
+{
+	if (App->scenes->Map_Forest_Active == true) {
+		//LAKE1
+		App->pathfinding->ChangeToPaintShore({ 3, 3 });
+		App->pathfinding->ChangeToPaintShore({ 4, 3 });
+		App->pathfinding->ChangeToPaintShore({ 5, 3 });
+		App->pathfinding->ChangeToPaintShore({ 6, 3 });
+		App->pathfinding->ChangeToPaintShore({ 3, 4 });
+		App->pathfinding->ChangeToPaint({ 4, 4 });
+		App->pathfinding->ChangeToPaint({ 5, 4 });
+		App->pathfinding->ChangeToPaintShore({ 6, 4 });
+		App->pathfinding->ChangeToPaintShore({ 3, 5 });
+		App->pathfinding->ChangeToPaint({ 4, 5 });
+		App->pathfinding->ChangeToPaint({ 5, 5 });
+		App->pathfinding->ChangeToPaintShore({ 6, 5 });
+		App->pathfinding->ChangeToPaintShore({ 3, 6 });
+		App->pathfinding->ChangeToPaintShore({ 4, 6 });
+		App->pathfinding->ChangeToPaintShore({ 5, 6 });
+		App->pathfinding->ChangeToPaintShore({ 6, 6 });
+
+		//LAKE2
+		App->pathfinding->ChangeToPaint({ 32, 79 });
+		App->pathfinding->ChangeToPaint({ 32, 80 });
+		App->pathfinding->ChangeToPaint({ 33, 79 });
+		App->pathfinding->ChangeToPaint({ 33, 80 });
+		App->pathfinding->ChangeToPaintShore({ 31, 78 });
+		App->pathfinding->ChangeToPaintShore({ 31, 79 });
+		App->pathfinding->ChangeToPaintShore({ 31, 80 });
+		App->pathfinding->ChangeToPaintShore({ 31, 81 });
+		App->pathfinding->ChangeToPaintShore({ 32, 78 });
+		App->pathfinding->ChangeToPaintShore({ 32, 81 });
+		App->pathfinding->ChangeToPaintShore({ 33, 78 });
+		App->pathfinding->ChangeToPaintShore({ 33, 81 });
+		App->pathfinding->ChangeToPaintShore({ 34, 78 });
+		App->pathfinding->ChangeToPaintShore({ 34, 79 });
+		App->pathfinding->ChangeToPaintShore({ 34, 80 });
+		App->pathfinding->ChangeToPaintShore({ 34, 81 });
 
 
-	Change_Map = false;
-	Volcano_Map_Active = true;
-	Load_Volcano_Map = false;
+		//LAKE3
+		App->pathfinding->ChangeToPaint({ 49, 32 });
+		App->pathfinding->ChangeToPaint({ 49, 33 });
+		App->pathfinding->ChangeToPaint({ 50, 32 });
+		App->pathfinding->ChangeToPaint({ 50, 33 });
+		App->pathfinding->ChangeToPaintShore({ 48, 31 });
+		App->pathfinding->ChangeToPaintShore({ 48, 32 });
+		App->pathfinding->ChangeToPaintShore({ 48, 33 });
+		App->pathfinding->ChangeToPaintShore({ 48, 34 });
+		App->pathfinding->ChangeToPaintShore({ 49, 31 });
+		App->pathfinding->ChangeToPaintShore({ 49, 34 });
+		App->pathfinding->ChangeToPaintShore({ 50, 31 });
+		App->pathfinding->ChangeToPaintShore({ 50, 34 });
+		App->pathfinding->ChangeToPaintShore({ 51, 31 });
+		App->pathfinding->ChangeToPaintShore({ 51, 32 });
+		App->pathfinding->ChangeToPaintShore({ 51, 33 });
+		App->pathfinding->ChangeToPaintShore({ 51, 34 });
+
+
+		//LAKE4
+		App->pathfinding->ChangeToPaint({ 64, 70 });
+		App->pathfinding->ChangeToPaint({ 65, 70 });
+		App->pathfinding->ChangeToPaint({ 66, 70 });
+		App->pathfinding->ChangeToPaint({ 67, 70 });
+		App->pathfinding->ChangeToPaint({ 64, 71 });
+		App->pathfinding->ChangeToPaint({ 65, 71 });
+		App->pathfinding->ChangeToPaint({ 66, 71 });
+		App->pathfinding->ChangeToPaint({ 67, 71 });
+		App->pathfinding->ChangeToPaintShore({ 63, 69 });
+		App->pathfinding->ChangeToPaintShore({ 64, 69 });
+		App->pathfinding->ChangeToPaintShore({ 65, 69 });
+		App->pathfinding->ChangeToPaintShore({ 66, 69 });
+		App->pathfinding->ChangeToPaintShore({ 67, 69 });
+		App->pathfinding->ChangeToPaintShore({ 68, 69 });
+		App->pathfinding->ChangeToPaintShore({ 63, 69 });
+		App->pathfinding->ChangeToPaintShore({ 68, 74 });
+		App->pathfinding->ChangeToPaintShore({ 63, 69 });
+		App->pathfinding->ChangeToPaintShore({ 68, 74 });
+		App->pathfinding->ChangeToPaintShore({ 63, 72 });
+		App->pathfinding->ChangeToPaintShore({ 64, 72 });
+		App->pathfinding->ChangeToPaintShore({ 65, 72 });
+		App->pathfinding->ChangeToPaintShore({ 66, 72 });
+		App->pathfinding->ChangeToPaintShore({ 67, 72 });
+		App->pathfinding->ChangeToPaintShore({ 68, 72 });
+
+
+
+		//LAKE5
+		App->pathfinding->ChangeToPaint({ 92, 37 });
+		App->pathfinding->ChangeToPaint({ 93, 37 });
+		App->pathfinding->ChangeToPaint({ 94, 37 });
+		App->pathfinding->ChangeToPaint({ 95, 37 });
+		App->pathfinding->ChangeToPaint({ 92, 38 });
+		App->pathfinding->ChangeToPaint({ 93, 38 });
+		App->pathfinding->ChangeToPaint({ 94, 38 });
+		App->pathfinding->ChangeToPaint({ 95, 38 });
+		App->pathfinding->ChangeToPaintShore({ 91, 36 });
+		App->pathfinding->ChangeToPaintShore({ 92, 36 });
+		App->pathfinding->ChangeToPaintShore({ 93, 36 });
+		App->pathfinding->ChangeToPaintShore({ 94, 36 });
+		App->pathfinding->ChangeToPaintShore({ 95, 36 });
+		App->pathfinding->ChangeToPaintShore({ 96, 36 });
+		App->pathfinding->ChangeToPaintShore({ 91, 37 });
+		App->pathfinding->ChangeToPaintShore({ 96, 37 });
+		App->pathfinding->ChangeToPaintShore({ 91, 38 });
+		App->pathfinding->ChangeToPaintShore({ 96, 38 });
+		App->pathfinding->ChangeToPaintShore({ 91, 39 });
+		App->pathfinding->ChangeToPaintShore({ 92, 39 });
+		App->pathfinding->ChangeToPaintShore({ 93, 39 });
+		App->pathfinding->ChangeToPaintShore({ 94, 39 });
+		App->pathfinding->ChangeToPaintShore({ 95, 39 });
+		App->pathfinding->ChangeToPaintShore({ 96, 39 });
+	}
+	else if (App->scenes->Map_Snow_Active == true) {
+
+	}
+	else if (App->scenes->Map_Volcano_Active == true) {
+
+	}
 }
 
 
-//SDL_Texture* FirstScene::SceneToTexture()
-//{
-//	App->render->CreateSubRenderer(map_width + x_offset, map_height + y_offset, scene_surface, scene_renderer);		// Both scene_surface and scene renderer are passed by reference.
-//
-//	tileset_texture = App->tex->Load("maps/tiles_first_map.png", scene_renderer);
-//	App->map->DrawToSubRenderer(scene_renderer, tileset_texture);
-//
-//	scene_texture = SDL_CreateTextureFromSurface(App->render->renderer, scene_surface);
-//
-//	return scene_texture;
-//}
 
 void GameScene::ExecuteTransition()
 {
@@ -1310,59 +1249,7 @@ void GameScene::ExecuteTransition()
 			App->entities->CleanUp();
 		}
 
-	//	if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true);
-	//	}
-
-	//	if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true, true);
-	//	}
-
-	//	if (App->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateAlternatingBars(SCENES::SECOND_SCENE, 0.5f, true);
-	//	}
-
-	//	if (App->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateExpandingBars(SCENES::SECOND_SCENE, 0.5f, true);
-	//	}
-
-	//	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN)
-	//	{
-	//		iPoint mouse_pos = App->input->GetMouseToWorld();
-
-	//		App->transition_manager->CreateZoomToMouse(SCENES::SECOND_SCENE, mouse_pos, 0.5f, true);
-	//	}
-
-	//	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
-	//	{
-	//		iPoint mouse_pos = App->input->GetMouseToWorld();
-
-	//		App->transition_manager->CreateCameraToMouse(mouse_pos, 0.5f, true);
-	//	}
-
-
-	//	// --- TRANSITION WITH TEXTURE METHODS (NOT IMPLEMENTED)
-	//	if (App->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN)
-	//	{
-	//		if (scene_texture != nullptr)
-	//		{
-	//			App->transition_manager->CreateDissolve(SCENES::SECOND_SCENE, 1.0f);
-	//		}
-	//	}
-
-	//	if (App->input->GetMouseButtonDown(SDL_BUTTON_MIDDLE) == KEY_DOWN)
-	//	{
-	//		iPoint mouse_pos = App->input->GetMouseToWorld();
-
-	//		if (scene_texture != nullptr)
-	//		{
-	//			App->transition_manager->CreateZoomToTexture(SCENES::SECOND_SCENE, mouse_pos);
-	//		}
-	//	}
+	
 
 	}
 }
@@ -1400,13 +1287,4 @@ void GameScene::WIN_LOSE_Manager()
 
 
 
-//bool EntityInCamera(Entity* entity) {
-//
-//	bool ret = true;
-//
-//	if (entity->pos.x < App->render->camera.x || entity->pos.x > App->render->camera.x + 720 || entity->pos.y < App->render->camera.y || entity->pos.y < App->render->camera.y + 1280) {
-//		ret = false;
-//	}
-//  
-//	return ret;
-//}
+

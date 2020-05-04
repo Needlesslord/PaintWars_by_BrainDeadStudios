@@ -32,9 +32,12 @@ public:
 
 	//MAP & SCENE 
 	void Map_Manager();
-	void Create_Forest_Map();
-	void Create_Snow_Map();
-	void Create_Volcano_Map();
+
+	void Generate_Forest_Map();
+	void Generate_Snow_Map();
+	void Generate_Volcano_Map();
+	void Generate_Entities();
+	void Generate_Tiles();
 	//SCENE TRANSITIONS
 	void InitScene();								// Method that will be used to initialize all scene elements.
 	void DrawScene();
@@ -54,15 +57,10 @@ public:
 public:
 
 	//MAP MANAGER
-	bool LoadingMap;
-	bool Forest_Map_Active;
-	bool Volcano_Map_Active;
-	bool Snow_Map_Active;
-	bool Load_Forest_Map;
-	bool Load_Volcano_Map;
-	bool Load_Snow_Map;
-	bool Change_Map;
 
+
+
+	const char* Map_Name_To_Load;
 
 
 	//////////////////
@@ -167,14 +165,14 @@ public:
 	char Housing_Amount_UI;
 
 	char Max_Housing_Amount_UI;
-	
+
 private:
 
 
 
-	
-	
+
+
 
 };
 
-#endif // __FIRSTSCENE_H__
+#endif // __GAMESCENE_H__
