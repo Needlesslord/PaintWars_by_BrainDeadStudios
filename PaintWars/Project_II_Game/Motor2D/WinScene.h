@@ -40,6 +40,10 @@ public:
 	j1UIElement* Win_Scene_UI = nullptr;
 	j1UIElement* ReturnVictorious = nullptr;
 
+private:
+
+	bool ResetPosition;
+
 };
 
 #endif 

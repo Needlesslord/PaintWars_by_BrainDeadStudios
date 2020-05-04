@@ -54,7 +54,7 @@ bool WinScene::Start()
 		App->audio->PlayingWinMusic = true;
 	}
 
-
+	ResetPosition = true;
 	return ret;
 }
 
@@ -62,6 +62,13 @@ bool WinScene::Start()
 bool WinScene::PreUpdate()
 {
 	bool ret = true;
+
+
+	if (ResetPosition == true  ) {
+		ReturnVictorious->map_position.x = -550;
+		ResetPosition = false;
+	}
+
 
 	return ret;
 }
@@ -72,18 +79,12 @@ bool WinScene::Update(float dt)
 	bool ret = true;
 
 	CameraDebugMovement(dt);
-	//if (ReturnVictorious->rect.x != 500) {
-	//	//ReturnVictorious->rect.x = ReturnVictorious->rect.x + 1;
-	//	ReturnVictorious->map_position.x = ReturnVictorious->map_position.x + 10;
-	//}
-	//else {
-	//	ReturnVictorious->rect.x = 322;
-	//}
+	
 
-	//ReturnVictorious->map_position.x = ReturnVictorious->map_position.x + 100;
-
-
-	ReturnVictorious->map_position = ReturnVictorious->map_position = { ReturnVictorious->map_position.x +10,ReturnVictorious->map_position.y };
+	if (ReturnVictorious->map_position.x < 300 && App->transition_manager->is_transitioning==false) {
+		ReturnVictorious->map_position = ReturnVictorious->map_position = { ReturnVictorious->map_position.x +3,ReturnVictorious->map_position.y };
+	}
+	
 	return ret; 
 }
 

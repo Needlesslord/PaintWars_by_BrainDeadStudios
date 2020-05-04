@@ -54,6 +54,7 @@ bool LoseScene::Start()
 		App->audio->PlayingLoseMusic = true;
 	}
 	
+	ResetPosition = true;
 
 	return ret;
 }
@@ -63,6 +64,10 @@ bool LoseScene::PreUpdate()
 {
 	bool ret = true;
 
+	if (ResetPosition == true) {
+		TryAgain->map_position.x = -550;
+		ResetPosition = false;
+	}
 	return ret;
 }
 
@@ -73,10 +78,9 @@ bool LoseScene::Update(float dt)
 
 	CameraDebugMovement(dt);
 
-	/*if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-	{
-		App->scenes->SwitchScene(SCENES::START_SCENE);
-	}*/
+	if (TryAgain->map_position.x < 275 && App->transition_manager->is_transitioning == false) {
+		TryAgain->map_position = TryAgain->map_position = { TryAgain->map_position.x + 3,TryAgain->map_position.y };
+	}
 
 	return ret;
 }
