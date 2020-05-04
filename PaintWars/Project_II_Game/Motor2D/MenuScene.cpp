@@ -38,6 +38,7 @@ bool MenuScene::Awake(pugi::xml_node& config)
 bool MenuScene::Start()
 {
 	bool ret = true;
+	FinishedPosition = false;
 	ResetPosition = true;
 	App->scenes->IN_GAME_SCENE = false;
 	backgroundImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, TEXTURE::MAIN_IMAGE);
@@ -116,38 +117,42 @@ bool MenuScene::Update(float dt)
 	}
 
 	if (playButton->map_position.x < 475 && App->transition_manager->is_transitioning == false) {
-		playButton->map_position = playButton->map_position = { playButton->map_position.x + 5,playButton->map_position.y };
+		playButton->map_position = playButton->map_position = { playButton->map_position.x + 7,playButton->map_position.y };
 	}
 	if (Play_Text->map_position.x < 550 && App->transition_manager->is_transitioning == false) {
-		Play_Text->map_position = Play_Text->map_position = { Play_Text->map_position.x + 5,Play_Text->map_position.y };
+		Play_Text->map_position = Play_Text->map_position = { Play_Text->map_position.x + 7,Play_Text->map_position.y };
 	}
 	//--
 	if (settingsButton->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
-		settingsButton->map_position = settingsButton->map_position = { settingsButton->map_position.x - 5,settingsButton->map_position.y };
+		settingsButton->map_position = settingsButton->map_position = { settingsButton->map_position.x - 7,settingsButton->map_position.y };
 	}
 	if (Settings_Text->map_position.x > 495 && App->transition_manager->is_transitioning == false) {
-		Settings_Text->map_position = Settings_Text->map_position = { Settings_Text->map_position.x - 5,Settings_Text->map_position.y };
+		Settings_Text->map_position = Settings_Text->map_position = { Settings_Text->map_position.x - 7,Settings_Text->map_position.y };
 	}
 
 	if (scoreButton->map_position.x < 490 && App->transition_manager->is_transitioning == false) {
-		scoreButton->map_position = scoreButton->map_position = { scoreButton->map_position.x + 5,scoreButton->map_position.y };
+		scoreButton->map_position = scoreButton->map_position = { scoreButton->map_position.x + 7,scoreButton->map_position.y };
 	}
 	if (Score_Text->map_position.x < 535 && App->transition_manager->is_transitioning == false) {
-		Score_Text->map_position = Score_Text->map_position = { Score_Text->map_position.x + 5,Score_Text->map_position.y };
+		Score_Text->map_position = Score_Text->map_position = { Score_Text->map_position.x + 7,Score_Text->map_position.y };
 	}
 	//--
 	if (creditsButton->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
-		creditsButton->map_position = creditsButton->map_position = { creditsButton->map_position.x - 5,creditsButton->map_position.y };
+		creditsButton->map_position = creditsButton->map_position = { creditsButton->map_position.x - 7,creditsButton->map_position.y };
 	}
 	if (Credits_Text->map_position.x > 515 && App->transition_manager->is_transitioning == false) {
-		Credits_Text->map_position = Credits_Text->map_position = { Credits_Text->map_position.x - 5,Credits_Text->map_position.y };
+		Credits_Text->map_position = Credits_Text->map_position = { Credits_Text->map_position.x - 7,Credits_Text->map_position.y };
 	}
 
 	if (exitButton->map_position.x < 505 && App->transition_manager->is_transitioning == false) {
-		exitButton->map_position = exitButton->map_position = { exitButton->map_position.x + 5,exitButton->map_position.y };
+		exitButton->map_position = exitButton->map_position = { exitButton->map_position.x + 7,exitButton->map_position.y };
 	}
 	if (Exit_Text->map_position.x < 555 && App->transition_manager->is_transitioning == false) {
-		Exit_Text->map_position = Exit_Text->map_position = { Exit_Text->map_position.x + 5,Exit_Text->map_position.y };
+		Exit_Text->map_position = Exit_Text->map_position = { Exit_Text->map_position.x + 7,Exit_Text->map_position.y };
+		
+	}
+	else if( App->transition_manager->is_transitioning == false) {
+		FinishedPosition = true; //ONLY ONE CHANGE TO TRUE IS NEEDED BECAUSE ALL BUTTONS GET TO THEIR POSITION AT THE SAME MOMENT
 	}
 
 
@@ -212,27 +217,29 @@ bool MenuScene::CleanUp()
 
 void MenuScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
-	if (element == playButton && type == GUI_Event::EVENT_ONCLICK)
-	{
-		//App->transition_manager->CreateFadeToColour(SCENES::START_SCENE);
-		//App->transition_manager->CreateFadeToColour(SCENES::START_SCENE);
-		App->transition_manager->CreateSlide(SCENES::START_SCENE, 0.5f, true);
-	}
+	if (FinishedPosition == true) {
+		if (element == playButton && type == GUI_Event::EVENT_ONCLICK)
+		{
+			//App->transition_manager->CreateFadeToColour(SCENES::START_SCENE);
+			//App->transition_manager->CreateFadeToColour(SCENES::START_SCENE);
+			App->transition_manager->CreateSlide(SCENES::START_SCENE, 0.5f, true);
+		}
 
-	if (element == settingsButton && type == GUI_Event::EVENT_ONCLICK)
-	{
-		Mix_HaltMusic();
-		App->audio->PlayingMenuMusic = false;
-		App->transition_manager->CreateSlide(SCENES::SETTINGS_SCENE, 0.5f, true);
-	}
+		if (element == settingsButton && type == GUI_Event::EVENT_ONCLICK)
+		{
+			Mix_HaltMusic();
+			App->audio->PlayingMenuMusic = false;
+			App->transition_manager->CreateSlide(SCENES::SETTINGS_SCENE, 0.5f, true);
+		}
 
-	if (element == exitButton && type == GUI_Event::EVENT_ONCLICK)
-	{
-		App->scenes->exit = true;
-	}
+		if (element == exitButton && type == GUI_Event::EVENT_ONCLICK)
+		{
+			App->scenes->exit = true;
+		}
 
-	if (element == creditsButton && type == GUI_Event::EVENT_ONCLICK) {
-		ShellExecuteA(NULL, "open", "https://github.com/Needlesslord/BrainDeadStudios", NULL, NULL, SW_SHOWNORMAL);
+		if (element == creditsButton && type == GUI_Event::EVENT_ONCLICK) {
+			ShellExecuteA(NULL, "open", "https://github.com/Needlesslord/BrainDeadStudios", NULL, NULL, SW_SHOWNORMAL);
+		}
 	}
 }
 

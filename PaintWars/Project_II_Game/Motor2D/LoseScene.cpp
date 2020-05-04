@@ -39,6 +39,7 @@ bool LoseScene::Awake(pugi::xml_node& config)
 bool LoseScene::Start()
 {
 	bool ret = true;
+	FinishedPosition = false;
 	App->scenes->IN_GAME_SCENE = false;
 	Lose_Scene_UI = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0 , 0 }, { 0 , 0 }, true, true, { 0, 0, 1278, 719}, nullptr, nullptr, TEXTURE::LOSE_SCREEN_SPRITE);
 	
@@ -79,7 +80,11 @@ bool LoseScene::Update(float dt)
 	CameraDebugMovement(dt);
 
 	if (TryAgain->map_position.x < 275 && App->transition_manager->is_transitioning == false) {
-		TryAgain->map_position = TryAgain->map_position = { TryAgain->map_position.x + 3,TryAgain->map_position.y };
+		TryAgain->map_position = TryAgain->map_position = { TryAgain->map_position.x + 5,TryAgain->map_position.y };
+		
+	}
+	else if (App->transition_manager->is_transitioning == false) {
+		FinishedPosition = true; //ONLY ONE CHANGE TO TRUE IS NEEDED BECAUSE ALL BUTTONS GET TO THEIR POSITION AT THE SAME MOMENT
 	}
 
 	return ret;
@@ -149,17 +154,18 @@ bool LoseScene::CleanUp()
 
 void LoseScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
-
-	if (element == TryAgain && type == GUI_Event::EVENT_ONCLICK)
-	{
-		Mix_HaltMusic();
-		if (App->audio->PlayingMenuMusic != true) {
-			App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
-			App->audio->PlayingMenuMusic = true;
+	if (FinishedPosition == true) {
+		if (element == TryAgain && type == GUI_Event::EVENT_ONCLICK)
+		{
+			Mix_HaltMusic();
+			if (App->audio->PlayingMenuMusic != true) {
+				App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
+				App->audio->PlayingMenuMusic = true;
+			}
+			App->entities->CleanUp();
+			App->audio->PlayingLoseMusic = false;
+			App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
 		}
-		App->entities->CleanUp();
-		App->audio->PlayingLoseMusic = false;
-		App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
 	}
 }
 

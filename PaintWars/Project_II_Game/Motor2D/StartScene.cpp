@@ -37,34 +37,46 @@ bool StartScene::Awake(pugi::xml_node& config)
 bool StartScene::Start()
 {
 	bool ret = true;
+	FinishedPosition = false;
+	ResetPosition = true;
 	App->scenes->IN_GAME_SCENE = false;
 
 	backgroundImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes,TEXTURE::MAIN_IMAGE, FONT::FONT_MEDIUM, 1);
 
 
-	continueButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 475, 190 }, { 30,25 }, true, true, { 0, 0, 263, 91 }, "CONTINUE", App->scenes, TEXTURE::ATLAS);
+	continueButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 475, 100 }, { 30,25 }, true, true, { 0, 0, 263, 91 }, "", App->scenes, TEXTURE::ATLAS);
 	continueButton->hover_rect = { 263, 0, 263, 91 };
 	continueButton->click_rect = { 526, 0, 263, 91 };
 
-	forestButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 485, 320 }, { 30,20 }, true, true, { 0, 334, 234, 79 }, "Forest", App->scenes, TEXTURE::ATLAS);
+	forestButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 485, 230 }, { 30,20 }, true, true, { 0, 334, 234, 79 }, "", App->scenes, TEXTURE::ATLAS);
 	forestButton->hover_rect = { 263, 334, 234, 79 };
 	forestButton->click_rect = { 525, 334, 234, 79 };
 
-	snowButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 485, 430 }, { 60,20 }, true, true, { 0, 334, 234, 79 }, "Snow", App->scenes,  TEXTURE::ATLAS);
+	snowButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 485, 340 }, { 60,20 }, true, true, { 0, 334, 234, 79 }, "", App->scenes,  TEXTURE::ATLAS);
 	snowButton->hover_rect = { 263, 334, 234, 79 };
 	snowButton->click_rect = { 525, 334, 234, 79 };
 
-	volcanoButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 485, 540 }, { 20,20 }, true, true, { 0, 334, 234, 79 }, "Volcano", App->scenes, TEXTURE::ATLAS);
+	volcanoButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 485, 450 }, { 20,20 }, true, true, { 0, 334, 234, 79 }, "", App->scenes, TEXTURE::ATLAS);
 	volcanoButton->hover_rect = { 263, 334, 234, 79 };
 	volcanoButton->click_rect = { 525, 334, 234, 79 };
 
-	backButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 900, 640 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "BACK", App->scenes, TEXTURE::ATLAS);
+	backButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 900, 570 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "", App->scenes, TEXTURE::ATLAS);
 	backButton->hover_rect = { 263, 658, 207, 71 };
 	backButton->click_rect = { 525, 658, 207, 71 };
 
+
+
+	Continue_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, continueButton, { 425 , 125 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "CONTINUE", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
+	Forest_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, forestButton, { 500 , 250 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "Forest", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
+	Snow_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, snowButton, { 500 , 360 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "Snow", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
+	Volcano_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, volcanoButton, { 450 , 470 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "Volcano", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
+	Back_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, backButton, { 900 , 585 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "BACK", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
+	
+
+
+
 	//LOADING
 
-	
 	
 	if (App->audio->PlayingMenuMusic != true) {
 		App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
@@ -78,6 +90,20 @@ bool StartScene::Start()
 bool StartScene::PreUpdate()
 {
 	bool ret = true;
+
+	if (ResetPosition == true) {
+		continueButton->map_position.x = -300;
+		Continue_Text->map_position.x = -275;
+		forestButton->map_position.x = 1300;
+		Forest_Text->map_position.x = 1335;
+		snowButton->map_position.x = -300;
+		Snow_Text->map_position.x = -245;
+		volcanoButton->map_position.x = 1300;
+		Volcano_Text->map_position.x = 1330;
+		backButton->map_position.x = -300;
+		Back_Text->map_position.x = -250;
+		ResetPosition = false;
+	}
 
 	return ret;
 }
@@ -93,6 +119,57 @@ bool StartScene::Update(float dt)
 	{
 		App->scenes->SwitchScene(SCENES::GAME_SCENE);
 	}
+
+
+
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	{
+		App->scenes->SwitchScene(SCENES::START_SCENE);
+	}
+
+	if (continueButton->map_position.x < 475 && App->transition_manager->is_transitioning == false) {
+		continueButton->map_position = continueButton->map_position = { continueButton->map_position.x + 7,continueButton->map_position.y };
+	}
+	if (Continue_Text->map_position.x < 500 && App->transition_manager->is_transitioning == false) {
+		Continue_Text->map_position = Continue_Text->map_position = { Continue_Text->map_position.x + 7,Continue_Text->map_position.y };
+	}
+	//--
+	if (forestButton->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
+		forestButton->map_position = forestButton->map_position = { forestButton->map_position.x - 7,forestButton->map_position.y };
+	}
+	if (Forest_Text->map_position.x > 525 && App->transition_manager->is_transitioning == false) {
+		Forest_Text->map_position = Forest_Text->map_position = { Forest_Text->map_position.x - 7,Forest_Text->map_position.y };
+	}
+
+	if (snowButton->map_position.x < 490 && App->transition_manager->is_transitioning == false) {
+		snowButton->map_position = snowButton->map_position = { snowButton->map_position.x + 7,snowButton->map_position.y };
+	}
+	if (Snow_Text->map_position.x < 545 && App->transition_manager->is_transitioning == false) {
+		Snow_Text->map_position = Snow_Text->map_position = { Snow_Text->map_position.x + 7,Snow_Text->map_position.y };
+	}
+	//--
+	if (volcanoButton->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
+		volcanoButton->map_position = volcanoButton->map_position = { volcanoButton->map_position.x - 7,volcanoButton->map_position.y };
+	}
+	if (Volcano_Text->map_position.x > 515 && App->transition_manager->is_transitioning == false) {
+		Volcano_Text->map_position = Volcano_Text->map_position = { Volcano_Text->map_position.x - 7,Volcano_Text->map_position.y };
+	}
+
+	if (backButton->map_position.x < 505 && App->transition_manager->is_transitioning == false) {
+		backButton->map_position = backButton->map_position = { backButton->map_position.x + 7,backButton->map_position.y };
+	}
+	if (Back_Text->map_position.x < 555 && App->transition_manager->is_transitioning == false) {
+		Back_Text->map_position = Back_Text->map_position = { Back_Text->map_position.x + 7,Back_Text->map_position.y };
+		
+	}
+	else if (App->transition_manager->is_transitioning == false) {
+		FinishedPosition = true; //ONLY ONE CHANGE TO TRUE IS NEEDED BECAUSE ALL BUTTONS GET TO THEIR POSITION AT THE SAME MOMENT
+	}
+
+
+
+
 
 	return ret;
 }
@@ -152,62 +229,65 @@ bool StartScene::CleanUp()
 
 void StartScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
-	if (element == backButton && type == GUI_Event::EVENT_ONCLICK)
-	{
-		
-		App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
 
-	}
+	if (FinishedPosition==true) {
+		if (element == backButton && type == GUI_Event::EVENT_ONCLICK)
+		{
 
-	if (element == continueButton && type == GUI_Event::EVENT_ONCLICK)
-	{
-		
-		if (App->scenes->Map_Forest_Active == true) {
-			App->scenes->Load_Map_Forest = true;
-			App->scenes->Load_Map_Snow = false;
-			App->scenes->Load_Map_Volcano = false;
-			App->scenes->Map_Forest_Active = false;
-		}
-		else if (App->scenes->Map_Snow_Active == true) {
-			App->scenes->Load_Map_Snow = true;
-			App->scenes->Load_Map_Forest = false;
-			App->scenes->Load_Map_Volcano = false;
-			App->scenes->Map_Snow_Active = false;
-		}
-		else if (App->scenes->Map_Volcano_Active == true) {
-			App->scenes->Load_Map_Volcano = true;
-			App->scenes->Load_Map_Forest = false;
-			App->scenes->Load_Map_Snow = false;
-			App->scenes->Map_Volcano_Active = false;
+			App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
+
 		}
 
-		App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true);
+		if (element == continueButton && type == GUI_Event::EVENT_ONCLICK)
+		{
 
-	}
+			if (App->scenes->Map_Forest_Active == true) {
+				App->scenes->Load_Map_Forest = true;
+				App->scenes->Load_Map_Snow = false;
+				App->scenes->Load_Map_Volcano = false;
+				App->scenes->Map_Forest_Active = false;
+			}
+			else if (App->scenes->Map_Snow_Active == true) {
+				App->scenes->Load_Map_Snow = true;
+				App->scenes->Load_Map_Forest = false;
+				App->scenes->Load_Map_Volcano = false;
+				App->scenes->Map_Snow_Active = false;
+			}
+			else if (App->scenes->Map_Volcano_Active == true) {
+				App->scenes->Load_Map_Volcano = true;
+				App->scenes->Load_Map_Forest = false;
+				App->scenes->Load_Map_Snow = false;
+				App->scenes->Map_Volcano_Active = false;
+			}
 
-	if ((element == snowButton || element == forestButton || element == volcanoButton) && type == GUI_Event::EVENT_ONCLICK)
-	{
-		
-		if (element == forestButton) {
-			LOG("GOING TO FOREST MAP");
-			App->scenes->Load_Map_Forest = true;
-			App->scenes->Load_Map_Snow = false;
-			App->scenes->Load_Map_Volcano = false;
-		}
-		else if (element == snowButton) {
-			LOG("GOING TO SNOW MAP");
-			App->scenes->Load_Map_Snow = true;
-			App->scenes->Load_Map_Forest = false;
-			App->scenes->Load_Map_Volcano = false;
-		}
-		else if (element == volcanoButton) {
-			LOG("GOING TO VOLCANO MAP");
-			App->scenes->Load_Map_Volcano = true;
-			App->scenes->Load_Map_Forest = false;
-			App->scenes->Load_Map_Snow = false;
+			App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true);
+
 		}
 
-		App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true);
+		if ((element == snowButton || element == forestButton || element == volcanoButton) && type == GUI_Event::EVENT_ONCLICK)
+		{
+
+			if (element == forestButton) {
+				LOG("GOING TO FOREST MAP");
+				App->scenes->Load_Map_Forest = true;
+				App->scenes->Load_Map_Snow = false;
+				App->scenes->Load_Map_Volcano = false;
+			}
+			else if (element == snowButton) {
+				LOG("GOING TO SNOW MAP");
+				App->scenes->Load_Map_Snow = true;
+				App->scenes->Load_Map_Forest = false;
+				App->scenes->Load_Map_Volcano = false;
+			}
+			else if (element == volcanoButton) {
+				LOG("GOING TO VOLCANO MAP");
+				App->scenes->Load_Map_Volcano = true;
+				App->scenes->Load_Map_Forest = false;
+				App->scenes->Load_Map_Snow = false;
+			}
+
+			App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true);
+		}
 	}
 }
 

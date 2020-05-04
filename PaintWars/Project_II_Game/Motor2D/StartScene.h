@@ -41,6 +41,19 @@ public:
 	j1UIElement* Loading_1 = nullptr;
 	j1UIElement* Loading_2 = nullptr;
 	j1UIElement* Loading_3 = nullptr;
+
+	j1UIElement* Continue_Text = nullptr;
+	j1UIElement* Volcano_Text = nullptr;
+	j1UIElement* Forest_Text = nullptr;
+	j1UIElement* Snow_Text = nullptr;
+	j1UIElement* Back_Text = nullptr;
+
+
+
+private:
+
+	bool ResetPosition;
+	bool FinishedPosition;
 };
 
 #endif // __FIRSTSCENE_H__

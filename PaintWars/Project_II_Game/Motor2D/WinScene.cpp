@@ -39,6 +39,7 @@ bool WinScene::Awake(pugi::xml_node& config)
 bool WinScene::Start()
 {
 	bool ret = true;
+	FinishedPosition = false;
 	App->scenes->IN_GAME_SCENE = false;
 	Win_Scene_UI = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0 , 0 }, { 0 , 0 }, true, true, { 0, 0, 1278, 719 }, nullptr, nullptr, TEXTURE::WIN_SCREEN_SPRITE);
 
@@ -82,7 +83,11 @@ bool WinScene::Update(float dt)
 	
 
 	if (ReturnVictorious->map_position.x < 300 && App->transition_manager->is_transitioning==false) {
-		ReturnVictorious->map_position = ReturnVictorious->map_position = { ReturnVictorious->map_position.x +3,ReturnVictorious->map_position.y };
+		ReturnVictorious->map_position = ReturnVictorious->map_position = { ReturnVictorious->map_position.x +5,ReturnVictorious->map_position.y };
+		
+	}
+	else if (App->transition_manager->is_transitioning == false) {
+		FinishedPosition = true; //ONLY ONE CHANGE TO TRUE IS NEEDED BECAUSE ALL BUTTONS GET TO THEIR POSITION AT THE SAME MOMENT
 	}
 	
 	return ret; 
@@ -151,17 +156,18 @@ bool WinScene::CleanUp()
 
 void WinScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
-
-	if (element == ReturnVictorious && type == GUI_Event::EVENT_ONCLICK)
-	{
-		Mix_HaltMusic();
-		if (App->audio->PlayingMenuMusic != true) {
-			App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
-			App->audio->PlayingMenuMusic = true;
+	if (FinishedPosition == true) {
+		if (element == ReturnVictorious && type == GUI_Event::EVENT_ONCLICK)
+		{
+			Mix_HaltMusic();
+			if (App->audio->PlayingMenuMusic != true) {
+				App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
+				App->audio->PlayingMenuMusic = true;
+			}
+			App->audio->PlayingWinMusic = false;
+			App->entities->CleanUp();
+			App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
 		}
-		App->audio->PlayingWinMusic = false;
-		App->entities->CleanUp();
-		App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
 	}
 }
 

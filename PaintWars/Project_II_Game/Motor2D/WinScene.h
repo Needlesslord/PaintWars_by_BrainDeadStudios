@@ -43,6 +43,7 @@ public:
 private:
 
 	bool ResetPosition;
+	bool FinishedPosition;
 
 };
 
