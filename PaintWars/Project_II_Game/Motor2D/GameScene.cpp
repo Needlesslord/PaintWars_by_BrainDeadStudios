@@ -160,9 +160,10 @@ bool GameScene::Start()
 	dialogNext = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 765 , 660 }, { 0 , 0 }, true, true, { 499, 1398, 27, 28 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_MEDIUM,2);
 	dialogNext->hover_rect = { 457,1398,27,28 };
 	dialogNext->click_rect = { 415,1398,27,28 };
-
-
-
+	//dialogOpen = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 500 , 660 }, { 0 , 0 }, true, true, { 425, 1468, 34, 74 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
+	dialogOpen = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 500 , 550 }, { 0 , 0 }, true, true, { 535, 1593, 73, 154 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
+	dialogOpen->hover_rect = { 535, 1593, 73, 154 };
+	dialogOpen->click_rect = { 535, 1593, 73, 154 };
 	//dialogExit = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 40 , 575 }, { 0 , 0 }, false, true, { 0, 1820, 500, 125 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
 
 
@@ -643,6 +644,21 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	}
 
 	//Dialog
+
+	if (element == dialogOpen && type == GUI_Event::EVENT_ONCLICK) {
+
+
+		dialogImage->enabled = true;
+		dialogCharacter->enabled = true;
+		dialogText1->enabled = true;
+		dialogText2->enabled = true;
+		dialogText3->enabled = true;
+		dialogPrev->enabled = true;
+		dialogNext->enabled = true;
+		//dialogExit->enabled = true;
+		
+
+	}
 
 	if (element == dialogNext && type == GUI_Event::EVENT_ONCLICK)
 	{

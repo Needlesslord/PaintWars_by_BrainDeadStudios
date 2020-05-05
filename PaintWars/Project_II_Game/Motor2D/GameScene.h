@@ -183,6 +183,7 @@ public:
 
 	// Dialogs
 
+	j1UIElement* dialogOpen = nullptr;
 	j1UIElement* dialogImage = nullptr;
 	j1UIElement* dialogCharacter = nullptr;
 	j1UIElement* dialogText1 = nullptr;
