@@ -9,6 +9,7 @@
 #include <math.h>
 #include "Entity.h"
 #include "j1Collision.h"
+#include "j1FogOfWar.h"
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
@@ -59,6 +60,12 @@ void j1Map::Draw()
 
 					
 					App->render->RenderQueue(0, tileset->texture, pos.x, pos.y, r);
+
+					if (App->fow->GetVisibilityTileAt({ x,y }) != (int8_t)FOW_TileState::UNVISITED)
+					{
+						App->render->Blit(tileset->texture, pos.x, pos.y, &r);
+					}
+
 				}
 			}
 		}

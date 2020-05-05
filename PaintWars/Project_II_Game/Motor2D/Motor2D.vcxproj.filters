@@ -172,6 +172,9 @@
     <ClCompile Include="TeamLogoScene.cpp">
       <Filter>Motor  ========\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="j1FogOfWar.cpp">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -368,6 +371,9 @@
     </ClInclude>
     <ClInclude Include="TeamLogoScene.h">
       <Filter>Motor  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="j1FogOfWar.h">
+      <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
