@@ -143,8 +143,8 @@ bool GameScene::Start()
 	questsText2Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 190 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Extractor 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
 	questsText3 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 230 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Extract Paint", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
 	questsText3Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 260 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/150", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
-	questsText4 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 300 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Upgrade a Unit", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
-	questsText4Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 330 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " or Building 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText4 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 300 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Upgrade 1 Building", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText4Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 330 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
 
 
 	//HUD - Dialog
@@ -414,6 +414,10 @@ bool GameScene::Update(float dt)
 	int conversorInt4 = App->player->housingSpace.maxCount;
 	sprintf_s(conversorChar3, 256, "%d/%d", conversorInt3, conversorInt4);
 	entitiesLabel->text = conversorChar3;
+	
+	
+
+
 
 	static char title[256];
 	sprintf_s(title, 256, "WorldPosition:%d,%d", map_coordinates.x, map_coordinates.y);
@@ -795,6 +799,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			}
 			upgradePaintExtractorButton->enabled = false;
 			App->entities->paintExtractorUpgraded = true;
+			UpgradeEntityQuestCompleted = true;
 		}
 	}
 
@@ -814,6 +819,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			}
 			upgradeWoodProducerButton->enabled = false;
 			App->entities->woodProducersUpgraded = true;
+			UpgradeEntityQuestCompleted = true;
 		}
 	}
 
@@ -1482,7 +1488,14 @@ void GameScene::QuestManagerFunction()
 		}
 	}
 
+	if (App->player->paintCount.count>=150) {
+		ExtractPaintQuestCompleted = true;
+		questsText3Count->text = "150/150";
+	}
 
+	if (UpgradeEntityQuestCompleted == true) {
+		questsText4Count->text = " 1/1";
+	}
 
 
 

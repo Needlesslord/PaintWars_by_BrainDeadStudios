@@ -95,7 +95,7 @@ public:
 	j1UIElement* questsText1 = nullptr;          //CREATE 1 PAINTER 
 	j1UIElement* questsText2 = nullptr;          //CREATE 1 PAINT EXTRACTOR
 	j1UIElement* questsText3 = nullptr;          //EXTRACT 150 PAINT
-	j1UIElement* questsText4 = nullptr;          //UPGRADE UNIT/BUILDING
+	j1UIElement* questsText4 = nullptr;          //UPGRADE BUILDING
 	j1UIElement* questsText1Count = nullptr;
 	j1UIElement* questsText2Count = nullptr;
 	j1UIElement* questsText3Count = nullptr;
