@@ -87,7 +87,7 @@ bool GameScene::Start()
 {
 	bool ret = true;
 	
-
+	CreateDialogText();
 	App->PAUSE_ACTIVE = false;
 	App->render->camera.x = 575;
 	App->render->camera.y = -1200;
@@ -135,6 +135,17 @@ bool GameScene::Start()
 	questsCloseButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 120, 380 }, { 200,200 }, true, false, { 263, 1388, 54, 55 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
 	questsCloseButton->hover_rect = { 263, 1443, 54, 54 };
 	questsCloseButton->click_rect = { 263, 1497, 54, 54 };
+
+
+	//HUD - Dialog
+
+	dialogImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 575 }, { 0 , 0 }, false, true, { 0, 1820, 500, 125 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
+	dialogCharacter = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 575 }, { 0 , 0 }, false, true, { 276, 1972, 30, 28 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
+	dialogText1 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 45 , 595 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	dialogText2 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 45 , 620 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	dialogText3 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 45 , 645 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+
+
 
 	//HUD - Buttons
 	homeButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1020, 50 }, { 0,0 }, true, true, { 786, 486, 55, 55 }, nullptr, App->scenes,  TEXTURE::ATLAS);
@@ -321,6 +332,7 @@ bool GameScene::PreUpdate()
 		}
 	}
 
+	DialogManagerFunction();
 
 
 	return ret;
@@ -1283,6 +1295,30 @@ void GameScene::WIN_LOSE_Manager()
 	}
 	if (!anyTownhallActive)
 		App->entities->TriggerEndGame(false);
+}
+
+void GameScene::CreateDialogText()
+{
+	Dialog_Text_Line_1 = "GREETINGS KING OF PAINTLAND";
+	Dialog_Text_Line_2 = "I WELCOME YOU TO OUR KINGDOM";
+	Dialog_Text_Line_3 = "I AM HERE TO GUIDE YOU THROUGH";
+	Dialog_Text_2 ="" ;
+	Dialog_Text_3 = "";
+	Dialog_Text_4 = "";
+	Dialog_Text_5 = "";
+	Dialog_Text_6 = "";
+	Dialog_Text_7 = "";
+	Dialog_Text_8 = "";
+	Dialog_Text_9 = "";
+	Dialog_Text_10 = "";
+
+}
+
+void GameScene::DialogManagerFunction()
+{
+	dialogText1->text = Dialog_Text_Line_1;
+	dialogText2->text = Dialog_Text_Line_2;
+	dialogText3->text = Dialog_Text_Line_3;
 }
 
 

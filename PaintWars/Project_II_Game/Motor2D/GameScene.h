@@ -43,6 +43,8 @@ public:
 	void DrawScene();
 	void ExecuteTransition();
 	void WIN_LOSE_Manager();
+	void CreateDialogText();
+	void DialogManagerFunction();
 
 	
 	//bool EntityInCamera(Entity* entity);
@@ -153,6 +155,29 @@ public:
 	j1UIElement* upgradePainterButton = nullptr;
 	j1UIElement* upgradeWarriorButton = nullptr;
 
+	// Dialog
+
+	j1UIElement* dialogImage = nullptr;
+	j1UIElement* dialogCharacter = nullptr;
+	j1UIElement* dialogText1 = nullptr;
+	j1UIElement* dialogText2 = nullptr;
+	j1UIElement* dialogText3 = nullptr;
+
+
+
+	char* Dialog_Text_Line_1 = nullptr;
+	char* Dialog_Text_Line_2 = nullptr;
+	char* Dialog_Text_Line_3 = nullptr;
+	char* Dialog_Text_2 = nullptr;
+	char* Dialog_Text_3 = nullptr;
+	char* Dialog_Text_4 = nullptr;
+	char* Dialog_Text_5 = nullptr;
+	char* Dialog_Text_6 = nullptr;
+	char* Dialog_Text_7 = nullptr;
+	char* Dialog_Text_8 = nullptr;
+	char* Dialog_Text_9 = nullptr;
+	char* Dialog_Text_10 = nullptr;
+	char* Dialog_Text_11 = nullptr;
 
 
 	//Resource Values for Blit
