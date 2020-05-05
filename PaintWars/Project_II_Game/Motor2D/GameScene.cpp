@@ -141,10 +141,19 @@ bool GameScene::Start()
 
 	dialogImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 575 }, { 0 , 0 }, false, true, { 0, 1820, 500, 125 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
 	dialogCharacter = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 575 }, { 0 , 0 }, false, true, { 276, 1972, 30, 28 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
-	dialogText1 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 45 , 595 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
-	dialogText2 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 45 , 620 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
-	dialogText3 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 45 , 645 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	dialogText1 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 45 , 600 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	dialogText2 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 45 , 630 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	dialogText3 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 45 , 660 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	dialogPrev = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 410 , 660 }, { 0 , 0 }, true, true, { 499, 1431, 27, 28 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_MEDIUM,2);
+	dialogPrev->hover_rect = {457,1432,27,28};
+	dialogPrev->click_rect = {415,1432,27,28};
+	dialogNext = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 480 , 660 }, { 0 , 0 }, true, true, { 499, 1398, 27, 28 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_MEDIUM,2);
+	dialogNext->hover_rect = { 457,1398,27,28 };
+	dialogNext->click_rect = { 415,1398,27,28 };
 
+
+
+	//dialogExit = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 40 , 575 }, { 0 , 0 }, false, true, { 0, 1820, 500, 125 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
 
 
 	//HUD - Buttons
@@ -1300,8 +1309,8 @@ void GameScene::WIN_LOSE_Manager()
 void GameScene::CreateDialogText()
 {
 	Dialog_Text_Line_1 = "GREETINGS KING OF PAINTLAND";
-	Dialog_Text_Line_2 = "I WELCOME YOU TO OUR KINGDOM";
-	Dialog_Text_Line_3 = "I AM HERE TO GUIDE YOU THROUGH";
+	Dialog_Text_Line_2 = "I WELCOME YOU TO YOUR KINGDOM";
+	Dialog_Text_Line_3 = "I AM HERE TO GUIDE YOU";
 	Dialog_Text_2 ="" ;
 	Dialog_Text_3 = "";
 	Dialog_Text_4 = "";

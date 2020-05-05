@@ -162,6 +162,9 @@ public:
 	j1UIElement* dialogText1 = nullptr;
 	j1UIElement* dialogText2 = nullptr;
 	j1UIElement* dialogText3 = nullptr;
+	j1UIElement* dialogNext = nullptr;
+	j1UIElement* dialogPrev = nullptr;
+	j1UIElement* dialogExit = nullptr;
 
 
 
