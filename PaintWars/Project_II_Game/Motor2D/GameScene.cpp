@@ -89,6 +89,7 @@ bool GameScene::Start()
 	
 	CreateDialogText();
 	App->PAUSE_ACTIVE = false;
+	
 	App->render->camera.x = 575;
 	App->render->camera.y = -1200;
 
@@ -621,6 +622,55 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		questsCloseButton->enabled = false;
 	}
 
+	//Dialog
+
+	if (element == dialogNext && type == GUI_Event::EVENT_ONCLICK)
+	{
+		if (DialogPage1 == true) {
+			DialogPage2 = true;
+			DialogPage1 = false;
+		}
+		else if (DialogPage2 == true) {
+			DialogPage3 = true;
+			DialogPage2 = false;
+		}
+		else if (DialogPage3 == true) {
+			DialogPage4 = true;
+			DialogPage3 = false;
+		}
+		else if (DialogPage4 == true) {
+			DialogPage5 = true;
+			DialogPage4 = false;
+		}
+		else if (DialogPage5 == true) {
+
+		}
+	 
+	}
+
+	if (element == dialogPrev && type == GUI_Event::EVENT_ONCLICK)
+	{
+		if (DialogPage1 == true) {
+			
+		}
+		else if (DialogPage2 == true) {
+			DialogPage1 = true;
+			DialogPage2 = false;
+		}
+		else if (DialogPage3 == true) {
+			DialogPage2 = true;
+			DialogPage3 = false;
+		}
+		else if (DialogPage4 == true) {
+			DialogPage3 = true;
+			DialogPage4 = false;
+		}
+		else if (DialogPage5 == true) {
+			DialogPage4 = true;
+			DialogPage5 = false;
+		}
+	}
+	
 
 	//HomeButton
 
@@ -1308,26 +1358,77 @@ void GameScene::WIN_LOSE_Manager()
 
 void GameScene::CreateDialogText()
 {
-	Dialog_Text_Line_1 = "GREETINGS KING OF PAINTLAND";
-	Dialog_Text_Line_2 = "I WELCOME YOU TO YOUR KINGDOM";
-	Dialog_Text_Line_3 = "I AM HERE TO GUIDE YOU";
-	Dialog_Text_2 ="" ;
-	Dialog_Text_3 = "";
-	Dialog_Text_4 = "";
-	Dialog_Text_5 = "";
-	Dialog_Text_6 = "";
-	Dialog_Text_7 = "";
-	Dialog_Text_8 = "";
-	Dialog_Text_9 = "";
-	Dialog_Text_10 = "";
+
+	DialogPage1 = true;
+	DialogPage2 = false;
+	DialogPage3 = false;
+	DialogPage4 = false;
+	DialogPage5 = false;
+
+
+
+
+	Dialog_Text1_Line_1 = "GREETINGS KING OF PAINTLAND";
+	Dialog_Text1_Line_2 = "I WELCOME YOU TO YOUR KINGDOM";
+	Dialog_Text1_Line_3 = "I AM HERE TO GUIDE YOU";
+
+
+
+	Dialog_Text2_Line_1 = "LET'S GET STARTED WITH";
+	Dialog_Text2_Line_2 = "CREATING A PAINTER";
+	Dialog_Text2_Line_3 = "THEY ARE THE MAIN FORCE OF THE KINGDOM";
+
+
+
+	Dialog_Text3_Line_1 = "GREETINGS KING OF PAINTLAND";
+	Dialog_Text3_Line_2 = "I WELCOME YOU TO YOUR KINGDOM";
+	Dialog_Text3_Line_3 = "I AM HERE TO GUIDE YOU";
+
+
+
+	Dialog_Text4_Line_1 = "GREETINGS KING OF PAINTLAND";
+	Dialog_Text4_Line_2 = "I WELCOME YOU TO YOUR KINGDOM";
+	Dialog_Text4_Line_3 = "I AM HERE TO GUIDE YOU";
+
+
+
+	Dialog_Text5_Line_1 = "GREETINGS KING OF PAINTLAND";
+	Dialog_Text5_Line_2 = "I WELCOME YOU TO YOUR KINGDOM";
+	Dialog_Text5_Line_3 = "I AM HERE TO GUIDE YOU";
+	
 
 }
 
 void GameScene::DialogManagerFunction()
 {
-	dialogText1->text = Dialog_Text_Line_1;
-	dialogText2->text = Dialog_Text_Line_2;
-	dialogText3->text = Dialog_Text_Line_3;
+	if (DialogPage1) {
+		dialogText1->text = Dialog_Text1_Line_1;
+		dialogText2->text = Dialog_Text1_Line_2;
+		dialogText3->text = Dialog_Text1_Line_3;
+	}
+	else if (DialogPage2) {
+		dialogText1->text = Dialog_Text2_Line_1;
+		dialogText2->text = Dialog_Text2_Line_2;
+		dialogText3->text = Dialog_Text2_Line_3;
+	}
+	else if (DialogPage3) {
+		dialogText1->text = Dialog_Text3_Line_1;
+		dialogText2->text = Dialog_Text3_Line_2;
+		dialogText3->text = Dialog_Text3_Line_3;
+	}
+	else if (DialogPage4) {
+		dialogText1->text = Dialog_Text4_Line_1;
+		dialogText2->text = Dialog_Text4_Line_2;
+		dialogText3->text = Dialog_Text4_Line_3;
+	}
+	else if (DialogPage5) {
+		dialogText1->text = Dialog_Text5_Line_1;
+		dialogText2->text = Dialog_Text5_Line_2;
+		dialogText3->text = Dialog_Text5_Line_3;
+
+	}
+
+
 }
 
 

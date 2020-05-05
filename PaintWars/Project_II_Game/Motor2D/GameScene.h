@@ -168,19 +168,31 @@ public:
 
 
 
-	char* Dialog_Text_Line_1 = nullptr;
-	char* Dialog_Text_Line_2 = nullptr;
-	char* Dialog_Text_Line_3 = nullptr;
-	char* Dialog_Text_2 = nullptr;
-	char* Dialog_Text_3 = nullptr;
-	char* Dialog_Text_4 = nullptr;
-	char* Dialog_Text_5 = nullptr;
-	char* Dialog_Text_6 = nullptr;
-	char* Dialog_Text_7 = nullptr;
-	char* Dialog_Text_8 = nullptr;
-	char* Dialog_Text_9 = nullptr;
-	char* Dialog_Text_10 = nullptr;
-	char* Dialog_Text_11 = nullptr;
+	char* Dialog_Text1_Line_1 = nullptr;
+	char* Dialog_Text1_Line_2 = nullptr;
+	char* Dialog_Text1_Line_3 = nullptr;
+	char* Dialog_Text2_Line_1 = nullptr;
+	char* Dialog_Text2_Line_2 = nullptr;
+	char* Dialog_Text2_Line_3 = nullptr;
+	char* Dialog_Text3_Line_1 = nullptr;
+	char* Dialog_Text3_Line_2 = nullptr;
+	char* Dialog_Text3_Line_3 = nullptr;
+	char* Dialog_Text4_Line_1 = nullptr;
+	char* Dialog_Text4_Line_2 = nullptr;
+	char* Dialog_Text4_Line_3 = nullptr;
+	char* Dialog_Text5_Line_1 = nullptr;
+	char* Dialog_Text5_Line_2 = nullptr;
+	char* Dialog_Text5_Line_3 = nullptr;
+
+
+	
+	bool DialogPage1;
+	bool DialogPage2;
+	bool DialogPage3;
+	bool DialogPage4;
+	bool DialogPage5;
+
+	
 
 
 	//Resource Values for Blit
