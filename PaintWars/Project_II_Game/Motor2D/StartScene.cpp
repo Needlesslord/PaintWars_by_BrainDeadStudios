@@ -200,6 +200,12 @@ bool StartScene::CleanUp()
 	volcanoButton->CleanUp();
 	backButton->CleanUp();
 	backgroundImage->CleanUp();
+	Forest_Text->CleanUp();
+	Continue_Text->CleanUp();
+	Snow_Text->CleanUp();
+	Volcano_Text->CleanUp();
+	Back_Text->CleanUp();
+
 
 	RELEASE(backgroundImage);
 

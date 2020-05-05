@@ -188,6 +188,12 @@ bool MenuScene::CleanUp()
 	settingsButton->CleanUp();
 	exitButton->CleanUp();
 	backgroundImage->CleanUp();
+	Play_Text->CleanUp();
+	Settings_Text->CleanUp();
+	Score_Text->CleanUp();
+	Credits_Text->CleanUp();
+	Exit_Text->CleanUp();
+
 
 	RELEASE(backgroundImage);
 
