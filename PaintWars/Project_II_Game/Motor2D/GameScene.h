@@ -117,6 +117,12 @@ public:
 	bool UpgradeEntityQuestCompletedSafe;
 
 
+	bool PainterQuestActive;
+	bool PaintExtractorQuestActive;
+	bool ExtractPaintQuestActive;
+	bool UpgradeEntityQuestActive;
+
+
 	//HUD - Buttons
 	j1UIElement* homeButton = nullptr;
 	j1UIElement* pauseMenuButton = nullptr;
