@@ -536,10 +536,13 @@ bool Entity::CreateEntityCollider(fPoint pos, Entity* entity) {
 }
 
 void Entity::ShowHealthBar() {
-	if (GetCurrLife() != GetMaxLife()) {
-		App->render->RenderQueue(1, App->entities->zeroLifeTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, GetSize().x, 10 });
+
+	if (isAlive) {
+		if (GetCurrLife() != GetMaxLife()) {
+			App->render->RenderQueue(1, App->entities->zeroLifeTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, GetSize().x, 10 });
+		}
+		App->render->RenderQueue(1, App->entities->fullLifeTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, (int)((currLife / maxLife)*GetSize().x), 10 });
 	}
-	App->render->RenderQueue(1, App->entities->fullLifeTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, (int)((currLife/maxLife)*GetSize().x), 10 });
 }
 
 void Entity::ShowProgressBar() {

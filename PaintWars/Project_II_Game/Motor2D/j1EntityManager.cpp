@@ -650,6 +650,17 @@ bool j1EntityManager::Update(float dt) {
 		}
 
 
+		// Kill first selected unit on SUPR press
+		if (App->input->GetKey(SDL_SCANCODE_DELETE) == KEY_DOWN) {
+
+			if (!unitsSelected.empty()) {
+
+				list<Entity*>::iterator unitsToKill = unitsSelected.begin();
+				(*unitsToKill)->isAlive = false;
+			}
+		}
+
+
 
 	return ret;
 }
@@ -726,7 +737,7 @@ bool j1EntityManager::PostUpdate() {
 	list<Entity*>::iterator checkForDeadUnits = activeUnits.begin();
 	while (checkForDeadUnits != activeUnits.end()) {
 
-		if ((*checkForDeadUnits)->GetCurrLife() <= 0) {
+		if ((*checkForDeadUnits)->GetCurrLife() <= 0 || !(*checkForDeadUnits)->isAlive) {
 
 			App->player->housingSpace.count--;
 			activeUnits.erase(checkForDeadUnits);
@@ -737,7 +748,7 @@ bool j1EntityManager::PostUpdate() {
 	list<Entity*>::iterator checkForDeadBuildings = activeBuildings.begin();
 	while (checkForDeadBuildings != activeBuildings.end()) {
 
-		if ((*checkForDeadBuildings)->GetCurrLife() <= 0) {
+		if ((*checkForDeadBuildings)->GetCurrLife() <= 0 || !(*checkForDeadBuildings)->isAlive) {
 
 			activeBuildings.erase(checkForDeadBuildings);
 		}
@@ -747,7 +758,7 @@ bool j1EntityManager::PostUpdate() {
 	list<Entity*>::iterator checkForDeadEntities = activeEntities.begin();
 	while (checkForDeadEntities != activeEntities.end()) {
 
-		if ((*checkForDeadEntities)->GetCurrLife() <= 0) {
+		if ((*checkForDeadEntities)->GetCurrLife() <= 0 || !(*checkForDeadEntities)->isAlive) {
 
 			(*checkForDeadEntities)->isAlive = false;
 			activeEntities.erase(checkForDeadEntities);
