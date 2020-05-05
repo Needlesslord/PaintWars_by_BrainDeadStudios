@@ -87,7 +87,8 @@ public:
 	// Thsese two need to be public so that each entity can use it
 	SDL_Texture* fullLifeTexture = nullptr;
 	SDL_Texture* zeroLifeTexture = nullptr;
-
+	SDL_Texture* progressTexture = nullptr;
+	SDL_Texture* zeroProgressTexture = nullptr;
 
 	//small fix hp bar when blit
 	float Entity_HP;

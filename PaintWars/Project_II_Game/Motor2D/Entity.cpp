@@ -541,3 +541,17 @@ void Entity::ShowHealthBar() {
 	}
 	App->render->RenderQueue(1, App->entities->fullLifeTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, (int)((currLife/maxLife)*GetSize().x), 10 });
 }
+
+void Entity::ShowProgressBar() {
+
+	if (entityCategory == ENTITY_CATEGORY_STATIC_ENTITY) {
+
+		App->render->RenderQueue(1, App->entities->zeroProgressTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, GetSize().x, 30 });
+		App->render->RenderQueue(1, App->entities->progressTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, (int)((constructionProgress / constructionTime) * GetSize().x), 30 });
+	}
+	else if (entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY) {
+
+		App->render->RenderQueue(1, App->entities->zeroProgressTexture, spawnedBy->pos.x, spawnedBy->pos.y - 20 - spawnedBy->GetSize().y / 4, { 0, 0, spawnedBy->GetSize().x, 30 });
+		App->render->RenderQueue(1, App->entities->progressTexture, spawnedBy->pos.x, spawnedBy->pos.y - 20 - spawnedBy->GetSize().y / 4, { 0, 0, (int)((spawningProgress / spawningTime) * spawnedBy->GetSize().x), 30 });
+	}
+}

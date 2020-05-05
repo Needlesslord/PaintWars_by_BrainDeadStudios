@@ -89,7 +89,7 @@ bool j1EntityManager::Update(float dt) {
 			if ((*checkForSpawningEntities)->entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY) {
 
 				// Check if they have to be spawned
-				if ((*checkForSpawningEntities)->spawningProgress * spawningRate >= (*checkForSpawningEntities)->spawningTime) {
+				if ((*checkForSpawningEntities)->spawningProgress >= (*checkForSpawningEntities)->spawningTime) {
 
 					activeUnits.push_back(*checkForSpawningEntities);
 					activeEntities.push_back(*checkForSpawningEntities);
@@ -110,7 +110,7 @@ bool j1EntityManager::Update(float dt) {
 				}
 
 				// Increase the creation progress if not
-				else if ((*checkForSpawningEntities)->spawningProgress * spawningRate < (*checkForSpawningEntities)->spawningTime) {
+				else if ((*checkForSpawningEntities)->spawningProgress < (*checkForSpawningEntities)->spawningTime) {
 
 					(*checkForSpawningEntities)->spawningProgress += spawningRate * dt;
 				}
@@ -118,7 +118,7 @@ bool j1EntityManager::Update(float dt) {
 
 			else if ((*checkForSpawningEntities)->entityCategory == ENTITY_CATEGORY_STATIC_ENTITY) {
 
-				if ((*checkForSpawningEntities)->constructionProgress * constructionRate >= (*checkForSpawningEntities)->constructionTime) {
+				if ((*checkForSpawningEntities)->constructionProgress >= (*checkForSpawningEntities)->constructionTime) {
 
 					activeBuildings.push_back(*checkForSpawningEntities);
 					activeEntities.push_back(*checkForSpawningEntities);
@@ -129,7 +129,7 @@ bool j1EntityManager::Update(float dt) {
 					spawningEntities.erase(checkForSpawningEntities);
 				}
 
-				else if ((*checkForSpawningEntities)->constructionProgress * constructionRate < (*checkForSpawningEntities)->constructionTime) {
+				else if ((*checkForSpawningEntities)->constructionProgress < (*checkForSpawningEntities)->constructionTime) {
 
 					fPoint tileWorld = App->map->MapToWorld((*checkForSpawningEntities)->currentTile.x, (*checkForSpawningEntities)->currentTile.y);
 
@@ -140,12 +140,12 @@ bool j1EntityManager::Update(float dt) {
 
 					else if ((*checkForSpawningEntities)->entitySize == ENTITY_SIZE_MEDIUM) {
 
-						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,300,300 });
+						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,260,260 });
 					}
 
 					else if ((*checkForSpawningEntities)->entitySize == ENTITY_SIZE_BIG) {
 
-						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,450,450 });
+						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,410,410 });
 					}
 					
 					(*checkForSpawningEntities)->constructionProgress += constructionRate * dt;
@@ -155,7 +155,6 @@ bool j1EntityManager::Update(float dt) {
 			checkForSpawningEntities++;
 
 		}
-
 
 
 
@@ -273,7 +272,7 @@ bool j1EntityManager::Update(float dt) {
 			}
 
 		   float w = (currentLifeSum / maxLifeSum) * 200;
-		   App->entities->Entity_HP = w;
+		   Entity_HP = w;
 			
 
 		}
@@ -628,6 +627,9 @@ bool j1EntityManager::Update(float dt) {
 			entitiesToDraw++;
 		}
 
+
+
+
 		// LifeBars from selected units on top of themselves
 		list<Entity*>::iterator selectedUnits = unitsSelected.begin();
 		while (selectedUnits != unitsSelected.end()) {
@@ -635,6 +637,19 @@ bool j1EntityManager::Update(float dt) {
 			(*selectedUnits)->ShowHealthBar();
 			selectedUnits++;
 		}
+
+
+
+
+		// Progress Bars
+		list<Entity*>::iterator spawningBuildingsProgressBars = spawningEntities.begin();
+		while (spawningBuildingsProgressBars != spawningEntities.end()) {
+
+			(*spawningBuildingsProgressBars)->ShowProgressBar();
+			spawningBuildingsProgressBars++;
+		}
+
+
 
 	return ret;
 }
@@ -1097,7 +1112,8 @@ void j1EntityManager::LoadEntityTextures()
 
 	fullLifeTexture = App->tex->Load("textures/FullLife.png");
 	zeroLifeTexture = App->tex->Load("textures/ZeroLife.png");
-
+	progressTexture = App->tex->Load("textures/ProgressBar.png");
+	zeroProgressTexture=App->tex->Load("textures/ZeroProgress.png");
 
 	WarriorSprites();
 	PainterSprites();
