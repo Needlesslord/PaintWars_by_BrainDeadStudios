@@ -112,7 +112,7 @@ public:
 	// Collision
 	Collider* GetEntityCollider() const;
 
-	bool CreateEntityCollider(fPoint pos);
+	bool CreateEntityCollider(fPoint pos, Entity* entity);
 
 	void ShowHealthBar();
 

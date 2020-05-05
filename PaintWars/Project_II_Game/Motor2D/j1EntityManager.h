@@ -51,8 +51,8 @@ public:
 	bool Start();
 	bool PreUpdate();
 	bool Update(float dt);
-	//void OnCollision(ColliderGroup* c1, ColliderGroup* c2, CollisionState collisionState);
 	bool PostUpdate();
+	void OnCollision(Collider* c1, Collider* c2);
 	bool CleanUp();
 
 	Entity* AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module* listener = nullptr, Entity* creator = nullptr, float damage = 0.0f, bool spawnAutomatically = false);

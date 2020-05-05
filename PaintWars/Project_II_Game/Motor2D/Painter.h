@@ -13,6 +13,7 @@ public:
 	void ExtractPaint(float dt) override;
 	void ExtractWood(float dt) override;
 	void Draw(SDL_Texture* sprites) override;
+	void OnCollision(Collider* c1, Collider* c2) override;
 
 public:
 

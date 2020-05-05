@@ -120,7 +120,7 @@ bool j1EntityManager::Update(float dt) {
 					activeUnits.push_back(*checkForSpawningEntities);
 					activeEntities.push_back(*checkForSpawningEntities);
 
-					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos);
+					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos, (*checkForSpawningEntities));
 					(*checkForSpawningEntities)->spawnedBy->isSpawningAUnit = false;
 					(*checkForSpawningEntities)->isAlive = true;
 
@@ -149,7 +149,7 @@ bool j1EntityManager::Update(float dt) {
 					activeBuildings.push_back(*checkForSpawningEntities);
 					activeEntities.push_back(*checkForSpawningEntities);
 
-					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos);
+					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos, (*checkForSpawningEntities));
 					(*checkForSpawningEntities)->isAlive = true;
 
 					spawningEntities.erase(checkForSpawningEntities);
@@ -479,6 +479,11 @@ bool j1EntityManager::Update(float dt) {
 			if ((*unitsToMove)->isOnTheMove) {
 
 				(*unitsToMove)->MovementLogic();
+			}
+
+			// Checked twice beacuse MovementLogic() can change it
+			if ((*unitsToMove)->isOnTheMove) {
+
 				(*unitsToMove)->Move(dt);
 			}
 
@@ -768,6 +773,14 @@ bool j1EntityManager::PostUpdate() {
 	return ret;
 }
 
+void j1EntityManager::OnCollision(Collider* c1, Collider* c2) {
+
+	if (c1->type == COLLIDER_ALLY_UNIT && c2->type == COLLIDER_ALLY_UNIT) {
+		c1->entity->OnCollision(c1, c2);
+		c2->entity->OnCollision(c1, c2);
+	}
+}
+
 bool j1EntityManager::CleanUp() {
 	BROFILER_CATEGORY("Entity Manager CleanUp--Entity Manager();", Profiler::Color::LightBlue);
 	bool ret = true;
@@ -844,7 +857,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeEntities.push_back((Entity*)townHall);
 			activeBuildings.push_back((Entity*)townHall);
 			townHall->isAlive = true;
-			townHall->CreateEntityCollider(townHall->pos);
+			townHall->CreateEntityCollider(townHall->pos, (Entity*)townHall);
 		}
 
 		else
@@ -865,7 +878,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeEntities.push_back((Entity*)paintExtractor);
 			activeBuildings.push_back((Entity*)paintExtractor);
 			paintExtractor->isAlive = true;
-			paintExtractor->CreateEntityCollider(paintExtractor->pos);
+			paintExtractor->CreateEntityCollider(paintExtractor->pos, (Entity*)paintExtractor);
 		}
 
 		else
@@ -886,7 +899,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeEntities.push_back((Entity*)woodProducer);
 			activeBuildings.push_back((Entity*)woodProducer);
 			woodProducer->isAlive = true;
-			woodProducer->CreateEntityCollider(woodProducer->pos);
+			woodProducer->CreateEntityCollider(woodProducer->pos, (Entity*)woodProducer);
 		}
 
 		else
@@ -910,7 +923,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeEntities.push_back((Entity*)house);
 			activeBuildings.push_back((Entity*)house);
 			house->isAlive = true;
-			house->CreateEntityCollider(house->pos);
+			house->CreateEntityCollider(house->pos, (Entity*)house);
 		}
 
 		else
@@ -931,7 +944,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeEntities.push_back((Entity*)barracks);
 			activeBuildings.push_back((Entity*)barracks);
 			barracks->isAlive = true;
-			barracks->CreateEntityCollider(barracks->pos);
+			barracks->CreateEntityCollider(barracks->pos, (Entity*)barracks);
 		}
 
 		else
@@ -953,7 +966,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeEntities.push_back((Entity*)painter);
 			activeUnits.push_back((Entity*)painter);
 			painter->isAlive = true;
-			painter->CreateEntityCollider(painter->pos);
+			painter->CreateEntityCollider(painter->pos, (Entity*)painter);
 			painter->currentAnimation = &painterIdle;
 		}
 
@@ -972,7 +985,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeEntities.push_back((Entity*)warrior);
 			activeUnits.push_back((Entity*)warrior);
 			warrior->isAlive = true;
-			warrior->CreateEntityCollider(warrior->pos);
+			warrior->CreateEntityCollider(warrior->pos, (Entity*)warrior);
 			warrior->currentAnimation = &warriorIdle;
 		}
 
@@ -989,6 +1002,8 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		Spawner* spawner = new Spawner(tile, damage, this);
 		activeEntities.push_back((Entity*)spawner);
 		activeBuildings.push_back((Entity*)spawner);
+		spawner->isAlive = true;
+		spawner->CreateEntityCollider(spawner->pos, (Entity*)spawner);
 
 		// Change the walkability to non walkable
 		App->pathfinding->ChangeToSpawner(tile);
@@ -1002,6 +1017,8 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		Slime* slime = new Slime(tile, damage, this);
 		activeEntities.push_back((Entity*)slime);
 		activeUnits.push_back((Entity*)slime);
+		slime->isAlive = true;
+		slime->CreateEntityCollider(slime->pos, (Entity*)slime);
 
 		return (Entity*) slime;
 	}

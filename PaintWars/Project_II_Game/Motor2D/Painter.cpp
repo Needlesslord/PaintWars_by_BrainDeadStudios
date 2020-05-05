@@ -70,3 +70,13 @@ void Painter::Draw(SDL_Texture* sprites) {
 
 	App->render->RenderQueue(1, sprites, pos.x, pos.y, currentAnimation->GetCurrentFrame());
 }
+
+void Painter::OnCollision(Collider* c1, Collider* c2) {
+
+	if (entityCollider == c1) {
+		// Right side collision
+		if (c1->rect.x + c1->rect.w > c2->rect.x) {
+			c1->rect.x  = c2->rect.x - c1->rect.w;
+		}
+	}
+}

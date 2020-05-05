@@ -5,6 +5,7 @@ constexpr auto MAX_COLLIDERS = 256;
 
 
 #include "j1Module.h"
+#include "Entity.h"
 #include "SDL/include/SDL_rect.h"
 
 
@@ -26,10 +27,11 @@ struct Collider
 	bool to_delete = false;
 	COLLIDER_TYPE type;
 	j1Module* callback = nullptr;
-
-	Collider(SDL_Rect rectangle, COLLIDER_TYPE type, j1Module* callback = nullptr) :
+	Entity* entity = nullptr;
+	Collider(SDL_Rect rectangle, COLLIDER_TYPE type, Entity* entity = nullptr, j1Module* callback = nullptr) :
 		rect(rectangle),
 		type(type),
+		entity(entity),
 		callback(callback)
 	{}
 
@@ -54,7 +56,7 @@ public:
 	bool PostUpdate();
 	bool CleanUp() override;
 
-	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* callback = nullptr);
+	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, Entity* entity = nullptr, j1Module* callback = nullptr);
 	void DebugDraw();
 	SDL_Rect rect;
 	bool debug = false;

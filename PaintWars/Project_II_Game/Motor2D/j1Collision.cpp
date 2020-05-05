@@ -2,7 +2,7 @@
 #include "j1Input.h"
 #include "j1Render.h"
 #include "j1Collision.h"
-
+#include "Entity.h"
 
 
 j1Collision::j1Collision()
@@ -133,7 +133,7 @@ bool j1Collision::CleanUp() {
 	return true;
 }
 
-Collider* j1Collision::AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* callback)
+Collider* j1Collision::AddCollider(SDL_Rect rect, COLLIDER_TYPE type, Entity* entity, j1Module* callback)
 {
 	Collider* ret = nullptr;
 
@@ -141,7 +141,7 @@ Collider* j1Collision::AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* 
 	{
 		if (colliders[i] == nullptr)
 		{
-			ret = colliders[i] = new Collider(rect, type, callback);
+			ret = colliders[i] = new Collider(rect, type, entity, callback);
 			break;
 		}
 	}

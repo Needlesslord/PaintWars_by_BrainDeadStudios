@@ -498,6 +498,12 @@ bool GameScene::Update(float dt)
 	fPoint xy = App->input->GetMouseWorldPosition();
 	iPoint cameraW = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
 	iPoint map_coordinates = App->map->WorldToMap(xy.x - cameraW.x /*+ App->map->data.tile_width / 2*/, xy.y - cameraW.y + App->map->data.tile_height/2);
+
+	static char title[256];
+	sprintf_s(title, 256, "WorldPosition:%d,%d", map_coordinates, map_coordinates.y);
+
+	App->win->SetTitle(title);
+
 	fPoint worldCoordinates = App->map->MapToWorld(map_coordinates.x, map_coordinates.y);
 
 	iPoint transformer1, transformer2;
@@ -530,10 +536,7 @@ bool GameScene::Update(float dt)
 	sprintf_s(conversorChar3, 256, "%d %d", conversorInt3, conversorInt4);
 	entitiesLabel->text = conversorChar3;
 
-	static char title[256];
-	sprintf_s(title, 256, "WorldPosition:%d,%d", map_coordinates.x, map_coordinates.y);
-
-	App->win->SetTitle(title);
+	
 
 	if ((App->player->gameTimer.ReadSec() / 60) >= 14.9f) {
 		Mix_PlayChannel(-1, App->audio->time_sound, 0);
