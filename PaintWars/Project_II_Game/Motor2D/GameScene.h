@@ -45,6 +45,7 @@ public:
 	void WIN_LOSE_Manager();
 	void CreateDialogText();
 	void DialogManagerFunction();
+	void QuestManagerFunction();
 
 	
 	//bool EntityInCamera(Entity* entity);
@@ -91,6 +92,24 @@ public:
 	j1UIElement* questsLabel = nullptr;
 	j1UIElement* questsOpenButton = nullptr;
 	j1UIElement* questsCloseButton = nullptr;
+	j1UIElement* questsText1 = nullptr;          //CREATE 1 PAINTER 
+	j1UIElement* questsText2 = nullptr;          //CREATE 1 PAINT EXTRACTOR
+	j1UIElement* questsText3 = nullptr;          //EXTRACT 150 PAINT
+	j1UIElement* questsText4 = nullptr;          //UPGRADE UNIT/BUILDING
+	j1UIElement* questsText1Count = nullptr;
+	j1UIElement* questsText2Count = nullptr;
+	j1UIElement* questsText3Count = nullptr;
+	j1UIElement* questsText4Count = nullptr;
+	j1UIElement* questsCompleted1=nullptr;
+	j1UIElement* questsCompleted2 = nullptr;
+	j1UIElement* questsCompleted3 = nullptr;
+	j1UIElement* questsCompleted4 = nullptr;
+
+	bool CompletedQuest1;
+	bool CompletedQuest2;
+	bool CompletedQuest3;
+	bool CompletedQuest4;
+
 
 	//HUD - Buttons
 	j1UIElement* homeButton = nullptr;
@@ -155,7 +174,7 @@ public:
 	j1UIElement* upgradePainterButton = nullptr;
 	j1UIElement* upgradeWarriorButton = nullptr;
 
-	// Dialog
+	// Dialogs
 
 	j1UIElement* dialogImage = nullptr;
 	j1UIElement* dialogCharacter = nullptr;
@@ -165,7 +184,6 @@ public:
 	j1UIElement* dialogNext = nullptr;
 	j1UIElement* dialogPrev = nullptr;
 	j1UIElement* dialogExit = nullptr;
-
 
 
 	char* Dialog_Text1_Line_1 = nullptr;
@@ -184,8 +202,6 @@ public:
 	char* Dialog_Text5_Line_2 = nullptr;
 	char* Dialog_Text5_Line_3 = nullptr;
 
-
-	
 	bool DialogPage1;
 	bool DialogPage2;
 	bool DialogPage3;
@@ -193,6 +209,9 @@ public:
 	bool DialogPage5;
 
 	
+	
+	
+
 
 
 	//Resource Values for Blit

@@ -137,6 +137,15 @@ bool GameScene::Start()
 	questsCloseButton->hover_rect = { 263, 1443, 54, 54 };
 	questsCloseButton->click_rect = { 263, 1497, 54, 54 };
 
+	questsText1 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 90 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Create 1 Painter", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText1Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 120 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText2 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 160 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Create 1 Paint", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText2Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 190 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Extractor 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText3 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 230 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Extract Paint", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText3Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 260 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/150", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText4 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 300 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Upgrade a Unit", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText4Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 330 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " or Building 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+
 
 	//HUD - Dialog
 
@@ -540,6 +549,9 @@ bool GameScene::PostUpdate()
 
 	ExecuteTransition();
 		
+
+
+	
 	
 
 	return ret;
@@ -1087,7 +1099,29 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		noButton->enabled = false;
 	}
 
+	if (element == questsOpenButton && type == GUI_Event::EVENT_ONCLICK) {
 
+		 questsText1Count->enabled = true;
+		 questsText2Count->enabled = true;
+		 questsText3Count->enabled = true;
+		 questsText4Count->enabled = true;
+		 questsText1->enabled = true;
+		 questsText2->enabled = true;
+		 questsText3->enabled = true;
+		 questsText4->enabled = true;
+	}
+
+	if (element == questsCloseButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		questsText1Count->enabled = false;
+		questsText2Count->enabled = false;
+		questsText3Count->enabled = false;
+		questsText4Count->enabled = false;
+		questsText1->enabled = false;
+		questsText2->enabled = false;
+		questsText3->enabled = false;
+		questsText4->enabled = false;
+	}
 
 }
 
@@ -1427,6 +1461,12 @@ void GameScene::DialogManagerFunction()
 		dialogText3->text = Dialog_Text5_Line_3;
 
 	}
+
+
+}
+
+void GameScene::QuestManagerFunction()
+{
 
 
 }
