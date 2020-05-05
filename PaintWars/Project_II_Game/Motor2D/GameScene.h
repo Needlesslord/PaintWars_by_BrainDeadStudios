@@ -108,14 +108,9 @@ public:
 	
 
 	bool PainterQuestCompleted;
-	bool PainterQuestCompletedSafe;
 	bool PaintExtractorQuestCompleted;
-	bool PaintExtractorQuestCompletedSafe;
 	bool ExtractPaintQuestCompleted;
-	bool ExtractPaintQuestCompletedSafe;
 	bool UpgradeEntityQuestCompleted;
-	bool UpgradeEntityQuestCompletedSafe;
-
 
 	bool PainterQuestActive;
 	bool PaintExtractorQuestActive;
@@ -188,6 +183,7 @@ public:
 
 	// Dialogs
 
+	j1UIElement* dialogOpen = nullptr;
 	j1UIElement* dialogImage = nullptr;
 	j1UIElement* dialogCharacter = nullptr;
 	j1UIElement* dialogText1 = nullptr;
