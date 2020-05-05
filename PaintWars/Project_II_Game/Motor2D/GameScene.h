@@ -105,10 +105,16 @@ public:
 	j1UIElement* questsCompleted3 = nullptr;
 	j1UIElement* questsCompleted4 = nullptr;
 
+	
+
 	bool PainterQuestCompleted;
+	bool PainterQuestCompletedSafe;
 	bool PaintExtractorQuestCompleted;
+	bool PaintExtractorQuestCompletedSafe;
 	bool ExtractPaintQuestCompleted;
+	bool ExtractPaintQuestCompletedSafe;
 	bool UpgradeEntityQuestCompleted;
+	bool UpgradeEntityQuestCompletedSafe;
 
 
 	//HUD - Buttons
@@ -202,11 +208,16 @@ public:
 	char* Dialog_Text5_Line_2 = nullptr;
 	char* Dialog_Text5_Line_3 = nullptr;
 
+	char* Dialog_Text6_Line_1 = nullptr;
+	char* Dialog_Text6_Line_2 = nullptr;
+	char* Dialog_Text6_Line_3 = nullptr;
+
 	bool DialogPage1;
 	bool DialogPage2;
 	bool DialogPage3;
 	bool DialogPage4;
 	bool DialogPage5;
+	bool DialogPage6;
 
 	
 	

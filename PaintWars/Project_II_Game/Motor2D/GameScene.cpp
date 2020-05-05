@@ -660,7 +660,11 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			DialogPage4 = false;
 		}
 		else if (DialogPage5 == true) {
-
+			DialogPage6 = true;
+			DialogPage5 = false;
+		}
+		else if (DialogPage4 == true) {
+			
 		}
 	 
 	}
@@ -685,6 +689,10 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		else if (DialogPage5 == true) {
 			DialogPage4 = true;
 			DialogPage5 = false;
+		}
+		else if (DialogPage6 == true) {
+			DialogPage5 = true;
+			DialogPage6 = false;
 		}
 	}
 	
@@ -1407,6 +1415,11 @@ void GameScene::CreateDialogText()
 	DialogPage3 = false;
 	DialogPage4 = false;
 	DialogPage5 = false;
+	PaintExtractorQuestCompletedSafe = false;
+	PainterQuestCompletedSafe = false;
+	ExtractPaintQuestCompletedSafe = false;
+    UpgradeEntityQuestCompletedSafe=false;
+
 
 
 
@@ -1417,27 +1430,31 @@ void GameScene::CreateDialogText()
 
 
 
-	Dialog_Text2_Line_1 = "LET'S GET STARTED WITH CREATING";
-	Dialog_Text2_Line_2 = "A PAINTER, THEY ARE THE MAIN";
-	Dialog_Text2_Line_3 = "CONSTRUCTION FORCE OF THE KINGDOM";
+	Dialog_Text2_Line_1 = "NOW LETS GET STARTED!";
+	Dialog_Text2_Line_2 = "SELECT THE TOWN HALL";
+	Dialog_Text2_Line_3 = "AND BUY A PAINTER";
 
 
 
-	Dialog_Text3_Line_1 = "TEXT 3 LINE 1";
-	Dialog_Text3_Line_2 = "TEXT 3 LINE 2";
-	Dialog_Text3_Line_3 = "TEXT 3 LINE 3";
+	Dialog_Text3_Line_1 = "WE WILL ALSO NEED TO ";
+	Dialog_Text3_Line_2 = "BUILD A PAINT EXTRACTOR";
+	Dialog_Text3_Line_3 = "NOW GO TO THE SHOP!";
 
 
 
-	Dialog_Text4_Line_1 = "TEXT 4 LINE 1";
-	Dialog_Text4_Line_2 = "TEXT 4 LINE 2";
-	Dialog_Text4_Line_3 = "TEXT 4 LINE 3";
+	Dialog_Text4_Line_1 = "WE HAVE TO GET STRONGER";
+	Dialog_Text4_Line_2 = "WAIT FOR THE EXTRACTORS";
+	Dialog_Text4_Line_3 = "TO COLLECT SOME PAINT!";
 
 
 
-	Dialog_Text5_Line_1 = "TEXT 5 LINE 1";
-	Dialog_Text5_Line_2 = "TEXT 5 LINE 2";
-	Dialog_Text5_Line_3 = "TEXT 5 LINE 3";
+	Dialog_Text5_Line_1 = "UPGRADE THE EXTRACTOR";
+	Dialog_Text5_Line_2 = "TO COLLECT EVEN MORE";
+	Dialog_Text5_Line_3 = "PAINT!";
+
+	Dialog_Text6_Line_1 = "THATS ALL THE TUTORIAL FOR NOW";
+	Dialog_Text6_Line_2 = "WAIT FOR THE FULL RELEASE TO";
+	Dialog_Text6_Line_3 = "KEEP GOING";
 	
 
 }
@@ -1468,7 +1485,11 @@ void GameScene::DialogManagerFunction()
 		dialogText1->text = Dialog_Text5_Line_1;
 		dialogText2->text = Dialog_Text5_Line_2;
 		dialogText3->text = Dialog_Text5_Line_3;
-
+	}
+	else if (DialogPage6) {
+		dialogText1->text = Dialog_Text6_Line_1;
+		dialogText2->text = Dialog_Text6_Line_2;
+		dialogText3->text = Dialog_Text6_Line_3;
 	}
 
 
@@ -1479,26 +1500,27 @@ void GameScene::QuestManagerFunction()
 
 	if (PainterQuestCompleted == true) {
 		questsText1Count->text = "1/1";
+		//Mix_PlayChannel(-1, App->audio->Quest_Audio, 0);
 	}
 
 	if (App->entities->ExtractorQuestDone == true) { //REMEMBER TO SET THIS BOOL TO FALSE IN CLEANUP OF GAME SCENE OR THIS QUEST WONT WORK
 		PaintExtractorQuestCompleted = true;
 		if (PaintExtractorQuestCompleted == true) {
 			questsText2Count->text = "extractor 1/1";
+			//Mix_PlayChannel(-1, App->audio->Quest_Audio, 0);
 		}
 	}
 
 	if (App->player->paintCount.count>=150) {
 		ExtractPaintQuestCompleted = true;
 		questsText3Count->text = "150/150";
+		//Mix_PlayChannel(-1, App->audio->Quest_Audio, 0);
 	}
 
 	if (UpgradeEntityQuestCompleted == true) {
 		questsText4Count->text = " 1/1";
+		//Mix_PlayChannel(-1, App->audio->Quest_Audio, 0);
 	}
-
-
-
 
 
 
