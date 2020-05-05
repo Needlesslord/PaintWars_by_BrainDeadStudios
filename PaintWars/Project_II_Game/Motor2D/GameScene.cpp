@@ -149,15 +149,15 @@ bool GameScene::Start()
 
 	//HUD - Dialog
 
-	dialogImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 575 }, { 0 , 0 }, false, true, { 0, 1820, 500, 125 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
-	dialogCharacter = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 575 }, { 0 , 0 }, false, true, { 276, 1972, 30, 28 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
-	dialogText1 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 45 , 600 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
-	dialogText2 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 45 , 630 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
-	dialogText3 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 45 , 660 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
-	dialogPrev = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 410 , 660 }, { 0 , 0 }, true, true, { 499, 1431, 27, 28 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_MEDIUM,2);
+	dialogImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 300 , 575 }, { 0 , 0 }, false, true, { 0, 1820, 500, 125 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
+	dialogCharacter = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 300 , 575 }, { 0 , 0 }, false, true, { 276, 1972, 30, 28 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
+	dialogText1 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 600 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	dialogText2 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 630 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	dialogText3 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 660 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	dialogPrev = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 695 , 660 }, { 0 , 0 }, true, true, { 499, 1431, 27, 28 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_MEDIUM,2);
 	dialogPrev->hover_rect = {457,1432,27,28};
 	dialogPrev->click_rect = {415,1432,27,28};
-	dialogNext = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 480 , 660 }, { 0 , 0 }, true, true, { 499, 1398, 27, 28 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_MEDIUM,2);
+	dialogNext = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 765 , 660 }, { 0 , 0 }, true, true, { 499, 1398, 27, 28 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_MEDIUM,2);
 	dialogNext->hover_rect = { 457,1398,27,28 };
 	dialogNext->click_rect = { 415,1398,27,28 };
 
@@ -351,6 +351,7 @@ bool GameScene::PreUpdate()
 		}
 	}
 
+	QuestManagerFunction();
 	DialogManagerFunction();
 
 
@@ -723,6 +724,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			App->entities->isSelectingPlacement = true;
 			App->entities->hoveringEntityType = ENTITY_TYPE_PAINT_EXTRACTOR;
 			Mix_PlayChannel(-1, App->audio->buy1_sound, 0);
+			
 		}
 
 	}
@@ -820,6 +822,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	if (element == buyPainterButton && type == GUI_Event::EVENT_ONCLICK) {
 		list<Entity*>::iterator onlyTownhallSelected = App->entities->buildingsSelected.begin();
 		(*onlyTownhallSelected)->SpawnEntity();
+		PainterQuestCompleted = true;
 	}
 	else if (element == upgradePainterButton && type == GUI_Event::EVENT_ONCLICK) {
 
@@ -1467,6 +1470,23 @@ void GameScene::DialogManagerFunction()
 
 void GameScene::QuestManagerFunction()
 {
+
+	if (PainterQuestCompleted == true) {
+		questsText1Count->text = "1/1";
+	}
+
+	if (App->entities->ExtractorQuestDone == true) { //REMEMBER TO SET THIS BOOL TO FALSE IN CLEANUP OF GAME SCENE OR THIS QUEST WONT WORK
+		PaintExtractorQuestCompleted = true;
+		if (PaintExtractorQuestCompleted == true) {
+			questsText2Count->text = "extractor 1/1";
+		}
+	}
+
+
+
+
+
+
 
 
 }

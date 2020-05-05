@@ -105,10 +105,10 @@ public:
 	j1UIElement* questsCompleted3 = nullptr;
 	j1UIElement* questsCompleted4 = nullptr;
 
-	bool CompletedQuest1;
-	bool CompletedQuest2;
-	bool CompletedQuest3;
-	bool CompletedQuest4;
+	bool PainterQuestCompleted;
+	bool PaintExtractorQuestCompleted;
+	bool ExtractPaintQuestCompleted;
+	bool UpgradeEntityQuestCompleted;
 
 
 	//HUD - Buttons

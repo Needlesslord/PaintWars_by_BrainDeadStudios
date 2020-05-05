@@ -206,6 +206,7 @@ bool j1EntityManager::Update(float dt) {
 
 							AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR, mapCoordinates, App->entities, nullptr, 0);
 							hoveringEntityType == ENTITY_TYPE_NONE;
+							ExtractorQuestDone = true;
 						}
 					}
 				}

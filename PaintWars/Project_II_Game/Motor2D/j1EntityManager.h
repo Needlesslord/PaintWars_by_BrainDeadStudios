@@ -99,7 +99,7 @@ public:
 	bool paintersUpgraded = false;
 	bool paintExtractorUpgraded = false;
 	bool woodProducersUpgraded = false;
-
+	bool ExtractorQuestDone = false;
 protected:
 
 		// Allies
