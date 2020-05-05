@@ -1374,27 +1374,27 @@ void GameScene::CreateDialogText()
 
 
 
-	Dialog_Text2_Line_1 = "LET'S GET STARTED WITH";
-	Dialog_Text2_Line_2 = "CREATING A PAINTER";
-	Dialog_Text2_Line_3 = "THEY ARE THE MAIN FORCE OF THE KINGDOM";
+	Dialog_Text2_Line_1 = "LET'S GET STARTED WITH CREATING";
+	Dialog_Text2_Line_2 = "A PAINTER, THEY ARE THE MAIN";
+	Dialog_Text2_Line_3 = "CONSTRUCTION FORCE OF THE KINGDOM";
 
 
 
-	Dialog_Text3_Line_1 = "GREETINGS KING OF PAINTLAND";
-	Dialog_Text3_Line_2 = "I WELCOME YOU TO YOUR KINGDOM";
-	Dialog_Text3_Line_3 = "I AM HERE TO GUIDE YOU";
+	Dialog_Text3_Line_1 = "TEXT 3 LINE 1";
+	Dialog_Text3_Line_2 = "TEXT 3 LINE 2";
+	Dialog_Text3_Line_3 = "TEXT 3 LINE 3";
 
 
 
-	Dialog_Text4_Line_1 = "GREETINGS KING OF PAINTLAND";
-	Dialog_Text4_Line_2 = "I WELCOME YOU TO YOUR KINGDOM";
-	Dialog_Text4_Line_3 = "I AM HERE TO GUIDE YOU";
+	Dialog_Text4_Line_1 = "TEXT 4 LINE 1";
+	Dialog_Text4_Line_2 = "TEXT 4 LINE 2";
+	Dialog_Text4_Line_3 = "TEXT 4 LINE 3";
 
 
 
-	Dialog_Text5_Line_1 = "GREETINGS KING OF PAINTLAND";
-	Dialog_Text5_Line_2 = "I WELCOME YOU TO YOUR KINGDOM";
-	Dialog_Text5_Line_3 = "I AM HERE TO GUIDE YOU";
+	Dialog_Text5_Line_1 = "TEXT 5 LINE 1";
+	Dialog_Text5_Line_2 = "TEXT 5 LINE 2";
+	Dialog_Text5_Line_3 = "TEXT 5 LINE 3";
 	
 
 }
