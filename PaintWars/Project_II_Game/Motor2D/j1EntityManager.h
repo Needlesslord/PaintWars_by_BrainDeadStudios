@@ -69,7 +69,8 @@ public:
 	bool Save(pugi::xml_node& save) const;
 	bool Load(pugi::xml_node& save);
 	void TriggerEndGame(bool isVictory);
-
+	void LoadEntityTextures();
+	
 private:
 
 public:
@@ -98,7 +99,7 @@ public:
 	bool paintersUpgraded = false;
 	bool paintExtractorUpgraded = false;
 	bool woodProducersUpgraded = false;
-
+	bool ExtractorQuestDone = false;
 protected:
 
 		// Allies
@@ -133,7 +134,7 @@ private:
 	float maxLifeSum;
 
 	SDL_Texture* debug_tex = nullptr;
-
+	bool EntityTexturesAreLoaded;
 };
 
 #endif //__j1ENTITY_FACTORY_H__

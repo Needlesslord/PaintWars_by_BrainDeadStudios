@@ -331,7 +331,7 @@ bool j1App::PostUpdate()
 			continue;
 			
 		}
-		LOG("Iterating through post update modules");
+		//LOG("Iterating through post update modules");
 		
 		ret = (*item)->PostUpdate();
 	}
@@ -489,6 +489,9 @@ void j1App::Debug_Actions()
 	if (GOD_MODE != true) {
 
 		if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
+			App->scenes->Load_Map_Forest = true;
+			App->scenes->Load_Map_Snow = false;
+			App->scenes->Load_Map_Volcano = false;
 			App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
 			//App->scenes->SwitchScene(SCENES::GAME_SCENE);
 		}
@@ -581,7 +584,7 @@ void j1App::Debug_Actions()
 	}
 
 
-	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
+	if (App->gui->GUI_ELEMENTS.count() > 0 && App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
 
 		App->win->Fullscreen_Swap();
 	}

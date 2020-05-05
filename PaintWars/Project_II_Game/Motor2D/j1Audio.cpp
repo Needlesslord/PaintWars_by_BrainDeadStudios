@@ -54,6 +54,12 @@ bool j1Audio::Awake(pugi::xml_node& config)
 		ret = true;
 	}
 
+	Quest_Audio = Mix_LoadWAV("audio/fx/QuestCompletedAudio.wav");
+	if (Quest_Audio == NULL)
+	{
+		LOG("Quest Audio  IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
 
 	Click_Button_Sound = Mix_LoadWAV("audio/fx/Click_Mouse.wav");
 	if (Click_Button_Sound == NULL)

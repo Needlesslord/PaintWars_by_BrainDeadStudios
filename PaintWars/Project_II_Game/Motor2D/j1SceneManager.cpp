@@ -25,7 +25,7 @@ j1SceneManager::~j1SceneManager()
 bool j1SceneManager::Awake(pugi::xml_node& config)
 {
 	bool ret = true;
-	
+	exit = false;
 	ScenePushbacks();
 	
 	LoadInitialScene();

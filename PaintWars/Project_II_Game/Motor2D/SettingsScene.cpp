@@ -37,6 +37,7 @@ bool SettingsScene::Start()
 {
 	bool ret = true;
 
+	App->scenes->IN_GAME_SCENE = false;
 	backgroundImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes,TEXTURE::MAIN_IMAGE);
 
 	musicLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 300, 150 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Music");
@@ -65,6 +66,13 @@ bool SettingsScene::Start()
 	backButton->hover_rect = { 263, 658, 207, 71 };
 	backButton->click_rect = { 525, 658, 207, 71 };
 
+
+	if (App->audio->PlayingSettingsMusic != true) {
+		App->audio->PlayMusic("audio/music/SettingsSceneMusic.ogg");
+		App->audio->PlayingSettingsMusic = true;
+	}
+
+
 	return ret;
 }
 
@@ -85,7 +93,7 @@ bool SettingsScene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		App->scenes->SwitchScene(SCENES::GAME_SCENE);
+		App->scenes->SwitchScene(SCENES::MENU_SCENE);
 	}
 
 	return ret;
@@ -111,11 +119,22 @@ bool SettingsScene::CleanUp()
 	LOG("Freeing Scene");
 	bool ret = true;
 
-	for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
+	/*for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
 	{
 		App->gui->GUI_ELEMENTS[i]->CleanUp();
 		RELEASE(App->gui->GUI_ELEMENTS[i]);
-	}
+	}*/
+	musicLabel->CleanUp();
+	vfxLabel->CleanUp();
+	fullscreenLabel->CleanUp();
+	gpadLabel->CleanUp();
+	//musicScroll->CleanUp();
+	//vfxScroll->CleanUp();
+	fullscreenButton->CleanUp();
+	gpadButton->CleanUp();
+	resetButton->CleanUp();
+	backButton->CleanUp();
+	backgroundImage->CleanUp();
 
 
 	if (scene_texture != nullptr)
@@ -147,7 +166,7 @@ void SettingsScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	if (element == backButton && type == GUI_Event::EVENT_ONCLICK)
 	{
 		//App->transition_manager->CreateFadeToColour(SCENES::MENU_SCENE);
-		App->transition_manager->CreateSlide(SCENES::MENU_SCENE);
+		App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
 	}
 
 	if (element == fullscreenButton && type == GUI_Event::EVENT_ONCLICK)

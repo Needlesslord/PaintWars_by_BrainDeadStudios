@@ -39,7 +39,8 @@ bool LoseScene::Awake(pugi::xml_node& config)
 bool LoseScene::Start()
 {
 	bool ret = true;
-
+	FinishedPosition = false;
+	App->scenes->IN_GAME_SCENE = false;
 	Lose_Scene_UI = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0 , 0 }, { 0 , 0 }, true, true, { 0, 0, 1278, 719}, nullptr, nullptr, TEXTURE::LOSE_SCREEN_SPRITE);
 	
 	TryAgain = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 275, 600 }, { 30,25 }, true, true, { 285, 575,712 ,62 },nullptr, App->scenes, TEXTURE::CONTINUE_LETTERS);
@@ -54,6 +55,7 @@ bool LoseScene::Start()
 		App->audio->PlayingLoseMusic = true;
 	}
 	
+	ResetPosition = true;
 
 	return ret;
 }
@@ -63,6 +65,10 @@ bool LoseScene::PreUpdate()
 {
 	bool ret = true;
 
+	if (ResetPosition == true) {
+		TryAgain->map_position.x = -550;
+		ResetPosition = false;
+	}
 	return ret;
 }
 
@@ -73,10 +79,13 @@ bool LoseScene::Update(float dt)
 
 	CameraDebugMovement(dt);
 
-	/*if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-	{
-		App->scenes->SwitchScene(SCENES::START_SCENE);
-	}*/
+	if (TryAgain->map_position.x < 275 && App->transition_manager->is_transitioning == false) {
+		TryAgain->map_position = TryAgain->map_position = { TryAgain->map_position.x + 5,TryAgain->map_position.y };
+		
+	}
+	else if (App->transition_manager->is_transitioning == false) {
+		FinishedPosition = true; //ONLY ONE CHANGE TO TRUE IS NEEDED BECAUSE ALL BUTTONS GET TO THEIR POSITION AT THE SAME MOMENT
+	}
 
 	return ret;
 }
@@ -145,17 +154,18 @@ bool LoseScene::CleanUp()
 
 void LoseScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
-
-	if (element == TryAgain && type == GUI_Event::EVENT_ONCLICK)
-	{
-		Mix_HaltMusic();
-		if (App->audio->PlayingMenuMusic != true) {
-			App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
-			App->audio->PlayingMenuMusic = true;
+	if (FinishedPosition == true) {
+		if (element == TryAgain && type == GUI_Event::EVENT_ONCLICK)
+		{
+			Mix_HaltMusic();
+			if (App->audio->PlayingMenuMusic != true) {
+				App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
+				App->audio->PlayingMenuMusic = true;
+			}
+			App->entities->CleanUp();
+			App->audio->PlayingLoseMusic = false;
+			App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
 		}
-		App->entities->CleanUp();
-		App->audio->PlayingLoseMusic = false;
-		App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
 	}
 }
 

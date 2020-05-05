@@ -32,15 +32,22 @@ public:
 
 	//MAP & SCENE 
 	void Map_Manager();
-	void Create_Forest_Map();
-	void Create_Snow_Map();
-	void Create_Volcano_Map();
+
+	void Generate_Forest_Map();
+	void Generate_Snow_Map();
+	void Generate_Volcano_Map();
+	void Generate_Entities();
+	void Generate_Tiles();
 	//SCENE TRANSITIONS
 	void InitScene();								// Method that will be used to initialize all scene elements.
 	void DrawScene();
 	void ExecuteTransition();
 	void WIN_LOSE_Manager();
+	void CreateDialogText();
+	void DialogManagerFunction();
+	void QuestManagerFunction();
 
+	
 	//bool EntityInCamera(Entity* entity);
 
 public:
@@ -54,15 +61,10 @@ public:
 public:
 
 	//MAP MANAGER
-	bool LoadingMap;
-	bool Forest_Map_Active;
-	bool Volcano_Map_Active;
-	bool Snow_Map_Active;
-	bool Load_Forest_Map;
-	bool Load_Volcano_Map;
-	bool Load_Snow_Map;
-	bool Change_Map;
 
+
+
+	const char* Map_Name_To_Load;
 
 
 	//////////////////
@@ -90,6 +92,30 @@ public:
 	j1UIElement* questsLabel = nullptr;
 	j1UIElement* questsOpenButton = nullptr;
 	j1UIElement* questsCloseButton = nullptr;
+	j1UIElement* questsText1 = nullptr;          //CREATE 1 PAINTER 
+	j1UIElement* questsText2 = nullptr;          //CREATE 1 PAINT EXTRACTOR
+	j1UIElement* questsText3 = nullptr;          //EXTRACT 150 PAINT
+	j1UIElement* questsText4 = nullptr;          //UPGRADE BUILDING
+	j1UIElement* questsText1Count = nullptr;
+	j1UIElement* questsText2Count = nullptr;
+	j1UIElement* questsText3Count = nullptr;
+	j1UIElement* questsText4Count = nullptr;
+	j1UIElement* questsCompleted1=nullptr;
+	j1UIElement* questsCompleted2 = nullptr;
+	j1UIElement* questsCompleted3 = nullptr;
+	j1UIElement* questsCompleted4 = nullptr;
+
+	
+
+	bool PainterQuestCompleted;
+	bool PainterQuestCompletedSafe;
+	bool PaintExtractorQuestCompleted;
+	bool PaintExtractorQuestCompletedSafe;
+	bool ExtractPaintQuestCompleted;
+	bool ExtractPaintQuestCompletedSafe;
+	bool UpgradeEntityQuestCompleted;
+	bool UpgradeEntityQuestCompletedSafe;
+
 
 	//HUD - Buttons
 	j1UIElement* homeButton = nullptr;
@@ -154,6 +180,49 @@ public:
 	j1UIElement* upgradePainterButton = nullptr;
 	j1UIElement* upgradeWarriorButton = nullptr;
 
+	// Dialogs
+
+	j1UIElement* dialogImage = nullptr;
+	j1UIElement* dialogCharacter = nullptr;
+	j1UIElement* dialogText1 = nullptr;
+	j1UIElement* dialogText2 = nullptr;
+	j1UIElement* dialogText3 = nullptr;
+	j1UIElement* dialogNext = nullptr;
+	j1UIElement* dialogPrev = nullptr;
+	j1UIElement* dialogExit = nullptr;
+
+
+	char* Dialog_Text1_Line_1 = nullptr;
+	char* Dialog_Text1_Line_2 = nullptr;
+	char* Dialog_Text1_Line_3 = nullptr;
+	char* Dialog_Text2_Line_1 = nullptr;
+	char* Dialog_Text2_Line_2 = nullptr;
+	char* Dialog_Text2_Line_3 = nullptr;
+	char* Dialog_Text3_Line_1 = nullptr;
+	char* Dialog_Text3_Line_2 = nullptr;
+	char* Dialog_Text3_Line_3 = nullptr;
+	char* Dialog_Text4_Line_1 = nullptr;
+	char* Dialog_Text4_Line_2 = nullptr;
+	char* Dialog_Text4_Line_3 = nullptr;
+	char* Dialog_Text5_Line_1 = nullptr;
+	char* Dialog_Text5_Line_2 = nullptr;
+	char* Dialog_Text5_Line_3 = nullptr;
+
+	char* Dialog_Text6_Line_1 = nullptr;
+	char* Dialog_Text6_Line_2 = nullptr;
+	char* Dialog_Text6_Line_3 = nullptr;
+
+	bool DialogPage1;
+	bool DialogPage2;
+	bool DialogPage3;
+	bool DialogPage4;
+	bool DialogPage5;
+	bool DialogPage6;
+
+	
+	
+	
+
 
 
 	//Resource Values for Blit
@@ -167,14 +236,14 @@ public:
 	char Housing_Amount_UI;
 
 	char Max_Housing_Amount_UI;
-	
+
 private:
 
 
 
-	
-	
+
+
 
 };
 
-#endif // __FIRSTSCENE_H__
+#endif // __GAMESCENE_H__

@@ -87,14 +87,13 @@ bool GameScene::Start()
 {
 	bool ret = true;
 	
-
-
+	CreateDialogText();
+	App->PAUSE_ACTIVE = false;
+	
 	App->render->camera.x = 575;
 	App->render->camera.y = -1200;
 
-	//THESE BOOLS HAVE TO BE REMOVED ONCE WE HAVE THE MAIN MENU, BECAUSE WE WANT THE GAME TO LOAD THE MAP AFTER WE USE THE PLAY BUTTON NOT WHILE WE ARE IN THE MENU
-	Load_Forest_Map = true;
-	Change_Map = true;
+	
 	Map_Manager();
 
 	int w, h;
@@ -105,134 +104,10 @@ bool GameScene::Start()
 
 	}
 
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL,			{ 42, 42 }, App->entities, nullptr, 0, true);
-	/*App->entities->AddEntity(ENTITY_TYPE_WOOD_PRODUCER,		{ 18, 18 }, App->entities, nullptr,  0, true);*/
-	/*App->entities->AddEntity(ENTITY_TYPE_BARRACKS,			{ 11,  6 }, App->entities, nullptr,  0, true);*/
+	Generate_Entities();
+	Generate_Tiles();
 
-	App->entities->AddEntity(ENTITY_TYPE_PAINTER,			{  45,  40 }, App->entities, nullptr,  0, true);
-
-	//App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { 45,  30 }, App->entities, nullptr, 0, true);
-
-	/*App->entities->AddEntity(ENTITY_TYPE_SLIME,				{ 20, 40 }, App->entities, nullptr,  0, true);*/
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 40, 20 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 13,  5 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 80,  4 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{  10, 90 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SPAWNER,			{ 80, 75 }, App->entities, nullptr, 0, true);
-	
-
-	//LAKE1
-	App->pathfinding->ChangeToPaintShore({ 3, 3 });
-	App->pathfinding->ChangeToPaintShore({ 4, 3 });
-	App->pathfinding->ChangeToPaintShore({ 5, 3 });
-	App->pathfinding->ChangeToPaintShore({ 6, 3 });
-	App->pathfinding->ChangeToPaintShore({ 3, 4 });
-	App->pathfinding->ChangeToPaint({ 4, 4 });
-	App->pathfinding->ChangeToPaint({ 5, 4 });
-	App->pathfinding->ChangeToPaintShore({ 6, 4 });
-	App->pathfinding->ChangeToPaintShore({ 3, 5 });
-	App->pathfinding->ChangeToPaint({ 4, 5 });
-	App->pathfinding->ChangeToPaint({ 5, 5 });
-	App->pathfinding->ChangeToPaintShore({ 6, 5 });
-	App->pathfinding->ChangeToPaintShore({ 3, 6 });
-	App->pathfinding->ChangeToPaintShore({ 4, 6 });
-	App->pathfinding->ChangeToPaintShore({ 5, 6 });
-	App->pathfinding->ChangeToPaintShore({ 6, 6 });
-
-	//LAKE2
-	App->pathfinding->ChangeToPaint({ 32, 79 });
-	App->pathfinding->ChangeToPaint({ 32, 80 });
-	App->pathfinding->ChangeToPaint({ 33, 79 });
-	App->pathfinding->ChangeToPaint({ 33, 80 }); 
-	App->pathfinding->ChangeToPaintShore({ 31, 78 });
-	App->pathfinding->ChangeToPaintShore({ 31, 79 });
-	App->pathfinding->ChangeToPaintShore({ 31, 80 });
-	App->pathfinding->ChangeToPaintShore({ 31, 81 });
-	App->pathfinding->ChangeToPaintShore({ 32, 78 });
-	App->pathfinding->ChangeToPaintShore({ 32, 81 });
-	App->pathfinding->ChangeToPaintShore({ 33, 78 });
-	App->pathfinding->ChangeToPaintShore({ 33, 81 });
-	App->pathfinding->ChangeToPaintShore({ 34, 78 });
-	App->pathfinding->ChangeToPaintShore({ 34, 79 });
-	App->pathfinding->ChangeToPaintShore({ 34, 80 });
-	App->pathfinding->ChangeToPaintShore({ 34, 81 });
-
-
-	//LAKE3
-	App->pathfinding->ChangeToPaint({ 49, 32 });
-	App->pathfinding->ChangeToPaint({ 49, 33 });
-	App->pathfinding->ChangeToPaint({ 50, 32 });
-	App->pathfinding->ChangeToPaint({ 50, 33 });
-	App->pathfinding->ChangeToPaintShore({ 48, 31 });
-	App->pathfinding->ChangeToPaintShore({ 48, 32 });
-	App->pathfinding->ChangeToPaintShore({ 48, 33 });
-	App->pathfinding->ChangeToPaintShore({ 48, 34 });
-	App->pathfinding->ChangeToPaintShore({ 49, 31 });
-	App->pathfinding->ChangeToPaintShore({ 49, 34 });
-	App->pathfinding->ChangeToPaintShore({ 50, 31 });
-	App->pathfinding->ChangeToPaintShore({ 50, 34 });
-	App->pathfinding->ChangeToPaintShore({ 51, 31 });
-	App->pathfinding->ChangeToPaintShore({ 51, 32 });
-	App->pathfinding->ChangeToPaintShore({ 51, 33 });
-	App->pathfinding->ChangeToPaintShore({ 51, 34 });
-
-
-	//LAKE4
-	App->pathfinding->ChangeToPaint({ 64, 70 });
-	App->pathfinding->ChangeToPaint({ 65, 70 }); 
-	App->pathfinding->ChangeToPaint({ 66, 70 });
-	App->pathfinding->ChangeToPaint({ 67, 70 });
-	App->pathfinding->ChangeToPaint({ 64, 71 });
-	App->pathfinding->ChangeToPaint({ 65, 71 });
-	App->pathfinding->ChangeToPaint({ 66, 71 });
-	App->pathfinding->ChangeToPaint({ 67, 71 });
-	App->pathfinding->ChangeToPaintShore({ 63, 69 });
-	App->pathfinding->ChangeToPaintShore({ 64, 69 });
-	App->pathfinding->ChangeToPaintShore({ 65, 69 });
-	App->pathfinding->ChangeToPaintShore({ 66, 69 });
-	App->pathfinding->ChangeToPaintShore({ 67, 69 });
-	App->pathfinding->ChangeToPaintShore({ 68, 69 });
-	App->pathfinding->ChangeToPaintShore({ 63, 69 });
-	App->pathfinding->ChangeToPaintShore({ 68, 74 });
-	App->pathfinding->ChangeToPaintShore({ 63, 69 });
-	App->pathfinding->ChangeToPaintShore({ 68, 74 });
-	App->pathfinding->ChangeToPaintShore({ 63, 72 });
-	App->pathfinding->ChangeToPaintShore({ 64, 72 });
-	App->pathfinding->ChangeToPaintShore({ 65, 72 });
-	App->pathfinding->ChangeToPaintShore({ 66, 72 });
-	App->pathfinding->ChangeToPaintShore({ 67, 72 });
-	App->pathfinding->ChangeToPaintShore({ 68, 72 });
-
-
-
-	//LAKE5
-	App->pathfinding->ChangeToPaint({ 92, 37 });
-	App->pathfinding->ChangeToPaint({ 93, 37 });
-	App->pathfinding->ChangeToPaint({ 94, 37 });
-	App->pathfinding->ChangeToPaint({ 95, 37 });
-	App->pathfinding->ChangeToPaint({ 92, 38 });
-	App->pathfinding->ChangeToPaint({ 93, 38 });
-	App->pathfinding->ChangeToPaint({ 94, 38 });
-	App->pathfinding->ChangeToPaint({ 95, 38 });
-	App->pathfinding->ChangeToPaintShore({ 91, 36 });
-	App->pathfinding->ChangeToPaintShore({ 92, 36 });
-	App->pathfinding->ChangeToPaintShore({ 93, 36 });
-	App->pathfinding->ChangeToPaintShore({ 94, 36 });
-	App->pathfinding->ChangeToPaintShore({ 95, 36 });
-	App->pathfinding->ChangeToPaintShore({ 96, 36 });
-	App->pathfinding->ChangeToPaintShore({ 91, 37 });
-	App->pathfinding->ChangeToPaintShore({ 96, 37 });
-	App->pathfinding->ChangeToPaintShore({ 91, 38 });
-	App->pathfinding->ChangeToPaintShore({ 96, 38 });
-	App->pathfinding->ChangeToPaintShore({ 91, 39 });
-	App->pathfinding->ChangeToPaintShore({ 92, 39 });
-	App->pathfinding->ChangeToPaintShore({ 93, 39 });
-	App->pathfinding->ChangeToPaintShore({ 94, 39 });
-	App->pathfinding->ChangeToPaintShore({ 95, 39 });
-	App->pathfinding->ChangeToPaintShore({ 96, 39 });
-
-
-	//CHANGING TILES TO PAINT TILE
+	App->scenes->IN_GAME_SCENE = true;
 
 
 	//////////////////
@@ -242,13 +117,13 @@ bool GameScene::Start()
 	
 	//HUD - Bar
 	hudBarImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
-	paintLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 100 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 },"0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
-	woodLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 200 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
-	metalLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 300 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
-	titaniumLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 400 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
-	researchLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 500 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr,  TEXTURE::ATLAS, FONT::FONT_SMALL);
-	entitiesLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 670 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr,  TEXTURE::ATLAS, FONT::FONT_SMALL);
-	EntityHP = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 750 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "999", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	paintLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 120 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 },"0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	woodLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 240 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	metalLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 360 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	titaniumLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 480 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	researchLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 600 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr,  TEXTURE::ATLAS, FONT::FONT_SMALL);
+	entitiesLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 720 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr,  TEXTURE::ATLAS, FONT::FONT_SMALL);
+	EntityHP = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 1050 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "999", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
 	//BackgroundForest = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_FOREST);
 
 
@@ -262,19 +137,48 @@ bool GameScene::Start()
 	questsCloseButton->hover_rect = { 263, 1443, 54, 54 };
 	questsCloseButton->click_rect = { 263, 1497, 54, 54 };
 
+	questsText1 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 90 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Create 1 Painter", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText1Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 120 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText2 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 160 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Create 1 Paint", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText2Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 190 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Extractor 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText3 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 230 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Extract Paint", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText3Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 260 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/150", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText4 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 300 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Upgrade 1 Building", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText4Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 330 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+
+
+	//HUD - Dialog
+
+	dialogImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 300 , 575 }, { 0 , 0 }, false, true, { 0, 1820, 500, 125 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
+	dialogCharacter = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 300 , 575 }, { 0 , 0 }, false, true, { 276, 1972, 30, 28 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
+	dialogText1 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 600 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	dialogText2 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 630 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	dialogText3 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 660 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	dialogPrev = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 695 , 660 }, { 0 , 0 }, true, true, { 499, 1431, 27, 28 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_MEDIUM,2);
+	dialogPrev->hover_rect = {457,1432,27,28};
+	dialogPrev->click_rect = {415,1432,27,28};
+	dialogNext = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 765 , 660 }, { 0 , 0 }, true, true, { 499, 1398, 27, 28 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_MEDIUM,2);
+	dialogNext->hover_rect = { 457,1398,27,28 };
+	dialogNext->click_rect = { 415,1398,27,28 };
+
+
+
+	//dialogExit = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 40 , 575 }, { 0 , 0 }, false, true, { 0, 1820, 500, 125 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
+
+
 	//HUD - Buttons
-	homeButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 950, 50 }, { 0,0 }, true, true, { 785, 486, 74, 74 }, nullptr, App->scenes,  TEXTURE::ATLAS);
-	homeButton->hover_rect = { 785, 560, 74, 74 };
-	homeButton->click_rect = { 785, 634, 74, 74 };
-	shopButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1030, 50 }, { 0,0 }, true, true, { 785, 243, 74, 73 }, nullptr, App->scenes, TEXTURE::ATLAS);
-	shopButton->hover_rect = { 785, 316, 74, 73 };
-	shopButton->click_rect = { 785, 389, 74, 73 };
-	pauseMenuButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1110, 50 }, { 0,0 }, true, true, { 933, 243, 74, 73 }, nullptr, App->scenes,  TEXTURE::ATLAS);
-	pauseMenuButton->hover_rect = { 932, 316, 74, 73 };
-	pauseMenuButton->click_rect = { 933, 389, 74, 73 };
-	restartButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1190, 50 }, { 0,0 }, true, true, { 859, 486, 74, 73 }, nullptr, App->scenes, TEXTURE::ATLAS);
-	restartButton->hover_rect = { 859, 560, 74, 73 };
-	restartButton->click_rect = { 859, 634, 74, 73 };
+	homeButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1020, 50 }, { 0,0 }, true, true, { 786, 486, 55, 55 }, nullptr, App->scenes,  TEXTURE::ATLAS);
+	homeButton->hover_rect = { 785, 560, 55, 55 };
+	homeButton->click_rect = { 785, 634, 55, 55 };
+	shopButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1080, 50 }, { 0,0 }, true, true, { 786, 243, 55, 55 }, nullptr, App->scenes, TEXTURE::ATLAS);
+	shopButton->hover_rect = { 785, 316, 55, 55 };
+	shopButton->click_rect = { 785, 389, 55, 55 };
+	pauseMenuButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1140, 50 }, { 0,0 }, true, true, { 933, 243, 55, 55 }, nullptr, App->scenes,  TEXTURE::ATLAS);
+	pauseMenuButton->hover_rect = { 933, 316, 55, 55 };
+	pauseMenuButton->click_rect = { 933, 389, 55, 55 };
+	restartButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1200, 50 }, { 0,0 }, true, true, { 859, 486, 55, 55 }, nullptr, App->scenes, TEXTURE::ATLAS);
+	restartButton->hover_rect = { 859, 560, 55, 55 };
+	restartButton->click_rect = { 859, 634, 55, 55 };
 
 	
 	//Pause Menu
@@ -422,18 +326,7 @@ bool GameScene::PreUpdate()
 
 	bool ret = true;
 
-	if (Change_Map == true) {
-		if (Load_Forest_Map) {
-			Create_Forest_Map();
-		}
-		else if (Load_Volcano_Map) {
-			Create_Volcano_Map();
-		}
-		else if (Load_Snow_Map) {
-			Create_Snow_Map();
-		}
-		else {}
-	}
+
 
 	
 
@@ -458,6 +351,8 @@ bool GameScene::PreUpdate()
 		}
 	}
 
+	QuestManagerFunction();
+	DialogManagerFunction();
 
 
 	return ret;
@@ -476,22 +371,12 @@ bool GameScene::Update(float dt)
 
 		App->scenes->exit = true;
 	}
-	/*UI_INGAME.Shop_Button->map_position.x = UI_INGAME.Shop_Button->init_map_position.x + App->render->camera.x;
-	UI_INGAME.Shop_Button->map_position.y = UI_INGAME.Shop_Button->init_map_position.y + App->render->camera.y;*/
+	
 	bool ret = true;
 	
 	CameraDebugMovement(dt);
 
-	/*if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
-		App->LoadGame();
-
-	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
-		App->SaveGame("save_game.xml");*/
-
-	/*if (App->input->GetKey(SDL_SCANCODE_K) == true) {
-
-		App->entities->CleanUp();
-	}*/
+	
 
 	App->map->Draw();
 
@@ -533,8 +418,12 @@ bool GameScene::Update(float dt)
 	static char conversorChar3[256];
 	int conversorInt3 = App->player->housingSpace.count;
 	int conversorInt4 = App->player->housingSpace.maxCount;
-	sprintf_s(conversorChar3, 256, "%d %d", conversorInt3, conversorInt4);
+	sprintf_s(conversorChar3, 256, "%d/%d", conversorInt3, conversorInt4);
 	entitiesLabel->text = conversorChar3;
+	
+	
+
+
 
 	
 
@@ -566,7 +455,7 @@ bool GameScene::Update(float dt)
 		int maxHp = (*showHp)->GetMaxLife();
 
 		static char conversor[256];
-		sprintf_s(conversor, 256, "%d %d", hp, maxHp);
+		sprintf_s(conversor, 256, "%d/%d", hp, maxHp);
 		EntityHP->text = conversor;
 	}
 	else {
@@ -629,24 +518,7 @@ bool GameScene::Update(float dt)
 
 
 
-	////UI
-
-	//std::stringstream str;
-	//str << App->player->paintCount.count;
-	//string a = str.str();
-	//paintLabel->text = (char*)a.c_str();
-
-
-	//for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
-	//{
-	//	App->gui->GUI_ELEMENTS[i]->map_position.x = App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
-	//	App->gui->GUI_ELEMENTS[i]->map_position.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;
-	//	/*App->gui->GUI_ELEMENTS[i]->click_rect.x=App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
-	//	App->gui->GUI_ELEMENTS[i]->click_rect.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;
-	//	App->gui->GUI_ELEMENTS[i]->hover_rect.x= App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
-	//	App->gui->GUI_ELEMENTS[i]->hover_rect.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;*/
-	//	
-	//}
+	
 
 	
 	return ret;
@@ -685,6 +557,9 @@ bool GameScene::PostUpdate()
 
 	ExecuteTransition();
 		
+
+
+	
 	
 
 	return ret;
@@ -767,6 +642,63 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		questsCloseButton->enabled = false;
 	}
 
+	//Dialog
+
+	if (element == dialogNext && type == GUI_Event::EVENT_ONCLICK)
+	{
+		if (DialogPage1 == true) {
+			DialogPage2 = true;
+			DialogPage1 = false;
+		}
+		else if (DialogPage2 == true) {
+			DialogPage3 = true;
+			DialogPage2 = false;
+		}
+		else if (DialogPage3 == true) {
+			DialogPage4 = true;
+			DialogPage3 = false;
+		}
+		else if (DialogPage4 == true) {
+			DialogPage5 = true;
+			DialogPage4 = false;
+		}
+		else if (DialogPage5 == true) {
+			DialogPage6 = true;
+			DialogPage5 = false;
+		}
+		else if (DialogPage4 == true) {
+			
+		}
+	 
+	}
+
+	if (element == dialogPrev && type == GUI_Event::EVENT_ONCLICK)
+	{
+		if (DialogPage1 == true) {
+			
+		}
+		else if (DialogPage2 == true) {
+			DialogPage1 = true;
+			DialogPage2 = false;
+		}
+		else if (DialogPage3 == true) {
+			DialogPage2 = true;
+			DialogPage3 = false;
+		}
+		else if (DialogPage4 == true) {
+			DialogPage3 = true;
+			DialogPage4 = false;
+		}
+		else if (DialogPage5 == true) {
+			DialogPage4 = true;
+			DialogPage5 = false;
+		}
+		else if (DialogPage6 == true) {
+			DialogPage5 = true;
+			DialogPage6 = false;
+		}
+	}
+	
 
 	//HomeButton
 
@@ -807,6 +739,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			App->entities->isSelectingPlacement = true;
 			App->entities->hoveringEntityType = ENTITY_TYPE_PAINT_EXTRACTOR;
 			Mix_PlayChannel(-1, App->audio->buy1_sound, 0);
+			
 		}
 
 	}
@@ -877,6 +810,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			}
 			upgradePaintExtractorButton->enabled = false;
 			App->entities->paintExtractorUpgraded = true;
+			UpgradeEntityQuestCompleted = true;
 		}
 	}
 
@@ -896,6 +830,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			}
 			upgradeWoodProducerButton->enabled = false;
 			App->entities->woodProducersUpgraded = true;
+			UpgradeEntityQuestCompleted = true;
 		}
 	}
 
@@ -904,6 +839,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	if (element == buyPainterButton && type == GUI_Event::EVENT_ONCLICK) {
 		list<Entity*>::iterator onlyTownhallSelected = App->entities->buildingsSelected.begin();
 		(*onlyTownhallSelected)->SpawnEntity();
+		PainterQuestCompleted = true;
 	}
 	else if (element == upgradePainterButton && type == GUI_Event::EVENT_ONCLICK) {
 
@@ -1183,7 +1119,29 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		noButton->enabled = false;
 	}
 
+	if (element == questsOpenButton && type == GUI_Event::EVENT_ONCLICK) {
 
+		 questsText1Count->enabled = true;
+		 questsText2Count->enabled = true;
+		 questsText3Count->enabled = true;
+		 questsText4Count->enabled = true;
+		 questsText1->enabled = true;
+		 questsText2->enabled = true;
+		 questsText3->enabled = true;
+		 questsText4->enabled = true;
+	}
+
+	if (element == questsCloseButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		questsText1Count->enabled = false;
+		questsText2Count->enabled = false;
+		questsText3Count->enabled = false;
+		questsText4Count->enabled = false;
+		questsText1->enabled = false;
+		questsText2->enabled = false;
+		questsText3->enabled = false;
+		questsText4->enabled = false;
+	}
 
 }
 
@@ -1196,24 +1154,7 @@ void GameScene::ManageMinimap()
 
 void GameScene::InitScene()
 {
-	//tileset_texture = App->tex->Load("maps/tiles_first_map.png", scene_renderer);	// This texture will be used SceneToTexture(). Needed to get a single whole texture of the map.
-
-	App->map->Load("map_forest.tmx") == true;
-	Create_Forest_Map();
-	//App->map->GetMapSize(map_width, map_height);
-	//App->map->GetTileOffset(x_offset, y_offset);
 	
-	//App->render->camera.x = map_width * 0.3f;										// This camera position gets the camera close to the center of the map.
-	//App->render->camera.y = -40;
-
-	// --- TRANSITIONS WITH TEXTURE
-	/*App->render->camera.x = map_width * 0.5f;										// This camera position is to have the renderer render all the scene_texture.
-	App->render->camera.y = 0;
-
-	SceneToTexture();
-
-	App->render->camera.x = map_width * 0.3f;										// This camera position gets the camera close to the center of the map.
-	App->render->camera.y = -40;*/
 }
 
 void GameScene::DrawScene()
@@ -1221,78 +1162,191 @@ void GameScene::DrawScene()
 	App->map->Draw();
 
 
-	// --- TRANSITIONS WITH TEXTURE
-	/*if (scene_texture != nullptr)
-	{
-		App->render->Blit(scene_texture, -(map_width) * 0.5f, 0, NULL);
-	}*/	
+
 }
 
 void GameScene::Map_Manager() {
 	////THESE FUNCTION HAS TO BE REMOVED ONCE WE HAVE THE MAIN MENU, BECAUSE WE WANT THE GAME TO LOAD THE MAP AFTER WE USE THE PLAY BUTTON NOT WHILE WE ARE IN THE MENU
-	if (Load_Forest_Map) {
-		App->map->Load("map_forest.tmx") == true;
-		Create_Forest_Map();
+	if (App->scenes->Load_Map_Forest==true) {
+		Generate_Forest_Map();
 	}
-	else if (Load_Volcano_Map) {
-		App->map->Load("map_forest.tmx") == true;
-		Create_Volcano_Map();
+	else if (App->scenes->Load_Map_Snow == true) {
+		Generate_Snow_Map();
 	}
-	else if (Load_Snow_Map) {
-		App->map->Load("map_snow.tmx") == true;
-		Create_Snow_Map();
+	else if (App->scenes->Load_Map_Volcano == true) {
+		Generate_Volcano_Map();
 	}
 	else {
 		LOG("No map has been loaded in the scene");
 	}
 }
 
-void GameScene::Create_Forest_Map()
+void GameScene::Generate_Forest_Map()
 {
-
 	App->map->CleanUp();
 	App->map->Load("map_forest.tmx") == true;
-
-	Change_Map = false;
-	Forest_Map_Active = true;
-	Load_Forest_Map = false;
+	App->scenes->Load_Map_Forest = false;
+	App->scenes->Map_Forest_Active = true;
 }
 
-void GameScene::Create_Snow_Map()
+void GameScene::Generate_Snow_Map()
 {
 	App->map->CleanUp();
 	App->map->Load("map_snow.tmx") == true;
-
-	App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { -200, 300 }, App->entities, nullptr, 10); //TESTING ONLY
-
-	Change_Map = false;
-	Snow_Map_Active = true;
-	Load_Snow_Map = false;
+	App->scenes->Load_Map_Snow = false;
+	App->scenes->Map_Snow_Active = true;
 }
 
-void GameScene::Create_Volcano_Map()
+void GameScene::Generate_Volcano_Map()
 {
 	App->map->CleanUp();
-	App->map->Load("map_forest.tmx") == true;
+	App->map->Load("map_volcano.tmx") == true;
+	App->scenes->Load_Map_Volcano = false;
+	App->scenes->Map_Volcano_Active = true;
+}
+
+void GameScene::Generate_Entities()
+{
+	if (App->scenes->Map_Forest_Active==true) {
+
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 42, 42 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 45,  40 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 40, 20 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 13,  5 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80,  4 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 10, 90 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80, 75 }, App->entities, nullptr, 0, true);
+	}
+	else if (App->scenes->Map_Snow_Active == true) {
+
+	}
+	else if (App->scenes->Map_Volcano_Active == true) {
+
+	}
+}
+
+void GameScene::Generate_Tiles()
+{
+	if (App->scenes->Map_Forest_Active == true) {
+		//LAKE1
+		App->pathfinding->ChangeToPaintShore({ 3, 3 });
+		App->pathfinding->ChangeToPaintShore({ 4, 3 });
+		App->pathfinding->ChangeToPaintShore({ 5, 3 });
+		App->pathfinding->ChangeToPaintShore({ 6, 3 });
+		App->pathfinding->ChangeToPaintShore({ 3, 4 });
+		App->pathfinding->ChangeToPaint({ 4, 4 });
+		App->pathfinding->ChangeToPaint({ 5, 4 });
+		App->pathfinding->ChangeToPaintShore({ 6, 4 });
+		App->pathfinding->ChangeToPaintShore({ 3, 5 });
+		App->pathfinding->ChangeToPaint({ 4, 5 });
+		App->pathfinding->ChangeToPaint({ 5, 5 });
+		App->pathfinding->ChangeToPaintShore({ 6, 5 });
+		App->pathfinding->ChangeToPaintShore({ 3, 6 });
+		App->pathfinding->ChangeToPaintShore({ 4, 6 });
+		App->pathfinding->ChangeToPaintShore({ 5, 6 });
+		App->pathfinding->ChangeToPaintShore({ 6, 6 });
+
+		//LAKE2
+		App->pathfinding->ChangeToPaint({ 32, 79 });
+		App->pathfinding->ChangeToPaint({ 32, 80 });
+		App->pathfinding->ChangeToPaint({ 33, 79 });
+		App->pathfinding->ChangeToPaint({ 33, 80 });
+		App->pathfinding->ChangeToPaintShore({ 31, 78 });
+		App->pathfinding->ChangeToPaintShore({ 31, 79 });
+		App->pathfinding->ChangeToPaintShore({ 31, 80 });
+		App->pathfinding->ChangeToPaintShore({ 31, 81 });
+		App->pathfinding->ChangeToPaintShore({ 32, 78 });
+		App->pathfinding->ChangeToPaintShore({ 32, 81 });
+		App->pathfinding->ChangeToPaintShore({ 33, 78 });
+		App->pathfinding->ChangeToPaintShore({ 33, 81 });
+		App->pathfinding->ChangeToPaintShore({ 34, 78 });
+		App->pathfinding->ChangeToPaintShore({ 34, 79 });
+		App->pathfinding->ChangeToPaintShore({ 34, 80 });
+		App->pathfinding->ChangeToPaintShore({ 34, 81 });
 
 
-	Change_Map = false;
-	Volcano_Map_Active = true;
-	Load_Volcano_Map = false;
+		//LAKE3
+		App->pathfinding->ChangeToPaint({ 49, 32 });
+		App->pathfinding->ChangeToPaint({ 49, 33 });
+		App->pathfinding->ChangeToPaint({ 50, 32 });
+		App->pathfinding->ChangeToPaint({ 50, 33 });
+		App->pathfinding->ChangeToPaintShore({ 48, 31 });
+		App->pathfinding->ChangeToPaintShore({ 48, 32 });
+		App->pathfinding->ChangeToPaintShore({ 48, 33 });
+		App->pathfinding->ChangeToPaintShore({ 48, 34 });
+		App->pathfinding->ChangeToPaintShore({ 49, 31 });
+		App->pathfinding->ChangeToPaintShore({ 49, 34 });
+		App->pathfinding->ChangeToPaintShore({ 50, 31 });
+		App->pathfinding->ChangeToPaintShore({ 50, 34 });
+		App->pathfinding->ChangeToPaintShore({ 51, 31 });
+		App->pathfinding->ChangeToPaintShore({ 51, 32 });
+		App->pathfinding->ChangeToPaintShore({ 51, 33 });
+		App->pathfinding->ChangeToPaintShore({ 51, 34 });
+
+
+		//LAKE4
+		App->pathfinding->ChangeToPaint({ 64, 70 });
+		App->pathfinding->ChangeToPaint({ 65, 70 });
+		App->pathfinding->ChangeToPaint({ 66, 70 });
+		App->pathfinding->ChangeToPaint({ 67, 70 });
+		App->pathfinding->ChangeToPaint({ 64, 71 });
+		App->pathfinding->ChangeToPaint({ 65, 71 });
+		App->pathfinding->ChangeToPaint({ 66, 71 });
+		App->pathfinding->ChangeToPaint({ 67, 71 });
+		App->pathfinding->ChangeToPaintShore({ 63, 69 });
+		App->pathfinding->ChangeToPaintShore({ 64, 69 });
+		App->pathfinding->ChangeToPaintShore({ 65, 69 });
+		App->pathfinding->ChangeToPaintShore({ 66, 69 });
+		App->pathfinding->ChangeToPaintShore({ 67, 69 });
+		App->pathfinding->ChangeToPaintShore({ 68, 69 });
+		App->pathfinding->ChangeToPaintShore({ 63, 69 });
+		App->pathfinding->ChangeToPaintShore({ 68, 74 });
+		App->pathfinding->ChangeToPaintShore({ 63, 69 });
+		App->pathfinding->ChangeToPaintShore({ 68, 74 });
+		App->pathfinding->ChangeToPaintShore({ 63, 72 });
+		App->pathfinding->ChangeToPaintShore({ 64, 72 });
+		App->pathfinding->ChangeToPaintShore({ 65, 72 });
+		App->pathfinding->ChangeToPaintShore({ 66, 72 });
+		App->pathfinding->ChangeToPaintShore({ 67, 72 });
+		App->pathfinding->ChangeToPaintShore({ 68, 72 });
+
+
+
+		//LAKE5
+		App->pathfinding->ChangeToPaint({ 92, 37 });
+		App->pathfinding->ChangeToPaint({ 93, 37 });
+		App->pathfinding->ChangeToPaint({ 94, 37 });
+		App->pathfinding->ChangeToPaint({ 95, 37 });
+		App->pathfinding->ChangeToPaint({ 92, 38 });
+		App->pathfinding->ChangeToPaint({ 93, 38 });
+		App->pathfinding->ChangeToPaint({ 94, 38 });
+		App->pathfinding->ChangeToPaint({ 95, 38 });
+		App->pathfinding->ChangeToPaintShore({ 91, 36 });
+		App->pathfinding->ChangeToPaintShore({ 92, 36 });
+		App->pathfinding->ChangeToPaintShore({ 93, 36 });
+		App->pathfinding->ChangeToPaintShore({ 94, 36 });
+		App->pathfinding->ChangeToPaintShore({ 95, 36 });
+		App->pathfinding->ChangeToPaintShore({ 96, 36 });
+		App->pathfinding->ChangeToPaintShore({ 91, 37 });
+		App->pathfinding->ChangeToPaintShore({ 96, 37 });
+		App->pathfinding->ChangeToPaintShore({ 91, 38 });
+		App->pathfinding->ChangeToPaintShore({ 96, 38 });
+		App->pathfinding->ChangeToPaintShore({ 91, 39 });
+		App->pathfinding->ChangeToPaintShore({ 92, 39 });
+		App->pathfinding->ChangeToPaintShore({ 93, 39 });
+		App->pathfinding->ChangeToPaintShore({ 94, 39 });
+		App->pathfinding->ChangeToPaintShore({ 95, 39 });
+		App->pathfinding->ChangeToPaintShore({ 96, 39 });
+	}
+	else if (App->scenes->Map_Snow_Active == true) {
+
+	}
+	else if (App->scenes->Map_Volcano_Active == true) {
+
+	}
 }
 
 
-//SDL_Texture* FirstScene::SceneToTexture()
-//{
-//	App->render->CreateSubRenderer(map_width + x_offset, map_height + y_offset, scene_surface, scene_renderer);		// Both scene_surface and scene renderer are passed by reference.
-//
-//	tileset_texture = App->tex->Load("maps/tiles_first_map.png", scene_renderer);
-//	App->map->DrawToSubRenderer(scene_renderer, tileset_texture);
-//
-//	scene_texture = SDL_CreateTextureFromSurface(App->render->renderer, scene_surface);
-//
-//	return scene_texture;
-//}
 
 void GameScene::ExecuteTransition()
 {
@@ -1320,59 +1374,7 @@ void GameScene::ExecuteTransition()
 			App->entities->CleanUp();
 		}
 
-	//	if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true);
-	//	}
-
-	//	if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true, true);
-	//	}
-
-	//	if (App->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateAlternatingBars(SCENES::SECOND_SCENE, 0.5f, true);
-	//	}
-
-	//	if (App->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
-	//	{
-	//		App->transition_manager->CreateExpandingBars(SCENES::SECOND_SCENE, 0.5f, true);
-	//	}
-
-	//	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN)
-	//	{
-	//		iPoint mouse_pos = App->input->GetMouseToWorld();
-
-	//		App->transition_manager->CreateZoomToMouse(SCENES::SECOND_SCENE, mouse_pos, 0.5f, true);
-	//	}
-
-	//	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
-	//	{
-	//		iPoint mouse_pos = App->input->GetMouseToWorld();
-
-	//		App->transition_manager->CreateCameraToMouse(mouse_pos, 0.5f, true);
-	//	}
-
-
-	//	// --- TRANSITION WITH TEXTURE METHODS (NOT IMPLEMENTED)
-	//	if (App->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN)
-	//	{
-	//		if (scene_texture != nullptr)
-	//		{
-	//			App->transition_manager->CreateDissolve(SCENES::SECOND_SCENE, 1.0f);
-	//		}
-	//	}
-
-	//	if (App->input->GetMouseButtonDown(SDL_BUTTON_MIDDLE) == KEY_DOWN)
-	//	{
-	//		iPoint mouse_pos = App->input->GetMouseToWorld();
-
-	//		if (scene_texture != nullptr)
-	//		{
-	//			App->transition_manager->CreateZoomToTexture(SCENES::SECOND_SCENE, mouse_pos);
-	//		}
-	//	}
+	
 
 	}
 }
@@ -1408,15 +1410,125 @@ void GameScene::WIN_LOSE_Manager()
 		App->entities->TriggerEndGame(false);
 }
 
+void GameScene::CreateDialogText()
+{
+
+	DialogPage1 = true;
+	DialogPage2 = false;
+	DialogPage3 = false;
+	DialogPage4 = false;
+	DialogPage5 = false;
+	PaintExtractorQuestCompletedSafe = false;
+	PainterQuestCompletedSafe = false;
+	ExtractPaintQuestCompletedSafe = false;
+    UpgradeEntityQuestCompletedSafe=false;
 
 
-//bool EntityInCamera(Entity* entity) {
-//
-//	bool ret = true;
-//
-//	if (entity->pos.x < App->render->camera.x || entity->pos.x > App->render->camera.x + 720 || entity->pos.y < App->render->camera.y || entity->pos.y < App->render->camera.y + 1280) {
-//		ret = false;
-//	}
-//  
-//	return ret;
-//}
+
+
+
+	Dialog_Text1_Line_1 = "GREETINGS KING OF PAINTLAND";
+	Dialog_Text1_Line_2 = "I WELCOME YOU TO YOUR KINGDOM";
+	Dialog_Text1_Line_3 = "I AM HERE TO GUIDE YOU";
+
+
+
+	Dialog_Text2_Line_1 = "NOW LETS GET STARTED!";
+	Dialog_Text2_Line_2 = "SELECT THE TOWN HALL";
+	Dialog_Text2_Line_3 = "AND BUY A PAINTER";
+
+
+
+	Dialog_Text3_Line_1 = "WE WILL ALSO NEED TO ";
+	Dialog_Text3_Line_2 = "BUILD A PAINT EXTRACTOR";
+	Dialog_Text3_Line_3 = "NOW GO TO THE SHOP!";
+
+
+
+	Dialog_Text4_Line_1 = "WE HAVE TO GET STRONGER";
+	Dialog_Text4_Line_2 = "WAIT FOR THE EXTRACTORS";
+	Dialog_Text4_Line_3 = "TO COLLECT SOME PAINT!";
+
+
+
+	Dialog_Text5_Line_1 = "UPGRADE THE EXTRACTOR";
+	Dialog_Text5_Line_2 = "TO COLLECT EVEN MORE";
+	Dialog_Text5_Line_3 = "PAINT!";
+
+	Dialog_Text6_Line_1 = "THATS ALL THE TUTORIAL FOR NOW";
+	Dialog_Text6_Line_2 = "WAIT FOR THE FULL RELEASE TO";
+	Dialog_Text6_Line_3 = "KEEP GOING";
+	
+
+}
+
+void GameScene::DialogManagerFunction()
+{
+	if (DialogPage1) {
+		dialogText1->text = Dialog_Text1_Line_1;
+		dialogText2->text = Dialog_Text1_Line_2;
+		dialogText3->text = Dialog_Text1_Line_3;
+	}
+	else if (DialogPage2) {
+		dialogText1->text = Dialog_Text2_Line_1;
+		dialogText2->text = Dialog_Text2_Line_2;
+		dialogText3->text = Dialog_Text2_Line_3;
+	}
+	else if (DialogPage3) {
+		dialogText1->text = Dialog_Text3_Line_1;
+		dialogText2->text = Dialog_Text3_Line_2;
+		dialogText3->text = Dialog_Text3_Line_3;
+	}
+	else if (DialogPage4) {
+		dialogText1->text = Dialog_Text4_Line_1;
+		dialogText2->text = Dialog_Text4_Line_2;
+		dialogText3->text = Dialog_Text4_Line_3;
+	}
+	else if (DialogPage5) {
+		dialogText1->text = Dialog_Text5_Line_1;
+		dialogText2->text = Dialog_Text5_Line_2;
+		dialogText3->text = Dialog_Text5_Line_3;
+	}
+	else if (DialogPage6) {
+		dialogText1->text = Dialog_Text6_Line_1;
+		dialogText2->text = Dialog_Text6_Line_2;
+		dialogText3->text = Dialog_Text6_Line_3;
+	}
+
+
+}
+
+void GameScene::QuestManagerFunction()
+{
+
+	if (PainterQuestCompleted == true) {
+		questsText1Count->text = "1/1";
+		//Mix_PlayChannel(-1, App->audio->Quest_Audio, 0);
+	}
+
+	if (App->entities->ExtractorQuestDone == true) { //REMEMBER TO SET THIS BOOL TO FALSE IN CLEANUP OF GAME SCENE OR THIS QUEST WONT WORK
+		PaintExtractorQuestCompleted = true;
+		if (PaintExtractorQuestCompleted == true) {
+			questsText2Count->text = "extractor 1/1";
+			//Mix_PlayChannel(-1, App->audio->Quest_Audio, 0);
+		}
+	}
+
+	if (App->player->paintCount.count>=150) {
+		ExtractPaintQuestCompleted = true;
+		questsText3Count->text = "150/150";
+		//Mix_PlayChannel(-1, App->audio->Quest_Audio, 0);
+	}
+
+	if (UpgradeEntityQuestCompleted == true) {
+		questsText4Count->text = " 1/1";
+		//Mix_PlayChannel(-1, App->audio->Quest_Audio, 0);
+	}
+
+
+
+}
+
+
+
+
