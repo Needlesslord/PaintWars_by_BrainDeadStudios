@@ -108,14 +108,9 @@ public:
 	
 
 	bool PainterQuestCompleted;
-	bool PainterQuestCompletedSafe;
 	bool PaintExtractorQuestCompleted;
-	bool PaintExtractorQuestCompletedSafe;
 	bool ExtractPaintQuestCompleted;
-	bool ExtractPaintQuestCompletedSafe;
 	bool UpgradeEntityQuestCompleted;
-	bool UpgradeEntityQuestCompletedSafe;
-
 
 	bool PainterQuestActive;
 	bool PaintExtractorQuestActive;

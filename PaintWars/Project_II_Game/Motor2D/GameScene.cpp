@@ -1120,15 +1120,25 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	}
 
 	if (element == questsOpenButton && type == GUI_Event::EVENT_ONCLICK) {
+		if (PainterQuestActive == true) {
+			questsText1Count->enabled = true;
+			questsText1->enabled = true;
+		}
 
-		 questsText1Count->enabled = true;
-		 questsText2Count->enabled = true;
-		 questsText3Count->enabled = true;
-		 questsText4Count->enabled = true;
-		 questsText1->enabled = true;
-		 questsText2->enabled = true;
-		 questsText3->enabled = true;
-		 questsText4->enabled = true;
+		if (PaintExtractorQuestActive == true) {
+			questsText2Count->enabled = true;
+			questsText2->enabled = true;
+		}
+
+		if (ExtractPaintQuestActive == true) {
+			questsText3Count->enabled = true;
+			questsText3->enabled = true;
+		}
+
+		if (UpgradeEntityQuestActive == true) {
+			questsText4Count->enabled = true;
+			questsText4->enabled = true;
+		}
 	}
 
 	if (element == questsCloseButton && type == GUI_Event::EVENT_ONCLICK) {
@@ -1418,10 +1428,10 @@ void GameScene::CreateDialogText()
 	DialogPage3 = false;
 	DialogPage4 = false;
 	DialogPage5 = false;
-	PaintExtractorQuestCompletedSafe = false;
+	/*PaintExtractorQuestCompletedSafe = false;
 	PainterQuestCompletedSafe = false;
 	ExtractPaintQuestCompletedSafe = false;
-    UpgradeEntityQuestCompletedSafe=false;
+    UpgradeEntityQuestCompletedSafe=false;*/
 
 
 
@@ -1530,6 +1540,10 @@ void GameScene::QuestManagerFunction()
 		dialogPrev->enabled = false;
 	}
 	else if (DialogPage2 == true) {
+		PainterQuestActive = true;
+
+		questsText1Count->enabled = true;
+		questsText1->enabled = true;
 
 		if (PainterQuestCompleted == true) {
 			dialogNext->enabled = true;
@@ -1542,6 +1556,10 @@ void GameScene::QuestManagerFunction()
 
 	}
 	else if (DialogPage3 == true) {
+		PaintExtractorQuestActive = true;
+
+		questsText2Count->enabled = true;
+		questsText2->enabled = true;
 
 		if (PaintExtractorQuestCompleted == true) {
 			dialogNext->enabled = true;
@@ -1554,6 +1572,10 @@ void GameScene::QuestManagerFunction()
 
 	}
 	else if (DialogPage4 == true) {
+		ExtractPaintQuestActive = true;
+
+		questsText3Count->enabled = true;
+		questsText3->enabled = true;
 
 		if (ExtractPaintQuestCompleted == true) {
 			dialogNext->enabled = true;
@@ -1566,6 +1588,10 @@ void GameScene::QuestManagerFunction()
 
 	}
 	else if (DialogPage5 == true) {
+		UpgradeEntityQuestActive = true;
+
+		questsText4Count->enabled = true;
+		questsText4->enabled = true;
 
 		if (UpgradeEntityQuestCompleted == true) {
 			dialogNext->enabled = true;
@@ -1573,7 +1599,7 @@ void GameScene::QuestManagerFunction()
 		}
 		else {
 			dialogNext->enabled = false;
-			dialogPrev->enabled = true;
+
 		}
 
 	}
