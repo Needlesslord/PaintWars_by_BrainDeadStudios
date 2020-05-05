@@ -1525,8 +1525,58 @@ void GameScene::QuestManagerFunction()
 		//Mix_PlayChannel(-1, App->audio->Quest_Audio, 0);
 	}
 
+	if (DialogPage1 == true) {
+		dialogNext->enabled = true;
+		dialogPrev->enabled = false;
+	}
+	else if (DialogPage2 == true) {
 
+		if (PainterQuestCompleted == true) {
+			dialogNext->enabled = true;
+			dialogPrev->enabled = true;
+		}
+		else {
+			dialogNext->enabled = false;
+			dialogPrev->enabled = true;
+		}
 
+	}
+	else if (DialogPage3 == true) {
+
+		if (PaintExtractorQuestCompleted == true) {
+			dialogNext->enabled = true;
+			dialogPrev->enabled = true;
+		}
+		else {
+			dialogNext->enabled = false;
+			dialogPrev->enabled = true;
+		}
+
+	}
+	else if (DialogPage4 == true) {
+
+		if (ExtractPaintQuestCompleted == true) {
+			dialogNext->enabled = true;
+			dialogPrev->enabled = true;
+		}
+		else {
+			dialogNext->enabled = false;
+			dialogPrev->enabled = true;
+		}
+
+	}
+	else if (DialogPage5 == true) {
+
+		if (UpgradeEntityQuestCompleted == true) {
+			dialogNext->enabled = true;
+			dialogPrev->enabled = true;
+		}
+		else {
+			dialogNext->enabled = false;
+			dialogPrev->enabled = true;
+		}
+
+	}
 }
 
 
