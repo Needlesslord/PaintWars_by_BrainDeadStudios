@@ -46,9 +46,9 @@ void j1Map::Draw()
 			continue;
 
 
-		for(uint y = 0; y < data.height; ++y)
+		for(int y = 0; y < data.height; ++y)
 		{
-			for(uint x = 0; x < data.width; ++x)
+			for(int x = 0; x < data.width; ++x)
 			{
 				int tile_id = layer->Get(x, y);
 				if(tile_id > 0)
@@ -61,7 +61,8 @@ void j1Map::Draw()
 					
 					App->render->RenderQueue(0, tileset->texture, pos.x, pos.y, r);
 
-					if (App->fow->GetVisibilityTileAt({ x,y }) != (int8_t)FOW_TileState::UNVISITED)
+					///FOW-TODO
+					if (App->fow->GetVisibilityTileAt({ x, y }) != 0 /*(int8_t)FOW_TileState::UNVISITED*/)
 					{
 						App->render->Blit(tileset->texture, pos.x, pos.y, &r);
 					}

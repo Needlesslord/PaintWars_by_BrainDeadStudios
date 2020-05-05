@@ -156,6 +156,8 @@ public:
 	bool isBuildingSomething;
 	bool isAlive;
 
+	uint visibilityRadius;
+
 	Entity* spawnedBy;
 	Entity* builtBy;
 

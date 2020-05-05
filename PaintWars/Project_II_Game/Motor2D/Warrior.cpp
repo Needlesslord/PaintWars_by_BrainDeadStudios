@@ -47,6 +47,9 @@ Warrior::Warrior(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 	attackCooldown = attackSpeed;
 
 	isEntityFromPlayer = true;
+
+	uint visibilityRadius = 7;
+
 }
 
 Warrior::~Warrior() {}

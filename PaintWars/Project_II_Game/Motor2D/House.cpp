@@ -33,6 +33,8 @@ House::House(iPoint tile, int damage, j1Module* listener, Entity* creator) : Ent
 	App->player->housingSpace.maxCount += 5;
 
 	isEntityFromPlayer = true;
+
+	uint visibilityRadius = 10;
 }
 
 House::~House() {}

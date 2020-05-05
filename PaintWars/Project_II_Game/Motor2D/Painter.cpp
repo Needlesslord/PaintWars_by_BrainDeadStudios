@@ -46,6 +46,9 @@ Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 		extractionRate *= 1.33f;
 
 	isBuildingSomething = false;
+
+	uint visibilityRadius = 7;
+
 }
 
 Painter::~Painter() {}

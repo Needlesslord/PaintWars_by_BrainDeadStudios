@@ -242,6 +242,8 @@ void j1FogOfWar::ManageEntitiesFOWManipulation()
 			// TODO 8: To finish, we now need to apply foggness to the tiles we left behind. We do this with SetVisibilityTile. 
 			// We previously stored the tiles in prev_LOS. 
 			// To ensure we take the tiles that are no longer in the LOS, we compare it with the prev_LOS, with the function TileInsideList
+
+			///FOW-TODO
 			for (std::list<iPoint>::const_iterator tile = prev_LOS.cbegin(); tile != prev_LOS.end(); tile++)
 			{
 				if (TileInsideList((*tile), (*item)->LOS) == false)

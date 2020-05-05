@@ -78,7 +78,7 @@ public: // Functions
 	void ResetVisibilityMap();
 
 	//Get the value of a tile within the Visibility Map
-	int8_t GetVisibilityTileAt(const iPoint& pos) const;
+	int8_t j1FogOfWar::GetVisibilityTileAt(const iPoint& pos) const;
 
 	//Get the Rect to blit the correspondant tile state
 	SDL_Rect& GetFOWMetaRect(FOW_TileState state);
