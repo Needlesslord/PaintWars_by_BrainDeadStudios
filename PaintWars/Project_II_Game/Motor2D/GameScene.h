@@ -221,7 +221,7 @@ public:
 	bool DialogPage5;
 	bool DialogPage6;
 
-	
+	bool DialogOperative;
 
 	
 	
