@@ -150,9 +150,10 @@ bool GameScene::Start()
 	//HUD - Dialog
 
 	dialogImage = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 300 , 575 }, { 0 , 0 }, false,true, { 0, 1820, 500, 125 }, nullptr, nullptr, TEXTURE::ATLAS);
-	dialogCharacter = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 300 , 575 }, { 0 , 0 }, true, true, { 276, 1972, 30, 28 }, nullptr, nullptr, TEXTURE::ATLAS);
-	dialogCharacter->hover_rect = { 276, 1972, 30, 28 };
-	dialogCharacter->click_rect = { 276, 1972, 30, 28 };
+	//dialogCharacter = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 300 , 575 }, { 0 , 0 }, true, true, { 276, 1972, 30, 28 }, nullptr, nullptr, TEXTURE::ATLAS);
+	dialogClose = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 780 , 570 }, { 0 , 0 }, true, true, { 670, 1392, 28, 28 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
+	dialogClose->hover_rect = { 636, 1392, 28, 28 };
+	dialogClose->click_rect = { 601, 1392, 28, 28 };
 	dialogText1 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 600 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
 	dialogText2 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 630 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
 	dialogText3 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 660 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
@@ -657,8 +658,8 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 	}
 
-	if (element == dialogCharacter && type == GUI_Event::EVENT_ONCLICK) {
-
+	if (element == dialogClose && type == GUI_Event::EVENT_ONCLICK) {
+ 
 		DialogOperative = false;
 	}
 
@@ -1565,7 +1566,7 @@ void GameScene::QuestManagerFunction()
 
 	if (DialogOperative == true) {
 		dialogImage->enabled = true;
-		dialogCharacter->enabled = true;
+		dialogClose->enabled = true;
 		dialogText1->enabled = true;
 		dialogText2->enabled = true;
 		dialogText3->enabled = true;
@@ -1645,12 +1646,13 @@ void GameScene::QuestManagerFunction()
 	else {
 
 		dialogImage->enabled = false;
-		dialogCharacter->enabled = false;
+		dialogClose->enabled = false;
 		dialogText1->enabled = false;
 		dialogText2->enabled = false;
 		dialogText3->enabled = false;
 		dialogPrev->enabled = false;
 		dialogNext->enabled = false;
+		dialogOpen->enabled = true;
 	}
 
 }
