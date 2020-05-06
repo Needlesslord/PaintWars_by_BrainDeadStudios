@@ -222,6 +222,8 @@ public:
 	bool DialogPage6;
 
 	
+
+	
 	
 	
 
