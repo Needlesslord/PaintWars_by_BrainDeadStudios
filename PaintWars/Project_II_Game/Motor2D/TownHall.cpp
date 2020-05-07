@@ -35,7 +35,7 @@ TownHall::TownHall(iPoint tile, int damage, j1Module* listener, Entity* creator)
 
 	isSpawningAUnit = false;
 
-	uint visibilityRadius = 20;
+	uint visibilityRadius = 8;
 }
 
 TownHall::~TownHall() {}

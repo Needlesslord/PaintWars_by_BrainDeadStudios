@@ -37,7 +37,7 @@ PaintExtractor::PaintExtractor(iPoint tile, int damage, j1Module* listener, Enti
 
 	isEntityFromPlayer = true;
 
-	uint visibilityRadius = 15;
+	uint visibilityRadius = 6;
 }
 
 PaintExtractor::~PaintExtractor() {}

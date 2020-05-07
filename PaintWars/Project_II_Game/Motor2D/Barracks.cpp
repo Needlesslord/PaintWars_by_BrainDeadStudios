@@ -35,7 +35,7 @@ Barracks::Barracks(iPoint tile, int damage, j1Module* listener, Entity* creator)
 
 	isSpawningAUnit = false;
 
-	uint visibilityRadius = 10;
+	uint visibilityRadius = 5;
 
 }
 

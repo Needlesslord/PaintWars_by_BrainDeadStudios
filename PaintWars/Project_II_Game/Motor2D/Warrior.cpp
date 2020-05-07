@@ -48,7 +48,7 @@ Warrior::Warrior(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 
 	isEntityFromPlayer = true;
 
-	uint visibilityRadius = 7;
+	uint visibilityRadius = 2;
 
 }
 

@@ -47,7 +47,7 @@ Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 
 	isBuildingSomething = false;
 
-	uint visibilityRadius = 7;
+	uint visibilityRadius = 2;
 
 }
 

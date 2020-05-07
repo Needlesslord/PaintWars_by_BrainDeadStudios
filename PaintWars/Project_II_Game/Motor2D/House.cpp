@@ -34,7 +34,7 @@ House::House(iPoint tile, int damage, j1Module* listener, Entity* creator) : Ent
 
 	isEntityFromPlayer = true;
 
-	uint visibilityRadius = 10;
+	uint visibilityRadius = 5;
 }
 
 House::~House() {}

@@ -34,7 +34,7 @@ WoodProducer::WoodProducer(iPoint tile, int damage, j1Module* listener, Entity* 
 
 	constructionTime = 10.0f;
 
-	uint visibilityRadius = 15;
+	uint visibilityRadius = 6;
 
 	isEntityFromPlayer = true;
 }
