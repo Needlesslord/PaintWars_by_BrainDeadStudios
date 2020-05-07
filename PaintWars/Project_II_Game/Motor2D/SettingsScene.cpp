@@ -289,98 +289,99 @@ void SettingsScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	//SLIDERS
 
 	
-		if (element == fxBar && type == GUI_Event::EVENT_ONCLICK) {
+		/*if (element == fxBar && type == GUI_Event::EVENT_ONCLICK) {
 
 			fPoint MousePos = App->input->GetMouseWorldPosition();
 
 			fxSlider->map_position.x = (MousePos.x / 2) - 10;
+		}*/
+
+		if (FinishedPosition == true) {
+
+			if (element == fxBar && type == GUI_Event::EVENT_HOVER) {
+
+				//CHUNKS VOLUME SHOULD BE DIFFERENT
+				fPoint MousePos = App->input->GetMouseWorldPosition();
+
+				fxSlider->map_position.x = (MousePos.x / 2) - 10;
+
+				//732 611
+				if (fxSlider->map_position.x >= 620 && fxSlider->map_position.x <= 650) {
+					LOG("VOL FX TO 0");
+					App->audio->CurrentFXVolume = 0;
+				}
+
+				if (fxSlider->map_position.x >= 651 && fxSlider->map_position.x <= 680) {
+					LOG("VOL FX TO 1");
+					App->audio->CurrentFXVolume = 4;
+				}
+
+				if (fxSlider->map_position.x >= 681 && fxSlider->map_position.x <= 710) {
+					LOG("VOL  FX TO 2");
+
+					App->audio->CurrentFXVolume = 8;
+				}
+
+				if (fxSlider->map_position.x >= 741 && fxSlider->map_position.x <= 770) {
+					LOG("VOL  FXTO 3");
+					App->audio->CurrentFXVolume = 12;
+
+				}
+				if (fxSlider->map_position.x >= 771 && fxSlider->map_position.x <= 800) {
+					LOG("VOL FX TO 4");
+					App->audio->CurrentFXVolume = 16;
+
+				}
+				if (fxSlider->map_position.x >= 801) {
+					LOG("VOL FXTO 5");
+					App->audio->CurrentFXVolume = 20;
+				}
+
+
+				App->audio->ChunkAudioManager(App->audio->CurrentFXVolume); //SHOULD WE SET ALL CHUNK VOLUMES TO THE SAME VALUE OR DIFFERENT FOR EACH CHUNK?
+
+			}
+
+			if (element == musicBar && type == GUI_Event::EVENT_HOVER) {
+
+				fPoint MousePos = App->input->GetMouseWorldPosition();
+
+				musicSlider->map_position.x = (MousePos.x / 2) - 10;
+
+				//732 611
+				if (musicSlider->map_position.x >= 620 && musicSlider->map_position.x <= 650) {
+					LOG("VOL MUS TO 0");
+					App->audio->CurrentMusVolume = 0;
+				}
+
+				if (musicSlider->map_position.x >= 651 && musicSlider->map_position.x <= 680) {
+					LOG("VOL MUS TO 1");
+					App->audio->CurrentMusVolume = 2;
+				}
+
+				if (musicSlider->map_position.x >= 681 && musicSlider->map_position.x <= 710) {
+					LOG("VOL MUS TO 2");
+					App->audio->CurrentMusVolume = 4;
+				}
+
+				if (musicSlider->map_position.x >= 741 && musicSlider->map_position.x <= 770) {
+					LOG("VOL MUS TO 3");
+					App->audio->CurrentMusVolume = 6;
+				}
+				if (musicSlider->map_position.x >= 771 && musicSlider->map_position.x <= 800) {
+					LOG("VOL MUS TO 4");
+					App->audio->CurrentMusVolume = 8;
+				}
+				if (musicSlider->map_position.x >= 801) {
+					LOG("VOL MUS TO 5");
+					App->audio->CurrentMusVolume = 10;
+				}
+
+				Mix_VolumeMusic(App->audio->CurrentMusVolume);
+			}
+
+
 		}
-
-
-		if (element == fxBar && type == GUI_Event::EVENT_HOVER) {
-
-			//CHUNKS VOLUME SHOULD BE DIFFERENT
-			fPoint MousePos = App->input->GetMouseWorldPosition();
-
-			fxSlider->map_position.x = (MousePos.x / 2) - 10;
-
-			//732 611
-			if (fxSlider->map_position.x >= 620 && fxSlider->map_position.x <= 650) {
-				LOG("VOL FX TO 0");
-				App->audio->CurrentFXVolume = 0;
-			}
-			
-			if (fxSlider->map_position.x >= 651 && fxSlider->map_position.x <= 680) {
-				LOG("VOL FX TO 1");
-				App->audio->CurrentFXVolume = 4;
-			}
-
-			if (fxSlider->map_position.x >= 681 && fxSlider->map_position.x <= 710) {
-				LOG("VOL  FX TO 2");
-			
-				App->audio->CurrentFXVolume = 8;
-			}
-
-			if (fxSlider->map_position.x >= 741 && fxSlider->map_position.x <= 770) {
-				LOG("VOL  FXTO 3");
-				App->audio->CurrentFXVolume = 12;
-				
-			}
-			if (fxSlider->map_position.x >= 771 && fxSlider->map_position.x <= 800) {
-				LOG("VOL FX TO 4");
-				App->audio->CurrentFXVolume = 16;
-				
-			}
-			if (fxSlider->map_position.x >= 801) {
-				LOG("VOL FXTO 5");
-				App->audio->CurrentFXVolume = 20;
-			}
-
-		  
-			App->audio->ChunkAudioManager(App->audio->CurrentFXVolume); //SHOULD WE SET ALL CHUNK VOLUMES TO THE SAME VALUE OR DIFFERENT FOR EACH CHUNK?
-
-		}
-
-		if (element == musicBar && type == GUI_Event::EVENT_HOVER) {
-
-			fPoint MousePos = App->input->GetMouseWorldPosition();
-
-			musicSlider->map_position.x = (MousePos.x / 2) - 10;
-
-			//732 611
-			if (musicSlider->map_position.x >= 620 && musicSlider->map_position.x <= 650) {
-				LOG("VOL MUS TO 0");
-				App->audio->CurrentMusVolume = 0;
-			}
-
-			if (musicSlider->map_position.x >= 651 && musicSlider->map_position.x <= 680) {
-				LOG("VOL MUS TO 1");
-				App->audio->CurrentMusVolume = 2;
-			}
-
-			if (musicSlider->map_position.x >= 681 && musicSlider->map_position.x <= 710) {
-				LOG("VOL MUS TO 2");
-				App->audio->CurrentMusVolume = 4;
-			}
-
-			if (musicSlider->map_position.x >= 741 && musicSlider->map_position.x <= 770) {
-				LOG("VOL MUS TO 3");
-				App->audio->CurrentMusVolume = 6;
-			}
-			if (musicSlider->map_position.x >= 771 && musicSlider->map_position.x <= 800) {
-				LOG("VOL MUS TO 4");
-				App->audio->CurrentMusVolume = 8;
-			}
-			if (musicSlider->map_position.x >= 801) {
-				LOG("VOL MUS TO 5");
-				App->audio->CurrentMusVolume = 10;
-			}
-
-			Mix_VolumeMusic(App->audio->CurrentMusVolume);
-		}
-	
-
-
 		
 }
 
