@@ -31,8 +31,6 @@ Spawner::Spawner(iPoint tile, int damage, j1Module* listener) : Entity(tile, dam
 	constructionTime = 10.0f;
 
 	isEntityFromPlayer = false;
-
-	CreateEntityCollider(pos);
 }
 
 Spawner::~Spawner() {}

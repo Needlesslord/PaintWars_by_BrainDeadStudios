@@ -50,6 +50,8 @@ public:
 	bool PlayingLoseMusic;
 	bool PlayingWinMusic;
 	bool PlayingLogoMusic;
+	bool PlayingSettingsMusic;
+	
 
 
 
@@ -68,6 +70,7 @@ public:
 	Mix_Chunk* crickets_sound;
 	Mix_Chunk* braindead_sound;
 	Mix_Chunk* Transition_Sound;
+	Mix_Chunk* Quest_Audio;
 
 
 	bool logoSound;

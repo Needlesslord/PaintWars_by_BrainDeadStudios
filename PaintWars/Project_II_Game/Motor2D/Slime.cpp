@@ -32,8 +32,6 @@ Slime::Slime(iPoint tile, int damage, j1Module* listener) : Entity(tile, damage,
 	destination = currentTile;
 
 	isEntityFromPlayer = false;
-
-	CreateEntityCollider(pos);
 }
 
 Slime::~Slime() {}

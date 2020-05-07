@@ -89,12 +89,12 @@ bool j1EntityManager::Update(float dt) {
 			if ((*checkForSpawningEntities)->entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY) {
 
 				// Check if they have to be spawned
-				if ((*checkForSpawningEntities)->spawningProgress * spawningRate >= (*checkForSpawningEntities)->spawningTime) {
+				if ((*checkForSpawningEntities)->spawningProgress >= (*checkForSpawningEntities)->spawningTime) {
 
 					activeUnits.push_back(*checkForSpawningEntities);
 					activeEntities.push_back(*checkForSpawningEntities);
 
-					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos);
+					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos, (*checkForSpawningEntities));
 					(*checkForSpawningEntities)->spawnedBy->isSpawningAUnit = false;
 					(*checkForSpawningEntities)->isAlive = true;
 
@@ -110,7 +110,7 @@ bool j1EntityManager::Update(float dt) {
 				}
 
 				// Increase the creation progress if not
-				else if ((*checkForSpawningEntities)->spawningProgress * spawningRate < (*checkForSpawningEntities)->spawningTime) {
+				else if ((*checkForSpawningEntities)->spawningProgress < (*checkForSpawningEntities)->spawningTime) {
 
 					(*checkForSpawningEntities)->spawningProgress += spawningRate * dt;
 				}
@@ -118,18 +118,18 @@ bool j1EntityManager::Update(float dt) {
 
 			else if ((*checkForSpawningEntities)->entityCategory == ENTITY_CATEGORY_STATIC_ENTITY) {
 
-				if ((*checkForSpawningEntities)->constructionProgress * constructionRate >= (*checkForSpawningEntities)->constructionTime) {
+				if ((*checkForSpawningEntities)->constructionProgress >= (*checkForSpawningEntities)->constructionTime) {
 
 					activeBuildings.push_back(*checkForSpawningEntities);
 					activeEntities.push_back(*checkForSpawningEntities);
 
-					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos);
+					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos, (*checkForSpawningEntities));
 					(*checkForSpawningEntities)->isAlive = true;
 
 					spawningEntities.erase(checkForSpawningEntities);
 				}
 
-				else if ((*checkForSpawningEntities)->constructionProgress * constructionRate < (*checkForSpawningEntities)->constructionTime) {
+				else if ((*checkForSpawningEntities)->constructionProgress < (*checkForSpawningEntities)->constructionTime) {
 
 					fPoint tileWorld = App->map->MapToWorld((*checkForSpawningEntities)->currentTile.x, (*checkForSpawningEntities)->currentTile.y);
 
@@ -140,12 +140,12 @@ bool j1EntityManager::Update(float dt) {
 
 					else if ((*checkForSpawningEntities)->entitySize == ENTITY_SIZE_MEDIUM) {
 
-						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,300,300 });
+						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,260,260 });
 					}
 
 					else if ((*checkForSpawningEntities)->entitySize == ENTITY_SIZE_BIG) {
 
-						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,450,450 });
+						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,410,410 });
 					}
 					
 					(*checkForSpawningEntities)->constructionProgress += constructionRate * dt;
@@ -155,7 +155,6 @@ bool j1EntityManager::Update(float dt) {
 			checkForSpawningEntities++;
 
 		}
-
 
 
 
@@ -206,6 +205,7 @@ bool j1EntityManager::Update(float dt) {
 
 							AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR, mapCoordinates, App->entities, nullptr, 0);
 							hoveringEntityType == ENTITY_TYPE_NONE;
+							ExtractorQuestDone = true;
 						}
 					}
 				}
@@ -272,7 +272,7 @@ bool j1EntityManager::Update(float dt) {
 			}
 
 		   float w = (currentLifeSum / maxLifeSum) * 200;
-		   App->entities->Entity_HP = w;
+		   Entity_HP = w;
 			
 
 		}
@@ -453,6 +453,11 @@ bool j1EntityManager::Update(float dt) {
 			if ((*unitsToMove)->isOnTheMove) {
 
 				(*unitsToMove)->MovementLogic();
+			}
+
+			// Checked twice beacuse MovementLogic() can change it
+			if ((*unitsToMove)->isOnTheMove) {
+
 				(*unitsToMove)->Move(dt);
 			}
 
@@ -622,6 +627,9 @@ bool j1EntityManager::Update(float dt) {
 			entitiesToDraw++;
 		}
 
+
+
+
 		// LifeBars from selected units on top of themselves
 		list<Entity*>::iterator selectedUnits = unitsSelected.begin();
 		while (selectedUnits != unitsSelected.end()) {
@@ -629,6 +637,30 @@ bool j1EntityManager::Update(float dt) {
 			(*selectedUnits)->ShowHealthBar();
 			selectedUnits++;
 		}
+
+
+
+
+		// Progress Bars
+		list<Entity*>::iterator spawningBuildingsProgressBars = spawningEntities.begin();
+		while (spawningBuildingsProgressBars != spawningEntities.end()) {
+
+			(*spawningBuildingsProgressBars)->ShowProgressBar();
+			spawningBuildingsProgressBars++;
+		}
+
+
+		// Kill first selected unit on SUPR press
+		if (App->input->GetKey(SDL_SCANCODE_DELETE) == KEY_DOWN) {
+
+			if (!unitsSelected.empty()) {
+
+				list<Entity*>::iterator unitsToKill = unitsSelected.begin();
+				(*unitsToKill)->isAlive = false;
+			}
+		}
+
+
 
 	return ret;
 }
@@ -705,7 +737,7 @@ bool j1EntityManager::PostUpdate() {
 	list<Entity*>::iterator checkForDeadUnits = activeUnits.begin();
 	while (checkForDeadUnits != activeUnits.end()) {
 
-		if ((*checkForDeadUnits)->GetCurrLife() <= 0) {
+		if ((*checkForDeadUnits)->GetCurrLife() <= 0 || !(*checkForDeadUnits)->isAlive) {
 
 			App->player->housingSpace.count--;
 			activeUnits.erase(checkForDeadUnits);
@@ -716,7 +748,7 @@ bool j1EntityManager::PostUpdate() {
 	list<Entity*>::iterator checkForDeadBuildings = activeBuildings.begin();
 	while (checkForDeadBuildings != activeBuildings.end()) {
 
-		if ((*checkForDeadBuildings)->GetCurrLife() <= 0) {
+		if ((*checkForDeadBuildings)->GetCurrLife() <= 0 || !(*checkForDeadBuildings)->isAlive) {
 
 			activeBuildings.erase(checkForDeadBuildings);
 		}
@@ -726,7 +758,7 @@ bool j1EntityManager::PostUpdate() {
 	list<Entity*>::iterator checkForDeadEntities = activeEntities.begin();
 	while (checkForDeadEntities != activeEntities.end()) {
 
-		if ((*checkForDeadEntities)->GetCurrLife() <= 0) {
+		if ((*checkForDeadEntities)->GetCurrLife() <= 0 || !(*checkForDeadEntities)->isAlive) {
 
 			(*checkForDeadEntities)->isAlive = false;
 			activeEntities.erase(checkForDeadEntities);
@@ -740,6 +772,14 @@ bool j1EntityManager::PostUpdate() {
 
 
 	return ret;
+}
+
+void j1EntityManager::OnCollision(Collider* c1, Collider* c2) {
+
+	if (c1->type == COLLIDER_ALLY_UNIT && c2->type == COLLIDER_ALLY_UNIT) {
+		c1->entity->OnCollision(c1, c2);
+		c2->entity->OnCollision(c1, c2);
+	}
 }
 
 bool j1EntityManager::CleanUp() {
@@ -819,7 +859,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeEntities.push_back((Entity*)townHall);
 			activeBuildings.push_back((Entity*)townHall);
 			townHall->isAlive = true;
-			townHall->CreateEntityCollider(townHall->pos);
+			townHall->CreateEntityCollider(townHall->pos, (Entity*)townHall);
 		}
 
 		else
@@ -840,7 +880,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeEntities.push_back((Entity*)paintExtractor);
 			activeBuildings.push_back((Entity*)paintExtractor);
 			paintExtractor->isAlive = true;
-			paintExtractor->CreateEntityCollider(paintExtractor->pos);
+			paintExtractor->CreateEntityCollider(paintExtractor->pos, (Entity*)paintExtractor);
 		}
 
 		else
@@ -861,7 +901,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeEntities.push_back((Entity*)woodProducer);
 			activeBuildings.push_back((Entity*)woodProducer);
 			woodProducer->isAlive = true;
-			woodProducer->CreateEntityCollider(woodProducer->pos);
+			woodProducer->CreateEntityCollider(woodProducer->pos, (Entity*)woodProducer);
 		}
 
 		else
@@ -885,7 +925,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeEntities.push_back((Entity*)house);
 			activeBuildings.push_back((Entity*)house);
 			house->isAlive = true;
-			house->CreateEntityCollider(house->pos);
+			house->CreateEntityCollider(house->pos, (Entity*)house);
 		}
 
 		else
@@ -906,7 +946,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeEntities.push_back((Entity*)barracks);
 			activeBuildings.push_back((Entity*)barracks);
 			barracks->isAlive = true;
-			barracks->CreateEntityCollider(barracks->pos);
+			barracks->CreateEntityCollider(barracks->pos, (Entity*)barracks);
 		}
 
 		else
@@ -928,7 +968,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeEntities.push_back((Entity*)painter);
 			activeUnits.push_back((Entity*)painter);
 			painter->isAlive = true;
-			painter->CreateEntityCollider(painter->pos);
+			painter->CreateEntityCollider(painter->pos, (Entity*)painter);
 			painter->currentAnimation = &painterIdle;
 		}
 
@@ -947,7 +987,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeEntities.push_back((Entity*)warrior);
 			activeUnits.push_back((Entity*)warrior);
 			warrior->isAlive = true;
-			warrior->CreateEntityCollider(warrior->pos);
+			warrior->CreateEntityCollider(warrior->pos, (Entity*)warrior);
 			warrior->currentAnimation = &warriorIdle;
 		}
 
@@ -964,6 +1004,8 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		Spawner* spawner = new Spawner(tile, damage, this);
 		activeEntities.push_back((Entity*)spawner);
 		activeBuildings.push_back((Entity*)spawner);
+		spawner->isAlive = true;
+		spawner->CreateEntityCollider(spawner->pos, (Entity*)spawner);
 
 		// Change the walkability to non walkable
 		App->pathfinding->ChangeToSpawner(tile);
@@ -977,6 +1019,8 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		Slime* slime = new Slime(tile, damage, this);
 		activeEntities.push_back((Entity*)slime);
 		activeUnits.push_back((Entity*)slime);
+		slime->isAlive = true;
+		slime->CreateEntityCollider(slime->pos, (Entity*)slime);
 
 		return (Entity*) slime;
 	}
@@ -1079,7 +1123,8 @@ void j1EntityManager::LoadEntityTextures()
 
 	fullLifeTexture = App->tex->Load("textures/FullLife.png");
 	zeroLifeTexture = App->tex->Load("textures/ZeroLife.png");
-
+	progressTexture = App->tex->Load("textures/ProgressBar.png");
+	zeroProgressTexture=App->tex->Load("textures/ZeroProgress.png");
 
 	WarriorSprites();
 	PainterSprites();

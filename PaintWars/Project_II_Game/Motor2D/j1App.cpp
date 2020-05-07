@@ -70,13 +70,12 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 j1App::~j1App()
 {
 	// release modules
-	std::list<j1Module*>::iterator item = modules.end();
+	std::list<j1Module*>::reverse_iterator item = modules.rbegin();
 
-	while(item != modules.begin())
+	while(item != modules.rend())
 	{
-		item--;
 		RELEASE(*item); 
-	
+		item++;
 	}
 
 	modules.clear();
@@ -489,6 +488,9 @@ void j1App::Debug_Actions()
 	if (GOD_MODE != true) {
 
 		if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
+			App->scenes->Load_Map_Forest = true;
+			App->scenes->Load_Map_Snow = false;
+			App->scenes->Load_Map_Volcano = false;
 			App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
 			//App->scenes->SwitchScene(SCENES::GAME_SCENE);
 		}

@@ -51,8 +51,8 @@ public:
 	bool Start();
 	bool PreUpdate();
 	bool Update(float dt);
-	//void OnCollision(ColliderGroup* c1, ColliderGroup* c2, CollisionState collisionState);
 	bool PostUpdate();
+	void OnCollision(Collider* c1, Collider* c2);
 	bool CleanUp();
 
 	Entity* AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module* listener = nullptr, Entity* creator = nullptr, float damage = 0.0f, bool spawnAutomatically = false);
@@ -87,7 +87,8 @@ public:
 	// Thsese two need to be public so that each entity can use it
 	SDL_Texture* fullLifeTexture = nullptr;
 	SDL_Texture* zeroLifeTexture = nullptr;
-
+	SDL_Texture* progressTexture = nullptr;
+	SDL_Texture* zeroProgressTexture = nullptr;
 
 	//small fix hp bar when blit
 	float Entity_HP;
@@ -99,7 +100,7 @@ public:
 	bool paintersUpgraded = false;
 	bool paintExtractorUpgraded = false;
 	bool woodProducersUpgraded = false;
-
+	bool ExtractorQuestDone = false;
 protected:
 
 		// Allies

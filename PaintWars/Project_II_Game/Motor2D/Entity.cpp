@@ -39,9 +39,6 @@ void Entity::DebugDrawSelected()
 
 void Entity::OnCollision(Collider* c1, Collider* c2) {
 
-	if (1 == 2) {
-		c1->rect.x = 1;
-	}
   
 }
 
@@ -172,6 +169,7 @@ void Entity::MovementLogic() {
 		}
 		else {
 			previousOrientation = unitOrientation;
+			isOnTheMove = false;
 			*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;
 		}
 	}
@@ -453,14 +451,14 @@ Collider* Entity::GetEntityCollider() const
 	return entityCollider;
 }
 
-bool Entity::CreateEntityCollider(fPoint pos) {
+bool Entity::CreateEntityCollider(fPoint pos, Entity* entity) {
 	BROFILER_CATEGORY("Create Entity Collider--Entities();", Profiler::Color::IndianRed);
 		// Allies
 	/// Buildings
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
 		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
-		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+		entityCollider = App->col->AddCollider(rect, collType, entity, App->entities);
 
 		return true;
 	}
@@ -468,7 +466,7 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	else if (entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
 		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
-		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+		entityCollider = App->col->AddCollider(rect, collType, entity, App->entities);
 
 		return true;
 	}
@@ -476,7 +474,7 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	else if (entityType == ENTITY_TYPE_WOOD_PRODUCER) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
 		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
-		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+		entityCollider = App->col->AddCollider(rect, collType, entity, App->entities);
 
 		return true;
 	}
@@ -484,7 +482,7 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	else if (entityType == ENTITY_TYPE_HOUSE) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
 		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
-		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+		entityCollider = App->col->AddCollider(rect, collType, entity, App->entities);
 
 		return true;
 	}
@@ -492,7 +490,7 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	else if (entityType == ENTITY_TYPE_BARRACKS) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_BUILDING;
 		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
-		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+		entityCollider = App->col->AddCollider(rect, collType, entity, App->entities);
 
 		return true;
 	}
@@ -501,7 +499,7 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	else if (entityType == ENTITY_TYPE_PAINTER) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_UNIT;
 		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
-		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+		entityCollider = App->col->AddCollider(rect, collType, entity, App->entities);
 
 		return true;
 	}
@@ -509,7 +507,7 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	else if (entityType == ENTITY_TYPE_WARRIOR) {
 		COLLIDER_TYPE collType = COLLIDER_ALLY_UNIT;
 		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
-		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+		entityCollider = App->col->AddCollider(rect, collType, entity, App->entities);
 
 		return true;
 	}
@@ -519,7 +517,7 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	else if (entityType == ENTITY_TYPE_SPAWNER) {
 		COLLIDER_TYPE collType = COLLIDER_ENEMY_BUILDING;
 		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
-		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+		entityCollider = App->col->AddCollider(rect, collType, entity, App->entities);
 
 		return true;
 	}
@@ -528,7 +526,7 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 	else if (entityType == ENTITY_TYPE_SLIME) {
 		COLLIDER_TYPE collType = COLLIDER_ENEMY_UNIT;
 		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
-		entityCollider = App->col->AddCollider(rect, collType, App->entities);
+		entityCollider = App->col->AddCollider(rect, collType, entity, App->entities);
 
 		return true;
 	}
@@ -538,8 +536,25 @@ bool Entity::CreateEntityCollider(fPoint pos) {
 }
 
 void Entity::ShowHealthBar() {
-	if (GetCurrLife() != GetMaxLife()) {
-		App->render->RenderQueue(1, App->entities->zeroLifeTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, GetSize().x, 10 });
+
+	if (isAlive) {
+		if (GetCurrLife() != GetMaxLife()) {
+			App->render->RenderQueue(1, App->entities->zeroLifeTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, GetSize().x, 10 });
+		}
+		App->render->RenderQueue(1, App->entities->fullLifeTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, (int)((currLife / maxLife)*GetSize().x), 10 });
 	}
-	App->render->RenderQueue(1, App->entities->fullLifeTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, (int)((currLife/maxLife)*GetSize().x), 10 });
+}
+
+void Entity::ShowProgressBar() {
+
+	if (entityCategory == ENTITY_CATEGORY_STATIC_ENTITY) {
+
+		App->render->RenderQueue(1, App->entities->zeroProgressTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, GetSize().x, 30 });
+		App->render->RenderQueue(1, App->entities->progressTexture, pos.x, pos.y - 20 - GetSize().y / 4, { 0, 0, (int)((constructionProgress / constructionTime) * GetSize().x), 30 });
+	}
+	else if (entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY) {
+
+		App->render->RenderQueue(1, App->entities->zeroProgressTexture, spawnedBy->pos.x, spawnedBy->pos.y - 20 - spawnedBy->GetSize().y / 4, { 0, 0, spawnedBy->GetSize().x, 30 });
+		App->render->RenderQueue(1, App->entities->progressTexture, spawnedBy->pos.x, spawnedBy->pos.y - 20 - spawnedBy->GetSize().y / 4, { 0, 0, (int)((spawningProgress / spawningTime) * spawnedBy->GetSize().x), 30 });
+	}
 }

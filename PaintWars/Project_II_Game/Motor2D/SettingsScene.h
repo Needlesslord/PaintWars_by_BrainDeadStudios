@@ -47,6 +47,12 @@ public:
 
 	j1UIElement* backgroundImage = nullptr;
 
+	j1UIElement* fxBar = nullptr;
+	j1UIElement* musicBar = nullptr;
+
+	j1UIElement* fxSlider = nullptr;
+	j1UIElement* musicSlider = nullptr;
+
 };
 
 #endif // __FIRSTSCENE_H__
