@@ -185,13 +185,13 @@ public:
 
 	j1UIElement* dialogOpen = nullptr;
 	j1UIElement* dialogImage = nullptr;
-	j1UIElement* dialogCharacter = nullptr;
+	//j1UIElement* dialogCharacter = nullptr;
 	j1UIElement* dialogText1 = nullptr;
 	j1UIElement* dialogText2 = nullptr;
 	j1UIElement* dialogText3 = nullptr;
 	j1UIElement* dialogNext = nullptr;
 	j1UIElement* dialogPrev = nullptr;
-	j1UIElement* dialogExit = nullptr;
+	j1UIElement* dialogClose = nullptr;
 
 
 	char* Dialog_Text1_Line_1 = nullptr;
@@ -220,6 +220,8 @@ public:
 	bool DialogPage4;
 	bool DialogPage5;
 	bool DialogPage6;
+
+	bool DialogOperative;
 
 	
 	

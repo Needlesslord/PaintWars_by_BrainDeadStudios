@@ -89,7 +89,7 @@ bool GameScene::Start()
 	
 	CreateDialogText();
 	App->PAUSE_ACTIVE = false;
-	
+	DialogOperative = false;
 	App->render->camera.x = 575;
 	App->render->camera.y = -1200;
 
@@ -149,8 +149,11 @@ bool GameScene::Start()
 
 	//HUD - Dialog
 
-	dialogImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 300 , 575 }, { 0 , 0 }, false, true, { 0, 1820, 500, 125 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
-	dialogCharacter = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 300 , 575 }, { 0 , 0 }, false, true, { 276, 1972, 30, 28 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
+	dialogImage = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 300 , 575 }, { 0 , 0 }, false,true, { 0, 1820, 500, 125 }, nullptr, nullptr, TEXTURE::ATLAS);
+	//dialogCharacter = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 300 , 575 }, { 0 , 0 }, true, true, { 276, 1972, 30, 28 }, nullptr, nullptr, TEXTURE::ATLAS);
+	dialogClose = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 780 , 570 }, { 0 , 0 }, true, true, { 670, 1392, 28, 28 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
+	dialogClose->hover_rect = { 636, 1392, 28, 28 };
+	dialogClose->click_rect = { 601, 1392, 28, 28 };
 	dialogText1 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 600 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
 	dialogText2 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 630 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
 	dialogText3 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 660 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
@@ -326,7 +329,6 @@ bool GameScene::PreUpdate()
 {
 
 	bool ret = true;
-
 
 
 	
@@ -561,7 +563,7 @@ bool GameScene::PostUpdate()
 
 
 	
-	
+	dialogImage->enabled;
 
 	return ret;
 }
@@ -634,6 +636,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		questsImage->rect.h = 360;
 		questsCloseButton->enabled = true;
 		questsOpenButton->enabled = false;
+
 	}
 
 	if (element == questsCloseButton && type == GUI_Event::EVENT_ONCLICK)
@@ -647,17 +650,17 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 	if (element == dialogOpen && type == GUI_Event::EVENT_ONCLICK) {
 
+		
 
-		dialogImage->enabled = true;
-		dialogCharacter->enabled = true;
-		dialogText1->enabled = true;
-		dialogText2->enabled = true;
-		dialogText3->enabled = true;
-		dialogPrev->enabled = true;
-		dialogNext->enabled = true;
+		DialogOperative = true;
 		//dialogExit->enabled = true;
 		
 
+	}
+
+	if (element == dialogClose && type == GUI_Event::EVENT_ONCLICK) {
+ 
+		DialogOperative = false;
 	}
 
 	if (element == dialogNext && type == GUI_Event::EVENT_ONCLICK)
@@ -682,7 +685,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			DialogPage6 = true;
 			DialogPage5 = false;
 		}
-		else if (DialogPage4 == true) {
+		else if (DialogPage6 == true) {
 			
 		}
 	 
@@ -1444,11 +1447,21 @@ void GameScene::CreateDialogText()
 	DialogPage3 = false;
 	DialogPage4 = false;
 	DialogPage5 = false;
+	DialogPage6 = false;
 	/*PaintExtractorQuestCompletedSafe = false;
 	PainterQuestCompletedSafe = false;
 	ExtractPaintQuestCompletedSafe = false;
     UpgradeEntityQuestCompletedSafe=false;*/
 
+	PainterQuestCompleted = false;
+	PaintExtractorQuestCompleted = false;
+	ExtractPaintQuestCompleted = false;
+	UpgradeEntityQuestCompleted = false;
+
+	PainterQuestActive = false;
+	PaintExtractorQuestActive = false;
+	ExtractPaintQuestActive = false;
+	UpgradeEntityQuestActive = false;
 
 
 
@@ -1551,74 +1564,97 @@ void GameScene::QuestManagerFunction()
 		//Mix_PlayChannel(-1, App->audio->Quest_Audio, 0);
 	}
 
-	if (DialogPage1 == true) {
+	if (DialogOperative == true) {
+		dialogImage->enabled = true;
+		dialogClose->enabled = true;
+		dialogText1->enabled = true;
+		dialogText2->enabled = true;
+		dialogText3->enabled = true;
+		dialogPrev->enabled = true;
 		dialogNext->enabled = true;
+		dialogOpen->enabled = false;
+
+		if (DialogPage1 == true) {
+			dialogNext->enabled = true;
+			dialogPrev->enabled = false;
+		}
+		else if (DialogPage2 == true) {
+			PainterQuestActive = true;
+
+			/*questsText1Count->enabled = true;
+			questsText1->enabled = true;*/
+
+			if (PainterQuestCompleted == true) {
+				dialogNext->enabled = true;
+				dialogPrev->enabled = true;
+			}
+			else {
+				dialogNext->enabled = false;
+				dialogPrev->enabled = true;
+			}
+
+		}
+		else if (DialogPage3 == true) {
+			PaintExtractorQuestActive = true;
+
+			/*questsText2Count->enabled = true;
+			questsText2->enabled = true;*/
+
+			if (PaintExtractorQuestCompleted == true) {
+				dialogNext->enabled = true;
+				dialogPrev->enabled = true;
+			}
+			else {
+				dialogNext->enabled = false;
+				dialogPrev->enabled = true;
+			}
+
+		}
+		else if (DialogPage4 == true) {
+			ExtractPaintQuestActive = true;
+
+			/*questsText3Count->enabled = true;
+			questsText3->enabled = true;*/
+
+			if (ExtractPaintQuestCompleted == true) {
+				dialogNext->enabled = true;
+				dialogPrev->enabled = true;
+			}
+			else {
+				dialogNext->enabled = false;
+				dialogPrev->enabled = true;
+			}
+
+		}
+		else if (DialogPage5 == true) {
+			UpgradeEntityQuestActive = true;
+
+			/*questsText4Count->enabled = true;
+			questsText4->enabled = true;*/
+
+			if (UpgradeEntityQuestCompleted == true) {
+				dialogNext->enabled = true;
+				dialogPrev->enabled = true;
+			}
+			else {
+				dialogNext->enabled = false;
+
+			}
+
+		}
+	}
+	else {
+
+		dialogImage->enabled = false;
+		dialogClose->enabled = false;
+		dialogText1->enabled = false;
+		dialogText2->enabled = false;
+		dialogText3->enabled = false;
 		dialogPrev->enabled = false;
+		dialogNext->enabled = false;
+		dialogOpen->enabled = true;
 	}
-	else if (DialogPage2 == true) {
-		PainterQuestActive = true;
 
-		questsText1Count->enabled = true;
-		questsText1->enabled = true;
-
-		if (PainterQuestCompleted == true) {
-			dialogNext->enabled = true;
-			dialogPrev->enabled = true;
-		}
-		else {
-			dialogNext->enabled = false;
-			dialogPrev->enabled = true;
-		}
-
-	}
-	else if (DialogPage3 == true) {
-		PaintExtractorQuestActive = true;
-
-		questsText2Count->enabled = true;
-		questsText2->enabled = true;
-
-		if (PaintExtractorQuestCompleted == true) {
-			dialogNext->enabled = true;
-			dialogPrev->enabled = true;
-		}
-		else {
-			dialogNext->enabled = false;
-			dialogPrev->enabled = true;
-		}
-
-	}
-	else if (DialogPage4 == true) {
-		ExtractPaintQuestActive = true;
-
-		questsText3Count->enabled = true;
-		questsText3->enabled = true;
-
-		if (ExtractPaintQuestCompleted == true) {
-			dialogNext->enabled = true;
-			dialogPrev->enabled = true;
-		}
-		else {
-			dialogNext->enabled = false;
-			dialogPrev->enabled = true;
-		}
-
-	}
-	else if (DialogPage5 == true) {
-		UpgradeEntityQuestActive = true;
-
-		questsText4Count->enabled = true;
-		questsText4->enabled = true;
-
-		if (UpgradeEntityQuestCompleted == true) {
-			dialogNext->enabled = true;
-			dialogPrev->enabled = true;
-		}
-		else {
-			dialogNext->enabled = false;
-
-		}
-
-	}
 }
 
 
