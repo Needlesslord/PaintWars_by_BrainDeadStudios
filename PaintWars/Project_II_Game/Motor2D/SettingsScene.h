@@ -53,6 +53,9 @@ public:
 	j1UIElement* fxSlider = nullptr;
 	j1UIElement* musicSlider = nullptr;
 
+private:
+	bool FinishedPosition;
+	bool ResetPosition;
 };
 
 #endif // __FIRSTSCENE_H__
