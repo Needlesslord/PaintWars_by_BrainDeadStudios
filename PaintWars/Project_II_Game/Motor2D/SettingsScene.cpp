@@ -70,7 +70,7 @@ bool SettingsScene::Start()
 	fxSlider->click_rect = { 786, 1, 42, 34 };
 	
 
-	fullscreenButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 620, 350 }, { 0,0 }, true, true, { 0, 1031, 182, 58 }, nullptr, App->scenes, TEXTURE::ATLAS);
+	fullscreenButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 700, 350 }, { 0,0 }, true, true, { 0, 1031, 182, 58 }, nullptr, App->scenes, TEXTURE::ATLAS);
 	fullscreenButton->hover_rect = { 0, 1031, 182, 58 };
 	fullscreenButton->click_rect = { 0, 1031, 182, 58 };
 
@@ -117,56 +117,53 @@ bool SettingsScene::Update(float dt)
 	}
 
 
+	if (FinishedPosition != true) {
 
-	
-	if (musicLabel->map_position.x < 500 && App->transition_manager->is_transitioning == false) {
-		musicLabel->map_position = musicLabel->map_position = { musicLabel->map_position.x + 7,musicLabel->map_position.y };
-	}
-	//--
-	if (vfxLabel->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
-		vfxLabel->map_position = vfxLabel->map_position = { vfxLabel->map_position.x - 7,vfxLabel->map_position.y };
-	}
-	if (fullscreenLabel->map_position.x > 525 && App->transition_manager->is_transitioning == false) {
-		fullscreenLabel->map_position = fullscreenLabel->map_position = { fullscreenLabel->map_position.x - 7,fullscreenLabel->map_position.y };
-	}
+		if (musicLabel->map_position.x < 300 && App->transition_manager->is_transitioning == false) {
+			musicLabel->map_position = musicLabel->map_position = { musicLabel->map_position.x + 7,musicLabel->map_position.y };
+		}
+		//--
+		if (vfxLabel->map_position.x > 300 && App->transition_manager->is_transitioning == false) {
+			vfxLabel->map_position = vfxLabel->map_position = { vfxLabel->map_position.x - 7,vfxLabel->map_position.y };
+		}
+		if (fullscreenLabel->map_position.x > 300 && App->transition_manager->is_transitioning == false) {
+			fullscreenLabel->map_position = fullscreenLabel->map_position = { fullscreenLabel->map_position.x - 7,fullscreenLabel->map_position.y };
+		}
 
-	if (gpadLabel->map_position.x < 490 && App->transition_manager->is_transitioning == false) {
-		gpadLabel->map_position = gpadLabel->map_position = { gpadLabel->map_position.x + 7,gpadLabel->map_position.y };
-	}
-	if (fxBar->map_position.x < 545 && App->transition_manager->is_transitioning == false) {
-		fxBar->map_position = fxBar->map_position = { fxBar->map_position.x + 7,fxBar->map_position.y };
-	}
-	//--
-	if (musicBar->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
-		musicBar->map_position = musicBar->map_position = { musicBar->map_position.x - 7,musicBar->map_position.y };
-	}
-	if (musicSlider->map_position.x > 515 && App->transition_manager->is_transitioning == false) {
-		musicSlider->map_position = musicSlider->map_position = { musicSlider->map_position.x - 7,musicSlider->map_position.y };
-	}
+		if (gpadLabel->map_position.x < 300 && App->transition_manager->is_transitioning == false) {
+			gpadLabel->map_position = gpadLabel->map_position = { gpadLabel->map_position.x + 7,gpadLabel->map_position.y };
+		}
+		if (fxBar->map_position.x < 620 && App->transition_manager->is_transitioning == false) {
+			fxBar->map_position = fxBar->map_position = { fxBar->map_position.x + 7,fxBar->map_position.y };
+		}
+		//--
+		if (musicBar->map_position.x > 620 && App->transition_manager->is_transitioning == false) {
+			musicBar->map_position = musicBar->map_position = { musicBar->map_position.x - 7,musicBar->map_position.y };
+		}
+		if (musicSlider->map_position.x > 732 && App->transition_manager->is_transitioning == false) {
+			musicSlider->map_position = musicSlider->map_position = { musicSlider->map_position.x - 7,musicSlider->map_position.y };
+		}
 
-	if (fxSlider->map_position.x < 505 && App->transition_manager->is_transitioning == false) {
-		fxSlider->map_position = fxSlider->map_position = { fxSlider->map_position.x + 7,fxSlider->map_position.y };
-	}
-	if (fullscreenButton->map_position.x < 555 && App->transition_manager->is_transitioning == false) {
-		fullscreenButton->map_position = fullscreenButton->map_position = { fullscreenButton->map_position.x + 7,fullscreenButton->map_position.y };
+		if (fxSlider->map_position.x < 732 && App->transition_manager->is_transitioning == false) {
+			fxSlider->map_position = fxSlider->map_position = { fxSlider->map_position.x + 7,fxSlider->map_position.y };
+		}
+		if (fullscreenButton->map_position.x < 700 && App->transition_manager->is_transitioning == false) {
+			fullscreenButton->map_position = fullscreenButton->map_position = { fullscreenButton->map_position.x + 7,fullscreenButton->map_position.y };
 
-	}
-	if (gpadButton->map_position.x < 555 && App->transition_manager->is_transitioning == false) {
-		gpadButton->map_position = gpadButton->map_position = { gpadButton->map_position.x + 7,gpadButton->map_position.y };
+		}
 
-	}
-	if (resetButton->map_position.x < 555 && App->transition_manager->is_transitioning == false) {
-		resetButton->map_position = resetButton->map_position = { resetButton->map_position.x + 7,resetButton->map_position.y };
+		if (resetButton->map_position.x < 500 && App->transition_manager->is_transitioning == false) {
+			resetButton->map_position = resetButton->map_position = { resetButton->map_position.x + 7,resetButton->map_position.y };
 
-	}
-	if (backButton->map_position.x < 555 && App->transition_manager->is_transitioning == false) {
-		backButton->map_position = backButton->map_position = { backButton->map_position.x + 7,backButton->map_position.y };
+		}
+		if (backButton->map_position.x < 900 && App->transition_manager->is_transitioning == false) {
+			backButton->map_position = backButton->map_position = { backButton->map_position.x + 7,backButton->map_position.y };
 
+		}
+		else if (App->transition_manager->is_transitioning == false) {
+			FinishedPosition = true; //ONLY ONE CHANGE TO TRUE IS NEEDED BECAUSE ALL BUTTONS GET TO THEIR POSITION AT THE SAME MOMENT
+		}
 	}
-	else if (App->transition_manager->is_transitioning == false) {
-		FinishedPosition = true; //ONLY ONE CHANGE TO TRUE IS NEEDED BECAUSE ALL BUTTONS GET TO THEIR POSITION AT THE SAME MOMENT
-	}
-
 
 
 
