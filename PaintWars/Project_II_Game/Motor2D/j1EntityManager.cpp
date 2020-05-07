@@ -657,6 +657,7 @@ bool j1EntityManager::Update(float dt) {
 
 				list<Entity*>::iterator unitsToKill = unitsSelected.begin();
 				(*unitsToKill)->isAlive = false;
+				unitsSelected.erase(unitsToKill);
 			}
 		}
 
