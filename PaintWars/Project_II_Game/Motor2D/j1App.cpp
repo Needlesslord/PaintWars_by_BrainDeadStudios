@@ -151,17 +151,17 @@ bool j1App::Update()
 		ret = false;
 
 	if (ret == true) {
-		LOG("ENTERING PREUPDATE");
+		//LOG("ENTERING PREUPDATE");
 		ret = PreUpdate();
 	}
 	if (ret == true) {
-		LOG("ENTERING UPDATE");
+		//LOG("ENTERING UPDATE");
 		ret = DoUpdate();
 	}
 		
 
 	if (ret == true) {
-		LOG("ENTERING POSTUPDATE");
+		//LOG("ENTERING POSTUPDATE");
 		ret = PostUpdate();
 	}
 		
@@ -285,7 +285,7 @@ bool j1App::PreUpdate()
 		if(pModule->active == false) {
 			continue;
 		}
-		LOG("Iterating through pre update modules");
+		//LOG("Iterating through pre update modules");
 		ret = (*item)->PreUpdate();
 	}
 
@@ -307,7 +307,7 @@ bool j1App::DoUpdate()
 		if(pModule->active == false) {
 			continue;
 		}
-		LOG("Iterating through  update modules");
+		//LOG("Iterating through  update modules");
 		ret = (*item)->Update(dt);
 	}
 

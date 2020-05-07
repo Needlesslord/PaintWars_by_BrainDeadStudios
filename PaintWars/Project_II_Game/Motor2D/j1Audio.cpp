@@ -154,10 +154,12 @@ bool j1Audio::Awake(pugi::xml_node& config)
 
 	
 	//AUDIO VOLUMES & STUFF
-	ChunkAudioManager();
+	
 	VolumeMusic = 5;
-	Mix_VolumeMusic(VolumeMusic);
-
+	CurrentMusVolume = 5;
+	CurrentFXVolume = 5;
+	Mix_VolumeMusic(CurrentMusVolume);
+	ChunkAudioManager(CurrentFXVolume);
 	logoSound = false;
 
 	return ret;
@@ -285,9 +287,9 @@ bool j1Audio::Load(pugi::xml_node& save) {
 	return true;
 }
 
-void j1Audio::ChunkAudioManager()
+void j1Audio::ChunkAudioManager(int volume)
 {
-	Mix_VolumeChunk(Click_Button_Sound, 10);
+	/*Mix_VolumeChunk(Click_Button_Sound, 10);
 	Mix_VolumeChunk(walkingPainter_sound, 4);
 	Mix_VolumeChunk(walkingWarrior_sound, 6);
 	Mix_VolumeChunk(WarriorAttack_Sound, 5);
@@ -298,7 +300,20 @@ void j1Audio::ChunkAudioManager()
 	Mix_VolumeChunk(Spawner_Destroyed, 7);
 	Mix_VolumeChunk(birds_sound, 1);
 	Mix_VolumeChunk(crickets_sound, 2);
-	Mix_VolumeChunk(braindead_sound, 50);
+	Mix_VolumeChunk(braindead_sound, 50);*/
+
+	Mix_VolumeChunk(Click_Button_Sound, volume);
+	Mix_VolumeChunk(walkingPainter_sound, volume);
+	Mix_VolumeChunk(walkingWarrior_sound, volume);
+	Mix_VolumeChunk(WarriorAttack_Sound, volume);
+	Mix_VolumeChunk(buy1_sound, volume);
+	Mix_VolumeChunk(buy2_sound, volume);
+	Mix_VolumeChunk(spawnFromHall, volume);
+	Mix_VolumeChunk(time_sound, volume);
+	Mix_VolumeChunk(Spawner_Destroyed, volume);
+	Mix_VolumeChunk(birds_sound, volume);
+	Mix_VolumeChunk(crickets_sound, volume);
+	Mix_VolumeChunk(braindead_sound, volume);
 	
 	//if (!logoSound) {
 	//	Mix_VolumeChunk(Click_Logo_Sound, 50);

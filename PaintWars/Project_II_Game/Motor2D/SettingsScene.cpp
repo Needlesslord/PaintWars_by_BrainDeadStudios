@@ -11,6 +11,7 @@
 #include "SettingsScene.h"
 #include "TransitionManager.h"
 #include "j1Player.h"
+#include "SDL_mixer\include\SDL_mixer.h"
 
 SettingsScene::SettingsScene() : Scene(SCENES::SETTINGS_SCENE)
 {
@@ -48,13 +49,17 @@ bool SettingsScene::Start()
 
 	gpadLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 300, 450 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "GamePad");
 
-	fxBar= App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 620, 255 }, { 0,0 }, false, true, { 785, 57, 268, 26 }, nullptr, App->scenes, TEXTURE::ATLAS);
-
-	musicBar= App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 620, 160 }, { 0,0 }, false, true, { 785, 57, 268, 26 }, nullptr, App->scenes, TEXTURE::ATLAS);
+	fxBar= App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 620, 255 }, { 0,0 }, true, true, { 785, 57, 268, 26 }, nullptr, App->scenes, TEXTURE::ATLAS);
+	fxBar->hover_rect = { 785, 57, 268, 26 };
+	fxBar->click_rect = { 785, 57, 268, 26 };
+	musicBar= App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 620, 160 }, { 0,0 }, true, true, { 785, 57, 268, 26 }, nullptr, App->scenes, TEXTURE::ATLAS);
+	musicBar->click_rect = { 785, 57, 268, 26 };
+	musicBar->hover_rect = { 785, 57, 268, 26 };
 
 	musicSlider = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 732, 157 }, { 0,0 }, true, true, { 786, 1, 42, 34 }, nullptr, App->scenes, TEXTURE::ATLAS);
 	musicSlider->hover_rect = { 786, 1, 42, 34 };
 	musicSlider->click_rect = { 786, 1, 42, 34 };
+
 	fxSlider = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 732, 252 }, { 0,0 }, true, true, { 786, 1, 42, 34 }, nullptr, App->scenes, TEXTURE::ATLAS);
 	fxSlider->hover_rect = { 786, 1, 42, 34 };
 	fxSlider->click_rect = { 786, 1, 42, 34 };
@@ -196,19 +201,100 @@ void SettingsScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 	//SLIDERS
 
-	/*if (element == fxSlider && type == GUI_Event::EVENT_ONCLICK) {
+	
+		if (element == fxBar && type == GUI_Event::EVENT_ONCLICK) {
 
-		fPoint MousePos = App->input->GetMouseWorldPosition();
+			fPoint MousePos = App->input->GetMouseWorldPosition();
 
-		fxSlider->map_position.x = MousePos.x/2;
-
-
-
-	}*/
+			fxSlider->map_position.x = (MousePos.x / 2) - 10;
+		}
 
 
+		if (element == fxBar && type == GUI_Event::EVENT_HOVER) {
 
-		//musicSlider
+			//CHUNKS VOLUME SHOULD BE DIFFERENT
+			fPoint MousePos = App->input->GetMouseWorldPosition();
+
+			fxSlider->map_position.x = (MousePos.x / 2) - 10;
+
+			//732 611
+			if (fxSlider->map_position.x >= 620 && fxSlider->map_position.x <= 650) {
+				LOG("VOL FX TO 0");
+				App->audio->CurrentFXVolume = 0;
+			}
+			
+			if (fxSlider->map_position.x >= 651 && fxSlider->map_position.x <= 680) {
+				LOG("VOL FX TO 1");
+				App->audio->CurrentFXVolume = 4;
+			}
+
+			if (fxSlider->map_position.x >= 681 && fxSlider->map_position.x <= 710) {
+				LOG("VOL  FX TO 2");
+			
+				App->audio->CurrentFXVolume = 8;
+			}
+
+			if (fxSlider->map_position.x >= 741 && fxSlider->map_position.x <= 770) {
+				LOG("VOL  FXTO 3");
+				App->audio->CurrentFXVolume = 12;
+				
+			}
+			if (fxSlider->map_position.x >= 771 && fxSlider->map_position.x <= 800) {
+				LOG("VOL FX TO 4");
+				App->audio->CurrentFXVolume = 16;
+				
+			}
+			if (fxSlider->map_position.x >= 801) {
+				LOG("VOL FXTO 5");
+				App->audio->CurrentFXVolume = 20;
+			}
+
+		  
+			App->audio->ChunkAudioManager(App->audio->CurrentFXVolume); //SHOULD WE SET ALL CHUNK VOLUMES TO THE SAME VALUE OR DIFFERENT FOR EACH CHUNK?
+
+		}
+
+		if (element == musicBar && type == GUI_Event::EVENT_HOVER) {
+
+			fPoint MousePos = App->input->GetMouseWorldPosition();
+
+			musicSlider->map_position.x = (MousePos.x / 2) - 10;
+
+			//732 611
+			if (musicSlider->map_position.x >= 620 && musicSlider->map_position.x <= 650) {
+				LOG("VOL MUS TO 0");
+				App->audio->CurrentMusVolume = 0;
+			}
+
+			if (musicSlider->map_position.x >= 651 && musicSlider->map_position.x <= 680) {
+				LOG("VOL MUS TO 1");
+				App->audio->CurrentMusVolume = 2;
+			}
+
+			if (musicSlider->map_position.x >= 681 && musicSlider->map_position.x <= 710) {
+				LOG("VOL MUS TO 2");
+				App->audio->CurrentMusVolume = 4;
+			}
+
+			if (musicSlider->map_position.x >= 741 && musicSlider->map_position.x <= 770) {
+				LOG("VOL MUS TO 3");
+				App->audio->CurrentMusVolume = 6;
+			}
+			if (musicSlider->map_position.x >= 771 && musicSlider->map_position.x <= 800) {
+				LOG("VOL MUS TO 4");
+				App->audio->CurrentMusVolume = 8;
+			}
+			if (musicSlider->map_position.x >= 801) {
+				LOG("VOL MUS TO 5");
+				App->audio->CurrentMusVolume = 10;
+			}
+
+			Mix_VolumeMusic(App->audio->CurrentMusVolume);
+		}
+	
+
+
+		
 }
 
 
@@ -229,5 +315,5 @@ void SettingsScene::ExecuteTransition()
 		}
 
 	
-		}
-	}
+    }
+}

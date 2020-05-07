@@ -42,6 +42,9 @@ public:
 	// Load
 	bool Load(pugi::xml_node&);
 
+
+	void ChunkAudioManager(int volume);
+
 public:
 	uint generalVolume = 0;
 	int VolumeMusic;
@@ -51,6 +54,8 @@ public:
 	bool PlayingWinMusic;
 	bool PlayingLogoMusic;
 	bool PlayingSettingsMusic;
+	int CurrentMusVolume;
+	int CurrentFXVolume;
 	
 
 
@@ -80,7 +85,7 @@ private:
 
 	_Mix_Music*			music = NULL;
 	list<Mix_Chunk*>	fx;
-	void ChunkAudioManager();
+	
 };
 
 #endif // __j1AUDIO_H__
