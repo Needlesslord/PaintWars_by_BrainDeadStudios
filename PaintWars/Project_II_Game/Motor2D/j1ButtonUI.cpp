@@ -23,7 +23,7 @@ bool j1ButtonUI::Start()
 	switch (textureType) {
 	case TEXTURE::ATLAS:
 		
-		if (Button_UI_Texture_General_ATLAS == NULL)
+		if (Button_UI_Texture_General_ATLAS == NULL) //Maybe nullptr
 			Button_UI_Texture_General_ATLAS = App->gui->Get_Texture_From_Image(TEXTURE::ATLAS);
 		break;
 

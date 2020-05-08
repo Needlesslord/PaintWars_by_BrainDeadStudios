@@ -508,10 +508,7 @@ void j1App::Debug_Actions()
 			App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 1.0f, true);
 
 		}
-		if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) { //has to be changed to volcano map when developed
-			App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 1.0f, true);
-
-		}
+		
 		
 		if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
 			App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 1.0f, true);

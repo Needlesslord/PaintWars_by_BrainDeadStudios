@@ -39,6 +39,10 @@ public:
 	j1UIElement* backButton = nullptr;
 	j1UIElement* Win_Scene_UI = nullptr;
 	j1UIElement* ReturnVictorious = nullptr;
+	j1UIElement* Win_Timer_Sec = nullptr;
+	j1UIElement* Win_Timer_Min = nullptr;
+	j1UIElement* Win_Timer = nullptr;
+
 
 private:
 

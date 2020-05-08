@@ -63,6 +63,8 @@ bool LoseScene::Start()
 // Called each loop iteration
 bool LoseScene::PreUpdate()
 {
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
 	bool ret = true;
 
 	if (ResetPosition == true) {

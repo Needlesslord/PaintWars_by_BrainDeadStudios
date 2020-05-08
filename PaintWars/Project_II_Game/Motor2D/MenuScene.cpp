@@ -83,6 +83,8 @@ bool MenuScene::Start()
 // Called each loop iteration
 bool MenuScene::PreUpdate()
 {
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
 	bool ret = true;
 
 	if (ResetPosition == true) {

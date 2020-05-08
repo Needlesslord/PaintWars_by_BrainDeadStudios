@@ -89,6 +89,8 @@ bool StartScene::Start()
 // Called each loop iteration
 bool StartScene::PreUpdate()
 {
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
 	bool ret = true;
 
 	if (ResetPosition == true) {
@@ -228,6 +230,9 @@ bool StartScene::CleanUp()
 	{
 		SDL_FreeSurface(scene_surface);
 	}
+
+	LOG("START SCENE CleanUP");
+
 
 	return ret;
 }

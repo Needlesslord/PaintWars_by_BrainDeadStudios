@@ -75,7 +75,8 @@ float Transition::N_Lerp(float start, float end, float rate, bool smash_in)				/
 
 float Transition::GetCutoffRate(float step_duration, float dt)
 {
-	LOG("CUTOFF RATE ");
+	
+	//LOG("CUTOFF RATE ");
 	cutoff_rate = dt / step_duration;
 
 	return cutoff_rate;

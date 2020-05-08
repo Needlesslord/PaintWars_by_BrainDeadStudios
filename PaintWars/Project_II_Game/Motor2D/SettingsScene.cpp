@@ -102,6 +102,8 @@ bool SettingsScene::Start()
 // Called each loop iteration
 bool SettingsScene::PreUpdate()
 {
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
 	bool ret = true;
 	if (ResetPosition == true) {
 		musicLabel->map_position.x = -300;
@@ -233,6 +235,13 @@ bool SettingsScene::CleanUp()
 	backButton->CleanUp();
 	backgroundImage->CleanUp();
 
+	resetlabel->CleanUp();
+	musicBar->CleanUp();
+	fxBar->CleanUp();
+	musicSlider->CleanUp();
+	fxSlider->CleanUp();
+
+
 
 	if (scene_texture != nullptr)
 	{
@@ -253,6 +262,9 @@ bool SettingsScene::CleanUp()
 	{
 		SDL_FreeSurface(scene_surface);
 	}
+
+
+
 
 	return ret;
 }
