@@ -36,6 +36,10 @@ TownHall::TownHall(iPoint tile, int damage, j1Module* listener, Entity* creator)
 	isSpawningAUnit = false;
 
 	uint visibilityRadius = 8;
+
+	fow_entity->frontier = App->fow->CreateSightQuad(visibilityRadius, fow_entity->position);
+	fow_entity->LOS = App->fow->FulfillSight(fow_entity->frontier);
+
 }
 
 TownHall::~TownHall() {}

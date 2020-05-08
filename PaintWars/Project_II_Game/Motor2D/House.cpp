@@ -35,6 +35,10 @@ House::House(iPoint tile, int damage, j1Module* listener, Entity* creator) : Ent
 	isEntityFromPlayer = true;
 
 	uint visibilityRadius = 5;
+
+	fow_entity->frontier = App->fow->CreateSightQuad(visibilityRadius, fow_entity->position);
+	fow_entity->LOS = App->fow->FulfillSight(fow_entity->frontier);
+
 }
 
 House::~House() {}
