@@ -70,6 +70,42 @@ void j1Map::Draw()
 				}
 			}
 		}
+
+		for (int y = 0; y < data.height; ++y)
+		{
+			for (int x = 0; x < data.width; ++x)
+			{
+				int tile_id = layer->Get(x, y);
+				if (tile_id > 0)
+				{
+					TileSet* tileset = GetTilesetFromTileId(tile_id);
+
+					SDL_Rect r = tileset->GetTileRect(tile_id);
+					fPoint pos = MapToWorld(x, y);
+
+					FOW_TileState state = (FOW_TileState)App->fow->GetVisibilityTileAt({ x,y });
+					//LOG("%d", (int)state);
+
+					//Blit semi-opaque if the tile is fogged
+					if (state == FOW_TileState::FOGGED)
+					{
+						r = App->fow->GetFOWMetaRect(state);
+						App->render->Blit(App->fow->fogtexture, pos.x, pos.y, &r);
+
+					}
+					//Blit black if the tile is not visited. 
+					//Alternatively we can leave this blank as the background is black, but if there was any kind of background we may surely don't blit it
+					if (state == FOW_TileState::UNVISITED)
+					{
+						r = App->fow->GetFOWMetaRect(state);
+						App->render->Blit(App->fow->fogtexture, pos.x, pos.y, &r);
+					}
+
+				}
+			}
+		}
+
+
 	}
 
 
