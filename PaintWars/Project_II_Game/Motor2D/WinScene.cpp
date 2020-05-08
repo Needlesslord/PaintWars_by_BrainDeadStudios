@@ -49,7 +49,7 @@ bool WinScene::Start()
 	ReturnVictorious->click_rect = { 322, 237,630 ,58 };
 	/*Win_Timer_Sec=App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 500, 150 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Sec");
 	Win_Timer_Min = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 300, 150 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Min");*/
-	Win_Timer = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 400, 150 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Timer");
+	Win_Timer = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 300, 500 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Timer");
 
 	if (App->audio->PlayingWinMusic != true) {
 		Mix_HaltMusic();
@@ -57,6 +57,15 @@ bool WinScene::Start()
 		App->audio->PlayMusic("audio/music/WinSceneMusic.ogg"); 
 		App->audio->PlayingWinMusic = true;
 	}
+
+
+	static char conversorCharTimer[256];
+	int Sec_Conversor = App->scenes->Timer_Seconds;
+	int Min_Conversor = App->scenes->Timer_Minutes;
+	sprintf_s(conversorCharTimer, 256, "%d/%d", Min_Conversor, Sec_Conversor);
+	Win_Timer->text = conversorCharTimer;
+
+
 
 	ResetPosition = true;
 	return ret;
@@ -88,15 +97,15 @@ bool WinScene::Update(float dt)
 	CameraDebugMovement(dt);
 	
 
-	int seconds = App->player->gameTimer.ReadSec();
-	int minutes = 0;
+	/*App->scenes->Timer_Seconds = App->player->gameTimer.ReadSec();
+	App->scenes->Timer_Minutes = 0;
 	for (int i = 0; i < 17; i++) {
-		if (seconds > 59) {
-			seconds -= 60;
-			if (minutes == i)
-				minutes++;
+		if (App->scenes->Timer_Seconds > 59) {
+			App->scenes->Timer_Seconds -= 60;
+			if (App->scenes->Timer_Minutes == i)
+				App->scenes->Timer_Minutes++;
 		}
-	}
+	}*/
 
 	/*Win_Timer->map_position;
 	App->render->camera.x= Win_Timer->map_position.x;
@@ -106,11 +115,7 @@ bool WinScene::Update(float dt)
 	
 
 
-	static char conversorCharTimer[256];
-	int Sec_Conversor = App->player->housingSpace.count;
-	int Min_Conversor = App->player->housingSpace.maxCount;
-	sprintf_s(conversorCharTimer, 256, "%d:%d", Min_Conversor, Sec_Conversor);
-	Win_Timer->text = conversorCharTimer;
+	
 
 
 	if (ReturnVictorious->map_position.x < 300 && App->transition_manager->is_transitioning==false) {

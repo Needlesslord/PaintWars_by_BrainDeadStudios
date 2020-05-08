@@ -398,8 +398,8 @@ bool GameScene::Update(float dt)
 	transformer1.x = worldCoordinates.x; transformer1.y = worldCoordinates.y;
 	transformer2.x = xy.x; transformer2.y = xy.y;
 
-	int seconds = App->player->gameTimer.ReadSec();
-	int minutes = 0;
+	 seconds = App->player->gameTimer.ReadSec();
+	 minutes = 0;
 	for (int i = 0; i < 17; i++) {
 		if (seconds > 59) {
 			seconds -= 60;
@@ -594,7 +594,8 @@ bool GameScene::CleanUp()
 		//RELEASE(App->gui->GUI_ELEMENTS[i]);
 	}
 	
-
+	App->scenes->Timer_Minutes = minutes;
+	App->scenes->Timer_Seconds = seconds;
 
 	//hudBarImage									   ->CleanUp();
 	// paintLabel 								   ->CleanUp();

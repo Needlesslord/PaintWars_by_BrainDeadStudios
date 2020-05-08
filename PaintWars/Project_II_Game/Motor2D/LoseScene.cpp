@@ -46,7 +46,7 @@ bool LoseScene::Start()
 	TryAgain = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 275, 600 }, { 30,25 }, true, true, { 285, 575,712 ,62 },nullptr, App->scenes, TEXTURE::CONTINUE_LETTERS);
 	TryAgain->hover_rect = { 285, 97,712 ,62 };
 	TryAgain->click_rect = { 285, 97,712 ,62 };
-
+	Lose_Timer = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 300, 500 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Timer");
 
 	if (App->audio->PlayingLoseMusic != true) {
 		Mix_HaltMusic();
@@ -55,6 +55,15 @@ bool LoseScene::Start()
 		App->audio->PlayingLoseMusic = true;
 	}
 	
+
+
+	static char conversorCharTimer[256];
+	int Sec_Conversor = App->scenes->Timer_Seconds;
+	int Min_Conversor = App->scenes->Timer_Minutes;
+	sprintf_s(conversorCharTimer, 256, "%d/%d", Min_Conversor, Sec_Conversor);
+	Lose_Timer->text = conversorCharTimer;
+
+
 	ResetPosition = true;
 
 	return ret;
@@ -88,6 +97,11 @@ bool LoseScene::Update(float dt)
 	else if (App->transition_manager->is_transitioning == false) {
 		FinishedPosition = true; //ONLY ONE CHANGE TO TRUE IS NEEDED BECAUSE ALL BUTTONS GET TO THEIR POSITION AT THE SAME MOMENT
 	}
+
+
+	
+
+
 
 	return ret;
 }
