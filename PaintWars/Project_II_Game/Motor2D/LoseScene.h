@@ -42,7 +42,7 @@ public:
 	j1UIElement* backButton = nullptr;
 	j1UIElement* Lose_Scene_UI = nullptr;
 	j1UIElement* TryAgain = nullptr;
-
+	j1UIElement* Lose_Timer = nullptr;
 
 
 private:

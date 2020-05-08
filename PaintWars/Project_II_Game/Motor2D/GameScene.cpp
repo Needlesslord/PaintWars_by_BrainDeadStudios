@@ -398,8 +398,8 @@ bool GameScene::Update(float dt)
 	transformer1.x = worldCoordinates.x; transformer1.y = worldCoordinates.y;
 	transformer2.x = xy.x; transformer2.y = xy.y;
 
-	int seconds = App->player->gameTimer.ReadSec();
-	int minutes = 0;
+	 seconds = App->player->gameTimer.ReadSec();
+	 minutes = 0;
 	for (int i = 0; i < 17; i++) {
 		if (seconds > 59) {
 			seconds -= 60;
@@ -519,9 +519,11 @@ bool GameScene::Update(float dt)
 
 
 
+	fPoint MousePos = App->input->GetMouseWorldPosition();
 
+	LOG("Mouse x at %f", MousePos.x);
 
-	
+	LOG("Mouse y at %f", MousePos.y);
 
 	
 	return ret;
@@ -575,10 +577,15 @@ bool GameScene::CleanUp()
 {
 	LOG("Freeing Scene");
 	bool ret = true;
+	App->scenes->IN_GAME_SCENE = false;
+	//App->map->CleanUp();
 
-	App->map->CleanUp();
-
-
+	App->scenes->Load_Map_Forest = false;
+	App->scenes->Load_Map_Snow = false;
+	App->scenes->Load_Map_Volcano = false;
+	App->scenes->Map_Forest_Active = false;
+	App->scenes->Map_Snow_Active = false;
+	App->scenes->Map_Volcano_Active = false;
 
 	//UI
 	for (int i = 0; i < App->gui->GUI_ELEMENTS.count(); i++)
@@ -586,10 +593,177 @@ bool GameScene::CleanUp()
 		App->gui->GUI_ELEMENTS[i]->CleanUp();
 		//RELEASE(App->gui->GUI_ELEMENTS[i]);
 	}
+	
+	App->scenes->Timer_Minutes = minutes;
+	App->scenes->Timer_Seconds = seconds;
+
+	//hudBarImage									   ->CleanUp();
+	// paintLabel 								   ->CleanUp();
+	// woodLabel									   ->CleanUp();
+	// metalLabel 								   ->CleanUp();
+	// titaniumLabel 								   ->CleanUp();
+	//// foodLabel 									   ->CleanUp();
+	// researchLabel 								   ->CleanUp();
+	//// entitiesImage 								   ->CleanUp();
+	// entitiesLabel 								   ->CleanUp();
+	// //BackgroundForest 							   ->CleanUp();
+	// questsImage 								   ->CleanUp();
+	// questsLabel 								   ->CleanUp();
+	// questsOpenButton 							   ->CleanUp();
+	// questsCloseButton 							   ->CleanUp();
+	// questsText1           						   ->CleanUp();
+	// questsText2          						   ->CleanUp();
+	// questsText3           						   ->CleanUp();
+	// questsText4          						   ->CleanUp();
+	// questsText1Count 							   ->CleanUp();
+	// questsText2Count 							   ->CleanUp();
+	// questsText3Count 							   ->CleanUp();
+	// questsText4Count 							   ->CleanUp();
+	// //questsCompleted1 							   ->CleanUp();
+	// //questsCompleted2 							   ->CleanUp();
+	// //questsCompleted3 							   ->CleanUp();
+	// //questsCompleted4 							   ->CleanUp();
+	//	 hudBarImage 							   ->CleanUp();
+	//	 paintLabel 							   ->CleanUp();
+	//	 woodLabel 								   ->CleanUp();
+	//	 metalLabel 							   ->CleanUp();
+	//	 titaniumLabel							   ->CleanUp();
+	//	 researchLabel							   ->CleanUp();
+	//	 entitiesLabel							   ->CleanUp();
+	//	 EntityHP 								   ->CleanUp();
+	//	 questsImage 							   ->CleanUp();
+	//	 questsLabel 							   ->CleanUp();
+	//	 questsOpenButton						   ->CleanUp();
+	//	 questsOpenButton 						   ->CleanUp();
+	//	 questsOpenButton 						   ->CleanUp();
+	//	 questsCloseButton						   ->CleanUp();
+	//	 questsCloseButton						   ->CleanUp();
+	//	 questsCloseButton						   ->CleanUp();
+	//	 questsText1 							   ->CleanUp();
+	//	 questsText1Count						   ->CleanUp();
+	//	 questsText2 							   ->CleanUp();
+	//	 questsText2Count						   ->CleanUp();
+	//	 questsText3 							   ->CleanUp();
+	//	 questsText3Count						   ->CleanUp();
+	//	 questsText4 							   ->CleanUp();
+	//	 questsText4Count						   ->CleanUp();
+	//	 dialogImage							   ->CleanUp();
+	//	 dialogClose							   ->CleanUp();
+	//	 dialogClose							   ->CleanUp();
+	//	 dialogClose							   ->CleanUp();
+	//	 dialogText1							   ->CleanUp();
+	//	 dialogText2							   ->CleanUp();
+	//	 dialogText3							   ->CleanUp();
+	//	 dialogPrev								   ->CleanUp();
+	//	 dialogPrev 							   ->CleanUp();
+	//	 dialogPrev 							   ->CleanUp();
+	//	 dialogNext								   ->CleanUp();
+	//	 dialogNext 							   ->CleanUp();
+	//	 dialogNext 							   ->CleanUp();
+	//	 dialogOpen								   ->CleanUp();
+	//	 dialogOpen 							   ->CleanUp();
+	//	 dialogOpen 							   ->CleanUp();
+	//	  homeButton 							   ->CleanUp();
+	//	 homeButton						           ->CleanUp();
+	//	 homeButton								   ->CleanUp();
+	//	 shopButton 							   ->CleanUp();
+	//	 shopButton								   ->CleanUp();
+	//	 shopButton								   ->CleanUp();
+	//	 pauseMenuButton 						   ->CleanUp();
+	//	 pauseMenuButton						   ->CleanUp();
+	//	 pauseMenuButton						   ->CleanUp();
+	//	 restartButton 							   ->CleanUp();
+	//	 restartButton							   ->CleanUp();
+	//	 restartButton							   ->CleanUp();
+	//	 pauseMenuImage 						   ->CleanUp();
+	//	 pauseMenuLabel 						   ->CleanUp();
+	//	 resumeButton 							   ->CleanUp();
+	//	 resumeButton							   ->CleanUp();
+	//	 resumeButton							   ->CleanUp();
+	//	 saveButton 							   ->CleanUp();
+	//	 saveButton								   ->CleanUp();
+	//	 saveButton								   ->CleanUp();
+	//	 settingsButton 						   ->CleanUp();
+	//	 settingsButton							   ->CleanUp();
+	//	 settingsButton							   ->CleanUp();
+	//	 mainMenuButton 						   ->CleanUp();
+	//	 mainMenuButton							   ->CleanUp();
+	//	 mainMenuButton							   ->CleanUp();
+	//	 exitButton 							   ->CleanUp();
+	//	 exitButton								   ->CleanUp();
+	//	 exitButton								   ->CleanUp();
+	//   musicLabel								   ->CleanUp();
+	//   vfxLabel 								   ->CleanUp();
+	//   fullscreenLabel 							   ->CleanUp();
+	//   gpadLabel 								   ->CleanUp();
+	//   fullscreenButton 						   ->CleanUp();
+	//   fullscreenButton							   ->CleanUp();
+	//   fullscreenButton							   ->CleanUp();
+	//   gpadButton 								   ->CleanUp();
+	//   gpadButton								   ->CleanUp();
+	//   gpadButton								   ->CleanUp();
+	//   resetButton								   ->CleanUp();
+	//   resetButton								   ->CleanUp();
+	//   resetButton								   ->CleanUp();
+	//   backButton 								   ->CleanUp();
+	//   backButton								   ->CleanUp();
+	//   backButton								   ->CleanUp();
+	//  exitMenuImage 							   ->CleanUp();
+	//  exitMenuLabel 							   ->CleanUp();
+	//  exitTextLabel 							   ->CleanUp();
+	//  yesButton 								   ->CleanUp();
+	//  yesButton									   ->CleanUp();
+	//  yesButton									   ->CleanUp();
+	//  noButton 									   ->CleanUp();
+	//  noButton									   ->CleanUp();
+	//  noButton									   ->CleanUp();
+	// shopImage 									   ->CleanUp();
+	// shopLabel 									   ->CleanUp();
+	// buyWoodProducerButton 						   ->CleanUp();
+	// buyWoodProducerButton						   ->CleanUp();
+	// buyWoodProducerButton						   ->CleanUp();
+	// buyPaintExtractorButton 					   ->CleanUp();
+	// buyPaintExtractorButton					   ->CleanUp();
+	// buyPaintExtractorButton					   ->CleanUp();
+	// buyBarrackButton 							   ->CleanUp();
+	// buyBarrackButton							   ->CleanUp();
+	// buyBarrackButton							   ->CleanUp();
+	// buyHouseButton 							   ->CleanUp();
+	// buyHouseButton								   ->CleanUp();
+	// buyHouseButton								   ->CleanUp();
+	// upgradeWoodProducerButton					   ->CleanUp();
+	// upgradeWoodProducerButton					   ->CleanUp();
+	// upgradeWoodProducerButton					   ->CleanUp();
+	// upgradePaintExtractorButton 				   ->CleanUp();
+	// upgradePaintExtractorButton				   ->CleanUp();
+	// upgradePaintExtractorButton				   ->CleanUp();
+	// miniMapBackground 							   ->CleanUp();
+	// miniMapMINI								   ->CleanUp();
+	// miniMapMINI								   ->CleanUp();
+	// miniMapMINI								   ->CleanUp();
+	// miniMapCamera 								   ->CleanUp();
+	// miniMapBack 								   ->CleanUp();
+	// miniMapFULL 								   ->CleanUp();
+	// miniMapFULL								   ->CleanUp();
+	// miniMapFULL								   ->CleanUp();
+ //  upgradePainterButton 						   ->CleanUp();
+ //  upgradePainterButton							   ->CleanUp();
+ //  upgradePainterButton							   ->CleanUp();
+ //  buyPainterButton 							   ->CleanUp();
+ //  buyPainterButton								   ->CleanUp();
+ //  buyPainterButton								   ->CleanUp();
+ //  upgradeWarriorButton 						   ->CleanUp();
+ //  upgradeWarriorButton							   ->CleanUp();
+ //  upgradeWarriorButton							   ->CleanUp();
+ //  buyWarriorButton 							   ->CleanUp();
+ //  buyWarriorButton								   ->CleanUp();
+ //  buyWarriorButton								   ->CleanUp();
 
 
 
 
+
+		 //////////////////////
 	if (scene_texture != nullptr)
 	{
 		App->tex->UnLoad(scene_texture);
@@ -610,6 +784,7 @@ bool GameScene::CleanUp()
 		SDL_FreeSurface(scene_surface);
 	}
 
+	LOG("GAME SCENE CleanUP");
 
 
 	return ret;

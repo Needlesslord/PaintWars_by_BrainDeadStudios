@@ -52,7 +52,8 @@ public:
 
 	bool IN_GAME_SCENE;
 
-
+	int Timer_Seconds;
+	int Timer_Minutes;
 	bool exit;
 
 private:

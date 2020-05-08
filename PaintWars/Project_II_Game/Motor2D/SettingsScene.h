@@ -37,11 +37,14 @@ public:
 	j1UIElement* musicLabel = nullptr;
 	j1UIElement* vfxLabel = nullptr;
 	j1UIElement* fullscreenLabel = nullptr;
-	j1UIElement*gpadLabel = nullptr;
+	j1UIElement*mutelabel = nullptr;
+	j1UIElement*  mutebutton= nullptr;
+	j1UIElement* musicSlider = nullptr;
+	j1UIElement* backlabel = nullptr;
+	j1UIElement* resetlabel = nullptr;
 	//j1UIElement* musicScroll = nullptr;
 	//j1UIElement* vfxScroll = nullptr;
 	j1UIElement* fullscreenButton = nullptr;
-	j1UIElement* gpadButton = nullptr;
 	j1UIElement* resetButton = nullptr;
 	j1UIElement* backButton = nullptr;
 
@@ -51,7 +54,7 @@ public:
 	j1UIElement* musicBar = nullptr;
 
 	j1UIElement* fxSlider = nullptr;
-	j1UIElement* musicSlider = nullptr;
+	
 
 private:
 	bool FinishedPosition;
