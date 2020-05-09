@@ -556,12 +556,18 @@ void j1App::Debug_Actions()
 		}
 		//if (App->input->GetKey(SDL_SCANCODE_KP_3) == KEY_DOWN) {  //ranged
 		//}
-		//if (App->input->GetKey(SDL_SCANCODE_KP_4) == KEY_DOWN) {  //tank
-		//}
+		if (App->input->GetKey(SDL_SCANCODE_KP_4) == KEY_DOWN) {  //tank
+			//App->entities->AddEntity(ENTITY_TYPE_KNIGHT, mapCoordinates, App->entities, nullptr, 0, true);
+		}
 		//if (App->input->GetKey(SDL_SCANCODE_KP_5) == KEY_DOWN) {  //explorer
 		//}
-		if (App->input->GetKey(SDL_SCANCODE_KP_0) == KEY_DOWN) {  //kill selected unit
+		if (App->input->GetKey(SDL_SCANCODE_KP_0) == KEY_DOWN) {  //kill selected unit (one by one)
+			if (!(App->entities->unitsSelected).empty()) {
 
+				list<Entity*>::iterator unitsToKill = (App->entities->unitsSelected).begin();
+				(*unitsToKill)->isAlive = false;
+				(App->entities->unitsSelected).erase(unitsToKill);
+			}
 		}
 		//buildings --------------------------------------------------------------------------------
 		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_1) == KEY_DOWN) {  //paint extractor
@@ -576,7 +582,14 @@ void j1App::Debug_Actions()
 		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_4) == KEY_DOWN) {  //house
 			App->entities->AddEntity(ENTITY_TYPE_HOUSE, mapCoordinates, App->entities, nullptr, 0, true);
 		}
+		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_0) == KEY_DOWN) {  //kill selected building  (one by one)
+			if (!(App->entities->buildingsSelected).empty()) {
 
+				list<Entity*>::iterator unitsToKill = (App->entities->buildingsSelected).begin();
+				(*unitsToKill)->isAlive = false;
+				(App->entities->buildingsSelected).erase(unitsToKill);
+			}
+		}
 	}
 
 
