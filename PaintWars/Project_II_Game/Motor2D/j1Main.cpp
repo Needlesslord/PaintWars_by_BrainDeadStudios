@@ -94,7 +94,7 @@ int main(int argc, char* args[])
 			case LOOP:
 			{
 				BROFILER_FRAME("Main Game Loop()");
-				LOG("LOOP PHASE");
+				//LOG("LOOP PHASE");
 				if (App->Update() == false)
 					state = CLEAN;
 

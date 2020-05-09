@@ -243,7 +243,8 @@ public:
 
 private:
 
-
+	int seconds;
+	int minutes;
 
 
 

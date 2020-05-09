@@ -93,7 +93,7 @@ bool j1Player::Update(float dt)
 		while (UI_List != NULL)
 		{
 			if (z != 56) {
-				LOG("UI COUNT IS %d", z);
+				//LOG("UI COUNT IS %d", z);
 				App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x;
 				App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y;
 			}
