@@ -20045,7 +20045,7 @@
    <tile gid="0"/>
   </data>
  </layer>
- <layer name="Collisions" width="100" height="100" visible="0" opacity="0.9">
+ <layer name="Collisions" width="100" height="100" opacity="0.9">
   <properties>
    <property name="Draw" type="int" value="0"/>
    <property name="Navigation" type="int" value="1"/>
@@ -30053,7 +30053,7 @@
    <tile gid="0"/>
   </data>
  </layer>
- <layer name="Trees1" width="100" height="100" visible="0">
+ <layer name="Trees1" width="100" height="100">
   <properties>
    <property name="Draw" type="int" value="1"/>
   </properties>
@@ -40060,7 +40060,7 @@
    <tile gid="0"/>
   </data>
  </layer>
- <layer name="Trees2" width="100" height="100" visible="0">
+ <layer name="Trees2" width="100" height="100">
   <properties>
    <property name="Draw" type="int" value="1"/>
   </properties>
@@ -50067,7 +50067,7 @@
    <tile gid="0"/>
   </data>
  </layer>
- <layer name="Trees3" width="100" height="100" visible="0">
+ <layer name="Trees3" width="100" height="100">
   <properties>
    <property name="Draw" type="int" value="1"/>
   </properties>
