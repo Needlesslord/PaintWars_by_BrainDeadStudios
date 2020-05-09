@@ -58,15 +58,16 @@ void j1Map::Draw()
 					SDL_Rect r = tileset->GetTileRect(tile_id);
 					fPoint pos = MapToWorld(x, y);
 
-					
-					App->render->RenderQueue(0, tileset->texture, pos.x, pos.y, r);
-
 					///FOW-TODO
 					if (App->fow->GetVisibilityTileAt({ x, y }) != 0 /*(int8_t)FOW_TileState::UNVISITED*/)
 					{
-						App->render->Blit(tileset->texture, pos.x, pos.y, &r);
-					}
+						//App->render->Blit(tileset->texture, pos.x, pos.y, &r);
 
+						App->render->RenderQueue(0, tileset->texture, pos.x, pos.y, r);
+
+					}		
+
+									
 				}
 			}
 		}
@@ -90,7 +91,8 @@ void j1Map::Draw()
 					if (state == FOW_TileState::FOGGED)
 					{
 						r = App->fow->GetFOWMetaRect(state);
-						App->render->Blit(App->fow->fogtexture, pos.x, pos.y, &r);
+						App->render->RenderQueue(0, App->fow->fogtexture, pos.x, pos.y, r);
+
 
 					}
 					//Blit black if the tile is not visited. 
@@ -98,7 +100,7 @@ void j1Map::Draw()
 					if (state == FOW_TileState::UNVISITED)
 					{
 						r = App->fow->GetFOWMetaRect(state);
-						App->render->Blit(App->fow->fogtexture, pos.x, pos.y, &r);
+						App->render->RenderQueue(0, App->fow->fogtexture, pos.x, pos.y, r);
 					}
 
 				}
