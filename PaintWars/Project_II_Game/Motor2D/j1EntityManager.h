@@ -15,6 +15,8 @@
 /// Units
 #include "Painter.h"
 #include "Warrior.h"
+#include "Knight.h"
+#include "Explorer.h"
 
 	// Enemies
 /// Buildings
@@ -70,6 +72,8 @@ public:
 	bool Load(pugi::xml_node& save);
 	void TriggerEndGame(bool isVictory);
 	void LoadEntityTextures();
+
+	void UpdateAnimations();
 	
 private:
 
@@ -83,6 +87,9 @@ public:
 	std::list<Entity*> entitiesSelected;
 	std::list<Entity*> unitsSelected;
 	std::list<Entity*> buildingsSelected;
+
+	std::list<iPoint> tilesOccupied;
+	std::list<iPoint> destinations; // TODO: maybe remove (?)
 
 	// Thsese two need to be public so that each entity can use it
 	SDL_Texture* fullLifeTexture = nullptr;
@@ -101,6 +108,7 @@ public:
 	bool paintExtractorUpgraded = false;
 	bool woodProducersUpgraded = false;
 	bool ExtractorQuestDone = false;
+
 protected:
 
 		// Allies
@@ -115,8 +123,8 @@ protected:
 	/// Units
 	SDL_Texture* painterTexture = nullptr;
 	SDL_Texture* warriorTexture = nullptr;
-	SDL_Texture* warrior_Texture = nullptr;
-	SDL_Texture* painter_Texture = nullptr;
+	SDL_Texture* knightTexture = nullptr;
+	SDL_Texture* explorerTexture = nullptr;
 
 		// Enemies
 	/// Buildings

@@ -172,6 +172,12 @@
     <ClCompile Include="TeamLogoScene.cpp">
       <Filter>Motor  ========\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Knight.cpp">
+      <Filter>Motor  ========\Entities\Allies\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Explorer.cpp">
+      <Filter>Motor  ========\Entities\Allies\Units</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -368,6 +374,12 @@
     </ClInclude>
     <ClInclude Include="TeamLogoScene.h">
       <Filter>Motor  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Knight.h">
+      <Filter>Motor  ========\Entities\Allies\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Explorer.h">
+      <Filter>Motor  ========\Entities\Allies\Units</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
