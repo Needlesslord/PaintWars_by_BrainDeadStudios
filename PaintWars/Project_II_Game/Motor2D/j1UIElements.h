@@ -122,7 +122,7 @@ public:
 	TEXTURE textureType = TEXTURE::NONE;
 	FONT fontType = FONT::FONT_MEDIUM;
 	fPoint map_position = {0,0};
-	fPoint init_map_position = { 0,0 };
+	fPoint init_map_position = { 1028,575 }; 	//fPoint init_map_position = { 0,0 }; 
 	fPoint inside_position = { 0,0 };
 	int layer = 3;
 
