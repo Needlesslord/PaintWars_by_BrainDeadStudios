@@ -25,6 +25,7 @@ class j1Player;
 class TransitionManager;
 class SceneManager;
 class j1QuestManager;
+class j1FogOfWar;
 
 class j1App 
 {
@@ -107,6 +108,7 @@ public:
 	j1FontsUI*			fonts = NULL;
 	TransitionManager*  transition_manager = NULL;
 	j1QuestManager*		quest_manager = NULL;
+	j1FogOfWar*		    fow = NULL;
 
 
 private:

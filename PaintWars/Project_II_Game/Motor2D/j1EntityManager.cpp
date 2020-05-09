@@ -587,6 +587,27 @@ bool j1EntityManager::Update(float dt) {
 
 
 
+
+
+	// Fog of war update (for active entities)
+
+	list<Entity*>::iterator entitiesFoW = activeEntities.begin();
+	while (entitiesFoW != activeEntities.end()) {
+	
+		(*entitiesFoW)->visible = (*entitiesFoW)->fow_entity->is_visible;
+
+		if ((*entitiesFoW)->isEntityFromPlayer) {
+			(*entitiesFoW)->fow_entity->SetPos((*entitiesFoW)->currentTile);
+		}
+
+		entitiesFoW++;
+	
+	}
+
+
+	
+
+	
 	//if (App->PAUSE_ACTIVE == true) {
 
 		// Draw all active entities

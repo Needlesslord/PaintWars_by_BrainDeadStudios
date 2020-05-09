@@ -50,6 +50,7 @@ bool j1Player::Start() {
 	SDL_ShowCursor(SDL_DISABLE);
 
 
+
 	return ret;
 }
 

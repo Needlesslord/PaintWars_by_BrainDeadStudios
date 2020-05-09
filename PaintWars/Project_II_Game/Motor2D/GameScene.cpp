@@ -321,6 +321,9 @@ bool GameScene::Start()
 
 	App->player->cricketsRepeat.Start();
 
+	App->fow->SetVisibilityMap(App->map->data.width, App->map->data.height);
+
+
 	return ret;
 }
 
