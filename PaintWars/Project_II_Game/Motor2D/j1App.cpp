@@ -478,7 +478,7 @@ bool j1App::SavegameNow() const
 	else
 		LOG("Save process halted from an error in module %s", (item != modules.end()) ? (*item)->name.c_str() : "unknown");
 
-	//data.reset();   AQUESTA MERDA D'AQUI FEIA QUE NO GUARDES
+	
 	want_to_save = false;
 	return ret;
 }

@@ -173,6 +173,10 @@ public:
 	j1UIElement* buyHouseButton = nullptr;
 	j1UIElement* upgradePaintExtractorButton = nullptr;
 	j1UIElement* upgradeWoodProducerButton = nullptr;
+	j1UIElement* shopHoverExtractor = nullptr;
+	j1UIElement* shopHoverWoodProducer = nullptr;
+	j1UIElement* shopHoverHouse = nullptr;
+	j1UIElement* shopHoverPainter = nullptr;
 
 
 	// Buildings

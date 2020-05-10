@@ -1429,9 +1429,18 @@ void GameScene::Generate_Entities()
 	}
 	else if (App->scenes->Map_Snow_Active == true) {
 
+
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 42, 42 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 45,  40 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 13,  5 }, App->entities, nullptr, 0, true);
+
 	}
 	else if (App->scenes->Map_Volcano_Active == true) {
 
+
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 42, 42 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 45,  40 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 13,  5 }, App->entities, nullptr, 0, true);
 	}
 }
 
@@ -1550,8 +1559,14 @@ void GameScene::Generate_Tiles()
 	}
 	else if (App->scenes->Map_Snow_Active == true) {
 
+
+
+
 	}
 	else if (App->scenes->Map_Volcano_Active == true) {
+
+
+
 
 	}
 }
