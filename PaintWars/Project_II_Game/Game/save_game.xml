@@ -14,19 +14,18 @@
 	<player />
 	<gui />
 	<:anonymous />
+	<player />
 	<:anonymous />
 	<:anonymous />
 	<renderer>
-		<camera x="90" y="-256" />
-		<num_entities value="9" />
+		<camera x="1009" y="-1934" />
+		<num_entities value="7" />
 		<active_entities>
 			<entity />
 			<entity />
 			<entity />
 			<entity />
-			<entity entity_type="warrior" position_x="119" position_y="256.5" missing_hp="10" size_x="62" size_y="118" />
-			<entity entity_type="warrior" position_x="344" position_y="669" missing_hp="0" size_x="62" size_y="118" />
-			<entity entity_type="warrior" position_x="-331" position_y="481.5" missing_hp="0" size_x="62" size_y="118" />
+			<entity />
 			<entity />
 			<entity />
 		</active_entities>
