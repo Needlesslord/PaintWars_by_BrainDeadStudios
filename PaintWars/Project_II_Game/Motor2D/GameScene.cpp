@@ -265,7 +265,9 @@ bool GameScene::Start()
 	miniMapMINI->click_rect = { 30, 15, 422,210 };
 	miniMapMINI->hover_rect = { 30, 15, 422,210 };
 
-	miniMapCamera = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1025, 500 }, { 0 , 0 }, false, true, { 0, 0, 70, 36 }, nullptr, nullptr, TEXTURE::MINIMAP_CAMERA);
+	if (true /*forest map*/) {
+		miniMapCamera = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1028, 575 }, { 0 , 0 }, false, true, { 0, 0, 70, 36 }, nullptr, nullptr, TEXTURE::MINIMAP_CAMERA);
+	}
 
 	miniMapBack = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0 , 0 }, { 0 , 0 }, false, false, { 0, 0, 1800, 1300 }, nullptr, nullptr,  TEXTURE::MINIMAP_BACK_SPRITE);
 
@@ -356,6 +358,7 @@ bool GameScene::PreUpdate()
 
 	QuestManagerFunction();
 	DialogManagerFunction();
+
 
 
 	return ret;
@@ -552,10 +555,13 @@ bool GameScene::PostUpdate()
 		}
 	}
 
-	miniMapCamera->map_position.x = 0/*miniMapCamera->init_map_position.x+App->render->camera.x*-0.05*/;
+	miniMapCamera->map_position.x = miniMapCamera->init_map_position.x+App->render->camera.x*-0.05;
 	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*-0.05;
 
 	
+	//miniMapCamera->map_position.x = miniMapCamera->map_position.x + 0.005;
+	//miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*-0.05;
+
 	
 
 	WIN_LOSE_Manager();

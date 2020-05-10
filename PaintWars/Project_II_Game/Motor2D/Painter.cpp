@@ -32,7 +32,7 @@ Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 	pos.x = tileWorldPosition.x + App->map->data.tile_width / 2 - size.x / 2;
 	pos.y = tileWorldPosition.y + App->map->data.tile_height / 2 - size.y;
 
-	speed = 200.0f;
+	speed = 150.0f;
 
 	spawningTime = 10.0f;
 
@@ -59,7 +59,6 @@ void Painter::ExtractPaint(float dt) {
 
 void Painter::ExtractWood(float dt) {
 	
-
 	if (App->pathfinding->IsWood(currentTile) && currentTile == destination) {
 		//App->player->woodCount.count += 0.01;
 		App->player->woodCount.count += extractionRate*dt;
@@ -76,7 +75,7 @@ void Painter::OnCollision(Collider* c1, Collider* c2) {
 	if (entityCollider == c1) {
 		// Right side collision
 		if (c1->rect.x + c1->rect.w > c2->rect.x) {
-			c1->rect.x  = c2->rect.x - c1->rect.w;
+			//c1->rect.x  = c2->rect.x - c1->rect.w;
 		}
 	}
 }

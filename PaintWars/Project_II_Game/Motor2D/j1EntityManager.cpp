@@ -68,6 +68,7 @@ bool j1EntityManager::PreUpdate() {
 		else if ((*setDefaultAnimation)->entityType == ENTITY_TYPE_PAINTER) {
 			(*setDefaultAnimation)->currentAnimation = &painterIdle;
 		}
+		// TODO: knights
 		
 		setDefaultAnimation++;
 	}
@@ -405,13 +406,11 @@ bool j1EntityManager::Update(float dt) {
 										}
 										checkAttackAnimation++;
 									}
-									//---------------------------------------------------------//
 								}
 							}
+
 							checkWhichSpawner++;
 						}
-
-						
 					}
 				}
 			}
@@ -436,9 +435,35 @@ bool j1EntityManager::Update(float dt) {
 					iPoint cameraW = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
 					iPoint mapCoordinates = App->map->WorldToMap(xy.x - cameraW.x, xy.y - cameraW.y + App->map->data.tile_height / 2);
 
-					(*unitsToRedirect)->SetDestination(mapCoordinates);
-					(*unitsToRedirect)->CalculateMovementLogic(orderOfPriority);
+					iPoint destination = mapCoordinates;
 
+
+					bool locationAvailable = true;
+					list<Entity*>::iterator someoneElse = activeUnits.begin();
+					while (someoneElse != activeUnits.end()) {
+
+						if ((*someoneElse) != (*unitsToRedirect)) {
+
+							// We can't send someone to where there's another unit
+							if (mapCoordinates == (*someoneElse)->currentTile && !(*someoneElse)->isOnTheMove)
+								locationAvailable = false;
+
+							// And we can't send someone to where someone else is already going
+							else if (mapCoordinates == (*someoneElse)->destination) {
+
+								destination = App->pathfinding->FindClosestDestination(mapCoordinates).at(orderOfPriority);
+								locationAvailable = true;
+							}
+						}
+
+						someoneElse++;
+					}
+				
+
+					if (locationAvailable) {
+						(*unitsToRedirect)->SetDestination(destination);
+						(*unitsToRedirect)->CalculateMovementLogic(orderOfPriority);
+					}
 					orderOfPriority++;
 				}
 
@@ -476,112 +501,28 @@ bool j1EntityManager::Update(float dt) {
 			collidersToMove++;
 		}
 
-		std::list<Entity*>::iterator checkMovingAnimation = activeUnits.begin();
-		while (checkMovingAnimation != activeUnits.end()) {
 
-			if ((*checkMovingAnimation)->entityType == ENTITY_TYPE_WARRIOR) {
 
-				if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
-					(*checkMovingAnimation)->currentAnimation = &warriorMovingNorth;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
-					
-				}
 
-				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
-					(*checkMovingAnimation)->currentAnimation = &warriorMovingNorthEast;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
-				}
+		// Update the animations for the units
+		UpdateAnimations();
 
-				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
-					(*checkMovingAnimation)->currentAnimation = &warriorMovingEast;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
-				}
 
-				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
-					(*checkMovingAnimation)->currentAnimation = &warriorMovingSouthEast;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
-				}
 
-				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
-					(*checkMovingAnimation)->currentAnimation = &warriorMovingSouth;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
-				}
+		// Kill first selected unit on SUPR press
+		if (App->input->GetKey(SDL_SCANCODE_DELETE) == KEY_DOWN) {
 
-				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+			if (!unitsSelected.empty()) {
 
-					(*checkMovingAnimation)->currentAnimation = &warriorMovingSouthWest;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
-				}
-
-				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
-
-					(*checkMovingAnimation)->currentAnimation = &warriorMovingWest;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
-				}
-
-				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
-
-					(*checkMovingAnimation)->currentAnimation = &warriorMovingNorthWest;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
-				}
+				list<Entity*>::iterator unitsToKill = unitsSelected.begin();
+				(*unitsToKill)->isAlive = false;
+				unitsSelected.erase(unitsToKill);
 			}
-
-			else if ((*checkMovingAnimation)->entityType == ENTITY_TYPE_PAINTER) {
-
-				if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
-
-					(*checkMovingAnimation)->currentAnimation = &painterMovingNorth;
-					Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
-				}
-
-				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
-
-					(*checkMovingAnimation)->currentAnimation = &painterMovingNorthEast;
-					Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
-				}
-
-				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
-
-					(*checkMovingAnimation)->currentAnimation = &painterMovingEast;
-					Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
-				}
-
-				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
-
-					(*checkMovingAnimation)->currentAnimation = &painterMovingSouthEast;
-					Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
-				}
-
-				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
-
-					(*checkMovingAnimation)->currentAnimation = &painterMovingSouth;
-					Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
-				}
-
-				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
-
-					(*checkMovingAnimation)->currentAnimation = &painterMovingSouthWest;
-					Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
-				}
-
-				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
-
-					(*checkMovingAnimation)->currentAnimation = &painterMovingWest;
-					Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
-				}
-
-				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
-
-					(*checkMovingAnimation)->currentAnimation = &painterMovingNorthWest;
-					Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
-				}
-			}
-			checkMovingAnimation++;
 		}
 	}
 
@@ -611,10 +552,16 @@ bool j1EntityManager::Update(float dt) {
 					(*entitiesToDraw)->Draw(barracksTexture);
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINTER) {
-					(*entitiesToDraw)->Draw(painter_Texture);
+					(*entitiesToDraw)->Draw(painterTexture);
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_WARRIOR) {
-					(*entitiesToDraw)->Draw(warrior_Texture);
+					(*entitiesToDraw)->Draw(warriorTexture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_KNIGHT) {
+					(*entitiesToDraw)->Draw(knightTexture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_EXPLORER) {
+					(*entitiesToDraw)->Draw(explorerTexture);
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SPAWNER) {
 					(*entitiesToDraw)->Draw(spawnerTexture);
@@ -648,20 +595,6 @@ bool j1EntityManager::Update(float dt) {
 			(*spawningBuildingsProgressBars)->ShowProgressBar();
 			spawningBuildingsProgressBars++;
 		}
-
-
-		// Kill first selected unit on SUPR press
-		if (App->input->GetKey(SDL_SCANCODE_DELETE) == KEY_DOWN) {
-
-			if (!unitsSelected.empty()) {
-
-				list<Entity*>::iterator unitsToKill = unitsSelected.begin();
-				(*unitsToKill)->isAlive = false;
-				unitsSelected.erase(unitsToKill);
-			}
-		}
-
-
 
 	return ret;
 }
@@ -847,10 +780,10 @@ void j1EntityManager::UnselectAllEntities() {
 
 }
 
-Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module* listener, Entity* creator, float damage,  bool spawnAutomatically) {
-	
-		// Allies
-	/// Buildings
+Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module* listener, Entity* creator, float damage, bool spawnAutomatically) {
+
+	// Allies
+/// Buildings
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
 
 		TownHall* townHall = new TownHall(tile, damage, this, creator);
@@ -868,10 +801,10 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 
 		// Change the walkability to non walkable
 		App->pathfinding->ChangeWalkability(tile, false, townHall->entitySize);
-	
+
 		return (Entity*)townHall;
 	}
-	
+
 	else if (entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
 
 		PaintExtractor* paintExtractor = new PaintExtractor(tile, damage, this, creator);
@@ -994,9 +927,48 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 
 		else
 			spawningEntities.push_back((Entity*)warrior);
-	
+
 		return (Entity*)warrior;
 	}
+
+	else if (entityType == ENTITY_TYPE_KNIGHT) {
+
+		Knight* knight = new Knight(tile, damage, this, creator);
+
+		if (spawnAutomatically) {
+
+			activeEntities.push_back((Entity*)knight);
+			activeUnits.push_back((Entity*)knight);
+			knight->isAlive = true;
+			knight->CreateEntityCollider(knight->pos, (Entity*)knight);
+			knight->currentAnimation = &warriorIdle; // TODO: change
+		}
+
+		else
+			spawningEntities.push_back((Entity*)knight);
+
+		return (Entity*)knight;
+	}
+
+	else if (entityType == ENTITY_TYPE_KNIGHT) {
+
+		Explorer* explorer = new Explorer(tile, damage, this, creator);
+
+		if (spawnAutomatically) {
+
+			activeEntities.push_back((Entity*)explorer);
+			activeUnits.push_back((Entity*)explorer);
+			explorer->isAlive = true;
+			explorer->CreateEntityCollider(explorer->pos, (Entity*)explorer);
+			explorer->currentAnimation = &warriorIdle; // TODO: change
+		}
+
+		else
+			spawningEntities.push_back((Entity*)explorer);
+
+		return (Entity*)explorer;
+	}
+
 
 		// Enemies
 	/// Buildings
@@ -1108,10 +1080,9 @@ void j1EntityManager::LoadEntityTextures()
 	barracksTexture = App->tex->Load("textures/Barracks.png");
 
 	/// Units
-	painterTexture = App->tex->Load("textures/Painter.png");	//TODO ELIMINAR
-	warriorTexture = App->tex->Load("textures/Warrior.png");	//TODO ELIMINAR
-	warrior_Texture = App->tex->Load("textures/Warrior_Sprite_Mod.png");
-	painter_Texture = App->tex->Load("textures/spritesheet_painter_mod.png");
+	warriorTexture = App->tex->Load("textures/Warrior_Sprite_Mod.png");
+	painterTexture = App->tex->Load("textures/spritesheet_painter_mod.png");
+	knightTexture = App->tex->Load("textures/");// TODO: Add
 
 	// Enemies
 /// Buildings
@@ -1131,4 +1102,115 @@ void j1EntityManager::LoadEntityTextures()
 	PainterSprites();
 
 	
+}
+
+void j1EntityManager::UpdateAnimations() {
+
+	std::list<Entity*>::iterator checkMovingAnimation = activeUnits.begin();
+	while (checkMovingAnimation != activeUnits.end()) {
+
+		if ((*checkMovingAnimation)->entityType == ENTITY_TYPE_WARRIOR) {
+
+			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
+
+				(*checkMovingAnimation)->currentAnimation = &warriorMovingNorth;
+				Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &warriorMovingNorthEast;
+				Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &warriorMovingEast;
+				Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &warriorMovingSouthEast;
+				Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
+
+				(*checkMovingAnimation)->currentAnimation = &warriorMovingSouth;
+				Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &warriorMovingSouthWest;
+				Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &warriorMovingWest;
+				Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &warriorMovingNorthWest;
+				Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+			}
+		}
+
+		else if ((*checkMovingAnimation)->entityType == ENTITY_TYPE_PAINTER) {
+
+			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
+
+				(*checkMovingAnimation)->currentAnimation = &painterMovingNorth;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &painterMovingNorthEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &painterMovingEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &painterMovingSouthEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
+
+				(*checkMovingAnimation)->currentAnimation = &painterMovingSouth;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &painterMovingSouthWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &painterMovingWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &painterMovingNorthWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+		}
+		checkMovingAnimation++;
+	}
 }

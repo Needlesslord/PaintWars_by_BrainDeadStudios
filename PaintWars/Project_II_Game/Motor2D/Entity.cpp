@@ -75,7 +75,7 @@ void Entity::CalculateMovementLogic(int p) {
 
 	if (map != -1) {
 
-		if (p > 0) {
+		/*if (p > 0) {
 
 			if (p <= App->pathfinding->FindClosestDestination(destination).size()) {
 
@@ -88,30 +88,7 @@ void Entity::CalculateMovementLogic(int p) {
 					nextTile = currentPath.at(pathIterator);
 				}
 			}
-
-			//else { // This can never be for now because the maximum of units selected is 9 so p will never be 9 or greater
-			//	// We store the 8 closest in a vector
-			//	std::vector<iPoint> closestDestinationList;
-			//	for (int i = 0; i < 8; i++) {
-			//		closestDestinationList.push_back(App->pathfinding->FindClosestDestination(destination).at(i));
-			//	}
-			//	
-			//	iPoint cD2cD;
-			//	bool exit = false;
-			//	for (int i = 0; i < 8; i++) {
-			//		if (exit) break;
-			//		cD2cD = App->pathfinding->FindClosestDestination(closestDestinationList.at(p - 9)).at(i);
-			//		for (int j = 0; j < 8; j++) {
-			//			if (cD2cD != closestDestinationList.at(j)) {
-			//				destination = cD2cD;
-			//				exit = true;
-			//				break;
-			//			}
-			//		}
-			//	}
-			//}
-
-		}
+		}*/
 
 		isOnTheMove = true;
 
@@ -120,11 +97,13 @@ void Entity::CalculateMovementLogic(int p) {
 	else {
 		*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;
 		isOnTheMove = false;
+		destination = currentTile;
 	}
 }
 
 void Entity::MovementLogic() {
 	BROFILER_CATEGORY("Movement Logic--Entities();", Profiler::Color::OrangeRed);
+
 	if (currentTile.x < nextTile.x) {
 
 		if (currentTile.y < nextTile.y) {
@@ -511,7 +490,23 @@ bool Entity::CreateEntityCollider(fPoint pos, Entity* entity) {
 
 		return true;
 	}
-		
+
+	else if (entityType == ENTITY_TYPE_KNIGHT) {
+		COLLIDER_TYPE collType = COLLIDER_ALLY_UNIT;
+		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
+		entityCollider = App->col->AddCollider(rect, collType, entity, App->entities);
+
+		return true;
+	}
+
+	else if (entityType == ENTITY_TYPE_EXPLORER) {
+		COLLIDER_TYPE collType = COLLIDER_ALLY_UNIT;
+		SDL_Rect rect = { pos.x, pos.y, GetSize().x, GetSize().y };
+		entityCollider = App->col->AddCollider(rect, collType, entity, App->entities);
+
+		return true;
+	}
+
 		// Enemies
 	/// Buildings
 	else if (entityType == ENTITY_TYPE_SPAWNER) {

@@ -85,6 +85,7 @@
     <ClCompile Include="Dissolve.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="ExpandingBars.cpp" />
+    <ClCompile Include="Explorer.cpp" />
     <ClCompile Include="FadeToColour.cpp" />
     <ClCompile Include="GameLogoScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -107,6 +108,7 @@
     <ClCompile Include="j1Player.cpp" />
     <ClCompile Include="j1QuestManager.cpp" />
     <ClCompile Include="j1Timer.cpp" />
+    <ClCompile Include="Knight.cpp" />
     <ClCompile Include="LoseScene.cpp" />
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="p2Log.cpp" />
@@ -145,6 +147,7 @@
     <ClInclude Include="Dissolve.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="ExpandingBars.h" />
+    <ClInclude Include="Explorer.h" />
     <ClInclude Include="FadeToColour.h" />
     <ClInclude Include="GameLogoScene.h" />
     <ClInclude Include="GameScene.h" />
@@ -163,6 +166,7 @@
     <ClInclude Include="j1Player.h" />
     <ClInclude Include="j1QuestManager.h" />
     <ClInclude Include="j1Timer.h" />
+    <ClInclude Include="Knight.h" />
     <ClInclude Include="LoseScene.h" />
     <ClInclude Include="MenuScene.h" />
     <ClInclude Include="p2DynArray.h" />
