@@ -130,7 +130,7 @@ public:
 	j1UIElement* miniMapBack = nullptr;
 	j1UIElement* miniMapMINI = nullptr;
 	j1UIElement* miniMapFULL = nullptr;
-	j1UIElement* miniMapCamera = nullptr;
+	j1UIElement* miniMapScopeCamera = nullptr;
 	j1UIElement* miniMapBackground = nullptr;
 
 	//Pause Menu
@@ -165,6 +165,8 @@ public:
 	j1UIElement* noButton = nullptr;
 
 	// Shop
+	j1UIElement* CostLabel = nullptr;
+	j1UIElement* ExplanationHover = nullptr;
 	j1UIElement* shopImage = nullptr;
 	j1UIElement* shopLabel = nullptr;
 	j1UIElement* buyPaintExtractorButton = nullptr;
@@ -173,10 +175,18 @@ public:
 	j1UIElement* buyHouseButton = nullptr;
 	j1UIElement* upgradePaintExtractorButton = nullptr;
 	j1UIElement* upgradeWoodProducerButton = nullptr;
+
+
 	j1UIElement* shopHoverExtractor = nullptr;
 	j1UIElement* shopHoverWoodProducer = nullptr;
+	j1UIElement* shopHoverBarracks = nullptr;
 	j1UIElement* shopHoverHouse = nullptr;
 	j1UIElement* shopHoverPainter = nullptr;
+	j1UIElement* shopHoverWarrior = nullptr;
+	j1UIElement* shopHoverUpgradeWarrior = nullptr;
+	j1UIElement* shopHoverUpgradePainter = nullptr;
+	j1UIElement* shopHoverUpgradeExtractor = nullptr;
+	j1UIElement* shopHoverUpgradeWoodProducer = nullptr;
 
 
 	// Buildings

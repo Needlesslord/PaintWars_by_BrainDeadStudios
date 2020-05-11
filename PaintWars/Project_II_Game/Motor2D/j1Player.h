@@ -86,7 +86,8 @@ private:
 	std::string	folder;
 	pugi::xml_node	node;
 	std::string file;
-
+	float MinimapCameraBufferX;
+	float MinimapCameraBufferY;
 
 };
 
