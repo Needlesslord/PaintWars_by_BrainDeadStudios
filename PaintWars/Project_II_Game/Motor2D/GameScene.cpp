@@ -234,8 +234,14 @@ bool GameScene::Start()
 	noButton->hover_rect = { 1272, 359, 165, 57 };
 	noButton->click_rect = { 1437, 359, 166, 57 };
 
+
+
+
+
 	// Shop
 	shopImage = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15 , 450 }, { 0 , 0 }, false, false, { 263, 1551, 263, 265 }, nullptr, nullptr, TEXTURE::ATLAS);
+	ExplanationHover = App->gui->AddElement(TypeOfUI::GUI_LABEL, shopImage, { 130 , 680 }, { 0 , 0 }, false, false, { 0, 0, 0, 0 }, "EXPLANATION", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE); //Not implemented
+	CostLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, shopImage, { 130 , 680 }, { 0 , 0 }, false, false, { 0, 0, 0, 0 }, "COST", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
 	shopLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, shopImage, { 15 , 452 }, { 2 , 2 }, false, false, { 0, 0, 0, 0 }, "SHOP", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
 	buyWoodProducerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 15, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyWoodProducerButton->hover_rect = { 0, 1966, 65, 82 };
@@ -255,6 +261,19 @@ bool GameScene::Start()
 	upgradePaintExtractorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradePaintExtractorButton->hover_rect = { 0, 1966, 65, 82 };
 	upgradePaintExtractorButton->click_rect = { 65, 1966, 65, 82 };
+
+	shopHoverExtractor =App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
+	shopHoverWoodProducer = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
+	shopHoverBarracks = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
+	shopHoverHouse = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
+	shopHoverPainter = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
+	shopHoverUpgradePainter = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
+	shopHoverWarrior = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
+	shopHoverUpgradeWarrior = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
+	shopHoverUpgradeExtractor = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
+	shopHoverUpgradeWoodProducer = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
+
+
 
 
 	//HUD - MiniMap
@@ -484,6 +503,7 @@ bool GameScene::Update(float dt)
 
 		shopImage->enabled = false;
 		shopLabel->enabled = false;
+		CostLabel->enabled = false;
 		buyWoodProducerButton->enabled = false;
 		buyPaintExtractorButton->enabled = false;
 		buyBarrackButton->enabled = false;
@@ -508,6 +528,7 @@ bool GameScene::Update(float dt)
 
 		shopImage->enabled = false;
 		shopLabel->enabled = false;
+		CostLabel->enabled = false;
 		buyWoodProducerButton->enabled = false;
 		buyPaintExtractorButton->enabled = false;
 		buyBarrackButton->enabled = false;
@@ -602,168 +623,6 @@ bool GameScene::CleanUp()
 	
 	App->scenes->Timer_Minutes = minutes;
 	App->scenes->Timer_Seconds = seconds;
-
-	//hudBarImage									   ->CleanUp();
-	// paintLabel 								   ->CleanUp();
-	// woodLabel									   ->CleanUp();
-	// metalLabel 								   ->CleanUp();
-	// titaniumLabel 								   ->CleanUp();
-	//// foodLabel 									   ->CleanUp();
-	// researchLabel 								   ->CleanUp();
-	//// entitiesImage 								   ->CleanUp();
-	// entitiesLabel 								   ->CleanUp();
-	// //BackgroundForest 							   ->CleanUp();
-	// questsImage 								   ->CleanUp();
-	// questsLabel 								   ->CleanUp();
-	// questsOpenButton 							   ->CleanUp();
-	// questsCloseButton 							   ->CleanUp();
-	// questsText1           						   ->CleanUp();
-	// questsText2          						   ->CleanUp();
-	// questsText3           						   ->CleanUp();
-	// questsText4          						   ->CleanUp();
-	// questsText1Count 							   ->CleanUp();
-	// questsText2Count 							   ->CleanUp();
-	// questsText3Count 							   ->CleanUp();
-	// questsText4Count 							   ->CleanUp();
-	// //questsCompleted1 							   ->CleanUp();
-	// //questsCompleted2 							   ->CleanUp();
-	// //questsCompleted3 							   ->CleanUp();
-	// //questsCompleted4 							   ->CleanUp();
-	//	 hudBarImage 							   ->CleanUp();
-	//	 paintLabel 							   ->CleanUp();
-	//	 woodLabel 								   ->CleanUp();
-	//	 metalLabel 							   ->CleanUp();
-	//	 titaniumLabel							   ->CleanUp();
-	//	 researchLabel							   ->CleanUp();
-	//	 entitiesLabel							   ->CleanUp();
-	//	 EntityHP 								   ->CleanUp();
-	//	 questsImage 							   ->CleanUp();
-	//	 questsLabel 							   ->CleanUp();
-	//	 questsOpenButton						   ->CleanUp();
-	//	 questsOpenButton 						   ->CleanUp();
-	//	 questsOpenButton 						   ->CleanUp();
-	//	 questsCloseButton						   ->CleanUp();
-	//	 questsCloseButton						   ->CleanUp();
-	//	 questsCloseButton						   ->CleanUp();
-	//	 questsText1 							   ->CleanUp();
-	//	 questsText1Count						   ->CleanUp();
-	//	 questsText2 							   ->CleanUp();
-	//	 questsText2Count						   ->CleanUp();
-	//	 questsText3 							   ->CleanUp();
-	//	 questsText3Count						   ->CleanUp();
-	//	 questsText4 							   ->CleanUp();
-	//	 questsText4Count						   ->CleanUp();
-	//	 dialogImage							   ->CleanUp();
-	//	 dialogClose							   ->CleanUp();
-	//	 dialogClose							   ->CleanUp();
-	//	 dialogClose							   ->CleanUp();
-	//	 dialogText1							   ->CleanUp();
-	//	 dialogText2							   ->CleanUp();
-	//	 dialogText3							   ->CleanUp();
-	//	 dialogPrev								   ->CleanUp();
-	//	 dialogPrev 							   ->CleanUp();
-	//	 dialogPrev 							   ->CleanUp();
-	//	 dialogNext								   ->CleanUp();
-	//	 dialogNext 							   ->CleanUp();
-	//	 dialogNext 							   ->CleanUp();
-	//	 dialogOpen								   ->CleanUp();
-	//	 dialogOpen 							   ->CleanUp();
-	//	 dialogOpen 							   ->CleanUp();
-	//	  homeButton 							   ->CleanUp();
-	//	 homeButton						           ->CleanUp();
-	//	 homeButton								   ->CleanUp();
-	//	 shopButton 							   ->CleanUp();
-	//	 shopButton								   ->CleanUp();
-	//	 shopButton								   ->CleanUp();
-	//	 pauseMenuButton 						   ->CleanUp();
-	//	 pauseMenuButton						   ->CleanUp();
-	//	 pauseMenuButton						   ->CleanUp();
-	//	 restartButton 							   ->CleanUp();
-	//	 restartButton							   ->CleanUp();
-	//	 restartButton							   ->CleanUp();
-	//	 pauseMenuImage 						   ->CleanUp();
-	//	 pauseMenuLabel 						   ->CleanUp();
-	//	 resumeButton 							   ->CleanUp();
-	//	 resumeButton							   ->CleanUp();
-	//	 resumeButton							   ->CleanUp();
-	//	 saveButton 							   ->CleanUp();
-	//	 saveButton								   ->CleanUp();
-	//	 saveButton								   ->CleanUp();
-	//	 settingsButton 						   ->CleanUp();
-	//	 settingsButton							   ->CleanUp();
-	//	 settingsButton							   ->CleanUp();
-	//	 mainMenuButton 						   ->CleanUp();
-	//	 mainMenuButton							   ->CleanUp();
-	//	 mainMenuButton							   ->CleanUp();
-	//	 exitButton 							   ->CleanUp();
-	//	 exitButton								   ->CleanUp();
-	//	 exitButton								   ->CleanUp();
-	//   musicLabel								   ->CleanUp();
-	//   vfxLabel 								   ->CleanUp();
-	//   fullscreenLabel 							   ->CleanUp();
-	//   gpadLabel 								   ->CleanUp();
-	//   fullscreenButton 						   ->CleanUp();
-	//   fullscreenButton							   ->CleanUp();
-	//   fullscreenButton							   ->CleanUp();
-	//   gpadButton 								   ->CleanUp();
-	//   gpadButton								   ->CleanUp();
-	//   gpadButton								   ->CleanUp();
-	//   resetButton								   ->CleanUp();
-	//   resetButton								   ->CleanUp();
-	//   resetButton								   ->CleanUp();
-	//   backButton 								   ->CleanUp();
-	//   backButton								   ->CleanUp();
-	//   backButton								   ->CleanUp();
-	//  exitMenuImage 							   ->CleanUp();
-	//  exitMenuLabel 							   ->CleanUp();
-	//  exitTextLabel 							   ->CleanUp();
-	//  yesButton 								   ->CleanUp();
-	//  yesButton									   ->CleanUp();
-	//  yesButton									   ->CleanUp();
-	//  noButton 									   ->CleanUp();
-	//  noButton									   ->CleanUp();
-	//  noButton									   ->CleanUp();
-	// shopImage 									   ->CleanUp();
-	// shopLabel 									   ->CleanUp();
-	// buyWoodProducerButton 						   ->CleanUp();
-	// buyWoodProducerButton						   ->CleanUp();
-	// buyWoodProducerButton						   ->CleanUp();
-	// buyPaintExtractorButton 					   ->CleanUp();
-	// buyPaintExtractorButton					   ->CleanUp();
-	// buyPaintExtractorButton					   ->CleanUp();
-	// buyBarrackButton 							   ->CleanUp();
-	// buyBarrackButton							   ->CleanUp();
-	// buyBarrackButton							   ->CleanUp();
-	// buyHouseButton 							   ->CleanUp();
-	// buyHouseButton								   ->CleanUp();
-	// buyHouseButton								   ->CleanUp();
-	// upgradeWoodProducerButton					   ->CleanUp();
-	// upgradeWoodProducerButton					   ->CleanUp();
-	// upgradeWoodProducerButton					   ->CleanUp();
-	// upgradePaintExtractorButton 				   ->CleanUp();
-	// upgradePaintExtractorButton				   ->CleanUp();
-	// upgradePaintExtractorButton				   ->CleanUp();
-	// miniMapBackground 							   ->CleanUp();
-	// miniMapMINI								   ->CleanUp();
-	// miniMapMINI								   ->CleanUp();
-	// miniMapMINI								   ->CleanUp();
-	// miniMapCamera 								   ->CleanUp();
-	// miniMapBack 								   ->CleanUp();
-	// miniMapFULL 								   ->CleanUp();
-	// miniMapFULL								   ->CleanUp();
-	// miniMapFULL								   ->CleanUp();
- //  upgradePainterButton 						   ->CleanUp();
- //  upgradePainterButton							   ->CleanUp();
- //  upgradePainterButton							   ->CleanUp();
- //  buyPainterButton 							   ->CleanUp();
- //  buyPainterButton								   ->CleanUp();
- //  buyPainterButton								   ->CleanUp();
- //  upgradeWarriorButton 						   ->CleanUp();
- //  upgradeWarriorButton							   ->CleanUp();
- //  upgradeWarriorButton							   ->CleanUp();
- //  buyWarriorButton 							   ->CleanUp();
- //  buyWarriorButton								   ->CleanUp();
- //  buyWarriorButton								   ->CleanUp();
 
 
 
@@ -915,6 +774,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	{
 		shopImage->enabled = !shopImage->enabled;
 		shopLabel->enabled = !shopLabel->enabled;
+		CostLabel->enabled = !CostLabel->enabled;
 		buyWoodProducerButton->enabled = !buyWoodProducerButton->enabled;
 		buyPaintExtractorButton->enabled = !buyPaintExtractorButton->enabled;
 		buyBarrackButton->enabled = !buyBarrackButton->enabled;
@@ -1033,6 +893,92 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			UpgradeEntityQuestCompleted = true;
 		}
 	}
+
+	//HoverShop
+
+	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_HOVER) {
+
+		shopHoverExtractor->enabled = true;
+	}
+	else {
+		shopHoverExtractor->enabled = false;
+	}
+
+	if (element == buyWoodProducerButton && type == GUI_Event::EVENT_HOVER) {
+
+		shopHoverWoodProducer->enabled = true;
+	}
+	else {
+		shopHoverWoodProducer->enabled = false;
+	}
+
+	if (element == buyBarrackButton && type == GUI_Event::EVENT_HOVER) {
+
+		shopHoverBarracks->enabled = true;
+	}
+	else {
+		shopHoverBarracks->enabled = false;
+	}
+
+	if (element == buyHouseButton && type == GUI_Event::EVENT_HOVER) {
+
+		shopHoverHouse->enabled = true;
+	}
+	else {
+		shopHoverHouse->enabled = false;
+	}
+
+	if (element == buyPainterButton && type == GUI_Event::EVENT_HOVER) {
+
+		shopHoverPainter->enabled = true;
+		shopHoverPainter->map_position;
+	}
+	else {
+		shopHoverPainter->enabled = false;
+	}
+
+	if (element == buyWarriorButton && type == GUI_Event::EVENT_HOVER) {
+
+		shopHoverWarrior->enabled = true;
+	}
+	else {
+		shopHoverWarrior->enabled = false;
+	}
+
+	if (element == upgradeWarriorButton && type == GUI_Event::EVENT_HOVER) {
+
+		shopHoverUpgradeWarrior->enabled = true;
+
+	}
+	else {
+		shopHoverUpgradeWarrior->enabled = false;
+	}
+
+	if (element == upgradePainterButton && type == GUI_Event::EVENT_HOVER) {
+
+		shopHoverUpgradePainter->enabled = true;
+	}
+	else {
+		shopHoverUpgradePainter->enabled = false;
+	}
+
+	if (element == upgradePaintExtractorButton && type == GUI_Event::EVENT_HOVER) {
+
+		shopHoverUpgradeExtractor->enabled = true;
+	}
+	else {
+		shopHoverUpgradeExtractor->enabled = false;
+	}
+
+	if (element == upgradeWoodProducerButton && type == GUI_Event::EVENT_HOVER) {
+
+		shopHoverUpgradeWoodProducer->enabled = true;
+	}
+	else {
+		shopHoverUpgradeWoodProducer->enabled = false;
+	}
+
+
 
 	//Townhall shop
 

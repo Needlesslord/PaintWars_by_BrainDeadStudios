@@ -32,6 +32,8 @@ bool j1TextUI::Start()
 		font_name = App->fonts->Load("textures/font_extra_small.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
 	else if (fontType == FONT::FONT_EXTRA_SMALL_WHITE)
 		font_name = App->fonts->Load("textures/font_extra_small_white.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
+	else if (fontType == FONT::FONT_EXTRA_SMALL_RED)
+		font_name = App->fonts->Load("textures/font_extra_small_red.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
 	
 
 	return true;
