@@ -44,6 +44,8 @@ bool j1Player::Awake(pugi::xml_node& config)
 
 bool j1Player::Start() {
 	bool ret = true;
+	MinimapCameraBufferX = 0;
+	MinimapCameraBufferY = 0;
 	LOG("Player Started");
 	Tex_Player = App->tex->Load("textures/Cursor3.png");
 	App->win->GetWindowSize( win_width,win_height);
@@ -92,16 +94,24 @@ bool j1Player::Update(float dt)
 		p2List_item<j1UIElement*>* UI_List = App->gui->GUI_ELEMENTS.start;
 		while (UI_List != NULL)
 		{
-			if (z != 56) {
+		
+
+			if (App->gui->GUI_ELEMENTS[z]->textureType == TEXTURE::MINIMAP_CAMERA) {
+
+				
+				
+					App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x - MinimapCameraBufferX;
+					App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y - MinimapCameraBufferY;
+				
+
+			}
+			else {
+				
 				//LOG("UI COUNT IS %d", z);
 				App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x;
 				App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y;
 			}
-			else {
-				App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x*0.05;
-				App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y*0.05;
-
-			}
+			
 
 
 			UI_List = UI_List->next;
@@ -109,6 +119,7 @@ bool j1Player::Update(float dt)
 		}
 	}
 	Select_Entities(selector);
+
 	return true;
 }
 
@@ -121,30 +132,50 @@ bool j1Player::CleanUp()
 
 void j1Player::Camera_Control(float dt)
 {
+	int z = 0;
 	if (App->scenes->current_scene->scene_name == SCENES::GAME_SCENE)
 	{
 		if (App->PAUSE_ACTIVE==false) {
-
+			
 			if (mouse_position.x == 0 && App->render->camera.x <= 3750)
 			{
+				//LOG("Camera x at %d", App->render->camera.x);
 				App->render->camera.x += camera_speed * dt * 1000;
+				//1242X
+				//695Y
+				
+				MinimapCameraBufferX = MinimapCameraBufferX + 1.1;
 			}
 
 			if (mouse_position.y == 0)
 			{
+				//LOG("Camera y at %d", App->render->camera.y);
 				App->render->camera.y += camera_speed * dt * 1000;
+
+				if (App->render->camera.y < 50) {
+					MinimapCameraBufferY = MinimapCameraBufferY + 1.1;
+				}
 			}
 
 
-			if (mouse_position.x > (win_width - camera_offset) / App->win->scale)
+			if (mouse_position.x > (win_width - camera_offset) / App->win->scale )
 			{
+				//LOG("Camera x at %d", App->render->camera.x);
 				App->render->camera.x -= camera_speed * dt * 1000;
+				if (App->render->camera.x > -2900) {
+					MinimapCameraBufferX = MinimapCameraBufferX - 1.1;
+				}
+
 			}
 
 
 			if (mouse_position.y > (win_height - camera_offset) / App->win->scale)
 			{
+				//LOG("Camera y at %d", App->render->camera.y);
 				App->render->camera.y -= camera_speed * dt * 1000;
+				if (App->render->camera.y > -3150) {
+					MinimapCameraBufferY = MinimapCameraBufferY - 1.1;
+				}
 			}
 
 			if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
@@ -176,34 +207,7 @@ void j1Player::Camera_Control(float dt)
 			}
 		}
 
-		//UI
-		//for (int i = 0; i < 21/*App->gui->GUI_ELEMENTS.count()*/; i++)
-		//{
-		//	if ((i > 9) && (i < 20)) {
-		//		App->gui->GUI_ELEMENTS[i]->map_position.x = App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
-		//		App->gui->GUI_ELEMENTS[i]->map_position.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;
-		//		/*App->gui->GUI_ELEMENTS[i]->click_rect.x=App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
-		//		App->gui->GUI_ELEMENTS[i]->click_rect.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;
-		//		App->gui->GUI_ELEMENTS[i]->hover_rect.x= App->gui->GUI_ELEMENTS[i]->init_map_position.x + App->render->camera.x;
-		//		App->gui->GUI_ELEMENTS[i]->hover_rect.y = App->gui->GUI_ELEMENTS[i]->init_map_position.y + App->render->camera.y;*/
-		//	}
-		//}
-
-		/*App->render->RenderQueueUI(1, App->entities->zeroLifeTexture, 550 + App->render->camera.x*-2 / 2, 50 + App->render->camera.y*-2 / 2, { 0, 0, 200, 15 }, false, true, 0);
-		App->render->RenderQueueUI(1, App->entities->fullLifeTexture, 550 + App->render->camera.x*-2 / 2,  50+App->render->camera.y*-2 / 2, { 0, 0, (int)App->entities->Entity_HP, 15 }, false, true, 0);*/
 		
-		
-
-		/*while (App->gui->GUI_ELEMENTS)
-		{
-			if (id < item->data->firstgid)
-			{
-				set = item->prev->data;
-				break;
-			}
-			set = item->data;
-			item = item->next;
-		}*/
 	}
 
 

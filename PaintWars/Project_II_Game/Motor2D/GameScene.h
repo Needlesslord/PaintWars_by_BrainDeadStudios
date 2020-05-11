@@ -130,7 +130,7 @@ public:
 	j1UIElement* miniMapBack = nullptr;
 	j1UIElement* miniMapMINI = nullptr;
 	j1UIElement* miniMapFULL = nullptr;
-	j1UIElement* miniMapCamera = nullptr;
+	j1UIElement* miniMapScopeCamera = nullptr;
 	j1UIElement* miniMapBackground = nullptr;
 
 	//Pause Menu

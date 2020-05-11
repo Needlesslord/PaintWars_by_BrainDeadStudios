@@ -284,9 +284,7 @@ bool GameScene::Start()
 	miniMapMINI->click_rect = { 30, 15, 422,210 };
 	miniMapMINI->hover_rect = { 30, 15, 422,210 };
 
-	if (true /*forest map*/) {
-		miniMapCamera = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1028, 575 }, { 0 , 0 }, false, true, { 0, 0, 70, 36 }, nullptr, nullptr, TEXTURE::MINIMAP_CAMERA);
-	}
+	miniMapScopeCamera = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1030, 575 }, { 0 , 0 }, false, true, { 0, 0, 67, 36 }, nullptr, nullptr, TEXTURE::MINIMAP_CAMERA);
 
 	miniMapBack = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0 , 0 }, { 0 , 0 }, false, false, { 0, 0, 1800, 1300 }, nullptr, nullptr,  TEXTURE::MINIMAP_BACK_SPRITE);
 
@@ -545,9 +543,9 @@ bool GameScene::Update(float dt)
 
 	fPoint MousePos = App->input->GetMouseWorldPosition();
 
-	LOG("Mouse x at %f", MousePos.x);
+	/*LOG("Mouse x at %f", MousePos.x);
 
-	LOG("Mouse y at %f", MousePos.y);
+	LOG("Mouse y at %f", MousePos.y);*/
 
 	
 	return ret;
@@ -566,22 +564,20 @@ bool GameScene::PostUpdate()
 			miniMapBack->enabled = true;
 			miniMapFULL->enabled = true;
 			miniMapMINI->enabled = false;
-			miniMapCamera->enabled = false;
+			miniMapScopeCamera->enabled = false;
 		}
 		else {
 			miniMapMINI->enabled = true;
 			miniMapBack->enabled = false;
 			miniMapFULL->enabled = false;
-			miniMapCamera->enabled = true;
+			miniMapScopeCamera->enabled = true;
 		}
 	}
 
-	miniMapCamera->map_position.x = miniMapCamera->init_map_position.x+App->render->camera.x*-0.05;
-	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*-0.05;
+	
 
 	
-	//miniMapCamera->map_position.x = miniMapCamera->map_position.x + 0.005;
-	//miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*-0.05;
+	
 
 	
 
@@ -591,7 +587,7 @@ bool GameScene::PostUpdate()
 		
 
 
-	
+	ManageMinimap();
 	dialogImage->enabled;
 
 	return ret;
@@ -1303,9 +1299,9 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 void GameScene::ManageMinimap()
 {
-	float CameraSpeed_Minimap = -0.05;
-	miniMapCamera->map_position.x = miniMapCamera->init_map_position.x + App->render->camera.x*CameraSpeed_Minimap;
-	miniMapCamera->map_position.y = miniMapCamera->init_map_position.y + App->render->camera.y*CameraSpeed_Minimap;
+	float CameraSpeed_Minimap = -0.0000005;
+	/*miniMapScopeCamera->map_position.x = miniMapScopeCamera->init_map_position.x + App->render->camera.x*CameraSpeed_Minimap;
+	miniMapScopeCamera->map_position.y = miniMapScopeCamera->init_map_position.y + App->render->camera.y*CameraSpeed_Minimap;*/
 }
 
 void GameScene::InitScene()
