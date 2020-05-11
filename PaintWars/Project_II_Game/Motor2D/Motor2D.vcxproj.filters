@@ -178,6 +178,9 @@
     <ClCompile Include="Explorer.cpp">
       <Filter>Motor  ========\Entities\Allies\Units</Filter>
     </ClCompile>
+    <ClCompile Include="j1Minimap.cpp">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -380,6 +383,9 @@
     </ClInclude>
     <ClInclude Include="Explorer.h">
       <Filter>Motor  ========\Entities\Allies\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Minimap.h">
+      <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
