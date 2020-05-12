@@ -122,7 +122,7 @@ The player will lose if his Main Building gets destroyed, this will happen if he
 
 ### Main Gameplay Characteristics
 
-**Build & Manage Your Base:** The player will be able to build and upgrade several buildings to strengthen his base by using resrouces that he will have to manage accordingly in order to defend from the enemy armies that will attack. 
+**Build & Manage Your Base:** The player will be able to build and upgrade several buildings to strengthen his base by using resources that he will have to manage accordingly in order to defend from the enemy armies that will attack. 
 
 **Command Armies:** The player will have at its disposal several  buildings to strengthen his army and attack the enemy to finally stop the continuous attacks from enemy armies.
 
@@ -140,11 +140,11 @@ Paint will be the basic material which will be used all around the game. It will
 
 Wood will be the mid tier resource that will allow the player to have better units and buildings than the ones created with paint.
 
-Metal Scrap is the late game tier that gives acces to some of the best units and buildings in the game. 
+Metal Scrap is the late game tier that gives access to some of the best units and buildings in the game. 
 
 Finally Titanium will work as the ultra late game resource which will grant acces to elite units. It will be hard to find around the map and the player will have to think carefully on what to use it.
 
-Overall stats and costs of units and buildings can't be decided yet because they haven't been teste. Once we have them we will uupdate this section.
+Overall stats and costs of units and buildings can't be decided yet because they haven't been teste. Once we have them we will update this section.
 
 .....
 ***
