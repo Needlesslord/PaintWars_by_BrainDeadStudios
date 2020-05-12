@@ -749,7 +749,8 @@ bool j1EntityManager::CleanUp() {
 	entitiesSelected.clear();
 	unitsSelected.clear();
 	buildingsSelected.clear();
-	
+	spawningEntities.clear();
+
 	EntityTexturesAreLoaded = false;
 	return ret;
 }
