@@ -86,7 +86,7 @@ After many years of peace and tranquility, citizens of the world began to lose t
 
 ## Game Flow
 
-The flow of the game will be based on the player defending it's base while he manages it's resources while he explores the map completes missions and destroys the enemy armies.
+The flow of the game will be based on the player defending its base while he manages its resources while he explores the map completes missions and destroys the enemy armies.
 
 
 ***
