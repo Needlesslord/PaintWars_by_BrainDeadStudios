@@ -208,6 +208,11 @@ public:
 	j1UIElement* dialogClose = nullptr;
 
 
+	//Animation
+
+	j1UIElement* PaintRollerAnimation = nullptr;
+
+
 	char* Dialog_Text1_Line_1 = nullptr;
 	char* Dialog_Text1_Line_2 = nullptr;
 	char* Dialog_Text1_Line_3 = nullptr;
