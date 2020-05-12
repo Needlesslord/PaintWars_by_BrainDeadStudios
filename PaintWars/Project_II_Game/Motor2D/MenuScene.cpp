@@ -248,6 +248,10 @@ void MenuScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		if (element == creditsButton && type == GUI_Event::EVENT_ONCLICK) {
 			ShellExecuteA(NULL, "open", "https://github.com/Needlesslord/BrainDeadStudios", NULL, NULL, SW_SHOWNORMAL);
 		}
+
+		if (element == scoreButton && type == GUI_Event::EVENT_ONCLICK) {
+			App->transition_manager->CreateSlide(SCENES::SCORE_SCENE, 0.5f, true);
+		}
 	}
 }
 

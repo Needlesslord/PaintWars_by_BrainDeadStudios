@@ -121,6 +121,7 @@
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="j1SceneManager.cpp" />
+    <ClCompile Include="ScoreScene.cpp" />
     <ClCompile Include="SettingsScene.cpp" />
     <ClCompile Include="Slide.cpp" />
     <ClCompile Include="Slime.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="j1SceneManager.h" />
+    <ClInclude Include="ScoreScene.h" />
     <ClInclude Include="SettingsScene.h" />
     <ClInclude Include="Slide.h" />
     <ClInclude Include="Slime.h" />
