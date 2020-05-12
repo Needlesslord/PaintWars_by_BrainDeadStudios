@@ -364,6 +364,7 @@ bool GameScene::PreUpdate()
 	//PaintRollerAnimation->enabled = false;
 	
 	bool ret = true;
+	//--------------------------- PUT AN INT THAT GOES THROUGH IT 15-20 TIMES OR MORE AND WHEN ITS DONE COMPLETE ANIMATION
 	LOG("Position Roller Y %f", PaintRollerAnimation->map_position.y);
 	if (App->PAUSE_ACTIVE == true){
 
