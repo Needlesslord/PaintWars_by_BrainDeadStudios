@@ -60,7 +60,7 @@ The genre of the music we are using is "epic", "heroic", "adventure" and almost 
 
 #### Style
 
-The style could be considered epic and medieval, and classified as typical music used in Adveture RTS or RPG games. For the menus, we could also define them as ballads. The FX try to match the vibe, avoiding futuristic sounds and trying to have more traditional and medieval related sounnds.
+The style could be considered epic and medieval, and classified as typical music used in Adveture RTS or RPG games. For the menus, we could also define them as ballads. The FX try to match the vibe, avoiding futuristic sounds and trying to have more traditional and medieval related sounds.
 
 
 #### Instrumentation
