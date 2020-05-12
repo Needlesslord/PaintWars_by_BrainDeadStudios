@@ -104,6 +104,18 @@ bool GameScene::Start()
 
 	}
 
+
+	bool PainterQuestCompleted = false;
+	bool PaintExtractorQuestCompleted = false;
+	bool ExtractPaintQuestCompleted = false;
+	bool UpgradeEntityQuestCompleted = false;
+
+	bool PainterQuestActive = false;
+	bool PaintExtractorQuestActive = false;
+	bool ExtractPaintQuestActive = false;
+	bool UpgradeEntityQuestActive = false;
+
+
 	Generate_Entities();
 	Generate_Tiles();
 
@@ -1134,8 +1146,8 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		resetButton->enabled = false;
 		backButton->enabled = false;
 	}
-
-
+	
+	
 	//Disclaimers
 
 	if (element == restartButton && type == GUI_Event::EVENT_ONCLICK)
@@ -1204,7 +1216,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 	if (element == yesButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		if (exitMenu)
+		/*if (exitMenu)
 			App->scenes->exit = true;
 
 		if (restartMenu)
@@ -1217,7 +1229,20 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
 			App->audio->PlayingMenuMusic = false;
 			Mix_HaltMusic();
-		}
+		}*/
+
+
+		App->entities->CleanUp();
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 42, 42 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 45,  40 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 40, 20 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 13,  5 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80,  4 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 10, 90 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80, 75 }, App->entities, nullptr, 0, true);
+		App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true, true);
+
+		
 	}
 
 	if (element == noButton && type == GUI_Event::EVENT_ONCLICK)

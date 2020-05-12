@@ -1215,67 +1215,69 @@ void j1EntityManager::UpdateAnimations() {
 	}
 }
 
-/*bool j1EntityManager::Load(pugi::xml_node& save)
-{
-	CleanUp();
-	int numEntities = save.child("num_entities").attribute("value").as_int();
+//bool j1EntityManager::Load(pugi::xml_node& save)
+//{
+//	CleanUp();
+//	int numEntities = save.child("num_entities").attribute("value").as_int();
+//
+//	pugi::xml_node entities_node = save.child("active_entities").child("entity");
+//
+//	//pugi::xml_node entities = save.child("entities").child("warrior");
+//	for (int i = 0; i < numEntities; i++) {
+//
+//		float x, y;
+//		int damage;
+//		//iPoint size;
+//		int size_x;
+//		int size_y;
+//		const char* entityType;
+//
+//		x = entities_node.attribute("position_x").as_float();
+//		y = entities_node.attribute("position_y").as_float();
+//		damage = entities_node.attribute("missing_hp").as_int();
+//		size_x = entities_node.attribute("size_x").as_int();
+//		size_y = entities_node.attribute("size_y").as_int();
+//
+//		entityType = entities_node.attribute("entity_type").as_string();
+//
+//		if (entityType == "painter") {
+//
+//			AddEntity(ENTITY_TYPE_PAINTER, { x, y }, { size_x, size_y }, App->entities, damage);
+//			AddEntity(ENTITY_TYPE_PAINTER, { x,y },nullptr,)
+//			
+//		}
+//
+//		entities_node = entities_node.next_sibling();
+//	}
+//
+//	return true;
+//}
 
-	pugi::xml_node entities_node = save.child("active_entities").child("entity");
-
-	//pugi::xml_node entities = save.child("entities").child("warrior");
-	for (int i = 0; i < numEntities; i++) {
-
-		float x, y;
-		int damage;
-		//iPoint size;
-		int size_x;
-		int size_y;
-		const char* entityType;
-
-		x = entities_node.attribute("position_x").as_float();
-		y = entities_node.attribute("position_y").as_float();
-		damage = entities_node.attribute("missing_hp").as_int();
-		size_x = entities_node.attribute("size_x").as_int();
-		size_y = entities_node.attribute("size_y").as_int();
-
-		entityType = entities_node.attribute("entity_type").as_string();
-
-		if (entityType == "painter") {
-
-			AddEntity(ENTITY_TYPE_PAINTER, { x, y }, { size_x, size_y }, App->entities, damage);
-		}
-
-		entities_node = entities_node.next_sibling();
-	}
-
-	return true;
-}
-
-bool j1EntityManager::Save(pugi::xml_node& save) const
-{
-	pugi::xml_node numEntities = save.append_child("num_entities");
-	numEntities.append_attribute("value") = activeEntities.size();
-
-	pugi::xml_node entities = save.append_child("active_entities");
-
-	list<Entity*>::const_iterator entitiesToSave = activeEntities.begin();
-	while (entitiesToSave != activeEntities.end()) {
-
-		pugi::xml_node entity = entities.append_child("entity");
-
-		if ((*entitiesToSave)->entityType == ENTITY_TYPE_PAINTER) {
-
-			entity.append_attribute("entity_type").as_string("painter");
-			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
-			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
-			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
-			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
-			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
-		}
-
-
-		entitiesToSave++;
-	}
-
-	return true;
-}*/
+//bool j1EntityManager::Save(pugi::xml_node& save) const
+//{
+//	pugi::xml_node numEntities = save.append_child("num_entities");
+//	numEntities.append_attribute("value") = activeEntities.size();
+//
+//	pugi::xml_node entities = save.append_child("active_entities");
+//
+//	list<Entity*>::const_iterator entitiesToSave = activeEntities.begin();
+//	while (entitiesToSave != activeEntities.end()) {
+//
+//		pugi::xml_node entity = entities.append_child("entity");
+//
+//		if ((*entitiesToSave)->entityType == ENTITY_TYPE_PAINTER) {
+//
+//			entity.append_attribute("entity_type").as_string("painter");
+//			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
+//			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
+//			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+//			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+//			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+//		}
+//
+//
+//		entitiesToSave++;
+//	}
+//
+//	return true;
+//}
