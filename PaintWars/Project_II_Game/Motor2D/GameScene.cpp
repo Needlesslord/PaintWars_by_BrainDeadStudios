@@ -127,6 +127,8 @@ bool GameScene::Start()
 	//////////////////
 
 	
+	//BackgroundForest = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_FOREST);
+
 	
 	//HUD - Bar
 	hudBarImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
@@ -136,8 +138,8 @@ bool GameScene::Start()
 	titaniumLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 480 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
 	researchLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 600 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr,  TEXTURE::ATLAS, FONT::FONT_SMALL);
 	entitiesLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 720 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr,  TEXTURE::ATLAS, FONT::FONT_SMALL);
-	EntityHP = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 1050 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "999", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
-	//BackgroundForest = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_FOREST);
+	EntityHP = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 1075 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "999", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	timerLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 830 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "15m 00s", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_RED);
 
 
 	//HUD - Quests
@@ -286,7 +288,7 @@ bool GameScene::Start()
 	shopHoverUpgradeExtractor = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
 	shopHoverUpgradeWoodProducer = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
 
-
+	priceLabel = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
 
 
 	//HUD - MiniMap
@@ -583,6 +585,24 @@ bool GameScene::Update(float dt)
 	}
 
 
+	//Timer
+
+	int minutes = 14 - (int)App->player->gameTimer.ReadSec() / 60;
+	int seconds = 60 - (int)App->player->gameTimer.ReadSec() % 60;
+
+	static char conversor[256];
+	sprintf_s(conversor, 256, "%dm %ds", minutes, seconds);
+	timerLabel->text = conversor;
+
+
+	//PriceTimer
+
+	if (App->player->gameTimer.ReadSec() - priceTimer == 2)
+	{
+		priceLabel->enabled = false;
+	}
+
+
 
 	fPoint MousePos = App->input->GetMouseWorldPosition();
 
@@ -840,6 +860,12 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			Mix_PlayChannel(-1, App->audio->buy1_sound, 0);
 			
 		}
+
+		priceLabel->enabled = true;
+		priceLabel->text = "-500";
+		App->input->GetMousePosition(priceLabel->map_position.x, priceLabel->map_position.y);
+
+		priceTimer = App->player->gameTimer.ReadSec();
 
 	}
 
