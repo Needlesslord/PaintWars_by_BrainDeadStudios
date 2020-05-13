@@ -181,6 +181,9 @@
     <ClCompile Include="j1Minimap.cpp">
       <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="ScoreScene.cpp">
+      <Filter>Motor  ========\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -386,6 +389,9 @@
     </ClInclude>
     <ClInclude Include="j1Minimap.h">
       <Filter>Motor  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreScene.h">
+      <Filter>Motor  ========\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

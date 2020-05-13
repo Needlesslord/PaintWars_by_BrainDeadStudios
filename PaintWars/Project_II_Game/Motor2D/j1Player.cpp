@@ -89,33 +89,34 @@ bool j1Player::Update(float dt)
 
 	//This functions should always be last//
 	//Mouse_Cursor();
-	 
-	if (App->scenes->IN_GAME_SCENE == true) {
-		p2List_item<j1UIElement*>* UI_List = App->gui->GUI_ELEMENTS.start;
-		while (UI_List != NULL)
-		{
-		
+	if (App->PAUSE_ACTIVE == false) {
+		if (App->scenes->IN_GAME_SCENE == true) {
+			p2List_item<j1UIElement*>* UI_List = App->gui->GUI_ELEMENTS.start;
+			while (UI_List != NULL)
+			{
 
-			if (App->gui->GUI_ELEMENTS[z]->textureType == TEXTURE::MINIMAP_CAMERA) {
 
-				
-				
+				if (App->gui->GUI_ELEMENTS[z]->textureType == TEXTURE::MINIMAP_CAMERA) {
+
+
+
 					App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x - MinimapCameraBufferX;
 					App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y - MinimapCameraBufferY;
-				
 
+
+				}
+				else {
+
+					//LOG("UI COUNT IS %d", z);
+					App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x;
+					App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y;
+				}
+
+
+
+				UI_List = UI_List->next;
+				++z;
 			}
-			else {
-				
-				//LOG("UI COUNT IS %d", z);
-				App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x;
-				App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y;
-			}
-			
-
-
-			UI_List = UI_List->next;
-			++z;
 		}
 	}
 	Select_Entities(selector);

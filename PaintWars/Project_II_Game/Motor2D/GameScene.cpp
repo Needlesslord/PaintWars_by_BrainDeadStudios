@@ -104,6 +104,18 @@ bool GameScene::Start()
 
 	}
 
+
+	bool PainterQuestCompleted = false;
+	bool PaintExtractorQuestCompleted = false;
+	bool ExtractPaintQuestCompleted = false;
+	bool UpgradeEntityQuestCompleted = false;
+
+	bool PainterQuestActive = false;
+	bool PaintExtractorQuestActive = false;
+	bool ExtractPaintQuestActive = false;
+	bool UpgradeEntityQuestActive = false;
+
+
 	Generate_Entities();
 	Generate_Tiles();
 
@@ -113,6 +125,7 @@ bool GameScene::Start()
 	//////////////////
 	//      UI      //
 	//////////////////
+
 	
 	
 	//HUD - Bar
@@ -308,8 +321,10 @@ bool GameScene::Start()
 	buyWarriorButton->hover_rect = { 585, 1966, 65, 82 };
 	buyWarriorButton->click_rect = { 845, 1966, 65, 82 };
 	
-
-	
+	//Animation
+	//PaintRollerAnimation = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 400, -200 }, { 0 , 0 }, false,false, { 1493, 1292, 552, 753 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
+	PaintRollerAnimation = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 400, -200 }, { 0,0 }, false, false, { 1493, 1292, 552, 753 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	//PaintRollerAnimation->enabled = false;
 
 	//////////////////
 	//	RESOURCES	//
@@ -346,12 +361,40 @@ bool GameScene::Start()
 // Called each loop iteration
 bool GameScene::PreUpdate()
 {
-
-	bool ret = true;
-
-
+	//PaintRollerAnimation->enabled = false;
 	
+	bool ret = true;
+	//--------------------------- PUT AN INT THAT GOES THROUGH IT 15-20 TIMES OR MORE AND WHEN ITS DONE COMPLETE ANIMATION
+	LOG("Position Roller Y %f", PaintRollerAnimation->map_position.y);
+	if (App->PAUSE_ACTIVE == true){
 
+		if (PaintRollerAnimation->map_position.y + App->render->camera.y < 0 + App->render->camera.y && App->transition_manager->is_transitioning == false) {
+			PaintRollerAnimation->map_position = PaintRollerAnimation->map_position = { PaintRollerAnimation->map_position.x ,PaintRollerAnimation->map_position.y + 15 };
+			LOG("Position Roller Y %f",PaintRollerAnimation->map_position.y);
+				//LOG("Camera x at %d", App->render->camera.x);
+		}
+		else if (App->transition_manager->is_transitioning == true) {
+
+		}
+		else {
+			PaintRollerAnimation->enabled = false;
+			pauseMenu = true;
+			pauseMenuImage->enabled = true;
+			pauseMenuLabel->enabled = true;
+			resumeButton->enabled = true;
+			saveButton->enabled = true;
+			settingsButton->enabled = true;
+			mainMenuButton->enabled = true;
+			exitButton->enabled = true;
+
+			homeButton->interactable = false;
+			pauseMenuButton->interactable = false;
+			shopButton->interactable = false;
+			restartButton->interactable = false;
+			questsOpenButton->interactable = false;
+			questsCloseButton->interactable = false;
+		}
+	}
 	// Debug pathfinding ------------------
 	static iPoint origin;
 	static bool origin_selected = false;
@@ -1029,21 +1072,9 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 		App->player->gameTimer.Stop();
 
-		pauseMenu = true;
-		pauseMenuImage->enabled = true;
-		pauseMenuLabel->enabled = true;
-		resumeButton->enabled = true;
-		saveButton->enabled = true;
-		settingsButton->enabled = true;
-		mainMenuButton->enabled = true;
-		exitButton->enabled = true;
+		PaintRollerAnimation->enabled = true;
 
-		homeButton->interactable = false;
-		pauseMenuButton->interactable = false;
-		shopButton->interactable = false;
-		restartButton->interactable = false;
-		questsOpenButton->interactable = false;
-		questsCloseButton->interactable = false;
+		
 	}
 	
 	if (element == resumeButton && type == GUI_Event::EVENT_ONCLICK)
@@ -1134,8 +1165,8 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		resetButton->enabled = false;
 		backButton->enabled = false;
 	}
-
-
+	
+	
 	//Disclaimers
 
 	if (element == restartButton && type == GUI_Event::EVENT_ONCLICK)
@@ -1204,7 +1235,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 	if (element == yesButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		if (exitMenu)
+		/*if (exitMenu)
 			App->scenes->exit = true;
 
 		if (restartMenu)
@@ -1217,7 +1248,20 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
 			App->audio->PlayingMenuMusic = false;
 			Mix_HaltMusic();
-		}
+		}*/
+
+
+		App->entities->CleanUp();
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 42, 42 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 45,  40 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 40, 20 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 13,  5 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80,  4 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 10, 90 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80, 75 }, App->entities, nullptr, 0, true);
+		App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true, true);
+
+		
 	}
 
 	if (element == noButton && type == GUI_Event::EVENT_ONCLICK)

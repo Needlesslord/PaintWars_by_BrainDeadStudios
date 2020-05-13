@@ -9,6 +9,7 @@
 #include "j1Input.h"
 #include "p2Log.h"
 #include "GameLogoScene.h"
+#include "ScoreScene.h"
 #include "j1Player.h"
 #include "TeamLogoScene.h"
 
@@ -255,6 +256,12 @@ Scene* j1SceneManager::CreateScene(SCENES scene_name)
 		item = new TeamLogoScene();
 
 		break;
+
+	case SCENES::SCORE_SCENE:
+
+		item = new ScoreScene();
+
+		break;
 	}
 
 	if (item != nullptr)
@@ -275,6 +282,7 @@ void j1SceneManager::ScenePushbacks()
 	CreateScene(SCENES::START_SCENE);
 	CreateScene(SCENES::LOSE_SCENE);
 	CreateScene(SCENES::WIN_SCENE);
+	CreateScene(SCENES::SCORE_SCENE);
 }
 
 bool j1SceneManager::Load(pugi::xml_node& save) 

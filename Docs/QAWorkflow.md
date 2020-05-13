@@ -144,7 +144,7 @@ For describing the bugs we will use a template like the following one:
 
 ## Process for Quality Testing
 
-Quality Tests are made by external people of the team to ensure the game is as fun as intended. Testers have to be sincere people, preferably people not related to the team members. Testers will be proposed by any member of the group the weak before the Quality Test. The tester needs to be someone who doesn't play videogames casually. The team will decide if that person is adequate to test the game. In case that the team has conflict choosing a tester, the QA manager will be who has the last word. The tester will be contacted, and if he/she accepts to be tester, the tester and the test holder (can be anyone from the team) will specify a day and hour to perform the test.
+Quality Tests are made by external people of the team to ensure the game is as fun as intended. Testers have to be sincere people, preferably people not related to the team members. Testers will be proposed by any member of the group the week before the Quality Test. The tester needs to be someone who doesn't play videogames casually. The team will decide if that person is adequate to test the game. In case that the team has conflict choosing a tester, the QA manager will be who has the last word. The tester will be contacted, and if he/she accepts to be tester, the tester and the test holder (can be anyone from the team) will specify a day and hour to perform the test.
 
 How the test will go:
 + Presentation (2 min)
@@ -160,7 +160,7 @@ How the test will go:
   - Test holder takes notes.
   
 + Post game questionary (10 min)
-  - What the tester thinks abut the game in general.
+  - What the tester thinks about the game in general.
   - What they would improve about the game.
   - What they would keep.
   

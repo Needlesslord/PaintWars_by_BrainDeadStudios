@@ -44,11 +44,7 @@ bool TeamLogoScene::Start()
 
 	Mix_PlayChannel(-1, App->audio->braindead_sound, 0);
 
-	//if (App->audio->PlayingLogoMusic != true) {
-	//	App->audio->PlayingLogoMusic = false;
-	//	App->audio->PlayMusic("audio/music/logoSplash_fx.ogg");
-	//	App->audio->PlayingLogoMusic = true;
-	//}
+	
 
 
 
@@ -138,51 +134,7 @@ void TeamLogoScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	}
 }
 
-//aaaa
-//void GameLogoScene::InitScene()
-//{
-//	tileset_texture = App->tex->Load("maps/tiles_first_map.png", scene_renderer);	// This texture will be used SceneToTexture(). Needed to get a single whole texture of the map.
-//
-//	App->map->GetMapSize(map_width, map_height);
-//	App->map->GetTileOffset(x_offset, y_offset);
-//	
-//	App->render->camera.x = map_width * 0.3f;										// This camera position gets the camera close to the center of the map.
-//	App->render->camera.y = -40;
-//
-//	// --- TRANSITIONS WITH TEXTURE
-//	/*App->render->camera.x = map_width * 0.5f;										// This camera position is to have the renderer render all the scene_texture.
-//	App->render->camera.y = 0;
-//
-//	SceneToTexture();
-//
-//	App->render->camera.x = map_width * 0.3f;										// This camera position gets the camera close to the center of the map.
-//	App->render->camera.y = -40;*/
-//}
 
-//void GameLogoScene::DrawScene()
-//{
-//	App->map->Draw();
-//
-//
-//	// --- TRANSITIONS WITH TEXTURE
-//	/*if (scene_texture != nullptr)
-//	{
-//		App->render->Blit(scene_texture, -(map_width) * 0.5f, 0, NULL);
-//	}*/	
-//}
-
-
-//SDL_Texture* MenuScene::SceneToTexture()
-//{
-//	App->render->CreateSubRenderer(map_width + x_offset, map_height + y_offset, scene_surface, scene_renderer);		// Both scene_surface and scene renderer are passed by reference.
-//
-//	tileset_texture = App->tex->Load("maps/tiles_first_map.png", scene_renderer);
-//	App->map->DrawToSubRenderer(scene_renderer, tileset_texture);
-//
-//	scene_texture = SDL_CreateTextureFromSurface(App->render->renderer, scene_surface);
-//
-//	return scene_texture;
-//}
 
 
 void TeamLogoScene::ExecuteTransition()
@@ -224,43 +176,6 @@ void TeamLogoScene::ExecuteTransition()
 				//App->transition_manager->CreateAlternatingBars(SCENES::SECOND_SCENE, 0.5f, true);
 			}
 
-		//	if (App->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
-		//	{
-		//		App->transition_manager->CreateExpandingBars(SCENES::SECOND_SCENE, 0.5f, true);
-		//	}
-
-		//	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN)
-		//	{
-		//		iPoint mouse_pos = App->input->GetMouseToWorld();
-
-		//		App->transition_manager->CreateZoomToMouse(SCENES::SECOND_SCENE, mouse_pos, 0.5f, true);
-		//	}
-
-		//	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
-		//	{
-		//		iPoint mouse_pos = App->input->GetMouseToWorld();
-
-		//		App->transition_manager->CreateCameraToMouse(mouse_pos, 0.5f, true);
-		//	}
-
-
-		//	// --- TRANSITION WITH TEXTURE METHODS (NOT IMPLEMENTED)
-		//	if (App->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN)
-		//	{
-		//		if (scene_texture != nullptr)
-		//		{
-		//			App->transition_manager->CreateDissolve(SCENES::SECOND_SCENE, 1.0f);
-		//		}
-		//	}
-
-		//	if (App->input->GetMouseButtonDown(SDL_BUTTON_MIDDLE) == KEY_DOWN)
-		//	{
-		//		iPoint mouse_pos = App->input->GetMouseToWorld();
-
-		//		if (scene_texture != nullptr)
-		//		{
-		//			App->transition_manager->CreateZoomToTexture(SCENES::SECOND_SCENE, mouse_pos);
-		//		}
-		//	}
+		
 		}
 	}
