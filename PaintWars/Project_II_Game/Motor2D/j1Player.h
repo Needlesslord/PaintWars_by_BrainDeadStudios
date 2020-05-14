@@ -88,6 +88,9 @@ private:
 	std::string file;
 	float MinimapCameraBufferX;
 	float MinimapCameraBufferY;
+	j1UIElement* MiniMapEntities_Squares[40] = {};
+
+
 
 };
 
