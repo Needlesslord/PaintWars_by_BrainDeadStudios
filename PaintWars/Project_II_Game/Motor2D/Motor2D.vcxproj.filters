@@ -196,6 +196,12 @@
     <ClCompile Include="Random.cpp">
       <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="MetalGatherer.cpp">
+      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="TitaniumExtractor.cpp">
+      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -416,6 +422,12 @@
     </ClInclude>
     <ClInclude Include="Random.h">
       <Filter>Motor  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="MetalGatherer.h">
+      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="TitaniumExtractor.h">
+      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
