@@ -277,19 +277,10 @@ bool GameScene::Start()
 	upgradePaintExtractorButton->hover_rect = { 0, 1966, 65, 82 };
 	upgradePaintExtractorButton->click_rect = { 65, 1966, 65, 82 };
 
-	shopHoverExtractor =App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
-	shopHoverWoodProducer = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
-	shopHoverBarracks = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
-	shopHoverHouse = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
-	shopHoverPainter = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
-	shopHoverUpgradePainter = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
-	shopHoverWarrior = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
-	shopHoverUpgradeWarrior = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
-	shopHoverUpgradeExtractor = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
-	shopHoverUpgradeWoodProducer = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
-
-	priceLabel = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
-
+	//shopHoverPrice =App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "0", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
+	shopHoverPrice = App->gui->AddElement(TypeOfUI::GUI_LABEL, shopImage, { 210 , 680 }, { 0 , 0 }, false, false, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED);
+	//priceLabel = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
+	
 
 	//HUD - MiniMap
 
@@ -325,7 +316,7 @@ bool GameScene::Start()
 	
 	//Animation
 	//PaintRollerAnimation = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 400, -200 }, { 0 , 0 }, false,false, { 1493, 1292, 552, 753 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
-	PaintRollerAnimation = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 400, -200 }, { 0,0 }, false, false, { 1493, 1292, 552, 753 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	PaintRollerAnimation = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 400, -600 }, { 0,0 }, false, false, { 1493, 1275, 552, 770 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	//PaintRollerAnimation->enabled = false;
 
 	//////////////////
@@ -367,13 +358,15 @@ bool GameScene::PreUpdate()
 	
 	bool ret = true;
 	//--------------------------- PUT AN INT THAT GOES THROUGH IT 15-20 TIMES OR MORE AND WHEN ITS DONE COMPLETE ANIMATION
+	
 	LOG("Position Roller Y %f", PaintRollerAnimation->map_position.y);
 	if (App->PAUSE_ACTIVE == true){
-
-		if (PaintRollerAnimation->map_position.y + App->render->camera.y < 0 + App->render->camera.y && App->transition_manager->is_transitioning == false) {
+		
+		if (/*PaintRollerAnimation->map_position.y + App->render->camera.y < 0 + App->render->camera.y*/ AnimTime < 90 && App->transition_manager->is_transitioning == false) {
 			PaintRollerAnimation->map_position = PaintRollerAnimation->map_position = { PaintRollerAnimation->map_position.x ,PaintRollerAnimation->map_position.y + 15 };
 			LOG("Position Roller Y %f",PaintRollerAnimation->map_position.y);
 				//LOG("Camera x at %d", App->render->camera.x);
+			++AnimTime;
 		}
 		else if (App->transition_manager->is_transitioning == true) {
 
@@ -963,84 +956,49 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_HOVER) {
 
-		shopHoverExtractor->enabled = true;
+		shopHoverPrice->text = "-20";
+		shopHoverPrice->enabled = true;
+	}
+	else if (element == buyWoodProducerButton && type == GUI_Event::EVENT_HOVER) {
+		shopHoverPrice->text = "-20";
+		shopHoverPrice->enabled = true;
+	}
+	else if (element == buyBarrackButton && type == GUI_Event::EVENT_HOVER) {
+		shopHoverPrice->text = "-50";
+		shopHoverPrice->enabled = true;
+	}
+	else if (element == buyHouseButton && type == GUI_Event::EVENT_HOVER) {
+		shopHoverPrice->text = "-20";
+		shopHoverPrice->enabled = true;
+	}
+	else if (element == buyPainterButton && type == GUI_Event::EVENT_HOVER) {
+		shopHoverPrice->text = "-5";
+		shopHoverPrice->enabled = true;
+		//shopHoverPrice->map_position;
+	}
+	else if (element == buyWarriorButton && type == GUI_Event::EVENT_HOVER) {
+		shopHoverPrice->text = "-20";
+		shopHoverPrice->enabled = true;
+	}
+	else if (element == upgradeWarriorButton && type == GUI_Event::EVENT_HOVER) {
+		shopHoverPrice->text = "-200";
+		shopHoverPrice->enabled = true;
+
+	}
+	else if (element == upgradePainterButton && type == GUI_Event::EVENT_HOVER) {
+		shopHoverPrice->text = "-200";
+		shopHoverPrice->enabled = true;
+	}
+	else if (element == upgradePaintExtractorButton && type == GUI_Event::EVENT_HOVER) {
+		shopHoverPrice->text = "-200";
+		shopHoverPrice->enabled = true;
+	}
+	else if (element == upgradeWoodProducerButton && type == GUI_Event::EVENT_HOVER) {
+		shopHoverPrice->text = "-200";
+		shopHoverPrice->enabled = true;
 	}
 	else {
-		shopHoverExtractor->enabled = false;
-	}
-
-	if (element == buyWoodProducerButton && type == GUI_Event::EVENT_HOVER) {
-
-		shopHoverWoodProducer->enabled = true;
-	}
-	else {
-		shopHoverWoodProducer->enabled = false;
-	}
-
-	if (element == buyBarrackButton && type == GUI_Event::EVENT_HOVER) {
-
-		shopHoverBarracks->enabled = true;
-	}
-	else {
-		shopHoverBarracks->enabled = false;
-	}
-
-	if (element == buyHouseButton && type == GUI_Event::EVENT_HOVER) {
-
-		shopHoverHouse->enabled = true;
-	}
-	else {
-		shopHoverHouse->enabled = false;
-	}
-
-	if (element == buyPainterButton && type == GUI_Event::EVENT_HOVER) {
-
-		shopHoverPainter->enabled = true;
-		shopHoverPainter->map_position;
-	}
-	else {
-		shopHoverPainter->enabled = false;
-	}
-
-	if (element == buyWarriorButton && type == GUI_Event::EVENT_HOVER) {
-
-		shopHoverWarrior->enabled = true;
-	}
-	else {
-		shopHoverWarrior->enabled = false;
-	}
-
-	if (element == upgradeWarriorButton && type == GUI_Event::EVENT_HOVER) {
-
-		shopHoverUpgradeWarrior->enabled = true;
-
-	}
-	else {
-		shopHoverUpgradeWarrior->enabled = false;
-	}
-
-	if (element == upgradePainterButton && type == GUI_Event::EVENT_HOVER) {
-
-		shopHoverUpgradePainter->enabled = true;
-	}
-	else {
-		shopHoverUpgradePainter->enabled = false;
-	}
-
-	if (element == upgradePaintExtractorButton && type == GUI_Event::EVENT_HOVER) {
-
-		shopHoverUpgradeExtractor->enabled = true;
-	}
-	else {
-		shopHoverUpgradeExtractor->enabled = false;
-	}
-
-	if (element == upgradeWoodProducerButton && type == GUI_Event::EVENT_HOVER) {
-
-		shopHoverUpgradeWoodProducer->enabled = true;
-	}
-	else {
-		shopHoverUpgradeWoodProducer->enabled = false;
+		shopHoverPrice->enabled = false;
 	}
 
 
@@ -1097,7 +1055,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		App->PAUSE_ACTIVE = true;
 
 		App->player->gameTimer.Stop();
-
+		AnimTime = 0;
 		PaintRollerAnimation->enabled = true;
 
 		
@@ -1261,20 +1219,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 	if (element == yesButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		/*if (exitMenu)
-			App->scenes->exit = true;
-
-		if (restartMenu)
-		{
-
-		}
-
-		if (mainMenu) {
-			App->entities->CleanUp();
-			App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true);
-			App->audio->PlayingMenuMusic = false;
-			Mix_HaltMusic();
-		}*/
+	
 
 
 		App->entities->CleanUp();
