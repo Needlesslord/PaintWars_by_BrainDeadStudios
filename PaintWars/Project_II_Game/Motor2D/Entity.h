@@ -137,11 +137,14 @@ public:
 
 	iPoint destination;
 	iPoint nextTile;
-	iPoint target;
+
+	Entity* target;
+	SDL_Rect target_rect;
 
 	float attackDamage = 0.0f;
 	float attackSpeed = 0.0f;
 	float attackCooldown = 1.0f;
+	uint attackRadius = 100; // In tiles
 	//float attackProgress = 0.0f;
 
 	SDL_Color minimapDrawColor{ 0,0,0,0 };

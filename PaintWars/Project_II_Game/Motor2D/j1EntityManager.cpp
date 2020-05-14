@@ -73,6 +73,47 @@ bool j1EntityManager::PreUpdate() {
 		setDefaultAnimation++;
 	}
 
+
+		/// Reset destinations list
+	// First we clear the list
+	destinations.clear();
+
+	// Then we fill it again, this time with only the ones we want to take into account
+	list<Entity*>::iterator resetDestinations = activeUnits.begin();
+	while (resetDestinations != activeUnits.end()) {
+
+		if ((*resetDestinations)->destination != (*resetDestinations)->currentTile) {
+			if((*resetDestinations)->isOnTheMove)
+				destinations.push_back((*resetDestinations)->destination);
+		}
+
+		resetDestinations++;
+	}
+
+	list<Entity*>::iterator updatingTargets = activeUnits.begin();
+	while (updatingTargets != activeUnits.end()) {
+
+		// Only interested in the ones who have a target
+		if ((*updatingTargets)->target != nullptr) {
+
+			// If the target is a unit
+			if ((*updatingTargets)->target->entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY) {
+				(*updatingTargets)->target_rect = { (*updatingTargets)->target->currentTile.x, (*updatingTargets)->target->currentTile.y, 1, 1 };
+			}
+
+			// If not, it will be a spawner
+			else {
+				(*updatingTargets)->target_rect = { (*updatingTargets)->target->currentTile.x, (*updatingTargets)->target->currentTile.y, 2, 2 };
+			}
+		}
+
+		updatingTargets++;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
+		spacePressed = true;
+	else
+		spacePressed = false;
 	return ret;
 }
 
@@ -314,109 +355,109 @@ bool j1EntityManager::Update(float dt) {
 
 
 		// Attack Mode
-		list<Entity*>::iterator unitsToFight = activeUnits.begin();
-		while (unitsToFight != activeUnits.end()) {
+		//list<Entity*>::iterator unitsToFight = activeUnits.begin();
+		//while (unitsToFight != activeUnits.end()) {
 
-			if ((*unitsToFight)->isEntityFromPlayer) {
+		//	if ((*unitsToFight)->isEntityFromPlayer) {
 
-				if ((*unitsToFight)->currentTile == (*unitsToFight)->destination) {
-					
-					int x_distance, y_distance;
+		//		if ((*unitsToFight)->currentTile == (*unitsToFight)->destination) {
+		//			
+		//			int x_distance, y_distance;
 
-					x_distance = (*unitsToFight)->currentTile.x - (*unitsToFight)->target.x;
-					y_distance = (*unitsToFight)->currentTile.y - (*unitsToFight)->target.y;
+		//			x_distance = (*unitsToFight)->currentTile.x - (*unitsToFight)->target.x;
+		//			y_distance = (*unitsToFight)->currentTile.y - (*unitsToFight)->target.y;
 
-					if (x_distance < 0)
-						x_distance *= (-1);
+		//			if (x_distance < 0)
+		//				x_distance *= (-1);
 
-					if (y_distance < 0)
-						y_distance *= (-1);
+		//			if (y_distance < 0)
+		//				y_distance *= (-1);
 
-					if (x_distance <= 1 && y_distance <= 1) {
-						
-						// If we should attack, we check to what
-						list<Entity*>::iterator checkWhichSpawner = activeBuildings.begin();
-						while (checkWhichSpawner != activeBuildings.end()) {
+		//			if (x_distance <= 1 && y_distance <= 1) {
+		//				
+		//				// If we should attack, we check to what
+		//				list<Entity*>::iterator checkWhichSpawner = activeBuildings.begin();
+		//				while (checkWhichSpawner != activeBuildings.end()) {
 
-							if ((*checkWhichSpawner)->entityType == ENTITY_TYPE_SPAWNER) {
+		//					if ((*checkWhichSpawner)->entityType == ENTITY_TYPE_SPAWNER) {
 
-								fPoint targetWorldPos = App->map->MapToWorld((*unitsToFight)->target.x, (*unitsToFight)->target.y);
-								//targetWorldPos.x -= App->map->data.tile_width;
-								//targetWorldPos.y -= App->map->data.tile_height;
+		//						fPoint targetWorldPos = App->map->MapToWorld((*unitsToFight)->target.x, (*unitsToFight)->target.y);
+		//						//targetWorldPos.x -= App->map->data.tile_width;
+		//						//targetWorldPos.y -= App->map->data.tile_height;
 
-								fPoint spawnerCurrentTileWorld = App->map->MapToWorld((*checkWhichSpawner)->currentTile.x - 1, (*checkWhichSpawner)->currentTile.y - 1);
+		//						fPoint spawnerCurrentTileWorld = App->map->MapToWorld((*checkWhichSpawner)->currentTile.x - 1, (*checkWhichSpawner)->currentTile.y - 1);
 
-								if (targetWorldPos.x < spawnerCurrentTileWorld.x + (*checkWhichSpawner)->GetSize().x &&
-									targetWorldPos.x + App->map->data.tile_width > spawnerCurrentTileWorld.x &&
-									targetWorldPos.y < spawnerCurrentTileWorld.y + (*checkWhichSpawner)->GetSize().y &&
-									App->map->data.tile_height + targetWorldPos.y > spawnerCurrentTileWorld.y) {
+		//						if (targetWorldPos.x < spawnerCurrentTileWorld.x + (*checkWhichSpawner)->GetSize().x &&
+		//							targetWorldPos.x + App->map->data.tile_width > spawnerCurrentTileWorld.x &&
+		//							targetWorldPos.y < spawnerCurrentTileWorld.y + (*checkWhichSpawner)->GetSize().y &&
+		//							App->map->data.tile_height + targetWorldPos.y > spawnerCurrentTileWorld.y) {
 
-									(*unitsToFight)->Attack((*checkWhichSpawner), dt);
-									/*
-									(*unitsToFight)->currentAnimation = &warriorAttackingDIRECTION;
-									comprobar orientación (OJO: previousOrientation no unitOrientation!!!
+		//							(*unitsToFight)->Attack((*checkWhichSpawner), dt);
+		//							/*
+		//							(*unitsToFight)->currentAnimation = &warriorAttackingDIRECTION;
+		//							comprobar orientación (OJO: previousOrientation no unitOrientation!!!
 
 
-									Aqu?compruebas las 8 direcciones y les pones su animación */
+		//							Aqu?compruebas las 8 direcciones y les pones su animación */
 
-									std::list<Entity*>::iterator checkAttackAnimation = activeUnits.begin();
-									while (checkAttackAnimation != activeUnits.end()) {
+		//							std::list<Entity*>::iterator checkAttackAnimation = activeUnits.begin();
+		//							while (checkAttackAnimation != activeUnits.end()) {
 
-										if ((*checkAttackAnimation)->entityType == ENTITY_TYPE_WARRIOR) {
+		//								if ((*checkAttackAnimation)->entityType == ENTITY_TYPE_WARRIOR) {
 
-											if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
+		//									if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
 
-												(*checkAttackAnimation)->currentAnimation = &warriorAttackNorth;
-											}
+		//										(*checkAttackAnimation)->currentAnimation = &warriorAttackNorth;
+		//									}
 
-											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+		//									else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
-												(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthEast;
-											}
+		//										(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthEast;
+		//									}
 
-											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_EAST) {
+		//									else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_EAST) {
 
-												(*checkAttackAnimation)->currentAnimation = &warriorAttackEast;
-											}
+		//										(*checkAttackAnimation)->currentAnimation = &warriorAttackEast;
+		//									}
 
-											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+		//									else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
-												(*checkAttackAnimation)->currentAnimation = &warriorAttackSouthEast;
-											}
+		//										(*checkAttackAnimation)->currentAnimation = &warriorAttackSouthEast;
+		//									}
 
-											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH) {
+		//									else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH) {
 
-												(*checkAttackAnimation)->currentAnimation = &warriorAttackSouth;
-											}
+		//										(*checkAttackAnimation)->currentAnimation = &warriorAttackSouth;
+		//									}
 
-											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+		//									else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
-												(*checkAttackAnimation)->currentAnimation = &warriorAttackSouthWest;
-											}
+		//										(*checkAttackAnimation)->currentAnimation = &warriorAttackSouthWest;
+		//									}
 
-											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_WEST) {
+		//									else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_WEST) {
 
-												(*checkAttackAnimation)->currentAnimation = &warriorAttackWest;
-											}
+		//										(*checkAttackAnimation)->currentAnimation = &warriorAttackWest;
+		//									}
 
-											else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+		//									else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
-												(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthWest;
-											}
-										}
-										checkAttackAnimation++;
-									}
-								}
-							}
+		//										(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthWest;
+		//									}
+		//								}
+		//								checkAttackAnimation++;
+		//							}
+		//						}
+		//					}
 
-							checkWhichSpawner++;
-						}
-					}
-				}
-			}
+		//					checkWhichSpawner++;
+		//				}
+		//			}
+		//		}
+		//	}
 
-			unitsToFight++;
-		}
+		//	unitsToFight++;
+		//}
 
 
 
@@ -424,52 +465,170 @@ bool j1EntityManager::Update(float dt) {
 		// Change destination for units selected on right-click
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && !unitsSelected.empty()) {
 
-			int orderOfPriority = 0;
-			list<Entity*>::iterator unitsToRedirect = unitsSelected.begin();
+			fPoint mouseWorldPosition = App->input->GetMouseWorldPosition();
 
-			while (unitsToRedirect != unitsSelected.end()) {
+			bool attacking = false;
 
-				if ((*unitsToRedirect)->isAlive) {
+			list<Entity*>::iterator subjects = unitsSelected.begin();
 
-					fPoint xy = App->input->GetMouseWorldPosition();
-					iPoint cameraW = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
-					iPoint mapCoordinates = App->map->WorldToMap(xy.x - cameraW.x, xy.y - cameraW.y + App->map->data.tile_height / 2);
+			list<Entity*>::iterator checkForAttackedEntities = activeEntities.begin();
+			while (checkForAttackedEntities != activeEntities.end()) {
 
-					iPoint destination = mapCoordinates;
+				if (!(*checkForAttackedEntities)->isEntityFromPlayer) {
 
+					if (mouseWorldPosition.x < (*checkForAttackedEntities)->pos.x + (*checkForAttackedEntities)->GetSize().x && mouseWorldPosition.x >(*checkForAttackedEntities)->pos.x &&
+						mouseWorldPosition.y < (*checkForAttackedEntities)->pos.y + (*checkForAttackedEntities)->GetSize().y && mouseWorldPosition.y >(*checkForAttackedEntities)->pos.y) {
 
-					bool locationAvailable = true;
-					list<Entity*>::iterator someoneElse = activeUnits.begin();
-					while (someoneElse != activeUnits.end()) {
+						while (subjects != unitsSelected.end()) {
 
-						if ((*someoneElse) != (*unitsToRedirect)) {
+							(*subjects)->target = (*checkForAttackedEntities);
+							subjects++;
+						}
+						attacking = true;
+						break;
+					}
+				}
 
-							// We can't send someone to where there's another unit
-							if (mapCoordinates == (*someoneElse)->currentTile && !(*someoneElse)->isOnTheMove)
+				checkForAttackedEntities++;
+			}
+				
+			
+			if (attacking) {
+
+				
+			}
+			else {
+				list<Entity*>::iterator unitsToRedirect = unitsSelected.begin();
+				while (unitsToRedirect != unitsSelected.end()) {
+
+					if ((*unitsToRedirect)->isAlive) {
+
+						// We get the mouse's position
+						iPoint cameraW = App->map->WorldToMap(App->render->camera.x, App->render->camera.y);
+						iPoint mapCoordinates = App->map->WorldToMap(mouseWorldPosition.x - cameraW.x, mouseWorldPosition.y - cameraW.y + App->map->data.tile_height / 2);
+
+						// We'll leave the mapCoordinates unaltered just in case
+						iPoint destination = mapCoordinates;
+
+						// This will dictate whether or not we can send the unit there
+						bool locationAvailable = true;
+
+						// We'll cicle throw all OTHER units
+						list<Entity*>::iterator someoneElse = activeUnits.begin();
+						while (someoneElse != activeUnits.end()) {
+
+							if ((*someoneElse) != (*unitsToRedirect)) {
+
+								// We can't send someone to where there's another unit
+								if (destination == (*someoneElse)->currentTile && !(*someoneElse)->isOnTheMove) {
+									locationAvailable = false;
+									break;
+								}
+							}
+
+							someoneElse++;
+						}
+
+						// We'll check if this possibleDestination is included in the destinations list
+						list<iPoint>::iterator destinationsList = destinations.begin();
+						while (destinationsList != destinations.end()) {
+
+							// If it is, there's no need to keep searching, we'll just exit it and try another one
+							if (destination == (*destinationsList)) {
 								locationAvailable = false;
-
-							// And we can't send someone to where someone else is already going
-							else if (mapCoordinates == (*someoneElse)->destination) {
-
-								destination = App->pathfinding->FindClosestDestination(mapCoordinates).at(orderOfPriority);
+								break;
+							}
+							else {
 								locationAvailable = true;
+							}
+							destinationsList++;
+						}
+
+						// And we can't send someone to where someone else is already going
+						if (!locationAvailable) {
+
+							int i = 0;
+							iPoint possibleDestination;
+
+							// If true, we'll continue the loop until reaching the safety check
+							bool continueLoop = true;
+
+							while (continueLoop) {
+
+								// Safety check so we don't have an infinte loop
+								if (i > App->pathfinding->FindClosestDestination(mapCoordinates).size() - 1) {
+									break;
+								}
+
+								// Let's try an adjacent tile
+								possibleDestination = App->pathfinding->FindClosestDestination(mapCoordinates).at(i);
+
+								// We'll check if this possibleDestination is included in the destinations list
+								list<iPoint>::iterator destinationsList = destinations.begin();
+								while (destinationsList != destinations.end()) {
+
+									// If it is, there's no need to keep searching, we'll just exit it and try another one
+									if (possibleDestination == (*destinationsList)) {
+										continueLoop = true;
+										locationAvailable = false;
+										break;
+									}
+									else {
+										destination = possibleDestination;
+										locationAvailable = true;
+										continueLoop = false;
+									}
+									destinationsList++;
+								}
+
+								i++;
 							}
 						}
 
-						someoneElse++;
-					}
-				
 
-					if (locationAvailable) {
-						(*unitsToRedirect)->SetDestination(destination);
-						(*unitsToRedirect)->CalculateMovementLogic(orderOfPriority);
+
+
+
+						if (locationAvailable) {
+							(*unitsToRedirect)->SetDestination(destination);
+							destinations.push_back(destination);
+							(*unitsToRedirect)->CalculateMovementLogic(0);
+						}
+
 					}
-					orderOfPriority++;
+
+					unitsToRedirect++;
 				}
-
-				unitsToRedirect++;
 			}
 		}
+
+
+
+		// Attacking Logic
+		list<Entity*>::iterator unitsToAttackLogic = activeUnits.begin();
+		while (unitsToAttackLogic != activeUnits.end()) {
+
+			// First, we will get the units that need to AttackLogic
+			if ((*unitsToAttackLogic)->target != nullptr) {
+
+				// Checking if the unit is range to attack
+				// If it's in range, attack
+				if (App->pathfinding->DistanceTo((*unitsToAttackLogic)->currentTile, (*unitsToAttackLogic)->target->currentTile) <= (*unitsToAttackLogic)->attackRadius) {
+
+					(*unitsToAttackLogic)->Attack((*unitsToAttackLogic)->target, dt);
+				}
+
+				// If not, move closer and we'll continue to check until it can attack
+				else {
+
+				}
+			}
+
+			unitsToAttackLogic++;
+		}
+
+
+
 
 		// Move
 		list<Entity*>::iterator unitsToMove = activeUnits.begin();

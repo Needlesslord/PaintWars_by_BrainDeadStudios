@@ -444,3 +444,20 @@ std::vector<iPoint> j1PathFinding::FindClosestDestination(iPoint destination) {
 
 	return ret;
 }
+
+int j1PathFinding::DistanceTo(iPoint from, iPoint to) {
+
+	int x, y;
+
+	x = from.x - to.x;
+
+	if (x < 0)
+		x *= (-1);
+
+	y = from.y - to.y;
+
+	if (y < 0)
+		y *= (-1);
+
+	return x + y;
+}
