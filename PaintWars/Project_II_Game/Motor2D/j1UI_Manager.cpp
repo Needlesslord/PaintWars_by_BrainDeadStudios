@@ -114,6 +114,11 @@ SDL_Texture* j1UI_Manager::Get_Texture_From_Image(TEXTURE textureType)
 		return Atlas_Sprite_Load;
 		break;
 
+	case TEXTURE::MINIMAP_ENTITIES:
+		 Minimap_Entities_Load  = App->tex->Load("textures/UI/Minimap_Entities.png");
+		 return  Minimap_Entities_Load;
+		break;
+
 	case TEXTURE::MINIMAP_FULL:
 		Minimap_Full_Load = App->tex->Load("textures/UI/Minimap_UI_FULL.png");
 		return Minimap_Full_Load;

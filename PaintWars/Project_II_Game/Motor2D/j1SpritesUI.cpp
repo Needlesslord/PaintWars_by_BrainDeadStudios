@@ -41,6 +41,13 @@ bool j1UISprites::Start()
 
 		break;
 
+	case TEXTURE::MINIMAP_ENTITIES:
+
+		if (Sprites_UI_Texture_General_ATLAS == NULL)
+			Sprites_UI_Texture_General_ATLAS = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_ENTITIES);
+
+		break;
+
 	case TEXTURE::MINIMAP_BACK_SPRITE:
 
 		if (Sprites_UI_Texture_Minimap_FULL_SCALE_BACK == NULL)
@@ -102,6 +109,11 @@ bool j1UISprites::Update(float dt) {
 		break;
 
 	case TEXTURE::ATLAS_SPRITE:
+
+		App->render->RenderQueueUI(2, Sprites_UI_Texture_General_ATLAS, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
+		break;
+
+	case TEXTURE::MINIMAP_ENTITIES:
 
 		App->render->RenderQueueUI(2, Sprites_UI_Texture_General_ATLAS, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
 		break;

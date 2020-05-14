@@ -65,6 +65,19 @@ void Painter::ExtractWood(float dt) {
 	}
 }
 
+void Painter::ExtractMetalScrap(float dt) {
+
+	if (App->pathfinding->IsWood(currentTile) && currentTile == destination) {
+		//App->player->woodCount.count += 0.01;
+		App->player->metalScrapCount.count += extractionRate * dt;
+	}
+
+	//if (App->pathfinding->IsMetalScrap(currentTile) && currentTile == destination) {
+	//	//App->player->woodCount.count += 0.01;
+	//	App->player->metalScrapCount.count += extractionRate * dt;
+	//}
+}
+
 void Painter::Draw(SDL_Texture* sprites) {
 
 	App->render->RenderQueue(1, sprites, pos.x, pos.y, currentAnimation->GetCurrentFrame());

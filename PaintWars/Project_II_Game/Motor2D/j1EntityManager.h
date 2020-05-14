@@ -109,6 +109,8 @@ public:
 	bool paintExtractorUpgraded = false;
 	bool woodProducersUpgraded = false;
 	bool ExtractorQuestDone = false;
+	bool titaniumExtractorUpgraded = false;
+	bool metalGathererUpgraded = false;
 
 	bool spacePressed = false;
 
@@ -122,6 +124,8 @@ protected:
 	SDL_Texture* houseTexture = nullptr;
 	SDL_Texture* barracksTexture = nullptr;
 	SDL_Texture* buildingTexture = nullptr;
+	SDL_Texture* titaniumExtractorTexture = nullptr;
+	SDL_Texture* metalGathererTexture = nullptr;
 
 	/// Units
 	SDL_Texture* painterTexture = nullptr;

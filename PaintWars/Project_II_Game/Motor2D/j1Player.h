@@ -63,6 +63,8 @@ public:
 	Resource paintCount;
 	Resource woodCount;
 	Resource housingSpace;
+	Resource titaniumCount;
+	Resource metalScrapCount;
 	int camera_speed;
 	int win_height;
 	int win_width;
@@ -88,6 +90,9 @@ private:
 	std::string file;
 	float MinimapCameraBufferX;
 	float MinimapCameraBufferY;
+	j1UIElement* MiniMapEntities_Squares[40] = {};
+
+
 
 };
 

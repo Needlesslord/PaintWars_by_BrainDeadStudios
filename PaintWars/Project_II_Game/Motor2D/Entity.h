@@ -61,7 +61,8 @@ enum ENTITY_TYPE {
 	ENTITY_TYPE_WOOD_PRODUCER,
 	ENTITY_TYPE_HOUSE,
 	ENTITY_TYPE_BARRACKS,
-
+	ENTITY_TYPE_TITANIUM_EXTRACTOR,
+	ENTITY_TYPE_METAL_GATHERER,
 
 	/// Units
 	ENTITY_TYPE_PAINTER,
@@ -96,6 +97,8 @@ public:
 	virtual void SpawnEntity();
 	virtual void ExtractPaint(float dt);
 	virtual void ExtractWood(float dt);
+	virtual void ExtractTitanium(float dt);
+	virtual void ExtractMetalScrap(float dt);
 	virtual void Attack(Entity* target, float dt);
 
 	// Position and size
