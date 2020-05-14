@@ -366,6 +366,10 @@ void Entity::ExtractPaint(float dt) {}
 
 void Entity::ExtractWood(float dt) {}
 
+void Entity::ExtractTitanium(float dt) {}
+
+void Entity::ExtractMetalScrap(float dt) {}
+
 void Entity::Attack(Entity* target, float dt) {}
 
 // -------------------------------------------------------------
