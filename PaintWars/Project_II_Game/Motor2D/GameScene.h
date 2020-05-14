@@ -179,8 +179,8 @@ public:
 	j1UIElement* upgradeWoodProducerButton = nullptr;
 
 
-	j1UIElement* shopHoverExtractor = nullptr;
-	j1UIElement* shopHoverWoodProducer = nullptr;
+	j1UIElement* shopHoverPrice = nullptr;
+	/*j1UIElement* shopHoverWoodProducer = nullptr;
 	j1UIElement* shopHoverBarracks = nullptr;
 	j1UIElement* shopHoverHouse = nullptr;
 	j1UIElement* shopHoverPainter = nullptr;
@@ -188,7 +188,7 @@ public:
 	j1UIElement* shopHoverUpgradeWarrior = nullptr;
 	j1UIElement* shopHoverUpgradePainter = nullptr;
 	j1UIElement* shopHoverUpgradeExtractor = nullptr;
-	j1UIElement* shopHoverUpgradeWoodProducer = nullptr;
+	j1UIElement* shopHoverUpgradeWoodProducer = nullptr;*/
 
 	j1UIElement* priceLabel = nullptr;
 	int priceTimer = 0;
