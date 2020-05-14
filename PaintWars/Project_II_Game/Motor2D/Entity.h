@@ -68,6 +68,7 @@ enum ENTITY_TYPE {
 	ENTITY_TYPE_WARRIOR,
 	ENTITY_TYPE_KNIGHT,
 	ENTITY_TYPE_EXPLORER,
+	ENTITY_TYPE_RANGER,
 
 	// Enemies
 	/// Buildings
@@ -88,7 +89,7 @@ public:
 	virtual void Draw(SDL_Texture* sprites);
 	virtual void DebugDrawSelected();
 	virtual void OnCollision(Collider* c1, Collider* c2);
-	virtual void CalculateMovementLogic(int p);
+	virtual void CalculateMovementLogic();
 	virtual void MovementLogic();
 	virtual void Move(float dt);
 	virtual void SetDestination(iPoint des);
@@ -138,13 +139,16 @@ public:
 	iPoint destination;
 	iPoint nextTile;
 
+	std::vector<iPoint>currentPath;
+	uint pathIterator;
+
 	Entity* target;
 	SDL_Rect target_rect;
 
 	float attackDamage = 0.0f;
 	float attackSpeed = 0.0f;
 	float attackCooldown = 1.0f;
-	uint attackRadius = 100; // In tiles
+	uint attackRadius = 1; // In tiles
 	//float attackProgress = 0.0f;
 
 	SDL_Color minimapDrawColor{ 0,0,0,0 };
@@ -182,8 +186,7 @@ protected:
 
 	j1Module* listener = nullptr; // callback
 
-	std::vector<iPoint>currentPath;
-	uint pathIterator;
+	
 
 	
 	

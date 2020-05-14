@@ -473,6 +473,12 @@ bool j1EntityManager::Update(float dt) {
 			bool attacking = false;
 
 			list<Entity*>::iterator subjects = unitsSelected.begin();
+			while (subjects != unitsSelected.end()) {
+
+				(*subjects)->target = nullptr;
+				subjects++;
+			}
+			subjects = unitsSelected.begin();
 
 			list<Entity*>::iterator checkForAttackedEntities = activeEntities.begin();
 			while (checkForAttackedEntities != activeEntities.end()) {
@@ -595,7 +601,7 @@ bool j1EntityManager::Update(float dt) {
 						if (locationAvailable) {
 							(*unitsToRedirect)->SetDestination(destination);
 							destinations.push_back(destination);
-							(*unitsToRedirect)->CalculateMovementLogic(0);
+							(*unitsToRedirect)->CalculateMovementLogic();
 						}
 
 					}
@@ -624,6 +630,36 @@ bool j1EntityManager::Update(float dt) {
 				// If not, move closer and we'll continue to check until it can attack
 				else {
 
+					// First we'll create a path to the target's position
+					int map;
+					map = App->pathfinding->CreatePath((*unitsToAttackLogic)->currentTile, (*unitsToAttackLogic)->target->currentTile, true);
+					(*unitsToAttackLogic)->currentPath = *App->pathfinding->GetLastPath();
+					
+					bool isInRange = false;
+					int i = 0;
+					
+					// We are looking for the closest tile that is in range to attack the target
+					while (!isInRange) {
+
+						if (App->pathfinding->DistanceTo((*unitsToAttackLogic)->currentPath.at(i), (*unitsToAttackLogic)->target->currentTile) <= (*unitsToAttackLogic)->attackRadius) {
+
+							isInRange = true;
+
+							(*unitsToAttackLogic)->SetDestination((*unitsToAttackLogic)->currentPath.at(i));
+							destinations.push_back((*unitsToAttackLogic)->currentPath.at(i));
+							(*unitsToAttackLogic)->CalculateMovementLogic();
+
+							//map = App->pathfinding->CreatePath((*unitsToAttackLogic)->currentTile, (*unitsToAttackLogic)->currentPath.at(i));
+							//(*unitsToAttackLogic)->currentPath = *App->pathfinding->GetLastPath();
+
+							break;
+						}
+
+						i++;
+
+						if (i > (*unitsToAttackLogic)->currentPath.size())
+							break;
+					}
 				}
 			}
 
@@ -724,6 +760,9 @@ bool j1EntityManager::Update(float dt) {
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_EXPLORER) {
 					(*entitiesToDraw)->Draw(explorerTexture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_RANGER) {
+					(*entitiesToDraw)->Draw(rangerTexture);
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SPAWNER) {
 					(*entitiesToDraw)->Draw(spawnerTexture);
@@ -1105,7 +1144,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		return (Entity*)knight;
 	}
 
-	else if (entityType == ENTITY_TYPE_KNIGHT) {
+	else if (entityType == ENTITY_TYPE_EXPLORER) {
 
 		Explorer* explorer = new Explorer(tile, damage, this, creator);
 
@@ -1124,6 +1163,24 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		return (Entity*)explorer;
 	}
 
+	else if (entityType == ENTITY_TYPE_RANGER) {
+
+		Ranger* ranger = new Ranger(tile, damage, this, creator);
+
+		if (spawnAutomatically) {
+
+			activeEntities.push_back((Entity*)ranger);
+			activeUnits.push_back((Entity*)ranger);
+			ranger->isAlive = true;
+			ranger->CreateEntityCollider(ranger->pos, (Entity*)ranger);
+			ranger->currentAnimation = &warriorIdle; // TODO: change
+		}
+
+		else
+			spawningEntities.push_back((Entity*)ranger);
+
+		return (Entity*)ranger;
+	}
 
 		// Enemies
 	/// Buildings
@@ -1224,8 +1281,6 @@ void j1EntityManager::LoadEntityTextures()
 {
 	debug_tex = App->tex->Load("maps/path2.png");
 
-	// TODO: Initialize all textures
-
 		// Allies
 	/// Buildings
 	townHallTexture = App->tex->Load("textures/TownHall.png");
@@ -1238,9 +1293,11 @@ void j1EntityManager::LoadEntityTextures()
 	warriorTexture = App->tex->Load("textures/Warrior_Sprite_Mod.png");
 	painterTexture = App->tex->Load("textures/spritesheet_painter_mod.png");
 	knightTexture = App->tex->Load("textures/");// TODO: Add
+	explorerTexture = App->tex->Load("textures/");// TODO: Add
+	rangerTexture = App->tex->Load("textures/");// TODO: Add
 
-	// Enemies
-/// Buildings
+		// Enemies
+	/// Buildings
 	spawnerTexture = App->tex->Load("textures/Spawner.png");
 
 	/// Units
@@ -1255,6 +1312,7 @@ void j1EntityManager::LoadEntityTextures()
 
 	WarriorSprites();
 	PainterSprites();
+	//TODO: KNIGHT EXPLORER RANGER
 
 	
 }

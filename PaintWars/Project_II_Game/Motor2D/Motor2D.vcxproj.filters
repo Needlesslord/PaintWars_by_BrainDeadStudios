@@ -196,6 +196,9 @@
     <ClCompile Include="Random.cpp">
       <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Ranger.cpp">
+      <Filter>Motor  ========\Entities\Allies\Units</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -416,6 +419,9 @@
     </ClInclude>
     <ClInclude Include="Random.h">
       <Filter>Motor  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Ranger.h">
+      <Filter>Motor  ========\Entities\Allies\Units</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
