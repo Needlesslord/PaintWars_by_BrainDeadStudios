@@ -3,7 +3,6 @@
 
 #include "House.h"
 
-#include "j1Player.h"
 #include "j1SceneManager.h"
 #include "j1Map.h"
 #include "j1Collision.h"
@@ -29,8 +28,6 @@ House::House(iPoint tile, int damage, j1Module* listener, Entity* creator) : Ent
 	pos.y = tileWorldPosition.y + App->map->data.tile_height / 2 - size.y;
 
 	constructionTime = 5.0f;
-
-	App->player->housingSpace.maxCount += 5;
 
 	isEntityFromPlayer = true;
 }

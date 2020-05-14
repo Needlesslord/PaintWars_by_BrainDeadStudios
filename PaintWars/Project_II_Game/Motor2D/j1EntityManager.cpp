@@ -168,6 +168,9 @@ bool j1EntityManager::Update(float dt) {
 					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos, (*checkForSpawningEntities));
 					(*checkForSpawningEntities)->isAlive = true;
 
+					if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_HOUSE)
+						App->player->housingSpace.maxCount += 5;
+
 					spawningEntities.erase(checkForSpawningEntities);
 				}
 
@@ -1011,6 +1014,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeBuildings.push_back((Entity*)house);
 			house->isAlive = true;
 			house->CreateEntityCollider(house->pos, (Entity*)house);
+			App->player->housingSpace.maxCount += 5;
 		}
 
 		else
