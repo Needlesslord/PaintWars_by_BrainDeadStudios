@@ -269,7 +269,7 @@ private:
 
 	int seconds;
 	int minutes;
-
+	int AnimTime;
 
 
 

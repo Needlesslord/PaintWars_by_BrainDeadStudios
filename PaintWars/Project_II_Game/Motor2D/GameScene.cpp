@@ -279,8 +279,8 @@ bool GameScene::Start()
 
 	//shopHoverPrice =App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "0", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
 	shopHoverPrice = App->gui->AddElement(TypeOfUI::GUI_LABEL, shopImage, { 210 , 680 }, { 0 , 0 }, false, false, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED);
-	priceLabel = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
-
+	//priceLabel = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
+	
 
 	//HUD - MiniMap
 
@@ -316,7 +316,7 @@ bool GameScene::Start()
 	
 	//Animation
 	//PaintRollerAnimation = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 400, -200 }, { 0 , 0 }, false,false, { 1493, 1292, 552, 753 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
-	PaintRollerAnimation = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 400, -200 }, { 0,0 }, false, false, { 1493, 1292, 552, 753 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	PaintRollerAnimation = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 400, -600 }, { 0,0 }, false, false, { 1493, 1275, 552, 770 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	//PaintRollerAnimation->enabled = false;
 
 	//////////////////
@@ -358,13 +358,15 @@ bool GameScene::PreUpdate()
 	
 	bool ret = true;
 	//--------------------------- PUT AN INT THAT GOES THROUGH IT 15-20 TIMES OR MORE AND WHEN ITS DONE COMPLETE ANIMATION
+	
 	LOG("Position Roller Y %f", PaintRollerAnimation->map_position.y);
 	if (App->PAUSE_ACTIVE == true){
-
-		if (PaintRollerAnimation->map_position.y + App->render->camera.y < 0 + App->render->camera.y && App->transition_manager->is_transitioning == false) {
+		
+		if (/*PaintRollerAnimation->map_position.y + App->render->camera.y < 0 + App->render->camera.y*/ AnimTime < 90 && App->transition_manager->is_transitioning == false) {
 			PaintRollerAnimation->map_position = PaintRollerAnimation->map_position = { PaintRollerAnimation->map_position.x ,PaintRollerAnimation->map_position.y + 15 };
 			LOG("Position Roller Y %f",PaintRollerAnimation->map_position.y);
 				//LOG("Camera x at %d", App->render->camera.x);
+			++AnimTime;
 		}
 		else if (App->transition_manager->is_transitioning == true) {
 
@@ -1053,7 +1055,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		App->PAUSE_ACTIVE = true;
 
 		App->player->gameTimer.Stop();
-
+		AnimTime = 0;
 		PaintRollerAnimation->enabled = true;
 
 		
