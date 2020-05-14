@@ -6,7 +6,7 @@
 
 ## Main Index
 
-+ [Introducion](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ProductionPlan.md#introducion)
++ [Introduction](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ProductionPlan.md#introducion)
 + [General Calendar](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ProductionPlan.md#general-calendar)
 + [Sprints and Milestones](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ProductionPlan.md#sprints-and-milestones)
    - [Milestones](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ProductionPlan.md#milestones)
