@@ -125,7 +125,10 @@ bool GameScene::Start()
 	//////////////////
 	//      UI      //
 	//////////////////
+
 	
+	//BackgroundForest = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_FOREST);
+
 	
 	//HUD - Bar
 	hudBarImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
@@ -135,8 +138,8 @@ bool GameScene::Start()
 	titaniumLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 480 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
 	researchLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 600 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr,  TEXTURE::ATLAS, FONT::FONT_SMALL);
 	entitiesLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 720 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "0", nullptr,  TEXTURE::ATLAS, FONT::FONT_SMALL);
-	EntityHP = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 1050 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "999", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
-	//BackgroundForest = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_FOREST);
+	EntityHP = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 1075 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "999", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL);
+	timerLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, hudBarImage, { 830 , 5 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "15m 00s", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_RED);
 
 
 	//HUD - Quests
@@ -285,7 +288,7 @@ bool GameScene::Start()
 	shopHoverUpgradeExtractor = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
 	shopHoverUpgradeWoodProducer = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
 
-
+	priceLabel = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
 
 
 	//HUD - MiniMap
@@ -320,8 +323,10 @@ bool GameScene::Start()
 	buyWarriorButton->hover_rect = { 585, 1966, 65, 82 };
 	buyWarriorButton->click_rect = { 845, 1966, 65, 82 };
 	
-
-	
+	//Animation
+	//PaintRollerAnimation = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 400, -200 }, { 0 , 0 }, false,false, { 1493, 1292, 552, 753 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
+	PaintRollerAnimation = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 400, -200 }, { 0,0 }, false, false, { 1493, 1292, 552, 753 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	//PaintRollerAnimation->enabled = false;
 
 	//////////////////
 	//	RESOURCES	//
@@ -358,12 +363,40 @@ bool GameScene::Start()
 // Called each loop iteration
 bool GameScene::PreUpdate()
 {
-
-	bool ret = true;
-
-
+	//PaintRollerAnimation->enabled = false;
 	
+	bool ret = true;
+	//--------------------------- PUT AN INT THAT GOES THROUGH IT 15-20 TIMES OR MORE AND WHEN ITS DONE COMPLETE ANIMATION
+	LOG("Position Roller Y %f", PaintRollerAnimation->map_position.y);
+	if (App->PAUSE_ACTIVE == true){
 
+		if (PaintRollerAnimation->map_position.y + App->render->camera.y < 0 + App->render->camera.y && App->transition_manager->is_transitioning == false) {
+			PaintRollerAnimation->map_position = PaintRollerAnimation->map_position = { PaintRollerAnimation->map_position.x ,PaintRollerAnimation->map_position.y + 15 };
+			LOG("Position Roller Y %f",PaintRollerAnimation->map_position.y);
+				//LOG("Camera x at %d", App->render->camera.x);
+		}
+		else if (App->transition_manager->is_transitioning == true) {
+
+		}
+		else {
+			PaintRollerAnimation->enabled = false;
+			pauseMenu = true;
+			pauseMenuImage->enabled = true;
+			pauseMenuLabel->enabled = true;
+			resumeButton->enabled = true;
+			saveButton->enabled = true;
+			settingsButton->enabled = true;
+			mainMenuButton->enabled = true;
+			exitButton->enabled = true;
+
+			homeButton->interactable = false;
+			pauseMenuButton->interactable = false;
+			shopButton->interactable = false;
+			restartButton->interactable = false;
+			questsOpenButton->interactable = false;
+			questsCloseButton->interactable = false;
+		}
+	}
 	// Debug pathfinding ------------------
 	static iPoint origin;
 	static bool origin_selected = false;
@@ -549,6 +582,24 @@ bool GameScene::Update(float dt)
 	else {
 		buyWarriorButton->enabled = false;
 		upgradeWarriorButton->enabled = false;
+	}
+
+
+	//Timer
+
+	int minutes = 14 - (int)App->player->gameTimer.ReadSec() / 60;
+	int seconds = 60 - (int)App->player->gameTimer.ReadSec() % 60;
+
+	static char conversor[256];
+	sprintf_s(conversor, 256, "%dm %ds", minutes, seconds);
+	timerLabel->text = conversor;
+
+
+	//PriceTimer
+
+	if (App->player->gameTimer.ReadSec() - priceTimer == 2)
+	{
+		priceLabel->enabled = false;
 	}
 
 
@@ -810,6 +861,12 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			
 		}
 
+		priceLabel->enabled = true;
+		priceLabel->text = "-500";
+		App->input->GetMousePosition(priceLabel->map_position.x, priceLabel->map_position.y);
+
+		priceTimer = App->player->gameTimer.ReadSec();
+
 	}
 
 	if (element == buyBarrackButton && type == GUI_Event::EVENT_ONCLICK) {
@@ -1041,21 +1098,9 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 		App->player->gameTimer.Stop();
 
-		pauseMenu = true;
-		pauseMenuImage->enabled = true;
-		pauseMenuLabel->enabled = true;
-		resumeButton->enabled = true;
-		saveButton->enabled = true;
-		settingsButton->enabled = true;
-		mainMenuButton->enabled = true;
-		exitButton->enabled = true;
+		PaintRollerAnimation->enabled = true;
 
-		homeButton->interactable = false;
-		pauseMenuButton->interactable = false;
-		shopButton->interactable = false;
-		restartButton->interactable = false;
-		questsOpenButton->interactable = false;
-		questsCloseButton->interactable = false;
+		
 	}
 	
 	if (element == resumeButton && type == GUI_Event::EVENT_ONCLICK)
