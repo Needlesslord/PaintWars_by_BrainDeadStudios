@@ -127,7 +127,7 @@ Increasing difficulty as time goes on, the game will pressure the player harder 
 
  - Marc San José - Design, QA
       + [Github](https://github.com/marcsjm19)
-      + [Linkedin](https://es.linkedin.com/marcsjm19)
+      + [Linkedin](https://www.linkedin.com/in/marc-san-jos%C3%A9-mart%C3%ADnez-6239361a3/)
  - Enric-G. Durán - Co-Lead UI Designer, Lead Artist
       + [Github](https://github.com/EnricGDV)
       + [Linkedin](https://www.linkedin.com/in/enric-guillem-dur%C3%A1n-vilar-9a1932138/)
