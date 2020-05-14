@@ -41,6 +41,7 @@ public:
 	//TEXTURES FOR UI
 	SDL_Texture* Atlas_Load = nullptr;
 	SDL_Texture* Atlas_Sprite_Load = nullptr;
+	SDL_Texture* Minimap_Entities_Load = nullptr;
 	SDL_Texture* Minimap_Full_Load = nullptr;
 	SDL_Texture* Minimap_Mini_Load = nullptr;
 	SDL_Texture* Minimap_Back_Load = nullptr;

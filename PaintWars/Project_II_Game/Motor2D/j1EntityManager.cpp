@@ -168,6 +168,9 @@ bool j1EntityManager::Update(float dt) {
 					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos, (*checkForSpawningEntities));
 					(*checkForSpawningEntities)->isAlive = true;
 
+					if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_HOUSE)
+						App->player->housingSpace.maxCount += 5;
+
 					spawningEntities.erase(checkForSpawningEntities);
 				}
 
@@ -327,7 +330,7 @@ bool j1EntityManager::Update(float dt) {
 
 
 
-		// Extract Paint (Painters and PaintExtractor
+		// Extract Paint (Painters and PaintExtractor)
 		list<Entity*>::iterator entitiesToExtractPaint = activeEntities.begin();
 		while (entitiesToExtractPaint != activeEntities.end()) {
 
@@ -351,8 +354,29 @@ bool j1EntityManager::Update(float dt) {
 			paintersToExtractWood++;
 		}
 
+		// Extract Titanium (ONLY TITANIUM GATHERER CAN)
+		list<Entity*>::iterator buildingstoExtractTitanium = activeUnits.begin();
+		while (buildingstoExtractTitanium != activeUnits.end()) {
 
+			// We try to extract and it will return if it can't
+			if ((*buildingstoExtractTitanium)->entityType == ENTITY_TYPE_PAINTER) {
 
+				(*buildingstoExtractTitanium)->ExtractTitanium(dt);
+			}
+			buildingstoExtractTitanium++;
+		}
+
+		// Extract Metal Scrap  (ONLY PAINTERS CAN)
+		list<Entity*>::iterator paintersToExtractMetalScrap = activeUnits.begin();
+		while (paintersToExtractMetalScrap != activeUnits.end()) {
+
+			// We try to extract and it will return if it can't
+			if ((*paintersToExtractMetalScrap)->entityType == ENTITY_TYPE_PAINTER) {
+
+				(*paintersToExtractMetalScrap)->ExtractMetalScrap(dt);
+			}
+			paintersToExtractMetalScrap++;
+		}
 
 		// Attack Mode
 		//list<Entity*>::iterator unitsToFight = activeUnits.begin();
@@ -1011,6 +1035,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeBuildings.push_back((Entity*)house);
 			house->isAlive = true;
 			house->CreateEntityCollider(house->pos, (Entity*)house);
+			App->player->housingSpace.maxCount += 5;
 		}
 
 		else
