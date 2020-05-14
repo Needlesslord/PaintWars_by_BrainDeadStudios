@@ -184,6 +184,18 @@
     <ClCompile Include="ScoreScene.cpp">
       <Filter>Motor  ========\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="j1ParticleManager.cpp">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem.cpp">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -392,6 +404,18 @@
     </ClInclude>
     <ClInclude Include="ScoreScene.h">
       <Filter>Motor  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="j1ParticleManager.h">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem.h">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
