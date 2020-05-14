@@ -70,7 +70,7 @@
 [Álex Lopez](https://github.com/AlexLA99)
 + Lead QA 
 
-[Marc San José]()
+[Marc San José](https://github.com/marcsjm19)
 + Coder, Designer
 
 ***

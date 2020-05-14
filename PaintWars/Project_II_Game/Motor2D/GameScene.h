@@ -75,6 +75,8 @@ public:
 
 	UI_HUD UI_INGAME;
 
+	j1UIElement* BackgroundForest = nullptr;
+
 	//HUD - Bar
 	j1UIElement* hudBarImage = nullptr;
 	j1UIElement* paintLabel = nullptr;
@@ -85,7 +87,7 @@ public:
 	j1UIElement* researchLabel = nullptr;
 	j1UIElement* entitiesImage = nullptr;
 	j1UIElement* entitiesLabel = nullptr;
-	j1UIElement* BackgroundForest = nullptr;
+	j1UIElement* timerLabel = nullptr;
 
 	// HUD - Quests
 	j1UIElement* questsImage = nullptr;
@@ -187,6 +189,9 @@ public:
 	j1UIElement* shopHoverUpgradePainter = nullptr;
 	j1UIElement* shopHoverUpgradeExtractor = nullptr;
 	j1UIElement* shopHoverUpgradeWoodProducer = nullptr;
+
+	j1UIElement* priceLabel = nullptr;
+	int priceTimer = 0;
 
 
 	// Buildings
