@@ -53,7 +53,7 @@ void Entity::CalculateMovementLogic(int p) {
 		return;
 	}
 
-	if (App->pathfinding->IsSpawner(destination)) {
+	/*if (App->pathfinding->IsSpawner(destination)) {
 
 		for (int i = 0; i < App->pathfinding->FindClosestDestination(destination).size(); i++) {
 
@@ -64,7 +64,7 @@ void Entity::CalculateMovementLogic(int p) {
 				break;
 			}
 		}
-	}
+	}*/
 
 	int map;
 	map = App->pathfinding->CreatePath(currentTile, destination);
@@ -155,6 +155,10 @@ void Entity::MovementLogic() {
 }
 
 void Entity::Move(float dt) {
+
+	if (App->entities->spacePressed)
+		return;
+
 	BROFILER_CATEGORY("Move--Entities();", Profiler::Color::PaleVioletRed);
 	fPoint fNextTile = App->map->MapToWorld(nextTile.x, nextTile.y);
 	fPoint nextTilePos;

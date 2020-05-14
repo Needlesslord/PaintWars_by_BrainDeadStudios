@@ -6,7 +6,7 @@
 
 ## Main Index
 
-+ [Introducion](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ProductionPlan.md#introducion)
++ [Introduction](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ProductionPlan.md#introducion)
 + [General Calendar](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ProductionPlan.md#general-calendar)
 + [Sprints and Milestones](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ProductionPlan.md#sprints-and-milestones)
    - [Milestones](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/ProductionPlan.md#milestones)
@@ -19,7 +19,7 @@
 ***
 
 
-## Introducion
+## Introduction
 
 In this part of the documentation we are going to explain our Production Plan, how we approached the project and why we chose to do it this way.
 
