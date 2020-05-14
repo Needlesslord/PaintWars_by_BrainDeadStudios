@@ -19,7 +19,7 @@
 ***
 
 
-## Introducion
+## Introduction
 
 In this part of the documentation we are going to explain our Production Plan, how we approached the project and why we chose to do it this way.
 
