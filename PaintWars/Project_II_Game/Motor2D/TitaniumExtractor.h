@@ -10,6 +10,8 @@ public:
 
 	TitaniumExtractor(iPoint tile, int damage, j1Module* listener, Entity* creator);
 	~TitaniumExtractor();
+	void ExtractTitanium(float dt) override;
+
 
 public:
 

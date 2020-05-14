@@ -33,10 +33,15 @@ TitaniumExtractor::TitaniumExtractor(iPoint tile, int damage, j1Module* listener
 	constructionTime = 20.0f;
 
 	extractionRate = 0.05f;
-	if (App->entities->paintExtractorUpgraded)
+	if (App->entities->titaniumExtractorUpgraded)
 		extractionRate *= 0.1f;
 
 	isEntityFromPlayer = true;
 }
 
 TitaniumExtractor::~TitaniumExtractor() {}
+
+void TitaniumExtractor::ExtractTitanium(float dt) {
+
+	App->player->titaniumCount.count += extractionRate * dt;
+}

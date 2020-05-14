@@ -96,6 +96,8 @@ public:
 	virtual void SpawnEntity();
 	virtual void ExtractPaint(float dt);
 	virtual void ExtractWood(float dt);
+	virtual void ExtractTitanium(float dt);
+	virtual void ExtractMetalScrap(float dt);
 	virtual void Attack(Entity* target, float dt);
 
 	// Position and size

@@ -330,7 +330,7 @@ bool j1EntityManager::Update(float dt) {
 
 
 
-		// Extract Paint (Painters and PaintExtractor
+		// Extract Paint (Painters and PaintExtractor)
 		list<Entity*>::iterator entitiesToExtractPaint = activeEntities.begin();
 		while (entitiesToExtractPaint != activeEntities.end()) {
 
@@ -354,8 +354,29 @@ bool j1EntityManager::Update(float dt) {
 			paintersToExtractWood++;
 		}
 
+		// Extract Titanium (ONLY TITANIUM GATHERER CAN)
+		list<Entity*>::iterator buildingstoExtractTitanium = activeUnits.begin();
+		while (buildingstoExtractTitanium != activeUnits.end()) {
 
+			// We try to extract and it will return if it can't
+			if ((*buildingstoExtractTitanium)->entityType == ENTITY_TYPE_PAINTER) {
 
+				(*buildingstoExtractTitanium)->ExtractTitanium(dt);
+			}
+			buildingstoExtractTitanium++;
+		}
+
+		// Extract Metal Scrap  (ONLY PAINTERS CAN)
+		list<Entity*>::iterator paintersToExtractMetalScrap = activeUnits.begin();
+		while (paintersToExtractMetalScrap != activeUnits.end()) {
+
+			// We try to extract and it will return if it can't
+			if ((*paintersToExtractMetalScrap)->entityType == ENTITY_TYPE_PAINTER) {
+
+				(*paintersToExtractMetalScrap)->ExtractMetalScrap(dt);
+			}
+			paintersToExtractMetalScrap++;
+		}
 
 		// Attack Mode
 		//list<Entity*>::iterator unitsToFight = activeUnits.begin();

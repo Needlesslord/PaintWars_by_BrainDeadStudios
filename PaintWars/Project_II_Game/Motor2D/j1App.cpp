@@ -535,10 +535,12 @@ void j1App::Debug_Actions()
 		if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {  //wood
 			App->player->woodCount.count += 10;
 		}
-		//if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) {  //metal scrap
-		//}
-		//if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN) {  //titanium
-		//}
+		if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) {  //metal scrap
+			App->player->metalScrapCount.count += 10;
+		}
+		if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN) {  //titanium
+			App->player->titaniumCount.count += 10;
+		}
 		//if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN) {  //food
 		//}
 		if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN) {  //housing
@@ -583,6 +585,12 @@ void j1App::Debug_Actions()
 		}
 		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_4) == KEY_DOWN) {  //house
 			App->entities->AddEntity(ENTITY_TYPE_HOUSE, mapCoordinates, App->entities, nullptr, 0, true);
+		}
+		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_5) == KEY_DOWN) {  //metal scrap gatherer
+			App->entities->AddEntity(ENTITY_TYPE_METAL_GATHERER, mapCoordinates, App->entities, nullptr, 0, true);
+		}
+		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_6) == KEY_DOWN) {  //titanium extractor
+			App->entities->AddEntity(ENTITY_TYPE_TITANIUM_EXTRACTOR, mapCoordinates, App->entities, nullptr, 0, true);
 		}
 		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_0) == KEY_DOWN) {  //kill selected building  (one by one)
 			if (!(App->entities->buildingsSelected).empty()) {

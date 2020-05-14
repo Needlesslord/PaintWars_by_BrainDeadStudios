@@ -82,6 +82,14 @@ bool j1PathFinding::IsWood(const iPoint& pos) const {
 	return u > 0 && u == WOOD_WALK_CODE;
 }
 
+ //Utility: returns true is the tile is Metal Scrap
+bool j1PathFinding::IsMetalScrap(const iPoint& pos) const {
+
+	uchar u = GetTileAt(pos);
+	/*return u > 0 && u == WOOD_WALK_CODE;		*/	return u > 0 && u == METAL_WALK_CODE;
+}
+
+
 // Utility: returns true is the tile is a spawner
 bool j1PathFinding::IsSpawner(const iPoint& pos) const {
 

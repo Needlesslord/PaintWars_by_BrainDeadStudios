@@ -13,7 +13,7 @@
 #define PAINT_SHORE_WALK_CODE 253
 #define WOOD_WALK_CODE 252
 #define SPAWNER_WALK_CODE 251
-
+#define METAL_WALK_CODE 250
 
 //WALKABILITY
 #define OCCUPIED 2
@@ -67,6 +67,9 @@ public:
 
 	// Utility: returns true if the tile is wood
 	bool IsWood(const iPoint& pos) const;
+
+	// Utility: returns true if the tile is IsMetalScrap
+	bool IsMetalScrap(const iPoint& pos) const;
 
 	// Utility: returns true if the tile has a spawner
 	bool IsSpawner(const iPoint& pos) const;
