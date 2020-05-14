@@ -89,7 +89,7 @@ public:
 	std::list<Entity*> buildingsSelected;
 
 	std::list<iPoint> tilesOccupied;
-	std::list<iPoint> destinations; // TODO: maybe remove (?)
+	std::list<iPoint> destinations;
 
 	// Thsese two need to be public so that each entity can use it
 	SDL_Texture* fullLifeTexture = nullptr;
@@ -108,6 +108,8 @@ public:
 	bool paintExtractorUpgraded = false;
 	bool woodProducersUpgraded = false;
 	bool ExtractorQuestDone = false;
+
+	bool spacePressed = false;
 
 protected:
 
@@ -144,6 +146,8 @@ private:
 
 	SDL_Texture* debug_tex = nullptr;
 	bool EntityTexturesAreLoaded;
+
+
 };
 
 #endif //__j1ENTITY_FACTORY_H__

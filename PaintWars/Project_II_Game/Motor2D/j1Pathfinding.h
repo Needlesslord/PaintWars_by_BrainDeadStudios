@@ -90,6 +90,8 @@ public:
 
 	std::vector<iPoint> FindClosestDestination(iPoint destination);
 
+	int DistanceTo(iPoint from, iPoint to);
+
 private:
 
 	// size of the map
