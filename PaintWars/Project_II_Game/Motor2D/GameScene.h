@@ -106,7 +106,7 @@ public:
 	j1UIElement* questsCompleted2 = nullptr;
 	j1UIElement* questsCompleted3 = nullptr;
 	j1UIElement* questsCompleted4 = nullptr;
-
+	
 	
 
 	bool PainterQuestCompleted;
