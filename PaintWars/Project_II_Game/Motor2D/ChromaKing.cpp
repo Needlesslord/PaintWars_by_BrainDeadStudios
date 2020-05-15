@@ -12,7 +12,7 @@ ChromaKing::ChromaKing(iPoint tile, int damage, j1Module* listener) : Entity(til
 	// Handle data and initialize the Warrior
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_CHROMA_KING;
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_DYNAMIC_ENTITY;
-	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_BIG;
+	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_MEDIUM;
 
 	maxLife = 500;
 	currLife = maxLife - damage;

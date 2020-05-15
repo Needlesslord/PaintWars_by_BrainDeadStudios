@@ -204,6 +204,12 @@
     <ClCompile Include="ChromaKing.cpp">
       <Filter>Motor  ========\Entities\Enemies\Units</Filter>
     </ClCompile>
+    <ClCompile Include="Rider.cpp">
+      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="ExplosiveBlob.cpp">
+      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -431,6 +437,12 @@
     <ClInclude Include="MetalGatherer.h" />
     <ClInclude Include="TitaniumExtractor.h" />
     <ClInclude Include="ChromaKing.h">
+      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Rider.h">
+      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="ExplosiveBlob.h">
       <Filter>Motor  ========\Entities\Enemies\Units</Filter>
     </ClInclude>
   </ItemGroup>

@@ -971,19 +971,19 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_HOVER) {
 
-		shopHoverPrice->text = "-20";
+		shopHoverPrice->text = "-20P PAINT EXTRACTOR";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyWoodProducerButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-20";
+		shopHoverPrice->text = "-20P WOOD PRODUCER";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyBarrackButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-50";
+		shopHoverPrice->text = "-50W BARRACKS";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyHouseButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-20";
+		shopHoverPrice->text = "-20W HOUSE";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyPainterButton && type == GUI_Event::EVENT_HOVER) {
