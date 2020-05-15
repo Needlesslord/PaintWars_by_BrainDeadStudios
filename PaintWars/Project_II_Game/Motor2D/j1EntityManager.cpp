@@ -99,14 +99,20 @@ bool j1EntityManager::PreUpdate() {
 		resetDestinations++;
 	}
 
+
+	// Updating targets
 	list<Entity*>::iterator updatingTargets = activeUnits.begin();
 	while (updatingTargets != activeUnits.end()) {
 
 		// Only interested in the ones who have a target
 		if ((*updatingTargets)->target != nullptr) {
 
+			if ((*updatingTargets)->target->GetCurrLife() <= 0) {
+				(*updatingTargets)->target = nullptr;
+			}
+
 			// If the target is a unit
-			if ((*updatingTargets)->target->entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY) {
+			else if ((*updatingTargets)->target->entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY) {
 				(*updatingTargets)->target_rect = { (*updatingTargets)->target->currentTile.x, (*updatingTargets)->target->currentTile.y, 1, 1 };
 			}
 
@@ -115,6 +121,8 @@ bool j1EntityManager::PreUpdate() {
 				(*updatingTargets)->target_rect = { (*updatingTargets)->target->currentTile.x, (*updatingTargets)->target->currentTile.y, 2, 2 };
 			}
 		}
+		else
+			(*updatingTargets)->target = nullptr;
 
 		updatingTargets++;
 	}
@@ -660,6 +668,55 @@ bool j1EntityManager::Update(float dt) {
 				if (App->pathfinding->DistanceTo((*unitsToAttackLogic)->currentTile, (*unitsToAttackLogic)->target->currentTile) <= (*unitsToAttackLogic)->attackRadius) {
 
 					(*unitsToAttackLogic)->Attack((*unitsToAttackLogic)->target, dt);
+
+					std::list<Entity*>::iterator checkAttackAnimation = activeUnits.begin();
+					while (checkAttackAnimation != activeUnits.end()) {
+
+						if ((*checkAttackAnimation)->entityType == ENTITY_TYPE_WARRIOR) {
+
+							if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
+
+								(*checkAttackAnimation)->currentAnimation = &warriorAttackNorth;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &warriorAttackEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &warriorAttackSouthEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH) {
+
+								(*checkAttackAnimation)->currentAnimation = &warriorAttackSouth;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &warriorAttackSouthWest;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &warriorAttackWest;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthWest;
+							}
+						}
+					
+						checkAttackAnimation++;
+					}
 				}
 
 				// If not, move closer and we'll continue to check until it can attack
