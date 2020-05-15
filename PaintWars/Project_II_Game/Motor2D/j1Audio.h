@@ -72,6 +72,9 @@ public:
 	Mix_Chunk* buy2_sound;
 	Mix_Chunk* spawnFromHall;
 	Mix_Chunk* birds_sound;
+	Mix_Chunk* knight_sound;
+	Mix_Chunk* explorer_sound;
+	Mix_Chunk* enemyDeath_sound;
 	Mix_Chunk* crickets_sound;
 	Mix_Chunk* braindead_sound;
 	Mix_Chunk* Transition_Sound;

@@ -156,6 +156,8 @@ bool j1Player::Update(float dt)
 		/*MiniMapEntities_Squares[B] = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { (*entityCount)->pos.x ,  (*entityCount)->pos.y}, { 0 , 0 }, 
 		false, true, { 4, 3, 2, 3 }, nullptr, nullptr, TEXTURE::MINIMAP_ENTITIES);
 		*/
+
+
 		entityCount++;
 		B++;
 	}

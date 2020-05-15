@@ -1236,8 +1236,9 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	{
 	
 
+		//BOTH YES BUTTONS ARE THE SAME, SO YOU CANT RESET AND GO TO TITLE AT THE SAME TIME
 
-		App->entities->CleanUp();
+		/*App->entities->CleanUp();
 		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 42, 42 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 45,  40 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 40, 20 }, App->entities, nullptr, 0, true);
@@ -1245,8 +1246,10 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80,  4 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 10, 90 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80, 75 }, App->entities, nullptr, 0, true);
-		App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true, true);
+		App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true, true);*/
 
+		App->entities->CleanUp();
+		App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true, true);
 		
 	}
 
