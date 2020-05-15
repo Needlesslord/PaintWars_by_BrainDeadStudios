@@ -693,7 +693,7 @@ bool j1EntityManager::Update(float dt) {
 						i++;
 
 						if (i > (*unitsToAttackLogic)->currentPath.size())
-							break;
+							isInRange = true;
 					}
 				}
 			}
