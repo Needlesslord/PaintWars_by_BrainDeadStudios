@@ -149,6 +149,21 @@ SDL_Texture* j1UI_Manager::Get_Texture_From_Image(TEXTURE textureType)
 		return Main_Image_Load;
 		break;
 
+	case TEXTURE::FOREST_IMAGE:
+		Forest_Image_Load = App->tex->Load("textures/UI/background.png");
+		return Forest_Image_Load;
+		break;
+
+	case TEXTURE::VOLCANO_IMAGE:
+		Volcano_Image_Load = App->tex->Load("textures/UI/volcano_background.png");
+		return Volcano_Image_Load;
+		break;
+
+	case TEXTURE::SNOW_IMAGE:
+		Snow_Image_Load = App->tex->Load("textures/UI/snow_background.png");
+		return Snow_Image_Load;
+		break;
+
 	case TEXTURE::LOGO:
 		Logo_Load = App->tex->Load("textures/Logo.png");
 		return Logo_Load;

@@ -68,6 +68,9 @@ bool j1EntityManager::PreUpdate() {
 		else if ((*setDefaultAnimation)->entityType == ENTITY_TYPE_PAINTER) {
 			(*setDefaultAnimation)->currentAnimation = &painterIdle;
 		}
+		else if ((*setDefaultAnimation)->entityType == ENTITY_TYPE_KNIGHT) {
+			(*setDefaultAnimation)->currentAnimation = &knightIdle;
+		}
 		// TODO: knights
 		
 		setDefaultAnimation++;
@@ -146,7 +149,8 @@ bool j1EntityManager::Update(float dt) {
 
 					else if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_WARRIOR)
 						(*checkForSpawningEntities)->currentAnimation = &warriorIdle;
-
+					else if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_KNIGHT)
+						(*checkForSpawningEntities)->currentAnimation = &knightIdle;
 
 					spawningEntities.erase(checkForSpawningEntities);
 				}
@@ -1092,7 +1096,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeUnits.push_back((Entity*)knight);
 			knight->isAlive = true;
 			knight->CreateEntityCollider(knight->pos, (Entity*)knight);
-			knight->currentAnimation = &warriorIdle; // TODO: change
+			knight->currentAnimation = &knightIdle; 
 		}
 
 		else
@@ -1233,7 +1237,7 @@ void j1EntityManager::LoadEntityTextures()
 	/// Units
 	warriorTexture = App->tex->Load("textures/Warrior_Sprite_Mod.png");
 	painterTexture = App->tex->Load("textures/spritesheet_painter_mod.png");
-	knightTexture = App->tex->Load("textures/");// TODO: Add
+	knightTexture = App->tex->Load("textures/spritesheet_paladin_mod.png");// TODO: Add
 
 	// Enemies
 /// Buildings
@@ -1251,6 +1255,7 @@ void j1EntityManager::LoadEntityTextures()
 
 	WarriorSprites();
 	PainterSprites();
+	KnightSprites();
 
 	
 }
@@ -1359,6 +1364,57 @@ void j1EntityManager::UpdateAnimations() {
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &painterMovingNorthWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+		}
+
+		else if ((*checkMovingAnimation)->entityType == ENTITY_TYPE_KNIGHT) {
+
+			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
+
+				(*checkMovingAnimation)->currentAnimation = &knightMovingNorth;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &knightMovingNorthEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+	
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &knightMovingEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &knightMovingSouthEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
+
+				(*checkMovingAnimation)->currentAnimation = &knightMovingSouth;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &knightMovingSouthWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &knightMovingWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &knightMovingNorthWest;
 				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
 			}
 		}
