@@ -141,6 +141,7 @@
     <ClCompile Include="TownHall.cpp" />
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="TransitionManager.cpp" />
+    <ClCompile Include="Turret.cpp" />
     <ClCompile Include="Warrior.cpp" />
     <ClCompile Include="WinScene.cpp" />
     <ClCompile Include="Wipe.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="TownHall.h" />
     <ClInclude Include="Transition.h" />
     <ClInclude Include="TransitionManager.h" />
+    <ClInclude Include="Turret.h" />
     <ClInclude Include="Warrior.h" />
     <ClInclude Include="WinScene.h" />
     <ClInclude Include="Wipe.h" />

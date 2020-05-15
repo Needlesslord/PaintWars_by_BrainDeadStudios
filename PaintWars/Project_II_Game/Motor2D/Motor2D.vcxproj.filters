@@ -210,6 +210,9 @@
     <ClCompile Include="ExplosiveBlob.cpp">
       <Filter>Motor  ========\Entities\Enemies\Units</Filter>
     </ClCompile>
+    <ClCompile Include="Turret.cpp">
+      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -444,6 +447,9 @@
     </ClInclude>
     <ClInclude Include="ExplosiveBlob.h">
       <Filter>Motor  ========\Entities\Enemies\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Turret.h">
+      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
