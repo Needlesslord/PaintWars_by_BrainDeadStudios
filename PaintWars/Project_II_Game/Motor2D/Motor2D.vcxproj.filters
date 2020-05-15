@@ -199,6 +199,11 @@
     <ClCompile Include="Ranger.cpp">
       <Filter>Motor  ========\Entities\Allies\Units</Filter>
     </ClCompile>
+    <ClCompile Include="MetalGatherer.cpp" />
+    <ClCompile Include="TitaniumExtractor.cpp" />
+    <ClCompile Include="ChromaKing.cpp">
+      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -422,6 +427,11 @@
     </ClInclude>
     <ClInclude Include="Ranger.h">
       <Filter>Motor  ========\Entities\Allies\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="MetalGatherer.h" />
+    <ClInclude Include="TitaniumExtractor.h" />
+    <ClInclude Include="ChromaKing.h">
+      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

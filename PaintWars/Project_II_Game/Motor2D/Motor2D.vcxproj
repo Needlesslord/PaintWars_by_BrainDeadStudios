@@ -80,6 +80,7 @@
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="Barracks.cpp" />
     <ClCompile Include="CameraToMouse.cpp" />
+    <ClCompile Include="ChromaKing.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Cut.cpp" />
     <ClCompile Include="Dissolve.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="Bar.h" />
     <ClInclude Include="Barracks.h" />
     <ClInclude Include="CameraToMouse.h" />
+    <ClInclude Include="ChromaKing.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Cut.h" />
     <ClInclude Include="Dissolve.h" />
