@@ -180,8 +180,18 @@ SDL_Texture* j1UI_Manager::Get_Texture_From_Image(TEXTURE textureType)
 		break;
 
 	case TEXTURE::BACKGROUND_FOREST:
-		Background_Forest_Sprite_Load = App->tex->Load("textures/UI/skyblue.png");
+		Background_Forest_Sprite_Load = App->tex->Load("textures/UI/forest_background.png");
 		return Background_Forest_Sprite_Load;
+		break;
+
+	case TEXTURE::BACKGROUND_SNOW:
+		Background_Forest_Sprite_Load = App->tex->Load("textures/UI/snow_background.png");
+		return Background_Snow_Sprite_Load;
+		break;
+
+	case TEXTURE::BACKGROUND_VOLCANO:
+		Background_Forest_Sprite_Load = App->tex->Load("textures/UI/volcano_background.png");
+		return Background_Volcano_Sprite_Load;
 		break;
 
     default:

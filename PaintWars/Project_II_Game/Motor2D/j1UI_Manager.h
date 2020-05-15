@@ -54,6 +54,8 @@ public:
 	SDL_Texture* Logo_Load = nullptr;
 	SDL_Texture* Logo_Letters = nullptr;
 	SDL_Texture* Background_Forest_Sprite_Load = nullptr;
+	SDL_Texture* Background_Volcano_Sprite_Load = nullptr;
+	SDL_Texture* Background_Snow_Sprite_Load = nullptr;
 
 	
 
