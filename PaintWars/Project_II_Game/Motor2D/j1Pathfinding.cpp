@@ -47,11 +47,14 @@ bool j1PathFinding::CheckBoundaries(const iPoint& pos) const
 }
 
 // Utility: returns true is the tile is walkable		OR PAINT
-bool j1PathFinding::IsWalkable(const iPoint& pos) const {
+bool j1PathFinding::IsWalkable(const iPoint& pos, bool isAttacking) const {
 
-	//App->map->data.tilesets.
 	uchar t = GetTileAt(pos);
-	return t > 0 && ((t != INVALID_WALK_CODE && t != SPAWNER_WALK_CODE && t != PAINT_WALK_CODE)  || t == WOOD_WALK_CODE || t == PAINT_SHORE_WALK_CODE);
+	
+	//if (isAttacking) {
+		return t > 0 && ((t != INVALID_WALK_CODE && t != PAINT_WALK_CODE) || t == WOOD_WALK_CODE || t == PAINT_SHORE_WALK_CODE);
+	//}
+	//return t > 0 && ((t != INVALID_WALK_CODE && t != SPAWNER_WALK_CODE && t != PAINT_WALK_CODE)  || t == WOOD_WALK_CODE || t == PAINT_SHORE_WALK_CODE);
 }
 
 bool j1PathFinding::IsBuildable(const iPoint & pos) const
@@ -81,6 +84,14 @@ bool j1PathFinding::IsWood(const iPoint& pos) const {
 	uchar u = GetTileAt(pos);
 	return u > 0 && u == WOOD_WALK_CODE;
 }
+
+ //Utility: returns true is the tile is Metal Scrap
+bool j1PathFinding::IsMetalScrap(const iPoint& pos) const {
+
+	uchar u = GetTileAt(pos);
+	/*return u > 0 && u == WOOD_WALK_CODE;		*/	return u > 0 && u == METAL_WALK_CODE;
+}
+
 
 // Utility: returns true is the tile is a spawner
 bool j1PathFinding::IsSpawner(const iPoint& pos) const {
@@ -333,15 +344,17 @@ int PathNode::CalculateF(const iPoint& destination)
 // ----------------------------------------------------------------------------------
 // Actual A* algorithm: return number of steps in the creation of the path or -1 ----
 // ----------------------------------------------------------------------------------
-int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination) {
+int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination, bool isAttacking) {
 
 	BROFILER_CATEGORY("Create Path--PATHFINDING();", Profiler::Color::ForestGreen)
 	int ret = 1;
 
-	// If origin or destination are not walkable, return -1
-	if (IsWalkable(destination) == false || origin == destination) {
+		// If origin or destination are not walkable, return -1
+	if (IsWalkable(destination, isAttacking) == false || origin == destination) {
 		return -1;
 	}
+	
+
 
 	// We declare the lists needed to create the path 
 	PathList open, closed, adjacent;

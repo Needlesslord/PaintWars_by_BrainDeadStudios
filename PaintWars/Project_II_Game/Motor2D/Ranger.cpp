@@ -2,7 +2,9 @@
 #include "p2Log.h"
 #include <vector>
 #include "SDL_mixer/include/SDL_mixer.h"
-#include "Warrior.h"
+
+#include "Ranger.h"
+
 #include "j1Audio.h"
 #include "j1Player.h"
 #include "j1SceneManager.h"
@@ -13,10 +15,10 @@
 #include "j1Render.h"
 #include "j1EntityManager.h"
 
-Warrior::Warrior(iPoint tile, int damage, j1Module* listener, Entity* creator) : Entity(tile, damage, listener, creator) {
+Ranger::Ranger(iPoint tile, int damage, j1Module* listener, Entity* creator) : Entity(tile, damage, listener, creator) {
 
 	// Handle data and initialize the Warrior
-	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_WARRIOR;
+	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_RANGER;
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_DYNAMIC_ENTITY;
 	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_SMALL;
 	*(UNIT_ORIENTATION*)&unitOrientation = UNIT_ORIENTATION_NONE;
@@ -29,35 +31,36 @@ Warrior::Warrior(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);
 
-	pos.x = tileWorldPosition.x + App->map->data.tile_width /  size.x ;
+	pos.x = tileWorldPosition.x + App->map->data.tile_width / size.x;
 	pos.y = tileWorldPosition.y + App->map->data.tile_height / 2 - size.y;
 
-	speed = 200.0f;
-	
-	spawningTime = 10.0f;
+	speed = 150.0f;
+
+	spawningTime = 12.0f;
 
 	destination = currentTile;
 
-	attackDamage = 10.0f;
+	attackDamage = 7.0f;
+	attackRadius = 6;
 
 	if (App->entities->warriorsUpgraded)
 		attackDamage *= 1.5f;
 
-	attackSpeed = 20.0f;
+	attackSpeed = 10.0f;
 	attackCooldown = attackSpeed;
 
 	isEntityFromPlayer = true;
 }
 
-Warrior::~Warrior() {}
+Ranger::~Ranger() {}
 
-void Warrior::Attack(Entity* target, float dt) {
+void Ranger::Attack(Entity* target, float dt) {
 
 	if (attackCooldown >= attackSpeed) {
 
 		target->ApplyDamage(attackDamage);
 		attackCooldown = 0.0f;
-		
+
 		Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 
 		if (target->GetCurrLife() <= 0)
@@ -69,14 +72,7 @@ void Warrior::Attack(Entity* target, float dt) {
 	}
 }
 
-void Warrior::Draw(SDL_Texture* sprites)
+void Ranger::Draw(SDL_Texture* sprites)
 {
 	App->render->RenderQueue(1, sprites, pos.x, pos.y, currentAnimation->GetCurrentFrame());
 }
-
-//void Warrior::OnCollision(Collider* c1, Collider* c2) {
-//
-//	if (1 == 2) {
-//		c1->rect.x = 1;
-//	}
-//}

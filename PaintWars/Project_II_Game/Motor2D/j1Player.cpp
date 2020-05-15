@@ -103,7 +103,7 @@ bool j1Player::Update(float dt)
 					App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x - MinimapCameraBufferX;
 					App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y - MinimapCameraBufferY;
 
-
+					
 				}
 				else {
 
@@ -113,6 +113,15 @@ bool j1Player::Update(float dt)
 				}
 
 
+				/*list<Entity*>::iterator entityCount = App->entities->activeEntities.begin();
+				while (entityCount != App->entities->activeEntities.end()) {
+
+
+
+					MiniMapEntities_Squares[z] = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0 ,  0 }, { 0 , 0 }, false, true, { 4, 3, 2, 3 }, nullptr, nullptr, TEXTURE::MINIMAP_ENTITIES);
+
+					entityCount++;
+				}*/
 
 				UI_List = UI_List->next;
 				++z;

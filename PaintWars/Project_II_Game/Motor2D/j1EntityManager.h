@@ -17,6 +17,7 @@
 #include "Warrior.h"
 #include "Knight.h"
 #include "Explorer.h"
+#include "Ranger.h"
 
 	// Enemies
 /// Buildings
@@ -108,6 +109,8 @@ public:
 	bool paintExtractorUpgraded = false;
 	bool woodProducersUpgraded = false;
 	bool ExtractorQuestDone = false;
+	bool titaniumExtractorUpgraded = false;
+	bool metalGathererUpgraded = false;
 
 	bool spacePressed = false;
 
@@ -121,12 +124,15 @@ protected:
 	SDL_Texture* houseTexture = nullptr;
 	SDL_Texture* barracksTexture = nullptr;
 	SDL_Texture* buildingTexture = nullptr;
+	SDL_Texture* titaniumExtractorTexture = nullptr;
+	SDL_Texture* metalGathererTexture = nullptr;
 
 	/// Units
 	SDL_Texture* painterTexture = nullptr;
 	SDL_Texture* warriorTexture = nullptr;
 	SDL_Texture* knightTexture = nullptr;
 	SDL_Texture* explorerTexture = nullptr;
+	SDL_Texture* rangerTexture = nullptr;
 
 		// Enemies
 	/// Buildings

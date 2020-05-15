@@ -71,6 +71,12 @@ bool j1EntityManager::PreUpdate() {
 		else if ((*setDefaultAnimation)->entityType == ENTITY_TYPE_KNIGHT) {
 			(*setDefaultAnimation)->currentAnimation = &knightIdle;
 		}
+		else if ((*setDefaultAnimation)->entityType == ENTITY_TYPE_EXPLORER) {
+			(*setDefaultAnimation)->currentAnimation = &explorerIdle;
+		}
+		else if ((*setDefaultAnimation)->entityType == ENTITY_TYPE_RANGER) {
+			(*setDefaultAnimation)->currentAnimation = &rangerIdle;
+		}
 		// TODO: knights
 		
 		setDefaultAnimation++;
@@ -151,6 +157,10 @@ bool j1EntityManager::Update(float dt) {
 						(*checkForSpawningEntities)->currentAnimation = &warriorIdle;
 					else if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_KNIGHT)
 						(*checkForSpawningEntities)->currentAnimation = &knightIdle;
+					else if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_EXPLORER)
+						(*checkForSpawningEntities)->currentAnimation = &explorerIdle;
+					else if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_RANGER)
+						(*checkForSpawningEntities)->currentAnimation = &rangerIdle;
 
 					spawningEntities.erase(checkForSpawningEntities);
 				}
@@ -171,6 +181,9 @@ bool j1EntityManager::Update(float dt) {
 
 					(*checkForSpawningEntities)->CreateEntityCollider((*checkForSpawningEntities)->pos, (*checkForSpawningEntities));
 					(*checkForSpawningEntities)->isAlive = true;
+
+					if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_HOUSE)
+						App->player->housingSpace.maxCount += 5;
 
 					spawningEntities.erase(checkForSpawningEntities);
 				}
@@ -331,7 +344,7 @@ bool j1EntityManager::Update(float dt) {
 
 
 
-		// Extract Paint (Painters and PaintExtractor
+		// Extract Paint (Painters and PaintExtractor)
 		list<Entity*>::iterator entitiesToExtractPaint = activeEntities.begin();
 		while (entitiesToExtractPaint != activeEntities.end()) {
 
@@ -355,8 +368,29 @@ bool j1EntityManager::Update(float dt) {
 			paintersToExtractWood++;
 		}
 
+		// Extract Titanium (ONLY TITANIUM GATHERER CAN)
+		list<Entity*>::iterator buildingstoExtractTitanium = activeUnits.begin();
+		while (buildingstoExtractTitanium != activeUnits.end()) {
 
+			// We try to extract and it will return if it can't
+			if ((*buildingstoExtractTitanium)->entityType == ENTITY_TYPE_PAINTER) {
 
+				(*buildingstoExtractTitanium)->ExtractTitanium(dt);
+			}
+			buildingstoExtractTitanium++;
+		}
+
+		// Extract Metal Scrap  (ONLY PAINTERS CAN)
+		list<Entity*>::iterator paintersToExtractMetalScrap = activeUnits.begin();
+		while (paintersToExtractMetalScrap != activeUnits.end()) {
+
+			// We try to extract and it will return if it can't
+			if ((*paintersToExtractMetalScrap)->entityType == ENTITY_TYPE_PAINTER) {
+
+				(*paintersToExtractMetalScrap)->ExtractMetalScrap(dt);
+			}
+			paintersToExtractMetalScrap++;
+		}
 
 		// Attack Mode
 		//list<Entity*>::iterator unitsToFight = activeUnits.begin();
@@ -474,6 +508,12 @@ bool j1EntityManager::Update(float dt) {
 			bool attacking = false;
 
 			list<Entity*>::iterator subjects = unitsSelected.begin();
+			while (subjects != unitsSelected.end()) {
+
+				(*subjects)->target = nullptr;
+				subjects++;
+			}
+			subjects = unitsSelected.begin();
 
 			list<Entity*>::iterator checkForAttackedEntities = activeEntities.begin();
 			while (checkForAttackedEntities != activeEntities.end()) {
@@ -596,7 +636,7 @@ bool j1EntityManager::Update(float dt) {
 						if (locationAvailable) {
 							(*unitsToRedirect)->SetDestination(destination);
 							destinations.push_back(destination);
-							(*unitsToRedirect)->CalculateMovementLogic(0);
+							(*unitsToRedirect)->CalculateMovementLogic();
 						}
 
 					}
@@ -625,6 +665,36 @@ bool j1EntityManager::Update(float dt) {
 				// If not, move closer and we'll continue to check until it can attack
 				else {
 
+					// First we'll create a path to the target's position
+					int map;
+					map = App->pathfinding->CreatePath((*unitsToAttackLogic)->currentTile, (*unitsToAttackLogic)->target->currentTile, true);
+					(*unitsToAttackLogic)->currentPath = *App->pathfinding->GetLastPath();
+					
+					bool isInRange = false;
+					int i = 0;
+					
+					// We are looking for the closest tile that is in range to attack the target
+					while (!isInRange) {
+
+						if (App->pathfinding->DistanceTo((*unitsToAttackLogic)->currentPath.at(i), (*unitsToAttackLogic)->target->currentTile) <= (*unitsToAttackLogic)->attackRadius) {
+
+							isInRange = true;
+
+							(*unitsToAttackLogic)->SetDestination((*unitsToAttackLogic)->currentPath.at(i));
+							destinations.push_back((*unitsToAttackLogic)->currentPath.at(i));
+							(*unitsToAttackLogic)->CalculateMovementLogic();
+
+							//map = App->pathfinding->CreatePath((*unitsToAttackLogic)->currentTile, (*unitsToAttackLogic)->currentPath.at(i));
+							//(*unitsToAttackLogic)->currentPath = *App->pathfinding->GetLastPath();
+
+							break;
+						}
+
+						i++;
+
+						if (i > (*unitsToAttackLogic)->currentPath.size())
+							break;
+					}
 				}
 			}
 
@@ -725,6 +795,9 @@ bool j1EntityManager::Update(float dt) {
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_EXPLORER) {
 					(*entitiesToDraw)->Draw(explorerTexture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_RANGER) {
+					(*entitiesToDraw)->Draw(rangerTexture);
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SPAWNER) {
 					(*entitiesToDraw)->Draw(spawnerTexture);
@@ -1015,6 +1088,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeBuildings.push_back((Entity*)house);
 			house->isAlive = true;
 			house->CreateEntityCollider(house->pos, (Entity*)house);
+			App->player->housingSpace.maxCount += 5;
 		}
 
 		else
@@ -1105,7 +1179,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		return (Entity*)knight;
 	}
 
-	else if (entityType == ENTITY_TYPE_KNIGHT) {
+	else if (entityType == ENTITY_TYPE_EXPLORER) {
 
 		Explorer* explorer = new Explorer(tile, damage, this, creator);
 
@@ -1115,7 +1189,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeUnits.push_back((Entity*)explorer);
 			explorer->isAlive = true;
 			explorer->CreateEntityCollider(explorer->pos, (Entity*)explorer);
-			explorer->currentAnimation = &warriorIdle; // TODO: change
+			explorer->currentAnimation = &explorerIdle;
 		}
 
 		else
@@ -1124,6 +1198,24 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		return (Entity*)explorer;
 	}
 
+	else if (entityType == ENTITY_TYPE_RANGER) {
+
+		Ranger* ranger = new Ranger(tile, damage, this, creator);
+
+		if (spawnAutomatically) {
+
+			activeEntities.push_back((Entity*)ranger);
+			activeUnits.push_back((Entity*)ranger);
+			ranger->isAlive = true;
+			ranger->CreateEntityCollider(ranger->pos, (Entity*)ranger);
+			ranger->currentAnimation = &rangerIdle;
+		}
+
+		else
+			spawningEntities.push_back((Entity*)ranger);
+
+		return (Entity*)ranger;
+	}
 
 		// Enemies
 	/// Buildings
@@ -1224,8 +1316,6 @@ void j1EntityManager::LoadEntityTextures()
 {
 	debug_tex = App->tex->Load("maps/path2.png");
 
-	// TODO: Initialize all textures
-
 		// Allies
 	/// Buildings
 	townHallTexture = App->tex->Load("textures/TownHall.png");
@@ -1237,10 +1327,12 @@ void j1EntityManager::LoadEntityTextures()
 	/// Units
 	warriorTexture = App->tex->Load("textures/Warrior_Sprite_Mod.png");
 	painterTexture = App->tex->Load("textures/spritesheet_painter_mod.png");
-	knightTexture = App->tex->Load("textures/spritesheet_paladin_mod.png");// TODO: Add
+	knightTexture = App->tex->Load("textures/spritesheet_paladin_mod.png");
+	explorerTexture = App->tex->Load("textures/spritesheet_explorer_mod.png");
+	rangerTexture = App->tex->Load("textures/spritesheet_ranger_mod.png");
 
-	// Enemies
-/// Buildings
+		// Enemies
+	/// Buildings
 	spawnerTexture = App->tex->Load("textures/Spawner.png");
 
 	/// Units
@@ -1256,6 +1348,9 @@ void j1EntityManager::LoadEntityTextures()
 	WarriorSprites();
 	PainterSprites();
 	KnightSprites();
+	RangerSprites();
+	ExplorerSprites();
+
 
 	
 }
@@ -1418,6 +1513,109 @@ void j1EntityManager::UpdateAnimations() {
 				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
 			}
 		}
+
+		else if ((*checkMovingAnimation)->entityType == ENTITY_TYPE_RANGER) {
+
+			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
+
+				(*checkMovingAnimation)->currentAnimation = &rangerMovingNorth;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &rangerMovingNorthEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &rangerMovingEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &rangerMovingSouthEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
+
+				(*checkMovingAnimation)->currentAnimation = &rangerMovingSouth;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &rangerMovingSouthWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &rangerMovingWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &rangerMovingNorthWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+		}
+
+			else if ((*checkMovingAnimation)->entityType == ENTITY_TYPE_EXPLORER) {
+
+			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
+
+				(*checkMovingAnimation)->currentAnimation = &explorerMovingNorth;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &explorerMovingNorthEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &explorerMovingEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &explorerMovingSouthEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+	
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
+
+				(*checkMovingAnimation)->currentAnimation = &explorerMovingSouth;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &explorerMovingSouthWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &explorerMovingWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &explorerMovingNorthWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+		}
+
 		checkMovingAnimation++;
 	}
 }

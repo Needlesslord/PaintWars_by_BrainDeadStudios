@@ -14,7 +14,7 @@
     <ProjectGuid>{2AF9969B-F202-497B-AF30-7BEF9CE8005E}</ProjectGuid>
     <RootNamespace>programacio_2</RootNamespace>
     <ProjectName>PaintWars_by_BrainDeadStudios</ProjectName>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -113,6 +113,7 @@
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="LoseScene.cpp" />
     <ClCompile Include="MenuScene.cpp" />
+    <ClCompile Include="MetalGatherer.cpp" />
     <ClCompile Include="p2Log.cpp" />
     <ClCompile Include="j1Render.cpp" />
     <ClCompile Include="j1Textures.cpp" />
@@ -123,6 +124,7 @@
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Ranger.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="j1SceneManager.cpp" />
     <ClCompile Include="ScoreScene.cpp" />
@@ -132,6 +134,7 @@
     <ClCompile Include="Spawner.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="TeamLogoScene.cpp" />
+    <ClCompile Include="TitaniumExtractor.cpp" />
     <ClCompile Include="TownHall.cpp" />
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="TransitionManager.cpp" />
@@ -177,6 +180,7 @@
     <ClInclude Include="Knight.h" />
     <ClInclude Include="LoseScene.h" />
     <ClInclude Include="MenuScene.h" />
+    <ClInclude Include="MetalGatherer.h" />
     <ClInclude Include="p2DynArray.h" />
     <ClInclude Include="j1Audio.h" />
     <ClInclude Include="j1Input.h" />
@@ -197,6 +201,7 @@
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="Ranger.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="j1SceneManager.h" />
     <ClInclude Include="ScoreScene.h" />
@@ -207,6 +212,7 @@
     <ClInclude Include="Sprites.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="TeamLogoScene.h" />
+    <ClInclude Include="TitaniumExtractor.h" />
     <ClInclude Include="TownHall.h" />
     <ClInclude Include="Transition.h" />
     <ClInclude Include="TransitionManager.h" />
