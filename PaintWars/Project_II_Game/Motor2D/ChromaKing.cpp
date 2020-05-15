@@ -17,7 +17,7 @@ ChromaKing::ChromaKing(iPoint tile, int damage, j1Module* listener) : Entity(til
 	maxLife = 500;
 	currLife = maxLife - damage;
 
-	size = { 20, 20 };
+	size = { 20, 20 }; //has to be changed
 
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);
