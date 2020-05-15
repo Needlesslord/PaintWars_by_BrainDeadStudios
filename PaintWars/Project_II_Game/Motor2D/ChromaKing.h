@@ -13,7 +13,7 @@ public:
 
 	bool goToTownHall();
 	bool CanAttackTownHall();
-	bool attackingTownHall();
+	void attack(Entity* target, float dt);
 
 	
 public:

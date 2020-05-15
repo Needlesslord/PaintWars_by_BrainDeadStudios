@@ -31,6 +31,12 @@ ChromaKing::ChromaKing(iPoint tile, int damage, j1Module* listener) : Entity(til
 
 	destination = currentTile;
 
+	attackDamage = 5.0f;
+	attackSpeed = 5.0f;
+	attackCooldown = attackSpeed;
+
+
+
 	isEntityFromPlayer = false;
 }
 
@@ -71,18 +77,27 @@ bool ChromaKing::CanAttackTownHall() {
 }
 
 
-bool ChromaKing::attackingTownHall() {
 
-	bool ret = false;
+void ChromaKing::attack(Entity* target, float dt) {
 
-	if (CanAttackTownHall())
-	{
-		ret = true;
+	target; //always ENTITY_TYPE_TOWN_HALL;
 
-		//make damage to the TH
+	if (CanAttackTownHall()) {
 
+		if (attackCooldown >= attackSpeed) {
+
+			target->ApplyDamage(attackDamage);
+			attackCooldown = 0.0f;
+
+			//Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
+	
+			//if (target->GetCurrLife() <= 0)
+				//Mix_PlayChannel(-1, App->audio->Spawner_Destroyed, 0);
+		}
+
+		else {
+			attackCooldown += attackSpeed * dt;
+
+		}
 	}
-
-	return ret;
-
 }

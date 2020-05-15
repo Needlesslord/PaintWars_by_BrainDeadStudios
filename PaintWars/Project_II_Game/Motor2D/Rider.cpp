@@ -29,9 +29,33 @@ Rider::Rider(iPoint tile, int damage, j1Module* listener) : Entity(tile, damage,
 
 	spawningTime = 1.0f;
 
+	attackDamage = 13.0f;
+	attackSpeed = 12.0f;
+	attackCooldown = attackSpeed;
+
+
+
 	destination = currentTile;
 
 	isEntityFromPlayer = false;
 }
 
 Rider::~Rider() {}
+
+void Rider::Attack(Entity* target, float dt) {
+
+	if (attackCooldown >= attackSpeed) {
+
+		target->ApplyDamage(attackDamage);
+		attackCooldown = 0.0f;
+
+		//Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
+
+		//if (target->GetCurrLife() <= 0)
+		//	Mix_PlayChannel(-1, App->audio->Spawner_Destroyed, 0);
+	}
+
+	else {
+		attackCooldown += attackSpeed * dt;
+	}
+}
