@@ -152,6 +152,27 @@ bool j1Audio::Awake(pugi::xml_node& config)
 
 	}
 
+	knight_sound = Mix_LoadWAV("audio/fx/knight.wav");
+	if (braindead_sound == NULL)
+	{
+		LOG("Audio Knight IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
+	explorer_sound = Mix_LoadWAV("audio/fx/walkingWarrior_fx.wav");
+	if (braindead_sound == NULL)
+	{
+		LOG("Audio Explorer IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
+	enemyDeath_sound = Mix_LoadWAV("audio/fx/enemyDeath_fx.wav");
+	if (braindead_sound == NULL)
+	{
+		LOG("Audio Enemy Death IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
 	
 	//AUDIO VOLUMES & STUFF
 	
@@ -314,6 +335,9 @@ void j1Audio::ChunkAudioManager(int volume)
 	Mix_VolumeChunk(birds_sound, volume);
 	Mix_VolumeChunk(crickets_sound, volume);
 	Mix_VolumeChunk(braindead_sound, volume);
+	Mix_VolumeChunk(knight_sound, volume);
+	Mix_VolumeChunk(explorer_sound, volume);
+	Mix_VolumeChunk(enemyDeath_sound, volume);
 	
 	//if (!logoSound) {
 	//	Mix_VolumeChunk(Click_Logo_Sound, 50);
