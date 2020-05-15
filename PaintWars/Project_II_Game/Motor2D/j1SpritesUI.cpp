@@ -83,6 +83,20 @@ bool j1UISprites::Start()
 			Sprites_UI_Texture_General_ATLAS = App->gui->Get_Texture_From_Image(TEXTURE::BACKGROUND_FOREST);
 
 		break;
+
+	case TEXTURE::BACKGROUND_SNOW:
+
+		if (Sprites_UI_Texture_General_ATLAS == NULL)
+			Sprites_UI_Texture_General_ATLAS = App->gui->Get_Texture_From_Image(TEXTURE::BACKGROUND_SNOW);
+
+		break;
+	
+	case TEXTURE::BACKGROUND_VOLCANO:
+
+		if (Sprites_UI_Texture_General_ATLAS == NULL)
+			Sprites_UI_Texture_General_ATLAS = App->gui->Get_Texture_From_Image(TEXTURE::BACKGROUND_VOLCANO);
+
+		break;
 	}
 	
 	return true;
@@ -143,6 +157,16 @@ bool j1UISprites::Update(float dt) {
 		App->render->RenderQueueUI(2, Sprites_UI_Texture_Background_Forest, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
 		break;
 	
+	case TEXTURE::BACKGROUND_SNOW:
+
+		App->render->RenderQueueUI(2, Sprites_UI_Texture_Background_Forest, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
+		break;
+
+	case TEXTURE::BACKGROUND_VOLCANO:
+
+		App->render->RenderQueueUI(2, Sprites_UI_Texture_Background_Forest, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
+		break;
+
 	}
 
     return true; 

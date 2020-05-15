@@ -50,13 +50,12 @@ public:
 	SDL_Texture* Win_Screen_Sprite_Load = nullptr;
 	SDL_Texture* Continue_Letters_Load = nullptr;
 	SDL_Texture* Main_Image_Load = nullptr;
-	SDL_Texture* Forest_Image_Load = nullptr;
-	SDL_Texture* Volcano_Image_Load = nullptr;
-	SDL_Texture* Snow_Image_Load = nullptr;
 	SDL_Texture* Logo_Sprite_Load = nullptr;
 	SDL_Texture* Logo_Load = nullptr;
 	SDL_Texture* Logo_Letters = nullptr;
 	SDL_Texture* Background_Forest_Sprite_Load = nullptr;
+	SDL_Texture* Background_Volcano_Sprite_Load = nullptr;
+	SDL_Texture* Background_Snow_Sprite_Load = nullptr;
 
 	
 
