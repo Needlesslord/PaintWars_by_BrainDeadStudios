@@ -62,10 +62,21 @@ bool j1Player::Start() {
 bool j1Player::PreUpdate()
 {
 	list<Entity*>::iterator entityCount = App->entities->activeEntities.begin();
-	int B = 0;
-	while (entityCount != App->entities->activeEntities.end()) {
+	int B = 0; int C = 0;
+	while (entityCount != App->entities->activeBuildings.end()) {
 		if (MiniMapEntities_Squares[B] != nullptr) {
 			MiniMapEntities_Squares[B]->CleanUp();
+
+			MiniMapEntities_Squares[B] = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { (*entityCount)->pos.x ,  (*entityCount)->pos.y }, { 0 , 0 },
+				false, true, { 4, 3, 2, 3 }, nullptr, nullptr, TEXTURE::MINIMAP_ENTITIES);
+		}
+		entityCount++;
+		B++;
+	}
+
+	while (entityCount != App->entities->activeUnits.end()) {
+		if (MiniMapEntities_Squares[C] != nullptr) {
+			MiniMapEntities_Squares[C]->CleanUp();
 
 			/*MiniMapEntities_Squares[B] = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { (*entityCount)->pos.x ,  (*entityCount)->pos.y }, { 0 , 0 },
 				false, true, { 4, 3, 2, 3 }, nullptr, nullptr, TEXTURE::MINIMAP_ENTITIES);*/
@@ -73,6 +84,9 @@ bool j1Player::PreUpdate()
 		entityCount++;
 		B++;
 	}
+
+	//std::list<Entity*> activeBuildings;
+	//std::list<Entity*> activeUnits;
 
 	return true;
 }
