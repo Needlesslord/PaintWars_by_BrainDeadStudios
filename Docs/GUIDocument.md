@@ -61,18 +61,21 @@ The sprites we are going to use are from a free GUI Pack from Unity by *Chocobal
 
 Since this also allows to use different colours, we would like to implement different colours for each map, but, in case we don't have the time and it is not a priority, we would use only one of them.
 
-| Asset | Sprite Idle | Sprite Hover |
-| ----- | ----------- | ------------ | 
-| Button (with strings) | . | . |
-| Dialog frame | . | . |
-| On | . | . |
-| Off | . | . |
-| Unfold (menu) | . | . |
-| Fold (menu) | . | . |
-| Slider + pivot | . | . |
-| Keyboard selected | . | . |
-| Gamepad selected | . | . |
-| . | . | . |
+| Asset | Sprite Idle | Sprite Hover | Sprite Selected |
+| ----- | ----------- | ------------ | --------------- | 
+| Button (basic) | . | . | . |
+| Dialog frame | . | . | . |
+| On | . | . | . |
+| Off | . | . | . |
+| Unfold (menu) | . | . | . |
+| Fold (menu) | . | . | . |
+| Slider + pivot | . | . | . |
+| Each button on the HUD (top right) | . | . | . |
+| Resources bar | . | . | . |
+| Background shop, minimap, etc | . | . | . |
+| Purchase units buttons | . | . | . |
+| On/Off | . | . | . |
+| Others | . | . | . |
 
 The Font we are going to use is samble in 3 different sizes.
 
