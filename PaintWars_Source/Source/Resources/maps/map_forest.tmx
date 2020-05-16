@@ -35,7 +35,7 @@
   </tile>
  </tileset>
  <tileset firstgid="112" name="Meta" tilewidth="150" tileheight="88" tilecount="3" columns="3">
-  <image source="meta.png" width="450" height="88"/>
+  <image source="tileset_collision.png" width="450" height="88"/>
  </tileset>
  <tileset firstgid="115" name="tileset_forest_treesFIX" tilewidth="150" tileheight="88" tilecount="15" columns="5">
   <image source="tileset_forest_trees.png" width="755" height="280"/>
