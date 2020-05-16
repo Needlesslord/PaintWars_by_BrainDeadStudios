@@ -1680,7 +1680,7 @@ void j1EntityManager::UpdateAnimations() {
 bool j1EntityManager::Load(pugi::xml_node& save)
 {
 	
-
+	//WE DONT ADD ANYTHING TO ACTIVE ENTITIES & ACTIVE BUILDINGS
 	CleanUp();
 
 

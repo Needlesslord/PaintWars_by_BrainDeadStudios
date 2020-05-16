@@ -1584,7 +1584,7 @@ void GameScene::WIN_LOSE_Manager()
 	// WIN CONDITION
 	bool anySpawnerActive = false;
 	list<Entity*>::const_iterator checkForSpawners = App->entities->activeBuildings.begin();
-	while (checkForSpawners != App->entities->activeBuildings.end()) {
+	while (checkForSpawners != App->entities->activeBuildings.end()) { //active buildings always empty after load?
 
 		if ((*checkForSpawners)->entityType == ENTITY_TYPE_SPAWNER) {
 			anySpawnerActive = true;
