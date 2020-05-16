@@ -11,12 +11,6 @@ public:
 	Spawner(iPoint tile, int damage, j1Module* listener);
 	~Spawner();
 
-public:
-
-private:
-
-	bool startTimer = true;
-
 };
 
 #endif //__Spawner_H__

@@ -6,6 +6,7 @@
 #include "j1Map.h"
 #include "j1Collision.h"
 #include "j1Textures.h"
+#include "j1Render.h"
 
 Slime::Slime(iPoint tile, int damage, j1Module* listener) : Entity(tile, damage, listener, nullptr) {
 
@@ -17,7 +18,7 @@ Slime::Slime(iPoint tile, int damage, j1Module* listener) : Entity(tile, damage,
 	maxLife = 50;
 	currLife = maxLife - damage;
 	
-	size = { 20, 20 };
+	size = { 75, 75 };
 
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);
@@ -25,7 +26,7 @@ Slime::Slime(iPoint tile, int damage, j1Module* listener) : Entity(tile, damage,
 	pos.x = tileWorldPosition.x + App->map->data.tile_width / 2 - size.x / 2;
 	pos.y = tileWorldPosition.y + App->map->data.tile_height / 2 - size.y;
 
-	speed = 300;
+	speed = 140;
 
 	spawningTime = 1.0f;
 
@@ -35,3 +36,8 @@ Slime::Slime(iPoint tile, int damage, j1Module* listener) : Entity(tile, damage,
 }
 
 Slime::~Slime() {}
+
+void Slime::Draw(SDL_Texture* sprites) {
+
+	//App->render->RenderQueue(1, sprites, pos.x, pos.y, currentAnimation->GetCurrentFrame());
+}
