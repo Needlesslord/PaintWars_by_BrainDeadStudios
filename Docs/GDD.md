@@ -386,13 +386,16 @@ On the Bottom-right part of the screen, the HUD will contain a minimap. It will 
  
  #### SOME QUESTS
  
- - Destroy each enemy spawner in the map.
- 
- - Reach every enemy base in the map
- 
- - Kill the final boss aporeaching the base
- 
- - Survive every enemy wave
+	
+- **Create a painter:** Once you have a functional painter
+- **Create a paint extractor:** When a paint extractor has been built (once it is functioning)
+- **Get 150 of paint:** you get 151 paint
+- **Have one of each building:** Have one of each: TH, Pextractor, Wcollector, Barracks, House
+- **Create a warrior:** Once you have a functional warrior
+- **Kill an enemy:** Once one of the enemies is detroyed
+- **Have one of each unit:** Have one of each, functional at the same time: pinter, warrior
+- **Upgrade a unit or building:** One of the entities gets upgraded
+- **Destroy an spawner:** Once one of the spawners is destroyed
  
  
  
@@ -402,26 +405,31 @@ On the Bottom-right part of the screen, the HUD will contain a minimap. It will 
  
  #### SOME ADVANCEMENTS
  
-  - Build 3 paint extractors
-  
-  - Create 5 ranged units
-  
-  - Kill 20 enemy units
-  
-  - Gather 500 Metal Scrap
+- **PaintWars far from Home:** Have a unit be at more than X from the Town Hall (maybe be in some tiles at each corner)
+- **Wood you be resourceful:** Have 4 painters getting wood from the same wood collector
+- **Two Birds, one stone:** Have the same warrior destroy two different spawners
+- **Twice as good:** Have 2 spawners destroyed at the same time
+- **Not today:** Have 666 of paint
+- **Lend me some:** Have at least 500 of each resource (haousing 50, inly apllied to wood, paint)
+- **Cry me a river:** Have one building of each destroyed
+- **Do you know how to play an RTS?:** Have all your unit slots be explorers
+- **Look for help:** Have all your resources be less than 10 each
+- **Start over:** Play the game again!
 
 ### Rewards
 
 Rewards will be awarded when advancements are completed, these rewards will depend on what kind of advancement the player had to do. For example if the player was tasked with building units of a certain type, resources will be rewarded. If the player was tasked with exploring the map, a free unit will be rewarded etc.
 
 Rewards will also increase depending on the difficulty of the task, and will progress throughout the game as it progresses.
+
+
 ***
 
 
 ## Tutorial
 
-+ **MAIN GOAL:** Destroy all spawners.
-+ **TIME ESTIMATED:** 10 min.
++ **MAIN GOAL:** Know how to play.
++ **TIME ESTIMATED:** 2 min.
 
 ### SUMMARY
 
@@ -459,7 +467,7 @@ It works like this:
 
 ![image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/Photos_Wiki/tutorial%20diagram%20good.png)
 
-
+*Please note that the tutorial can be modified to adapt to the game*
 
 
 ***
