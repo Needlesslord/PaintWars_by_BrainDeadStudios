@@ -266,6 +266,8 @@ bool GameScene::Start()
 
 
 
+
+
 	// Shop
 	shopImage = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15 , 450 }, { 0 , 0 }, false, false, { 263, 1551, 263, 265 }, nullptr, nullptr, TEXTURE::ATLAS);
 	ExplanationHover = App->gui->AddElement(TypeOfUI::GUI_LABEL, shopImage, { 130 , 680 }, { 0 , 0 }, false, false, { 0, 0, 0, 0 }, "EXPLANATION", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE); //Not implemented
@@ -283,22 +285,10 @@ bool GameScene::Start()
 	buyHouseButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyHouseButton->hover_rect = { 0, 1966, 65, 82 };
 	buyHouseButton->click_rect = { 65, 1966, 65, 82 };
-	buyMetalGathererButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 15, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyMetalGathererButton->hover_rect = { 0, 1966, 65, 82 };
-	buyMetalGathererButton->click_rect = { 65, 1966, 65, 82 };
-	buyTitaniumExtractorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 80, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyTitaniumExtractorButton->hover_rect = { 0, 1966, 65, 82 };
-	buyTitaniumExtractorButton->click_rect = { 65, 1966, 65, 82 };
-	buyLaboratoryButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 145, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyLaboratoryButton->hover_rect = { 0, 1966, 65, 82 };
-	buyLaboratoryButton->click_rect = { 65, 1966, 65, 82 };
-	buyTurretButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyTurretButton->hover_rect = { 0, 1966, 65, 82 };
-	buyTurretButton->click_rect = { 65, 1966, 65, 82 };
-	upgradeWoodProducerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradeWoodProducerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradeWoodProducerButton->hover_rect = { 0, 1966, 65, 82 };
 	upgradeWoodProducerButton->click_rect = { 65, 1966, 65, 82 };
-	upgradePaintExtractorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradePaintExtractorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradePaintExtractorButton->hover_rect = { 0, 1966, 65, 82 };
 	upgradePaintExtractorButton->click_rect = { 65, 1966, 65, 82 };
 
@@ -324,7 +314,7 @@ bool GameScene::Start()
 	miniMapFULL->hover_rect = { 87, 40, 1170,588 };
 
 
-	//Units
+	//Buildings
 
 	upgradePainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, false, { 130, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradePainterButton->hover_rect = { 390, 1966, 65, 82 };
@@ -332,22 +322,21 @@ bool GameScene::Start()
 	buyPainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 260, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyPainterButton->hover_rect = { 520, 1966, 65, 82 };
 	buyPainterButton->click_rect = { 780, 1966, 65, 82 };
-	buyExplorerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 1105, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyExplorerButton->hover_rect = { 1105, 1885, 65, 82 };
-	buyExplorerButton->click_rect = { 1105, 1804, 65, 82 };
+	//buyExplorerButton
+	//buyExplorerButton
+	//buyExplorerButton
 	upgradeWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, false, { 195, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradeWarriorButton->hover_rect = { 455, 1966, 65, 82 };
 	upgradeWarriorButton->click_rect = { 715, 1966, 65, 82 };
 	buyWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyWarriorButton->hover_rect = { 585, 1966, 65, 82 };
 	buyWarriorButton->click_rect = { 845, 1966, 65, 82 };
-	buyRangerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 1170, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyRangerButton->hover_rect = { 1170, 1885, 65, 82 };
-	buyRangerButton->click_rect = { 1170, 1804, 65, 82 };
-	buyKnightButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 1235, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyKnightButton->hover_rect = { 1235, 1885, 65, 82 };
-	buyKnightButton->click_rect = { 1235, 1804, 65, 82 };
-
+	//buyKnightButton
+	//buyKnightButton
+	//buyKnightButton
+	//buyRangerButton
+	//buyRangerButton
+	//buyRangerButton
 	
 	//Animation
 	//PaintRollerAnimation = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 400, -200 }, { 0 , 0 }, false,false, { 1493, 1292, 552, 753 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
@@ -375,7 +364,7 @@ bool GameScene::Start()
 	}
 
 	if (App->audio->PlayingIngameAudio != true) {
-		App->audio->PlayMusic("audio/music/music_scene_inGame.ogg");
+		App->audio->PlayMusic("audio/music/music_sadpiano.ogg");
 		App->audio->PlayingIngameAudio = true;
 	}
 
@@ -645,10 +634,10 @@ bool GameScene::Update(float dt)
 
 	//PriceTimer
 
-	/*if (App->player->gameTimer.ReadSec() - priceTimer == 2)
-	{
-		priceLabel->enabled = false;
-	}*/
+	//if (App->player->gameTimer.ReadSec() - priceTimer == 2)
+	//{
+	//	priceLabel->enabled = false;
+	//}
 
 
 
@@ -886,23 +875,17 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		buyPaintExtractorButton->enabled = !buyPaintExtractorButton->enabled;
 		buyBarrackButton->enabled = !buyBarrackButton->enabled;
 		buyHouseButton->enabled = !buyHouseButton->enabled;
-		buyMetalGathererButton->enabled = !buyMetalGathererButton->enabled;
-		buyTitaniumExtractorButton->enabled = !buyTitaniumExtractorButton->enabled;
-		buyLaboratoryButton->enabled = !buyLaboratoryButton->enabled;
-		buyTurretButton->enabled = !buyTurretButton->enabled;
-		//upgradePaintExtractorButton->enabled = !upgradePaintExtractorButton->enabled;
-		//upgradeWoodProducerButton->enabled = !upgradeWoodProducerButton->enabled;
 
-		/*if (!App->entities->woodProducersUpgraded && !upgradeWoodProducerButton->enabled)
+		if (!App->entities->woodProducersUpgraded && !upgradeWoodProducerButton->enabled)
 			upgradeWoodProducerButton->enabled = true;
 		else if(!App->entities->woodProducersUpgraded && upgradeWoodProducerButton->enabled)
-			upgradeWoodProducerButton->enabled = false;*/
+			upgradeWoodProducerButton->enabled = false;
 
 
-		/*if (!App->entities->paintExtractorUpgraded && !upgradePaintExtractorButton->enabled)
+		if (!App->entities->paintExtractorUpgraded && !upgradePaintExtractorButton->enabled)
 			upgradePaintExtractorButton->enabled = true;
 		else if (!App->entities->paintExtractorUpgraded && upgradePaintExtractorButton->enabled)
-			upgradePaintExtractorButton->enabled = false;*/
+			upgradePaintExtractorButton->enabled = false;
 
 	}
 
@@ -919,7 +902,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		priceLabel->text = "-500";
 		App->input->GetMousePosition(priceLabel->map_position.x, priceLabel->map_position.y);
 
-		//  priceTimer = App->player->gameTimer.ReadSec();
+		//priceTimer = App->player->gameTimer.ReadSec();
 
 	}
 
@@ -1459,9 +1442,6 @@ void GameScene::Generate_Entities()
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80,  4 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 10, 90 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80, 75 }, App->entities, nullptr, 0, true);
-
-		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 2, 2 }, App->entities, nullptr, 0, true);
-		App->entities->AddEntity(ENTITY_TYPE_EXPLORER, { 20, 20 }, App->entities, nullptr, 0, true);
 	}
 	else if (App->scenes->Map_Snow_Active == true) {
 
