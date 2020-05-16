@@ -38,15 +38,27 @@ TownHall::TownHall(iPoint tile, int damage, j1Module* listener, Entity* creator)
 
 TownHall::~TownHall() {}
 
-void TownHall::SpawnEntity() {
+void TownHall::SpawnEntity(ENTITY_TYPE type) {
 
-	// TODO: check this positions
-	if (!isSpawningAUnit && App->player->paintCount.count > 5 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
-		App->player->paintCount.count -= 5;
-		App->player->housingSpace.count++;
-		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
-		Mix_PlayChannel(-1, App->audio->spawnFromHall, 0);
-		isSpawningAUnit = true;
+	if (type == ENTITY_TYPE_PAINTER) {
+
+		if (!isSpawningAUnit && App->player->paintCount.count > 5 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
+			App->player->paintCount.count -= 5;
+			App->player->housingSpace.count++;
+			App->entities->AddEntity(ENTITY_TYPE_PAINTER, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
+			Mix_PlayChannel(-1, App->audio->spawnFromHall, 0);
+			isSpawningAUnit = true;
+		}
+	}
+	else if (type == ENTITY_TYPE_EXPLORER) {
+
+		if (!isSpawningAUnit && App->player->paintCount.count > 50 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
+			App->player->paintCount.count -= 50;
+			App->player->housingSpace.count++;
+			App->entities->AddEntity(ENTITY_TYPE_PAINTER, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
+			Mix_PlayChannel(-1, App->audio->spawnFromHall, 0);
+			isSpawningAUnit = true;
+		}
 	}
 	else
 		return;

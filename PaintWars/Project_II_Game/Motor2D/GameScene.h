@@ -198,7 +198,10 @@ public:
 
 	// Buildings
 	j1UIElement* buyPainterButton = nullptr;
+	j1UIElement* buyExplorerButton = nullptr;
 	j1UIElement* buyWarriorButton = nullptr;
+	j1UIElement* buyKnightButton = nullptr;
+	j1UIElement* buyRangerButton = nullptr;
 	j1UIElement* upgradePainterButton = nullptr;
 	j1UIElement* upgradeWarriorButton = nullptr;
 

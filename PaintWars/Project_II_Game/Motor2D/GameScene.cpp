@@ -322,12 +322,21 @@ bool GameScene::Start()
 	buyPainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 260, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyPainterButton->hover_rect = { 520, 1966, 65, 82 };
 	buyPainterButton->click_rect = { 780, 1966, 65, 82 };
+	//buyExplorerButton
+	//buyExplorerButton
+	//buyExplorerButton
 	upgradeWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, false, { 195, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradeWarriorButton->hover_rect = { 455, 1966, 65, 82 };
 	upgradeWarriorButton->click_rect = { 715, 1966, 65, 82 };
 	buyWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyWarriorButton->hover_rect = { 585, 1966, 65, 82 };
 	buyWarriorButton->click_rect = { 845, 1966, 65, 82 };
+	//buyKnightButton
+	//buyKnightButton
+	//buyKnightButton
+	//buyRangerButton
+	//buyRangerButton
+	//buyRangerButton
 	
 	//Animation
 	//PaintRollerAnimation = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 400, -200 }, { 0 , 0 }, false,false, { 1493, 1292, 552, 753 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
@@ -552,6 +561,20 @@ bool GameScene::Update(float dt)
 		if (!App->entities->paintersUpgraded)
 			upgradePainterButton->enabled = true;
 
+
+		// Check if there are any explorers alive
+		list<Entity*>::iterator noActiveExplorers = App->entities->activeUnits.begin();
+		bool noExplorers = true;
+		while (noActiveExplorers != App->entities->activeUnits.end()) {
+			if ((*noActiveExplorers)->entityType == ENTITY_TYPE_EXPLORER) {
+				noExplorers = false;
+				break;
+			}
+			noActiveExplorers++;
+		}
+		if(noExplorers)
+			//buyExplorerButton->enabled = true;
+
 		shopImage->enabled = false;
 		shopLabel->enabled = false;
 		CostLabel->enabled = false;
@@ -564,6 +587,7 @@ bool GameScene::Update(float dt)
 	}
 	else {
 		buyPainterButton->enabled = false;
+		//buyExplorerButton->enabled = false;
 		upgradePainterButton->enabled = false;
 	}
 
@@ -577,6 +601,9 @@ bool GameScene::Update(float dt)
 		if (!App->entities->warriorsUpgraded)
 			upgradeWarriorButton->enabled = true;
 
+		//buyKnightButton->enabled = true;
+		//buyRangerButton->enabled = true;
+
 		shopImage->enabled = false;
 		shopLabel->enabled = false;
 		CostLabel->enabled = false;
@@ -589,6 +616,8 @@ bool GameScene::Update(float dt)
 	}
 	else {
 		buyWarriorButton->enabled = false;
+		//buyKnightButton->enabled = false;
+		//buyRangerButton->enabled = false;
 		upgradeWarriorButton->enabled = false;
 	}
 
@@ -1022,7 +1051,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 	if (element == buyPainterButton && type == GUI_Event::EVENT_ONCLICK) {
 		list<Entity*>::iterator onlyTownhallSelected = App->entities->buildingsSelected.begin();
-		(*onlyTownhallSelected)->SpawnEntity();
+		(*onlyTownhallSelected)->SpawnEntity(ENTITY_TYPE::ENTITY_TYPE_PAINTER);
 		PainterQuestCompleted = true;
 	}
 	else if (element == upgradePainterButton && type == GUI_Event::EVENT_ONCLICK) {
@@ -1039,13 +1068,17 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			App->entities->paintersUpgraded = true;
 		}
 	}
-
+	// This is only available if there are no explorers alive
+	else if (element == buyExplorerButton && type == GUI_Event::EVENT_ONCLICK) {
+		list<Entity*>::iterator onlyTownhallSelected = App->entities->buildingsSelected.begin();
+		(*onlyTownhallSelected)->SpawnEntity(ENTITY_TYPE::ENTITY_TYPE_EXPLORER);
+	}
 
 	//Barracks shop
 
 	if (element == buyWarriorButton && type == GUI_Event::EVENT_ONCLICK) {
 		list<Entity*>::iterator onlyBarracksSelected = App->entities->buildingsSelected.begin();
-		(*onlyBarracksSelected)->SpawnEntity();
+		(*onlyBarracksSelected)->SpawnEntity(ENTITY_TYPE::ENTITY_TYPE_WARRIOR);
 	}
 	else if (element == upgradeWarriorButton && type == GUI_Event::EVENT_ONCLICK) {
 
@@ -1060,6 +1093,14 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			}
 			App->entities->warriorsUpgraded = true;
 		}
+	}
+	else if (element == buyKnightButton && type == GUI_Event::EVENT_ONCLICK) {
+		list<Entity*>::iterator onlyBarracksSelected = App->entities->buildingsSelected.begin();
+		(*onlyBarracksSelected)->SpawnEntity(ENTITY_TYPE::ENTITY_TYPE_KNIGHT);
+	}
+	else if (element == buyRangerButton && type == GUI_Event::EVENT_ONCLICK) {
+		list<Entity*>::iterator onlyBarracksSelected = App->entities->buildingsSelected.begin();
+		(*onlyBarracksSelected)->SpawnEntity(ENTITY_TYPE::ENTITY_TYPE_RANGER);
 	}
 
 
