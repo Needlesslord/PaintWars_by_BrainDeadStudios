@@ -30,7 +30,7 @@ j1ParticleManager::~j1ParticleManager()
 
 bool j1ParticleManager::Start()
 {
-	smokeTexture = App->tex->Load("textures/particle_cloud.png");
+	smokeTexture = App->tex->Load("textures/Smoke_Texture_7x7px.png");
 	cloudTexture = App->tex->Load("textures/particle_cloud.png");
 	//fireTexture = App->tex->Load("textures/Fire_Texture_7x7px.png");
 	//explosionTexture = App->tex->Load("textures/Explosion_Texture_2_7x7px.png");
@@ -99,8 +99,8 @@ bool j1ParticleManager::Update(float dt)
 	{
 		fPoint test;
 		App->input->GetMousePosition(test.x, test.y);
-		test.x -= App->render->camera.x / App->win->GetScale();
-		test.y -= App->render->camera.y / App->win->GetScale();
+		//test.x -= App->render->camera.x / App->win->GetScale();
+		//test.y -= App->render->camera.y / App->win->GetScale();
 
 		App->pmanager->createSystem(PARTICLE_TYPES::SMOKE, { (float)test.x, (float)test.y }, 0);
 		//LOG("CLOUD CREATED AT  X:%.2f Y:%.2f", (float)test.x, (float)test.y);
