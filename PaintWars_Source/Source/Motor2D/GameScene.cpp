@@ -266,8 +266,6 @@ bool GameScene::Start()
 
 
 
-
-
 	// Shop
 	shopImage = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15 , 450 }, { 0 , 0 }, false, false, { 263, 1551, 263, 265 }, nullptr, nullptr, TEXTURE::ATLAS);
 	ExplanationHover = App->gui->AddElement(TypeOfUI::GUI_LABEL, shopImage, { 130 , 680 }, { 0 , 0 }, false, false, { 0, 0, 0, 0 }, "EXPLANATION", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE); //Not implemented
@@ -285,10 +283,22 @@ bool GameScene::Start()
 	buyHouseButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyHouseButton->hover_rect = { 0, 1966, 65, 82 };
 	buyHouseButton->click_rect = { 65, 1966, 65, 82 };
-	upgradeWoodProducerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyMetalGathererButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 15, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyMetalGathererButton->hover_rect = { 0, 1966, 65, 82 };
+	buyMetalGathererButton->click_rect = { 65, 1966, 65, 82 };
+	buyTitaniumExtractorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 80, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyTitaniumExtractorButton->hover_rect = { 0, 1966, 65, 82 };
+	buyTitaniumExtractorButton->click_rect = { 65, 1966, 65, 82 };
+	buyLaboratoryButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 155, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyLaboratoryButton->hover_rect = { 0, 1966, 65, 82 };
+	buyLaboratoryButton->click_rect = { 65, 1966, 65, 82 };
+	buyTurretButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyTurretButton->hover_rect = { 0, 1966, 65, 82 };
+	buyTurretButton->click_rect = { 65, 1966, 65, 82 };
+	upgradeWoodProducerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradeWoodProducerButton->hover_rect = { 0, 1966, 65, 82 };
 	upgradeWoodProducerButton->click_rect = { 65, 1966, 65, 82 };
-	upgradePaintExtractorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradePaintExtractorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradePaintExtractorButton->hover_rect = { 0, 1966, 65, 82 };
 	upgradePaintExtractorButton->click_rect = { 65, 1966, 65, 82 };
 
@@ -314,7 +324,7 @@ bool GameScene::Start()
 	miniMapFULL->hover_rect = { 87, 40, 1170,588 };
 
 
-	//Buildings
+	//Units
 
 	upgradePainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, false, { 130, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradePainterButton->hover_rect = { 390, 1966, 65, 82 };
@@ -875,17 +885,22 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		buyPaintExtractorButton->enabled = !buyPaintExtractorButton->enabled;
 		buyBarrackButton->enabled = !buyBarrackButton->enabled;
 		buyHouseButton->enabled = !buyHouseButton->enabled;
+		buyTitaniumExtractorButton->enabled = !buyHouseButton->enabled;
+		buyLaboratoryButton->enabled = !buyHouseButton->enabled;
+		buyTurretButton->enabled = !buyHouseButton->enabled;
+		upgradePaintExtractorButton->enabled = !buyHouseButton->enabled;
+		upgradeWoodProducerButton->enabled = !buyHouseButton->enabled;
 
-		if (!App->entities->woodProducersUpgraded && !upgradeWoodProducerButton->enabled)
+		/*if (!App->entities->woodProducersUpgraded && !upgradeWoodProducerButton->enabled)
 			upgradeWoodProducerButton->enabled = true;
 		else if(!App->entities->woodProducersUpgraded && upgradeWoodProducerButton->enabled)
-			upgradeWoodProducerButton->enabled = false;
+			upgradeWoodProducerButton->enabled = false;*/
 
 
-		if (!App->entities->paintExtractorUpgraded && !upgradePaintExtractorButton->enabled)
+		/*if (!App->entities->paintExtractorUpgraded && !upgradePaintExtractorButton->enabled)
 			upgradePaintExtractorButton->enabled = true;
 		else if (!App->entities->paintExtractorUpgraded && upgradePaintExtractorButton->enabled)
-			upgradePaintExtractorButton->enabled = false;
+			upgradePaintExtractorButton->enabled = false;*/
 
 	}
 
