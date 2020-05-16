@@ -59,7 +59,7 @@ void j1Map::Draw()
 					fPoint pos = MapToWorld(x, y);
 
 					///FOW-TODO
-					if (App->fow->GetVisibilityTileAt({ x, y }) != 0 /*(int8_t)FOW_TileState::UNVISITED*/)
+					if (App->fow->GetVisibilityTileAt({ x, y }) != (int8_t)FOW_TileState::UNVISITED)
 					{
 						//App->render->Blit(tileset->texture, pos.x, pos.y, &r);
 

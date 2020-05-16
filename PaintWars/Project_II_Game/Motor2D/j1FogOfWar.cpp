@@ -189,10 +189,13 @@ void j1FogOfWar::ManageEntitiesVisibility() {
 }
 
 void j1FogOfWar::ManageEntitiesFOWManipulation() {
+
 	//Iterate all fow_entities
 	for (std::list<FOW_Entity*>::iterator item = fow_entities.begin(); item != fow_entities.end(); ++item) {
+
 		// If an entity provides visibility and has moved
 		if ((*item)->provides_visibility == true && (*item)->moved_in_map == true) {
+
 			//We store the LOS of the current entity, since the LOS will change this will be our previous LOS
 			std::list<iPoint> prev_LOS = (*item)->LOS;
 
@@ -301,13 +304,13 @@ std::list<iPoint> j1FogOfWar::FulfillSight(std::list<iPoint>& frontier) {
 }
 
 FOW_Entity::FOW_Entity(iPoint position, bool provides_visibility) :
-	position(App->map->WorldToMap(position.x, position.y)),
+	//position(App->map->WorldToMap(position.x, position.y)),
 	provides_visibility(provides_visibility)
 {}
 
 
 void FOW_Entity::SetPos(iPoint new_pos) {
-	new_pos = App->map->WorldToMap(new_pos.x, new_pos.y);
+	//new_pos = App->map->WorldToMap(new_pos.x, new_pos.y);
 	//world to map makes the tiles go with 
 	if (position != new_pos) {
 		moved_in_map = true;
