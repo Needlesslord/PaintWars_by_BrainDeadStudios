@@ -332,21 +332,22 @@ bool GameScene::Start()
 	buyPainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 260, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyPainterButton->hover_rect = { 520, 1966, 65, 82 };
 	buyPainterButton->click_rect = { 780, 1966, 65, 82 };
-	//buyExplorerButton
-	//buyExplorerButton
-	//buyExplorerButton
+	buyExplorerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, true, { 1105, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyExplorerButton->hover_rect = { 1430, 1966, 65, 82 };
+	buyExplorerButton->click_rect = { 1430, 1885, 65, 82 };
 	upgradeWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, false, { 195, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradeWarriorButton->hover_rect = { 455, 1966, 65, 82 };
 	upgradeWarriorButton->click_rect = { 715, 1966, 65, 82 };
 	buyWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyWarriorButton->hover_rect = { 585, 1966, 65, 82 };
 	buyWarriorButton->click_rect = { 845, 1966, 65, 82 };
-	//buyKnightButton
-	//buyKnightButton
-	//buyKnightButton
-	//buyRangerButton
-	//buyRangerButton
-	//buyRangerButton
+	buyRangerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, true, { 1170, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyRangerButton->hover_rect = { 1495, 1966, 65, 82 };
+	buyRangerButton->click_rect = { 1495, 1885, 65, 82 };
+	buyKnightButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, true, { 1235, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyKnightButton->hover_rect = { 1560, 1966, 65, 82 };
+	buyKnightButton->click_rect = { 1560, 1885, 65, 82 };
+
 	
 	//Animation
 	//PaintRollerAnimation = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 400, -200 }, { 0 , 0 }, false,false, { 1493, 1292, 552, 753 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
