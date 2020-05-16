@@ -161,6 +161,7 @@ SPRITE|   NAME         | TIER | USE|
 .|Metal Scrap | 3 | High tier Resource used for almost every late game unit & building in the game 
 .|Titanium | 4 | Extremely scarce & quality resource used for only the best units & buildings in the game
 .|Research| 0 | Resource that represents which level of upgrades the player has acces to
+.|Max number of units| 0 | Resource that represents how many units the player can have at a time
 
 ### BUILDINGS
 
