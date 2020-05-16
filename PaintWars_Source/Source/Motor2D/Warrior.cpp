@@ -32,7 +32,7 @@ Warrior::Warrior(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 	pos.x = tileWorldPosition.x + App->map->data.tile_width /  size.x ;
 	pos.y = tileWorldPosition.y + App->map->data.tile_height / 2 - size.y;
 
-	speed = 200.0f;
+	speed = 175.0f;
 	
 	spawningTime = 10.0f;
 

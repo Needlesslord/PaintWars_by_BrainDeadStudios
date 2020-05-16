@@ -12,11 +12,6 @@ public:
 	~Explorer();
 	void Draw(SDL_Texture* sprites) override;
 
-public:
-
-private:
-
-	bool startTimer = true;
 };
 
 #endif //__Explorer_H__

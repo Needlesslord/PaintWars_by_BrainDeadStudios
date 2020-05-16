@@ -14,14 +14,6 @@ public:
 	void Draw(SDL_Texture* sprites) override;
 	//void OnCollision(Collider* c1, Collider* c2) override;
 
-private:
-
-public:
-
-private:
-
-	bool startTimer = true;
-
 };
 
 #endif //__Warrior_H__
