@@ -1364,7 +1364,7 @@ void j1EntityManager::TriggerEndGame(bool isVictory) {
 
 	else if(isVictory==true) {
 		App->entities->CleanUp();
-	   App->transition_manager->CreateExpandingBars(SCENES::WIN_SCENE, 0.5f, true);  //DOESNT WORK YET BECAUSE SPAWNERS NOT IMPLEMENTED
+	   App->transition_manager->CreateExpandingBars(SCENES::WIN_SCENE, 0.5f, true); 
 	}
 
 }
@@ -1720,7 +1720,7 @@ bool j1EntityManager::Load(pugi::xml_node& save)
 			App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { x,y }, App->entities, nullptr, 0, true);
 			
 		}
-		else if (entityType == "14") {
+		else if (entityType == "spawner") {
 
 
 			App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { x,y }, App->entities, nullptr, 0, true);
@@ -1749,7 +1749,7 @@ bool j1EntityManager::Save(pugi::xml_node& save) const
 
 		if ((*entitiesToSave)->entityType == ENTITY_TYPE_PAINTER) {
 
-			entity.append_attribute("entity_type") = (*entitiesToSave)->entityType;
+			entity.append_attribute("entity_type") = "painter";
 			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
 			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
 			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
@@ -1759,7 +1759,7 @@ bool j1EntityManager::Save(pugi::xml_node& save) const
 
 		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_WARRIOR) {
 
-			entity.append_attribute("entity_type") = (*entitiesToSave)->entityType;
+			entity.append_attribute("entity_type") = "warrior";
 			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
 			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
 			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
@@ -1769,7 +1769,7 @@ bool j1EntityManager::Save(pugi::xml_node& save) const
 
 		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_SPAWNER) {
 
-			entity.append_attribute("entity_type") = (*entitiesToSave)->entityType;
+			entity.append_attribute("entity_type") = "spawner";
 			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
 			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
 			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
@@ -1779,7 +1779,7 @@ bool j1EntityManager::Save(pugi::xml_node& save) const
 
 		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_TOWN_HALL) {
 
-			entity.append_attribute("entity_type") = (*entitiesToSave)->entityType;
+			entity.append_attribute("entity_type") = "townhall";
 			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
 			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
 			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();

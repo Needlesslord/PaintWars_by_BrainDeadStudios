@@ -110,7 +110,7 @@ This way, the eye of the player will always go to the brightest and different co
 
 As stated before, each map will have its own individual feel that goes with a certain playing style. However, the whole game will share most of the visual assets, and so, will have a certain atmosphere. The aim of the art in this sense will be to have a laid back, colorful and fun atmosphere that keeps just enough tension and aggressive elements so that the player can't be completely passive.
 
-(In-game screenshot to be added)
+![HUD1](https://user-images.githubusercontent.com/51851736/82118533-4fdd6300-9778-11ea-927e-3aa33b9456b8.png)
 
 ### UI
 
