@@ -84,7 +84,7 @@ bool j1Player::PreUpdate()
 	//	entityCount++;
 	//	B++;
 	//}
-
+	//
 	//std::list<Entity*> activeBuildings;
 	//std::list<Entity*> activeUnits;
 
