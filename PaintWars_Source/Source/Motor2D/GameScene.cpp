@@ -364,7 +364,7 @@ bool GameScene::Start()
 	}
 
 	if (App->audio->PlayingIngameAudio != true) {
-		App->audio->PlayMusic("audio/music/music_sadpiano.ogg");
+		App->audio->PlayMusic("audio/music/music_scene_inGame.ogg");
 		App->audio->PlayingIngameAudio = true;
 	}
 

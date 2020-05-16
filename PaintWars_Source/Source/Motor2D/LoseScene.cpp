@@ -51,7 +51,7 @@ bool LoseScene::Start()
 	if (App->audio->PlayingLoseMusic != true) {
 		Mix_HaltMusic();
 		App->audio->PlayingMenuMusic = false;
-		App->audio->PlayMusic("audio/music/LoseSceneMusic.ogg");
+		App->audio->PlayMusic("audio/music/music_scene_lose.ogg");
 		App->audio->PlayingLoseMusic = true;
 	}
 	
@@ -175,7 +175,7 @@ void LoseScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		{
 			Mix_HaltMusic();
 			if (App->audio->PlayingMenuMusic != true) {
-				App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
+				App->audio->PlayMusic("audio/music/music_scene_mainMenu.ogg");
 				App->audio->PlayingMenuMusic = true;
 			}
 			App->entities->CleanUp();

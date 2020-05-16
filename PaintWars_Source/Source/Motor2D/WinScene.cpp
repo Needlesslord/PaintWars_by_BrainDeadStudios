@@ -54,7 +54,7 @@ bool WinScene::Start()
 	if (App->audio->PlayingWinMusic != true) {
 		Mix_HaltMusic();
 		App->audio->PlayingWinMusic = false;
-		App->audio->PlayMusic("audio/music/WinSceneMusic.ogg"); 
+		App->audio->PlayMusic("audio/music/music_scene_win.ogg"); 
 		App->audio->PlayingWinMusic = true;
 	}
 
@@ -201,7 +201,7 @@ void WinScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		{
 			Mix_HaltMusic();
 			if (App->audio->PlayingMenuMusic != true) {
-				App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
+				App->audio->PlayMusic("audio/music/music_scene_mainMenu.ogg");
 				App->audio->PlayingMenuMusic = true;
 			}
 			App->audio->PlayingWinMusic = false;
