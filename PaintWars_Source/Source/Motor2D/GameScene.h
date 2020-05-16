@@ -193,7 +193,7 @@ public:
 	j1UIElement* shopHoverUpgradeWoodProducer = nullptr;*/
 
 	j1UIElement* priceLabel = nullptr;
-	int priceTimer = 0;
+	// int priceTimer = 0;
 
 
 	// Buildings

@@ -634,10 +634,10 @@ bool GameScene::Update(float dt)
 
 	//PriceTimer
 
-	if (App->player->gameTimer.ReadSec() - priceTimer == 2)
+	/*if (App->player->gameTimer.ReadSec() - priceTimer == 2)
 	{
 		priceLabel->enabled = false;
-	}
+	}*/
 
 
 
@@ -902,7 +902,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		priceLabel->text = "-500";
 		App->input->GetMousePosition(priceLabel->map_position.x, priceLabel->map_position.y);
 
-		priceTimer = App->player->gameTimer.ReadSec();
+		//  priceTimer = App->player->gameTimer.ReadSec();
 
 	}
 
