@@ -30,8 +30,8 @@ j1ParticleManager::~j1ParticleManager()
 
 bool j1ParticleManager::Start()
 {
-	smokeTexture = App->tex->Load("textures/cloud.png");
-	cloudTexture = App->tex->Load("textures/cloud.png");
+	smokeTexture = App->tex->Load("textures/particle_cloud.png");
+	cloudTexture = App->tex->Load("textures/particle_cloud.png");
 	//fireTexture = App->tex->Load("textures/Fire_Texture_7x7px.png");
 	//explosionTexture = App->tex->Load("textures/Explosion_Texture_2_7x7px.png");
 	//dustTexture = App->tex->Load("textures/Dust_Texture_25x20px.png");

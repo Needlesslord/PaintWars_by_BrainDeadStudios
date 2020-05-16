@@ -79,7 +79,7 @@ bool StartScene::Start()
 
 	
 	if (App->audio->PlayingMenuMusic != true) {
-		App->audio->PlayMusic("audio/music/MainMenu_Music.ogg");
+		App->audio->PlayMusic("audio/music/music_scene_mainMenu.ogg");
 		App->audio->PlayingMenuMusic = true;
 	}
 

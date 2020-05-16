@@ -91,7 +91,7 @@ bool SettingsScene::Start()
 
 
 	if (App->audio->PlayingSettingsMusic != true) {
-		App->audio->PlayMusic("audio/music/SettingsSceneMusic.ogg");
+		App->audio->PlayMusic("audio/music/music_scene_settings.ogg");
 		App->audio->PlayingSettingsMusic = true;
 	}
 

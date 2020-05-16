@@ -56,7 +56,7 @@ bool ScoreScene::Start()
 	
 	if (App->audio->PlayingLogoMusic != true) {
 		App->audio->PlayingLogoMusic = false;
-		App->audio->PlayMusic("audio/music/logoScene.ogg");
+		App->audio->PlayMusic("audio/music/music_scene_paintwars.ogg");
 		App->audio->PlayingLogoMusic = true;
 	}
 
