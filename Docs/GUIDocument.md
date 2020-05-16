@@ -42,14 +42,14 @@ With everything, the design we have come up with is the following for the inside
 ![HUD](https://user-images.githubusercontent.com/51851736/76066200-6fdcf300-5f8d-11ea-97ce-a5d686543a0c.png)
 
 
-The draft we did for the GUI in general is the following:
+However, this was just a first draft we did for the GUI in general. You an see how it came together in the *Artistic poiint of view* below.
 
 
 
 ### Artistic point of view
 
-*THE ARTISTIC POINT OF VIEW OF THE HUD WILL BE UPLOADED ONCE WE HAVE THE SPRITES*
-
+![HUD1](https://user-images.githubusercontent.com/51851736/82118533-4fdd6300-9778-11ea-927e-3aa33b9456b8.png)
+![HUD2](https://user-images.githubusercontent.com/51851736/82118535-510e9000-9778-11ea-85bd-46234709db43.png)
 
 ***
 
@@ -61,18 +61,21 @@ The sprites we are going to use are from a free GUI Pack from Unity by *Chocobal
 
 Since this also allows to use different colours, we would like to implement different colours for each map, but, in case we don't have the time and it is not a priority, we would use only one of them.
 
-| Asset | Sprite Idle | Sprite Hover |
-| ----- | ----------- | ------------ | 
-| Button (with strings) | . | . |
-| Dialog frame | . | . |
-| On | . | . |
-| Off | . | . |
-| Unfold (menu) | . | . |
-| Fold (menu) | . | . |
-| Slider + pivot | . | . |
-| Keyboard selected | . | . |
-| Gamepad selected | . | . |
-| . | . | . |
+| Asset | Sprite Idle | Sprite Hover | Sprite Selected |
+| ----- | ----------- | ------------ | --------------- | 
+| Button (basic) | . | . | . |
+| Dialog frame | . | . | . |
+| On | . | . | . |
+| Off | . | . | . |
+| Unfold (menu) | . | . | . |
+| Fold (menu) | . | . | . |
+| Slider + pivot | . | . | . |
+| Each button on the HUD (top right) | . | . | . |
+| Resources bar | . | . | . |
+| Background shop, minimap, etc | . | . | . |
+| Purchase units buttons | . | . | . |
+| On/Off | . | . | . |
+| Others | . | . | . |
 
 The Font we are going to use is samble in 3 different sizes.
 
