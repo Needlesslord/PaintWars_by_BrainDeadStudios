@@ -113,6 +113,7 @@ For each delivery we have set a milestone. Therefore, we have 4 milestones with 
     - Social Media: Promotions for the game started
     - Game Logo
 
+*Note: to see a more throrough list of what it is included please check out [this]() document.*
 
 + Gold (Milestone: 30th May; Delivery: 1st June)
     - All the bugs fixed
