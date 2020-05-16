@@ -100,7 +100,7 @@ For each delivery we have set a milestone. Therefore, we have 4 milestones with 
     - FX and music
     - Social Media: at least 3 tweets and instagram posts per week, at least 3 streams on Twitch and Youtube (can be the same)
     
- *Note: to see a more throrough list of what it is included please check out [this]() document.*
+ *Note: to see a more throrough list of what it is included please check out [this](https://github.com/Needlesslord/PaintWars_by_BrainDeadStudios/blob/master/Docs/Tasks_Vertical_Slice.pdf) document.*
 
 + Alpha (Milestone: 16th May; Delivery: 19th May)
     - All Maps
@@ -113,6 +113,7 @@ For each delivery we have set a milestone. Therefore, we have 4 milestones with 
     - Social Media: Promotions for the game started
     - Game Logo
 
+*Note: to see a more throrough list of what it is included please check out [this](https://github.com/Needlesslord/PaintWars_by_BrainDeadStudios/blob/master/Docs/Tasks_Alpha.pdf) document.*
 
 + Gold (Milestone: 30th May; Delivery: 1st June)
     - All the bugs fixed

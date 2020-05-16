@@ -12,13 +12,13 @@
 	<entities>
 		<num_entities value="7" />
 		<active_entities>
-			<entity />
-			<entity entity_type="" position_x="415" position_y="3074.5" missing_hp="0" size_x="70" size_y="150" />
-			<entity />
-			<entity />
-			<entity />
-			<entity />
-			<entity />
+			<entity entity_type="townhall" position_x="-125" position_y="2784" missing_hp="0" size_x="400" size_y="403" />
+			<entity entity_type="painter" position_x="415" position_y="3074.5" missing_hp="0" size_x="70" size_y="150" />
+			<entity entity_type="spawner" position_x="1450" position_y="1687" missing_hp="0" size_x="250" size_y="600" />
+			<entity entity_type="spawner" position_x="550" position_y="112" missing_hp="0" size_x="250" size_y="600" />
+			<entity entity_type="spawner" position_x="5650" position_y="2587" missing_hp="0" size_x="250" size_y="600" />
+			<entity entity_type="spawner" position_x="-6050" position_y="3187" missing_hp="0" size_x="250" size_y="600" />
+			<entity entity_type="spawner" position_x="325" position_y="5249.5" missing_hp="0" size_x="250" size_y="600" />
 		</active_entities>
 	</entities>
 	<pathfinding />
