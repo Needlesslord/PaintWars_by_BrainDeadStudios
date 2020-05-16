@@ -11,12 +11,6 @@ public:
 	House(iPoint tile, int damage, j1Module* listener, Entity* creator);
 	~House();
 
-public:
-
-private:
-
-	bool startTimer = true;
-
 };
 
 #endif //__House_H__

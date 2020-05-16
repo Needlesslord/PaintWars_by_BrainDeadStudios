@@ -15,13 +15,6 @@ public:
 	bool CanAttackTownHall();
 	void attack(Entity* target, float dt);
 
-	
-public:
-
-private:
-
-	bool startTimer = true;
-
 };
 
 #endif //__ChromaKing_H__

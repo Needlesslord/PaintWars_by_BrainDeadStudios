@@ -13,14 +13,6 @@ public:
 	void Attack(Entity* target, float dt);
 	void Draw(SDL_Texture* sprites) override;
 
-private:
-
-public:
-
-private:
-
-	bool startTimer = true;
-
 };
 
 #endif //__Knight_H__

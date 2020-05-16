@@ -13,12 +13,6 @@ public:
 
 	void SpawnEntity(ENTITY_TYPE type) override;
 
-public:
-
-private:
-
-	bool startTimer = true;
-
 };
 
 #endif //__Barracks_H__

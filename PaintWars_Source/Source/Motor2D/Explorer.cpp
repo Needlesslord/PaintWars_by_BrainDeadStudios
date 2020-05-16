@@ -32,7 +32,7 @@ Explorer::Explorer(iPoint tile, int damage, j1Module* listener, Entity* creator)
 	pos.x = tileWorldPosition.x + App->map->data.tile_width / 2 - size.x / 2;
 	pos.y = tileWorldPosition.y + App->map->data.tile_height / 2 - size.y;
 
-	speed = 400.0f;
+	speed = 225.0f;
 
 	spawningTime = 10.0f;
 
