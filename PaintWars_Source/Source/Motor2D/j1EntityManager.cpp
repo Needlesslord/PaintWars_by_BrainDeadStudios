@@ -1375,32 +1375,32 @@ void j1EntityManager::LoadEntityTextures()
 
 		// Allies
 	/// Buildings
-	townHallTexture = App->tex->Load("textures/TownHall.png");
-	paintExtractorTexture = App->tex->Load("textures/PaintExtractor.png");
-	woodProducerTexture = App->tex->Load("textures/WoodProducer.png");
-	houseTexture = App->tex->Load("textures/House.png");
-	barracksTexture = App->tex->Load("textures/Barracks.png");
+	townHallTexture = App->tex->Load("textures/entity_building_townHall.png");
+	paintExtractorTexture = App->tex->Load("textures/entity_building_paintExtractor.png");
+	woodProducerTexture = App->tex->Load("textures/entity_building_woodProducer.png");
+	houseTexture = App->tex->Load("textures/entity_building_house.png");
+	barracksTexture = App->tex->Load("textures/entity_building_barracks.png");
 
 	/// Units
-	warriorTexture = App->tex->Load("textures/Warrior_Sprite_Mod.png");
-	painterTexture = App->tex->Load("textures/spritesheet_painter_mod.png");
-	knightTexture = App->tex->Load("textures/spritesheet_paladin_mod.png");
-	explorerTexture = App->tex->Load("textures/spritesheet_explorer_mod.png");
-	rangerTexture = App->tex->Load("textures/spritesheet_ranger_mod.png");
+	warriorTexture = App->tex->Load("textures/entity_units_warrior_spritesheet.png");
+	painterTexture = App->tex->Load("textures/entity_units_painter_spritesheet.png");
+	knightTexture = App->tex->Load("textures/entity_units_knight_spritesheet.png");
+	explorerTexture = App->tex->Load("textures/entity_units_explorer_spritesheet.png");
+	rangerTexture = App->tex->Load("textures/entity_units_ranger_spritesheet.png");
 
 		// Enemies
 	/// Buildings
-	spawnerTexture = App->tex->Load("textures/Spawner.png");
+	spawnerTexture = App->tex->Load("textures/entity_building_spawner.png");
 
 	/// Units
 	slimeTexture = App->tex->Load("textures/Slime.png");
 
-	buildingTexture = App->tex->Load("textures/Building.png");
+	buildingTexture = App->tex->Load("textures/entity_building_construction.png");
 
-	fullLifeTexture = App->tex->Load("textures/FullLife.png");
-	zeroLifeTexture = App->tex->Load("textures/ZeroLife.png");
-	progressTexture = App->tex->Load("textures/ProgressBar.png");
-	zeroProgressTexture=App->tex->Load("textures/ZeroProgress.png");
+	fullLifeTexture = App->tex->Load("textures/UI_lifebar_full.png");
+	zeroLifeTexture = App->tex->Load("textures/UI_lifebar_empty.png");
+	progressTexture = App->tex->Load("textures/UI_progressBar_full.png");
+	zeroProgressTexture=App->tex->Load("textures/UI_progressBar_empty.png");
 
 	WarriorSprites();
 	PainterSprites();

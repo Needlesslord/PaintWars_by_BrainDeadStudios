@@ -115,52 +115,52 @@ SDL_Texture* j1UI_Manager::Get_Texture_From_Image(TEXTURE textureType)
 		break;
 
 	case TEXTURE::MINIMAP_ENTITIES:
-		 Minimap_Entities_Load  = App->tex->Load("textures/UI/Minimap_Entities.png");
+		 Minimap_Entities_Load  = App->tex->Load("textures/UI/UI_minimap_entities.png");
 		 return  Minimap_Entities_Load;
 		break;
 
 	case TEXTURE::MINIMAP_FULL:
-		Minimap_Full_Load = App->tex->Load("textures/UI/Minimap_UI_FULL.png");
+		Minimap_Full_Load = App->tex->Load("textures/UI/UI_minimap_forest_full.png");
 		return Minimap_Full_Load;
 		break;
 
 	case TEXTURE::MINIMAP_MINI:
-		Minimap_Mini_Load = App->tex->Load("textures/UI/Minimap_UI_MINI.png");
+		Minimap_Mini_Load = App->tex->Load("textures/UI/UI_minimap_forest_mini.png");
 		return Minimap_Mini_Load;
 		break;
 	
 	case TEXTURE::MINIMAP_CAMERA:
-		Minimap_Camera_Load = App->tex->Load("textures/UI/Minimap_UI_CAMERA.png");
+		Minimap_Camera_Load = App->tex->Load("textures/UI/UI_minimap_camera.png");
 		return Minimap_Camera_Load;
 		break;
 
 	case TEXTURE::LOSE_SCREEN_SPRITE:
-		Lose_Screen_Sprite_Load = App->tex->Load("textures/UI/Lose_Screen.png");
+		Lose_Screen_Sprite_Load = App->tex->Load("textures/UI/UI_screen_lose.png");
 		return Lose_Screen_Sprite_Load;
 		break;
 
 	case TEXTURE::WIN_SCREEN_SPRITE:
-		Win_Screen_Sprite_Load = App->tex->Load("textures/UI/Win_Screen.png");
+		Win_Screen_Sprite_Load = App->tex->Load("textures/UI/UI_screen_win.png");
 		return Win_Screen_Sprite_Load;
 		break;
 
 	case TEXTURE::CONTINUE_LETTERS:
-		Continue_Letters_Load = App->tex->Load("textures/UI/Continue.png");
+		Continue_Letters_Load = App->tex->Load("textures/UI/UI_buttons_continue.png");
 		return Continue_Letters_Load;
 		break;
 
 	case TEXTURE::MAIN_IMAGE:
-		Main_Image_Load = App->tex->Load("textures/UI/background.png");
+		Main_Image_Load = App->tex->Load("textures/UI/UI_background.png");
 		return Main_Image_Load;
 		break;
 
 	case TEXTURE::LOGO:
-		Logo_Load = App->tex->Load("textures/Logo.png");
+		Logo_Load = App->tex->Load("textures/logo_paintwars.png");
 		return Logo_Load;
 		break;
 
 	case TEXTURE::LOGO_SPRITE:
-		Logo_Sprite_Load = App->tex->Load("textures/Logo.png");
+		Logo_Sprite_Load = App->tex->Load("textures/logo_paintwars.png");
 		return Logo_Sprite_Load;
 		break;
 
@@ -170,27 +170,27 @@ SDL_Texture* j1UI_Manager::Get_Texture_From_Image(TEXTURE textureType)
 		break;
 
 	case TEXTURE::TEAM_LOGO:
-		Logo_Letters = App->tex->Load("textures/Logo_BrainDead.png");
+		Logo_Letters = App->tex->Load("textures/logo_braindeadStudios.png");
 		return Logo_Letters;
 		break;
 
 	case TEXTURE::MINIMAP_BACK_SPRITE:
-		Minimap_Back_Load = App->tex->Load("textures/Logo_Start.png");
+		Minimap_Back_Load = App->tex->Load("textures/UI_buttons_logoStart.png");
 		return Minimap_Back_Load;
 		break;
 
 	case TEXTURE::BACKGROUND_FOREST:
-		Background_Forest_Sprite_Load = App->tex->Load("textures/UI/forest_background.png");
+		Background_Forest_Sprite_Load = App->tex->Load("textures/UI/UI_background_forest.png");
 		return Background_Forest_Sprite_Load;
 		break;
 
 	case TEXTURE::BACKGROUND_SNOW:
-		Background_Forest_Sprite_Load = App->tex->Load("textures/UI/snow_background.png");
+		Background_Forest_Sprite_Load = App->tex->Load("textures/UI/UI_background_snow.png");
 		return Background_Snow_Sprite_Load;
 		break;
 
 	case TEXTURE::BACKGROUND_VOLCANO:
-		Background_Forest_Sprite_Load = App->tex->Load("textures/UI/volcano_background.png");
+		Background_Forest_Sprite_Load = App->tex->Load("textures/UI/UI_background_volcano.png");
 		return Background_Volcano_Sprite_Load;
 		break;
 

@@ -47,7 +47,7 @@ bool j1Player::Start() {
 	MinimapCameraBufferX = 0;
 	MinimapCameraBufferY = 0;
 	LOG("Player Started");
-	Tex_Player = App->tex->Load("textures/Cursor3.png");
+	Tex_Player = App->tex->Load("textures/UI/UI_mouse.png");
 	App->win->GetWindowSize( win_width,win_height);
 	SDL_ShowCursor(SDL_DISABLE);
 
