@@ -1069,6 +1069,8 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 
 	// Allies
 /// Buildings
+
+	LOG("CREATING ENTITY AT: (%d, %d)", tile.x, tile.y);
 	if (entityType == ENTITY_TYPE_TOWN_HALL) {
 
 		TownHall* townHall = new TownHall(tile, damage, this, creator);
@@ -1680,10 +1682,15 @@ void j1EntityManager::UpdateAnimations() {
 bool j1EntityManager::Load(pugi::xml_node& save)
 {
 	
-	//WE DONT ADD ANYTHING TO ACTIVE ENTITIES & ACTIVE BUILDINGS
+	//DOESNT WORK BECAUSE POSITIONS ARE NOT RIGHT
 	CleanUp();
 
-
+	float x, y;
+	int damage;
+	//iPoint size;
+	int size_x;
+	int size_y;
+	const char* entityType;
 
 	int numEntities = save.child("num_entities").attribute("value").as_int();
 
@@ -1693,42 +1700,76 @@ bool j1EntityManager::Load(pugi::xml_node& save)
 	//pugi::xml_node entities = save.child("entities").child("warrior");
 	for (int i = 0; i < numEntities; i++) {
 
-		int x, y;
-		int damage;
-		//iPoint size;
-		int size_x;
-		int size_y;
-		const char* entityType;
+		
 
-		x = entities_node.attribute("position_x").as_int();
-		y = entities_node.attribute("position_y").as_int();
+		x = entities_node.attribute("position_x").as_float();
+		y = entities_node.attribute("position_y").as_float();
 		damage = entities_node.attribute("missing_hp").as_int();
 		size_x = entities_node.attribute("size_x").as_int();
 		size_y = entities_node.attribute("size_y").as_int();
 
 		entityType = entities_node.attribute("entity_type").as_string();
 
-		if (entityType == "painter") {
-
-			//AddEntity(ENTITY_TYPE_PAINTER, { x, y }, { size_x, size_y }, App->entities, damage);
-			App->entities->AddEntity(ENTITY_TYPE_PAINTER, { x,y }, App->entities, nullptr, 0, true);
-			//App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 42, 42 }, App->entities, nullptr, 0, true);
-		}
-		else if (entityType == "townhall") {
-
-			
-			App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { x,y }, App->entities, nullptr, 0, true);
-			
-		}
-		else if (entityType == "spawner") {
-
-
-			App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { x,y }, App->entities, nullptr, 0, true);
-
-		}
-
 		
+		int positionX = static_cast<int>(x);
+		int positionY= static_cast<int>(y);
+		
+		if( strcmp(entityType, "townhall") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
+		else if (strcmp(entityType, "paintextractor") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
+		else if (strcmp(entityType, "woodproducer") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_WOOD_PRODUCER, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
+		else if (strcmp(entityType, "house") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_HOUSE, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
+		else if (strcmp(entityType, "barracks") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_BARRACKS, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
+		else if (strcmp(entityType, "titaniumextractor") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_TITANIUM_EXTRACTOR, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
+		else if (strcmp(entityType, "metalgatherer") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_METAL_GATHERER, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
+		else if (strcmp(entityType, "turret") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_TURRET, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
+		else if (strcmp(entityType, "painter") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_PAINTER, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
+		else if (strcmp(entityType, "warrior") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
+		else if (strcmp(entityType, "knight") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_KNIGHT, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
+		else if (strcmp(entityType, "explorer") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_EXPLORER, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
+		else if (strcmp(entityType, "ranger") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_RANGER, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
+		else if (strcmp(entityType, "spawner") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
+		else if (strcmp(entityType, "slime") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_SLIME, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
+		else if (strcmp(entityType, "chromaking") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_CHROMA_KING, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
+		else if (strcmp(entityType, "rider") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_RIDER, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
+		else if (strcmp(entityType, "explosiveblob") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_EXPLOSIVE_BLOB, { positionX,positionY }, App->entities, nullptr, 0, true);
 
+		}
+		
 		entities_node = entities_node.next_sibling();
 	}
 
@@ -1749,9 +1790,9 @@ bool j1EntityManager::Save(pugi::xml_node& save) const
 
 		if ((*entitiesToSave)->entityType == ENTITY_TYPE_PAINTER) {
 
-			entity.append_attribute("entity_type") = "painter";
-			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
-			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
+			entity.append_attribute("entity_type") =  "painter";
+			entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
 			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
 			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
 			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
@@ -1760,18 +1801,8 @@ bool j1EntityManager::Save(pugi::xml_node& save) const
 		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_WARRIOR) {
 
 			entity.append_attribute("entity_type") = "warrior";
-			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
-			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
-			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
-			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
-			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
-		}
-
-		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_SPAWNER) {
-
-			entity.append_attribute("entity_type") = "spawner";
-			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
-			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
+			entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
 			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
 			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
 			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
@@ -1780,11 +1811,161 @@ bool j1EntityManager::Save(pugi::xml_node& save) const
 		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_TOWN_HALL) {
 
 			entity.append_attribute("entity_type") = "townhall";
-			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
-			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
+			entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
 			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
 			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
 			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
+
+			entity.append_attribute("entity_type") = "paintextractor";
+			entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
+			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_WOOD_PRODUCER) {
+
+			entity.append_attribute("entity_type") = "woodproducer";
+			entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
+			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_HOUSE) {
+
+			entity.append_attribute("entity_type") = "house";
+			entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
+			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_BARRACKS) {
+
+			entity.append_attribute("entity_type") = "barracks";
+			entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
+			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_TITANIUM_EXTRACTOR) {
+
+			entity.append_attribute("entity_type") = "titaniumextractor";
+			entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
+			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_METAL_GATHERER) {
+
+			entity.append_attribute("entity_type") = "metalgatherer";
+			entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
+			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_TURRET) {
+
+			entity.append_attribute("entity_type") = "turret";
+			entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
+			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_KNIGHT) {
+
+			entity.append_attribute("entity_type") = "knight";
+			entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
+			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_EXPLORER) {
+
+		entity.append_attribute("entity_type") = "explorer";
+		entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+		entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
+		entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+		entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+		entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_RANGER) {
+
+		entity.append_attribute("entity_type") = "ranger";
+		entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+		entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
+		entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+		entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+		entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_SPAWNER) {
+
+		entity.append_attribute("entity_type") = "spawner";
+		entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+		entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
+		entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+		entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+		entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_SLIME) {
+
+		entity.append_attribute("entity_type") = "slime";
+		entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+		entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
+		entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+		entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+		entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_CHROMA_KING) {
+
+		entity.append_attribute("entity_type") = "chromaking";
+		entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+		entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
+		entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+		entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+		entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_RIDER) {
+
+		entity.append_attribute("entity_type") = "rider";
+		entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+		entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
+		entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+		entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+		entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_EXPLOSIVE_BLOB) {
+
+		entity.append_attribute("entity_type") = "explosiveblob";
+		entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+		entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
+		entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+		entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+		entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
 		}
 
 
