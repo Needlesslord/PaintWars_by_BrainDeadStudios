@@ -12,12 +12,6 @@ public:
 	~ExplosiveBlob();
 	void hasExploded();
 
-public:
-
-private:
-
-	bool startTimer = true;
-
 };
 
 #endif //__ExplosiveBlob_H__

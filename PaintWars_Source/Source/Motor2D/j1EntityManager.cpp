@@ -508,6 +508,50 @@ bool j1EntityManager::Update(float dt) {
 
 
 
+
+		// Enemies pathfinding Logic
+		list<Entity*>::iterator enemiesToMove = activeUnits.begin(); 
+		while (enemiesToMove != activeUnits.end()) {
+
+			// We only want enemies
+			if (!(*enemiesToMove)->isEntityFromPlayer && (*enemiesToMove)->target == nullptr) {
+
+				uint minimumDistance = 999;
+
+				// We'll sweep through all ALLY units and target the closest one within range
+				list<Entity*>::iterator allOtherUnits = activeUnits.begin();
+				while (allOtherUnits != activeUnits.end()) {
+
+					// We only want allies here
+					if ((*allOtherUnits)->isEntityFromPlayer) {
+
+						// Distance between this enemy and this ally
+						int i = App->pathfinding->DistanceTo((*enemiesToMove)->currentTile, (*allOtherUnits)->currentTile);
+
+						// Check if the ally is in range
+						if (i <= (*enemiesToMove)->aggroRange) {
+
+							// Check if this ally is closer to this enemy than all previous allies
+							if (i < minimumDistance) {
+
+								// We'll set it as the current one to beat, and if there are no others, set it as target
+								minimumDistance = i;
+								(*enemiesToMove)->target = (*allOtherUnits);
+							}
+						}
+					}
+
+					allOtherUnits++;
+				}
+			}
+
+			enemiesToMove++;
+		}
+
+
+
+
+
 		// Change destination for units selected on right-click
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && !unitsSelected.empty()) {
 

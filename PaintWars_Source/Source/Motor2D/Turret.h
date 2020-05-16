@@ -13,13 +13,6 @@ public:
 
 	void Attack(Entity* target, float dt);
 
-
-public:
-
-private:
-
-	bool startTimer = true;
-
 };
 
 #endif //__Turret_H__

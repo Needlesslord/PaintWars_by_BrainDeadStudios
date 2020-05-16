@@ -16,12 +16,6 @@ public:
 	void Draw(SDL_Texture* sprites) override;
 	void OnCollision(Collider* c1, Collider* c2) override;
 
-public:
-
-private:
-
-	bool startTimer = true;
-	j1Timer Extaction_Timer;
 };
 
 #endif //__Painter_H__

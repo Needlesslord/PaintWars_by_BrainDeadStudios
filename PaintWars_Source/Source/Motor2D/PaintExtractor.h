@@ -12,12 +12,6 @@ public:
 	~PaintExtractor();
 	void ExtractPaint(float dt) override;
 
-public:
-
-private:
-
-	bool startTimer = true;
-
 };
 
 #endif //__PaintExtractor_H__

@@ -11,12 +11,6 @@ public:
 	WoodProducer(iPoint tile, int damage, j1Module* listener, Entity* creator);
 	~WoodProducer();
 
-public:
-
-private:
-
-	bool startTimer = true;
-
 };
 
 #endif //__WoodProducer_H__

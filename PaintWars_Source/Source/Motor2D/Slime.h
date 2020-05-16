@@ -10,12 +10,7 @@ public:
 
 	Slime(iPoint tile, int damage, j1Module* listener);
 	~Slime();
-
-public:
-
-private:
-
-	bool startTimer = true;
+	void Draw(SDL_Texture* sprites) override;
 
 };
 
