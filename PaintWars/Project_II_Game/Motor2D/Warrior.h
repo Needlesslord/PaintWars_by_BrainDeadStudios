@@ -12,7 +12,7 @@ public:
 	~Warrior();
 	void Attack(Entity* target, float dt); 
 	void Draw(SDL_Texture* sprites) override;
-	void OnCollision(Collider* c1, Collider* c2) override;
+	//void OnCollision(Collider* c1, Collider* c2) override;
 
 private:
 

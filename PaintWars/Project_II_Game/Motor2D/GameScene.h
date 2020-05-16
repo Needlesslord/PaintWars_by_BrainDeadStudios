@@ -76,6 +76,8 @@ public:
 	UI_HUD UI_INGAME;
 
 	j1UIElement* BackgroundForest = nullptr;
+	j1UIElement* BackgroundVolcano = nullptr;
+	j1UIElement* BackgroundSnow = nullptr;
 
 	//HUD - Bar
 	j1UIElement* hudBarImage = nullptr;
@@ -106,7 +108,7 @@ public:
 	j1UIElement* questsCompleted2 = nullptr;
 	j1UIElement* questsCompleted3 = nullptr;
 	j1UIElement* questsCompleted4 = nullptr;
-
+	
 	
 
 	bool PainterQuestCompleted;

@@ -127,7 +127,22 @@ bool GameScene::Start()
 	//////////////////
 
 	
-	//BackgroundForest = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_FOREST);
+	BackgroundForest = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_FOREST);
+	/*if (App->scenes->Map_Forest_Active)
+	{
+		BackgroundForest = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, TEXTURE::BACKGROUND_FOREST);
+	}
+
+	else if (App->scenes->Map_Snow_Active)
+	{
+		BackgroundSnow = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, TEXTURE::BACKGROUND_SNOW);
+	}
+
+	else if (App->scenes->Map_Volcano_Active)
+	{
+		BackgroundVolcano = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, TEXTURE::BACKGROUND_VOLCANO);
+	}*/
+	
 
 	
 	//HUD - Bar
@@ -359,7 +374,7 @@ bool GameScene::PreUpdate()
 	bool ret = true;
 	//--------------------------- PUT AN INT THAT GOES THROUGH IT 15-20 TIMES OR MORE AND WHEN ITS DONE COMPLETE ANIMATION
 	
-	LOG("Position Roller Y %f", PaintRollerAnimation->map_position.y);
+	//LOG("Position Roller Y %f", PaintRollerAnimation->map_position.y);
 	if (App->PAUSE_ACTIVE == true){
 		
 		if (/*PaintRollerAnimation->map_position.y + App->render->camera.y < 0 + App->render->camera.y*/ AnimTime < 90 && App->transition_manager->is_transitioning == false) {
@@ -956,19 +971,19 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_HOVER) {
 
-		shopHoverPrice->text = "-20";
+		shopHoverPrice->text = "-20P PAINT EXTRACTOR";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyWoodProducerButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-20";
+		shopHoverPrice->text = "-20P WOOD PRODUCER";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyBarrackButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-50";
+		shopHoverPrice->text = "-50W BARRACKS";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyHouseButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-20";
+		shopHoverPrice->text = "-20W HOUSE";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyPainterButton && type == GUI_Event::EVENT_HOVER) {
@@ -1221,8 +1236,9 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	{
 	
 
+		//BOTH YES BUTTONS ARE THE SAME, SO YOU CANT RESET AND GO TO TITLE AT THE SAME TIME
 
-		App->entities->CleanUp();
+		/*App->entities->CleanUp();
 		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 42, 42 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 45,  40 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 40, 20 }, App->entities, nullptr, 0, true);
@@ -1230,8 +1246,10 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80,  4 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 10, 90 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80, 75 }, App->entities, nullptr, 0, true);
-		App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true, true);
+		App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true, true);*/
 
+		App->entities->CleanUp();
+		App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true, true);
 		
 	}
 
@@ -1566,7 +1584,7 @@ void GameScene::WIN_LOSE_Manager()
 	// WIN CONDITION
 	bool anySpawnerActive = false;
 	list<Entity*>::const_iterator checkForSpawners = App->entities->activeBuildings.begin();
-	while (checkForSpawners != App->entities->activeBuildings.end()) {
+	while (checkForSpawners != App->entities->activeBuildings.end()) { //active buildings always empty after load?
 
 		if ((*checkForSpawners)->entityType == ENTITY_TYPE_SPAWNER) {
 			anySpawnerActive = true;

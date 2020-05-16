@@ -80,12 +80,14 @@
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="Barracks.cpp" />
     <ClCompile Include="CameraToMouse.cpp" />
+    <ClCompile Include="ChromaKing.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Cut.cpp" />
     <ClCompile Include="Dissolve.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="ExpandingBars.cpp" />
     <ClCompile Include="Explorer.cpp" />
+    <ClCompile Include="ExplosiveBlob.cpp" />
     <ClCompile Include="FadeToColour.cpp" />
     <ClCompile Include="GameLogoScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -124,6 +126,8 @@
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Ranger.cpp" />
+    <ClCompile Include="Rider.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="j1SceneManager.cpp" />
     <ClCompile Include="ScoreScene.cpp" />
@@ -137,6 +141,7 @@
     <ClCompile Include="TownHall.cpp" />
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="TransitionManager.cpp" />
+    <ClCompile Include="Turret.cpp" />
     <ClCompile Include="Warrior.cpp" />
     <ClCompile Include="WinScene.cpp" />
     <ClCompile Include="Wipe.cpp" />
@@ -150,12 +155,14 @@
     <ClInclude Include="Bar.h" />
     <ClInclude Include="Barracks.h" />
     <ClInclude Include="CameraToMouse.h" />
+    <ClInclude Include="ChromaKing.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Cut.h" />
     <ClInclude Include="Dissolve.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="ExpandingBars.h" />
     <ClInclude Include="Explorer.h" />
+    <ClInclude Include="ExplosiveBlob.h" />
     <ClInclude Include="FadeToColour.h" />
     <ClInclude Include="GameLogoScene.h" />
     <ClInclude Include="GameScene.h" />
@@ -200,6 +207,8 @@
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="Ranger.h" />
+    <ClInclude Include="Rider.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="j1SceneManager.h" />
     <ClInclude Include="ScoreScene.h" />
@@ -214,6 +223,7 @@
     <ClInclude Include="TownHall.h" />
     <ClInclude Include="Transition.h" />
     <ClInclude Include="TransitionManager.h" />
+    <ClInclude Include="Turret.h" />
     <ClInclude Include="Warrior.h" />
     <ClInclude Include="WinScene.h" />
     <ClInclude Include="Wipe.h" />

@@ -27,7 +27,7 @@ Slime::Slime(iPoint tile, int damage, j1Module* listener) : Entity(tile, damage,
 
 	speed = 300;
 
-	spawningTime = 10.0f;
+	spawningTime = 1.0f;
 
 	destination = currentTile;
 

@@ -52,11 +52,27 @@ bool j1Player::Start() {
 	SDL_ShowCursor(SDL_DISABLE);
 
 
+
+	
+
+
 	return ret;
 }
 
 bool j1Player::PreUpdate()
 {
+	list<Entity*>::iterator entityCount = App->entities->activeEntities.begin();
+	int B = 0;
+	while (entityCount != App->entities->activeEntities.end()) {
+		if (MiniMapEntities_Squares[B] != nullptr) {
+			MiniMapEntities_Squares[B]->CleanUp();
+
+			/*MiniMapEntities_Squares[B] = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { (*entityCount)->pos.x ,  (*entityCount)->pos.y }, { 0 , 0 },
+				false, true, { 4, 3, 2, 3 }, nullptr, nullptr, TEXTURE::MINIMAP_ENTITIES);*/
+		}
+		entityCount++;
+		B++;
+	}
 
 	return true;
 }
@@ -110,18 +126,16 @@ bool j1Player::Update(float dt)
 					//LOG("UI COUNT IS %d", z);
 					App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x;
 					App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y;
+
+					if (App->gui->GUI_ELEMENTS[z]->textureType == TEXTURE::MINIMAP_ENTITIES) {
+
+						LOG("SQUARE POSITION X=%f, Y=%f ", App->gui->GUI_ELEMENTS[z]->map_position.x, App->gui->GUI_ELEMENTS[z]->map_position.y);
+					}
+					
 				}
 
 
-				/*list<Entity*>::iterator entityCount = App->entities->activeEntities.begin();
-				while (entityCount != App->entities->activeEntities.end()) {
-
-
-
-					MiniMapEntities_Squares[z] = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0 ,  0 }, { 0 , 0 }, false, true, { 4, 3, 2, 3 }, nullptr, nullptr, TEXTURE::MINIMAP_ENTITIES);
-
-					entityCount++;
-				}*/
+		
 
 				UI_List = UI_List->next;
 				++z;
@@ -129,6 +143,27 @@ bool j1Player::Update(float dt)
 		}
 	}
 	Select_Entities(selector);
+
+
+	int B = 0;
+	
+	
+	list<Entity*>::iterator entityCount = App->entities->activeEntities.begin();
+	while (entityCount != App->entities->activeEntities.end()) {
+
+		
+
+		/*MiniMapEntities_Squares[B] = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { (*entityCount)->pos.x ,  (*entityCount)->pos.y}, { 0 , 0 }, 
+		false, true, { 4, 3, 2, 3 }, nullptr, nullptr, TEXTURE::MINIMAP_ENTITIES);
+		*/
+
+
+		entityCount++;
+		B++;
+	}
+
+
+
 
 	return true;
 }

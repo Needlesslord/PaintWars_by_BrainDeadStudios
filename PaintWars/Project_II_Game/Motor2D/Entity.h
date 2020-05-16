@@ -51,31 +51,39 @@ enum ENTITY_SIZE {
 
 enum ENTITY_TYPE {
 
-	ENTITY_TYPE_NONE = 0,
+	ENTITY_TYPE_NONE = 0,//0
 
 		// TODO: Add all entities here
 	// Allies
 	/// Buildings
-	ENTITY_TYPE_TOWN_HALL,
-	ENTITY_TYPE_PAINT_EXTRACTOR,
-	ENTITY_TYPE_WOOD_PRODUCER,
-	ENTITY_TYPE_HOUSE,
-	ENTITY_TYPE_BARRACKS,
-	ENTITY_TYPE_TITANIUM_EXTRACTOR,
-	ENTITY_TYPE_METAL_GATHERER,
+	ENTITY_TYPE_TOWN_HALL, //1
+	ENTITY_TYPE_PAINT_EXTRACTOR,//2
+	ENTITY_TYPE_WOOD_PRODUCER,//3
+	ENTITY_TYPE_HOUSE,//4
+	ENTITY_TYPE_BARRACKS,//5
+	ENTITY_TYPE_TITANIUM_EXTRACTOR,//6
+	ENTITY_TYPE_METAL_GATHERER,//7
+
+	///Defenses
+	ENTITY_TYPE_TURRET,//8
 
 	/// Units
-	ENTITY_TYPE_PAINTER,
-	ENTITY_TYPE_WARRIOR,
-	ENTITY_TYPE_KNIGHT,
-	ENTITY_TYPE_EXPLORER,
-
+	ENTITY_TYPE_PAINTER,//9
+	ENTITY_TYPE_WARRIOR,//10
+	ENTITY_TYPE_KNIGHT,//11
+	ENTITY_TYPE_EXPLORER,//12
+	ENTITY_TYPE_RANGER,//13
+	
 	// Enemies
 	/// Buildings
-	ENTITY_TYPE_SPAWNER,
+	ENTITY_TYPE_SPAWNER,//14
 
 	/// Units
-	ENTITY_TYPE_SLIME,
+	ENTITY_TYPE_SLIME,//15
+	ENTITY_TYPE_CHROMA_KING,//16
+	ENTITY_TYPE_RIDER,//17
+	ENTITY_TYPE_EXPLOSIVE_BLOB,//18
+
 
 	ENTITY_TYPE_MAX = 500
 };
@@ -89,7 +97,7 @@ public:
 	virtual void Draw(SDL_Texture* sprites);
 	virtual void DebugDrawSelected();
 	virtual void OnCollision(Collider* c1, Collider* c2);
-	virtual void CalculateMovementLogic(int p);
+	virtual void CalculateMovementLogic();
 	virtual void MovementLogic();
 	virtual void Move(float dt);
 	virtual void SetDestination(iPoint des);
@@ -141,13 +149,16 @@ public:
 	iPoint destination;
 	iPoint nextTile;
 
+	std::vector<iPoint>currentPath;
+	uint pathIterator;
+
 	Entity* target;
 	SDL_Rect target_rect;
 
 	float attackDamage = 0.0f;
 	float attackSpeed = 0.0f;
 	float attackCooldown = 1.0f;
-	uint attackRadius = 100; // In tiles
+	uint attackRadius = 1; // In tiles
 	//float attackProgress = 0.0f;
 
 	SDL_Color minimapDrawColor{ 0,0,0,0 };
@@ -185,8 +196,7 @@ protected:
 
 	j1Module* listener = nullptr; // callback
 
-	std::vector<iPoint>currentPath;
-	uint pathIterator;
+	
 
 	
 	

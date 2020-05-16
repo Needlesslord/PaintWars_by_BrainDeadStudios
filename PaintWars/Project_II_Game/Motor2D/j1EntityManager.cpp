@@ -68,6 +68,15 @@ bool j1EntityManager::PreUpdate() {
 		else if ((*setDefaultAnimation)->entityType == ENTITY_TYPE_PAINTER) {
 			(*setDefaultAnimation)->currentAnimation = &painterIdle;
 		}
+		else if ((*setDefaultAnimation)->entityType == ENTITY_TYPE_KNIGHT) {
+			(*setDefaultAnimation)->currentAnimation = &knightIdle;
+		}
+		else if ((*setDefaultAnimation)->entityType == ENTITY_TYPE_EXPLORER) {
+			(*setDefaultAnimation)->currentAnimation = &explorerIdle;
+		}
+		else if ((*setDefaultAnimation)->entityType == ENTITY_TYPE_RANGER) {
+			(*setDefaultAnimation)->currentAnimation = &rangerIdle;
+		}
 		// TODO: knights
 		
 		setDefaultAnimation++;
@@ -90,14 +99,20 @@ bool j1EntityManager::PreUpdate() {
 		resetDestinations++;
 	}
 
+
+	// Updating targets
 	list<Entity*>::iterator updatingTargets = activeUnits.begin();
 	while (updatingTargets != activeUnits.end()) {
 
 		// Only interested in the ones who have a target
 		if ((*updatingTargets)->target != nullptr) {
 
+			if ((*updatingTargets)->target->GetCurrLife() <= 0) {
+				(*updatingTargets)->target = nullptr;
+			}
+
 			// If the target is a unit
-			if ((*updatingTargets)->target->entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY) {
+			else if ((*updatingTargets)->target->entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY) {
 				(*updatingTargets)->target_rect = { (*updatingTargets)->target->currentTile.x, (*updatingTargets)->target->currentTile.y, 1, 1 };
 			}
 
@@ -106,6 +121,8 @@ bool j1EntityManager::PreUpdate() {
 				(*updatingTargets)->target_rect = { (*updatingTargets)->target->currentTile.x, (*updatingTargets)->target->currentTile.y, 2, 2 };
 			}
 		}
+		else
+			(*updatingTargets)->target = nullptr;
 
 		updatingTargets++;
 	}
@@ -146,7 +163,12 @@ bool j1EntityManager::Update(float dt) {
 
 					else if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_WARRIOR)
 						(*checkForSpawningEntities)->currentAnimation = &warriorIdle;
-
+					else if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_KNIGHT)
+						(*checkForSpawningEntities)->currentAnimation = &knightIdle;
+					else if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_EXPLORER)
+						(*checkForSpawningEntities)->currentAnimation = &explorerIdle;
+					else if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_RANGER)
+						(*checkForSpawningEntities)->currentAnimation = &rangerIdle;
 
 					spawningEntities.erase(checkForSpawningEntities);
 				}
@@ -494,6 +516,12 @@ bool j1EntityManager::Update(float dt) {
 			bool attacking = false;
 
 			list<Entity*>::iterator subjects = unitsSelected.begin();
+			while (subjects != unitsSelected.end()) {
+
+				(*subjects)->target = nullptr;
+				subjects++;
+			}
+			subjects = unitsSelected.begin();
 
 			list<Entity*>::iterator checkForAttackedEntities = activeEntities.begin();
 			while (checkForAttackedEntities != activeEntities.end()) {
@@ -616,7 +644,7 @@ bool j1EntityManager::Update(float dt) {
 						if (locationAvailable) {
 							(*unitsToRedirect)->SetDestination(destination);
 							destinations.push_back(destination);
-							(*unitsToRedirect)->CalculateMovementLogic(0);
+							(*unitsToRedirect)->CalculateMovementLogic();
 						}
 
 					}
@@ -640,11 +668,90 @@ bool j1EntityManager::Update(float dt) {
 				if (App->pathfinding->DistanceTo((*unitsToAttackLogic)->currentTile, (*unitsToAttackLogic)->target->currentTile) <= (*unitsToAttackLogic)->attackRadius) {
 
 					(*unitsToAttackLogic)->Attack((*unitsToAttackLogic)->target, dt);
+
+					std::list<Entity*>::iterator checkAttackAnimation = activeUnits.begin();
+					while (checkAttackAnimation != activeUnits.end()) {
+
+						if ((*checkAttackAnimation)->entityType == ENTITY_TYPE_WARRIOR) {
+
+							if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
+
+								(*checkAttackAnimation)->currentAnimation = &warriorAttackNorth;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &warriorAttackEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &warriorAttackSouthEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH) {
+
+								(*checkAttackAnimation)->currentAnimation = &warriorAttackSouth;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &warriorAttackSouthWest;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &warriorAttackWest;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthWest;
+							}
+						}
+					
+						checkAttackAnimation++;
+					}
 				}
 
 				// If not, move closer and we'll continue to check until it can attack
 				else {
 
+					// First we'll create a path to the target's position
+					int map;
+					map = App->pathfinding->CreatePath((*unitsToAttackLogic)->currentTile, (*unitsToAttackLogic)->target->currentTile, true);
+					(*unitsToAttackLogic)->currentPath = *App->pathfinding->GetLastPath();
+					
+					bool isInRange = false;
+					int i = 0;
+					
+					// We are looking for the closest tile that is in range to attack the target
+					while (!isInRange) {
+
+						if (App->pathfinding->DistanceTo((*unitsToAttackLogic)->currentPath.at(i), (*unitsToAttackLogic)->target->currentTile) <= (*unitsToAttackLogic)->attackRadius) {
+
+							isInRange = true;
+
+							(*unitsToAttackLogic)->SetDestination((*unitsToAttackLogic)->currentPath.at(i));
+							destinations.push_back((*unitsToAttackLogic)->currentPath.at(i));
+							(*unitsToAttackLogic)->CalculateMovementLogic();
+
+							//map = App->pathfinding->CreatePath((*unitsToAttackLogic)->currentTile, (*unitsToAttackLogic)->currentPath.at(i));
+							//(*unitsToAttackLogic)->currentPath = *App->pathfinding->GetLastPath();
+
+							break;
+						}
+
+						i++;
+
+						if (i > (*unitsToAttackLogic)->currentPath.size())
+							isInRange = true;
+					}
 				}
 			}
 
@@ -745,6 +852,9 @@ bool j1EntityManager::Update(float dt) {
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_EXPLORER) {
 					(*entitiesToDraw)->Draw(explorerTexture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_RANGER) {
+					(*entitiesToDraw)->Draw(rangerTexture);
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_SPAWNER) {
 					(*entitiesToDraw)->Draw(spawnerTexture);
@@ -1117,7 +1227,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeUnits.push_back((Entity*)knight);
 			knight->isAlive = true;
 			knight->CreateEntityCollider(knight->pos, (Entity*)knight);
-			knight->currentAnimation = &warriorIdle; // TODO: change
+			knight->currentAnimation = &knightIdle; 
 		}
 
 		else
@@ -1126,7 +1236,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		return (Entity*)knight;
 	}
 
-	else if (entityType == ENTITY_TYPE_KNIGHT) {
+	else if (entityType == ENTITY_TYPE_EXPLORER) {
 
 		Explorer* explorer = new Explorer(tile, damage, this, creator);
 
@@ -1136,7 +1246,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			activeUnits.push_back((Entity*)explorer);
 			explorer->isAlive = true;
 			explorer->CreateEntityCollider(explorer->pos, (Entity*)explorer);
-			explorer->currentAnimation = &warriorIdle; // TODO: change
+			explorer->currentAnimation = &explorerIdle;
 		}
 
 		else
@@ -1145,6 +1255,24 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		return (Entity*)explorer;
 	}
 
+	else if (entityType == ENTITY_TYPE_RANGER) {
+
+		Ranger* ranger = new Ranger(tile, damage, this, creator);
+
+		if (spawnAutomatically) {
+
+			activeEntities.push_back((Entity*)ranger);
+			activeUnits.push_back((Entity*)ranger);
+			ranger->isAlive = true;
+			ranger->CreateEntityCollider(ranger->pos, (Entity*)ranger);
+			ranger->currentAnimation = &rangerIdle;
+		}
+
+		else
+			spawningEntities.push_back((Entity*)ranger);
+
+		return (Entity*)ranger;
+	}
 
 		// Enemies
 	/// Buildings
@@ -1236,7 +1364,7 @@ void j1EntityManager::TriggerEndGame(bool isVictory) {
 
 	else if(isVictory==true) {
 		App->entities->CleanUp();
-	   App->transition_manager->CreateExpandingBars(SCENES::WIN_SCENE, 0.5f, true);  //DOESNT WORK YET BECAUSE SPAWNERS NOT IMPLEMENTED
+	   App->transition_manager->CreateExpandingBars(SCENES::WIN_SCENE, 0.5f, true); 
 	}
 
 }
@@ -1244,8 +1372,6 @@ void j1EntityManager::TriggerEndGame(bool isVictory) {
 void j1EntityManager::LoadEntityTextures()
 {
 	debug_tex = App->tex->Load("maps/path2.png");
-
-	// TODO: Initialize all textures
 
 		// Allies
 	/// Buildings
@@ -1258,10 +1384,12 @@ void j1EntityManager::LoadEntityTextures()
 	/// Units
 	warriorTexture = App->tex->Load("textures/Warrior_Sprite_Mod.png");
 	painterTexture = App->tex->Load("textures/spritesheet_painter_mod.png");
-	knightTexture = App->tex->Load("textures/");// TODO: Add
+	knightTexture = App->tex->Load("textures/spritesheet_paladin_mod.png");
+	explorerTexture = App->tex->Load("textures/spritesheet_explorer_mod.png");
+	rangerTexture = App->tex->Load("textures/spritesheet_ranger_mod.png");
 
-	// Enemies
-/// Buildings
+		// Enemies
+	/// Buildings
 	spawnerTexture = App->tex->Load("textures/Spawner.png");
 
 	/// Units
@@ -1276,6 +1404,10 @@ void j1EntityManager::LoadEntityTextures()
 
 	WarriorSprites();
 	PainterSprites();
+	KnightSprites();
+	RangerSprites();
+	ExplorerSprites();
+
 
 	
 }
@@ -1387,16 +1519,176 @@ void j1EntityManager::UpdateAnimations() {
 				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
 			}
 		}
+
+		else if ((*checkMovingAnimation)->entityType == ENTITY_TYPE_KNIGHT) {
+
+			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
+
+				(*checkMovingAnimation)->currentAnimation = &knightMovingNorth;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &knightMovingNorthEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+	
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &knightMovingEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &knightMovingSouthEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
+
+				(*checkMovingAnimation)->currentAnimation = &knightMovingSouth;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &knightMovingSouthWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &knightMovingWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &knightMovingNorthWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+		}
+
+		else if ((*checkMovingAnimation)->entityType == ENTITY_TYPE_RANGER) {
+
+			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
+
+				(*checkMovingAnimation)->currentAnimation = &rangerMovingNorth;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &rangerMovingNorthEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &rangerMovingEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &rangerMovingSouthEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
+
+				(*checkMovingAnimation)->currentAnimation = &rangerMovingSouth;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &rangerMovingSouthWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &rangerMovingWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &rangerMovingNorthWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+		}
+
+			else if ((*checkMovingAnimation)->entityType == ENTITY_TYPE_EXPLORER) {
+
+			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
+
+				(*checkMovingAnimation)->currentAnimation = &explorerMovingNorth;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &explorerMovingNorthEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &explorerMovingEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+				(*checkMovingAnimation)->currentAnimation = &explorerMovingSouthEast;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+	
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
+
+				(*checkMovingAnimation)->currentAnimation = &explorerMovingSouth;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &explorerMovingSouthWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &explorerMovingWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+
+			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+				(*checkMovingAnimation)->currentAnimation = &explorerMovingNorthWest;
+				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+			}
+		}
+
 		checkMovingAnimation++;
 	}
 }
 
 bool j1EntityManager::Load(pugi::xml_node& save)
 {
+	
+	//WE DONT ADD ANYTHING TO ACTIVE ENTITIES & ACTIVE BUILDINGS
 	CleanUp();
+
+
+
 	int numEntities = save.child("num_entities").attribute("value").as_int();
 
 	pugi::xml_node entities_node = save.child("active_entities").child("entity");
+
 
 	//pugi::xml_node entities = save.child("entities").child("warrior");
 	for (int i = 0; i < numEntities; i++) {
@@ -1422,6 +1714,20 @@ bool j1EntityManager::Load(pugi::xml_node& save)
 			App->entities->AddEntity(ENTITY_TYPE_PAINTER, { x,y }, App->entities, nullptr, 0, true);
 			//App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 42, 42 }, App->entities, nullptr, 0, true);
 		}
+		else if (entityType == "townhall") {
+
+			
+			App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { x,y }, App->entities, nullptr, 0, true);
+			
+		}
+		else if (entityType == "spawner") {
+
+
+			App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { x,y }, App->entities, nullptr, 0, true);
+
+		}
+
+		
 
 		entities_node = entities_node.next_sibling();
 	}
@@ -1443,13 +1749,45 @@ bool j1EntityManager::Save(pugi::xml_node& save) const
 
 		if ((*entitiesToSave)->entityType == ENTITY_TYPE_PAINTER) {
 
-			entity.append_attribute("entity_type").as_string("painter");
+			entity.append_attribute("entity_type") = "painter";
 			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
 			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
 			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
 			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
 			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
 		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_WARRIOR) {
+
+			entity.append_attribute("entity_type") = "warrior";
+			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
+			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_SPAWNER) {
+
+			entity.append_attribute("entity_type") = "spawner";
+			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
+			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_TOWN_HALL) {
+
+			entity.append_attribute("entity_type") = "townhall";
+			entity.append_attribute("position_x") = (*entitiesToSave)->pos.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->pos.y;
+			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+
 
 
 		entitiesToSave++;

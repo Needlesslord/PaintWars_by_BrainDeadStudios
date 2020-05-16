@@ -196,10 +196,21 @@
     <ClCompile Include="Random.cpp">
       <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="MetalGatherer.cpp">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
+    <ClCompile Include="Ranger.cpp">
+      <Filter>Motor  ========\Entities\Allies\Units</Filter>
     </ClCompile>
-    <ClCompile Include="TitaniumExtractor.cpp">
+    <ClCompile Include="MetalGatherer.cpp" />
+    <ClCompile Include="TitaniumExtractor.cpp" />
+    <ClCompile Include="ChromaKing.cpp">
+      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Rider.cpp">
+      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="ExplosiveBlob.cpp">
+      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Turret.cpp">
       <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClCompile>
   </ItemGroup>
@@ -423,10 +434,21 @@
     <ClInclude Include="Random.h">
       <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="MetalGatherer.h">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
+    <ClInclude Include="Ranger.h">
+      <Filter>Motor  ========\Entities\Allies\Units</Filter>
     </ClInclude>
-    <ClInclude Include="TitaniumExtractor.h">
+    <ClInclude Include="MetalGatherer.h" />
+    <ClInclude Include="TitaniumExtractor.h" />
+    <ClInclude Include="ChromaKing.h">
+      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Rider.h">
+      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="ExplosiveBlob.h">
+      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Turret.h">
       <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClInclude>
   </ItemGroup>

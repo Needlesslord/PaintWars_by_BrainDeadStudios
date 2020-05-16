@@ -74,9 +74,9 @@ void Warrior::Draw(SDL_Texture* sprites)
 	App->render->RenderQueue(1, sprites, pos.x, pos.y, currentAnimation->GetCurrentFrame());
 }
 
-void Warrior::OnCollision(Collider* c1, Collider* c2) {
-
-	if (1 == 2) {
-		c1->rect.x = 1;
-	}
-}
+//void Warrior::OnCollision(Collider* c1, Collider* c2) {
+//
+//	if (1 == 2) {
+//		c1->rect.x = 1;
+//	}
+//}

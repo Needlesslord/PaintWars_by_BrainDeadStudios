@@ -17,6 +17,7 @@
 #include "Warrior.h"
 #include "Knight.h"
 #include "Explorer.h"
+#include "Ranger.h"
 
 	// Enemies
 /// Buildings
@@ -131,6 +132,7 @@ protected:
 	SDL_Texture* warriorTexture = nullptr;
 	SDL_Texture* knightTexture = nullptr;
 	SDL_Texture* explorerTexture = nullptr;
+	SDL_Texture* rangerTexture = nullptr;
 
 		// Enemies
 	/// Buildings

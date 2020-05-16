@@ -160,8 +160,8 @@ SPRITE|   NAME         | TIER | USE|
 .|Wood | 2 | Upgraded Resource used for low/mid tier units & buildings
 .|Metal Scrap | 3 | High tier Resource used for almost every late game unit & building in the game 
 .|Titanium | 4 | Extremely scarce & quality resource used for only the best units & buildings in the game
-.|Food|0| Resource used for the upkeep of units in the game
-.|Research|0| Resource that represents which level of upgrades the player has acces to
+.|Research| 0 | Resource that represents which level of upgrades the player has acces to
+.|Max number of units| 0 | Resource that represents how many units the player can have at a time
 
 ### BUILDINGS
 
@@ -170,16 +170,13 @@ SPRITE|   NAME         | TIER | USE|
 ##### MAIN BUILDING
  SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
  ---------|------------ | ------------- | -----------| ---------|---------
-.|Town Hall | 0 | Unbuildable |500| Main base building, if it gets destroyed the player will instantly lose even if he has remanining units. Produces a small amount of Paint. 
+.|Town Hall | 0 | Unbuildable |500| Main base building, if it gets destroyed the player will instantly lose even if he has remanining units. To build painters and explorers. 
 
 ##### HOUSING
 
  SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
  ---------|------------ | ------------- | -----------| ---------|---------
-.|Tent | 1 | Paint |50| Tier 1 Housing Building, very cheap but gives very little capacity
-.|Shack | 2 | Paint +  Wood |100| Tier 2 Housing Building, cheap and gives some capacity
-.|House | 3 | Wood + Metal Scrap |150| Tier 3 Housing Building, not very cheap and gives decent capacity
-.|Mansion| 4 | Paint + Wood + Metal Scrap + Titanium |250| Tier 4 Housing Building, very expensive and gives lots of capacity
+.| House | If upgraded, more health | Wood + Metal Scrap | 150 | gives more units capacity
 
 #### RESOURCE BUILDINGS
 
@@ -187,37 +184,28 @@ SPRITE|   NAME         | TIER | USE|
 
  SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
  ---------|------------ | ------------- | -----------| ---------|-----------
-.|Paint Extractor v1 | 1 | Paint |100| Tier 1 Paint Extraction, cheap and gather small amount of paint. Can only be placed in paint geysers
-.|Paint Extractor v2 | 2 | Paint + Wood |100| Tier 2 Paint Extraction, gathers a regular amount of paint. Can only be placed in paint geysers
-.|Paint Extractor v3 | 3 | Wood + Metal Scrap |100| Tier 3 Paint Extraction, gathers a big amount of paint. Can only be placed in paint geysers
+.|Paint Extractor | if upgraded, faster extraction | Paint |100| Can only be placed in paint geysers, produces paint
+
 
 ##### WOOD
 
  SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
  ---------|------------ | ------------- | -----------| ---------|---------
-.|Lumberjack cabin | 1 | Paint |100| Tier 1 Wood Gatherer, produces small amount of wood. Needs trees and workers to work
-.|Carpentry Station | 2 | Paint Wood |100| Tier 2 Wood Collector, produces regular amount of wood. Needs trees and workers to work
-.|Lumbermill | 3 | Wood + Metal Scrap |100| Tier 3 Wood Collector, produces big amount of wood. Needs trees and workers to work
+.| Wood Producer | if upgraded, more health | Paint |100| Needs workers to work: it generates 4 gathering tiles from where the workers get the wood
+
 
 ##### METAL SCRAP
 
  SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
  ---------|------------ | ------------- | -----------| ---------|--------
-.|Metal Gatherer | 1 | Paint |100| Tier 1 Metal Gatherer, produces small amount of metal. Needs metal scrap piles and workers to work
-.|Metal Collector | 2 | Paint Wood |100| Tier 2 Metal Collector, produces regular amount of metal. Needs metal scrap piles and workers to work
-.|Metal Fabricator| 3 | Wood + Metal Scrap |100| Tier 3 Metal Collector, produces big amount of metal. Needs metal scrap piles and workers to work
+.|Metal Gatherer | if upgraded, more health | Paint |100| Needs workers to work: it generates 4 gathering tiles from where the workers get the metal scrap
+
 
 ##### TITANIUM
 
 SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
  ---------|------------ | ------------- | -----------| ---------|-----------
-.|Titanium Extractor | 4 | Paint + Wood + Metal Scrap + Titanium |200| Tier 4 Titanium Extractor, produces a very small amount of titanium, can be placed anywhere, doesn't need workers (Only 1 building of this kind)
-
-##### FOOD
-
-SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH| UTILITY
- ---------|------------ | ------------- | -----------| ---------|-----------
-.|Farm | 0 | Paint + Wood |50| Automatically creates Food
+.|Titanium Extractor | if upgraded, produces faster | Paint + Wood + Metal Scrap + Titanium |200| Produces a very small amount of titanium, can be placed anywhere, doesn't need workers (Only 1 building of this kind)
 
 #### EXPLORATION BUILDINGS: 
 
@@ -262,40 +250,28 @@ SPRITE|   NAME         | TIER |   REQUIRED RESOURCES |HEALTH|DAMAGE| UTILITY | T
 
 SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
-.|Painter | 1 | Paint |20|1| Ground Unit. Recollect resources and building| Resources/Grounded
-.|Explorer | 1 | Paint |35|5| Ground Unit. Very Fast | Grounded
+.|Painter | If upgraded, more health | Paint |20|0| Ground Unit. Recollect resources and building| Resources/Grounded
+.|Explorer | If upgraded, moves faster | Paint |35|0| Ground Unit. Very Fast | Grounded
 
 
 ##### INFANTRY
 
 SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
-.|Paint Recruit | 1 | Paint |30|10| Ground Unit | Grounded
-.|Paint Squire | 2 | Paint + Wood |40|15| Ground Unit | Grounded
-.|Paint Knight | 3 | Paint + Metal Scrap |75|20| Ground Unit |  Grounded
-.|Paint Chosen | 4 | Paint + Metal Scrap + Aluminium |150|30| Ground Unit| Grounded
+.|Paint Knight | if upgraded, more health | Paint + Metal Scrap |75|20| Ground Unit |  Grounded, can attack
 
 ##### RANGED
 
 SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
-.|Paint Ranger | 1 | Paint |20|10| Ground Unit. Ranged (Low Range & Attack Speed) | Anything
-.|Paint Sniper | 3 | Paint + Wood |30|25| Ground Unit. Ranged (High Range & Low Attack Speed) | Anything
-.|Paint Trooper | 3 | Paint + Metal Scrap |60|15| Ground Unit. (Low Range & High Attack Speed) |  Anything
-.|Paint Mortar | 4 | Paint + Metal Scrap + Aluminium |100|40| Ground Unit. (High Range & Slow Attack Speed, AOE Damage) | Grounded
+.|Paint Ranger | if upgraded, shoots faster | Paint |20|10| Ground Unit. Ranged (Low Range & Attack Speed) | Anything
 
 
 ##### SPECIAL
 
 SPRITE|   NAME   | TIER |   REQUIRED RESOURCES | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
  ---------|------------ | ------------- | -----------| ---------|-------|-------|-------
-.|Blob Rider | 1 | Paint |40|15|Ground Unit | Anything
-.|Paint Amalgam| 1 |Paint |75|30| Ground Unit | Anything
-.|Blo-Bat | 2 | Paint |15|10| Flying unit, very fast | Anything
-.|Auto-Sprinkler| 2 |200|10|Paint + Metal Scrap | Ground Unit. AOE constant Damage around the unit | Anything
-.|Paintshee | 3 | Paint|30|50| Ground Unit, Extremely Fast | Grounded
-.|Paint-O-Bot | 3 |Paint + Metal Scrap|150|10| Ground Unit, Acts as a basic painter but with better stats | Resources/Grounded
-.|P-Rex | 4 | Paint + Metal Scrap + Titanium |400|75| Ground Unit. No colision with other units | Anything
+.|Special | if upgraded, more health and damage | Paint |40|15|Ground Unit, very tanky | Anything
 
 
 #### ENEMIES
@@ -322,6 +298,8 @@ SPRITE|   NAME   | TIER  | HEALTH| DAMAGE | CHARACTERISTIC | TARGET
 .|Corruptor | 6 | (350) first two appearances, (450) 3rd and 4th appearance, (500) 5th appearance & onwards|(50) first two appearances, (100) 3rd and 4th appearance, (200) 5th appearance & onwards|BOSS. Appears every 3 waves or after destroying a spawner | Anything
 .|Chroma-King | 6 | 2000| 500 |FINAL BOSS, Extremely Slow & only appears in the last wave| Town Hall
 
+
+*Please note that not all of them may have sprites or correct information due to the development of each one.*
 
 ### UPGRADES
 
@@ -362,7 +340,15 @@ The recommended third level is the **Snow Map**. It has 1 passive, but it also a
 
 The above representations are the technical point of view of the maps, with key points and the Hall. Below, you can find the finished maps.
 
-*UNDER CONSTRUCTION*
+
+![map_forest](https://user-images.githubusercontent.com/51851736/82119126-4bb34480-977c-11ea-8293-d2f2895bb0c5.png)
+
+
+![map_snow](https://user-images.githubusercontent.com/51851736/82119128-4ce47180-977c-11ea-991e-8460d99d4a46.png)
+
+
+![map_volcano](https://user-images.githubusercontent.com/51851736/82119135-51a92580-977c-11ea-9234-6f748188ee59.png)
+
 
 ### Fog of War
 
@@ -385,7 +371,7 @@ The map will be full of resources and elements that will affect how the player p
 
 ### Minimap
 
-On the Top-left part of the screen, the HUD will contain a minimap. It will be black except from the area where the player is and grey where the player has explored. Building and allied units will be represented, but not enemies or spawners, neither Paint sources. It will always be displayed and updated as the player's units move.
+On the Bottom-right part of the screen, the HUD will contain a minimap. It will be black except from the area where the player is and grey where the player has explored. Building and allied units will be represented, but not enemies or spawners, neither Paint sources. It will always be displayed and updated as the player's units move.
 
 
 ***
@@ -401,13 +387,16 @@ On the Top-left part of the screen, the HUD will contain a minimap. It will be b
  
  #### SOME QUESTS
  
- - Destroy each enemy spawner in the map.
- 
- - Reach every enemy base in the map
- 
- - Kill the final boss aporeaching the base
- 
- - Survive every enemy wave
+	
+- **Create a painter:** Once you have a functional painter
+- **Create a paint extractor:** When a paint extractor has been built (once it is functioning)
+- **Get 150 of paint:** you get 151 paint
+- **Have one of each building:** Have one of each: TH, Pextractor, Wcollector, Barracks, House
+- **Create a warrior:** Once you have a functional warrior
+- **Kill an enemy:** Once one of the enemies is detroyed
+- **Have one of each unit:** Have one of each, functional at the same time: pinter, warrior
+- **Upgrade a unit or building:** One of the entities gets upgraded
+- **Destroy an spawner:** Once one of the spawners is destroyed
  
  
  
@@ -417,26 +406,31 @@ On the Top-left part of the screen, the HUD will contain a minimap. It will be b
  
  #### SOME ADVANCEMENTS
  
-  - Build 3 paint extractors
-  
-  - Create 5 ranged units
-  
-  - Kill 20 enemy units
-  
-  - Gather 500 Metal Scrap
+- **PaintWars far from Home:** Have a unit be at more than X from the Town Hall (maybe be in some tiles at each corner)
+- **Wood you be resourceful:** Have 4 painters getting wood from the same wood collector
+- **Two Birds, one stone:** Have the same warrior destroy two different spawners
+- **Twice as good:** Have 2 spawners destroyed at the same time
+- **Not today:** Have 666 of paint
+- **Lend me some:** Have at least 500 of each resource (haousing 50, inly apllied to wood, paint)
+- **Cry me a river:** Have one building of each destroyed
+- **Do you know how to play an RTS?:** Have all your unit slots be explorers
+- **Look for help:** Have all your resources be less than 10 each
+- **Start over:** Play the game again!
 
 ### Rewards
 
 Rewards will be awarded when advancements are completed, these rewards will depend on what kind of advancement the player had to do. For example if the player was tasked with building units of a certain type, resources will be rewarded. If the player was tasked with exploring the map, a free unit will be rewarded etc.
 
 Rewards will also increase depending on the difficulty of the task, and will progress throughout the game as it progresses.
+
+
 ***
 
 
 ## Tutorial
 
-+ **MAIN GOAL:** Destroy all spawners.
-+ **TIME ESTIMATED:** 10 min.
++ **MAIN GOAL:** Know how to play.
++ **TIME ESTIMATED:** 2 min.
 
 ### SUMMARY
 
@@ -474,7 +468,7 @@ It works like this:
 
 ![image](https://github.com/Needlesslord/BrainDeadStudios/blob/master/Docs/Photos_Wiki/tutorial%20diagram%20good.png)
 
-
+*Please note that the tutorial can be modified to adapt to the game*
 
 
 ***

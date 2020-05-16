@@ -45,7 +45,7 @@ public:
 	void SetMap(uint width, uint height, uchar* data);
 
 	// Main function to request a path from A to B
-	int CreatePath(const iPoint& origin, const iPoint& destination);
+	int CreatePath(const iPoint& origin, const iPoint& destination, bool isAttacking = false);
 
 	// To request all tiles involved in the last generated path
 	const std::vector<iPoint>* GetLastPath() const;
@@ -54,7 +54,7 @@ public:
 	bool CheckBoundaries(const iPoint& pos) const;
 
 	// Utility: returns true is the tile is walkable			OR PAINT...
-	bool IsWalkable(const iPoint& pos) const;
+	bool IsWalkable(const iPoint& pos, bool isAttacking = false) const;
 
 	// Utility: returns true is the tile is buildable
 	bool IsBuildable(const iPoint& pos) const;
