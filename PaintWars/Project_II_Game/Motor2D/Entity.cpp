@@ -360,7 +360,7 @@ void Entity::SetDestination(iPoint des) {
 	this->destination = des;
 }
 
-void Entity::SpawnEntity() {}
+void Entity::SpawnEntity(ENTITY_TYPE type) {}
 
 void Entity::ExtractPaint(float dt) {}
 

@@ -38,18 +38,38 @@ Barracks::Barracks(iPoint tile, int damage, j1Module* listener, Entity* creator)
 
 Barracks::~Barracks() {}
 
-void Barracks::SpawnEntity() {
+void Barracks::SpawnEntity(ENTITY_TYPE type) {
 
-	if (App->player->paintCount.count > 20 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
-		App->player->paintCount.count -= 20;
-		App->player->housingSpace.count++;
+	if (type == ENTITY_TYPE_WARRIOR) {
+		if (!isSpawningAUnit && App->player->paintCount.count > 20 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
+
+			App->player->paintCount.count -= 20;
+			App->player->housingSpace.count++;
+
+			App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
+			isSpawningAUnit = true;
+		}
+	}
+	else if (type == ENTITY_TYPE_KNIGHT) {
+		if (!isSpawningAUnit && App->player->paintCount.count > 100 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
+
+			App->player->paintCount.count -= 100;
+			App->player->housingSpace.count++;
+
+			App->entities->AddEntity(ENTITY_TYPE_KNIGHT, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
+			isSpawningAUnit = true;
+		}
+	}
+	else if (type == ENTITY_TYPE_RANGER) {
+		if (!isSpawningAUnit && App->player->paintCount.count > 50 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
+
+			App->player->paintCount.count -= 50;
+			App->player->housingSpace.count++;
+
+			App->entities->AddEntity(ENTITY_TYPE_RANGER, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
+			isSpawningAUnit = true;
+		}
 	}
 	else
 		return;
-
-	// TODO: check this positions
-	if (!isSpawningAUnit) {
-		App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
-		isSpawningAUnit = true;
-	}
 }

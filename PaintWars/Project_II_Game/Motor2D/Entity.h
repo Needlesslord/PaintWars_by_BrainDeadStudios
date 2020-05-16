@@ -101,7 +101,7 @@ public:
 	virtual void MovementLogic();
 	virtual void Move(float dt);
 	virtual void SetDestination(iPoint des);
-	virtual void SpawnEntity();
+	virtual void SpawnEntity(ENTITY_TYPE type);
 	virtual void ExtractPaint(float dt);
 	virtual void ExtractWood(float dt);
 	virtual void ExtractTitanium(float dt);
