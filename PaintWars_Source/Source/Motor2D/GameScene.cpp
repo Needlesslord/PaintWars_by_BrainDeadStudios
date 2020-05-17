@@ -24,7 +24,7 @@
 
 /*
 DEBUG KEYS
-	 + F2/F3 Game Scene
+	 + F1/F2/F3 Game Scene - Forest, Snow, Volcano
 	 + F4 Save
 	 + F5 Load (Load function not functional yet)
 	 + F6 Full Screen
@@ -37,7 +37,6 @@ DEBUG KEYS
 		- 2 add 10 wood
 		- 3 add 10 metal scrap -not implemented yet-
 		- 4 add 10 titanium -not implemented yet-
-		- 5 add 10 food -not implemented yet-
 		- 6 add 10 max housing
 		- 7 add 1 level of research (units will have the upgrades already)
 		units (on mouse position)
@@ -93,6 +92,19 @@ bool GameScene::Start()
 	App->render->camera.x = 575;
 	App->render->camera.y = -1200;
 
+	////camera start
+//if (App->scenes->Map_Forest_Active) {
+//	App->render->camera.x = 575;
+//	App->render->camera.y = -1200;
+//}
+//if (App->scenes->Map_Snow_Active) {
+//	App->render->camera.x = -1200;
+//	App->render->camera.y = -2350;
+//}
+//if (App->scenes->Map_Volcano_Active) {
+//	App->render->camera.x = 500;
+//	App->render->camera.y = 10;
+//}
 	
 	Map_Manager();
 
