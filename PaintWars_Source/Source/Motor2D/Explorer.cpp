@@ -39,6 +39,11 @@ Explorer::Explorer(iPoint tile, int damage, j1Module* listener, Entity* creator)
 	destination = currentTile;
 
 	isEntityFromPlayer = true;
+
+	//FOW
+	visibilityRadius = 5;
+	fow_entity->frontier = App->fow->CreateSightQuad(visibilityRadius, fow_entity->position);
+	fow_entity->LOS = App->fow->FulfillSight(fow_entity->frontier);
 }
 
 Explorer::~Explorer() {}

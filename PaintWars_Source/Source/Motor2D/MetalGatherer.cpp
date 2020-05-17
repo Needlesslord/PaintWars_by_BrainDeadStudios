@@ -34,9 +34,13 @@ MetalGatherer::MetalGatherer(iPoint tile, int damage, j1Module* listener, Entity
 
 	constructionTime = 20.0f;
 
-
-
 	isEntityFromPlayer = true;
+
+	//FOW
+	visibilityRadius = 3;
+	fow_entity->frontier = App->fow->CreateSightQuad(visibilityRadius, fow_entity->position);
+	fow_entity->LOS = App->fow->FulfillSight(fow_entity->frontier);
+
 }
 
 MetalGatherer::~MetalGatherer() {}

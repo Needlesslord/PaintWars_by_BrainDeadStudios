@@ -49,6 +49,11 @@ Knight::Knight(iPoint tile, int damage, j1Module* listener, Entity* creator) : E
 	attackCooldown = attackSpeed;
 
 	isEntityFromPlayer = true;
+
+	//FOW
+	visibilityRadius = 1;
+	fow_entity->frontier = App->fow->CreateSightQuad(visibilityRadius, fow_entity->position);
+	fow_entity->LOS = App->fow->FulfillSight(fow_entity->frontier);
 }
 
 Knight::~Knight() {}

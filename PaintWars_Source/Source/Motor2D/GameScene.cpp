@@ -399,6 +399,9 @@ bool GameScene::Start()
 
 	App->player->cricketsRepeat.Start();
 
+	App->fow->SetVisibilityMap(App->map->data.width, App->map->data.height);
+
+
 	return ret;
 }
 
@@ -1322,8 +1325,24 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80, 75 }, App->entities, nullptr, 0, true);
 		App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true, true);*/
 
-		App->entities->CleanUp();
-		App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true, true);
+		if (App->PAUSE_ACTIVE == true) {
+			App->entities->CleanUp();
+			App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true, true);
+		}
+		else {
+			if (App->scenes->Map_Forest_Active = true) {
+				App->scenes->Load_Map_Forest = true;
+			    App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
+			}
+			else if (App->scenes->Map_Snow_Active = true) {
+				App->scenes->Load_Map_Snow = true;
+				App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
+			}
+			else {
+				App->scenes->Load_Map_Volcano = true;
+				App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
+			}
+		}
 		
 	}
 
