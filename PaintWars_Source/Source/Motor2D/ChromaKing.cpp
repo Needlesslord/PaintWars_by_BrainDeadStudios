@@ -46,7 +46,7 @@ bool ChromaKing::goToTownHall() {
 
 	bool ret = true;
 
-	fPoint positionTownHallForest = { 0,0 };
+	fPoint positionTownHallForest = { 42,42 };
 	fPoint positionTownHallVolcano = { 0,0 };
 	fPoint positionTownHallSnow = { 0,0 };
 

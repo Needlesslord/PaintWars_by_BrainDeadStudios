@@ -98,7 +98,7 @@ bool j1ParticleManager::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
 	{
 		fPoint test;
-		App->input->GetMousePosition(test.x, test.y);
+		test = App->input->GetMouseWorldPosition();
 		//test.x -= App->render->camera.x / App->win->GetScale();
 		//test.y -= App->render->camera.y / App->win->GetScale();
 

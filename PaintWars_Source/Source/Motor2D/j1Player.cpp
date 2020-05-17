@@ -88,6 +88,12 @@ bool j1Player::PreUpdate()
 	//std::list<Entity*> activeBuildings;
 	//std::list<Entity*> activeUnits;
 
+	//if (App->fog->GetVisibility(position) == FogState::VISIBLE || App->godmode)
+	//{
+	//	App->render->AddBlitEvent(0, nullptr, 0, 0, rect, false, false, color.r, color.g, color.b, 255);
+	//	App->minimap->Draw_entities(this);
+	//}
+
 	return true;
 }
 
@@ -261,8 +267,20 @@ void j1Player::Camera_Control(float dt)
 
 			if (App->input->GetKey(SDL_SCANCODE_H) == KEY_REPEAT) {
 
-				App->render->camera.x = 575;
-				App->render->camera.y = -1200;
+				//has to update camera minimap
+
+				if (App->scenes->Map_Forest_Active) {
+					App->render->camera.x = 575;
+					App->render->camera.y = -1200;
+				}
+				if (App->scenes->Map_Snow_Active) {
+					App->render->camera.x = -1200;
+					App->render->camera.y = -2350;
+				}
+				if (App->scenes->Map_Volcano_Active) {
+					App->render->camera.x = 700;
+					App->render->camera.y = 10;
+				}
 			}
 		}
 

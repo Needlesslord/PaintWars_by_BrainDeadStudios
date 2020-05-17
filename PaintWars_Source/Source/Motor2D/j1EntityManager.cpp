@@ -933,6 +933,10 @@ bool j1EntityManager::Update(float dt) {
 			spawningBuildingsProgressBars++;
 		}
 
+
+
+
+
 	return ret;
 }
 

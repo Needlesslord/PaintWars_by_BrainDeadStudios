@@ -319,7 +319,6 @@ void StartScene::ExecuteTransition()
 		{
 			App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
 		}
-
 		
 	}
 }
