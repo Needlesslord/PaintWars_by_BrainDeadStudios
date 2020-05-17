@@ -4,8 +4,9 @@
 #include <vector>
 #include "Entity.h"
 
-class Ranger : public Entity
-{
+class Particles;
+
+class Ranger : public Entity {
 public:
 
 	Ranger(iPoint tile, int damage, j1Module* listener, Entity* creator = nullptr);

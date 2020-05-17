@@ -14,6 +14,7 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "j1EntityManager.h"
+#include "j1Particles.h"
 
 Ranger::Ranger(iPoint tile, int damage, j1Module* listener, Entity* creator) : Entity(tile, damage, listener, creator) {
 
@@ -46,7 +47,7 @@ Ranger::Ranger(iPoint tile, int damage, j1Module* listener, Entity* creator) : E
 	if (App->entities->warriorsUpgraded)
 		attackDamage *= 1.5f;
 
-	attackSpeed = 10.0f;
+	attackSpeed = 50.0f;
 	attackCooldown = attackSpeed;
 
 	isEntityFromPlayer = true;
@@ -57,6 +58,10 @@ Ranger::~Ranger() {}
 void Ranger::Attack(Entity* target, float dt) {
 
 	if (attackCooldown >= attackSpeed) {
+
+		Particles * p = AddParticle(PARTICLE_TYPE::PARTICLE_RANGER, { pos.x + size.x / 2,pos.y + size.y / 2 }, { 0, 0 });
+
+		particles.push_back(p);
 
 		target->ApplyDamage(attackDamage);
 		attackCooldown = 0.0f;

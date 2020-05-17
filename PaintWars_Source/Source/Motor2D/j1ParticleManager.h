@@ -32,6 +32,8 @@ public:
 
 	void		deleteAllParticles();
 
+	Particle*	AddParticle(PARTICLE_TYPES type, fPoint location, fPoint velocity);
+
 
 	std::vector<Particle> particlePool;
 	std::vector<ParticleSystem*> systems;
@@ -40,6 +42,9 @@ public:
 	SDL_Texture* fireTexture;
 	SDL_Texture* explosionTexture;
 	SDL_Texture* dustTexture;
+
+	SDL_Texture* rangerParticleTexture = nullptr;
+	SDL_Texture* slimeParticleTexture = nullptr;
 
 private:
 

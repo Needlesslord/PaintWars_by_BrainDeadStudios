@@ -20,6 +20,7 @@
 #include "Entity.h"
 #include "Sprites.h"
 #include "j1UI_Manager.h"
+#include "j1Particles.h"
 
 //testing testing testing
 j1EntityManager::j1EntityManager()
@@ -837,6 +838,59 @@ bool j1EntityManager::Update(float dt) {
 
 
 
+
+
+		// Update Particles
+		std::list<Entity*>::iterator particleToUpdate = activeUnits.begin();
+		while (particleToUpdate != activeUnits.end()) {
+
+			if ((*particleToUpdate)->entityType == ENTITY_TYPE_RANGER) {
+
+				if ((*particleToUpdate)->particles.size() > 0) {
+
+					particles = (*particleToUpdate)->particles;
+
+					std::list<Particles*>::iterator particle = particles.begin();
+					while (particle != particles.end()) {
+
+						if ((*particle)->isAlive) {
+							
+							if ((*particleToUpdate)->target == nullptr) {
+
+								float ang = atan((((*particle)->target.y + (*particle)->targetSize.y / 2) - (*particle)->pos.y) / (((*particle)->target.x + (*particle)->targetSize.x / 2) - (*particle)->pos.x));
+
+								(*particle)->speed.x = 100 * cos(ang);
+								(*particle)->speed.y = (100) * sin(ang);
+
+								(*particle)->Update(dt);
+							}
+
+							else {
+
+								float ang = atan((((*particleToUpdate)->target->pos.y + (*particleToUpdate)->target->GetSize().y / 2) - (*particle)->pos.y) / (((*particleToUpdate)->target->pos.x + (*particleToUpdate)->target->GetSize().x / 2) - (*particle)->pos.x));
+
+								(*particle)->target.x = (*particleToUpdate)->target->pos.x;
+								(*particle)->target.y = (*particleToUpdate)->target->pos.y;
+								(*particle)->targetSize.x = (*particleToUpdate)->target->GetSize().x;
+								(*particle)->targetSize.y = (*particleToUpdate)->target->GetSize().y;
+
+								(*particle)->speed.x = 100 * cos(ang);
+								(*particle)->speed.y = (100) * sin(ang);
+
+								(*particle)->Update(dt);
+							}
+						}
+
+						particle++;
+					}	
+				}
+				else if ((*particleToUpdate)->entityType == ENTITY_TYPE_SLIME) {
+				}
+
+			}
+
+			particleToUpdate++;
+		}
 
 
 

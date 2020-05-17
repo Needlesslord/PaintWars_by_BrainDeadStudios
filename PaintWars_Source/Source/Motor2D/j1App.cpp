@@ -14,7 +14,7 @@
 #include "j1Collision.h"
 #include "j1EntityManager.h"
 #include "j1Pathfinding.h"
-#include "j1ParticleManager.h"
+//#include "j1Particles.h"
 #include "j1App.h"
 #include "j1Player.h"
 #include "j1UI_Manager.h"
@@ -38,7 +38,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	col = new j1Collision(); 
 	entities = new j1EntityManager();
 	pathfinding = new j1PathFinding(); 
-	pmanager = new j1ParticleManager();
+	//particles = new j1Particles();
 	gui = new j1UI_Manager();
 	fonts = new j1FontsUI();
 	player = new j1Player();
@@ -58,7 +58,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(entities);
 	AddModule(pathfinding);
 	AddModule(player);
-	AddModule(pmanager);
+	//AddModule(particles);
 	AddModule(gui);
 	AddModule(fonts);
 	AddModule(player);

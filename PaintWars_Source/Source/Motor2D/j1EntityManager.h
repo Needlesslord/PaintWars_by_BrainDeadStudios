@@ -92,6 +92,8 @@ public:
 	std::list<iPoint> tilesOccupied;
 	std::list<iPoint> destinations;
 
+	std::list<Particles*> particles;
+
 	// Thsese two need to be public so that each entity can use it
 	SDL_Texture* fullLifeTexture = nullptr;
 	SDL_Texture* zeroLifeTexture = nullptr;

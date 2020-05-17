@@ -8,6 +8,7 @@
 
 #include "j1App.h"
 #include "j1Audio.h"
+#include "Particle.h"
 
 class j1Module;
 
@@ -15,7 +16,7 @@ struct SDL_Texture;
 
 struct Collider;
 
-enum CollisionState;
+class Particles;
 
 enum UNIT_ORIENTATION { //This is needed when loading animations from tiled
 	
@@ -161,6 +162,8 @@ public:
 	float attackCooldown = 1.0f;
 	uint attackRadius = 1; // In tiles
 	//float attackProgress = 0.0f;
+
+	std::list<Particles*> particles;
 
 	SDL_Color minimapDrawColor{ 0,0,0,0 };
 
