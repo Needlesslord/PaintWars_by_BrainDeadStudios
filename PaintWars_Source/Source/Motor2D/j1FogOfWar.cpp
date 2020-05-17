@@ -156,7 +156,7 @@ SDL_Rect& j1FogOfWar::GetFOWMetaRect(FOW_TileState state) {
 	if (state == FOW_TileState::FOGGED)
 		spritex = 150;
 	else if (state == FOW_TileState::UNVISITED)
-		spritex = 0;
+		spritex = 300;
 	else
 		spritex = 300;
 	// 64 is the width and height between different tiles in the spritesheet, thats done this way because it's the
