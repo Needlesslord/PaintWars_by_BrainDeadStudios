@@ -199,8 +199,6 @@
     <ClCompile Include="Ranger.cpp">
       <Filter>Motor  ========\Entities\Allies\Units</Filter>
     </ClCompile>
-    <ClCompile Include="MetalGatherer.cpp" />
-    <ClCompile Include="TitaniumExtractor.cpp" />
     <ClCompile Include="ChromaKing.cpp">
       <Filter>Motor  ========\Entities\Enemies\Units</Filter>
     </ClCompile>
@@ -211,6 +209,12 @@
       <Filter>Motor  ========\Entities\Enemies\Units</Filter>
     </ClCompile>
     <ClCompile Include="Turret.cpp">
+      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="MetalGatherer.cpp">
+      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="TitaniumExtractor.cpp">
       <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClCompile>
   </ItemGroup>
@@ -437,8 +441,6 @@
     <ClInclude Include="Ranger.h">
       <Filter>Motor  ========\Entities\Allies\Units</Filter>
     </ClInclude>
-    <ClInclude Include="MetalGatherer.h" />
-    <ClInclude Include="TitaniumExtractor.h" />
     <ClInclude Include="ChromaKing.h">
       <Filter>Motor  ========\Entities\Enemies\Units</Filter>
     </ClInclude>
@@ -449,6 +451,12 @@
       <Filter>Motor  ========\Entities\Enemies\Units</Filter>
     </ClInclude>
     <ClInclude Include="Turret.h">
+      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="MetalGatherer.h">
+      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="TitaniumExtractor.h">
       <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClInclude>
   </ItemGroup>
