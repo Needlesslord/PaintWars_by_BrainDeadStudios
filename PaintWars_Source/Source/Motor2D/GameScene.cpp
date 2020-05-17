@@ -1474,7 +1474,7 @@ void GameScene::Generate_Entities()
 		//	App->entities->AddEntity(ENTITY_TYPE_EXPLOSIVE_BLOB, { 32, 52 }, App->entities, nullptr, 0, true);
 		//}
 		////at minute 8 generate 4 slimes, 2 explosive blobs, 1 rider
-		//if (App->player->gameTimer.ReadSec() == 300) {
+		//if (App->player->gameTimer.ReadSec() == 480) {
 		//	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 52, 52 }, App->entities, nullptr, 0, true);
 		//	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 32, 32 }, App->entities, nullptr, 0, true);
 		//	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 52, 32 }, App->entities, nullptr, 0, true);
@@ -1484,7 +1484,7 @@ void GameScene::Generate_Entities()
 		//	App->entities->AddEntity(ENTITY_TYPE_RIDER, { 57, 57 }, App->entities, nullptr, 0, true);
 		//}
 		////at minute 11 generate 3 slimes, 2 explosive blobs, 2 riders, 1 chroma king
-		//if (App->player->gameTimer.ReadSec() == 300) {
+		//if (App->player->gameTimer.ReadSec() == 660) {
 		//	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 52, 52 }, App->entities, nullptr, 0, true);
 		//	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 32, 32 }, App->entities, nullptr, 0, true);
 		//	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 52, 32 }, App->entities, nullptr, 0, true);
