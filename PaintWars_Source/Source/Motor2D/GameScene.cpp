@@ -1449,17 +1449,16 @@ void GameScene::Generate_Entities()
 	else if (App->scenes->Map_Snow_Active == true) {
 
 
-		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 42, 42 }, App->entities, nullptr, 0, true);
-		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 45,  40 }, App->entities, nullptr, 0, true);
-		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 13,  5 }, App->entities, nullptr, 0, true);
+		
+
 
 	}
 	else if (App->scenes->Map_Volcano_Active == true) {
 
 
-		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 42, 42 }, App->entities, nullptr, 0, true);
-		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 45,  40 }, App->entities, nullptr, 0, true);
-		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 13,  5 }, App->entities, nullptr, 0, true);
+		
+		
+		
 	}
 }
 
@@ -1578,11 +1577,279 @@ void GameScene::Generate_Tiles()
 	}
 	else if (App->scenes->Map_Snow_Active == true) {
 
+	//LAKE 1
+
+	   App->pathfinding->ChangeToPaint({ 4, 50 });
+	   App->pathfinding->ChangeToPaint({ 5, 50 });
+	   App->pathfinding->ChangeToPaint({ 6, 50 });
+	   App->pathfinding->ChangeToPaint({ 7, 50 });
+	   App->pathfinding->ChangeToPaint({ 4, 51 });
+	   App->pathfinding->ChangeToPaint({ 5, 51 });
+	   App->pathfinding->ChangeToPaint({ 6, 51 });
+	   App->pathfinding->ChangeToPaint({ 7, 51 });
+	   App->pathfinding->ChangeToPaint({ 4, 52 });
+	   App->pathfinding->ChangeToPaint({ 5, 52 });
+	   App->pathfinding->ChangeToPaint({ 6, 52 });
+	   App->pathfinding->ChangeToPaint({ 7, 52 });
+	   App->pathfinding->ChangeToPaint({ 4, 53 });
+	   App->pathfinding->ChangeToPaint({ 5, 53 });
+	   App->pathfinding->ChangeToPaint({ 6, 53 });
+	   App->pathfinding->ChangeToPaint({ 7, 53 });
+
+	//LAKE 2
+
+	   App->pathfinding->ChangeToPaint({ 48, 31 });
+	   App->pathfinding->ChangeToPaint({ 49, 31 });
+	   App->pathfinding->ChangeToPaint({ 50, 31 });
+	   App->pathfinding->ChangeToPaint({ 51, 31 });
+	   App->pathfinding->ChangeToPaint({ 48, 32 });
+	   App->pathfinding->ChangeToPaint({ 49, 32 });
+	   App->pathfinding->ChangeToPaint({ 50, 32 });
+	   App->pathfinding->ChangeToPaint({ 51, 32 });
+	   App->pathfinding->ChangeToPaint({ 48, 33 });
+	   App->pathfinding->ChangeToPaint({ 49, 33 });
+	   App->pathfinding->ChangeToPaint({ 50, 33 });
+	   App->pathfinding->ChangeToPaint({ 51, 33 });
+	   App->pathfinding->ChangeToPaint({ 48, 34 });
+	   App->pathfinding->ChangeToPaint({ 49, 34 });
+	   App->pathfinding->ChangeToPaint({ 50, 34 });
+	   App->pathfinding->ChangeToPaint({ 51, 34 });
 
 
+	//LAKE 3
+
+	   App->pathfinding->ChangeToPaint({ 38, 91 });
+	   App->pathfinding->ChangeToPaint({ 49, 91 });
+	   App->pathfinding->ChangeToPaint({ 40, 91 });
+	   App->pathfinding->ChangeToPaint({ 41, 91 });
+	   App->pathfinding->ChangeToPaint({ 38, 92 });
+	   App->pathfinding->ChangeToPaint({ 39, 92 });
+	   App->pathfinding->ChangeToPaint({ 40, 92 });
+	   App->pathfinding->ChangeToPaint({ 41, 92 });
+	   App->pathfinding->ChangeToPaint({ 38, 93 });
+	   App->pathfinding->ChangeToPaint({ 39, 93 });
+	   App->pathfinding->ChangeToPaint({ 40, 93 });
+	   App->pathfinding->ChangeToPaint({ 41, 93 });
+	   App->pathfinding->ChangeToPaint({ 38, 94 });
+	   App->pathfinding->ChangeToPaint({ 39, 94 });
+	   App->pathfinding->ChangeToPaint({ 40, 94 });
+	   App->pathfinding->ChangeToPaint({ 41, 94 });
+
+	//LAKE 4
+
+	   App->pathfinding->ChangeToPaint({ 64, 69 });
+	   App->pathfinding->ChangeToPaint({ 65, 69 });
+	   App->pathfinding->ChangeToPaint({ 66, 69 });
+	   App->pathfinding->ChangeToPaint({ 67, 69 });
+	   App->pathfinding->ChangeToPaint({ 68, 69 });
+	   App->pathfinding->ChangeToPaint({ 69, 69 });
+	   App->pathfinding->ChangeToPaint({ 64, 70 });
+	   App->pathfinding->ChangeToPaint({ 65, 70 });
+	   App->pathfinding->ChangeToPaint({ 66, 70 });
+	   App->pathfinding->ChangeToPaint({ 67, 70 });
+	   App->pathfinding->ChangeToPaint({ 68, 70 });
+	   App->pathfinding->ChangeToPaint({ 69, 70 });
+	   App->pathfinding->ChangeToPaint({ 64, 71 });
+	   App->pathfinding->ChangeToPaint({ 65, 71 });
+	   App->pathfinding->ChangeToPaint({ 66, 71 });
+	   App->pathfinding->ChangeToPaint({ 67, 71 });
+	   App->pathfinding->ChangeToPaint({ 68, 71 });
+	   App->pathfinding->ChangeToPaint({ 69, 71 });
+	   App->pathfinding->ChangeToPaint({ 64, 72 });
+	   App->pathfinding->ChangeToPaint({ 65, 72 });
+	   App->pathfinding->ChangeToPaint({ 66, 72 });
+	   App->pathfinding->ChangeToPaint({ 67, 72 });
+	   App->pathfinding->ChangeToPaint({ 68, 72 });
+	   App->pathfinding->ChangeToPaint({ 69, 72 });
+	  
+	  
+	  
+	  //LAKE 5
+
+
+	  
+	   App->pathfinding->ChangeToPaint({ 89, 41 });
+	   App->pathfinding->ChangeToPaint({ 90, 41 });
+	   App->pathfinding->ChangeToPaint({ 91, 41 });
+	   App->pathfinding->ChangeToPaint({ 92, 41 });
+	   App->pathfinding->ChangeToPaint({ 93, 41 });
+	   App->pathfinding->ChangeToPaint({ 94, 41 });
+	   App->pathfinding->ChangeToPaint({ 89, 42 });
+	   App->pathfinding->ChangeToPaint({ 90, 42 });
+	   App->pathfinding->ChangeToPaint({ 91, 42 });
+	   App->pathfinding->ChangeToPaint({ 92, 42 });
+	   App->pathfinding->ChangeToPaint({ 93, 42 });
+	   App->pathfinding->ChangeToPaint({ 94, 42 });
+	   App->pathfinding->ChangeToPaint({ 89, 43 });
+	   App->pathfinding->ChangeToPaint({ 90, 43 });
+	   App->pathfinding->ChangeToPaint({ 91, 43 });
+	   App->pathfinding->ChangeToPaint({ 92, 43 });
+	   App->pathfinding->ChangeToPaint({ 93, 43 });
+	   App->pathfinding->ChangeToPaint({ 94, 43 });
+	   App->pathfinding->ChangeToPaint({ 89, 44 });
+	   App->pathfinding->ChangeToPaint({ 90, 44 });
+	   App->pathfinding->ChangeToPaint({ 91, 44 });
+	   App->pathfinding->ChangeToPaint({ 92, 44 });
+	   App->pathfinding->ChangeToPaint({ 93, 44 });
+	   App->pathfinding->ChangeToPaint({ 94, 44 });
 
 	}
 	else if (App->scenes->Map_Volcano_Active == true) {
+
+	//LAKE 1
+
+	App->pathfinding->ChangeToPaint({ 1, 1 });
+	App->pathfinding->ChangeToPaint({ 2, 1 });
+	App->pathfinding->ChangeToPaint({ 3, 1 });
+	App->pathfinding->ChangeToPaint({ 4, 1 });
+	App->pathfinding->ChangeToPaint({ 1, 2 });
+	App->pathfinding->ChangeToPaint({ 2, 2 });
+	App->pathfinding->ChangeToPaint({ 3, 2 });
+	App->pathfinding->ChangeToPaint({ 4, 2 });
+	App->pathfinding->ChangeToPaint({ 1, 3 });
+	App->pathfinding->ChangeToPaint({ 2, 3 });
+	App->pathfinding->ChangeToPaint({ 3, 3 });
+	App->pathfinding->ChangeToPaint({ 4, 3 });
+	App->pathfinding->ChangeToPaint({ 1, 4 });
+	App->pathfinding->ChangeToPaint({ 2, 4 });
+	App->pathfinding->ChangeToPaint({ 3, 4 });
+	App->pathfinding->ChangeToPaint({ 4, 4 });
+
+
+	//LAKE 2
+
+	App->pathfinding->ChangeToPaint({ 4, 70 });
+	App->pathfinding->ChangeToPaint({ 5, 70 });
+	App->pathfinding->ChangeToPaint({ 6, 70 });
+	App->pathfinding->ChangeToPaint({ 7, 70 });
+	App->pathfinding->ChangeToPaint({ 8, 70 });
+	App->pathfinding->ChangeToPaint({ 9, 70 });
+	App->pathfinding->ChangeToPaint({ 4, 71 });
+	App->pathfinding->ChangeToPaint({ 5, 71 });
+	App->pathfinding->ChangeToPaint({ 6, 71 });
+	App->pathfinding->ChangeToPaint({ 7, 71 });
+	App->pathfinding->ChangeToPaint({ 8, 71 });
+	App->pathfinding->ChangeToPaint({ 9, 71 });
+	App->pathfinding->ChangeToPaint({ 4, 72 });
+	App->pathfinding->ChangeToPaint({ 5, 72 });
+	App->pathfinding->ChangeToPaint({ 6, 72 });
+	App->pathfinding->ChangeToPaint({ 7, 72 });
+	App->pathfinding->ChangeToPaint({ 8, 72 });
+	App->pathfinding->ChangeToPaint({ 9, 72 });
+	App->pathfinding->ChangeToPaint({ 4, 73 });
+	App->pathfinding->ChangeToPaint({ 5, 73 });
+	App->pathfinding->ChangeToPaint({ 6, 73 });
+	App->pathfinding->ChangeToPaint({ 7, 73 });
+	App->pathfinding->ChangeToPaint({ 8, 73 });
+	App->pathfinding->ChangeToPaint({ 9, 73 });
+
+
+	//LAKE 3
+
+
+
+	App->pathfinding->ChangeToPaint({ 47, 30 });
+	App->pathfinding->ChangeToPaint({ 48, 30 });
+	App->pathfinding->ChangeToPaint({ 49, 30 });
+	App->pathfinding->ChangeToPaint({ 50, 30 });
+	App->pathfinding->ChangeToPaint({ 51, 30 });
+	App->pathfinding->ChangeToPaint({ 52, 30 });
+	App->pathfinding->ChangeToPaint({ 47, 33 });
+	App->pathfinding->ChangeToPaint({ 48, 33 });
+	App->pathfinding->ChangeToPaint({ 49, 33 });
+	App->pathfinding->ChangeToPaint({ 50, 33 });
+	App->pathfinding->ChangeToPaint({ 51, 33 });
+	App->pathfinding->ChangeToPaint({ 52, 33 });
+	App->pathfinding->ChangeToPaint({ 47, 32 });
+	App->pathfinding->ChangeToPaint({ 48, 32 });
+	App->pathfinding->ChangeToPaint({ 49, 32 });
+	App->pathfinding->ChangeToPaint({ 50, 32 });
+	App->pathfinding->ChangeToPaint({ 51, 32 });
+	App->pathfinding->ChangeToPaint({ 52, 32 });
+	App->pathfinding->ChangeToPaint({ 47, 31 });
+	App->pathfinding->ChangeToPaint({ 48, 31 });
+	App->pathfinding->ChangeToPaint({ 49, 31 });
+	App->pathfinding->ChangeToPaint({ 50, 31 });
+	App->pathfinding->ChangeToPaint({ 51, 31 });
+	App->pathfinding->ChangeToPaint({ 52, 31 });
+
+
+      //LAKE 4
+
+
+
+
+	App->pathfinding->ChangeToPaint({ 71,3 });
+	App->pathfinding->ChangeToPaint({ 72, 3 });
+	App->pathfinding->ChangeToPaint({ 73, 3 });
+	App->pathfinding->ChangeToPaint({ 74, 3 });
+	App->pathfinding->ChangeToPaint({ 71,4 });
+	App->pathfinding->ChangeToPaint({ 72, 4 });
+	App->pathfinding->ChangeToPaint({ 73, 4 });
+	App->pathfinding->ChangeToPaint({ 74, 4 });
+	App->pathfinding->ChangeToPaint({ 71,5 });
+	App->pathfinding->ChangeToPaint({ 72, 5 });
+	App->pathfinding->ChangeToPaint({ 73, 5 });
+	App->pathfinding->ChangeToPaint({ 74, 5 });
+	App->pathfinding->ChangeToPaint({ 71,6 });
+	App->pathfinding->ChangeToPaint({ 72, 6 });
+	App->pathfinding->ChangeToPaint({ 73, 6 });
+	App->pathfinding->ChangeToPaint({ 74, 6 });
+
+
+
+
+	//LAKE 5
+	
+	App->pathfinding->ChangeToPaint({ 91,81 });
+	App->pathfinding->ChangeToPaint({ 92, 81 });
+	App->pathfinding->ChangeToPaint({ 93, 81 });
+	App->pathfinding->ChangeToPaint({ 94, 81 });
+	App->pathfinding->ChangeToPaint({ 91,82 });
+	App->pathfinding->ChangeToPaint({ 92, 82 });
+	App->pathfinding->ChangeToPaint({ 93, 82 });
+	App->pathfinding->ChangeToPaint({ 94, 82 });
+	App->pathfinding->ChangeToPaint({ 91,83 });
+	App->pathfinding->ChangeToPaint({ 92, 83 });
+	App->pathfinding->ChangeToPaint({ 93, 83 });
+	App->pathfinding->ChangeToPaint({ 94, 83 });
+	App->pathfinding->ChangeToPaint({ 91,84 });
+	App->pathfinding->ChangeToPaint({ 92, 84 });
+	App->pathfinding->ChangeToPaint({ 93, 84 });
+	App->pathfinding->ChangeToPaint({ 94, 84 });
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
