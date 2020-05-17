@@ -490,7 +490,7 @@ void j1App::Debug_Actions()
 {
 	if (GOD_MODE != true) {
 
-		if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
+		if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
 			App->scenes->Load_Map_Forest = false;
 			App->scenes->Load_Map_Snow = true;
 			App->scenes->Load_Map_Volcano = false;
@@ -498,7 +498,7 @@ void j1App::Debug_Actions()
 			//App->scenes->SwitchScene(SCENES::GAME_SCENE);
 		}
 
-		if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
+		if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 			App->scenes->Load_Map_Forest = true;
 			App->scenes->Load_Map_Snow = false;
 			App->scenes->Load_Map_Volcano = false;
@@ -515,9 +515,12 @@ void j1App::Debug_Actions()
 			}
 		}
 
-		if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) { //has to be changed to snow map when developed
-			App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 1.0f, true);
-
+		if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
+			App->scenes->Load_Map_Forest = false;
+			App->scenes->Load_Map_Snow = false;
+			App->scenes->Load_Map_Volcano = true;
+			App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
+			//App->scenes->SwitchScene(SCENES::GAME_SCENE);
 		}
 		
 		
