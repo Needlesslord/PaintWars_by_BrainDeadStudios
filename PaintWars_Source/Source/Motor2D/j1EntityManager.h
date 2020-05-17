@@ -140,6 +140,7 @@ protected:
 
 	/// Units
 	SDL_Texture* slimeTexture = nullptr;
+	SDL_Texture* riderTexture = nullptr;
 
 	float spawningRate = 1.0f;
 	float constructionRate = 1.0f;
