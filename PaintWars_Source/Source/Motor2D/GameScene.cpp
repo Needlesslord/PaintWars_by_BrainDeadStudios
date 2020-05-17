@@ -98,6 +98,7 @@ bool GameScene::Start()
 
 	int w, h;
 	uchar* data = NULL;
+	//DOESNT ENTER THIS FUNCTION
 	if (App->map->CreateWalkabilityMap(w, h, &data))
 	{
 		App->pathfinding->SetMap(w, h, data);						// Sets a new walkability map with the map passed by CreateWalkabilityMap().
@@ -1503,6 +1504,7 @@ void GameScene::Generate_Entities()
 	}
 	else if (App->scenes->Map_Snow_Active == true) {
 
+
 		//town hall
 		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 97, 50 }, App->entities, nullptr, 0, true);
 		//painter
@@ -1514,6 +1516,7 @@ void GameScene::Generate_Entities()
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 21, 13 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 30, 70 }, App->entities, nullptr, 0, true);
 		//enemies
+
 
 
 	}
@@ -1531,7 +1534,7 @@ void GameScene::Generate_Entities()
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 68, 24 }, App->entities, nullptr, 0, true);
 		//enemies
 
-		
+
 		
 	}
 }
