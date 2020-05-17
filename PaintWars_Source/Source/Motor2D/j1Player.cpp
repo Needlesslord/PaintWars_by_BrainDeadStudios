@@ -267,8 +267,20 @@ void j1Player::Camera_Control(float dt)
 
 			if (App->input->GetKey(SDL_SCANCODE_H) == KEY_REPEAT) {
 
-				App->render->camera.x = 575;
-				App->render->camera.y = -1200;
+				//has to update camera minimap
+
+				if (App->scenes->Map_Forest_Active) {
+					App->render->camera.x = 575;
+					App->render->camera.y = -1200;
+				}
+				if (App->scenes->Map_Snow_Active) {
+					App->render->camera.x = -1200;
+					App->render->camera.y = -2350;
+				}
+				if (App->scenes->Map_Volcano_Active) {
+					App->render->camera.x = 700;
+					App->render->camera.y = 10;
+				}
 			}
 		}
 
