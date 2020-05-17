@@ -94,6 +94,7 @@
     <ClCompile Include="House.cpp" />
     <ClCompile Include="j1ButtonUI.cpp" />
     <ClCompile Include="j1Collision.cpp" />
+    <ClCompile Include="j1FogOfWar.cpp" />
     <ClCompile Include="j1Minimap.cpp" />
     <ClCompile Include="j1ParticleManager.cpp" />
     <ClCompile Include="j1UIElements.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="j1ButtonUI.h" />
     <ClInclude Include="j1Collision.h" />
     <ClInclude Include="j1EntityManager.h" />
+    <ClInclude Include="j1FogOfWar.h" />
     <ClInclude Include="j1FontsUI.h" />
     <ClInclude Include="j1Minimap.h" />
     <ClInclude Include="j1ParticleManager.h" />

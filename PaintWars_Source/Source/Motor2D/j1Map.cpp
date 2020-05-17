@@ -45,9 +45,9 @@ void j1Map::Draw()
 			continue;
 
 
-		for(uint y = 0; y < data.height; ++y)
+		for(int y = 0; y < data.height; ++y)
 		{
-			for(uint x = 0; x < data.width; ++x)
+			for(int x = 0; x < data.width; ++x)
 			{
 				int tile_id = layer->Get(x, y);
 				if(tile_id > 0)
@@ -57,8 +57,56 @@ void j1Map::Draw()
 					SDL_Rect r = tileset->GetTileRect(tile_id);
 					fPoint pos = MapToWorld(x, y);
 
-					
+					///FOW
+					if (App->fow->GetVisibilityTileAt({ x, y }) != (const int8_t)FOW_TileState::UNVISITED)
+					{
+						App->render->RenderQueue(0, tileset->texture, pos.x, pos.y, r);
+					}
+					//FOW_TileState state = (FOW_TileState)App->fow->GetVisibilityTileAt({ x,y });
+					////Blit semi-opaque if the tile is fogged
+					//if (state == FOW_TileState::FOGGED)
+					//{
+					//	r = App->fow->GetFOWMetaRect(state);
+					//	App->render->RenderQueue(0, App->fow->fogtexture, pos.x, pos.y, r);
+					//}
+
+
 					App->render->RenderQueue(0, tileset->texture, pos.x, pos.y, r);
+				}
+			}
+		}
+
+		for (int y = 0; y < data.height; ++y)
+		{
+			for (int x = 0; x < data.width; ++x)
+			{
+				int tile_id = layer->Get(x, y);
+				if (tile_id > 0)
+				{
+					TileSet* tileset = GetTilesetFromTileId(tile_id);
+
+					SDL_Rect r = tileset->GetTileRect(tile_id);
+					fPoint pos = MapToWorld(x, y);
+
+					FOW_TileState state = (FOW_TileState)App->fow->GetVisibilityTileAt({ x,y });
+					//LOG("%d", (int)state);
+
+					//Blit semi-opaque if the tile is fogged
+					if (state == FOW_TileState::FOGGED)
+					{
+						r = App->fow->GetFOWMetaRect(state);
+						App->render->RenderQueue(0, App->fow->fogtexture, pos.x, pos.y, r);
+
+
+					}
+					//Blit black if the tile is not visited. 
+					//Alternatively we can leave this blank as the background is black, but if there was any kind of background we may surely don't blit it
+					/*if (state == FOW_TileState::UNVISITED)
+					{
+						r = App->fow->GetFOWMetaRect(state);
+						App->render->RenderQueue(0, App->fow->fogtexture, pos.x, pos.y, r);
+					}*/
+
 				}
 			}
 		}

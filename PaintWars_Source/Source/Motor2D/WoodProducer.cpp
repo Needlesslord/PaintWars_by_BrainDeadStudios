@@ -34,9 +34,12 @@ WoodProducer::WoodProducer(iPoint tile, int damage, j1Module* listener, Entity* 
 
 	constructionTime = 10.0f;
 
-	
-
 	isEntityFromPlayer = true;
+
+	visibilityRadius = 3;
+	fow_entity->frontier = App->fow->CreateSightQuad(visibilityRadius, fow_entity->position);
+	fow_entity->LOS = App->fow->FulfillSight(fow_entity->frontier);
+
 }
 
 WoodProducer::~WoodProducer() {}
