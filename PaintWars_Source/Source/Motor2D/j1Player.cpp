@@ -52,7 +52,7 @@ bool j1Player::Start() {
 	SDL_ShowCursor(SDL_DISABLE);
 
 
-
+	V = 0;
 	
 
 
@@ -61,38 +61,53 @@ bool j1Player::Start() {
 
 bool j1Player::PreUpdate()
 {
-	list<Entity*>::iterator entityCount = App->entities->activeEntities.begin();
-	int B = 0; int C = 0;
-	//while (entityCount != App->entities->activeBuildings.end()) {
-	//	if (MiniMapEntities_Squares[B] != nullptr) {
-	//		MiniMapEntities_Squares[B]->CleanUp();
+	
+	
 
-	//		MiniMapEntities_Squares[B] = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { (*entityCount)->pos.x ,  (*entityCount)->pos.y }, { 0 , 0 },
-	//			false, true, { 4, 3, 2, 3 }, nullptr, nullptr, TEXTURE::MINIMAP_ENTITIES);
+
+
+	
+	//list<Entity*>::iterator entityCount = App->entities->activeEntities.begin();
+	//int B = 0;
+	//int P = 0;
+
+
+	//if (V != 1) {
+
+	//	while (entityCount != App->entities->activeEntities.end()) {
+
+
+	//		MiniMapEntities_Squares[B] = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 850,500 /*(*entityCount)->pos.x ,(*entityCount)->pos.y*/ }, { 0 , 0 }, false, true, { 4, 3, 2, 3 },
+	//			nullptr, nullptr, TEXTURE::MINIMAP_ENTITIES);
+
+	//		
+
+	//		
+
+	//		MiniMapEntities_Squares[B]->map_position.x = MiniMapEntities_Squares[B]->init_map_position.x + App->render->camera.x + (*entityCount)->currentTile.x;
+	//		MiniMapEntities_Squares[B]->map_position.y = MiniMapEntities_Squares[B]->init_map_position.y + App->render->camera.y + (*entityCount)->currentTile.y;
+
+	//		entityCount++;
+
+	//		B++;
+	//		
 	//	}
-	//	entityCount++;
-	//	B++;
+	//	
 	//}
 
-	//while (entityCount != App->entities->activeUnits.end()) {
-	//	if (MiniMapEntities_Squares[C] != nullptr) {
-	//		MiniMapEntities_Squares[C]->CleanUp();
-
-	//		/*MiniMapEntities_Squares[B] = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { (*entityCount)->pos.x ,  (*entityCount)->pos.y }, { 0 , 0 },
-	//			false, true, { 4, 3, 2, 3 }, nullptr, nullptr, TEXTURE::MINIMAP_ENTITIES);*/
-	//	}
-	//	entityCount++;
-	//	B++;
+	//if (entityCount != App->entities->activeEntities.end()) {
+	//	V = 1;
 	//}
-	//
-	//std::list<Entity*> activeBuildings;
-	//std::list<Entity*> activeUnits;
 
-	//if (App->fog->GetVisibility(position) == FogState::VISIBLE || App->godmode)
-	//{
-	//	App->render->AddBlitEvent(0, nullptr, 0, 0, rect, false, false, color.r, color.g, color.b, 255);
-	//	App->minimap->Draw_entities(this);
-	//}
+
+
+	//LOG("ENTITY POSITION X,Y = %f %f", MiniMapEntities_Squares[B]->map_position.x, MiniMapEntities_Squares[B]->map_position.x);
+	
+	
+	
+	
+	
+
 
 	return true;
 }
@@ -118,13 +133,13 @@ bool j1Player::Load(pugi::xml_node& data)
 bool j1Player::Update(float dt)
 {
 	int z = 0;
+	
 	App->input->GetMousePosition(mouse_position.x, mouse_position.y);
 
 	Camera_Control(dt);
 	Zoom();
 
-	//This functions should always be last//
-	//Mouse_Cursor();
+	
 	if (App->PAUSE_ACTIVE == false) {
 		if (App->scenes->IN_GAME_SCENE == true) {
 			p2List_item<j1UIElement*>* UI_List = App->gui->GUI_ELEMENTS.start;
@@ -141,16 +156,26 @@ bool j1Player::Update(float dt)
 
 					
 				}
+				else if (App->gui->GUI_ELEMENTS[z]->textureType == TEXTURE::MINIMAP_ENTITIES) {
+
+
+					
+
+				}
 				else {
 
 					//LOG("UI COUNT IS %d", z);
 					App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x;
 					App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y;
 
-					if (App->gui->GUI_ELEMENTS[z]->textureType == TEXTURE::MINIMAP_ENTITIES) {
+
+
+
+
+					/*if (App->gui->GUI_ELEMENTS[z]->textureType == TEXTURE::MINIMAP_ENTITIES) {
 
 						LOG("SQUARE POSITION X=%f, Y=%f ", App->gui->GUI_ELEMENTS[z]->map_position.x, App->gui->GUI_ELEMENTS[z]->map_position.y);
-					}
+					}*/
 					
 				}
 
@@ -272,14 +297,20 @@ void j1Player::Camera_Control(float dt)
 				if (App->scenes->Map_Forest_Active) {
 					App->render->camera.x = 575;
 					App->render->camera.y = -1200;
+					MinimapCameraBufferX = 0;
+					MinimapCameraBufferY = 0;
 				}
 				if (App->scenes->Map_Snow_Active) {
 					App->render->camera.x = -1200;
 					App->render->camera.y = -2350;
+					MinimapCameraBufferX = 0;
+					MinimapCameraBufferY = 0;
 				}
 				if (App->scenes->Map_Volcano_Active) {
 					App->render->camera.x = 700;
 					App->render->camera.y = 10;
+					MinimapCameraBufferX = 0;
+					MinimapCameraBufferY = 0;
 				}
 			}
 		}
