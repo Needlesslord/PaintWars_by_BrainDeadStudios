@@ -44,7 +44,7 @@ bool j1FogOfWar::Update(float dt) {
 	//depending on their position
 	ManageEntitiesVisibility();
 
-	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN) {
 		debug = !debug;
 
 		// If we enter debug mode, our visibility map should be clear.
@@ -156,7 +156,7 @@ SDL_Rect& j1FogOfWar::GetFOWMetaRect(FOW_TileState state) {
 	if (state == FOW_TileState::FOGGED)
 		spritex = 150;
 	else if (state == FOW_TileState::UNVISITED)
-		spritex = 300;
+		spritex = 0;
 	else
 		spritex = 300;
 	// 64 is the width and height between different tiles in the spritesheet, thats done this way because it's the

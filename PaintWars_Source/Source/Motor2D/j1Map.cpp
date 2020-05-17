@@ -9,6 +9,7 @@
 #include <math.h>
 #include "Entity.h"
 #include "j1Collision.h"
+#include "j1FogOfWar.h"
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
@@ -62,14 +63,6 @@ void j1Map::Draw()
 					{
 						App->render->RenderQueue(0, tileset->texture, pos.x, pos.y, r);
 					}
-					//FOW_TileState state = (FOW_TileState)App->fow->GetVisibilityTileAt({ x,y });
-					////Blit semi-opaque if the tile is fogged
-					//if (state == FOW_TileState::FOGGED)
-					//{
-					//	r = App->fow->GetFOWMetaRect(state);
-					//	App->render->RenderQueue(0, App->fow->fogtexture, pos.x, pos.y, r);
-					//}
-
 
 					App->render->RenderQueue(0, tileset->texture, pos.x, pos.y, r);
 				}
