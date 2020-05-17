@@ -495,6 +495,9 @@ void j1App::Debug_Actions()
 			App->scenes->Load_Map_Forest = true;
 			App->scenes->Load_Map_Snow = false;
 			App->scenes->Load_Map_Volcano = false;
+			App->scenes->Map_Forest_Active = false;
+			App->scenes->Map_Snow_Active = false;
+			App->scenes->Map_Volcano_Active = false;
 			App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
 			//App->scenes->SwitchScene(SCENES::GAME_SCENE);
 		}
@@ -503,6 +506,10 @@ void j1App::Debug_Actions()
 			App->scenes->Load_Map_Forest = false;
 			App->scenes->Load_Map_Snow = true;
 			App->scenes->Load_Map_Volcano = false;
+			App->scenes->Map_Forest_Active = false;
+			App->scenes->Map_Snow_Active = false;
+			App->scenes->Map_Volcano_Active = false;
+
 			App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
 			//App->scenes->SwitchScene(SCENES::GAME_SCENE);
 		}
@@ -511,6 +518,9 @@ void j1App::Debug_Actions()
 			App->scenes->Load_Map_Forest = false;
 			App->scenes->Load_Map_Snow = false;
 			App->scenes->Load_Map_Volcano = true;
+			App->scenes->Map_Forest_Active = false;
+			App->scenes->Map_Snow_Active = false;
+			App->scenes->Map_Volcano_Active = false;
 			App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
 			//App->scenes->SwitchScene(SCENES::GAME_SCENE);
 		}
