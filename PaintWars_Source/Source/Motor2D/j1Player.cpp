@@ -88,6 +88,12 @@ bool j1Player::PreUpdate()
 	//std::list<Entity*> activeBuildings;
 	//std::list<Entity*> activeUnits;
 
+	//if (App->fog->GetVisibility(position) == FogState::VISIBLE || App->godmode)
+	//{
+	//	App->render->AddBlitEvent(0, nullptr, 0, 0, rect, false, false, color.r, color.g, color.b, 255);
+	//	App->minimap->Draw_entities(this);
+	//}
+
 	return true;
 }
 
