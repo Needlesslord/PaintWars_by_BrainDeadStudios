@@ -217,6 +217,9 @@
     <ClCompile Include="TitaniumExtractor.cpp">
       <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClCompile>
+    <ClCompile Include="j1FogOfWar.cpp">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -458,6 +461,9 @@
     </ClInclude>
     <ClInclude Include="TitaniumExtractor.h">
       <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="j1FogOfWar.h">
+      <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

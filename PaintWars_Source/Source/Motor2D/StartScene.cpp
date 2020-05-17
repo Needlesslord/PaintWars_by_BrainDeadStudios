@@ -43,7 +43,9 @@ bool StartScene::Start()
 
 	backgroundImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes,TEXTURE::MAIN_IMAGE, FONT::FONT_MEDIUM, 1);
 
-
+	//if(saved_game)
+	//else
+		//blocked button continue
 	continueButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 475, 100 }, { 30,25 }, true, true, { 0, 0, 263, 91 }, "", App->scenes, TEXTURE::ATLAS);
 	continueButton->hover_rect = { 263, 0, 263, 91 };
 	continueButton->click_rect = { 526, 0, 263, 91 };

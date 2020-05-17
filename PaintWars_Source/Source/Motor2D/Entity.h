@@ -8,6 +8,7 @@
 
 #include "j1App.h"
 #include "j1Audio.h"
+#include "j1FogOfWar.h"
 
 class j1Module;
 
@@ -176,6 +177,11 @@ public:
 	bool isSpawningAUnit;
 	bool isBuildingSomething;
 	bool isAlive;
+
+	//FOW
+	FOW_Entity* fow_entity = nullptr;
+	bool visible = true;
+	uint visibilityRadius;
 
 	Entity* spawnedBy;
 	Entity* builtBy;

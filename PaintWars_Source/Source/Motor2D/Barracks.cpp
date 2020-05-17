@@ -34,6 +34,12 @@ Barracks::Barracks(iPoint tile, int damage, j1Module* listener, Entity* creator)
 	isEntityFromPlayer = true;
 
 	isSpawningAUnit = false;
+
+	//FOW
+	visibilityRadius = 4;
+	fow_entity->frontier = App->fow->CreateSightQuad(visibilityRadius, fow_entity->position);
+	fow_entity->LOS = App->fow->FulfillSight(fow_entity->frontier);
+
 }
 
 Barracks::~Barracks() {}

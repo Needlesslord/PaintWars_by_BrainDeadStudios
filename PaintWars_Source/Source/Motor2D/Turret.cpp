@@ -36,6 +36,11 @@ Turret::Turret(iPoint tile, int damage, j1Module* listener, Entity* creator) : E
 	constructionTime = 15.0f;
 
 	isEntityFromPlayer = true;
+
+	visibilityRadius = 5;
+	fow_entity->frontier = App->fow->CreateSightQuad(visibilityRadius, fow_entity->position);
+	fow_entity->LOS = App->fow->FulfillSight(fow_entity->frontier);
+
 }
 
 Turret::~Turret() {}
