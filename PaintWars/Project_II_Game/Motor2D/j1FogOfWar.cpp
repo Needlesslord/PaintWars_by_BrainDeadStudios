@@ -29,7 +29,7 @@ bool j1FogOfWar::Awake() {
 }
 
 bool j1FogOfWar::Start() {
-	fogtexture = App->tex->Load("maps/fow_texture2.png");
+	fogtexture = App->tex->Load("maps/tileset_fog.png");
 
 	return true;
 }
