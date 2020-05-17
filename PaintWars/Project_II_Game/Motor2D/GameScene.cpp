@@ -266,6 +266,8 @@ bool GameScene::Start()
 
 
 
+
+
 	// Shop
 	shopImage = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15 , 450 }, { 0 , 0 }, false, false, { 263, 1551, 263, 265 }, nullptr, nullptr, TEXTURE::ATLAS);
 	ExplanationHover = App->gui->AddElement(TypeOfUI::GUI_LABEL, shopImage, { 130 , 680 }, { 0 , 0 }, false, false, { 0, 0, 0, 0 }, "EXPLANATION", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE); //Not implemented
@@ -283,22 +285,10 @@ bool GameScene::Start()
 	buyHouseButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyHouseButton->hover_rect = { 0, 1966, 65, 82 };
 	buyHouseButton->click_rect = { 65, 1966, 65, 82 };
-	buyMetalGathererButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 15, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyMetalGathererButton->hover_rect = { 0, 1966, 65, 82 };
-	buyMetalGathererButton->click_rect = { 65, 1966, 65, 82 };
-	buyTitaniumExtractorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 80, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyTitaniumExtractorButton->hover_rect = { 0, 1966, 65, 82 };
-	buyTitaniumExtractorButton->click_rect = { 65, 1966, 65, 82 };
-	buyLaboratoryButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 145, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyLaboratoryButton->hover_rect = { 0, 1966, 65, 82 };
-	buyLaboratoryButton->click_rect = { 65, 1966, 65, 82 };
-	buyTurretButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyTurretButton->hover_rect = { 0, 1966, 65, 82 };
-	buyTurretButton->click_rect = { 65, 1966, 65, 82 };
-	upgradeWoodProducerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradeWoodProducerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradeWoodProducerButton->hover_rect = { 0, 1966, 65, 82 };
 	upgradeWoodProducerButton->click_rect = { 65, 1966, 65, 82 };
-	upgradePaintExtractorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	upgradePaintExtractorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 567 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradePaintExtractorButton->hover_rect = { 0, 1966, 65, 82 };
 	upgradePaintExtractorButton->click_rect = { 65, 1966, 65, 82 };
 
@@ -324,7 +314,7 @@ bool GameScene::Start()
 	miniMapFULL->hover_rect = { 87, 40, 1170,588 };
 
 
-	//Units
+	//Buildings
 
 	upgradePainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, false, { 130, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradePainterButton->hover_rect = { 390, 1966, 65, 82 };
@@ -332,22 +322,21 @@ bool GameScene::Start()
 	buyPainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 260, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyPainterButton->hover_rect = { 520, 1966, 65, 82 };
 	buyPainterButton->click_rect = { 780, 1966, 65, 82 };
-	buyExplorerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 1105, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyExplorerButton->hover_rect = { 1105, 1885, 65, 82 };
-	buyExplorerButton->click_rect = { 1105, 1804, 65, 82 };
+	//buyExplorerButton
+	//buyExplorerButton
+	//buyExplorerButton
 	upgradeWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, false, { 195, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradeWarriorButton->hover_rect = { 455, 1966, 65, 82 };
 	upgradeWarriorButton->click_rect = { 715, 1966, 65, 82 };
 	buyWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyWarriorButton->hover_rect = { 585, 1966, 65, 82 };
 	buyWarriorButton->click_rect = { 845, 1966, 65, 82 };
-	buyRangerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 1170, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyRangerButton->hover_rect = { 1170, 1885, 65, 82 };
-	buyRangerButton->click_rect = { 1170, 1804, 65, 82 };
-	buyKnightButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 1235, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
-	buyKnightButton->hover_rect = { 1235, 1885, 65, 82 };
-	buyKnightButton->click_rect = { 1235, 1804, 65, 82 };
-
+	//buyKnightButton
+	//buyKnightButton
+	//buyKnightButton
+	//buyRangerButton
+	//buyRangerButton
+	//buyRangerButton
 	
 	//Animation
 	//PaintRollerAnimation = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 400, -200 }, { 0 , 0 }, false,false, { 1493, 1292, 552, 753 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
@@ -375,7 +364,7 @@ bool GameScene::Start()
 	}
 
 	if (App->audio->PlayingIngameAudio != true) {
-		App->audio->PlayMusic("audio/music/music_scene_inGame.ogg");
+		App->audio->PlayMusic("audio/music/music_sadpiano.ogg");
 		App->audio->PlayingIngameAudio = true;
 	}
 
@@ -645,10 +634,10 @@ bool GameScene::Update(float dt)
 
 	//PriceTimer
 
-	/*if (App->player->gameTimer.ReadSec() - priceTimer == 2)
-	{
-		priceLabel->enabled = false;
-	}*/
+	//if (App->player->gameTimer.ReadSec() - priceTimer == 2)
+	//{
+	//	priceLabel->enabled = false;
+	//}
 
 
 
@@ -886,23 +875,17 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		buyPaintExtractorButton->enabled = !buyPaintExtractorButton->enabled;
 		buyBarrackButton->enabled = !buyBarrackButton->enabled;
 		buyHouseButton->enabled = !buyHouseButton->enabled;
-		buyMetalGathererButton->enabled = !buyMetalGathererButton->enabled;
-		buyTitaniumExtractorButton->enabled = !buyTitaniumExtractorButton->enabled;
-		buyLaboratoryButton->enabled = !buyLaboratoryButton->enabled;
-		buyTurretButton->enabled = !buyTurretButton->enabled;
-		//upgradePaintExtractorButton->enabled = !upgradePaintExtractorButton->enabled;
-		//upgradeWoodProducerButton->enabled = !upgradeWoodProducerButton->enabled;
 
-		/*if (!App->entities->woodProducersUpgraded && !upgradeWoodProducerButton->enabled)
+		if (!App->entities->woodProducersUpgraded && !upgradeWoodProducerButton->enabled)
 			upgradeWoodProducerButton->enabled = true;
 		else if(!App->entities->woodProducersUpgraded && upgradeWoodProducerButton->enabled)
-			upgradeWoodProducerButton->enabled = false;*/
+			upgradeWoodProducerButton->enabled = false;
 
 
-		/*if (!App->entities->paintExtractorUpgraded && !upgradePaintExtractorButton->enabled)
+		if (!App->entities->paintExtractorUpgraded && !upgradePaintExtractorButton->enabled)
 			upgradePaintExtractorButton->enabled = true;
 		else if (!App->entities->paintExtractorUpgraded && upgradePaintExtractorButton->enabled)
-			upgradePaintExtractorButton->enabled = false;*/
+			upgradePaintExtractorButton->enabled = false;
 
 	}
 
@@ -919,7 +902,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		priceLabel->text = "-500";
 		App->input->GetMousePosition(priceLabel->map_position.x, priceLabel->map_position.y);
 
-		//  priceTimer = App->player->gameTimer.ReadSec();
+		//priceTimer = App->player->gameTimer.ReadSec();
 
 	}
 
@@ -1459,23 +1442,21 @@ void GameScene::Generate_Entities()
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80,  4 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 10, 90 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80, 75 }, App->entities, nullptr, 0, true);
-
-		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 2, 2 }, App->entities, nullptr, 0, true);
-		App->entities->AddEntity(ENTITY_TYPE_EXPLORER, { 20, 20 }, App->entities, nullptr, 0, true);
 	}
 	else if (App->scenes->Map_Snow_Active == true) {
 
 
-		
-
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 42, 42 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 45,  40 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 13,  5 }, App->entities, nullptr, 0, true);
 
 	}
 	else if (App->scenes->Map_Volcano_Active == true) {
 
 
-		
-		
-		
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 42, 42 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 45,  40 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 13,  5 }, App->entities, nullptr, 0, true);
 	}
 }
 
@@ -1594,279 +1575,11 @@ void GameScene::Generate_Tiles()
 	}
 	else if (App->scenes->Map_Snow_Active == true) {
 
-	//LAKE 1
-
-	   App->pathfinding->ChangeToPaint({ 4, 50 });
-	   App->pathfinding->ChangeToPaint({ 5, 50 });
-	   App->pathfinding->ChangeToPaint({ 6, 50 });
-	   App->pathfinding->ChangeToPaint({ 7, 50 });
-	   App->pathfinding->ChangeToPaint({ 4, 51 });
-	   App->pathfinding->ChangeToPaint({ 5, 51 });
-	   App->pathfinding->ChangeToPaint({ 6, 51 });
-	   App->pathfinding->ChangeToPaint({ 7, 51 });
-	   App->pathfinding->ChangeToPaint({ 4, 52 });
-	   App->pathfinding->ChangeToPaint({ 5, 52 });
-	   App->pathfinding->ChangeToPaint({ 6, 52 });
-	   App->pathfinding->ChangeToPaint({ 7, 52 });
-	   App->pathfinding->ChangeToPaint({ 4, 53 });
-	   App->pathfinding->ChangeToPaint({ 5, 53 });
-	   App->pathfinding->ChangeToPaint({ 6, 53 });
-	   App->pathfinding->ChangeToPaint({ 7, 53 });
-
-	//LAKE 2
-
-	   App->pathfinding->ChangeToPaint({ 48, 31 });
-	   App->pathfinding->ChangeToPaint({ 49, 31 });
-	   App->pathfinding->ChangeToPaint({ 50, 31 });
-	   App->pathfinding->ChangeToPaint({ 51, 31 });
-	   App->pathfinding->ChangeToPaint({ 48, 32 });
-	   App->pathfinding->ChangeToPaint({ 49, 32 });
-	   App->pathfinding->ChangeToPaint({ 50, 32 });
-	   App->pathfinding->ChangeToPaint({ 51, 32 });
-	   App->pathfinding->ChangeToPaint({ 48, 33 });
-	   App->pathfinding->ChangeToPaint({ 49, 33 });
-	   App->pathfinding->ChangeToPaint({ 50, 33 });
-	   App->pathfinding->ChangeToPaint({ 51, 33 });
-	   App->pathfinding->ChangeToPaint({ 48, 34 });
-	   App->pathfinding->ChangeToPaint({ 49, 34 });
-	   App->pathfinding->ChangeToPaint({ 50, 34 });
-	   App->pathfinding->ChangeToPaint({ 51, 34 });
 
 
-	//LAKE 3
-
-	   App->pathfinding->ChangeToPaint({ 38, 91 });
-	   App->pathfinding->ChangeToPaint({ 49, 91 });
-	   App->pathfinding->ChangeToPaint({ 40, 91 });
-	   App->pathfinding->ChangeToPaint({ 41, 91 });
-	   App->pathfinding->ChangeToPaint({ 38, 92 });
-	   App->pathfinding->ChangeToPaint({ 39, 92 });
-	   App->pathfinding->ChangeToPaint({ 40, 92 });
-	   App->pathfinding->ChangeToPaint({ 41, 92 });
-	   App->pathfinding->ChangeToPaint({ 38, 93 });
-	   App->pathfinding->ChangeToPaint({ 39, 93 });
-	   App->pathfinding->ChangeToPaint({ 40, 93 });
-	   App->pathfinding->ChangeToPaint({ 41, 93 });
-	   App->pathfinding->ChangeToPaint({ 38, 94 });
-	   App->pathfinding->ChangeToPaint({ 39, 94 });
-	   App->pathfinding->ChangeToPaint({ 40, 94 });
-	   App->pathfinding->ChangeToPaint({ 41, 94 });
-
-	//LAKE 4
-
-	   App->pathfinding->ChangeToPaint({ 64, 69 });
-	   App->pathfinding->ChangeToPaint({ 65, 69 });
-	   App->pathfinding->ChangeToPaint({ 66, 69 });
-	   App->pathfinding->ChangeToPaint({ 67, 69 });
-	   App->pathfinding->ChangeToPaint({ 68, 69 });
-	   App->pathfinding->ChangeToPaint({ 69, 69 });
-	   App->pathfinding->ChangeToPaint({ 64, 70 });
-	   App->pathfinding->ChangeToPaint({ 65, 70 });
-	   App->pathfinding->ChangeToPaint({ 66, 70 });
-	   App->pathfinding->ChangeToPaint({ 67, 70 });
-	   App->pathfinding->ChangeToPaint({ 68, 70 });
-	   App->pathfinding->ChangeToPaint({ 69, 70 });
-	   App->pathfinding->ChangeToPaint({ 64, 71 });
-	   App->pathfinding->ChangeToPaint({ 65, 71 });
-	   App->pathfinding->ChangeToPaint({ 66, 71 });
-	   App->pathfinding->ChangeToPaint({ 67, 71 });
-	   App->pathfinding->ChangeToPaint({ 68, 71 });
-	   App->pathfinding->ChangeToPaint({ 69, 71 });
-	   App->pathfinding->ChangeToPaint({ 64, 72 });
-	   App->pathfinding->ChangeToPaint({ 65, 72 });
-	   App->pathfinding->ChangeToPaint({ 66, 72 });
-	   App->pathfinding->ChangeToPaint({ 67, 72 });
-	   App->pathfinding->ChangeToPaint({ 68, 72 });
-	   App->pathfinding->ChangeToPaint({ 69, 72 });
-	  
-	  
-	  
-	  //LAKE 5
-
-
-	  
-	   App->pathfinding->ChangeToPaint({ 89, 41 });
-	   App->pathfinding->ChangeToPaint({ 90, 41 });
-	   App->pathfinding->ChangeToPaint({ 91, 41 });
-	   App->pathfinding->ChangeToPaint({ 92, 41 });
-	   App->pathfinding->ChangeToPaint({ 93, 41 });
-	   App->pathfinding->ChangeToPaint({ 94, 41 });
-	   App->pathfinding->ChangeToPaint({ 89, 42 });
-	   App->pathfinding->ChangeToPaint({ 90, 42 });
-	   App->pathfinding->ChangeToPaint({ 91, 42 });
-	   App->pathfinding->ChangeToPaint({ 92, 42 });
-	   App->pathfinding->ChangeToPaint({ 93, 42 });
-	   App->pathfinding->ChangeToPaint({ 94, 42 });
-	   App->pathfinding->ChangeToPaint({ 89, 43 });
-	   App->pathfinding->ChangeToPaint({ 90, 43 });
-	   App->pathfinding->ChangeToPaint({ 91, 43 });
-	   App->pathfinding->ChangeToPaint({ 92, 43 });
-	   App->pathfinding->ChangeToPaint({ 93, 43 });
-	   App->pathfinding->ChangeToPaint({ 94, 43 });
-	   App->pathfinding->ChangeToPaint({ 89, 44 });
-	   App->pathfinding->ChangeToPaint({ 90, 44 });
-	   App->pathfinding->ChangeToPaint({ 91, 44 });
-	   App->pathfinding->ChangeToPaint({ 92, 44 });
-	   App->pathfinding->ChangeToPaint({ 93, 44 });
-	   App->pathfinding->ChangeToPaint({ 94, 44 });
 
 	}
 	else if (App->scenes->Map_Volcano_Active == true) {
-
-	//LAKE 1
-
-	App->pathfinding->ChangeToPaint({ 1, 1 });
-	App->pathfinding->ChangeToPaint({ 2, 1 });
-	App->pathfinding->ChangeToPaint({ 3, 1 });
-	App->pathfinding->ChangeToPaint({ 4, 1 });
-	App->pathfinding->ChangeToPaint({ 1, 2 });
-	App->pathfinding->ChangeToPaint({ 2, 2 });
-	App->pathfinding->ChangeToPaint({ 3, 2 });
-	App->pathfinding->ChangeToPaint({ 4, 2 });
-	App->pathfinding->ChangeToPaint({ 1, 3 });
-	App->pathfinding->ChangeToPaint({ 2, 3 });
-	App->pathfinding->ChangeToPaint({ 3, 3 });
-	App->pathfinding->ChangeToPaint({ 4, 3 });
-	App->pathfinding->ChangeToPaint({ 1, 4 });
-	App->pathfinding->ChangeToPaint({ 2, 4 });
-	App->pathfinding->ChangeToPaint({ 3, 4 });
-	App->pathfinding->ChangeToPaint({ 4, 4 });
-
-
-	//LAKE 2
-
-	App->pathfinding->ChangeToPaint({ 4, 70 });
-	App->pathfinding->ChangeToPaint({ 5, 70 });
-	App->pathfinding->ChangeToPaint({ 6, 70 });
-	App->pathfinding->ChangeToPaint({ 7, 70 });
-	App->pathfinding->ChangeToPaint({ 8, 70 });
-	App->pathfinding->ChangeToPaint({ 9, 70 });
-	App->pathfinding->ChangeToPaint({ 4, 71 });
-	App->pathfinding->ChangeToPaint({ 5, 71 });
-	App->pathfinding->ChangeToPaint({ 6, 71 });
-	App->pathfinding->ChangeToPaint({ 7, 71 });
-	App->pathfinding->ChangeToPaint({ 8, 71 });
-	App->pathfinding->ChangeToPaint({ 9, 71 });
-	App->pathfinding->ChangeToPaint({ 4, 72 });
-	App->pathfinding->ChangeToPaint({ 5, 72 });
-	App->pathfinding->ChangeToPaint({ 6, 72 });
-	App->pathfinding->ChangeToPaint({ 7, 72 });
-	App->pathfinding->ChangeToPaint({ 8, 72 });
-	App->pathfinding->ChangeToPaint({ 9, 72 });
-	App->pathfinding->ChangeToPaint({ 4, 73 });
-	App->pathfinding->ChangeToPaint({ 5, 73 });
-	App->pathfinding->ChangeToPaint({ 6, 73 });
-	App->pathfinding->ChangeToPaint({ 7, 73 });
-	App->pathfinding->ChangeToPaint({ 8, 73 });
-	App->pathfinding->ChangeToPaint({ 9, 73 });
-
-
-	//LAKE 3
-
-
-
-	App->pathfinding->ChangeToPaint({ 47, 30 });
-	App->pathfinding->ChangeToPaint({ 48, 30 });
-	App->pathfinding->ChangeToPaint({ 49, 30 });
-	App->pathfinding->ChangeToPaint({ 50, 30 });
-	App->pathfinding->ChangeToPaint({ 51, 30 });
-	App->pathfinding->ChangeToPaint({ 52, 30 });
-	App->pathfinding->ChangeToPaint({ 47, 33 });
-	App->pathfinding->ChangeToPaint({ 48, 33 });
-	App->pathfinding->ChangeToPaint({ 49, 33 });
-	App->pathfinding->ChangeToPaint({ 50, 33 });
-	App->pathfinding->ChangeToPaint({ 51, 33 });
-	App->pathfinding->ChangeToPaint({ 52, 33 });
-	App->pathfinding->ChangeToPaint({ 47, 32 });
-	App->pathfinding->ChangeToPaint({ 48, 32 });
-	App->pathfinding->ChangeToPaint({ 49, 32 });
-	App->pathfinding->ChangeToPaint({ 50, 32 });
-	App->pathfinding->ChangeToPaint({ 51, 32 });
-	App->pathfinding->ChangeToPaint({ 52, 32 });
-	App->pathfinding->ChangeToPaint({ 47, 31 });
-	App->pathfinding->ChangeToPaint({ 48, 31 });
-	App->pathfinding->ChangeToPaint({ 49, 31 });
-	App->pathfinding->ChangeToPaint({ 50, 31 });
-	App->pathfinding->ChangeToPaint({ 51, 31 });
-	App->pathfinding->ChangeToPaint({ 52, 31 });
-
-
-      //LAKE 4
-
-
-
-
-	App->pathfinding->ChangeToPaint({ 71,3 });
-	App->pathfinding->ChangeToPaint({ 72, 3 });
-	App->pathfinding->ChangeToPaint({ 73, 3 });
-	App->pathfinding->ChangeToPaint({ 74, 3 });
-	App->pathfinding->ChangeToPaint({ 71,4 });
-	App->pathfinding->ChangeToPaint({ 72, 4 });
-	App->pathfinding->ChangeToPaint({ 73, 4 });
-	App->pathfinding->ChangeToPaint({ 74, 4 });
-	App->pathfinding->ChangeToPaint({ 71,5 });
-	App->pathfinding->ChangeToPaint({ 72, 5 });
-	App->pathfinding->ChangeToPaint({ 73, 5 });
-	App->pathfinding->ChangeToPaint({ 74, 5 });
-	App->pathfinding->ChangeToPaint({ 71,6 });
-	App->pathfinding->ChangeToPaint({ 72, 6 });
-	App->pathfinding->ChangeToPaint({ 73, 6 });
-	App->pathfinding->ChangeToPaint({ 74, 6 });
-
-
-
-
-	//LAKE 5
-	
-	App->pathfinding->ChangeToPaint({ 91,81 });
-	App->pathfinding->ChangeToPaint({ 92, 81 });
-	App->pathfinding->ChangeToPaint({ 93, 81 });
-	App->pathfinding->ChangeToPaint({ 94, 81 });
-	App->pathfinding->ChangeToPaint({ 91,82 });
-	App->pathfinding->ChangeToPaint({ 92, 82 });
-	App->pathfinding->ChangeToPaint({ 93, 82 });
-	App->pathfinding->ChangeToPaint({ 94, 82 });
-	App->pathfinding->ChangeToPaint({ 91,83 });
-	App->pathfinding->ChangeToPaint({ 92, 83 });
-	App->pathfinding->ChangeToPaint({ 93, 83 });
-	App->pathfinding->ChangeToPaint({ 94, 83 });
-	App->pathfinding->ChangeToPaint({ 91,84 });
-	App->pathfinding->ChangeToPaint({ 92, 84 });
-	App->pathfinding->ChangeToPaint({ 93, 84 });
-	App->pathfinding->ChangeToPaint({ 94, 84 });
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

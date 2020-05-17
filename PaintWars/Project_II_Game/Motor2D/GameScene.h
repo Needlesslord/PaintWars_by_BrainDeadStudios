@@ -177,10 +177,6 @@ public:
 	j1UIElement* buyWoodProducerButton = nullptr;
 	j1UIElement* buyBarrackButton = nullptr;
 	j1UIElement* buyHouseButton = nullptr;
-	j1UIElement* buyMetalGathererButton = nullptr;
-	j1UIElement* buyTitaniumExtractorButton = nullptr;
-	j1UIElement* buyLaboratoryButton = nullptr;
-	j1UIElement* buyTurretButton = nullptr;
 	j1UIElement* upgradePaintExtractorButton = nullptr;
 	j1UIElement* upgradeWoodProducerButton = nullptr;
 
@@ -197,7 +193,7 @@ public:
 	j1UIElement* shopHoverUpgradeWoodProducer = nullptr;*/
 
 	j1UIElement* priceLabel = nullptr;
-	// int priceTimer = 0;
+	//int priceTimer = 0;
 
 
 	// Buildings
