@@ -29,7 +29,7 @@ bool j1FogOfWar::Awake() {
 }
 
 bool j1FogOfWar::Start() {
-	fogtexture = App->tex->Load("maps/fow_texture.png");
+	fogtexture = App->tex->Load("maps/fow_texture2.png");
 
 	return true;
 }
@@ -149,16 +149,16 @@ int8_t j1FogOfWar::GetVisibilityTileAt(const iPoint& pos) const {
 
 SDL_Rect& j1FogOfWar::GetFOWMetaRect(FOW_TileState state) {
 	SDL_Rect ret;
-	ret.w = 64;
-	ret.h = 64;
+	ret.w = 150;
+	ret.h = 75;
 	//uint real_sprite_pos = uint(state) - (uint(FOW_TileState::UNVISITED)); // tile inside the FOWmeta spritesheet
 	uint spritex = 0;
 	if (state == FOW_TileState::FOGGED)
-		spritex = 64;
+		spritex = 150;
 	else if (state == FOW_TileState::UNVISITED)
-		spritex = 128;
+		spritex = 300;
 	else
-		spritex = 128;
+		spritex = 300;
 	// 64 is the width and height between different tiles in the spritesheet, thats done this way because it's the
 	// total rect we use to print tiles from the tileset. The Map module should provide you that data but for this
 	//Implementation you must not have calls to 

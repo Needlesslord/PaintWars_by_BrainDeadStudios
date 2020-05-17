@@ -97,11 +97,11 @@ void j1Map::Draw()
 					}
 					//Blit black if the tile is not visited. 
 					//Alternatively we can leave this blank as the background is black, but if there was any kind of background we may surely don't blit it
-					if (state == FOW_TileState::UNVISITED)
+					/*if (state == FOW_TileState::UNVISITED)
 					{
 						r = App->fow->GetFOWMetaRect(state);
 						App->render->RenderQueue(0, App->fow->fogtexture, pos.x, pos.y, r);
-					}
+					}*/
 
 				}
 			}

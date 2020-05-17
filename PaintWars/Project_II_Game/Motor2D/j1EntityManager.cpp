@@ -589,7 +589,7 @@ bool j1EntityManager::Update(float dt) {
 	list<Entity*>::iterator entitiesFoW = activeEntities.begin();
 	while (entitiesFoW != activeEntities.end()) {
 	
-		(*entitiesFoW)->visible = (*entitiesFoW)->fow_entity->is_visible;
+		(*entitiesFoW)->fow_entity->is_visible = (*entitiesFoW)->visible;
 
 		if ((*entitiesFoW)->isEntityFromPlayer) {
 			(*entitiesFoW)->fow_entity->SetPos((*entitiesFoW)->currentTile);
