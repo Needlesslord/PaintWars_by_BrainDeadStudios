@@ -148,8 +148,6 @@ bool j1App::Start()
 bool j1App::Update()
 {
 	
-	
-
 	bool ret = true;
 	PrepareUpdate();
 
@@ -164,8 +162,6 @@ bool j1App::Update()
 		//LOG("ENTERING UPDATE");
 		ret = DoUpdate();
 	}
-		
-
 	if (ret == true) {
 		//LOG("ENTERING POSTUPDATE");
 		ret = PostUpdate();
@@ -592,13 +588,15 @@ void j1App::Debug_Actions()
 		if (App->input->GetKey(SDL_SCANCODE_KP_2) == KEY_DOWN) {  //warrior
 			App->entities->AddEntity(ENTITY_TYPE_WARRIOR, mapCoordinates, App->entities, nullptr, 0, true);
 		}
-		//if (App->input->GetKey(SDL_SCANCODE_KP_3) == KEY_DOWN) {  //ranged
-		//}
-		if (App->input->GetKey(SDL_SCANCODE_KP_4) == KEY_DOWN) {  //tank
-			//App->entities->AddEntity(ENTITY_TYPE_KNIGHT, mapCoordinates, App->entities, nullptr, 0, true);
+		if (App->input->GetKey(SDL_SCANCODE_KP_3) == KEY_DOWN) {  //ranged
+			App->entities->AddEntity(ENTITY_TYPE_RANGER, mapCoordinates, App->entities, nullptr, 0, true);
 		}
-		//if (App->input->GetKey(SDL_SCANCODE_KP_5) == KEY_DOWN) {  //explorer
-		//}
+		if (App->input->GetKey(SDL_SCANCODE_KP_4) == KEY_DOWN) {  //tank
+			App->entities->AddEntity(ENTITY_TYPE_KNIGHT, mapCoordinates, App->entities, nullptr, 0, true);
+		}
+		if (App->input->GetKey(SDL_SCANCODE_KP_5) == KEY_DOWN) {  //explorer
+			App->entities->AddEntity(ENTITY_TYPE_EXPLORER, mapCoordinates, App->entities, nullptr, 0, true);
+		}
 		if (App->input->GetKey(SDL_SCANCODE_KP_0) == KEY_DOWN) {  //kill selected unit (one by one)
 			if (!(App->entities->unitsSelected).empty()) {
 
@@ -625,6 +623,9 @@ void j1App::Debug_Actions()
 		}
 		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_6) == KEY_DOWN) {  //titanium extractor
 			App->entities->AddEntity(ENTITY_TYPE_TITANIUM_EXTRACTOR, mapCoordinates, App->entities, nullptr, 0, true);
+		}
+		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_7) == KEY_DOWN) {  //turret
+			App->entities->AddEntity(ENTITY_TYPE_TURRET, mapCoordinates, App->entities, nullptr, 0, true);
 		}
 		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_0) == KEY_DOWN) {  //kill selected building  (one by one)
 			if (!(App->entities->buildingsSelected).empty()) {
