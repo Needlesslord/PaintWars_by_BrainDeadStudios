@@ -64,7 +64,7 @@ void j1Map::Draw()
 						App->render->RenderQueue(0, tileset->texture, pos.x, pos.y, r);
 					}
 
-					App->render->RenderQueue(0, tileset->texture, pos.x, pos.y, r);
+					//App->render->RenderQueue(0, tileset->texture, pos.x, pos.y, r);
 				}
 			}
 		}
