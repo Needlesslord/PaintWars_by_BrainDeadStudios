@@ -1993,7 +1993,7 @@ void GameScene::CreateDialogText()
 
 	Dialog_Text1_Line_1 = "GREETINGS KING OF PAINTLAND";
 	Dialog_Text1_Line_2 = "I WELCOME YOU TO YOUR KINGDOM";
-	Dialog_Text1_Line_3 = "I AM HERE TO GUIDE YOU";
+	Dialog_Text1_Line_3 = "I AM HERE TO GUIDE YOU! PRESS H";
 
 
 
