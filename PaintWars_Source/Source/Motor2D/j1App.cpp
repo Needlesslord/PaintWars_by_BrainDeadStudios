@@ -58,10 +58,10 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(entities);
 	AddModule(pathfinding);
 	AddModule(player);
+	AddModule(pmanager);
 	AddModule(gui);
 	AddModule(fonts);
 	AddModule(player);
-	AddModule(pmanager);
 	AddModule(transition_manager);
 	AddModule(quest_manager);
 

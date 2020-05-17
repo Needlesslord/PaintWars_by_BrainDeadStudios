@@ -74,7 +74,7 @@ void Particle::switchParticleState()
 bool Particle::Draw()
 {
 	if (pTexture != nullptr)
-		App->render->RenderQueue(10, pTexture, pLocation.x, pLocation.y, { 0, 0, pRect.w, pRect.h }, false, 0.0f, 0, 0, 0, remainingLifetime);
+		App->render->RenderQueue(10, pTexture, pLocation.x, pLocation.y, { 0, 0, pRect.w, pRect.h });
 
 	else
 		App->render->RenderQueue(10, nullptr, pLocation.x, pLocation.y, pRect, false, 0.0f, 255, 130, 0, remainingLifetime);
