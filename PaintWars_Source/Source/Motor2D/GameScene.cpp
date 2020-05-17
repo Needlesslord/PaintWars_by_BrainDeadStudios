@@ -128,6 +128,9 @@ bool GameScene::Start()
 
 	
 	BackgroundForest = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_FOREST);
+	BackgroundSnow = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_SNOW);
+	BackgroundVolcano = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_VOLCANO);
+
 	/*if (App->scenes->Map_Forest_Active)
 	{
 		BackgroundForest = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, TEXTURE::BACKGROUND_FOREST);
@@ -1452,20 +1455,20 @@ void GameScene::Generate_Entities()
 {
 	if (App->scenes->Map_Forest_Active==true) {
 
+		//town hall
 		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 42, 42 }, App->entities, nullptr, 0, true);
+		//painter
 		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 45,  40 }, App->entities, nullptr, 0, true);
+		//spawners
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 40, 20 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 13,  5 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80,  4 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 10, 90 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80, 75 }, App->entities, nullptr, 0, true);
-
+		//trying
 		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 2, 2 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_EXPLORER, { 20, 20 }, App->entities, nullptr, 0, true);
-	
-	
 		//enemies
-
 		////at minute 5 generate 3 slimes, 1 explosive blob
 		//if (App->player->gameTimer.ReadSec() == 300) {
 		//	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 52, 52 }, App->entities, nullptr, 0, true);
@@ -1494,22 +1497,40 @@ void GameScene::Generate_Entities()
 		//	App->entities->AddEntity(ENTITY_TYPE_RIDER, { 37, 57 }, App->entities, nullptr, 0, true);
 		//	App->entities->AddEntity(ENTITY_TYPE_CHROMA_KING, { 60, 60 }, App->entities, nullptr, 0, true);
 		//}
-
 		//when 1 spawner destroyed generate 2 slimes, 2 explosive blobs, 1 rider
 	
 	
 	}
 	else if (App->scenes->Map_Snow_Active == true) {
 
-
-		
+		//town hall
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 97, 50 }, App->entities, nullptr, 0, true);
+		//painter
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 100,  48 }, App->entities, nullptr, 0, true);
+		//spawners
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 94, 94 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 62, 11 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, {  9, 90 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 21, 13 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 30, 70 }, App->entities, nullptr, 0, true);
+		//enemies
 
 
 	}
 	else if (App->scenes->Map_Volcano_Active == true) {
 
+		//town hall
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 7, 12 }, App->entities, nullptr, 0, true);
+		//painter
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 9, 10 }, App->entities, nullptr, 0, true);
+		//spawners
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, {  7, 47 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 23, 14 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 19, 96 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 95, 95 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 68, 24 }, App->entities, nullptr, 0, true);
+		//enemies
 
-		
 		
 		
 	}

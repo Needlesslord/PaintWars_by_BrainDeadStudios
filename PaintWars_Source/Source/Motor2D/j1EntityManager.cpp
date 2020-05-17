@@ -934,11 +934,7 @@ bool j1EntityManager::Update(float dt) {
 		}
 
 
-		//if (App->fog->GetVisibility(tile.x, tile.y) == FogState::VISIBLE || App->godmode)
-		//{
-		//	App->render->AddBlitEvent(1, texture, GetRenderPositionX(), GetRenderPositionY(), rect);
-		//	App->minimap->Draw_entities(this);
-		//}
+
 
 
 	return ret;
