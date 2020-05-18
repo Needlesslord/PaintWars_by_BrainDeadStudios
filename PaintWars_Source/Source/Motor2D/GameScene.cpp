@@ -1584,9 +1584,9 @@ void GameScene::Generate_Entities()
 
 
 		//town hall
-		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 96, 49 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 37, 11 }, App->entities, nullptr, 0, true);
 		//painter
-		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 99,  47 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 40,  8 }, App->entities, nullptr, 0, true);
 		//spawners
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 94, 94 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 62, 11 }, App->entities, nullptr, 0, true);

@@ -301,10 +301,10 @@ void j1Player::Camera_Control(float dt)
 					MinimapCameraBufferY = 0;
 				}
 				if (App->scenes->Map_Snow_Active) {
-					App->render->camera.x = -1200;
-					App->render->camera.y = -2350;
-					MinimapCameraBufferX = 0;
-					MinimapCameraBufferY = 0;
+					App->render->camera.x = -329;
+					App->render->camera.y = -608;
+					MinimapCameraBufferX = -24;
+					MinimapCameraBufferY = 15;
 				}
 				if (App->scenes->Map_Volcano_Active) {
 					App->render->camera.x = 700;
