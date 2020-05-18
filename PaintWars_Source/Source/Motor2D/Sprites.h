@@ -818,83 +818,83 @@ void SlimeSprites()
 }
 
 
-//EXPLOSIVE BLOP
-Animation explosiveBlopIdle;
+//EXPLOSIVE BLOb
+Animation explosiveBlobIdle;
 		  
-Animation explosiveBlopMovingWest;
-Animation explosiveBlopMovingNorthWest;
-Animation explosiveBlopMovingNorth;
-Animation explosiveBlopMovingNorthEast;
-Animation explosiveBlopMovingEast;
-Animation explosiveBlopMovingSouthEast;
-Animation explosiveBlopMovingSouth;
-Animation explosiveBlopMovingSouthWest;
+Animation explosiveBlobMovingWest;
+Animation explosiveBlobMovingNorthWest;
+Animation explosiveBlobMovingNorth;
+Animation explosiveBlobMovingNorthEast;
+Animation explosiveBlobMovingEast;
+Animation explosiveBlobMovingSouthEast;
+Animation explosiveBlobMovingSouth;
+Animation explosiveBlobMovingSouthWest;
 
-void ExplosiveBlopSprites()
+void ExplosiveBlobSprites()
 {
 	//Idle 
-	explosiveBlopIdle.PushBack({ 96, 303, 96, 101 });
-	explosiveBlopIdle.PushBack({ 192, 303, 96, 101 });
-	explosiveBlopIdle.speed = 50.0f;
+	explosiveBlobIdle.PushBack({ 96, 303, 96, 101 });
+	explosiveBlobIdle.PushBack({ 192, 303, 96, 101 });
+	explosiveBlobIdle.speed = 50.0f;
 
 	//MOVING
 
 	//Moving Right
-	explosiveBlopMovingEast.PushBack({ 0, 202, 96, 101 });
-	explosiveBlopMovingEast.PushBack({ 96, 202, 96, 101 });
-	explosiveBlopMovingEast.PushBack({ 192, 202, 96, 101 });
-	explosiveBlopMovingEast.PushBack({ 288, 202, 96, 101 });
-	explosiveBlopMovingEast.speed = 500.0f;		 	 
+	explosiveBlobMovingEast.PushBack({ 0, 202, 96, 101 });
+	explosiveBlobMovingEast.PushBack({ 96, 202, 96, 101 });
+	explosiveBlobMovingEast.PushBack({ 192, 202, 96, 101 });
+	explosiveBlobMovingEast.PushBack({ 288, 202, 96, 101 });
+	explosiveBlobMovingEast.speed = 500.0f;		 	 
 										 	 
 	//Moving Left						 	 
-	explosiveBlopMovingWest.PushBack({ 384, 202, 96, 101 });
-	explosiveBlopMovingWest.PushBack({ 480, 202, 96, 101 });
-	explosiveBlopMovingWest.PushBack({ 576, 202, 96, 101 });
-	explosiveBlopMovingWest.PushBack({ 672, 202, 96, 101 });
-	explosiveBlopMovingWest.speed = 500.0f;
+	explosiveBlobMovingWest.PushBack({ 384, 202, 96, 101 });
+	explosiveBlobMovingWest.PushBack({ 480, 202, 96, 101 });
+	explosiveBlobMovingWest.PushBack({ 576, 202, 96, 101 });
+	explosiveBlobMovingWest.PushBack({ 672, 202, 96, 101 });
+	explosiveBlobMovingWest.speed = 500.0f;
 
 	//Moving RightBack
-	explosiveBlopMovingNorthEast.PushBack({ 0, 101, 96, 101 });
-	explosiveBlopMovingNorthEast.PushBack({ 96, 101, 96, 101 });
-	explosiveBlopMovingNorthEast.PushBack({ 192, 101, 96, 101 });
-	explosiveBlopMovingNorthEast.PushBack({ 288, 101, 96, 101 });
-	explosiveBlopMovingNorthEast.speed = 500.0f;	  
+	explosiveBlobMovingNorthEast.PushBack({ 0, 101, 96, 101 });
+	explosiveBlobMovingNorthEast.PushBack({ 96, 101, 96, 101 });
+	explosiveBlobMovingNorthEast.PushBack({ 192, 101, 96, 101 });
+	explosiveBlobMovingNorthEast.PushBack({ 288, 101, 96, 101 });
+	explosiveBlobMovingNorthEast.speed = 500.0f;	  
 										  
 	//Moving LeftBack					  	  
-	explosiveBlopMovingNorthWest.PushBack({ 384, 101, 96, 101 });
-	explosiveBlopMovingNorthWest.PushBack({ 480, 101, 96, 101 });
-	explosiveBlopMovingNorthWest.PushBack({ 576, 101, 96, 101 });
-	explosiveBlopMovingNorthWest.PushBack({ 672, 101, 96, 101 });
-	explosiveBlopMovingNorthWest.speed = 500.0f;
+	explosiveBlobMovingNorthWest.PushBack({ 384, 101, 96, 101 });
+	explosiveBlobMovingNorthWest.PushBack({ 480, 101, 96, 101 });
+	explosiveBlobMovingNorthWest.PushBack({ 576, 101, 96, 101 });
+	explosiveBlobMovingNorthWest.PushBack({ 672, 101, 96, 101 });
+	explosiveBlobMovingNorthWest.speed = 500.0f;
 
 
 	//Moving RightFront
-	explosiveBlopMovingSouthEast.PushBack({ 0, 0, 96, 101 });
-	explosiveBlopMovingSouthEast.PushBack({ 96, 0, 96, 101 });
-	explosiveBlopMovingSouthEast.PushBack({ 192, 0, 96, 101 });
-	explosiveBlopMovingSouthEast.PushBack({ 288, 0, 96, 101 });
-	explosiveBlopMovingSouthEast.speed = 500.0f;  	  
+	explosiveBlobMovingSouthEast.PushBack({ 0, 0, 96, 101 });
+	explosiveBlobMovingSouthEast.PushBack({ 96, 0, 96, 101 });
+	explosiveBlobMovingSouthEast.PushBack({ 192, 0, 96, 101 });
+	explosiveBlobMovingSouthEast.PushBack({ 288, 0, 96, 101 });
+	explosiveBlobMovingSouthEast.speed = 500.0f;  	  
 										  	  
 	//Moving LeftFront					  	  
-	explosiveBlopMovingSouthWest.PushBack({ 384, 0, 96, 101 });
-	explosiveBlopMovingSouthWest.PushBack({ 480, 0, 96, 101 });
-	explosiveBlopMovingSouthWest.PushBack({ 576, 0, 96, 101 });
-	explosiveBlopMovingSouthWest.PushBack({ 672, 0, 96, 101 });
-	explosiveBlopMovingSouthWest.speed = 500.0f;
+	explosiveBlobMovingSouthWest.PushBack({ 384, 0, 96, 101 });
+	explosiveBlobMovingSouthWest.PushBack({ 480, 0, 96, 101 });
+	explosiveBlobMovingSouthWest.PushBack({ 576, 0, 96, 101 });
+	explosiveBlobMovingSouthWest.PushBack({ 672, 0, 96, 101 });
+	explosiveBlobMovingSouthWest.speed = 500.0f;
 
 	//Moving Back
-	explosiveBlopMovingNorth.PushBack({ 0, 303, 96, 101 });
-	explosiveBlopMovingNorth.PushBack({ 68, 303, 96, 101 });
-	explosiveBlopMovingNorth.PushBack({ 136, 303, 96, 101 });
-	explosiveBlopMovingNorth.PushBack({ 204, 303, 96, 101 });
-	explosiveBlopMovingNorth.speed = 500.0f;  	  
+	explosiveBlobMovingNorth.PushBack({ 0, 303, 96, 101 });
+	explosiveBlobMovingNorth.PushBack({ 68, 303, 96, 101 });
+	explosiveBlobMovingNorth.PushBack({ 136, 303, 96, 101 });
+	explosiveBlobMovingNorth.PushBack({ 204, 303, 96, 101 });
+	explosiveBlobMovingNorth.speed = 500.0f;  	  
 									  	  
 	//Moving Front					  	  
-	explosiveBlopMovingSouth.PushBack({ 384, 303, 96, 101 });
-	explosiveBlopMovingSouth.PushBack({ 480, 303, 96, 101 });
-	explosiveBlopMovingSouth.PushBack({ 576, 303, 96, 101 });
-	explosiveBlopMovingSouth.PushBack({ 672, 303, 96, 101 });
-	explosiveBlopMovingSouth.speed = 500.0f;
+	explosiveBlobMovingSouth.PushBack({ 384, 303, 96, 101 });
+	explosiveBlobMovingSouth.PushBack({ 480, 303, 96, 101 });
+	explosiveBlobMovingSouth.PushBack({ 576, 303, 96, 101 });
+	explosiveBlobMovingSouth.PushBack({ 672, 303, 96, 101 });
+	explosiveBlobMovingSouth.speed = 500.0f;
 }
 
 
