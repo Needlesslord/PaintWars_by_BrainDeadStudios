@@ -309,8 +309,8 @@ void j1Player::Camera_Control(float dt)
 				if (App->scenes->Map_Volcano_Active) {
 					App->render->camera.x = 700;
 					App->render->camera.y = 10;
-					MinimapCameraBufferX = 0;
-					MinimapCameraBufferY = 0;
+					MinimapCameraBufferX = 4.39;
+					MinimapCameraBufferY = 33;
 				}
 			}
 		}

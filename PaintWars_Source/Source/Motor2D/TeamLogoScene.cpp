@@ -141,10 +141,10 @@ void TeamLogoScene::ExecuteTransition()
 {
 	if (!App->transition_manager->is_transitioning)
 	{
-		if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN)
+		/*if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN)
 		{
 			App->transition_manager->CreateCut(SCENES::GAME_SCENE);
-		}
+		}*/
 
 		if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
 		{
