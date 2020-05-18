@@ -272,6 +272,9 @@ bool j1EntityManager::Update(float dt) {
 			if (hoveringEntityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
 				App->render->RenderQueue(1, paintExtractorTexture, mapWorldCoordinates.x - 125 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 250 + App->map->data.tile_height / 2, { 0,0,250,250 });
 			}
+			else if (hoveringEntityType == ENTITY_TYPE_TITANIUM_EXTRACTOR) {
+				App->render->RenderQueue(1, titaniumExtractorTexture, mapWorldCoordinates.x - 125 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 250 + App->map->data.tile_height / 2, { 0,0,250,250 });
+			}
 			else if (hoveringEntityType == ENTITY_TYPE_WOOD_PRODUCER) {
 				App->render->RenderQueue(1, woodProducerTexture, mapWorldCoordinates.x - 75 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 200 + App->map->data.tile_height / 2, { 0,0,150,200 });
 			}
@@ -303,6 +306,17 @@ bool j1EntityManager::Update(float dt) {
 							hoveringEntityType == ENTITY_TYPE_NONE;
 							ExtractorQuestDone = true;
 						}
+					}
+				}
+
+				else if (hoveringEntityType == ENTITY_TYPE_TITANIUM_EXTRACTOR) {
+				
+					if (App->player->metalScrapCount.count >= 50) {
+
+						App->player->metalScrapCount.count -= 50;
+						isSelectingPlacement = false;
+						AddEntity(ENTITY_TYPE_TITANIUM_EXTRACTOR, mapCoordinates, App->entities, nullptr, 0);
+						hoveringEntityType == ENTITY_TYPE_NONE;
 					}
 				}
 
@@ -416,7 +430,7 @@ bool j1EntityManager::Update(float dt) {
 			if ((*paintersToExtractWood)->entityType == ENTITY_TYPE_PAINTER && (App->pathfinding->IsWood((*paintersToExtractWood)->currentTile) && (*paintersToExtractWood)->currentTile == (*paintersToExtractWood)->destination)) {
 
 				(*paintersToExtractWood)->ExtractWood(dt);
-				(*entitiesToExtractPaint)->currentAnimation = &painterRecollection;
+				(*paintersToExtractWood)->currentAnimation = &painterRecollection;
 			}
 			paintersToExtractWood++;
 		}
@@ -426,37 +440,28 @@ bool j1EntityManager::Update(float dt) {
 		while (paintersToExtractMetal != activeUnits.end()) {
 
 			// We try to extract and it will return if it can't
-			if ((*paintersToExtractMetal)->entityType == ENTITY_TYPE_PAINTER) {
+			if ((*paintersToExtractMetal)->entityType == ENTITY_TYPE_PAINTER && (App->pathfinding->IsMetalScrap((*paintersToExtractMetal)->currentTile) && (*paintersToExtractMetal)->currentTile == (*paintersToExtractMetal)->destination)) {
 
 				(*paintersToExtractMetal)->ExtractMetalScrap(dt);
 			}
 			paintersToExtractMetal++;
 		}
 
-		// Extract Titanium (ONLY TITANIUM GATHERER CAN)
-		list<Entity*>::iterator buildingstoExtractTitanium = activeUnits.begin();
-		while (buildingstoExtractTitanium != activeUnits.end()) {
+		// Extract titanium 
+		list<Entity*>::iterator extractTitanium = activeBuildings.begin();
+		while (extractTitanium != activeBuildings.end()) {
 
 			// We try to extract and it will return if it can't
-			if ((*buildingstoExtractTitanium)->entityType == ENTITY_TYPE_PAINTER) {
+			if ((*extractTitanium)->entityType == ENTITY_TYPE_TITANIUM_EXTRACTOR) {
 
-				(*buildingstoExtractTitanium)->ExtractTitanium(dt);
+				(*extractTitanium)->ExtractTitanium(dt);
 			}
-			buildingstoExtractTitanium++;
+			extractTitanium++;
 		}
 
-		// Extract Metal Scrap  (ONLY PAINTERS CAN)
-		list<Entity*>::iterator paintersToExtractMetalScrap = activeUnits.begin();
-		while (paintersToExtractMetalScrap != activeUnits.end()) {
+	
 
-			// We try to extract and it will return if it can't
-			if ((*paintersToExtractMetalScrap)->entityType == ENTITY_TYPE_PAINTER) {
-
-				(*paintersToExtractMetalScrap)->ExtractMetalScrap(dt);
-			}
-			paintersToExtractMetalScrap++;
-		}
-
+	
 		// Attack Mode
 		//list<Entity*>::iterator unitsToFight = activeUnits.begin();
 		//while (unitsToFight != activeUnits.end()) {
@@ -1185,6 +1190,9 @@ bool j1EntityManager::Update(float dt) {
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_METAL_GATHERER) {
 					(*entitiesToDraw)->Draw(metalGathererTexture);
 				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_TITANIUM_EXTRACTOR) {
+					(*entitiesToDraw)->Draw(titaniumExtractorTexture);
+				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_HOUSE) {
 					(*entitiesToDraw)->Draw(houseTexture);
 				}
@@ -1479,6 +1487,27 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		App->pathfinding->ChangeWalkability(tile, false, paintExtractor->entitySize);
 
 		return (Entity*)paintExtractor;
+	}
+
+	else if (entityType == ENTITY_TYPE_TITANIUM_EXTRACTOR) {
+
+		TitaniumExtractor* titaniumExtractor = new TitaniumExtractor(tile, damage, this, creator);
+
+		if (spawnAutomatically) {
+
+			activeEntities.push_back((Entity*)titaniumExtractor);
+			activeBuildings.push_back((Entity*)titaniumExtractor);
+			titaniumExtractor->isAlive = true;
+			titaniumExtractor->CreateEntityCollider(titaniumExtractor->pos, (Entity*)titaniumExtractor);
+		}
+
+		else
+			spawningEntities.push_back((Entity*)titaniumExtractor);
+
+		// Change the walkability to non walkable
+		App->pathfinding->ChangeWalkability(tile, false, titaniumExtractor->entitySize);
+
+		return (Entity*)titaniumExtractor;
 	}
 
 	else if (entityType == ENTITY_TYPE_WOOD_PRODUCER) {
@@ -1808,6 +1837,7 @@ void j1EntityManager::LoadEntityTextures()
 	houseTexture = App->tex->Load("textures/entity_building_house.png");
 	barracksTexture = App->tex->Load("textures/entity_building_barracks.png");
 	metalGathererTexture = App->tex->Load("textures/entity_building_metal_gatherer.png");
+	titaniumExtractorTexture = App->tex->Load("textures/entity_building_titanium_extractor.png");
 
 	/// Units
 	warriorTexture = App->tex->Load("textures/entity_units_warrior_spritesheet.png");
@@ -2369,6 +2399,9 @@ bool j1EntityManager::Load(pugi::xml_node& save)
 		else if (strcmp(entityType, "paintextractor") == 0) {
 			App->entities->AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR, { positionX,positionY }, App->entities, nullptr, 0, true);
 		}
+		else if (strcmp(entityType, "titaniumextractor") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_TITANIUM_EXTRACTOR, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
 		else if (strcmp(entityType, "woodproducer") == 0) {
 			App->entities->AddEntity(ENTITY_TYPE_WOOD_PRODUCER, { positionX,positionY }, App->entities, nullptr, 0, true);
 		}
@@ -2473,6 +2506,16 @@ bool j1EntityManager::Save(pugi::xml_node& save) const
 		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
 
 			entity.append_attribute("entity_type") = "paintextractor";
+			entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
+			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_TITANIUM_EXTRACTOR) {
+
+			entity.append_attribute("entity_type") = "titaniumextractor";
 			entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
 			entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
 			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();

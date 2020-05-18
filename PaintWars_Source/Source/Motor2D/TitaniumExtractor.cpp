@@ -16,13 +16,12 @@ TitaniumExtractor::TitaniumExtractor(iPoint tile, int damage, j1Module* listener
 	// Handle data and initialize the PE
 	*(ENTITY_TYPE*)&entityType = ENTITY_TYPE_TITANIUM_EXTRACTOR;
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_STATIC_ENTITY;
-	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_BIG; // But it changes 4 more tile around it
+	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_MEDIUM;
 
-	maxLife = 400;
-	
+	maxLife = 200;
 	currLife = maxLife - damage;
 
-	size = { 150, 199 }; // TODO
+	size = { 250, 300 };
 
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);
@@ -30,13 +29,13 @@ TitaniumExtractor::TitaniumExtractor(iPoint tile, int damage, j1Module* listener
 	pos.x = tileWorldPosition.x + App->map->data.tile_width / 2 - size.x / 2;
 	pos.y = tileWorldPosition.y + App->map->data.tile_height / 2 - size.y;
 
-	constructionTime = 20.0f;
+	constructionTime = 10.0f;
 
 	extractionRate = 0.05f;
 
 	isEntityFromPlayer = true;
 
-	visibilityRadius = 3;
+	visibilityRadius = 2;
 	fow_entity->frontier = App->fow->CreateSightQuad(visibilityRadius, fow_entity->position);
 	fow_entity->LOS = App->fow->FulfillSight(fow_entity->frontier);
 

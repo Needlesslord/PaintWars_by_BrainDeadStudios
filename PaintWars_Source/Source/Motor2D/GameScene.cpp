@@ -441,7 +441,7 @@ bool GameScene::Start()
 	App->player->woodCount.count = 50;
 
 	App->player->metalScrapCount.type = RESOURCE_TYPE_METAL_SCRAP;
-	App->player->metalScrapCount.count = 0;
+	App->player->metalScrapCount.count = 1000;
 
 	App->player->titaniumCount.type = RESOURCE_TYPE_TITANIUM;
 	App->player->titaniumCount.count = 0;
@@ -624,7 +624,10 @@ bool GameScene::Update(float dt)
 	sprintf_s(conversorChar4, 256, "%d/%d", conversorInt4, conversorInt5);
 	entitiesLabel->text = conversorChar4;
 	
-	
+	static char conversorChar6[256];
+	int conversorInt6 = App->player->titaniumCount.count;
+	sprintf_s(conversorChar6, 256, "%d", conversorInt6);
+	titaniumLabel->text = conversorChar6;
 
 
 
@@ -1094,6 +1097,19 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			App->entities->hoveringEntityType = ENTITY_TYPE_PAINT_EXTRACTOR;
 			Mix_PlayChannel(-1, App->audio->buy1_sound, 0);
 			
+		}
+
+		//  priceTimer = App->player->gameTimer.ReadSec();
+
+	}
+
+	if (element == buyTitaniumExtractorButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->entities->isSelectingPlacement != true) {
+			App->entities->isSelectingPlacement = true;
+			App->entities->hoveringEntityType = ENTITY_TYPE_TITANIUM_EXTRACTOR;
+			Mix_PlayChannel(-1, App->audio->buy1_sound, 0);
+
 		}
 
 		//  priceTimer = App->player->gameTimer.ReadSec();
