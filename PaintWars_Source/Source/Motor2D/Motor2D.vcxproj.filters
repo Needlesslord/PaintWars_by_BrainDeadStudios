@@ -54,55 +54,7 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Explorer.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="ExplosiveBlob.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="House.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
     <ClCompile Include="j1EntityManager.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Knight.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="MetalGatherer.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Painter.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="PaintExtractor.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Ranger.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Rider.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Slime.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Spawner.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="TitaniumExtractor.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="TownHall.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Turret.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Warrior.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="WoodProducer.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
     <ClCompile Include="GameLogoScene.cpp">
@@ -137,6 +89,54 @@
     </ClCompile>
     <ClCompile Include="WinScene.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Explorer.cpp">
+      <Filter>Entities\Allied\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Knight.cpp">
+      <Filter>Entities\Allied\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Painter.cpp">
+      <Filter>Entities\Allied\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="ExplosiveBlob.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Rider.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Slime.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Spawner.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="House.cpp">
+      <Filter>Entities\Allied\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="MetalGatherer.cpp">
+      <Filter>Entities\Allied\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="PaintExtractor.cpp">
+      <Filter>Entities\Allied\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="TitaniumExtractor.cpp">
+      <Filter>Entities\Allied\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="TownHall.cpp">
+      <Filter>Entities\Allied\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Turret.cpp">
+      <Filter>Entities\Allied\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="WoodProducer.cpp">
+      <Filter>Entities\Allied\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Ranger.cpp">
+      <Filter>Entities\Allied\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Warrior.cpp">
+      <Filter>Entities\Allied\Units</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -201,55 +201,7 @@
     <ClInclude Include="Entity.h">
       <Filter>Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Explorer.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="ExplosiveBlob.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="House.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
     <ClInclude Include="j1EntityManager.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Knight.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="MetalGatherer.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Painter.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="PaintExtractor.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Ranger.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Rider.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Slime.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Spawner.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="TitaniumExtractor.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="TownHall.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Turret.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Warrior.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="WoodProducer.h">
       <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="GameLogoScene.h">
@@ -285,6 +237,54 @@
     <ClInclude Include="WinScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="Explorer.h">
+      <Filter>Entities\Allied\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Knight.h">
+      <Filter>Entities\Allied\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Painter.h">
+      <Filter>Entities\Allied\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="ExplosiveBlob.h">
+      <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Rider.h">
+      <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Slime.h">
+      <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Spawner.h">
+      <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="House.h">
+      <Filter>Entities\Allied\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="MetalGatherer.h">
+      <Filter>Entities\Allied\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="PaintExtractor.h">
+      <Filter>Entities\Allied\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="TitaniumExtractor.h">
+      <Filter>Entities\Allied\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="TownHall.h">
+      <Filter>Entities\Allied\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Turret.h">
+      <Filter>Entities\Allied\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="WoodProducer.h">
+      <Filter>Entities\Allied\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Ranger.h">
+      <Filter>Entities\Allied\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Warrior.h">
+      <Filter>Entities\Allied\Units</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\Game\save_game.xml" />
@@ -308,9 +308,6 @@
     <Filter Include="Entities\Enemies">
       <UniqueIdentifier>{b49a67dc-9ae4-48ef-89f1-ae9064278ad3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Entities\Allied\Buildings">
-      <UniqueIdentifier>{ca2f1a4f-f167-486b-9b96-1cb05e1859ef}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Entities\Allied\Units">
       <UniqueIdentifier>{2466c8bf-805c-44ce-a66c-dcccadf4e5a2}</UniqueIdentifier>
     </Filter>
@@ -325,6 +322,9 @@
     </Filter>
     <Filter Include="Scenes">
       <UniqueIdentifier>{b7411409-5083-4754-be67-1ebccf1e2017}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Allied\Buildings">
+      <UniqueIdentifier>{ca2f1a4f-f167-486b-9b96-1cb05e1859ef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
