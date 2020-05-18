@@ -244,12 +244,6 @@
     </Xml>
     <Xml Include="..\Game\save_game.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="game_icon.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\Resources\textures\icon.ico" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
