@@ -435,7 +435,7 @@ bool GameScene::PreUpdate()
 	//--------------------------- PUT AN INT THAT GOES THROUGH IT 15-20 TIMES OR MORE AND WHEN ITS DONE COMPLETE ANIMATION
 	
 	//LOG("Position Roller Y %f", PaintRollerAnimation->map_position.y);
-	if (App->PAUSE_ACTIVE == true){
+	if (App->PAUSE_ACTIVE == true && pauseMenu == true){
 		
 		if (/*PaintRollerAnimation->map_position.y + App->render->camera.y < 0 + App->render->camera.y*/ AnimTime < 90 && App->transition_manager->is_transitioning == false) {
 			PaintRollerAnimation->map_position = PaintRollerAnimation->map_position = { PaintRollerAnimation->map_position.x ,PaintRollerAnimation->map_position.y + 25 };
@@ -1248,6 +1248,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	if (element == pauseMenuButton && type == GUI_Event::EVENT_ONCLICK)
 	{
 		App->PAUSE_ACTIVE = true;
+		pauseMenu = true;
 
 		App->player->gameTimer.Stop();
 		AnimTime = 0;
@@ -1341,8 +1342,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		vfxLabel->enabled = true;
 		fullscreenLabel->enabled = true;
 		gpadLabel->enabled = true;
-		
-	
+
 		fullscreenButton->enabled = true;
 		gpadButton->enabled = true;
 		resetButton->enabled = true;
@@ -1575,6 +1575,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		questsText3->enabled = false;
 		questsText4->enabled = false;
 	}
+
 
 }
 

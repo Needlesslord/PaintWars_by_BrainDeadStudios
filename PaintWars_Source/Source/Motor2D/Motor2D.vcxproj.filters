@@ -10,33 +10,16 @@
     <ClCompile Include="ExpandingBars.cpp" />
     <ClCompile Include="FadeToColour.cpp" />
     <ClCompile Include="j1ButtonUI.cpp" />
-    <ClCompile Include="j1Collision.cpp" />
-    <ClCompile Include="j1FogOfWar.cpp" />
-    <ClCompile Include="j1Minimap.cpp" />
-    <ClCompile Include="j1ParticleManager.cpp" />
-    <ClCompile Include="j1Particles.cpp" />
     <ClCompile Include="j1UIElements.cpp" />
     <ClCompile Include="j1FontsUI.cpp" />
     <ClCompile Include="j1UI_Manager.cpp" />
     <ClCompile Include="j1SpritesUI.cpp" />
     <ClCompile Include="j1TextUI.cpp" />
     <ClCompile Include="j1Main.cpp" />
-    <ClCompile Include="j1App.cpp" />
-    <ClCompile Include="j1Audio.cpp" />
-    <ClCompile Include="j1Input.cpp" />
-    <ClCompile Include="j1Map.cpp" />
-    <ClCompile Include="j1Pathfinding.cpp" />
     <ClCompile Include="j1PerfTimer.cpp" />
-    <ClCompile Include="j1Player.cpp" />
-    <ClCompile Include="j1QuestManager.cpp" />
-    <ClCompile Include="j1Timer.cpp" />
-    <ClCompile Include="j1Video.cpp" />
     <ClCompile Include="p2Log.cpp" />
     <ClCompile Include="j1Render.cpp" />
-    <ClCompile Include="j1Textures.cpp" />
     <ClCompile Include="j1Window.cpp" />
-    <ClCompile Include="Particle.cpp" />
-    <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Slide.cpp" />
@@ -138,6 +121,57 @@
     <ClCompile Include="Warrior.cpp">
       <Filter>Entities\Allied\Units</Filter>
     </ClCompile>
+    <ClCompile Include="j1App.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Audio.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="j1FogOfWar.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Input.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Map.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Minimap.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1ParticleManager.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Particles.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Pathfinding.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Player.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1QuestManager.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Timer.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Textures.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Video.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Collision.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AlternatingBars.h" />
@@ -150,38 +184,21 @@
     <ClInclude Include="ExpandingBars.h" />
     <ClInclude Include="FadeToColour.h" />
     <ClInclude Include="j1ButtonUI.h" />
-    <ClInclude Include="j1Collision.h" />
-    <ClInclude Include="j1FogOfWar.h" />
     <ClInclude Include="j1FontsUI.h" />
-    <ClInclude Include="j1Minimap.h" />
-    <ClInclude Include="j1ParticleManager.h" />
-    <ClInclude Include="j1Particles.h" />
     <ClInclude Include="j1UI_Manager.h" />
     <ClInclude Include="j1SpritesUI.h" />
     <ClInclude Include="j1TextUI.h" />
     <ClInclude Include="j1UIElements.h" />
-    <ClInclude Include="j1Map.h" />
-    <ClInclude Include="j1Pathfinding.h" />
     <ClInclude Include="j1PerfTimer.h" />
-    <ClInclude Include="j1Player.h" />
-    <ClInclude Include="j1QuestManager.h" />
-    <ClInclude Include="j1Timer.h" />
-    <ClInclude Include="j1Video.h" />
     <ClInclude Include="p2DynArray.h" />
-    <ClInclude Include="j1Audio.h" />
-    <ClInclude Include="j1Input.h" />
     <ClInclude Include="p2Log.h" />
-    <ClInclude Include="j1App.h" />
     <ClInclude Include="p2Defs.h" />
     <ClInclude Include="p2List.h" />
     <ClInclude Include="j1Module.h" />
     <ClInclude Include="p2Point.h" />
     <ClInclude Include="j1Render.h" />
-    <ClInclude Include="j1Textures.h" />
     <ClInclude Include="j1Window.h" />
     <ClInclude Include="p2SString.h" />
-    <ClInclude Include="Particle.h" />
-    <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
     <ClInclude Include="Random.h" />
@@ -284,6 +301,57 @@
     </ClInclude>
     <ClInclude Include="Warrior.h">
       <Filter>Entities\Allied\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="j1App.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Audio.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="j1FogOfWar.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Input.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Map.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Minimap.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1ParticleManager.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Particles.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Pathfinding.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Player.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1QuestManager.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Timer.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Textures.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Video.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Collision.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

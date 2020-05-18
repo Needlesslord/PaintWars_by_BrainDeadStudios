@@ -158,7 +158,6 @@ public:
 	j1UIElement* fullscreenLabel = nullptr;
 	j1UIElement* gpadLabel = nullptr;
 
-	j1UIElement* vfxScroll = nullptr;
 	j1UIElement* fullscreenButton = nullptr;
 	j1UIElement* gpadButton = nullptr;
 	j1UIElement* resetButton = nullptr;

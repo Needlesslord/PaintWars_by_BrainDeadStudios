@@ -50,7 +50,7 @@ bool GameLogoScene::Start()
 		App->audio->PlayingLogoMusic = true;
 	}*/
 
-	App->video->Initialize("video/video_logo_2.avi");
+	App->video->Initialize("video/video_logo_paintwars.avi");
 	Mix_PlayChannel(-1, App->audio->logo_2_sound, 0);
 
 
