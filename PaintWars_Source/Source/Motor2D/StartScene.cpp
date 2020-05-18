@@ -255,7 +255,7 @@ void StartScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		{
 			App->LoadGame();
 
-	/*		if (App->scenes->Map_Forest_Active == true) {
+	       /*if (App->scenes->Map_Forest_Active == true) {
 				App->scenes->Load_Map_Forest = true;
 				App->scenes->Load_Map_Snow = false;
 				App->scenes->Load_Map_Volcano = false;

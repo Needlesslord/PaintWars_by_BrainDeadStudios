@@ -26,6 +26,8 @@ j1Player::j1Player() : j1Module()
 j1Player::~j1Player()
 {
 
+	App->CleanUp();
+
 }
 
 bool j1Player::Awake(pugi::xml_node& config)
@@ -215,6 +217,8 @@ bool j1Player::Update(float dt)
 
 bool j1Player::CleanUp()
 {
+
+
 
 	return true;
 
