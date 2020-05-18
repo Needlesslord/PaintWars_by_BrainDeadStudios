@@ -78,23 +78,7 @@ void Entity::CalculateMovementLogic() {
 
 	if (map != -1) {
 
-		/*if (p > 0) {
-
-			if (p <= App->pathfinding->FindClosestDestination(destination).size()) {
-
-				if (App->pathfinding->IsWalkable(App->pathfinding->FindClosestDestination(destination).at(p - 1))) {
-
-					destination = App->pathfinding->FindClosestDestination(destination).at(p - 1);
-					map = App->pathfinding->CreatePath(currentTile, destination);
-					currentPath = *App->pathfinding->GetLastPath();
-					pathIterator = 1;
-					nextTile = currentPath.at(pathIterator);
-				}
-			}
-		}*/
-
 		isOnTheMove = true;
-
 	}
 
 	else {

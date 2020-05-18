@@ -184,15 +184,6 @@
     <ClCompile Include="ScoreScene.cpp">
       <Filter>Motor  ========\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="j1ParticleManager.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Particle.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleSystem.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
     <ClCompile Include="Random.cpp">
       <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
@@ -218,6 +209,9 @@
       <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClCompile>
     <ClCompile Include="j1Particles.cpp">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1FogOfWar.cpp">
       <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
   </ItemGroup>
@@ -429,15 +423,6 @@
     <ClInclude Include="ScoreScene.h">
       <Filter>Motor  ========\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="j1ParticleManager.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Particle.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleSystem.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
     <ClInclude Include="Random.h">
       <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
@@ -463,6 +448,9 @@
       <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
     </ClInclude>
     <ClInclude Include="j1Particles.h">
+      <Filter>Motor  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1FogOfWar.h">
       <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
   </ItemGroup>

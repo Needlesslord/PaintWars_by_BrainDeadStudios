@@ -320,7 +320,6 @@ bool GameScene::Start()
 
 	//shopHoverPrice =App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "0", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
 	shopHoverPrice = App->gui->AddElement(TypeOfUI::GUI_LABEL, shopImage, { 210 , 680 }, { 0 , 0 }, false, false, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED);
-	//priceLabel = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
 	
 
 	//HUD - MiniMap
@@ -348,7 +347,7 @@ bool GameScene::Start()
 	buyPainterButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 260, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyPainterButton->hover_rect = { 520, 1966, 65, 82 };
 	buyPainterButton->click_rect = { 780, 1966, 65, 82 };
-	buyExplorerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 1105, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyExplorerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 567 }, { 0,0 }, true, false, { 1105, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyExplorerButton->hover_rect = { 1105, 1885, 65, 82 };
 	buyExplorerButton->click_rect = { 1105, 1804, 65, 82 };
 	upgradeWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, false, { 195, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
@@ -357,10 +356,10 @@ bool GameScene::Start()
 	buyWarriorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 325, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyWarriorButton->hover_rect = { 585, 1966, 65, 82 };
 	buyWarriorButton->click_rect = { 845, 1966, 65, 82 };
-	buyRangerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 1170, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyRangerButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 567 }, { 0,0 }, true, false, { 1170, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyRangerButton->hover_rect = { 1170, 1885, 65, 82 };
 	buyRangerButton->click_rect = { 1170, 1804, 65, 82 };
-	buyKnightButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 15, 485 }, { 0,0 }, true, false, { 1235, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	buyKnightButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 567 }, { 0,0 }, true, false, { 1235, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	buyKnightButton->hover_rect = { 1235, 1885, 65, 82 };
 	buyKnightButton->click_rect = { 1235, 1804, 65, 82 };
 
@@ -379,9 +378,15 @@ bool GameScene::Start()
 
 	App->player->woodCount.type = RESOURCE_TYPE_WOOD;
 	App->player->woodCount.count = 50;
+
+	App->player->metalScrapCount.type = RESOURCE_TYPE_METAL_SCRAP;
+	App->player->metalScrapCount.count = 0;
+
+	App->player->titaniumCount.type = RESOURCE_TYPE_TITANIUM;
+	App->player->titaniumCount.count = 0;
 	
 	App->player->housingSpace.type = RESOURCE_TYPE_HOUSING;
-	App->player->housingSpace.count = 1;
+	App->player->housingSpace.count = 2;
 	App->player->housingSpace.maxCount = 5;
 
 
@@ -531,10 +536,15 @@ bool GameScene::Update(float dt)
 	woodLabel->text = conversorChar2;
 
 	static char conversorChar3[256];
-	int conversorInt3 = App->player->housingSpace.count;
-	int conversorInt4 = App->player->housingSpace.maxCount;
-	sprintf_s(conversorChar3, 256, "%d/%d", conversorInt3, conversorInt4);
-	entitiesLabel->text = conversorChar3;
+	int conversorInt3 = App->player->metalScrapCount.count;
+	sprintf_s(conversorChar3, 256, "%d", conversorInt3);
+	metalLabel->text = conversorChar3;
+
+	static char conversorChar4[256];
+	int conversorInt4 = App->player->housingSpace.count;
+	int conversorInt5 = App->player->housingSpace.maxCount;
+	sprintf_s(conversorChar4, 256, "%d/%d", conversorInt4, conversorInt5);
+	entitiesLabel->text = conversorChar4;
 	
 	
 
@@ -603,7 +613,7 @@ bool GameScene::Update(float dt)
 			noActiveExplorers++;
 		}
 		if(noExplorers)
-			//buyExplorerButton->enabled = true;
+			buyExplorerButton->enabled = true;
 
 		shopImage->enabled = false;
 		shopLabel->enabled = false;
@@ -617,7 +627,7 @@ bool GameScene::Update(float dt)
 	}
 	else {
 		buyPainterButton->enabled = false;
-		//buyExplorerButton->enabled = false;
+		buyExplorerButton->enabled = false;
 		upgradePainterButton->enabled = false;
 	}
 
@@ -631,8 +641,8 @@ bool GameScene::Update(float dt)
 		if (!App->entities->warriorsUpgraded)
 			upgradeWarriorButton->enabled = true;
 
-		//buyKnightButton->enabled = true;
-		//buyRangerButton->enabled = true;
+		buyKnightButton->enabled = true;
+		buyRangerButton->enabled = true;
 
 		shopImage->enabled = false;
 		shopLabel->enabled = false;
@@ -646,8 +656,8 @@ bool GameScene::Update(float dt)
 	}
 	else {
 		buyWarriorButton->enabled = false;
-		//buyKnightButton->enabled = false;
-		//buyRangerButton->enabled = false;
+		buyKnightButton->enabled = false;
+		buyRangerButton->enabled = false;
 		upgradeWarriorButton->enabled = false;
 	}
 
@@ -661,13 +671,6 @@ bool GameScene::Update(float dt)
 	sprintf_s(conversor, 256, "%dm %ds", minutes, seconds);
 	timerLabel->text = conversor;
 
-
-	//PriceTimer
-
-	/*if (App->player->gameTimer.ReadSec() - priceTimer == 2)
-	{
-		priceLabel->enabled = false;
-	}*/
 
 
 
@@ -934,10 +937,6 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			
 		}
 
-		priceLabel->enabled = true;
-		priceLabel->text = "-500";
-		App->input->GetMousePosition(priceLabel->map_position.x, priceLabel->map_position.y);
-
 		//  priceTimer = App->player->gameTimer.ReadSec();
 
 	}
@@ -962,6 +961,16 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		}
 	}
 
+	if (element == buyMetalGathererButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->entities->isSelectingPlacement != true) {
+			App->entities->isSelectingPlacement = true;
+
+			App->entities->hoveringEntityType = ENTITY_TYPE_METAL_GATHERER;
+			Mix_PlayChannel(-1, App->audio->buy2_sound, 0);
+		}
+	}
+
 	if (element == buyHouseButton && type == GUI_Event::EVENT_ONCLICK) {
 
 		if (App->entities->isSelectingPlacement != true) {
@@ -972,31 +981,11 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		}
 	}
 
-	if (element == buyWoodProducerButton && type == GUI_Event::EVENT_ONCLICK) {
-
-		if (App->entities->isSelectingPlacement != true) {
-			App->entities->isSelectingPlacement = true;
-
-			App->entities->hoveringEntityType = ENTITY_TYPE_PAINTER;
-			Mix_PlayChannel(-1, App->audio->buy1_sound, 0);
-		}
-	}
-
-	if (element == buyWoodProducerButton && type == GUI_Event::EVENT_ONCLICK) {
-
-		if (App->entities->isSelectingPlacement != true) {
-			App->entities->isSelectingPlacement = true;
-
-			App->entities->hoveringEntityType = ENTITY_TYPE_WARRIOR;
-			Mix_PlayChannel(-1, App->audio->buy1_sound, 0);
-		}
-	}
-
 	if (element == upgradePaintExtractorButton && type == GUI_Event::EVENT_ONCLICK) {
 
-		if (App->player->paintCount.count >= 200) {
+		if (App->player->metalScrapCount.count >= 200) {
 
-			App->player->paintCount.count -= 200;
+			App->player->metalScrapCount.count -= 200;
 			list<Entity*>::iterator upgradeAllPaintExtractor = App->entities->activeBuildings.begin();
 			while (upgradeAllPaintExtractor != App->entities->activeBuildings.end()) {
 
@@ -1014,9 +1003,9 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 	if (element == upgradeWoodProducerButton && type == GUI_Event::EVENT_ONCLICK) {
 
-		if (App->player->paintCount.count >= 200) {
+		if (App->player->metalScrapCount.count >= 200) {
 
-			App->player->paintCount.count -= 200;
+			App->player->metalScrapCount.count -= 200;
 			list<Entity*>::iterator upgradeAllWoodProducers = App->entities->activeBuildings.begin();
 			while (upgradeAllWoodProducers != App->entities->activeBuildings.end()) {
 
@@ -1043,6 +1032,10 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		shopHoverPrice->text = "-20P WOOD PRODUCER";
 		shopHoverPrice->enabled = true;
 	}
+	else if (element == buyMetalGathererButton && type == GUI_Event::EVENT_HOVER) {
+		shopHoverPrice->text = "-20M WOOD PRODUCER";
+		shopHoverPrice->enabled = true;
+	}
 	else if (element == buyBarrackButton && type == GUI_Event::EVENT_HOVER) {
 		shopHoverPrice->text = "-50W BARRACKS";
 		shopHoverPrice->enabled = true;
@@ -1052,29 +1045,42 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyPainterButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-5";
+		shopHoverPrice->text = "-25P";
+		shopHoverPrice->enabled = true;
+		//shopHoverPrice->map_position;
+	}
+	else if (element == buyExplorerButton && type == GUI_Event::EVENT_HOVER) {
+		shopHoverPrice->text = "-25P";
 		shopHoverPrice->enabled = true;
 		//shopHoverPrice->map_position;
 	}
 	else if (element == buyWarriorButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-20";
+		shopHoverPrice->text = "-20P";
+		shopHoverPrice->enabled = true;
+	}
+	else if (element == buyKnightButton && type == GUI_Event::EVENT_HOVER) {
+		shopHoverPrice->text = "-100P";
+		shopHoverPrice->enabled = true;
+	}
+	else if (element == buyRangerButton && type == GUI_Event::EVENT_HOVER) {
+		shopHoverPrice->text = "-50P";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == upgradeWarriorButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-200";
+		shopHoverPrice->text = "-200P";
 		shopHoverPrice->enabled = true;
 
 	}
 	else if (element == upgradePainterButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-200";
+		shopHoverPrice->text = "-200P";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == upgradePaintExtractorButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-200";
+		shopHoverPrice->text = "-200M";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == upgradeWoodProducerButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-200";
+		shopHoverPrice->text = "-200M";
 		shopHoverPrice->enabled = true;
 	}
 	else {

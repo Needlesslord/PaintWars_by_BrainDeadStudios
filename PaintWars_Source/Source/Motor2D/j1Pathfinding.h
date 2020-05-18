@@ -83,6 +83,9 @@ public:
 	// Utility: changes the walkability of a tile to wood
 	void ChangeToWood(const iPoint& pos) const;
 	
+	// Utility: changes the walkability of a tile to meatl scrap
+	void ChangeToMetal(const iPoint& pos) const;
+
 	// Utility: changes the walkability of a tile to a spawner-container tile
 	void ChangeToSpawner(const iPoint& pos) const;
 

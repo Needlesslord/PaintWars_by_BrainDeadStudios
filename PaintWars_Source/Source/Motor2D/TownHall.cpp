@@ -47,8 +47,9 @@ void TownHall::SpawnEntity(ENTITY_TYPE type) {
 
 	if (type == ENTITY_TYPE_PAINTER) {
 
-		if (!isSpawningAUnit && App->player->paintCount.count > 5 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
-			App->player->paintCount.count -= 5;
+		if (!isSpawningAUnit && App->player->paintCount.count >= 25 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
+
+			App->player->paintCount.count -= 25;
 			App->player->housingSpace.count++;
 			App->entities->AddEntity(ENTITY_TYPE_PAINTER, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
 			Mix_PlayChannel(-1, App->audio->spawnFromHall, 0);
@@ -57,10 +58,11 @@ void TownHall::SpawnEntity(ENTITY_TYPE type) {
 	}
 	else if (type == ENTITY_TYPE_EXPLORER) {
 
-		if (!isSpawningAUnit && App->player->paintCount.count > 50 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
-			App->player->paintCount.count -= 50;
+		if (!isSpawningAUnit && App->player->paintCount.count >= 25 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
+
+			App->player->paintCount.count -= 25;
 			App->player->housingSpace.count++;
-			App->entities->AddEntity(ENTITY_TYPE_PAINTER, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
+			App->entities->AddEntity(ENTITY_TYPE_EXPLORER, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
 			Mix_PlayChannel(-1, App->audio->spawnFromHall, 0);
 			isSpawningAUnit = true;
 		}
