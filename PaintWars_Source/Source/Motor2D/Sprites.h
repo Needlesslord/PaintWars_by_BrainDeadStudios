@@ -729,6 +729,8 @@ Animation riderAttackSouthEast;
 Animation riderAttackSouth;
 Animation riderAttackSouthWest;
 
+Animation riderDeath;
+
 
 void RiderSprites()
 {
@@ -853,6 +855,14 @@ void RiderSprites()
 	riderAttackNorthEast.PushBack({ 0, 912, 89, 152 });
 	riderAttackNorthEast.PushBack({ 89, 912, 89, 152 });
 	riderAttackNorthEast.speed = 250.0f;
+
+	//DEATH
+	riderDeath.PushBack({ 0, 1064, 89, 152 });
+	riderDeath.PushBack({ 89, 1064, 89, 152 });
+	riderDeath.PushBack({ 178, 1064, 89, 152 });
+	riderDeath.PushBack({ 267, 1064, 89, 152 });
+	riderDeath.PushBack({ 356, 1064, 89, 152 });
+	riderDeath.speed = 500.0f;
 }
 
 
@@ -867,6 +877,8 @@ Animation slimeMovingEast;
 Animation slimeMovingSouthEast;
 Animation slimeMovingSouth;
 Animation slimeMovingSouthWest;
+
+Animation slimeDeath;
 
 void SlimeSprites()
 {
@@ -933,6 +945,14 @@ void SlimeSprites()
 	slimeMovingSouth.PushBack({ 408, 318, 68, 52 });
 	slimeMovingSouth.PushBack({ 476, 318, 68, 52 });
 	slimeMovingSouth.speed = 500.0f;
+
+	//DEATH
+	slimeDeath.PushBack({ 0, 873, 68, 52 });
+	slimeDeath.PushBack({ 68, 873, 68, 52 });
+	slimeDeath.PushBack({ 136, 873, 68, 52 });
+	slimeDeath.PushBack({ 204, 873, 68, 52 });
+	slimeDeath.PushBack({ 272, 873, 68, 52 });
+	slimeDeath.speed = 500.0f;
 }
 
 
@@ -947,6 +967,8 @@ Animation explosiveBlobMovingEast;
 Animation explosiveBlobMovingSouthEast;
 Animation explosiveBlobMovingSouth;
 Animation explosiveBlobMovingSouthWest;
+
+Animation explosiveBlobDeath;
 
 void ExplosiveBlobSprites()
 {
@@ -1002,9 +1024,9 @@ void ExplosiveBlobSprites()
 
 	//Moving Back
 	explosiveBlobMovingNorth.PushBack({ 0, 303, 96, 101 });
-	explosiveBlobMovingNorth.PushBack({ 68, 303, 96, 101 });
-	explosiveBlobMovingNorth.PushBack({ 136, 303, 96, 101 });
-	explosiveBlobMovingNorth.PushBack({ 204, 303, 96, 101 });
+	explosiveBlobMovingNorth.PushBack({ 96, 303, 96, 101 });
+	explosiveBlobMovingNorth.PushBack({ 192, 303, 96, 101 });
+	explosiveBlobMovingNorth.PushBack({ 288, 303, 96, 101 });
 	explosiveBlobMovingNorth.speed = 500.0f;  	  
 									  	  
 	//Moving Front					  	  
@@ -1013,6 +1035,14 @@ void ExplosiveBlobSprites()
 	explosiveBlobMovingSouth.PushBack({ 576, 303, 96, 101 });
 	explosiveBlobMovingSouth.PushBack({ 672, 303, 96, 101 });
 	explosiveBlobMovingSouth.speed = 500.0f;
+
+	//DEATH
+	explosiveBlobDeath.PushBack({ 0, 404, 96, 101 });
+	explosiveBlobDeath.PushBack({ 96, 404, 96, 101 });
+	explosiveBlobDeath.PushBack({ 192, 404, 96, 101 });
+	explosiveBlobDeath.PushBack({ 288, 404, 96, 101 });
+	explosiveBlobDeath.PushBack({ 384, 404, 96, 101 });
+	explosiveBlobDeath.speed = 500.0f;
 }
 
 
@@ -1028,6 +1058,8 @@ Animation chromaKingMovingEast;
 Animation chromaKingMovingSouthEast;
 Animation chromaKingMovingSouth;
 Animation chromaKingMovingSouthWest;
+
+Animation chromaKingDeath;
 
 void ChromaKingSprites()
 {
@@ -1094,5 +1126,13 @@ void ChromaKingSprites()
 	chromaKingMovingSouth.PushBack({ 1632, 1332, 272, 221 });
 	chromaKingMovingSouth.PushBack({ 1904, 1332, 272, 221 });
 	chromaKingMovingSouth.speed = 500.0f;
+
+	//DEATH
+	chromaKingDeath.PushBack({ 0, 3349, 272, 221 });
+	chromaKingDeath.PushBack({ 272, 3349, 272, 221 });
+	chromaKingDeath.PushBack({ 544, 3349, 272, 221 });
+	chromaKingDeath.PushBack({ 816, 3349, 272, 221 });
+	chromaKingDeath.PushBack({ 1088, 3349, 272, 221 });
+	chromaKingDeath.speed = 500.0f;
 }
 

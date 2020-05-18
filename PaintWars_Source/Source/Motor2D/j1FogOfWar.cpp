@@ -60,6 +60,16 @@ bool j1FogOfWar::Update(float dt) {
 		}
 	}
 
+	//save visibility
+	if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
+		visibility_save_holder = visibility_map;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN) {
+		visibility_map = visibility_save_holder;
+	}
+
+
+
 	return true;
 }
 

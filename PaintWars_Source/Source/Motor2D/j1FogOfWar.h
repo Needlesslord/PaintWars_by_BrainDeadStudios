@@ -130,6 +130,8 @@ private: //Variables
 	//---- This 2 pointers are for debug purpose only
 	int8_t* debug_map = nullptr;
 	int8_t* visibility_debug_holder = nullptr;
+	int8_t* visibility_save_holder = nullptr;
+
 	//----
 
 };
