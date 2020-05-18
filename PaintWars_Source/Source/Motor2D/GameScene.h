@@ -260,7 +260,7 @@ public:
 	bool savedMapForest;
 	bool savedMapSnow;
 	bool savedMapVolcano;
-
+	int saved_map = 0;
 
 
 

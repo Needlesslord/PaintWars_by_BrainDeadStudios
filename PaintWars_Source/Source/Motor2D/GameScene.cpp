@@ -1156,19 +1156,22 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	if (element == saveButton && type == GUI_Event::EVENT_ONCLICK)
 	{
 		if (App->scenes->Map_Forest_Active) {
-			bool savedMapForest = true;
-			bool savedMapSnow = false;
-			bool savedMapVolcano = false;
+			savedMapForest = true;
+			savedMapSnow = false;
+			savedMapVolcano = false;
+			saved_map = 1;
 		}		
 		else if (App->scenes->Map_Snow_Active) {
-			bool savedMapForest = false;
-			bool savedMapSnow = true;
-			bool savedMapVolcano = false;
+			savedMapForest = false;
+			savedMapSnow = true;
+			savedMapVolcano = false;
+			saved_map = 2;
 		}
 		else if (App->scenes->Map_Volcano_Active) {
-			bool savedMapForest = false;
-			bool savedMapSnow = false;
-			bool savedMapVolcano = true;
+			savedMapForest = false;
+			savedMapSnow = false;
+			savedMapVolcano = true;
+			saved_map = 3;
 		}
 		App->SaveGame("save_game.xml");
 	}
