@@ -294,15 +294,15 @@ void j1Player::Camera_Control(float dt)
 				App->render->camera.y = -3150;
 			
 
-			if (App->input->GetKey(SDL_SCANCODE_H) == KEY_REPEAT) {
+			if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN) {
 
 				//has to update camera minimap
 
 				if (App->scenes->Map_Forest_Active) {
 					App->render->camera.x = 575;
 					App->render->camera.y = -1200;
-					MinimapCameraBufferX = 0;
-					MinimapCameraBufferY = 0;
+					MinimapCameraBufferX = 4;
+					MinimapCameraBufferY = -4;
 				}
 				if (App->scenes->Map_Snow_Active) {
 					App->render->camera.x = -329;

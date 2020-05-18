@@ -3,20 +3,12 @@
   <ItemGroup>
     <ClCompile Include="AlternatingBars.cpp" />
     <ClCompile Include="animation.cpp" />
-    <ClCompile Include="Barracks.cpp" />
     <ClCompile Include="CameraToMouse.cpp" />
-    <ClCompile Include="ChromaKing.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Cut.cpp" />
     <ClCompile Include="Dissolve.cpp" />
-    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="ExpandingBars.cpp" />
-    <ClCompile Include="Explorer.cpp" />
-    <ClCompile Include="ExplosiveBlob.cpp" />
     <ClCompile Include="FadeToColour.cpp" />
-    <ClCompile Include="GameLogoScene.cpp" />
-    <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="House.cpp" />
     <ClCompile Include="j1ButtonUI.cpp" />
     <ClCompile Include="j1Collision.cpp" />
     <ClCompile Include="j1FogOfWar.cpp" />
@@ -24,7 +16,6 @@
     <ClCompile Include="j1ParticleManager.cpp" />
     <ClCompile Include="j1Particles.cpp" />
     <ClCompile Include="j1UIElements.cpp" />
-    <ClCompile Include="j1EntityManager.cpp" />
     <ClCompile Include="j1FontsUI.cpp" />
     <ClCompile Include="j1UI_Manager.cpp" />
     <ClCompile Include="j1SpritesUI.cpp" />
@@ -40,64 +31,126 @@
     <ClCompile Include="j1QuestManager.cpp" />
     <ClCompile Include="j1Timer.cpp" />
     <ClCompile Include="j1Video.cpp" />
-    <ClCompile Include="Knight.cpp" />
-    <ClCompile Include="LoseScene.cpp" />
-    <ClCompile Include="MenuScene.cpp" />
-    <ClCompile Include="MetalGatherer.cpp" />
     <ClCompile Include="p2Log.cpp" />
     <ClCompile Include="j1Render.cpp" />
     <ClCompile Include="j1Textures.cpp" />
     <ClCompile Include="j1Window.cpp" />
-    <ClCompile Include="Painter.cpp" />
-    <ClCompile Include="PaintExtractor.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
     <ClCompile Include="Random.cpp" />
-    <ClCompile Include="Ranger.cpp" />
-    <ClCompile Include="Rider.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="j1SceneManager.cpp" />
-    <ClCompile Include="ScoreScene.cpp" />
-    <ClCompile Include="SettingsScene.cpp" />
     <ClCompile Include="Slide.cpp" />
-    <ClCompile Include="Slime.cpp" />
-    <ClCompile Include="Spawner.cpp" />
-    <ClCompile Include="StartScene.cpp" />
-    <ClCompile Include="TeamLogoScene.cpp" />
-    <ClCompile Include="TitaniumExtractor.cpp" />
-    <ClCompile Include="TownHall.cpp" />
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="TransitionManager.cpp" />
-    <ClCompile Include="Turret.cpp" />
-    <ClCompile Include="Warrior.cpp" />
-    <ClCompile Include="WinScene.cpp" />
     <ClCompile Include="Wipe.cpp" />
-    <ClCompile Include="WoodProducer.cpp" />
     <ClCompile Include="ZoomToMouse.cpp" />
     <ClCompile Include="ZoomToTexture.cpp" />
+    <ClCompile Include="Barracks.cpp">
+      <Filter>Entities\Allied\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="ChromaKing.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Explorer.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="ExplosiveBlob.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="House.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="j1EntityManager.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Knight.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="MetalGatherer.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Painter.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="PaintExtractor.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Ranger.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Rider.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Slime.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Spawner.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="TitaniumExtractor.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="TownHall.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Turret.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Warrior.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="WoodProducer.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLogoScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="j1SceneManager.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="LoseScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="TeamLogoScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="WinScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AlternatingBars.h" />
     <ClInclude Include="animation.h" />
     <ClInclude Include="Bar.h" />
-    <ClInclude Include="Barracks.h" />
     <ClInclude Include="CameraToMouse.h" />
-    <ClInclude Include="ChromaKing.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Cut.h" />
     <ClInclude Include="Dissolve.h" />
-    <ClInclude Include="Entity.h" />
     <ClInclude Include="ExpandingBars.h" />
-    <ClInclude Include="Explorer.h" />
-    <ClInclude Include="ExplosiveBlob.h" />
     <ClInclude Include="FadeToColour.h" />
-    <ClInclude Include="GameLogoScene.h" />
-    <ClInclude Include="GameScene.h" />
-    <ClInclude Include="House.h" />
     <ClInclude Include="j1ButtonUI.h" />
     <ClInclude Include="j1Collision.h" />
-    <ClInclude Include="j1EntityManager.h" />
     <ClInclude Include="j1FogOfWar.h" />
     <ClInclude Include="j1FontsUI.h" />
     <ClInclude Include="j1Minimap.h" />
@@ -114,10 +167,6 @@
     <ClInclude Include="j1QuestManager.h" />
     <ClInclude Include="j1Timer.h" />
     <ClInclude Include="j1Video.h" />
-    <ClInclude Include="Knight.h" />
-    <ClInclude Include="LoseScene.h" />
-    <ClInclude Include="MenuScene.h" />
-    <ClInclude Include="MetalGatherer.h" />
     <ClInclude Include="p2DynArray.h" />
     <ClInclude Include="j1Audio.h" />
     <ClInclude Include="j1Input.h" />
@@ -131,39 +180,151 @@
     <ClInclude Include="j1Textures.h" />
     <ClInclude Include="j1Window.h" />
     <ClInclude Include="p2SString.h" />
-    <ClInclude Include="Painter.h" />
-    <ClInclude Include="PaintExtractor.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
     <ClInclude Include="Random.h" />
-    <ClInclude Include="Ranger.h" />
-    <ClInclude Include="Rider.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="j1SceneManager.h" />
-    <ClInclude Include="ScoreScene.h" />
-    <ClInclude Include="SettingsScene.h" />
     <ClInclude Include="Slide.h" />
-    <ClInclude Include="Slime.h" />
-    <ClInclude Include="Spawner.h" />
     <ClInclude Include="Sprites.h" />
-    <ClInclude Include="StartScene.h" />
-    <ClInclude Include="TeamLogoScene.h" />
-    <ClInclude Include="TitaniumExtractor.h" />
-    <ClInclude Include="TownHall.h" />
     <ClInclude Include="Transition.h" />
     <ClInclude Include="TransitionManager.h" />
-    <ClInclude Include="Turret.h" />
-    <ClInclude Include="Warrior.h" />
-    <ClInclude Include="WinScene.h" />
     <ClInclude Include="Wipe.h" />
-    <ClInclude Include="WoodProducer.h" />
     <ClInclude Include="ZoomToMouse.h" />
     <ClInclude Include="ZoomToTexture.h" />
+    <ClInclude Include="Barracks.h">
+      <Filter>Entities\Allied\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="ChromaKing.h">
+      <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Explorer.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="ExplosiveBlob.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="House.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="j1EntityManager.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Knight.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="MetalGatherer.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Painter.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="PaintExtractor.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Ranger.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Rider.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Slime.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Spawner.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="TitaniumExtractor.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="TownHall.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Turret.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Warrior.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="WoodProducer.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogoScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="j1SceneManager.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="LoseScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="TeamLogoScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="WinScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="..\Game\config.xml" />
     <Xml Include="..\Game\save_game.xml" />
+    <Xml Include="..\Game\config.xml">
+      <Filter>Tools</Filter>
+    </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{9e4b7366-f67f-4f8a-b9fa-9bd57991f936}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules">
+      <UniqueIdentifier>{d2f00aa5-97ec-4933-abcb-e9666ff45976}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{8f7a2c10-a528-4e16-b81d-bf9eeaa2e890}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Allied">
+      <UniqueIdentifier>{37f54c68-90b9-47c5-94ee-5ac071fd4d32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Enemies">
+      <UniqueIdentifier>{b49a67dc-9ae4-48ef-89f1-ae9064278ad3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Allied\Buildings">
+      <UniqueIdentifier>{ca2f1a4f-f167-486b-9b96-1cb05e1859ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Allied\Units">
+      <UniqueIdentifier>{2466c8bf-805c-44ce-a66c-dcccadf4e5a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{20898884-8f20-4e8a-b5c6-4a76902a82ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Transitions">
+      <UniqueIdentifier>{7e85a494-5e42-4f47-b92a-69e3c20cd72a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{36f90566-63e4-45fa-80a0-a90e8aaac249}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{b7411409-5083-4754-be67-1ebccf1e2017}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
