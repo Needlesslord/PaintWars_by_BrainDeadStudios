@@ -131,22 +131,22 @@ SDL_Texture* j1UI_Manager::Get_Texture_From_Image(TEXTURE textureType)
 		break;
 
 	case TEXTURE::MINIMAP_FULL_SNOW:
-		Minimap_Full_Load_forest = App->tex->Load("textures/UI/UI_minimap_snow_full.png");
+		Minimap_Full_Load_snow = App->tex->Load("textures/UI/UI_minimap_snow_full.png");
 		return Minimap_Full_Load_snow;
 		break;
 
 	case TEXTURE::MINIMAP_MINI_SNOW:
-		Minimap_Mini_Load_forest = App->tex->Load("textures/UI/UI_minimap_snow_mini.png");
+		Minimap_Mini_Load_snow = App->tex->Load("textures/UI/UI_minimap_snow_mini.png");
 		return Minimap_Mini_Load_snow;
 		break;
 
 	case TEXTURE::MINIMAP_FULL_VOLCANO:
-		Minimap_Full_Load_forest = App->tex->Load("textures/UI/UI_minimap_volcano_full.png");
+		Minimap_Full_Load_volcano = App->tex->Load("textures/UI/UI_minimap_volcano_full.png");
 		return Minimap_Full_Load_volcano;
 		break;
 
 	case TEXTURE::MINIMAP_MINI_VOLCANO:
-		Minimap_Mini_Load_forest = App->tex->Load("textures/UI/UI_minimap_volcano_mini.png");
+		Minimap_Mini_Load_volcano = App->tex->Load("textures/UI/UI_minimap_volcano_mini.png");
 		return Minimap_Mini_Load_volcano;
 		break;
 	//end minimaps
