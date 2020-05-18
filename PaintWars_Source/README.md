@@ -63,6 +63,8 @@ In a world full of colour, a corruption spread, turning everything monochromatic
      + Win/Lose conditions (Town Hall destroyed OR more than 15 min LOSE, 5 Spawners destroyed WIN) with victory/lose custom messages and font and animated
  - MAPS
      + Forest Map implemented
+     + Snow Map implemented
+     + Volcano Map implemented
  - SCENE MANAGER
      + Different scenes for the game, menu, win/lose, start, logos
      + Transitions (Slide for buttons, Fade for debug)
@@ -157,7 +159,7 @@ Warriors are used to attack the spawners and destroy them to win the game.
 	 + F7 Direct Win
 	 + F8 Direct Lose
 	 + F9 Collisions
-	 + F10 God Mode (add resources, buildings and units, can't lose, collisions)
+	 + F10 God Mode (add resources, buildings and units, can't lose, collisions, fog of war all visible)
 		resources
 		- 1 add 10 paint
 		- 2 add 10 wood
