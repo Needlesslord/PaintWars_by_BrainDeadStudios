@@ -1170,6 +1170,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			bool savedMapSnow = false;
 			bool savedMapVolcano = true;
 		}
+		App->SaveGame("save_game.xml");
 	}
 
 	if (element == resumeButton && type == GUI_Event::EVENT_ONCLICK)

@@ -395,7 +395,9 @@ void j1App::LoadGame()
 {
 	// we should be checking if that file actually exist
 	// from the "GetSaveGames" list
+
 	want_to_load = true;
+
 }
 
 // ---------------------------------------
@@ -403,7 +405,7 @@ void j1App::SaveGame(const char* file) const
 {
 	// we should be checking if that file actually exist
 	// from the "GetSaveGames" list ... should we overwrite ?
-
+	App->has_game_saved = true;
 	want_to_save = true;
 	save_game = (file);
 }
