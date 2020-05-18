@@ -12,10 +12,40 @@
 	<map />
 	<:anonymous />
 	<entities>
-		<num_entities value="10" />
+		<num_entities value="40" />
 		<active_entities>
+			<entity entity_type="slime" position_x="55" position_y="55" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="20" position_y="20" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="22" position_y="62" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="62" position_y="22" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="10" position_y="50" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="50" position_y="10" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="75" position_y="15" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="24" position_y="80" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="36" position_y="84" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="23" position_y="78" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="13" position_y="48" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="80" position_y="40" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="40" position_y="80" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="80" position_y="80" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="55" position_y="55" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="52" position_y="0" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="0" position_y="52" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="52" position_y="75" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="75" position_y="52" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="20" position_y="52" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="52" position_y="20" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="20" position_y="20" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="99" position_y="1" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="1" position_y="99" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="1" position_y="1" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="99" position_y="99" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="100" position_y="0" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="0" position_y="100" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="0" position_y="0" missing_hp="0" size_x="75" size_y="75" />
+			<entity entity_type="slime" position_x="100" position_y="100" missing_hp="0" size_x="75" size_y="75" />
 			<entity entity_type="townhall" position_x="42" position_y="42" missing_hp="0" size_x="400" size_y="403" />
-			<entity entity_type="painter" position_x="48" position_y="35" missing_hp="0" size_x="70" size_y="150" />
+			<entity entity_type="painter" position_x="54" position_y="55" missing_hp="0" size_x="70" size_y="150" />
 			<entity entity_type="spawner" position_x="40" position_y="20" missing_hp="0" size_x="250" size_y="600" />
 			<entity entity_type="spawner" position_x="13" position_y="5" missing_hp="0" size_x="250" size_y="600" />
 			<entity entity_type="spawner" position_x="80" position_y="4" missing_hp="0" size_x="250" size_y="600" />
@@ -37,9 +67,39 @@
 	<video />
 	<:anonymous />
 	<renderer>
-		<camera x="575" y="-1200" />
-		<num_entities value="10" />
+		<camera x="575" y="50" />
+		<num_entities value="40" />
 		<active_entities>
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
+			<entity />
 			<entity />
 			<entity />
 			<entity />
