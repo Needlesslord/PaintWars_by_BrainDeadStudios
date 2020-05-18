@@ -342,21 +342,22 @@ bool GameScene::Start()
 	miniMapBackground = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 850 , 500 }, { 0 , 0 }, false, true, { 0, 1750, 422, 210 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
 
 	//minimaps
-	if (App->scenes->Map_Forest_Active) {
-		miniMapMINI_forest = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 850 , 500 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, TEXTURE::MINIMAP_MINI_FOREST);
-		miniMapMINI_forest->click_rect = { 30, 15, 422, 210 };
-		miniMapMINI_forest->hover_rect = { 30, 15, 422, 210 };
-	}
-	if (App->scenes->Map_Snow_Active) {
-		miniMapMINI_snow = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 850 , 500 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, TEXTURE::MINIMAP_MINI_SNOW);
-		miniMapMINI_snow->click_rect = { 30, 15, 422, 210 };
-		miniMapMINI_snow->hover_rect = { 30, 15, 422, 210 };
-	}
-	if (App->scenes->Map_Volcano_Active) {
-		miniMapMINI_volcano = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 850 , 500 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, TEXTURE::MINIMAP_MINI_VOLCANO);
-		miniMapMINI_volcano->click_rect = { 30, 15, 422, 210 };
-		miniMapMINI_volcano->hover_rect = { 30, 15, 422, 210 };
-	}
+
+
+	miniMapMINI_forest = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 850 , 500 }, { 0,0 }, true,false ,{ 30, 15, 422,210 }, nullptr, App->scenes, TEXTURE::MINIMAP_MINI_FOREST);
+	miniMapMINI_forest->click_rect = { 30, 15, 422, 210 };
+	miniMapMINI_forest->hover_rect = { 30, 15, 422, 210 };
+
+	miniMapMINI_snow = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 850 , 500 }, { 0,0 }, true, false, { 30, 15, 422,210 }, nullptr, App->scenes, TEXTURE::MINIMAP_MINI_SNOW);
+	miniMapMINI_snow->click_rect = { 30, 15, 422, 210 };
+	miniMapMINI_snow->hover_rect = { 30, 15, 422, 210 };
+
+	miniMapMINI_volcano = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 850 , 500 }, { 0,0 }, true, false, { 30, 15, 422,210 }, nullptr, App->scenes, TEXTURE::MINIMAP_MINI_VOLCANO);
+	miniMapMINI_volcano->click_rect = { 30, 15, 422, 210 };
+	miniMapMINI_volcano->hover_rect = { 30, 15, 422, 210 };
+
+
+
 	//end minimaps
 
 	miniMapScopeCamera = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1030, 575 }, { 0 , 0 }, false, true, { 0, 0, 67, 36 }, nullptr, nullptr, TEXTURE::MINIMAP_CAMERA);
@@ -468,6 +469,24 @@ bool GameScene::Start()
 // Called each loop iteration
 bool GameScene::PreUpdate()
 {
+
+
+
+	if (App->scenes->Map_Forest_Active) {
+		miniMapMINI_forest->enabled = true;
+		miniMapMINI_snow->enabled = false;
+		miniMapMINI_volcano->enabled = false;
+	}
+	else if (App->scenes->Map_Snow_Active) {
+		miniMapMINI_snow->enabled = true;
+		miniMapMINI_volcano->enabled = false;
+		miniMapMINI_forest->enabled = false;
+	}
+	else if (App->scenes->Map_Volcano_Active) {
+		miniMapMINI_volcano->enabled = true;
+		miniMapMINI_snow->enabled = false;
+		miniMapMINI_forest->enabled = false;
+	}
 	//PaintRollerAnimation->enabled = false;
 	
 	bool ret = true;
