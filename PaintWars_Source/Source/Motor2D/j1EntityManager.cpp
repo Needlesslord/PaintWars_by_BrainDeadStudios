@@ -159,6 +159,7 @@ bool j1EntityManager::Update(float dt) {
 		list<Entity*>::iterator checkForSpawningEntities = spawningEntities.begin();
 		while (checkForSpawningEntities != spawningEntities.end()) {
 
+
 			// The units first
 			if ((*checkForSpawningEntities)->entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY) {
 
@@ -366,11 +367,6 @@ bool j1EntityManager::Update(float dt) {
 			
 
 		}
-
-
-
-
-		
 
 
 
