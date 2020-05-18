@@ -25,6 +25,9 @@
 
 /// Units
 #include "Slime.h"
+#include "Rider.h"
+#include "ExplosiveBlob.h"
+#include "ChromaKing.h"
 
 
 #include <string>

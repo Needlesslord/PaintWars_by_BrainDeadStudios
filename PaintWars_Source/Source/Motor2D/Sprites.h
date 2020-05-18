@@ -502,6 +502,15 @@ Animation rangerMovingSouthEast;
 Animation rangerMovingSouth;
 Animation rangerMovingSouthWest;
 
+Animation rangerAttackWest;
+Animation rangerAttackNorthWest;
+Animation rangerAttackNorth;
+Animation rangerAttackNorthEast;
+Animation rangerAttackEast;
+Animation rangerAttackSouthEast;
+Animation rangerAttackSouth;
+Animation rangerAttackSouthWest;
+
 void RangerSprites()
 {
 	//Idle 
@@ -583,6 +592,57 @@ void RangerSprites()
 	rangerMovingSouth.PushBack({ 786, 624, 75, 156 });
 	rangerMovingSouth.PushBack({ 865, 624, 75, 156 });
 	rangerMovingSouth.speed = 500.0f;
+
+
+	//ATTACK
+
+	//Attack East
+	rangerAttackEast.PushBack({ 0, 780, 93, 156 });
+	rangerAttackEast.PushBack({ 93, 780, 93, 156 });
+	rangerAttackEast.PushBack({ 186, 780, 93, 156 });
+	rangerAttackEast.speed = 250.0f;
+
+	//Attack SouthEast
+	rangerAttackSouthEast.PushBack({ 0, 1092, 93, 156 });
+	rangerAttackSouthEast.PushBack({ 93, 1092, 93, 156 });
+	rangerAttackSouthEast.PushBack({ 186, 1092, 93, 156 });
+	rangerAttackSouthEast.speed = 250.0f;
+
+	//Attack South
+	rangerAttackSouth.PushBack({ 372, 1248, 93, 156 });
+	rangerAttackSouth.PushBack({ 465, 1248, 93, 156 });
+	rangerAttackSouth.PushBack({ 558, 1248, 93, 156 });
+	rangerAttackSouth.speed = 250.0f;
+
+	//Attack SouthWest
+	rangerAttackSouthWest.PushBack({ 372, 1092, 93, 156 });
+	rangerAttackSouthWest.PushBack({ 465, 1092, 93, 156 });
+	rangerAttackSouthWest.PushBack({ 558, 1092, 93, 156 });
+	rangerAttackSouthWest.speed = 250.0f;
+
+	//Attack West
+	rangerAttackWest.PushBack({ 372, 780, 93, 156 });
+	rangerAttackWest.PushBack({ 465, 780, 93, 156 });
+	rangerAttackWest.PushBack({ 558, 780, 93, 156 });
+	rangerAttackWest.speed = 250.0f;
+
+	//Attack NorthWest
+	rangerAttackNorthWest.PushBack({ 372, 936, 93, 156 });
+	rangerAttackNorthWest.PushBack({ 465, 936, 93, 156 });
+	rangerAttackNorthWest.PushBack({ 558, 936, 93, 156 });
+	rangerAttackNorthWest.speed = 250.0f;
+
+	//Attack North
+	rangerAttackNorth.PushBack({ 0, 1248, 93, 156 });
+	rangerAttackNorth.PushBack({ 93, 1248, 93, 156 });
+	rangerAttackNorth.PushBack({ 186, 1248, 93, 156 });
+	rangerAttackNorth.speed = 250.0f;
+
+	//Attack NorthEast
+	rangerAttackNorthEast.PushBack({ 0, 936, 93, 156 });
+	rangerAttackNorthEast.PushBack({ 93, 936, 93, 156 });
+	rangerAttackNorthEast.PushBack({ 186, 936, 93, 156 });
+	rangerAttackNorthEast.speed = 250.0f;
 }
 
 
@@ -818,7 +878,7 @@ void SlimeSprites()
 }
 
 
-//EXPLOSIVE BLOb
+//EXPLOSIVE BLOB
 Animation explosiveBlobIdle;
 		  
 Animation explosiveBlobMovingWest;
