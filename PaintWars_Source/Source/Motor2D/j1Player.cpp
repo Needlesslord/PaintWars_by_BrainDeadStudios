@@ -150,17 +150,12 @@ bool j1Player::Update(float dt)
 
 
 				if (App->gui->GUI_ELEMENTS[z]->textureType == TEXTURE::MINIMAP_CAMERA) {
-
-
-
+					
 					App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x - MinimapCameraBufferX;
 					App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y - MinimapCameraBufferY;
-
 					
 				}
 				else if (App->gui->GUI_ELEMENTS[z]->textureType == TEXTURE::MINIMAP_ENTITIES) {
-
-
 					
 
 				}
