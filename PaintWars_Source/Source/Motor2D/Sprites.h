@@ -816,3 +816,165 @@ void SlimeSprites()
 	slimeMovingSouth.PushBack({ 476, 318, 68, 52 });
 	slimeMovingSouth.speed = 500.0f;
 }
+
+
+//EXPLOSIVE BLOP
+Animation explosiveBlopIdle;
+		  
+Animation explosiveBlopMovingWest;
+Animation explosiveBlopMovingNorthWest;
+Animation explosiveBlopMovingNorth;
+Animation explosiveBlopMovingNorthEast;
+Animation explosiveBlopMovingEast;
+Animation explosiveBlopMovingSouthEast;
+Animation explosiveBlopMovingSouth;
+Animation explosiveBlopMovingSouthWest;
+
+void ExplosiveBlopSprites()
+{
+	//Idle 
+	explosiveBlopIdle.PushBack({ 96, 303, 96, 101 });
+	explosiveBlopIdle.PushBack({ 192, 303, 96, 101 });
+	explosiveBlopIdle.speed = 50.0f;
+
+	//MOVING
+
+	//Moving Right
+	explosiveBlopMovingEast.PushBack({ 0, 202, 96, 101 });
+	explosiveBlopMovingEast.PushBack({ 96, 202, 96, 101 });
+	explosiveBlopMovingEast.PushBack({ 192, 202, 96, 101 });
+	explosiveBlopMovingEast.PushBack({ 288, 202, 96, 101 });
+	explosiveBlopMovingEast.speed = 500.0f;		 	 
+										 	 
+	//Moving Left						 	 
+	explosiveBlopMovingWest.PushBack({ 384, 202, 96, 101 });
+	explosiveBlopMovingWest.PushBack({ 480, 202, 96, 101 });
+	explosiveBlopMovingWest.PushBack({ 576, 202, 96, 101 });
+	explosiveBlopMovingWest.PushBack({ 672, 202, 96, 101 });
+	explosiveBlopMovingWest.speed = 500.0f;
+
+	//Moving RightBack
+	explosiveBlopMovingNorthEast.PushBack({ 0, 101, 96, 101 });
+	explosiveBlopMovingNorthEast.PushBack({ 96, 101, 96, 101 });
+	explosiveBlopMovingNorthEast.PushBack({ 192, 101, 96, 101 });
+	explosiveBlopMovingNorthEast.PushBack({ 288, 101, 96, 101 });
+	explosiveBlopMovingNorthEast.speed = 500.0f;	  
+										  
+	//Moving LeftBack					  	  
+	explosiveBlopMovingNorthWest.PushBack({ 384, 101, 96, 101 });
+	explosiveBlopMovingNorthWest.PushBack({ 480, 101, 96, 101 });
+	explosiveBlopMovingNorthWest.PushBack({ 576, 101, 96, 101 });
+	explosiveBlopMovingNorthWest.PushBack({ 672, 101, 96, 101 });
+	explosiveBlopMovingNorthWest.speed = 500.0f;
+
+
+	//Moving RightFront
+	explosiveBlopMovingSouthEast.PushBack({ 0, 0, 96, 101 });
+	explosiveBlopMovingSouthEast.PushBack({ 96, 0, 96, 101 });
+	explosiveBlopMovingSouthEast.PushBack({ 192, 0, 96, 101 });
+	explosiveBlopMovingSouthEast.PushBack({ 288, 0, 96, 101 });
+	explosiveBlopMovingSouthEast.speed = 500.0f;  	  
+										  	  
+	//Moving LeftFront					  	  
+	explosiveBlopMovingSouthWest.PushBack({ 384, 0, 96, 101 });
+	explosiveBlopMovingSouthWest.PushBack({ 480, 0, 96, 101 });
+	explosiveBlopMovingSouthWest.PushBack({ 576, 0, 96, 101 });
+	explosiveBlopMovingSouthWest.PushBack({ 672, 0, 96, 101 });
+	explosiveBlopMovingSouthWest.speed = 500.0f;
+
+	//Moving Back
+	explosiveBlopMovingNorth.PushBack({ 0, 303, 96, 101 });
+	explosiveBlopMovingNorth.PushBack({ 68, 303, 96, 101 });
+	explosiveBlopMovingNorth.PushBack({ 136, 303, 96, 101 });
+	explosiveBlopMovingNorth.PushBack({ 204, 303, 96, 101 });
+	explosiveBlopMovingNorth.speed = 500.0f;  	  
+									  	  
+	//Moving Front					  	  
+	explosiveBlopMovingSouth.PushBack({ 384, 303, 96, 101 });
+	explosiveBlopMovingSouth.PushBack({ 480, 303, 96, 101 });
+	explosiveBlopMovingSouth.PushBack({ 576, 303, 96, 101 });
+	explosiveBlopMovingSouth.PushBack({ 672, 303, 96, 101 });
+	explosiveBlopMovingSouth.speed = 500.0f;
+}
+
+
+
+//CHROMA KING
+Animation chromaKingIdle;
+		  
+Animation chromaKingMovingWest;
+Animation chromaKingMovingNorthWest;
+Animation chromaKingMovingNorth;
+Animation chromaKingMovingNorthEast;
+Animation chromaKingMovingEast;
+Animation chromaKingMovingSouthEast;
+Animation chromaKingMovingSouth;
+Animation chromaKingMovingSouthWest;
+
+void ChromaKingSprites()
+{
+	//Idle 
+	chromaKingIdle.PushBack({ 544, 3027, 272, 221 });
+	chromaKingIdle.PushBack({ 816, 3027, 272, 221 });
+	chromaKingIdle.speed = 50.0f;
+
+	//MOVING
+
+	//Moving Right
+	chromaKingMovingEast.PushBack({ 0, 0, 272, 221 });
+	chromaKingMovingEast.PushBack({ 272, 0, 272, 221 });
+	chromaKingMovingEast.PushBack({ 544, 0, 272, 221 });
+	chromaKingMovingEast.PushBack({ 816, 0, 272, 221 });
+	chromaKingMovingEast.speed = 500.0f;		 
+												 
+	//Moving Left						 	 	 
+	chromaKingMovingWest.PushBack({ 1088, 0, 272, 221 });
+	chromaKingMovingWest.PushBack({ 1360, 0, 272, 221 });
+	chromaKingMovingWest.PushBack({ 1632, 0, 272, 221 });
+	chromaKingMovingWest.PushBack({ 1904, 0, 272, 221 });
+	chromaKingMovingWest.speed = 500.0f;
+
+	//Moving RightBack
+	chromaKingMovingNorthEast.PushBack({ 0, 467, 272, 221 });
+	chromaKingMovingNorthEast.PushBack({ 272, 467, 272, 221 });
+	chromaKingMovingNorthEast.PushBack({ 544, 467, 272, 221 });
+	chromaKingMovingNorthEast.PushBack({ 816, 467, 272, 221 });
+	chromaKingMovingNorthEast.speed = 500.0f;	   
+												   
+	//Moving LeftBack					  	  	   
+	chromaKingMovingNorthWest.PushBack({ 1088, 467, 272, 221 });
+	chromaKingMovingNorthWest.PushBack({ 1360, 467, 272, 221 });
+	chromaKingMovingNorthWest.PushBack({ 1632, 467, 272, 221 });
+	chromaKingMovingNorthWest.PushBack({ 1904, 467, 272, 221 });
+	chromaKingMovingNorthWest.speed = 500.0f;
+
+
+	//Moving RightFront
+	chromaKingMovingSouthWest.PushBack({ 0, 891, 272, 221 });
+	chromaKingMovingSouthWest.PushBack({ 272, 891, 272, 221 });
+	chromaKingMovingSouthWest.PushBack({ 544, 891, 272, 221 });
+	chromaKingMovingSouthWest.PushBack({ 816, 891, 272, 221 });
+	chromaKingMovingSouthWest.speed = 500.0f;
+
+	//Moving LeftFront					  	  
+	chromaKingMovingSouthWest.PushBack({ 1088, 891, 272, 221 });
+	chromaKingMovingSouthWest.PushBack({ 1360, 891, 272, 221 });
+	chromaKingMovingSouthWest.PushBack({ 1632, 891, 272, 221 });
+	chromaKingMovingSouthWest.PushBack({ 1904, 891, 272, 221 });
+	chromaKingMovingSouthWest.speed = 500.0f;
+
+	//Moving Back
+	chromaKingMovingNorth.PushBack({ 0, 1332, 272, 221 });
+	chromaKingMovingNorth.PushBack({ 272, 1332, 272, 221 });
+	chromaKingMovingNorth.PushBack({ 544, 1332, 272, 221 });
+	chromaKingMovingNorth.PushBack({ 816, 1332, 272, 221 });
+	chromaKingMovingNorth.speed = 500.0f;
+
+	//Moving Front					  	  
+	chromaKingMovingSouth.PushBack({ 1088, 1332, 272, 221 });
+	chromaKingMovingSouth.PushBack({ 1360, 1332, 272, 221 });
+	chromaKingMovingSouth.PushBack({ 1632, 1332, 272, 221 });
+	chromaKingMovingSouth.PushBack({ 1904, 1332, 272, 221 });
+	chromaKingMovingSouth.speed = 500.0f;
+}
+
