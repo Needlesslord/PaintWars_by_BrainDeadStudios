@@ -1465,7 +1465,10 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		vfxLabel->enabled = false;
 		fullscreenLabel->enabled = false;
 		gpadLabel->enabled = false;
-		
+		fxBar->enabled = false;
+		fxSlider->enabled = false;
+		musicBar->enabled = false;
+		musicSlider->enabled = false;
 		
 		fullscreenButton->enabled = false;
 		gpadButton->enabled = false;
@@ -1813,39 +1816,64 @@ void GameScene::Generate_Volcano_Map()
 
 void GameScene::Generate_Entities()
 {
-
+	App->entities->AddEntity(ENTITY_TYPE_EXPLORER, { 2, 2 }, App->entities, nullptr, 0, true);
 
 	//scattered enemies (slimes)
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 62, 62 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 22, 22 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 22, 62 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 62, 22 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 10, 50 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 50, 10 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 75, 15 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 24, 80 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 36, 84 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 23, 78 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 13, 48 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 80, 40 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 40, 80 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 80, 80 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 40, 40 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 52, 0 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 0, 52 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 52, 75 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 75, 52 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 20, 52 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 52, 20 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 20, 20 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 99, 1 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 1, 99 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 1, 1 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 99, 99 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 100, 0 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 0, 100 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 0, 0 }, App->entities, nullptr, 0, true);
-	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 100, 100 }, App->entities, nullptr, 0, true);
+	if (App->scenes->Map_Forest_Active == true) {
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 19, 86 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 86, 19 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 90, 90 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 98, 95 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 34, 70 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 75, 85 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 93, 83 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 92, 67 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 85, 38 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 74, 17 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 37, 7 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 50, 10 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 10, 50 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 7, 37 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 58, 8 }, App->entities, nullptr, 0, true);
+
+	}
+	else if (App->scenes->Map_Snow_Active == true) {
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 90, 90 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 95, 95 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 80, 80 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 75, 90 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 90, 75 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 6, 92 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 9, 90 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 6, 90 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 6, 84 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 50, 50 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 46, 48 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 61, 40 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 40, 61 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 51, 64 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 50, 13 }, App->entities, nullptr, 0, true);
+
+	}
+	else if (App->scenes->Map_Volcano_Active == true) {
+
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 90, 90 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 95, 95 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 80, 80 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 75, 90 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 90, 75 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 6, 92 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 9, 90 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 6, 90 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 6, 84 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 50, 50 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 46, 48 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 61, 40 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 40, 61 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 51, 64 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 50, 13 }, App->entities, nullptr, 0, true);
+
+	}
 
 
 	if (App->scenes->Map_Forest_Active == true) {
