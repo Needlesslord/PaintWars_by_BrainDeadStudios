@@ -44,10 +44,10 @@ In a world full of colour, a corruption spread, turning everything monochromatic
        - Wood Producer: To get wood
        - Barracks: To create warriors, rangers, knights
        - House: To increase unit capacity
-       - Research: to get improvement on units and buildings
+       - Research: to get improvement on units and buildings -not fully working yet-
        - Metal Gatherer: To get metal scrap
        - Titanium Extractor: To get titanium
-       - Turret: defensive building (not fully working yet)
+       - Turret: defensive building -not fully working yet-
      + 1 enemy building (black and white): Spawner (5, if destroyed WIN)
      + 4 Enemies, with AI behaviour, (black and white):
        - Slime: Melee enemy

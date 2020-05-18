@@ -52,7 +52,7 @@ bool j1PathFinding::IsWalkable(const iPoint& pos, bool isAttacking) const {
 	uchar t = GetTileAt(pos);
 	
 	//if (isAttacking) {
-		return t > 0 && ((t != INVALID_WALK_CODE && t != PAINT_WALK_CODE) || t == WOOD_WALK_CODE || t == PAINT_SHORE_WALK_CODE);
+		return t > 0 && ((t != INVALID_WALK_CODE && t != PAINT_WALK_CODE) || t == WOOD_WALK_CODE || t == METAL_WALK_CODE || t == PAINT_SHORE_WALK_CODE);
 	//}
 	//return t > 0 && ((t != INVALID_WALK_CODE && t != SPAWNER_WALK_CODE && t != PAINT_WALK_CODE)  || t == WOOD_WALK_CODE || t == PAINT_SHORE_WALK_CODE);
 }
@@ -60,7 +60,7 @@ bool j1PathFinding::IsWalkable(const iPoint& pos, bool isAttacking) const {
 bool j1PathFinding::IsBuildable(const iPoint & pos) const
 {
 	uchar t = GetTileAt(pos);
-	return t > 0 && (t != INVALID_WALK_CODE && t != SPAWNER_WALK_CODE && t != PAINT_WALK_CODE && t != WOOD_WALK_CODE);
+	return t > 0 && (t != INVALID_WALK_CODE && t != SPAWNER_WALK_CODE && t != PAINT_WALK_CODE && t != WOOD_WALK_CODE && t != METAL_WALK_CODE);
 	
 }
 
@@ -89,7 +89,7 @@ bool j1PathFinding::IsWood(const iPoint& pos) const {
 bool j1PathFinding::IsMetalScrap(const iPoint& pos) const {
 
 	uchar u = GetTileAt(pos);
-	/*return u > 0 && u == WOOD_WALK_CODE;		*/	return u > 0 && u == METAL_WALK_CODE;
+	return u > 0 && u == METAL_WALK_CODE;
 }
 
 
@@ -136,6 +136,32 @@ void j1PathFinding::ChangeToWood(const iPoint& pos) const {
 
 	if (IsWalkable(adjacentPos4))
 		map[(adjacentPos4.y*width) + adjacentPos4.x] = WOOD_WALK_CODE;
+}
+
+// Utility: changes the walkability of a tile to metal
+void j1PathFinding::ChangeToMetal(const iPoint& pos) const {
+
+	iPoint adjacentPos1;
+	iPoint adjacentPos2;
+	iPoint adjacentPos3;
+	iPoint adjacentPos4;
+
+	adjacentPos1.x = pos.x + 1;	adjacentPos1.y = pos.y;
+	adjacentPos2.x = pos.x - 1;	adjacentPos2.y = pos.y;
+	adjacentPos3.x = pos.x;	adjacentPos3.y = pos.y + 1;
+	adjacentPos4.x = pos.x;	adjacentPos4.y = pos.y - 1;
+
+	if (IsWalkable(adjacentPos1))
+		map[(adjacentPos1.y*width) + adjacentPos1.x] = METAL_WALK_CODE;
+
+	if (IsWalkable(adjacentPos2))
+		map[(adjacentPos2.y*width) + adjacentPos2.x] = METAL_WALK_CODE;
+
+	if (IsWalkable(adjacentPos3))
+		map[(adjacentPos3.y*width) + adjacentPos3.x] = METAL_WALK_CODE;
+
+	if (IsWalkable(adjacentPos4))
+		map[(adjacentPos4.y*width) + adjacentPos4.x] = METAL_WALK_CODE;
 }
 
 // Utility: changes the walkability of a tile to a spawner-container tile

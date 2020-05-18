@@ -42,10 +42,7 @@ Ranger::Ranger(iPoint tile, int damage, j1Module* listener, Entity* creator) : E
 	destination = currentTile;
 
 	attackDamage = 7.0f;
-	attackRadius = 6;
-
-	if (App->entities->warriorsUpgraded)
-		attackDamage *= 1.5f;
+	attackRadius = 5;
 
 	attackSpeed = 15.0f;
 	attackCooldown = attackSpeed;
@@ -53,7 +50,7 @@ Ranger::Ranger(iPoint tile, int damage, j1Module* listener, Entity* creator) : E
 	isEntityFromPlayer = true;
 
 	//FOW
-	visibilityRadius = 3;
+	visibilityRadius = 5;
 	fow_entity->frontier = App->fow->CreateSightQuad(visibilityRadius, fow_entity->position);
 	fow_entity->LOS = App->fow->FulfillSight(fow_entity->frontier);
 

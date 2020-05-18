@@ -47,7 +47,7 @@ Barracks::~Barracks() {}
 void Barracks::SpawnEntity(ENTITY_TYPE type) {
 
 	if (type == ENTITY_TYPE_WARRIOR) {
-		if (!isSpawningAUnit && App->player->paintCount.count > 20 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
+		if (!isSpawningAUnit && App->player->paintCount.count >= 20 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
 
 			App->player->paintCount.count -= 20;
 			App->player->housingSpace.count++;
@@ -57,7 +57,7 @@ void Barracks::SpawnEntity(ENTITY_TYPE type) {
 		}
 	}
 	else if (type == ENTITY_TYPE_KNIGHT) {
-		if (!isSpawningAUnit && App->player->paintCount.count > 100 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
+		if (!isSpawningAUnit && App->player->paintCount.count >= 100 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
 
 			App->player->paintCount.count -= 100;
 			App->player->housingSpace.count++;
@@ -67,7 +67,7 @@ void Barracks::SpawnEntity(ENTITY_TYPE type) {
 		}
 	}
 	else if (type == ENTITY_TYPE_RANGER) {
-		if (!isSpawningAUnit && App->player->paintCount.count > 50 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
+		if (!isSpawningAUnit && App->player->paintCount.count >= 50 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
 
 			App->player->paintCount.count -= 50;
 			App->player->housingSpace.count++;

@@ -275,6 +275,9 @@ bool j1EntityManager::Update(float dt) {
 			else if (hoveringEntityType == ENTITY_TYPE_WOOD_PRODUCER) {
 				App->render->RenderQueue(1, woodProducerTexture, mapWorldCoordinates.x - 75 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 200 + App->map->data.tile_height / 2, { 0,0,150,200 });
 			}
+			else if (hoveringEntityType == ENTITY_TYPE_METAL_GATHERER) {
+				App->render->RenderQueue(1, metalGathererTexture, mapWorldCoordinates.x - 75 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 200 + App->map->data.tile_height / 2, { 0,0,150,200 });
+			}
 			else if (hoveringEntityType == ENTITY_TYPE_BARRACKS) {
 				App->render->RenderQueue(1, barracksTexture, mapWorldCoordinates.x - 125 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 250 + App->map->data.tile_height / 2, { 0,0,250,250 });
 			}
@@ -311,6 +314,19 @@ bool j1EntityManager::Update(float dt) {
 							isSelectingPlacement = false;
 							App->player->paintCount.count -= 20;
 							AddEntity(ENTITY_TYPE_WOOD_PRODUCER, mapCoordinates, App->entities, nullptr, 0);
+							hoveringEntityType == ENTITY_TYPE_NONE;
+						}
+					}
+				}
+
+				else if (hoveringEntityType == ENTITY_TYPE_METAL_GATHERER) {
+
+					if (App->pathfinding->IsBuildable(mapCoordinates)) {
+
+						if (App->player->paintCount.count >= 100) {
+							isSelectingPlacement = false;
+							App->player->paintCount.count -= 100;
+							AddEntity(ENTITY_TYPE_METAL_GATHERER, mapCoordinates, App->entities, nullptr, 0);
 							hoveringEntityType == ENTITY_TYPE_NONE;
 						}
 					}
@@ -403,6 +419,18 @@ bool j1EntityManager::Update(float dt) {
 				(*entitiesToExtractPaint)->currentAnimation = &painterRecollection;
 			}
 			paintersToExtractWood++;
+		}
+
+		// Extract Metal scrap  (ONLY PAINTERS CAN)
+		list<Entity*>::iterator paintersToExtractMetal = activeUnits.begin();
+		while (paintersToExtractMetal != activeUnits.end()) {
+
+			// We try to extract and it will return if it can't
+			if ((*paintersToExtractMetal)->entityType == ENTITY_TYPE_PAINTER) {
+
+				(*paintersToExtractMetal)->ExtractMetalScrap(dt);
+			}
+			paintersToExtractMetal++;
 		}
 
 		// Extract Titanium (ONLY TITANIUM GATHERER CAN)
@@ -1011,13 +1039,13 @@ bool j1EntityManager::Update(float dt) {
 					while (particle != particles.end()) {
 
 						if ((*particle)->isAlive) {
-							
+
 							if ((*particleToUpdate)->target == nullptr) {
 
 								float ang = atan((((*particle)->target.y + (*particle)->targetSize.y / 2) - (*particle)->pos.y) / (((*particle)->target.x + (*particle)->targetSize.x / 2) - (*particle)->pos.x));
 
-								(*particle)->speed.x = 1000 * cos(ang);
-								(*particle)->speed.y = 1000 * sin(ang);
+								(*particle)->speed.x = 500 * cos(ang);
+								(*particle)->speed.y = 500 * sin(ang);
 
 								(*particle)->Update(dt, { ((*particle)->target.x + ((*particle)->targetSize.x / 2)), ((*particle)->target.y + ((*particle)->targetSize.y / 2)) });
 							}
@@ -1031,25 +1059,71 @@ bool j1EntityManager::Update(float dt) {
 								(*particle)->targetSize.x = (*particleToUpdate)->target->GetSize().x;
 								(*particle)->targetSize.y = (*particleToUpdate)->target->GetSize().y;
 
-								(*particle)->speed.x = 1000 * cos(ang);
-								(*particle)->speed.y = 1000 * sin(ang);
+								(*particle)->speed.x = 500 * cos(ang);
+								(*particle)->speed.y = 500 * sin(ang);
 
 								if ((*particle)->Update(dt, { ((*particleToUpdate)->target->pos.x + ((*particleToUpdate)->target->GetSize().x / 2)), ((*particleToUpdate)->target->pos.y + ((*particleToUpdate)->target->GetSize().y / 2)) }) == false) {
-									
+
 									(*particleToUpdate)->particles.erase(particle);
 									(*particleToUpdate)->target->ApplyDamage((*particleToUpdate)->attackDamage);
+									delete(*particle);
 								}
 							}
 						}
 
 						particle++;
-					}	
+					}
 				}
-				else if ((*particleToUpdate)->entityType == ENTITY_TYPE_SLIME) {
+
+
+			}
+			else if ((*particleToUpdate)->entityType == ENTITY_TYPE_SLIME) {
+
+				if ((*particleToUpdate)->particles.size() > 0) {
+
+					particles = (*particleToUpdate)->particles;
+
+					std::list<Particles*>::iterator particle = particles.begin();
+					while (particle != particles.end()) {
+
+						if ((*particle)->isAlive) {
+
+							if ((*particleToUpdate)->target == nullptr) {
+
+								float ang = atan((((*particle)->target.y + (*particle)->targetSize.y / 2) - (*particle)->pos.y) / (((*particle)->target.x + (*particle)->targetSize.x / 2) - (*particle)->pos.x));
+
+								(*particle)->speed.x = 250 * cos(ang);
+								(*particle)->speed.y = 250 * sin(ang);
+
+								(*particle)->Update(dt, { ((*particle)->target.x + ((*particle)->targetSize.x / 2)), ((*particle)->target.y + ((*particle)->targetSize.y / 2)) });
+							}
+
+							else {
+
+								float ang = atan((((*particleToUpdate)->target->pos.y + (*particleToUpdate)->target->GetSize().y / 2) - (*particle)->pos.y) / (((*particleToUpdate)->target->pos.x + (*particleToUpdate)->target->GetSize().x / 2) - (*particle)->pos.x));
+
+								(*particle)->target.x = (*particleToUpdate)->target->pos.x;
+								(*particle)->target.y = (*particleToUpdate)->target->pos.y;
+								(*particle)->targetSize.x = (*particleToUpdate)->target->GetSize().x;
+								(*particle)->targetSize.y = (*particleToUpdate)->target->GetSize().y;
+
+								(*particle)->speed.x = 250 * cos(ang);
+								(*particle)->speed.y = 250 * sin(ang);
+
+								if ((*particle)->Update(dt, { ((*particleToUpdate)->target->pos.x + ((*particleToUpdate)->target->GetSize().x / 2)), ((*particleToUpdate)->target->pos.y + ((*particleToUpdate)->target->GetSize().y / 2)) }) == false) {
+
+									(*particleToUpdate)->particles.erase(particle);
+									(*particleToUpdate)->target->ApplyDamage((*particleToUpdate)->attackDamage);
+									delete(*particle);
+								}
+							}
+						}
+
+						particle++;
+					}
 				}
 
 			}
-
 			particleToUpdate++;
 		}
 
@@ -1107,6 +1181,9 @@ bool j1EntityManager::Update(float dt) {
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_WOOD_PRODUCER) {
 					(*entitiesToDraw)->Draw(woodProducerTexture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_METAL_GATHERER) {
+					(*entitiesToDraw)->Draw(metalGathererTexture);
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_HOUSE) {
 					(*entitiesToDraw)->Draw(houseTexture);
@@ -1226,16 +1303,20 @@ bool j1EntityManager::PostUpdate() {
 			list<Entity*>::iterator checkForSelectedEntities = activeEntities.begin();
 			while (checkForSelectedEntities != activeEntities.end()) {
 
-				if (mouseMapCoordinates.x < (*checkForSelectedEntities)->pos.x + (*checkForSelectedEntities)->GetSize().x && mouseMapCoordinates.x >(*checkForSelectedEntities)->pos.x &&
-					mouseMapCoordinates.y < (*checkForSelectedEntities)->pos.y + (*checkForSelectedEntities)->GetSize().y && mouseMapCoordinates.y >(*checkForSelectedEntities)->pos.y) {
+				if ((*checkForSelectedEntities)->isEntityFromPlayer) {
 
-					if (!(*checkForSelectedEntities)->isSelected)
-						SelectEntity(*checkForSelectedEntities, controlWasPressed);
+					if (mouseMapCoordinates.x < (*checkForSelectedEntities)->pos.x + (*checkForSelectedEntities)->GetSize().x && mouseMapCoordinates.x >(*checkForSelectedEntities)->pos.x &&
+						mouseMapCoordinates.y < (*checkForSelectedEntities)->pos.y + (*checkForSelectedEntities)->GetSize().y && mouseMapCoordinates.y >(*checkForSelectedEntities)->pos.y) {
 
-					isSomethingSelected = true;
+						if (!(*checkForSelectedEntities)->isSelected)
+							SelectEntity(*checkForSelectedEntities, controlWasPressed);
 
-					break;
+						isSomethingSelected = true;
+
+						break;
+					}
 				}
+
 				checkForSelectedEntities++;
 			}
 		}
@@ -1274,6 +1355,7 @@ bool j1EntityManager::PostUpdate() {
 		if ((*checkForDeadEntities)->GetCurrLife() <= 0 || !(*checkForDeadEntities)->isAlive) {
 
 			(*checkForDeadEntities)->isAlive = false;
+			App->fow->DestroyFOWEntity((*checkForDeadEntities)->fow_entity);
 			activeEntities.erase(checkForDeadEntities);
 
 			(*checkForDeadEntities)->~Entity();
@@ -1421,6 +1503,30 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		App->pathfinding->ChangeToWood(tile);
 
 		return (Entity*)woodProducer;
+	}
+
+	else if (entityType == ENTITY_TYPE_METAL_GATHERER) {
+
+		MetalGatherer* metalGatherer = new MetalGatherer(tile, damage, this, creator);
+
+		if (spawnAutomatically) {
+
+			activeEntities.push_back((Entity*)metalGatherer);
+			activeBuildings.push_back((Entity*)metalGatherer);
+			metalGatherer->isAlive = true;
+			metalGatherer->CreateEntityCollider(metalGatherer->pos, (Entity*)metalGatherer);
+		}
+
+		else
+			spawningEntities.push_back((Entity*)metalGatherer);
+
+		// Change the walkability to non walkable
+		App->pathfinding->ChangeWalkability(tile, false, metalGatherer->entitySize);
+
+		// Change to Wood the 4 directly adjacent tiles
+		App->pathfinding->ChangeToMetal(tile);
+
+		return (Entity*)metalGatherer;
 	}
 
 	else if (entityType == ENTITY_TYPE_HOUSE) {
@@ -1701,6 +1807,7 @@ void j1EntityManager::LoadEntityTextures()
 	woodProducerTexture = App->tex->Load("textures/entity_building_woodProducer.png");
 	houseTexture = App->tex->Load("textures/entity_building_house.png");
 	barracksTexture = App->tex->Load("textures/entity_building_barracks.png");
+	metalGathererTexture = App->tex->Load("textures/entity_building_metal_gatherer.png");
 
 	/// Units
 	warriorTexture = App->tex->Load("textures/entity_units_warrior_spritesheet.png");
@@ -2265,6 +2372,9 @@ bool j1EntityManager::Load(pugi::xml_node& save)
 		else if (strcmp(entityType, "woodproducer") == 0) {
 			App->entities->AddEntity(ENTITY_TYPE_WOOD_PRODUCER, { positionX,positionY }, App->entities, nullptr, 0, true);
 		}
+		else if (strcmp(entityType, "metalgatherer") == 0) {
+			App->entities->AddEntity(ENTITY_TYPE_METAL_GATHERER, { positionX,positionY }, App->entities, nullptr, 0, true);
+		}
 		else if (strcmp(entityType, "house") == 0) {
 			App->entities->AddEntity(ENTITY_TYPE_HOUSE, { positionX,positionY }, App->entities, nullptr, 0, true);
 		}
@@ -2373,6 +2483,16 @@ bool j1EntityManager::Save(pugi::xml_node& save) const
 		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_WOOD_PRODUCER) {
 
 			entity.append_attribute("entity_type") = "woodproducer";
+			entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
+			entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
+			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();
+			entity.append_attribute("size_x") = (*entitiesToSave)->GetSize().x;
+			entity.append_attribute("size_y") = (*entitiesToSave)->GetSize().y;
+		}
+
+		else if ((*entitiesToSave)->entityType == ENTITY_TYPE_METAL_GATHERER) {
+
+			entity.append_attribute("entity_type") = "metalgatherer";
 			entity.append_attribute("position_x") = (*entitiesToSave)->currentTile.x;
 			entity.append_attribute("position_y") = (*entitiesToSave)->currentTile.y;
 			entity.append_attribute("missing_hp") = (*entitiesToSave)->GetMaxLife() - (*entitiesToSave)->GetCurrLife();

@@ -27,11 +27,15 @@ Slime::Slime(iPoint tile, int damage, j1Module* listener) : Entity(tile, damage,
 	pos.x = tileWorldPosition.x + App->map->data.tile_width / 2 - size.x / 2;
 	pos.y = tileWorldPosition.y + App->map->data.tile_height / 2 - size.y;
 
-	speed = 140;
-
-	spawningTime = 1.0f;
+	speed = 150.0f;
 
 	destination = currentTile;
+
+	attackDamage = 4.0f;
+	attackRadius = 1;
+
+	attackSpeed = 25.0f;
+	attackCooldown = attackSpeed;
 
 	isEntityFromPlayer = false;
 }
@@ -61,5 +65,5 @@ void Slime::Attack(Entity* target, float dt) {
 
 void Slime::Draw(SDL_Texture* sprites) {
 
-	//App->render->RenderQueue(1, sprites, pos.x, pos.y, currentAnimation->GetCurrentFrame());
+	App->render->RenderQueue(1, sprites, pos.x, pos.y, currentAnimation->GetCurrentFrame());
 }
