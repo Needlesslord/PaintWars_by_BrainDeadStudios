@@ -62,7 +62,7 @@ bool StartScene::Start()
 	volcanoButton->hover_rect = { 263, 334, 234, 79 };
 	volcanoButton->click_rect = { 525, 334, 234, 79 };
 
-	backButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 900, 570 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "", App->scenes, TEXTURE::ATLAS);
+	backButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 505, 570 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "", App->scenes, TEXTURE::ATLAS);
 	backButton->hover_rect = { 263, 658, 207, 71 };
 	backButton->click_rect = { 525, 658, 207, 71 };
 
@@ -72,7 +72,7 @@ bool StartScene::Start()
 	Forest_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, forestButton, { 500 , 250 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "Forest", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
 	Snow_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, snowButton, { 500 , 360 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "Snow", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
 	Volcano_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, volcanoButton, { 450 , 470 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "Volcano", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
-	Back_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, backButton, { 900 , 585 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "BACK", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
+	Back_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, backButton, { 555 , 585 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "BACK", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
 	
 
 
