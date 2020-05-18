@@ -1,33 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="AlternatingBars.cpp" />
-    <ClCompile Include="animation.cpp" />
-    <ClCompile Include="CameraToMouse.cpp" />
-    <ClCompile Include="Color.cpp" />
-    <ClCompile Include="Cut.cpp" />
-    <ClCompile Include="Dissolve.cpp" />
-    <ClCompile Include="ExpandingBars.cpp" />
-    <ClCompile Include="FadeToColour.cpp" />
-    <ClCompile Include="j1ButtonUI.cpp" />
-    <ClCompile Include="j1UIElements.cpp" />
-    <ClCompile Include="j1FontsUI.cpp" />
-    <ClCompile Include="j1UI_Manager.cpp" />
-    <ClCompile Include="j1SpritesUI.cpp" />
-    <ClCompile Include="j1TextUI.cpp" />
-    <ClCompile Include="j1Main.cpp" />
-    <ClCompile Include="j1PerfTimer.cpp" />
-    <ClCompile Include="p2Log.cpp" />
-    <ClCompile Include="j1Render.cpp" />
-    <ClCompile Include="j1Window.cpp" />
-    <ClCompile Include="PugiXml\src\pugixml.cpp" />
-    <ClCompile Include="Random.cpp" />
-    <ClCompile Include="Slide.cpp" />
-    <ClCompile Include="Transition.cpp" />
-    <ClCompile Include="TransitionManager.cpp" />
-    <ClCompile Include="Wipe.cpp" />
-    <ClCompile Include="ZoomToMouse.cpp" />
-    <ClCompile Include="ZoomToTexture.cpp" />
     <ClCompile Include="Barracks.cpp">
       <Filter>Entities\Allied\Buildings</Filter>
     </ClCompile>
@@ -172,43 +145,89 @@
     <ClCompile Include="j1Collision.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="AlternatingBars.cpp">
+      <Filter>Transitions</Filter>
+    </ClCompile>
+    <ClCompile Include="animation.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraToMouse.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Transitions</Filter>
+    </ClCompile>
+    <ClCompile Include="Cut.cpp">
+      <Filter>Transitions</Filter>
+    </ClCompile>
+    <ClCompile Include="Dissolve.cpp">
+      <Filter>Transitions</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpandingBars.cpp">
+      <Filter>Transitions</Filter>
+    </ClCompile>
+    <ClCompile Include="FadeToColour.cpp">
+      <Filter>Transitions</Filter>
+    </ClCompile>
+    <ClCompile Include="j1ButtonUI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="j1FontsUI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Main.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="j1PerfTimer.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Render.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1SpritesUI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="j1TextUI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="j1UI_Manager.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="j1UIElements.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Window.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="p2Log.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="PugiXml\src\pugixml.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Slide.cpp">
+      <Filter>Transitions</Filter>
+    </ClCompile>
+    <ClCompile Include="Transition.cpp">
+      <Filter>Transitions</Filter>
+    </ClCompile>
+    <ClCompile Include="TransitionManager.cpp">
+      <Filter>Transitions</Filter>
+    </ClCompile>
+    <ClCompile Include="Wipe.cpp">
+      <Filter>Transitions</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoomToMouse.cpp">
+      <Filter>Transitions</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoomToTexture.cpp">
+      <Filter>Transitions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AlternatingBars.h" />
-    <ClInclude Include="animation.h" />
-    <ClInclude Include="Bar.h" />
-    <ClInclude Include="CameraToMouse.h" />
-    <ClInclude Include="Color.h" />
-    <ClInclude Include="Cut.h" />
-    <ClInclude Include="Dissolve.h" />
-    <ClInclude Include="ExpandingBars.h" />
-    <ClInclude Include="FadeToColour.h" />
-    <ClInclude Include="j1ButtonUI.h" />
-    <ClInclude Include="j1FontsUI.h" />
-    <ClInclude Include="j1UI_Manager.h" />
-    <ClInclude Include="j1SpritesUI.h" />
-    <ClInclude Include="j1TextUI.h" />
-    <ClInclude Include="j1UIElements.h" />
-    <ClInclude Include="j1PerfTimer.h" />
-    <ClInclude Include="p2DynArray.h" />
-    <ClInclude Include="p2Log.h" />
-    <ClInclude Include="p2Defs.h" />
-    <ClInclude Include="p2List.h" />
-    <ClInclude Include="j1Module.h" />
-    <ClInclude Include="p2Point.h" />
-    <ClInclude Include="j1Render.h" />
-    <ClInclude Include="j1Window.h" />
-    <ClInclude Include="p2SString.h" />
-    <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
-    <ClInclude Include="PugiXml\src\pugixml.hpp" />
-    <ClInclude Include="Random.h" />
-    <ClInclude Include="Slide.h" />
-    <ClInclude Include="Sprites.h" />
-    <ClInclude Include="Transition.h" />
-    <ClInclude Include="TransitionManager.h" />
-    <ClInclude Include="Wipe.h" />
-    <ClInclude Include="ZoomToMouse.h" />
-    <ClInclude Include="ZoomToTexture.h" />
     <ClInclude Include="Barracks.h">
       <Filter>Entities\Allied\Buildings</Filter>
     </ClInclude>
@@ -354,10 +373,117 @@
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="AlternatingBars.h">
+      <Filter>Transitions</Filter>
+    </ClInclude>
+    <ClInclude Include="Bar.h">
+      <Filter>Transitions</Filter>
+    </ClInclude>
+    <ClInclude Include="animation.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraToMouse.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Transitions</Filter>
+    </ClInclude>
+    <ClInclude Include="Cut.h">
+      <Filter>Transitions</Filter>
+    </ClInclude>
+    <ClInclude Include="Dissolve.h">
+      <Filter>Transitions</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpandingBars.h">
+      <Filter>Transitions</Filter>
+    </ClInclude>
+    <ClInclude Include="FadeToColour.h">
+      <Filter>Transitions</Filter>
+    </ClInclude>
+    <ClInclude Include="j1ButtonUI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="j1FontsUI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Module.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="j1PerfTimer.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Render.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1SpritesUI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="j1TextUI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="j1UI_Manager.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="j1UIElements.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Window.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Defs.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="p2DynArray.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="p2List.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Log.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Point.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="p2SString.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="PugiXml\src\pugiconfig.hpp">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="PugiXml\src\pugixml.hpp">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Slide.h">
+      <Filter>Transitions</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprites.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Transition.h">
+      <Filter>Transitions</Filter>
+    </ClInclude>
+    <ClInclude Include="TransitionManager.h">
+      <Filter>Transitions</Filter>
+    </ClInclude>
+    <ClInclude Include="Wipe.h">
+      <Filter>Transitions</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoomToMouse.h">
+      <Filter>Transitions</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoomToTexture.h">
+      <Filter>Transitions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="..\Game\save_game.xml" />
     <Xml Include="..\Game\config.xml">
+      <Filter>Tools</Filter>
+    </Xml>
+    <Xml Include="..\Game\save_game.xml">
       <Filter>Tools</Filter>
     </Xml>
   </ItemGroup>
