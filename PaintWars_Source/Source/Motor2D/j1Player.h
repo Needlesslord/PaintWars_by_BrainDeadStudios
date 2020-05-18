@@ -75,6 +75,9 @@ public:
 
 	j1Timer cricketsRepeat;
 
+	float MinimapCameraBufferX;
+	float MinimapCameraBufferY;
+
 private:
 
 	SDL_Rect selector;
@@ -88,8 +91,6 @@ private:
 	std::string	folder;
 	pugi::xml_node	node;
 	std::string file;
-	float MinimapCameraBufferX;
-	float MinimapCameraBufferY;
 	j1UIElement* MiniMapEntities_Squares[40] = {};
 
 	int V;
