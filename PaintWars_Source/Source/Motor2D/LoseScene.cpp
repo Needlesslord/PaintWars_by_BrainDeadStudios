@@ -48,12 +48,12 @@ bool LoseScene::Start()
 	TryAgain->click_rect = { 285, 97,712 ,62 };
 	Lose_Timer = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 300, 500 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Timer");
 
-	if (App->audio->PlayingLoseMusic != true) {
+	/*if (App->audio->PlayingLoseMusic != true) {
 		Mix_HaltMusic();
 		App->audio->PlayingMenuMusic = false;
 		App->audio->PlayMusic("audio/music/music_scene_lose.ogg");
 		App->audio->PlayingLoseMusic = true;
-	}
+	}*/
 	
 
 

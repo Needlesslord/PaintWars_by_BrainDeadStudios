@@ -7,22 +7,22 @@
 		<volume default="0" />
 	</audio>
 	<scene_manager>
-		<map map_saved="3" />
+		<map map_saved="2" />
 	</scene_manager>
 	<map />
 	<:anonymous />
 	<entities>
 		<num_entities value="7" />
 		<active_entities>
-			<entity entity_type="townhall" position_x="7" position_y="12" missing_hp="0" size_x="400" size_y="403" />
-			<entity entity_type="painter" position_x="14" position_y="2" missing_hp="0" size_x="70" size_y="150" />
-			<entity entity_type="spawner" position_x="7" position_y="47" missing_hp="0" size_x="250" size_y="600" />
-			<entity entity_type="spawner" position_x="23" position_y="14" missing_hp="0" size_x="250" size_y="600" />
-			<entity entity_type="spawner" position_x="19" position_y="96" missing_hp="0" size_x="250" size_y="600" />
-			<entity entity_type="spawner" position_x="95" position_y="95" missing_hp="0" size_x="250" size_y="600" />
-			<entity entity_type="spawner" position_x="68" position_y="24" missing_hp="0" size_x="250" size_y="600" />
+			<entity entity_type="townhall" position_x="37" position_y="11" missing_hp="0" size_x="400" size_y="403" />
+			<entity entity_type="painter" position_x="40" position_y="8" missing_hp="0" size_x="70" size_y="150" />
+			<entity entity_type="spawner" position_x="94" position_y="94" missing_hp="0" size_x="250" size_y="600" />
+			<entity entity_type="spawner" position_x="62" position_y="11" missing_hp="0" size_x="250" size_y="600" />
+			<entity entity_type="spawner" position_x="9" position_y="90" missing_hp="0" size_x="250" size_y="600" />
+			<entity entity_type="spawner" position_x="21" position_y="13" missing_hp="0" size_x="250" size_y="600" />
+			<entity entity_type="spawner" position_x="30" position_y="70" missing_hp="0" size_x="250" size_y="600" />
 		</active_entities>
-		<active_map SavedMap="volcano" />
+		<active_map SavedMap="snow" />
 	</entities>
 	<pathfinding />
 	<player />
@@ -34,7 +34,7 @@
 	<video />
 	<:anonymous />
 	<renderer>
-		<camera x="350" y="10" />
+		<camera x="575" y="42" />
 		<num_entities value="7" />
 		<active_entities>
 			<entity />

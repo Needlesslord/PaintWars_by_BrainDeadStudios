@@ -51,12 +51,12 @@ bool WinScene::Start()
 	Win_Timer_Min = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 300, 150 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Min");*/
 	Win_Timer = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 300, 500 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Timer");
 
-	if (App->audio->PlayingWinMusic != true) {
-		Mix_HaltMusic();
-		App->audio->PlayingWinMusic = false;
-		App->audio->PlayMusic("audio/music/music_scene_win.ogg"); 
-		App->audio->PlayingWinMusic = true;
-	}
+	//if (App->audio->PlayingWinMusic != true) {
+	//	Mix_HaltMusic();
+	//	App->audio->PlayingWinMusic = false;
+	//	App->audio->PlayMusic("audio/music/music_scene_win.ogg"); 
+	//	App->audio->PlayingWinMusic = true;
+	//}
 
 
 	static char conversorCharTimer[256];

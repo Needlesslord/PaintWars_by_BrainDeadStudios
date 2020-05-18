@@ -172,7 +172,20 @@ bool StartScene::Update(float dt)
 	}
 
 
-
+	if (App->canContinue == false)
+	{
+		continueButton->rect = { 0, 730, 263, 91 };
+		continueButton->hover_rect = { 0, 730, 263, 91 };
+		continueButton->click_rect = { 0, 730, 263, 91 };
+		continueButton->interactable = false;
+	}
+	else if (App->canContinue == true)
+	{
+		continueButton->rect = { 0, 0, 263, 91 };
+		continueButton->hover_rect = { 263, 0, 263, 91 };
+		continueButton->click_rect = { 526, 0, 263, 91 };
+		continueButton->interactable = true;
+	}
 
 
 	return ret;
