@@ -1277,6 +1277,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			App->scenes->saved_map = 3;
 		}
 		App->SaveGame("save_game.xml");
+		App->canContinue = true;
 	}
 
 	if (element == resumeButton && type == GUI_Event::EVENT_ONCLICK)
