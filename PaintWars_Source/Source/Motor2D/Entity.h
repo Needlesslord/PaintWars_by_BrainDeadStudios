@@ -155,7 +155,7 @@ public:
 	std::vector<iPoint>currentPath;
 	uint pathIterator;
 
-	Entity* target;
+	Entity* target = nullptr;
 	SDL_Rect target_rect;
 
 	float attackDamage = 0.0f;

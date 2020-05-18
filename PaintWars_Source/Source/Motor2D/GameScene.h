@@ -131,8 +131,12 @@ public:
 
 	//HUD - Mini-map
 	j1UIElement* miniMapBack = nullptr;
-	j1UIElement* miniMapMINI = nullptr;
-	j1UIElement* miniMapFULL = nullptr;
+	j1UIElement* miniMapMINI_forest = nullptr;
+	j1UIElement* miniMapFULL_forest = nullptr;
+	j1UIElement* miniMapMINI_snow = nullptr;
+	j1UIElement* miniMapFULL_snow = nullptr;
+	j1UIElement* miniMapMINI_volcano = nullptr;
+	j1UIElement* miniMapFULL_volcano = nullptr;
 	j1UIElement* miniMapScopeCamera = nullptr;
 	j1UIElement* miniMapBackground = nullptr;
 

@@ -61,16 +61,10 @@ DEBUG KEYS
 		 + UP/DOWN/LEFT/RIGHT Camera movement
 */
 
-GameScene::GameScene() : Scene(SCENES::GAME_SCENE)
-{
-
-}
+GameScene::GameScene() : Scene(SCENES::GAME_SCENE) {}
 
 // Destructor
-GameScene::~GameScene()
-{
-
-}
+GameScene::~GameScene() {}
 
 // Called before render is available
 bool GameScene::Awake(pugi::xml_node& config)
@@ -327,18 +321,45 @@ bool GameScene::Start()
 
 	miniMapBackground = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 850 , 500 }, { 0 , 0 }, false, true, { 0, 1750, 422, 210 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
 
-	miniMapMINI = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 850 , 500 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, TEXTURE::MINIMAP_MINI);
-	miniMapMINI->click_rect = { 30, 15, 422,210 };
-	miniMapMINI->hover_rect = { 30, 15, 422,210 };
+	//minimaps
+	if (App->scenes->Map_Forest_Active) {
+		miniMapMINI_forest = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 850 , 500 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, TEXTURE::MINIMAP_MINI_FOREST);
+		miniMapMINI_forest->click_rect = { 30, 15, 422, 210 };
+		miniMapMINI_forest->hover_rect = { 30, 15, 422, 210 };
+	}
+	if (App->scenes->Map_Snow_Active) {
+		miniMapMINI_snow = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 850 , 500 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, TEXTURE::MINIMAP_MINI_SNOW);
+		miniMapMINI_snow->click_rect = { 30, 15, 422, 210 };
+		miniMapMINI_snow->hover_rect = { 30, 15, 422, 210 };
+	}
+	if (App->scenes->Map_Volcano_Active) {
+		miniMapMINI_volcano = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 850 , 500 }, { 0,0 }, true, true, { 30, 15, 422,210 }, nullptr, App->scenes, TEXTURE::MINIMAP_MINI_VOLCANO);
+		miniMapMINI_volcano->click_rect = { 30, 15, 422, 210 };
+		miniMapMINI_volcano->hover_rect = { 30, 15, 422, 210 };
+	}
+	//end minimaps
 
 	miniMapScopeCamera = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 1030, 575 }, { 0 , 0 }, false, true, { 0, 0, 67, 36 }, nullptr, nullptr, TEXTURE::MINIMAP_CAMERA);
 
 	miniMapBack = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0 , 0 }, { 0 , 0 }, false, false, { 0, 0, 1800, 1300 }, nullptr, nullptr,  TEXTURE::MINIMAP_BACK_SPRITE);
 
-	miniMapFULL = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 50 , 75 }, { 0 , 0 }, true, false, { 87, 40, 1170,588 }, nullptr, App->scenes, TEXTURE::MINIMAP_FULL);
-	miniMapFULL->click_rect = { 87, 40, 1170,588 };
-	miniMapFULL->hover_rect = { 87, 40, 1170,588 };
-
+	//minimaps
+	if (App->scenes->Map_Forest_Active) {
+		miniMapFULL_forest = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 50 , 75 }, { 0 , 0 }, true, false, { 87, 40, 1170,588 }, nullptr, App->scenes, TEXTURE::MINIMAP_FULL_FOREST);
+		miniMapFULL_forest->click_rect = { 87, 40, 1170,588 };
+		miniMapFULL_forest->hover_rect = { 87, 40, 1170,588 };
+	}
+	if (App->scenes->Map_Snow_Active) {
+		miniMapFULL_snow = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 50 , 75 }, { 0 , 0 }, true, false, { 87, 40, 1170,588 }, nullptr, App->scenes, TEXTURE::MINIMAP_FULL_SNOW);
+		miniMapFULL_snow->click_rect = { 87, 40, 1170,588 };
+		miniMapFULL_snow->hover_rect = { 87, 40, 1170,588 };
+	}
+	if (App->scenes->Map_Volcano_Active) {
+		miniMapFULL_snow = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 50 , 75 }, { 0 , 0 }, true, false, { 87, 40, 1170,588 }, nullptr, App->scenes, TEXTURE::MINIMAP_FULL_VOLCANO);
+		miniMapFULL_snow->click_rect = { 87, 40, 1170,588 };
+		miniMapFULL_snow->hover_rect = { 87, 40, 1170,588 };
+	}
+	//end minimap
 
 	//Units
 
@@ -677,6 +698,11 @@ bool GameScene::Update(float dt)
 
 	LOG("Mouse y at %f", MousePos.y);*/
 
+	//comprobaciones
+	//if (App->player->gameTimer.ReadSec() == 60) {
+	//	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 45,  40 }, App->entities, nullptr, 0, true);
+	//}
+
 	
 	return ret;
 }
@@ -690,23 +716,83 @@ bool GameScene::PostUpdate()
 	
 	if (App->input->GetKey(SDL_SCANCODE_M) == true) {
 
-		if (miniMapMINI->enabled == true) {
-			miniMapBack->enabled = true;
-			miniMapFULL->enabled = true;
-			miniMapMINI->enabled = false;
-			miniMapScopeCamera->enabled = false;
+		//minimaps
+		if (App->scenes->Map_Forest_Active) {
+			if (miniMapMINI_forest->enabled == true) {
+				miniMapBack->enabled = true;
+				miniMapFULL_forest->enabled = true;
+				miniMapMINI_forest->enabled = false;
+				miniMapScopeCamera->enabled = false;
+			}
+			else {
+				miniMapMINI_forest->enabled = true;
+				miniMapBack->enabled = false;
+				miniMapFULL_forest->enabled = false;
+				miniMapScopeCamera->enabled = true;
+			}
 		}
-		else {
-			miniMapMINI->enabled = true;
-			miniMapBack->enabled = false;
-			miniMapFULL->enabled = false;
-			miniMapScopeCamera->enabled = true;
+
+		if (App->scenes->Map_Snow_Active) {
+			if (miniMapMINI_snow->enabled == true) {
+				miniMapBack->enabled = true;
+				miniMapFULL_snow->enabled = true;
+				miniMapMINI_snow->enabled = false;
+				miniMapScopeCamera->enabled = false;
+			}
+			else {
+				miniMapMINI_snow->enabled = true;
+				miniMapBack->enabled = false;
+				miniMapFULL_snow->enabled = false;
+				miniMapScopeCamera->enabled = true;
+			}
 		}
+
+		if (App->scenes->Map_Volcano_Active) {
+			if (miniMapMINI_volcano->enabled == true) {
+				miniMapBack->enabled = true;
+				miniMapFULL_volcano->enabled = true;
+				miniMapMINI_volcano->enabled = false;
+				miniMapScopeCamera->enabled = false;
+			}
+			else {
+				miniMapMINI_volcano->enabled = true;
+				miniMapBack->enabled = false;
+				miniMapFULL_volcano->enabled = false;
+				miniMapScopeCamera->enabled = true;
+			}
+		}
+		//end minimaps
 	}
 
 	
 
-	
+	if (App->player->gameTimer.ReadSec() == 300) {
+			App->entities->AddEntity(ENTITY_TYPE_SLIME, { 52, 52 }, App->entities, nullptr, 0, true);
+			App->entities->AddEntity(ENTITY_TYPE_SLIME, { 32, 32 }, App->entities, nullptr, 0, true);
+			App->entities->AddEntity(ENTITY_TYPE_SLIME, { 52, 32 }, App->entities, nullptr, 0, true);
+			App->entities->AddEntity(ENTITY_TYPE_EXPLOSIVE_BLOB, { 32, 52 }, App->entities, nullptr, 0, true);
+		}
+		//at minute 8 generate 4 slimes, 2 explosive blobs, 1 rider
+		if (App->player->gameTimer.ReadSec() == 480) {
+			App->entities->AddEntity(ENTITY_TYPE_SLIME, { 52, 52 }, App->entities, nullptr, 0, true);
+			App->entities->AddEntity(ENTITY_TYPE_SLIME, { 32, 32 }, App->entities, nullptr, 0, true);
+			App->entities->AddEntity(ENTITY_TYPE_SLIME, { 52, 32 }, App->entities, nullptr, 0, true);
+			App->entities->AddEntity(ENTITY_TYPE_SLIME, { 32, 52 }, App->entities, nullptr, 0, true);
+			App->entities->AddEntity(ENTITY_TYPE_EXPLOSIVE_BLOB, { 37, 57 }, App->entities, nullptr, 0, true);
+			App->entities->AddEntity(ENTITY_TYPE_EXPLOSIVE_BLOB, { 37, 37 }, App->entities, nullptr, 0, true);
+			App->entities->AddEntity(ENTITY_TYPE_RIDER, { 57, 57 }, App->entities, nullptr, 0, true);
+		}
+		//at minute 11 generate 3 slimes, 2 explosive blobs, 2 riders, 1 chroma king
+		if (App->player->gameTimer.ReadSec() == 660) {
+			App->entities->AddEntity(ENTITY_TYPE_SLIME, { 52, 52 }, App->entities, nullptr, 0, true);
+			App->entities->AddEntity(ENTITY_TYPE_SLIME, { 32, 32 }, App->entities, nullptr, 0, true);
+			App->entities->AddEntity(ENTITY_TYPE_SLIME, { 52, 32 }, App->entities, nullptr, 0, true);
+			App->entities->AddEntity(ENTITY_TYPE_EXPLOSIVE_BLOB, { 57, 57 }, App->entities, nullptr, 0, true);
+			App->entities->AddEntity(ENTITY_TYPE_EXPLOSIVE_BLOB, { 37, 37 }, App->entities, nullptr, 0, true);
+			App->entities->AddEntity(ENTITY_TYPE_RIDER, { 57, 37 }, App->entities, nullptr, 0, true);
+			App->entities->AddEntity(ENTITY_TYPE_RIDER, { 37, 57 }, App->entities, nullptr, 0, true);
+			App->entities->AddEntity(ENTITY_TYPE_CHROMA_KING, { 60, 60 }, App->entities, nullptr, 0, true);
+		}
 	
 
 	
@@ -784,16 +870,14 @@ bool GameScene::CleanUp()
 void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
 
-	//Minimap
-
-	if (element == miniMapMINI && type == GUI_Event::EVENT_ONCLICK) {
-		
-	}
-
-	if (element == miniMapFULL && type == GUI_Event::EVENT_ONCLICK) {
-		
-	}
-
+	//minimaps
+	if (element == miniMapMINI_forest && type == GUI_Event::EVENT_ONCLICK) {}
+	if (element == miniMapFULL_forest && type == GUI_Event::EVENT_ONCLICK) {}
+	if (element == miniMapMINI_snow && type == GUI_Event::EVENT_ONCLICK) {}
+	if (element == miniMapFULL_snow && type == GUI_Event::EVENT_ONCLICK) {}
+	if (element == miniMapMINI_volcano && type == GUI_Event::EVENT_ONCLICK) {}
+	if (element == miniMapFULL_volcano && type == GUI_Event::EVENT_ONCLICK) {}
+	//end minimaps
 
 	//Quests
 
@@ -1547,7 +1631,11 @@ void GameScene::Generate_Entities()
 		App->entities->AddEntity(ENTITY_TYPE_RANGER, { 40, 25 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 2, 2 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_EXPLORER, { 20, 20 }, App->entities, nullptr, 0, true);
+
+
+
 		//enemies
+
 		////at minute 5 generate 3 slimes, 1 explosive blob
 		//if (App->player->gameTimer.ReadSec() == 300) {
 		//	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 52, 52 }, App->entities, nullptr, 0, true);
@@ -1584,9 +1672,9 @@ void GameScene::Generate_Entities()
 
 
 		//town hall
-		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 96, 49 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 37, 11 }, App->entities, nullptr, 0, true);
 		//painter
-		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 99,  47 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 40,  8 }, App->entities, nullptr, 0, true);
 		//spawners
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 94, 94 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 62, 11 }, App->entities, nullptr, 0, true);

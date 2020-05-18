@@ -159,6 +159,7 @@ bool j1EntityManager::Update(float dt) {
 		list<Entity*>::iterator checkForSpawningEntities = spawningEntities.begin();
 		while (checkForSpawningEntities != spawningEntities.end()) {
 
+
 			// The units first
 			if ((*checkForSpawningEntities)->entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY) {
 
@@ -366,11 +367,6 @@ bool j1EntityManager::Update(float dt) {
 			
 
 		}
-
-
-
-
-		
 
 
 
@@ -2229,7 +2225,7 @@ bool j1EntityManager::Load(pugi::xml_node& save)
 	
 	
 
-	 App->scenes->WhichMapToLoad = save.child("num_entities").attribute("SavedMap").as_string();
+	 App->scenes->WhichMapToLoad = save.child("saved_map").attribute("SavedMap").as_string();
 
 
 	
