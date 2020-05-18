@@ -119,18 +119,18 @@ bool StartScene::Update(float dt)
 
 	CameraDebugMovement(dt);
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	/*if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
 		App->scenes->SwitchScene(SCENES::GAME_SCENE);
-	}
+	}*/
 
 
 
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-	{
-		App->scenes->SwitchScene(SCENES::START_SCENE);
-	}
+	//if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	//{
+	//	App->scenes->SwitchScene(SCENES::START_SCENE);
+	//}
 
 	if (continueButton->map_position.x < 475 && App->transition_manager->is_transitioning == false) {
 		continueButton->map_position = continueButton->map_position = { continueButton->map_position.x + 7,continueButton->map_position.y };
@@ -255,7 +255,7 @@ void StartScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		{
 			App->LoadGame();
 
-			if (App->scenes->WhichMapToLoad == "forest") {
+			if (App->scenes->WhichMapToLoad == "forest"){
 				App->scenes->Load_Map_Forest = true;
 				App->scenes->Load_Map_Snow = false;
 				App->scenes->Load_Map_Volcano = false;

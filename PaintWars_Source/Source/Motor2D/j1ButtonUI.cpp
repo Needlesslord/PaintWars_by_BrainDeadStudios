@@ -27,16 +27,16 @@ bool j1ButtonUI::Start()
 			Button_UI_Texture_General_ATLAS = App->gui->Get_Texture_From_Image(TEXTURE::ATLAS);
 		break;
 
-	case TEXTURE::MINIMAP_FULL:
+	case TEXTURE::MINIMAP_FULL_FOREST:
 		
 		if (Button_UI_Texture_Minimap_FULL_SCALE == NULL)
-		Button_UI_Texture_Minimap_FULL_SCALE = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_FULL);
+		Button_UI_Texture_Minimap_FULL_SCALE = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_FULL_FOREST);
 		break;
 
-	case TEXTURE::MINIMAP_MINI:
+	case TEXTURE::MINIMAP_MINI_FOREST:
 		
 		if (Button_UI_Texture_Minimap_MINI_SCALE == NULL)
-		Button_UI_Texture_Minimap_MINI_SCALE = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_MINI);
+		Button_UI_Texture_Minimap_MINI_SCALE = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_MINI_FOREST);
 		break;
 
 	case TEXTURE::MINIMAP_CAMERA:
@@ -129,7 +129,7 @@ bool j1ButtonUI::Update(float dt)
 			break;
 
 		
-		case TEXTURE::MINIMAP_FULL:
+		case TEXTURE::MINIMAP_FULL_FOREST:
 			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 
 
@@ -148,7 +148,7 @@ bool j1ButtonUI::Update(float dt)
 			break;
 
 
-		case TEXTURE::MINIMAP_MINI:
+		case TEXTURE::MINIMAP_MINI_FOREST:
 			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 
 
