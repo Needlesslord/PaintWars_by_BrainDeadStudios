@@ -885,7 +885,7 @@ void SlimeSprites()
 	//Idle 
 	slimeIdle.PushBack({ 136, 742, 68, 52 });
 	slimeIdle.PushBack({ 204, 742, 68, 52 });
-	slimeIdle.speed = 50.0f;
+	slimeIdle.speed = 8.0f;
 
 	//MOVING
 
