@@ -396,10 +396,4 @@
       <UniqueIdentifier>{ca2f1a4f-f167-486b-9b96-1cb05e1859ef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="game_icon.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\Resources\textures\icon.ico" />
-  </ItemGroup>
 </Project>
