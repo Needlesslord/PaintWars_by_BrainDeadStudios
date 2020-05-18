@@ -21,6 +21,7 @@
 #include "Sprites.h"
 #include "j1UI_Manager.h"
 #include "j1Particles.h"
+#include "j1SceneManager.h"
 
 //testing testing testing
 j1EntityManager::j1EntityManager()
@@ -1934,8 +1935,13 @@ bool j1EntityManager::Load(pugi::xml_node& save)
 	int numEntities = save.child("num_entities").attribute("value").as_int();
 
 	pugi::xml_node entities_node = save.child("active_entities").child("entity");
+	
+	
+
+	 App->scenes->WhichMapToLoad = save.child("num_entities").attribute("SavedMap").as_string();
 
 
+	
 	//pugi::xml_node entities = save.child("entities").child("warrior");
 	for (int i = 0; i < numEntities; i++) {
 
@@ -2212,6 +2218,22 @@ bool j1EntityManager::Save(pugi::xml_node& save) const
 
 		entitiesToSave++;
 	}
+
+
+	pugi::xml_node currentmap = save.append_child("active_map");
+
+	if (App->scenes->Map_Forest_Active == true) {
+
+		currentmap.append_attribute("SavedMap") = "forest";
+
+	}
+	else if (App->scenes->Map_Snow_Active == true) {
+		currentmap.append_attribute("SavedMap") = "snow";
+	}
+	else if (App->scenes->Map_Volcano_Active == true) {
+		currentmap.append_attribute("SavedMap") = "volcano";
+	}
+	
 
 	return true;
 }
