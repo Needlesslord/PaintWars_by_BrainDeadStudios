@@ -312,6 +312,28 @@ bool GameScene::Start()
 	upgradePaintExtractorButton->hover_rect = { 0, 1966, 65, 82 };
 	upgradePaintExtractorButton->click_rect = { 65, 1966, 65, 82 };
 
+
+	////
+	fxBar = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 560, 300 }, { 0,0 }, true, false, { 785, 57, 268, 26 }, nullptr, App->scenes, TEXTURE::ATLAS);
+	fxBar->hover_rect = { 785, 57, 268, 26 };
+	fxBar->click_rect = { 785, 57, 268, 26 };
+	musicBar = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 560, 230 }, { 0,0 }, true, false, { 785, 57, 268, 26 }, nullptr, App->scenes, TEXTURE::ATLAS);
+	musicBar->click_rect = { 785, 57, 268, 26 };
+	musicBar->hover_rect = { 785, 57, 268, 26 };
+
+	musicSlider = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 660, 230 }, { 0,0 }, true, false, { 786, 1, 42, 34 }, nullptr, App->scenes, TEXTURE::ATLAS);
+	musicSlider->hover_rect = { 786, 1, 42, 34 };
+	musicSlider->click_rect = { 786, 1, 42, 34 };
+
+	fxSlider = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 660, 300 }, { 0,0 }, true, false, { 786, 1, 42, 34 }, nullptr, App->scenes, TEXTURE::ATLAS);
+	fxSlider->hover_rect = { 786, 1, 42, 34 };
+	fxSlider->click_rect = { 786, 1, 42, 34 };
+
+
+
+
+	//////
+
 	//shopHoverPrice =App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "0", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
 	shopHoverPrice = App->gui->AddElement(TypeOfUI::GUI_LABEL, shopImage, { 210 , 680 }, { 0 , 0 }, false, false, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED);
 	//priceLabel = App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-500", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
@@ -456,7 +478,6 @@ bool GameScene::PreUpdate()
 			settingsButton->enabled = true;
 			mainMenuButton->enabled = true;
 			exitButton->enabled = true;
-
 			homeButton->interactable = false;
 			pauseMenuButton->interactable = false;
 			shopButton->interactable = false;
@@ -1336,7 +1357,10 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		mainMenuButton->enabled = false;
 		exitButton->enabled = false;
 		resumeButton->enabled = false;
-
+		fxBar->enabled = true;
+			fxSlider->enabled = true;
+			musicBar->enabled = true;
+			musicSlider->enabled = true;
 		settingsMenu = true;
 		musicLabel->enabled = true;
 		vfxLabel->enabled = true;

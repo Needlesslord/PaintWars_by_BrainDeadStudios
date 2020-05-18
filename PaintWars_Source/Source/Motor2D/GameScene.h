@@ -152,6 +152,12 @@ public:
 	j1UIElement* exitButton = nullptr;
 	bool exitMenu = false;
 
+	j1UIElement* fxSlider = nullptr;
+	j1UIElement* fxBar = nullptr;
+	j1UIElement* musicSlider = nullptr;
+	j1UIElement* musicBar = nullptr;
+
+
 	//Pause Menu - Settings Menu
 	j1UIElement* musicLabel = nullptr;
 	j1UIElement* vfxLabel = nullptr;
