@@ -23,7 +23,7 @@ In a world full of colour, a corruption spread, turning everything monochromatic
      + Game resoulution at 1280x720px@60fps (Window and Full Screen supported)
      + Automatic Continuous Integration and Deployment (basic)
      + Save/Load
-     + 3 different waves (needs improvement)
+     + 3 different waves (needs improvement) -not fully implemented, enemies all over the map-
      + Fog of war
      + Tutorial, Dialogs and Quests
      + Particles
@@ -51,9 +51,9 @@ In a world full of colour, a corruption spread, turning everything monochromatic
      + 1 enemy building (black and white): Spawner (5, if destroyed WIN)
      + 4 Enemies, with AI behaviour, (black and white):
        - Slime: Melee enemy
-       - Explosive Blob: Kamikaze enemy
-       - Rider: similar to warrior, but enemy
-       - Chroma King: Boss, Town Hall target
+       - Explosive Blob: Kamikaze enemy -not fully implemented-
+       - Rider: similar to warrior, but enemy -not fully implemented-
+       - Chroma King: Boss, Town Hall target -not fully implemented-
  - ACTIONS
      + Movement and group movement
      + Collect paint (with painters)

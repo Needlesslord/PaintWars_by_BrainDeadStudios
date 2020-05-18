@@ -214,6 +214,7 @@
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Ranger.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Rider.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="j1SceneManager.h" />
@@ -242,6 +243,12 @@
       <SubType>Designer</SubType>
     </Xml>
     <Xml Include="..\Game\save_game.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game_icon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resources\textures\icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
