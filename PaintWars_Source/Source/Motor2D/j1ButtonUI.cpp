@@ -29,14 +29,40 @@ bool j1ButtonUI::Start()
 
 	case TEXTURE::MINIMAP_FULL_FOREST:
 		
-		if (Button_UI_Texture_Minimap_FULL_SCALE == NULL)
-		Button_UI_Texture_Minimap_FULL_SCALE = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_FULL_FOREST);
+		if (Button_UI_Texture_Minimap_FULL_SCALE_forest == NULL)
+			Button_UI_Texture_Minimap_FULL_SCALE_forest = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_FULL_FOREST);
 		break;
 
 	case TEXTURE::MINIMAP_MINI_FOREST:
 		
-		if (Button_UI_Texture_Minimap_MINI_SCALE == NULL)
-		Button_UI_Texture_Minimap_MINI_SCALE = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_MINI_FOREST);
+		if (Button_UI_Texture_Minimap_MINI_SCALE_forest == NULL)
+			Button_UI_Texture_Minimap_MINI_SCALE_forest = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_MINI_FOREST);
+		break;
+
+
+	case TEXTURE::MINIMAP_FULL_SNOW:
+
+		if (Button_UI_Texture_Minimap_FULL_SCALE_snow == NULL)
+			Button_UI_Texture_Minimap_FULL_SCALE_snow = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_FULL_SNOW);
+		break;
+
+	case TEXTURE::MINIMAP_MINI_SNOW:
+
+		if (Button_UI_Texture_Minimap_MINI_SCALE_snow == NULL)
+			Button_UI_Texture_Minimap_MINI_SCALE_snow = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_MINI_SNOW);
+		break;
+
+
+	case TEXTURE::MINIMAP_FULL_VOLCANO:
+
+		if (Button_UI_Texture_Minimap_FULL_SCALE_volcano == NULL)
+			Button_UI_Texture_Minimap_FULL_SCALE_volcano = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_FULL_VOLCANO);
+		break;
+
+	case TEXTURE::MINIMAP_MINI_VOLCANO:
+
+		if (Button_UI_Texture_Minimap_MINI_SCALE_volcano == NULL)
+			Button_UI_Texture_Minimap_MINI_SCALE_volcano = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_MINI_VOLCANO);
 		break;
 
 	case TEXTURE::MINIMAP_CAMERA:
@@ -128,22 +154,22 @@ bool j1ButtonUI::Update(float dt)
 			}
 			break;
 
-		
+		//MINIMAPS
 		case TEXTURE::MINIMAP_FULL_FOREST:
 			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 
 
-				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_FULL_SCALE, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_FULL_SCALE_forest, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
 				
 				Mix_PlayChannel(-1, App->audio->Click_Button_Sound, 0);
 				Mouse_On_Click();
 			}
 			else if (above && interactable) {
 
-				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_FULL_SCALE, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, hover_rect, false, true, 0u, 0u, 0u, 255, true);
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_FULL_SCALE_forest, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, hover_rect, false, true, 0u, 0u, 0u, 255, true);
 			}
 			else {
-				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_FULL_SCALE, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_FULL_SCALE_forest, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
 			}
 			break;
 
@@ -152,19 +178,94 @@ bool j1ButtonUI::Update(float dt)
 			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 
 
-				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_MINI_SCALE, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_MINI_SCALE_forest, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
 				Mix_PlayChannel(-1, App->audio->Click_Button_Sound, 0);
 				Mouse_On_Click();
 
 			}
 			else if (above && interactable) {
-				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_MINI_SCALE, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, hover_rect, false, true, 0u, 0u, 0u, 255, true);
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_MINI_SCALE_forest, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, hover_rect, false, true, 0u, 0u, 0u, 255, true);
 
 			}
 			else {
-				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_MINI_SCALE, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_MINI_SCALE_forest, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
 			}
 			break;
+
+		case TEXTURE::MINIMAP_FULL_SNOW:
+			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+
+
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_FULL_SCALE_snow, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
+
+				Mix_PlayChannel(-1, App->audio->Click_Button_Sound, 0);
+				Mouse_On_Click();
+			}
+			else if (above && interactable) {
+
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_FULL_SCALE_snow, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, hover_rect, false, true, 0u, 0u, 0u, 255, true);
+			}
+			else {
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_FULL_SCALE_snow, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
+			}
+			break;
+
+
+		case TEXTURE::MINIMAP_MINI_SNOW:
+			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+
+
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_MINI_SCALE_snow, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
+				Mix_PlayChannel(-1, App->audio->Click_Button_Sound, 0);
+				Mouse_On_Click();
+
+			}
+			else if (above && interactable) {
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_MINI_SCALE_snow, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, hover_rect, false, true, 0u, 0u, 0u, 255, true);
+
+			}
+			else {
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_MINI_SCALE_snow, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
+			}
+			break;
+
+		case TEXTURE::MINIMAP_FULL_VOLCANO:
+			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+
+
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_FULL_SCALE_volcano, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
+
+				Mix_PlayChannel(-1, App->audio->Click_Button_Sound, 0);
+				Mouse_On_Click();
+			}
+			else if (above && interactable) {
+
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_FULL_SCALE_volcano, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, hover_rect, false, true, 0u, 0u, 0u, 255, true);
+			}
+			else {
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_FULL_SCALE_volcano, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
+			}
+			break;
+
+
+		case TEXTURE::MINIMAP_MINI_VOLCANO:
+			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+
+
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_MINI_SCALE_volcano, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
+				Mix_PlayChannel(-1, App->audio->Click_Button_Sound, 0);
+				Mouse_On_Click();
+
+			}
+			else if (above && interactable) {
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_MINI_SCALE_volcano, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, hover_rect, false, true, 0u, 0u, 0u, 255, true);
+
+			}
+			else {
+				App->render->RenderQueueUI(layer, Button_UI_Texture_Minimap_MINI_SCALE_volcano, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
+			}
+			break;
+			//END MINIMAPS
 
 
 		case TEXTURE::MINIMAP_CAMERA:
@@ -266,8 +367,12 @@ bool j1ButtonUI::CleanUp()
 {
 	//IF SOMEONE ADDS A NEW TEXTURE FILE ADD IT HERE
 	App->tex->UnLoad(Button_UI_Texture_General_ATLAS);
-	App->tex->UnLoad(Button_UI_Texture_Minimap_FULL_SCALE);
-	App->tex->UnLoad(Button_UI_Texture_Minimap_MINI_SCALE);
+	App->tex->UnLoad(Button_UI_Texture_Minimap_FULL_SCALE_forest);
+	App->tex->UnLoad(Button_UI_Texture_Minimap_MINI_SCALE_forest);
+	App->tex->UnLoad(Button_UI_Texture_Minimap_FULL_SCALE_snow);
+	App->tex->UnLoad(Button_UI_Texture_Minimap_MINI_SCALE_snow);
+	App->tex->UnLoad(Button_UI_Texture_Minimap_FULL_SCALE_volcano);
+	App->tex->UnLoad(Button_UI_Texture_Minimap_MINI_SCALE_volcano);
 	App->tex->UnLoad(Button_UI_Texture_Minimap_CAMERA_FOLLOW);
 	App->tex->UnLoad(Button_UI_Texture_Letters_WIN_SCENE);
 	App->tex->UnLoad(Button_UI_Texture_Letters_LOSE_SCENE);
@@ -278,8 +383,12 @@ bool j1ButtonUI::CleanUp()
 
 
 	Button_UI_Texture_General_ATLAS = nullptr;
-	Button_UI_Texture_Minimap_FULL_SCALE = nullptr;
-	Button_UI_Texture_Minimap_MINI_SCALE = nullptr;
+	Button_UI_Texture_Minimap_FULL_SCALE_forest = nullptr;
+	Button_UI_Texture_Minimap_MINI_SCALE_forest = nullptr;
+	Button_UI_Texture_Minimap_FULL_SCALE_snow = nullptr;
+	Button_UI_Texture_Minimap_MINI_SCALE_snow = nullptr;
+	Button_UI_Texture_Minimap_FULL_SCALE_volcano = nullptr;
+	Button_UI_Texture_Minimap_MINI_SCALE_volcano = nullptr;
 	Button_UI_Texture_Minimap_CAMERA_FOLLOW = nullptr;
 	Button_UI_Texture_Letters_WIN_SCENE = nullptr;
 	Button_UI_Texture_Letters_LOSE_SCENE = nullptr;

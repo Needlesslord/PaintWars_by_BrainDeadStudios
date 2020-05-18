@@ -184,7 +184,9 @@ bool j1UISprites::CleanUp()
 	App->tex->UnLoad(Sprites_UI_Texture_General_ATLAS);
 	App->tex->UnLoad(Sprites_UI_Texture_General_Sprites);
 	App->tex->UnLoad(Sprites_UI_Texture_Minimap_FULL_SCALE_BACK);
-	App->tex->UnLoad(Sprites_UI_Texture_Minimap_MINI_SCALE);
+	App->tex->UnLoad(Sprites_UI_Texture_Minimap_MINI_SCALE_forest);
+	App->tex->UnLoad(Sprites_UI_Texture_Minimap_MINI_SCALE_snow);
+	App->tex->UnLoad(Sprites_UI_Texture_Minimap_MINI_SCALE_volcano);
 	App->tex->UnLoad(Sprites_UI_Texture_Minimap_CAMERA_FOLLOW);
 	App->tex->UnLoad(Sprites_UI_Texture_Letters_WIN_SCENE);
 	App->tex->UnLoad(Sprites_UI_Texture_Letters_LOSE_SCENE);

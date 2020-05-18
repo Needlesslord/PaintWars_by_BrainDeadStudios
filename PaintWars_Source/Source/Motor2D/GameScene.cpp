@@ -411,10 +411,10 @@ bool GameScene::Start()
 		App->audio->PlayingMenuMusic = false;
 	}
 
-	if (App->audio->PlayingIngameAudio != true) {
-		App->audio->PlayMusic("audio/music/music_scene_inGame.ogg");
-		App->audio->PlayingIngameAudio = true;
-	}
+	//if (App->audio->PlayingIngameAudio != true) {
+	//	App->audio->PlayMusic("audio/music/music_scene_inGame.ogg");
+	//	App->audio->PlayingIngameAudio = true;
+	//}
 
 	App->player->gameTimer.Start();
 
@@ -438,7 +438,7 @@ bool GameScene::PreUpdate()
 	if (App->PAUSE_ACTIVE == true){
 		
 		if (/*PaintRollerAnimation->map_position.y + App->render->camera.y < 0 + App->render->camera.y*/ AnimTime < 90 && App->transition_manager->is_transitioning == false) {
-			PaintRollerAnimation->map_position = PaintRollerAnimation->map_position = { PaintRollerAnimation->map_position.x ,PaintRollerAnimation->map_position.y + 15 };
+			PaintRollerAnimation->map_position = PaintRollerAnimation->map_position = { PaintRollerAnimation->map_position.x ,PaintRollerAnimation->map_position.y + 25 };
 			LOG("Position Roller Y %f",PaintRollerAnimation->map_position.y);
 				//LOG("Camera x at %d", App->render->camera.x);
 			++AnimTime;
@@ -973,8 +973,27 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 	if (element == homeButton && type == GUI_Event::EVENT_ONCLICK)
 	{
+		//if (App->scenes->Map_Forest_Active) {
+		//	App->render->camera.x = 575;
+		//	App->render->camera.y = -1200;
+		//	//MinimapCameraBufferX = 4;
+		//	//MinimapCameraBufferY = -4;
+		//}
+		//if (App->scenes->Map_Snow_Active) {
+		//	App->render->camera.x = 575;
+		//	App->render->camera.y = -1200;
+		//	//MinimapCameraBufferX = 4;
+		//	//MinimapCameraBufferY = -4;
+		//}
+		//if (App->scenes->Map_Volcano_Active) {
+		//	App->render->camera.x = 575;
+		//	App->render->camera.y = -1200;
+		//	//MinimapCameraBufferX = 4;
+		//	//MinimapCameraBufferY = -4;
+		//}
 		App->render->camera.x = 575;
 		App->render->camera.y = -1200;
+
 	}
 
 
@@ -1258,6 +1277,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			App->scenes->saved_map = 3;
 		}
 		App->SaveGame("save_game.xml");
+		App->canContinue = true;
 	}
 
 	if (element == resumeButton && type == GUI_Event::EVENT_ONCLICK)
@@ -1455,11 +1475,16 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80, 75 }, App->entities, nullptr, 0, true);
 		App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true, true);*/
 
-		if (App->PAUSE_ACTIVE == true) {
+		if (exitMenu) {
+			App->scenes->exit = true;
+		}
+		else if (mainMenu)
+		{
 			App->entities->CleanUp();
 			App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true, true);
 		}
-		else {
+		else if (restartMenu)
+		{
 			if (App->scenes->Map_Forest_Active = true) {
 				App->scenes->Load_Map_Forest = true;
 			    App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);

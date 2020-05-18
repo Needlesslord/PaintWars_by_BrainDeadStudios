@@ -133,10 +133,10 @@ bool SettingsScene::Update(float dt)
 	
 	CameraDebugMovement(dt);
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	/*if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
 		App->scenes->SwitchScene(SCENES::MENU_SCENE);
-	}
+	}*/
 
 
 	if (FinishedPosition != true) {

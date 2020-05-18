@@ -148,6 +148,7 @@ public:
 	bool DEBUG_ACTIVE;
 	bool PAUSE_ACTIVE;
 	bool GOD_MODE;
+	bool canContinue = false;
 
 };
 

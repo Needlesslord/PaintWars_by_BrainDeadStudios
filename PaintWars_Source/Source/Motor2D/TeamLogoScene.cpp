@@ -66,11 +66,11 @@ bool TeamLogoScene::Update(float dt)
 	
 	CameraDebugMovement(dt);
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-	{
-		App->audio->Click_Logo_Sound;  /*Mix_VolumeChunk(Click_Logo_Sound, 50);*/
-		App->scenes->SwitchScene(SCENES::MENU_SCENE);
-	}
+	//if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	//{
+	//	App->audio->Click_Logo_Sound;  /*Mix_VolumeChunk(Click_Logo_Sound, 50);*/
+	//	App->scenes->SwitchScene(SCENES::MENU_SCENE);
+	//}
 
 
 
@@ -119,7 +119,6 @@ bool TeamLogoScene::CleanUp()
 	}
 
 	App->video->CloseAVI();
-	Mix_HaltChannel(-1);
 
 	return ret;
 }

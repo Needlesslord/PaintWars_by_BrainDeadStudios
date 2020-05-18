@@ -80,10 +80,10 @@ bool StartScene::Start()
 	//LOADING
 
 	
-	if (App->audio->PlayingMenuMusic != true) {
+	/*if (App->audio->PlayingMenuMusic != true) {
 		App->audio->PlayMusic("audio/music/music_scene_mainMenu.ogg");
 		App->audio->PlayingMenuMusic = true;
-	}
+	}*/
 
 	return ret;
 }
@@ -119,18 +119,18 @@ bool StartScene::Update(float dt)
 
 	CameraDebugMovement(dt);
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	/*if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
 		App->scenes->SwitchScene(SCENES::GAME_SCENE);
-	}
+	}*/
 
 
 
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-	{
-		App->scenes->SwitchScene(SCENES::START_SCENE);
-	}
+	//if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	//{
+	//	App->scenes->SwitchScene(SCENES::START_SCENE);
+	//}
 
 	if (continueButton->map_position.x < 475 && App->transition_manager->is_transitioning == false) {
 		continueButton->map_position = continueButton->map_position = { continueButton->map_position.x + 7,continueButton->map_position.y };
@@ -172,7 +172,20 @@ bool StartScene::Update(float dt)
 	}
 
 
-
+	if (App->canContinue == false)
+	{
+		continueButton->rect = { 0, 730, 263, 91 };
+		continueButton->hover_rect = { 0, 730, 263, 91 };
+		continueButton->click_rect = { 0, 730, 263, 91 };
+		continueButton->interactable = false;
+	}
+	else if (App->canContinue == true)
+	{
+		continueButton->rect = { 0, 0, 263, 91 };
+		continueButton->hover_rect = { 263, 0, 263, 91 };
+		continueButton->click_rect = { 526, 0, 263, 91 };
+		continueButton->interactable = true;
+	}
 
 
 	return ret;
@@ -255,24 +268,21 @@ void StartScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		{
 			App->LoadGame();
 
-	       /*if (App->scenes->Map_Forest_Active == true) {
+			if (App->scenes->WhichMapToLoad == "forest"){
 				App->scenes->Load_Map_Forest = true;
 				App->scenes->Load_Map_Snow = false;
 				App->scenes->Load_Map_Volcano = false;
-				App->scenes->Map_Forest_Active = false;
 			}
-			else if (App->scenes->Map_Snow_Active == true) {
+			else if (App->scenes->WhichMapToLoad == "snow") {
 				App->scenes->Load_Map_Snow = true;
 				App->scenes->Load_Map_Forest = false;
 				App->scenes->Load_Map_Volcano = false;
-				App->scenes->Map_Snow_Active = false;
 			}
-			else if (App->scenes->Map_Volcano_Active == true) {
+			else if (App->scenes->WhichMapToLoad == "volcano") {
 				App->scenes->Load_Map_Volcano = true;
 				App->scenes->Load_Map_Forest = false;
 				App->scenes->Load_Map_Snow = false;
-				App->scenes->Map_Volcano_Active = false;
-			}*/
+			}
 
 			App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true);
 
