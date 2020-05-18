@@ -1608,11 +1608,13 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		if (element == fxBar && type == GUI_Event::EVENT_HOVER) {
 
 			//CHUNKS VOLUME SHOULD BE DIFFERENT
+
+			//SLIDER POS
 			fPoint MousePos = App->input->GetMouseWorldPosition();
 
-			fxSlider->map_position.x = (MousePos.x);
+			fxSlider->map_position.x = (MousePos.x / 2) - 10 + fxBar->map_position.x;
 
-			//732 611
+			
 			if (fxSlider->map_position.x >= 560 && fxSlider->map_position.x <= 590) {
 				LOG("VOL FX TO 0");
 				App->audio->CurrentFXVolume = 0;
@@ -1653,7 +1655,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 			fPoint MousePos = App->input->GetMouseWorldPosition();
 
-			musicSlider->map_position.x = (MousePos.x / 2) - 10;
+			musicSlider->map_position.x = (MousePos.x / 2) - 10 + musicBar->map_position.x;
 
 			//732 611
 			if (musicSlider->map_position.x >= 560 && musicSlider->map_position.x <= 590) {
