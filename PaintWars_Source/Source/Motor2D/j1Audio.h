@@ -79,6 +79,8 @@ public:
 	Mix_Chunk* braindead_sound;
 	Mix_Chunk* Transition_Sound;
 	Mix_Chunk* Quest_Audio;
+	Mix_Chunk* logo_1_sound;
+	Mix_Chunk* logo_2_sound;
 
 
 	bool logoSound;
