@@ -223,10 +223,11 @@ void logsomething(char* something)
 // ---------------------------------------------
 void j1App::FinishUpdate()
 {
-	if(want_to_save == true)
+	if (want_to_save == true)
+		has_game_saved = true;
 		SavegameNow();
 
-	if(want_to_load == true)
+	if(want_to_load == true && has_game_saved)
 		LoadGameNow();
 
 	if (last_sec_frame_time.Read() > 1000)
@@ -394,7 +395,9 @@ void j1App::LoadGame()
 {
 	// we should be checking if that file actually exist
 	// from the "GetSaveGames" list
+
 	want_to_load = true;
+
 }
 
 // ---------------------------------------
@@ -402,7 +405,7 @@ void j1App::SaveGame(const char* file) const
 {
 	// we should be checking if that file actually exist
 	// from the "GetSaveGames" list ... should we overwrite ?
-
+	App->has_game_saved = true;
 	want_to_save = true;
 	save_game = (file);
 }

@@ -10,33 +10,35 @@
 	<map />
 	<:anonymous />
 	<entities>
-		<num_entities value="11" />
+		<num_entities value="12" />
 		<active_entities>
 			<entity entity_type="townhall" position_x="42" position_y="42" missing_hp="0" size_x="400" size_y="403" />
-			<entity entity_type="painter" position_x="45" position_y="35" missing_hp="0" size_x="70" size_y="150" />
+			<entity entity_type="painter" position_x="48" position_y="36" missing_hp="0" size_x="70" size_y="150" />
 			<entity entity_type="spawner" position_x="40" position_y="20" missing_hp="0" size_x="250" size_y="600" />
 			<entity entity_type="spawner" position_x="13" position_y="5" missing_hp="0" size_x="250" size_y="600" />
 			<entity entity_type="spawner" position_x="80" position_y="4" missing_hp="0" size_x="250" size_y="600" />
 			<entity entity_type="spawner" position_x="10" position_y="90" missing_hp="0" size_x="250" size_y="600" />
 			<entity entity_type="spawner" position_x="80" position_y="75" missing_hp="0" size_x="250" size_y="600" />
+			<entity entity_type="ranger" position_x="40" position_y="25" missing_hp="0" size_x="70" size_y="150" />
 			<entity entity_type="slime" position_x="2" position_y="2" missing_hp="0" size_x="75" size_y="75" />
 			<entity entity_type="explorer" position_x="20" position_y="20" missing_hp="0" size_x="70" size_y="150" />
-			<entity entity_type="painter" position_x="39" position_y="45" missing_hp="0" size_x="70" size_y="150" />
-			<entity entity_type="woodproducer" position_x="40" position_y="33" missing_hp="0" size_x="150" size_y="199" />
+			<entity entity_type="painter" position_x="44" position_y="39" missing_hp="0" size_x="70" size_y="150" />
+			<entity entity_type="woodproducer" position_x="36" position_y="46" missing_hp="0" size_x="150" size_y="199" />
 		</active_entities>
 	</entities>
 	<pathfinding />
 	<player />
-	<:anonymous />
 	<gui />
 	<:anonymous />
 	<player />
 	<:anonymous />
 	<:anonymous />
+	<:anonymous />
 	<renderer>
-		<camera x="575" y="-1200" />
-		<num_entities value="11" />
+		<camera x="575" y="-442" />
+		<num_entities value="12" />
 		<active_entities>
+			<entity />
 			<entity />
 			<entity />
 			<entity />
