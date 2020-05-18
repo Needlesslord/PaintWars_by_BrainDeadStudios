@@ -24,6 +24,8 @@ Animation warriorAttackSouthEast;
 Animation warriorAttackSouth;
 Animation warriorAttackSouthWest;
 
+Animation warriorDeath;
+
 
 void WarriorSprites()
 {
@@ -148,6 +150,14 @@ void WarriorSprites()
 	warriorAttackNorthEast.PushBack({ 0, 912, 89, 152 });
 	warriorAttackNorthEast.PushBack({ 89, 912, 89, 152 });
 	warriorAttackNorthEast.speed = 250.0f;
+
+	//DEATH
+	warriorDeath.PushBack({ 0, 1064, 89, 152 });
+	warriorDeath.PushBack({ 89, 1064, 89, 152 });
+	warriorDeath.PushBack({ 178, 1064, 89, 152 });
+	warriorDeath.PushBack({ 267, 1064, 89, 152 });
+	warriorDeath.PushBack({ 356, 1064, 89, 152 });
+	warriorDeath.speed = 500.0f;
 }
 	
 
@@ -163,6 +173,10 @@ Animation painterMovingEast;
 Animation painterMovingSouthEast;
 Animation painterMovingSouth;
 Animation painterMovingSouthWest;
+
+Animation painterRecollection;
+
+Animation painterDeath;
 
 void PainterSprites()
 {
@@ -245,9 +259,23 @@ void PainterSprites()
 	painterMovingSouth.PushBack({ 760, 624, 76, 156 });
 	painterMovingSouth.PushBack({ 836, 624, 76, 156 });
 	painterMovingSouth.speed = 500.0f;
+
+	//RECOLLECTION
+	painterRecollection.PushBack({ 1275, 0, 103, 156 });
+	painterRecollection.PushBack({ 1378, 0, 103, 156 });
+	painterRecollection.PushBack({ 1481, 0, 103, 156 });
+	painterRecollection.speed = 500.0f;
+
+	//DEATH
+	painterDeath.PushBack({ 0, 780, 76, 156 });
+	painterDeath.PushBack({ 76, 780, 76, 156 });
+	painterDeath.PushBack({ 152, 780, 76, 156 });
+	painterDeath.PushBack({ 228, 780, 76, 156 });
+	painterDeath.PushBack({ 304, 780, 76, 156 });
+	painterDeath.speed = 500.0f;
 }
 
-//PALADIN
+//KNIGHT
 
 Animation knightIdle;
 
@@ -268,6 +296,8 @@ Animation knightAttackEast;
 Animation knightAttackSouthEast;
 Animation knightAttackSouth;
 Animation knightAttackSouthWest;
+
+Animation knightDeath;
 
 
 void KnightSprites()
@@ -393,6 +423,14 @@ void KnightSprites()
 	knightAttackNorthEast.PushBack({ 0, 906, 88, 151 });
 	knightAttackNorthEast.PushBack({ 88, 906, 88, 151 });
 	knightAttackNorthEast.speed = 250.0f;
+
+	//DEATH
+	knightDeath.PushBack({ 0, 1555, 88, 151 });
+	knightDeath.PushBack({ 88, 1555, 88, 151 });
+	knightDeath.PushBack({ 176, 1555, 88, 151 });
+	knightDeath.PushBack({ 264, 1555, 88, 151 });
+	knightDeath.PushBack({ 352, 1555, 88, 151 });
+	knightDeath.speed = 500.0f;
 }
 
 //EXPLORER
@@ -406,6 +444,8 @@ Animation explorerMovingEast;
 Animation explorerMovingSouthEast;
 Animation explorerMovingSouth;
 Animation explorerMovingSouthWest;
+
+Animation explorerDeath;
 
 void ExplorerSprites()
 {
@@ -488,6 +528,13 @@ void ExplorerSprites()
 	explorerMovingSouth.PushBack({ 750, 624, 75, 156 });
 	explorerMovingSouth.PushBack({ 825, 624, 75, 156 });
 	explorerMovingSouth.speed = 500.0f;
+
+	explorerDeath.PushBack({ 0, 780, 75, 156 });
+	explorerDeath.PushBack({ 75, 780, 75, 156 });
+	explorerDeath.PushBack({ 150, 780, 75, 156 });
+	explorerDeath.PushBack({ 225, 780, 75, 156 });
+	explorerDeath.PushBack({ 300, 780, 75, 156 });
+	explorerDeath.speed = 500.0f;
 }
 
 //RANGED
@@ -510,6 +557,8 @@ Animation rangerAttackEast;
 Animation rangerAttackSouthEast;
 Animation rangerAttackSouth;
 Animation rangerAttackSouthWest;
+
+Animation rangerDeath;
 
 void RangerSprites()
 {
@@ -643,6 +692,15 @@ void RangerSprites()
 	rangerAttackNorthEast.PushBack({ 93, 936, 93, 156 });
 	rangerAttackNorthEast.PushBack({ 186, 936, 93, 156 });
 	rangerAttackNorthEast.speed = 250.0f;
+
+
+	//DEATH
+	rangerDeath.PushBack({ 0, 1404, 93, 156 });
+	rangerDeath.PushBack({ 93, 1404, 93, 156 });
+	rangerDeath.PushBack({ 186, 1404, 93, 156 });
+	rangerDeath.PushBack({ 279, 1404, 93, 156 });
+	rangerDeath.PushBack({ 372, 1404, 93, 156 });
+	rangerDeath.speed = 500.0f;
 }
 
 

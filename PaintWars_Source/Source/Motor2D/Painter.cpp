@@ -13,6 +13,7 @@
 #include "j1Timer.h"
 #include "j1Render.h"
 
+
 Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) : Entity(tile, damage, listener, creator) {
 
 	// Handle data and initialize the Painter
@@ -58,17 +59,17 @@ Painter::~Painter() {}
 
 void Painter::ExtractPaint(float dt) {
 
-	if (App->pathfinding->IsPaintShore(currentTile) && currentTile == destination) {
-		App->player->paintCount.count += extractionRate * dt;
-	}
+	
+	App->player->paintCount.count += extractionRate * dt;
+
 }
 
 void Painter::ExtractWood(float dt) {
 	
-	if (App->pathfinding->IsWood(currentTile) && currentTile == destination) {
+
 		//App->player->woodCount.count += 0.01;
-		App->player->woodCount.count += extractionRate*dt;
-	}
+	App->player->woodCount.count += extractionRate*dt;
+
 }
 
 void Painter::ExtractMetalScrap(float dt) {

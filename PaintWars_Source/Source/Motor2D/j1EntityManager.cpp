@@ -378,10 +378,17 @@ bool j1EntityManager::Update(float dt) {
 		while (entitiesToExtractPaint != activeEntities.end()) {
 
 			// We try to extract and it will return if it can't
-			if ((*entitiesToExtractPaint)->entityType == ENTITY_TYPE_PAINTER || (*entitiesToExtractPaint)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
+			if ((*entitiesToExtractPaint)->entityType == ENTITY_TYPE_PAINTER && (*entitiesToExtractPaint)->currentTile == (*entitiesToExtractPaint)->destination && App->pathfinding->IsPaintShore((*entitiesToExtractPaint)->currentTile)) {
 
 				(*entitiesToExtractPaint)->ExtractPaint(dt);
+				(*entitiesToExtractPaint)->currentAnimation = &painterRecollection;
 			}
+
+			else if ((*entitiesToExtractPaint)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
+				
+				(*entitiesToExtractPaint)->ExtractPaint(dt);
+			}
+			
 			entitiesToExtractPaint++;
 		}
 
@@ -390,9 +397,10 @@ bool j1EntityManager::Update(float dt) {
 		while (paintersToExtractWood != activeUnits.end()) {
 
 			// We try to extract and it will return if it can't
-			if ((*paintersToExtractWood)->entityType == ENTITY_TYPE_PAINTER) {
+			if ((*paintersToExtractWood)->entityType == ENTITY_TYPE_PAINTER && (App->pathfinding->IsWood((*paintersToExtractWood)->currentTile) && (*paintersToExtractWood)->currentTile == (*paintersToExtractWood)->destination)) {
 
 				(*paintersToExtractWood)->ExtractWood(dt);
+				(*entitiesToExtractPaint)->currentAnimation = &painterRecollection;
 			}
 			paintersToExtractWood++;
 		}
