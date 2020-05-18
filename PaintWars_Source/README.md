@@ -23,7 +23,7 @@ In a world full of colour, a corruption spread, turning everything monochromatic
      + Game resoulution at 1280x720px@60fps (Window and Full Screen supported)
      + Automatic Continuous Integration and Deployment (basic)
      + Save/Load
-     + 3 different waves (needs improvement) -not fully implemented, enemies all over the map-
+     + 3 different waves -not fully implemented, enemies all over the map-
      + Fog of war
      + Tutorial, Dialogs and Quests
      + Particles
@@ -44,10 +44,10 @@ In a world full of colour, a corruption spread, turning everything monochromatic
        - Wood Producer: To get wood
        - Barracks: To create warriors, rangers, knights
        - House: To increase unit capacity
-       - Research: to get improvement on units and buildings
+       - Research: to get improvement on units and buildings -not fully working yet-
        - Metal Gatherer: To get metal scrap
        - Titanium Extractor: To get titanium
-       - Turret: defensive building (not fully working yet)
+       - Turret: defensive building -not fully working yet-
      + 1 enemy building (black and white): Spawner (5, if destroyed WIN)
      + 4 Enemies, with AI behaviour, (black and white):
        - Slime: Melee enemy
@@ -56,8 +56,8 @@ In a world full of colour, a corruption spread, turning everything monochromatic
        - Chroma King: Boss, Town Hall target -not fully implemented-
  - ACTIONS
      + Movement and group movement
-     + Collect paint (with painters)
-     + Collect wood 
+     + Collect resources and explore
+     + Run from and attack enemies 
      + Destroy spawners (with warriors)
      + Pathfinding
      + Win/Lose conditions (Town Hall destroyed OR more than 15 min LOSE, 5 Spawners destroyed WIN) with victory/lose custom messages and font and animated
