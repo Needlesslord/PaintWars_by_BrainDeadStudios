@@ -83,8 +83,6 @@ bool GameScene::Start()
 	CreateDialogText();
 	App->PAUSE_ACTIVE = false;
 	DialogOperative = false;
-	App->render->camera.x = 575;
-	App->render->camera.y = -1200;
 
 	////camera start
 //if (App->scenes->Map_Forest_Active) {
@@ -360,6 +358,25 @@ bool GameScene::Start()
 		miniMapFULL_snow->hover_rect = { 87, 40, 1170,588 };
 	}
 	//end minimap
+
+	if (App->scenes->Map_Forest_Active) {
+		App->render->camera.x = 575;
+		App->render->camera.y = -1200;
+		App->player->MinimapCameraBufferX = 4;
+		App->player->MinimapCameraBufferY = -4;
+	}
+	if (App->scenes->Map_Snow_Active) {
+		App->render->camera.x = -329;
+		App->render->camera.y = -608;
+		App->player->MinimapCameraBufferX = -24;
+		App->player->MinimapCameraBufferY = 15;
+	}
+	if (App->scenes->Map_Volcano_Active) {
+		App->render->camera.x = 700;
+		App->render->camera.y = 10;
+		App->player->MinimapCameraBufferX = 4.39;
+		App->player->MinimapCameraBufferY = 33;
+	}
 
 	//Units
 
@@ -973,26 +990,24 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 	if (element == homeButton && type == GUI_Event::EVENT_ONCLICK)
 	{
-		//if (App->scenes->Map_Forest_Active) {
-		//	App->render->camera.x = 575;
-		//	App->render->camera.y = -1200;
-		//	//MinimapCameraBufferX = 4;
-		//	//MinimapCameraBufferY = -4;
-		//}
-		//if (App->scenes->Map_Snow_Active) {
-		//	App->render->camera.x = 575;
-		//	App->render->camera.y = -1200;
-		//	//MinimapCameraBufferX = 4;
-		//	//MinimapCameraBufferY = -4;
-		//}
-		//if (App->scenes->Map_Volcano_Active) {
-		//	App->render->camera.x = 575;
-		//	App->render->camera.y = -1200;
-		//	//MinimapCameraBufferX = 4;
-		//	//MinimapCameraBufferY = -4;
-		//}
-		App->render->camera.x = 575;
-		App->render->camera.y = -1200;
+		if (App->scenes->Map_Forest_Active) {
+			App->render->camera.x = 575;
+			App->render->camera.y = -1200;
+			App->player->MinimapCameraBufferX = 4;
+			App->player->MinimapCameraBufferY = -4;
+		}
+		if (App->scenes->Map_Snow_Active) {
+			App->render->camera.x = -329;
+			App->render->camera.y = -608;
+			App->player->MinimapCameraBufferX = -24;
+			App->player->MinimapCameraBufferY = 15;
+		}
+		if (App->scenes->Map_Volcano_Active) {
+			App->render->camera.x = 700;
+			App->render->camera.y = 10;
+			App->player->MinimapCameraBufferX = 4.39;
+			App->player->MinimapCameraBufferY = 33;
+		}
 
 	}
 
