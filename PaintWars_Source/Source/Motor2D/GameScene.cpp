@@ -390,10 +390,10 @@ bool GameScene::Start()
 		App->audio->PlayingMenuMusic = false;
 	}
 
-	if (App->audio->PlayingIngameAudio != true) {
-		App->audio->PlayMusic("audio/music/music_scene_inGame.ogg");
-		App->audio->PlayingIngameAudio = true;
-	}
+	//if (App->audio->PlayingIngameAudio != true) {
+	//	App->audio->PlayMusic("audio/music/music_scene_inGame.ogg");
+	//	App->audio->PlayingIngameAudio = true;
+	//}
 
 	App->player->gameTimer.Start();
 
@@ -1371,11 +1371,16 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80, 75 }, App->entities, nullptr, 0, true);
 		App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true, true);*/
 
-		if (App->PAUSE_ACTIVE == true) {
+		if (exitMenu) {
+			App->scenes->exit = true;
+		}
+		else if (mainMenu)
+		{
 			App->entities->CleanUp();
 			App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true, true);
 		}
-		else {
+		else if (restartMenu)
+		{
 			if (App->scenes->Map_Forest_Active = true) {
 				App->scenes->Load_Map_Forest = true;
 			    App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);

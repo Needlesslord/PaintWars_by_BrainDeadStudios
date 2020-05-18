@@ -72,10 +72,13 @@ bool MenuScene::Start()
 	Exit_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, exitButton, { 505 , 585 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "Exit", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
 
 
-	if (App->audio->PlayingMenuMusic != true) {
-		App->audio->PlayMusic("audio/music/music_scene_mainMenu.ogg");
-		App->audio->PlayingMenuMusic = true;
-	}
+	/*if (App->audio->PlayingMenuMusic != true) {
+		if (App->audio->PlayMusic("audio/music/music_scene_mainMenu.ogg"))
+		{
+			App->audio->PlayMusic("audio/music/music_scene_mainMenu.ogg");
+			App->audio->PlayingMenuMusic = true;
+		}
+	}*/
 
 	return ret;
 }

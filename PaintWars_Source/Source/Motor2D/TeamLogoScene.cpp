@@ -119,7 +119,6 @@ bool TeamLogoScene::CleanUp()
 	}
 
 	App->video->CloseAVI();
-	Mix_HaltChannel(-1);
 
 	return ret;
 }
