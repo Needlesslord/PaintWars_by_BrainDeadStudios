@@ -880,10 +880,10 @@ bool j1EntityManager::Update(float dt) {
 
 								float ang = atan((((*particle)->target.y + (*particle)->targetSize.y / 2) - (*particle)->pos.y) / (((*particle)->target.x + (*particle)->targetSize.x / 2) - (*particle)->pos.x));
 
-								(*particle)->speed.x = 100 * cos(ang);
-								(*particle)->speed.y = (100) * sin(ang);
+								(*particle)->speed.x = 1000 * cos(ang);
+								(*particle)->speed.y = 1000 * sin(ang);
 
-								(*particle)->Update(dt);
+								(*particle)->Update(dt, { ((*particle)->target.x + ((*particle)->targetSize.x / 2)), ((*particle)->target.y + ((*particle)->targetSize.y / 2)) });
 							}
 
 							else {
@@ -895,10 +895,14 @@ bool j1EntityManager::Update(float dt) {
 								(*particle)->targetSize.x = (*particleToUpdate)->target->GetSize().x;
 								(*particle)->targetSize.y = (*particleToUpdate)->target->GetSize().y;
 
-								(*particle)->speed.x = 100 * cos(ang);
-								(*particle)->speed.y = (100) * sin(ang);
+								(*particle)->speed.x = 1000 * cos(ang);
+								(*particle)->speed.y = 1000 * sin(ang);
 
-								(*particle)->Update(dt);
+								if ((*particle)->Update(dt, { ((*particleToUpdate)->target->pos.x + ((*particleToUpdate)->target->GetSize().x / 2)), ((*particleToUpdate)->target->pos.y + ((*particleToUpdate)->target->GetSize().y / 2)) }) == false) {
+									
+									(*particleToUpdate)->particles.erase(particle);
+									(*particleToUpdate)->target->ApplyDamage((*particleToUpdate)->attackDamage);
+								}
 							}
 						}
 

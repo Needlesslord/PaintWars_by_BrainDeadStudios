@@ -21,7 +21,7 @@ public:
 	Particles();
 	~Particles();
 	
-	void Update(float dt);
+	bool Update(float dt, fPoint targetPos);
 	bool Draw();
 
 private:
@@ -40,8 +40,6 @@ private:
 
 	SDL_Texture* rangerParticleTexture = nullptr;
 	SDL_Texture* slimeParticleTexture = nullptr;
-
-	std::list<Particles*> particlePool;
 
 };
 

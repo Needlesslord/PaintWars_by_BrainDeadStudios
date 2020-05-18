@@ -7,6 +7,7 @@
 #include "j1Collision.h"
 #include "j1Textures.h"
 #include "j1Render.h"
+#include "j1Particles.h"
 
 Slime::Slime(iPoint tile, int damage, j1Module* listener) : Entity(tile, damage, listener, nullptr) {
 
@@ -36,6 +37,27 @@ Slime::Slime(iPoint tile, int damage, j1Module* listener) : Entity(tile, damage,
 }
 
 Slime::~Slime() {}
+
+void Slime::Attack(Entity* target, float dt) {
+
+	if (attackCooldown >= attackSpeed) {
+
+		Particles * p = AddParticle(PARTICLE_TYPE::PARTICLE_SLIME, { pos.x + size.x / 2,pos.y + size.y / 2 }, { 0, 0 });
+
+		particles.push_back(p);
+
+		attackCooldown = 0.0f;
+
+		//Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
+
+		//if (target->GetCurrLife() <= 0)
+		//	Mix_PlayChannel(-1, App->audio->Spawner_Destroyed, 0);
+	}
+
+	else {
+		attackCooldown += 10 * dt;
+	}
+}
 
 void Slime::Draw(SDL_Texture* sprites) {
 
