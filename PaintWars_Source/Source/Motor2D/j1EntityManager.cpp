@@ -777,6 +777,135 @@ bool j1EntityManager::Update(float dt) {
 								(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthWest;
 							}
 						}
+
+						else if ((*checkAttackAnimation)->entityType == ENTITY_TYPE_RANGER) {
+
+							if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
+
+								(*checkAttackAnimation)->currentAnimation = &rangerAttackNorth;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &rangerAttackNorthEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &rangerAttackEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &rangerAttackSouthEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH) {
+
+								(*checkAttackAnimation)->currentAnimation = &rangerAttackSouth;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &rangerAttackSouthWest;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &rangerAttackWest;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &rangerAttackNorthWest;
+							}
+						}
+
+						else if ((*checkAttackAnimation)->entityType == ENTITY_TYPE_KNIGHT) {
+
+							if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
+
+								(*checkAttackAnimation)->currentAnimation = &knightAttackNorth;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &knightAttackNorthEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &knightAttackEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &knightAttackSouthEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH) {
+
+								(*checkAttackAnimation)->currentAnimation = &knightAttackSouth;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &knightAttackSouthWest;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &knightAttackWest;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &knightAttackNorthWest;
+							}
+						}
+
+						else if ((*checkAttackAnimation)->entityType == ENTITY_TYPE_RIDER) {
+
+							if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
+
+								(*checkAttackAnimation)->currentAnimation = &riderAttackNorth;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &riderAttackNorthEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_EAST) {
+	
+								(*checkAttackAnimation)->currentAnimation = &riderAttackEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &riderAttackSouthEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH) {
+
+								(*checkAttackAnimation)->currentAnimation = &riderAttackSouth;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &riderAttackSouthWest;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &riderAttackWest;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &riderAttackNorthWest;
+							}
+						}
 					
 						checkAttackAnimation++;
 					}
@@ -1449,6 +1578,39 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		slime->CreateEntityCollider(slime->pos, (Entity*)slime);
 
 		return (Entity*) slime;
+	}
+
+	else if (entityType == ENTITY_TYPE_RIDER) {
+
+		Rider* rider = new Rider(tile, damage, this);
+		activeEntities.push_back((Entity*)rider);
+		activeUnits.push_back((Entity*)rider);
+		rider->isAlive = true;
+		rider->CreateEntityCollider(rider->pos, (Entity*)rider);
+
+		return (Entity*)rider;
+	}
+
+	else if (entityType == ENTITY_TYPE_EXPLOSIVE_BLOB) {
+
+		ExplosiveBlob* explosiveBlob = new ExplosiveBlob(tile, damage, this);
+		activeEntities.push_back((Entity*)explosiveBlob);
+		activeUnits.push_back((Entity*)explosiveBlob);
+		explosiveBlob->isAlive = true;
+		explosiveBlob->CreateEntityCollider(explosiveBlob->pos, (Entity*)explosiveBlob);
+
+		return (Entity*)explosiveBlob;
+	}
+
+	else if (entityType == ENTITY_TYPE_CHROMA_KING) {
+
+		ChromaKing* chromaKing = new ChromaKing(tile, damage, this);
+		activeEntities.push_back((Entity*)chromaKing);
+		activeUnits.push_back((Entity*)chromaKing);
+		chromaKing->isAlive = true;
+		chromaKing->CreateEntityCollider(chromaKing->pos, (Entity*)chromaKing);
+
+		return (Entity*)chromaKing;
 	}
 
 	else
