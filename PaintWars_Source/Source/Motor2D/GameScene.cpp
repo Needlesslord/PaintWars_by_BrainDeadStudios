@@ -438,7 +438,7 @@ bool GameScene::PreUpdate()
 	if (App->PAUSE_ACTIVE == true){
 		
 		if (/*PaintRollerAnimation->map_position.y + App->render->camera.y < 0 + App->render->camera.y*/ AnimTime < 90 && App->transition_manager->is_transitioning == false) {
-			PaintRollerAnimation->map_position = PaintRollerAnimation->map_position = { PaintRollerAnimation->map_position.x ,PaintRollerAnimation->map_position.y + 15 };
+			PaintRollerAnimation->map_position = PaintRollerAnimation->map_position = { PaintRollerAnimation->map_position.x ,PaintRollerAnimation->map_position.y + 25 };
 			LOG("Position Roller Y %f",PaintRollerAnimation->map_position.y);
 				//LOG("Camera x at %d", App->render->camera.x);
 			++AnimTime;

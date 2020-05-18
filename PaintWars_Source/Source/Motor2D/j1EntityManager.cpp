@@ -142,10 +142,12 @@ bool j1EntityManager::PreUpdate() {
 		updatingTargets++;
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
+	/*if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 		spacePressed = true;
 	else
-		spacePressed = false;
+		spacePressed = false;*/
+
+
 	return ret;
 }
 

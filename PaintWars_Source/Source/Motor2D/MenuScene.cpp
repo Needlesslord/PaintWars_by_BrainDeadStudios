@@ -113,10 +113,10 @@ bool MenuScene::Update(float dt)
 	
 	CameraDebugMovement(dt);
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	/*if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
 		App->scenes->SwitchScene(SCENES::START_SCENE);
-	}
+	}*/
 
 	if (playButton->map_position.x < 475 && App->transition_manager->is_transitioning == false) {
 		playButton->map_position = playButton->map_position = { playButton->map_position.x + 7,playButton->map_position.y };
