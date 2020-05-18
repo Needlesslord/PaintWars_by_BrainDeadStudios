@@ -96,7 +96,6 @@
     <ClCompile Include="j1Collision.cpp" />
     <ClCompile Include="j1FogOfWar.cpp" />
     <ClCompile Include="j1Minimap.cpp" />
-    <ClCompile Include="j1ParticleManager.cpp" />
     <ClCompile Include="j1Particles.cpp" />
     <ClCompile Include="j1UIElements.cpp" />
     <ClCompile Include="j1EntityManager.cpp" />
@@ -125,8 +124,6 @@
     <ClCompile Include="j1Window.cpp" />
     <ClCompile Include="Painter.cpp" />
     <ClCompile Include="PaintExtractor.cpp" />
-    <ClCompile Include="Particle.cpp" />
-    <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Ranger.cpp" />
@@ -176,7 +173,6 @@
     <ClInclude Include="j1FogOfWar.h" />
     <ClInclude Include="j1FontsUI.h" />
     <ClInclude Include="j1Minimap.h" />
-    <ClInclude Include="j1ParticleManager.h" />
     <ClInclude Include="j1Particles.h" />
     <ClInclude Include="j1UI_Manager.h" />
     <ClInclude Include="j1SpritesUI.h" />
@@ -208,8 +204,6 @@
     <ClInclude Include="p2SString.h" />
     <ClInclude Include="Painter.h" />
     <ClInclude Include="PaintExtractor.h" />
-    <ClInclude Include="Particle.h" />
-    <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
     <ClInclude Include="Random.h" />

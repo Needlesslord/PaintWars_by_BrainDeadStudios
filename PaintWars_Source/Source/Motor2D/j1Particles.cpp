@@ -10,13 +10,25 @@
 #include "Entity.h"
 
 Particles::Particles() {
-	rangerParticleTexture = App->tex->Load("textures/Smoke_Texture_7x7px.png");
+	rangerParticleTexture = App->tex->Load("textures/particle_ranger.png");
+	slimeParticleTexture = App->tex->Load("textures/particle_slime.png");
 }
 
 Particles::~Particles()
 {}
 
 bool Particles::Update(float dt, fPoint targetPos) {
+
+	if (pos.x + 3.5 > targetPos.x + targetSize.x / 2) {
+
+		if (speed.x > 0)
+			speed.x *= (-1);
+	}
+	if (pos.y + 3.5 > targetPos.y + targetSize.y / 2) {
+
+		if (speed.y > 0)
+			speed.y *= (-1);
+	}
 
 	pos.x += speed.x * dt; 
 	pos.y += speed.y * dt;
@@ -36,41 +48,77 @@ bool Particles::Update(float dt, fPoint targetPos) {
 		// Going Down & Right
 		else if (speed.y > 0) {
 
+			if (pos.x > targetPos.x && pos.y > targetPos.y) {
+				isAlive = false;
+				return false;
+			}
 		}
 
 		// Straight Right
-		else {
+		else if (speed.y = 0) {
 
+			if (pos.x > targetPos.x) {
+				isAlive = false;
+				return false;
+			}
 		}
 	}
 
 	// Going Left
 	else if (speed.x < 0) {
 
+		// Going Up & Left
+		if (speed.y < 0) {
+
+			if (pos.x < targetPos.x && pos.y < targetPos.y) {
+				isAlive = false;
+				return false;
+			}
+		}
+
+		// Going Down & Left
+		else if (speed.y > 0) {
+
+			if (pos.x < targetPos.x && pos.y > targetPos.y) {
+				isAlive = false;
+				return false;
+			}
+		}
+
+		// Straight Left
+		else if (speed.y = 0) {
+
+			if (pos.x < targetPos.x) {
+				isAlive = false;
+				return false;
+			}
+		}
+	}
+	
+	// Not moving
+	else if (speed.x = 0) {
+
 		// Going Up
 		if (speed.y < 0) {
 
-			if (pos.x > targetPos.x) {
-				
+			if (pos.y < targetPos.y) {
+				isAlive = false;
+				return false;
 			}
 		}
 
 		// Going Down
 		else if (speed.y > 0) {
 
-		}
-
-		// Straight Right
-		else {
-
+			if (pos.y > targetPos.y) {
+				isAlive = false;
+				return false;
+			}
 		}
 	}
 	
-	// Not moving
-	else {
-
-	}
 	Draw();
+
 	return true;
 }
 
@@ -94,7 +142,7 @@ bool Particles::Draw() {
 	}
 
 	else if (particleType == PARTICLE_SLIME) {
-
+		App->render->RenderQueue(10, slimeParticleTexture, pos.x, pos.y, { 0, 0, 15, 15 });
 	}
 
 	else

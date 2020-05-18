@@ -11,6 +11,9 @@
 #include "WoodProducer.h"
 #include "House.h"
 #include "Barracks.h"
+#include "MetalGatherer.h"
+#include "TitaniumExtractor.h"
+#include "Turret.h"
 
 /// Units
 #include "Painter.h"
@@ -114,8 +117,8 @@ public:
 	bool paintExtractorUpgraded = false;
 	bool woodProducersUpgraded = false;
 	bool ExtractorQuestDone = false;
-	bool titaniumExtractorUpgraded = false;
-	bool metalGathererUpgraded = false;
+	//bool titaniumExtractorUpgraded = false;
+	//bool metalGathererUpgraded = false;
 
 	bool spacePressed = false;
 
@@ -131,6 +134,7 @@ protected:
 	SDL_Texture* buildingTexture = nullptr;
 	SDL_Texture* titaniumExtractorTexture = nullptr;
 	SDL_Texture* metalGathererTexture = nullptr;
+	SDL_Texture* turretTexture = nullptr;
 
 	/// Units
 	SDL_Texture* painterTexture = nullptr;

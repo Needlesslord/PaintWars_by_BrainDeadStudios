@@ -18,13 +18,11 @@ MetalGatherer::MetalGatherer(iPoint tile, int damage, j1Module* listener, Entity
 	*(ENTITY_CATEGORY*)&entityCategory = ENTITY_CATEGORY_STATIC_ENTITY;
 	*(ENTITY_SIZE*)&entitySize = ENTITY_SIZE_SMALL; // But it changes 4 more tile around it
 
-	maxLife = 300;
-	if (App->entities->metalGathererUpgraded)
-		maxLife *= 1.2;
+	maxLife = 200;
 
 	currLife = maxLife - damage;
 
-	size = { 150, 199 }; // TODO
+	size = { 150, 200 }; // TODO
 
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);

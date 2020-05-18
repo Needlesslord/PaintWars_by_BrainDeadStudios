@@ -8,7 +8,6 @@
 
 #include "j1App.h"
 #include "j1Audio.h"
-#include "Particle.h"
 #include "j1FogOfWar.h"
 
 class j1Module;

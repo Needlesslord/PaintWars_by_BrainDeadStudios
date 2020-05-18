@@ -349,12 +349,12 @@ bool j1App::PostUpdate()
 bool j1App::CleanUp()
 {
 	bool ret = true;
-	std::list<j1Module*>::iterator item = modules.end();
+	std::list<j1Module*>::reverse_iterator item = modules.rbegin();
 
-	while(item != modules.begin() && ret == true)
+	while(item != modules.rend() && ret == true)
 	{
-		item--;
 		ret = (*item)->CleanUp();
+		item++;
 	}
 	return ret;
 }

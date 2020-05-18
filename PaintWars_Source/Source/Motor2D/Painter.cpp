@@ -33,7 +33,7 @@ Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 	pos.x = tileWorldPosition.x + App->map->data.tile_width / 2 - size.x / 2;
 	pos.y = tileWorldPosition.y + App->map->data.tile_height / 2 - size.y;
 
-	speed = 150.0f;
+	speed = 125.0f;
 
 	spawningTime = 10.0f;
 
@@ -74,15 +74,10 @@ void Painter::ExtractWood(float dt) {
 
 void Painter::ExtractMetalScrap(float dt) {
 
-	if (App->pathfinding->IsWood(currentTile) && currentTile == destination) {
+	if (App->pathfinding->IsMetalScrap(currentTile) && currentTile == destination) {
 		//App->player->woodCount.count += 0.01;
-		App->player->metalScrapCount.count += extractionRate * dt;
+		App->player->metalScrapCount.count += extractionRate * dt * 0.5;
 	}
-
-	//if (App->pathfinding->IsMetalScrap(currentTile) && currentTile == destination) {
-	//	//App->player->woodCount.count += 0.01;
-	//	App->player->metalScrapCount.count += extractionRate * dt;
-	//}
 }
 
 void Painter::Draw(SDL_Texture* sprites) {
