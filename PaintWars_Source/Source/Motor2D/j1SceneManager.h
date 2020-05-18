@@ -60,6 +60,9 @@ public:
 	int Timer_Minutes;
 	bool exit;
 
+	const pugi::char_t* WhichMapToLoad;
+	bool ComingFromContinueButton;
+
 private:
 	std::vector<Scene*>		scenes;									// All the scenes of the game.
 };
