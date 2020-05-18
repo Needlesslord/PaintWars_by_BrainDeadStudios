@@ -2067,7 +2067,7 @@ bool j1EntityManager::Load(pugi::xml_node& save)
 	
 	
 
-	 App->scenes->WhichMapToLoad = save.child("num_entities").attribute("SavedMap").as_string();
+	 App->scenes->WhichMapToLoad = save.child("saved_map").attribute("SavedMap").as_string();
 
 
 	
