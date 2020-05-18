@@ -42,8 +42,12 @@ public:
 	SDL_Texture* Atlas_Load = nullptr;
 	SDL_Texture* Atlas_Sprite_Load = nullptr;
 	SDL_Texture* Minimap_Entities_Load = nullptr;
-	SDL_Texture* Minimap_Full_Load = nullptr;
-	SDL_Texture* Minimap_Mini_Load = nullptr;
+	SDL_Texture* Minimap_Full_Load_forest = nullptr;
+	SDL_Texture* Minimap_Mini_Load_forest = nullptr;
+	SDL_Texture* Minimap_Full_Load_snow = nullptr;
+	SDL_Texture* Minimap_Mini_Load_snow = nullptr;
+	SDL_Texture* Minimap_Full_Load_volcano = nullptr;
+	SDL_Texture* Minimap_Mini_Load_volcano = nullptr;
 	SDL_Texture* Minimap_Back_Load = nullptr;
 	SDL_Texture* Minimap_Camera_Load = nullptr;
 	SDL_Texture* Lose_Screen_Sprite_Load = nullptr;
