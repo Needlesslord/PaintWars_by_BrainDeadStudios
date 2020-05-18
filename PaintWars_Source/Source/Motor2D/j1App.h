@@ -125,6 +125,7 @@ private:
 
 	mutable bool		want_to_save = false;
 	bool				want_to_load = false;
+	bool				has_game_saved = false;
 	std::string			load_game;
 	mutable std::string	save_game;
 
