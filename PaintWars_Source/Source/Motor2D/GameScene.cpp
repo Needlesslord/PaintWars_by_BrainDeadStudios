@@ -441,7 +441,7 @@ bool GameScene::Start()
 	App->player->woodCount.count = 50;
 
 	App->player->metalScrapCount.type = RESOURCE_TYPE_METAL_SCRAP;
-	App->player->metalScrapCount.count = 1000;
+	App->player->metalScrapCount.count = 0;
 
 	App->player->titaniumCount.type = RESOURCE_TYPE_TITANIUM;
 	App->player->titaniumCount.count = 0;
