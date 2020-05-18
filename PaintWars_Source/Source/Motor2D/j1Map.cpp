@@ -90,7 +90,6 @@ void j1Map::Draw()
 						r = App->fow->GetFOWMetaRect(state);
 						App->render->RenderQueue(0, App->fow->fogtexture, pos.x, pos.y, r);
 
-
 					}
 					//Blit black if the tile is not visited. 
 					//Alternatively we can leave this blank as the background is black, but if there was any kind of background we may surely don't blit it
