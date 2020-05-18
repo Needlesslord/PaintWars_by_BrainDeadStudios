@@ -257,9 +257,6 @@ public:
 
 	
 	
-	bool savedMapForest;
-	bool savedMapSnow;
-	bool savedMapVolcano;
 
 
 

@@ -1156,19 +1156,22 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	if (element == saveButton && type == GUI_Event::EVENT_ONCLICK)
 	{
 		if (App->scenes->Map_Forest_Active) {
-			bool savedMapForest = true;
-			bool savedMapSnow = false;
-			bool savedMapVolcano = false;
+			App->scenes->savedMapForest = true;
+			App->scenes->savedMapSnow = false;
+			App->scenes->savedMapVolcano = false;
+			App->scenes->saved_map = 1;
 		}		
 		else if (App->scenes->Map_Snow_Active) {
-			bool savedMapForest = false;
-			bool savedMapSnow = true;
-			bool savedMapVolcano = false;
+			App->scenes->savedMapForest = false;
+			App->scenes->savedMapSnow = true;
+			App->scenes->savedMapVolcano = false;
+			App->scenes->saved_map = 2;
 		}
 		else if (App->scenes->Map_Volcano_Active) {
-			bool savedMapForest = false;
-			bool savedMapSnow = false;
-			bool savedMapVolcano = true;
+			App->scenes->savedMapForest = false;
+			App->scenes->savedMapSnow = false;
+			App->scenes->savedMapVolcano = true;
+			App->scenes->saved_map = 3;
 		}
 		App->SaveGame("save_game.xml");
 	}
@@ -1541,9 +1544,9 @@ void GameScene::Generate_Entities()
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 10, 90 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80, 75 }, App->entities, nullptr, 0, true);
 		//trying
-		App->entities->AddEntity(ENTITY_TYPE_RANGER, { 40, 25 }, App->entities, nullptr, 0, true);
-		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 2, 2 }, App->entities, nullptr, 0, true);
-		App->entities->AddEntity(ENTITY_TYPE_EXPLORER, { 20, 20 }, App->entities, nullptr, 0, true);
+		//App->entities->AddEntity(ENTITY_TYPE_RANGER, { 40, 25 }, App->entities, nullptr, 0, true);
+		//App->entities->AddEntity(ENTITY_TYPE_SLIME, { 2, 2 }, App->entities, nullptr, 0, true);
+		//App->entities->AddEntity(ENTITY_TYPE_EXPLORER, { 20, 20 }, App->entities, nullptr, 0, true);
 		//enemies
 		////at minute 5 generate 3 slimes, 1 explosive blob
 		//if (App->player->gameTimer.ReadSec() == 300) {
