@@ -1449,7 +1449,10 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		vfxLabel->enabled = false;
 		fullscreenLabel->enabled = false;
 		gpadLabel->enabled = false;
-		
+		fxBar->enabled = false;
+		fxSlider->enabled = false;
+		musicBar->enabled = false;
+		musicSlider->enabled = false;
 		
 		fullscreenButton->enabled = false;
 		gpadButton->enabled = false;
