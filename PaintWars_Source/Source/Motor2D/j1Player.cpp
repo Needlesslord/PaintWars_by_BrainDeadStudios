@@ -77,7 +77,7 @@ bool j1Player::PreUpdate()
 	//	while (entityCount != App->entities->activeEntities.end()) {
 
 
-	//		MiniMapEntities_Squares[B] = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 850,500 /*(*entityCount)->pos.x ,(*entityCount)->pos.y*/ }, { 0 , 0 }, false, true, { 4, 3, 2, 3 },
+	//		MiniMapEntities_Squares[B] = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 1000,520 /*(*entityCount)->pos.x ,(*entityCount)->pos.y*/ }, { 0 , 0 }, false, true, { 4, 3, 2, 3 },
 	//			nullptr, nullptr, TEXTURE::MINIMAP_ENTITIES);
 
 	//		
