@@ -152,13 +152,18 @@ public:
 	j1UIElement* exitButton = nullptr;
 	bool exitMenu = false;
 
+	j1UIElement* fxSlider = nullptr;
+	j1UIElement* fxBar = nullptr;
+	j1UIElement* musicSlider = nullptr;
+	j1UIElement* musicBar = nullptr;
+
+
 	//Pause Menu - Settings Menu
 	j1UIElement* musicLabel = nullptr;
 	j1UIElement* vfxLabel = nullptr;
 	j1UIElement* fullscreenLabel = nullptr;
 	j1UIElement* gpadLabel = nullptr;
 
-	j1UIElement* vfxScroll = nullptr;
 	j1UIElement* fullscreenButton = nullptr;
 	j1UIElement* gpadButton = nullptr;
 	j1UIElement* resetButton = nullptr;
