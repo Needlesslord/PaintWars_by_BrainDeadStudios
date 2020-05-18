@@ -26,6 +26,8 @@ j1Player::j1Player() : j1Module()
 j1Player::~j1Player()
 {
 
+	App->CleanUp();
+
 }
 
 bool j1Player::Awake(pugi::xml_node& config)
@@ -148,17 +150,12 @@ bool j1Player::Update(float dt)
 
 
 				if (App->gui->GUI_ELEMENTS[z]->textureType == TEXTURE::MINIMAP_CAMERA) {
-
-
-
+					
 					App->gui->GUI_ELEMENTS[z]->map_position.x = App->gui->GUI_ELEMENTS[z]->init_map_position.x + App->render->camera.x - MinimapCameraBufferX;
 					App->gui->GUI_ELEMENTS[z]->map_position.y = App->gui->GUI_ELEMENTS[z]->init_map_position.y + App->render->camera.y - MinimapCameraBufferY;
-
 					
 				}
 				else if (App->gui->GUI_ELEMENTS[z]->textureType == TEXTURE::MINIMAP_ENTITIES) {
-
-
 					
 
 				}
@@ -215,6 +212,8 @@ bool j1Player::Update(float dt)
 
 bool j1Player::CleanUp()
 {
+
+
 
 	return true;
 
@@ -290,15 +289,15 @@ void j1Player::Camera_Control(float dt)
 				App->render->camera.y = -3150;
 			
 
-			if (App->input->GetKey(SDL_SCANCODE_H) == KEY_REPEAT) {
+			if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN) {
 
 				//has to update camera minimap
 
 				if (App->scenes->Map_Forest_Active) {
 					App->render->camera.x = 575;
 					App->render->camera.y = -1200;
-					MinimapCameraBufferX = 0;
-					MinimapCameraBufferY = 0;
+					MinimapCameraBufferX = 4;
+					MinimapCameraBufferY = -4;
 				}
 				if (App->scenes->Map_Snow_Active) {
 					App->render->camera.x = -329;

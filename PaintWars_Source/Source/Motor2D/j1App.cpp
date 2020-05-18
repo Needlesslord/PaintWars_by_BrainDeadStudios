@@ -24,6 +24,7 @@
 #include "j1SceneManager.h"
 #include "j1QuestManager.h"
 #include "j1Window.h"
+#include "j1Video.h"
 #include "j1FogOfWar.h"
 
 // Constructor
@@ -45,6 +46,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	player = new j1Player();
 	transition_manager = new TransitionManager();
 	quest_manager = new j1QuestManager();
+	video = new j1Video();
 	fow = new j1FogOfWar();
 
 
@@ -66,6 +68,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(player);
 	AddModule(transition_manager);
 	AddModule(quest_manager);
+	AddModule(video);
 	AddModule(fow);
 
 	// render last to swap buffer
@@ -492,7 +495,7 @@ void j1App::Debug_Actions()
 	if (GOD_MODE != true) {
 
 
-		if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
+		if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN && App->video->isVideoFinished == true) {
 			App->scenes->Load_Map_Forest = true;
 			App->scenes->Load_Map_Snow = false;
 			App->scenes->Load_Map_Volcano = false;
@@ -503,7 +506,7 @@ void j1App::Debug_Actions()
 			//App->scenes->SwitchScene(SCENES::GAME_SCENE);
 		}
 
-		if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
+		if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN && App->video->isVideoFinished == true) {
 			App->scenes->Load_Map_Forest = false;
 			App->scenes->Load_Map_Snow = true;
 			App->scenes->Load_Map_Volcano = false;
@@ -515,7 +518,7 @@ void j1App::Debug_Actions()
 			//App->scenes->SwitchScene(SCENES::GAME_SCENE);
 		}
 
-		if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
+		if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN && App->video->isVideoFinished == true) {
 			App->scenes->Load_Map_Forest = false;
 			App->scenes->Load_Map_Snow = false;
 			App->scenes->Load_Map_Volcano = true;
@@ -534,22 +537,14 @@ void j1App::Debug_Actions()
 				PAUSE_ACTIVE = false;
 			}
 		}
-
-		if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
-			App->scenes->Load_Map_Forest = false;
-			App->scenes->Load_Map_Snow = false;
-			App->scenes->Load_Map_Volcano = true;
-			App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
-			//App->scenes->SwitchScene(SCENES::GAME_SCENE);
-		}
 		
 		
-		if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
+		if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN && App->video->isVideoFinished == true) {
 			App->transition_manager->CreateSlide(SCENES::LOSE_SCENE, 1.0f, true);
 
 		}
 
-		if (App->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN) {
+		if (App->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN && App->video->isVideoFinished == true) {
 			App->transition_manager->CreateSlide(SCENES::WIN_SCENE, 1.0f, true);
 		}
 

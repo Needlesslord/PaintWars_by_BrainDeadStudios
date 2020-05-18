@@ -26,6 +26,7 @@ class j1Player;
 class TransitionManager;
 class SceneManager;
 class j1QuestManager;
+class j1Video;
 class j1FogOfWar;
 
 
@@ -111,6 +112,7 @@ public:
 	j1FontsUI*			fonts = NULL;
 	TransitionManager*  transition_manager = NULL;
 	j1QuestManager*		quest_manager = NULL;
+	j1Video*            video = NULL;
 	j1FogOfWar*		    fow = NULL;
 
 
@@ -146,6 +148,7 @@ public:
 	bool DEBUG_ACTIVE;
 	bool PAUSE_ACTIVE;
 	bool GOD_MODE;
+	bool canContinue = false;
 
 };
 

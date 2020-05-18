@@ -15,10 +15,19 @@ j1FogOfWar::~j1FogOfWar() {
 	{
 		delete[] visibility_map;
 		visibility_debug_holder = nullptr;
+
 	}
 	else if (visibility_debug_holder != nullptr)
 		delete[] visibility_debug_holder;
 
+	if (visibility_map != nullptr && visibility_map != debug_map)
+	{
+		delete[] visibility_map;
+		visibility_save_holder = nullptr;
+
+	}
+	else if (visibility_save_holder != nullptr)
+		delete[] visibility_debug_holder;
 
 	if (debug_map != nullptr)
 		delete[] debug_map;
@@ -59,6 +68,16 @@ bool j1FogOfWar::Update(float dt) {
 			visibility_map = visibility_debug_holder;
 		}
 	}
+
+	//save visibility
+	if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
+		visibility_save_holder = visibility_map;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN) {
+		visibility_map = visibility_save_holder;
+	}
+
+
 
 	return true;
 }
@@ -115,7 +134,13 @@ void j1FogOfWar::SetVisibilityMap(uint w, uint h) {
 			delete[] visibility_debug_holder;
 			visibility_debug_holder = nullptr;
 		}
-
+		if (visibility_save_holder == visibility_map) {
+		visibility_save_holder = nullptr;
+		}
+		else {
+			delete[] visibility_save_holder;
+			visibility_save_holder = nullptr;
+		}
 		if (visibility_map != debug_map) {
 			delete[] visibility_map;
 			visibility_map = nullptr;

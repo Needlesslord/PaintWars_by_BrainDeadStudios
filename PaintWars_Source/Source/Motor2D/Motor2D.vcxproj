@@ -113,6 +113,7 @@
     <ClCompile Include="j1Player.cpp" />
     <ClCompile Include="j1QuestManager.cpp" />
     <ClCompile Include="j1Timer.cpp" />
+    <ClCompile Include="j1Video.cpp" />
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="LoseScene.cpp" />
     <ClCompile Include="MenuScene.cpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="j1Player.h" />
     <ClInclude Include="j1QuestManager.h" />
     <ClInclude Include="j1Timer.h" />
+    <ClInclude Include="j1Video.h" />
     <ClInclude Include="Knight.h" />
     <ClInclude Include="LoseScene.h" />
     <ClInclude Include="MenuScene.h" />
@@ -206,6 +208,7 @@
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Ranger.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Rider.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="j1SceneManager.h" />

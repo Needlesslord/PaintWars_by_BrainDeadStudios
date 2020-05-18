@@ -12,6 +12,7 @@
 #include "TransitionManager.h"
 #include "SDL_mixer\include\SDL_mixer.h"
 #include "j1Audio.h"
+#include "j1Video.h"
 
 TeamLogoScene::TeamLogoScene() : Scene(SCENES::TEAM_LOGO_SCENE)
 {
@@ -42,10 +43,9 @@ bool TeamLogoScene::Start()
 	teamLogoButton->hover_rect = { 0, 0, 1280, 720 };
 	teamLogoButton->click_rect = { 0, 0, 1280, 720 };
 
-	Mix_PlayChannel(-1, App->audio->braindead_sound, 0);
-
 	
-
+	App->video->Initialize("video/video_logo_braindead.avi");
+	Mix_PlayChannel(-1, App->audio->logo_1_sound, 0);
 
 
 	return ret;
@@ -66,12 +66,11 @@ bool TeamLogoScene::Update(float dt)
 	
 	CameraDebugMovement(dt);
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-	{
-		App->audio->Click_Logo_Sound;  /*Mix_VolumeChunk(Click_Logo_Sound, 50);*/
-		App->scenes->SwitchScene(SCENES::MENU_SCENE);
-	}
-
+	//if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	//{
+	//	App->audio->Click_Logo_Sound;  /*Mix_VolumeChunk(Click_Logo_Sound, 50);*/
+	//	App->scenes->SwitchScene(SCENES::MENU_SCENE);
+	//}
 
 
 
@@ -119,13 +118,15 @@ bool TeamLogoScene::CleanUp()
 		SDL_FreeSurface(scene_surface);
 	}
 
+	App->video->CloseAVI();
+
 	return ret;
 }
 
 
 void TeamLogoScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
-	if (element == teamLogoButton && type == GUI_Event::EVENT_ONCLICK)
+	if (element == teamLogoButton && type == GUI_Event::EVENT_ONCLICK && App->video->isVideoFinished == true)
 	{
 		App->audio->Click_Logo_Sound;  /*Mix_VolumeChunk(Click_Logo_Sound, 50);*/
 

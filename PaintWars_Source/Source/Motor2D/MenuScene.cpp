@@ -72,10 +72,13 @@ bool MenuScene::Start()
 	Exit_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, exitButton, { 505 , 585 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "Exit", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
 
 
-	if (App->audio->PlayingMenuMusic != true) {
-		App->audio->PlayMusic("audio/music/music_scene_mainMenu.ogg");
-		App->audio->PlayingMenuMusic = true;
-	}
+	/*if (App->audio->PlayingMenuMusic != true) {
+		if (App->audio->PlayMusic("audio/music/music_scene_mainMenu.ogg"))
+		{
+			App->audio->PlayMusic("audio/music/music_scene_mainMenu.ogg");
+			App->audio->PlayingMenuMusic = true;
+		}
+	}*/
 
 	return ret;
 }
@@ -113,10 +116,10 @@ bool MenuScene::Update(float dt)
 	
 	CameraDebugMovement(dt);
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	/*if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
 		App->scenes->SwitchScene(SCENES::START_SCENE);
-	}
+	}*/
 
 	if (playButton->map_position.x < 475 && App->transition_manager->is_transitioning == false) {
 		playButton->map_position = playButton->map_position = { playButton->map_position.x + 7,playButton->map_position.y };

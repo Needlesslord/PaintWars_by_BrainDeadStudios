@@ -142,10 +142,12 @@ bool j1EntityManager::PreUpdate() {
 		updatingTargets++;
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
+	/*if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 		spacePressed = true;
 	else
-		spacePressed = false;
+		spacePressed = false;*/
+
+
 	return ret;
 }
 
@@ -158,6 +160,7 @@ bool j1EntityManager::Update(float dt) {
 		// Spawn entities that finished their spawning time
 		list<Entity*>::iterator checkForSpawningEntities = spawningEntities.begin();
 		while (checkForSpawningEntities != spawningEntities.end()) {
+
 
 			// The units first
 			if ((*checkForSpawningEntities)->entityCategory == ENTITY_CATEGORY_DYNAMIC_ENTITY) {
@@ -386,20 +389,22 @@ bool j1EntityManager::Update(float dt) {
 
 
 
-		
-
-
-
-
 		// Extract Paint (Painters and PaintExtractor)
 		list<Entity*>::iterator entitiesToExtractPaint = activeEntities.begin();
 		while (entitiesToExtractPaint != activeEntities.end()) {
 
 			// We try to extract and it will return if it can't
-			if ((*entitiesToExtractPaint)->entityType == ENTITY_TYPE_PAINTER || (*entitiesToExtractPaint)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
+			if ((*entitiesToExtractPaint)->entityType == ENTITY_TYPE_PAINTER && (*entitiesToExtractPaint)->currentTile == (*entitiesToExtractPaint)->destination && App->pathfinding->IsPaintShore((*entitiesToExtractPaint)->currentTile)) {
 
 				(*entitiesToExtractPaint)->ExtractPaint(dt);
+				(*entitiesToExtractPaint)->currentAnimation = &painterRecollection;
 			}
+
+			else if ((*entitiesToExtractPaint)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
+				
+				(*entitiesToExtractPaint)->ExtractPaint(dt);
+			}
+			
 			entitiesToExtractPaint++;
 		}
 
@@ -408,9 +413,10 @@ bool j1EntityManager::Update(float dt) {
 		while (paintersToExtractWood != activeUnits.end()) {
 
 			// We try to extract and it will return if it can't
-			if ((*paintersToExtractWood)->entityType == ENTITY_TYPE_PAINTER) {
+			if ((*paintersToExtractWood)->entityType == ENTITY_TYPE_PAINTER && (App->pathfinding->IsWood((*paintersToExtractWood)->currentTile) && (*paintersToExtractWood)->currentTile == (*paintersToExtractWood)->destination)) {
 
 				(*paintersToExtractWood)->ExtractWood(dt);
+				(*entitiesToExtractPaint)->currentAnimation = &painterRecollection;
 			}
 			paintersToExtractWood++;
 		}
@@ -807,6 +813,135 @@ bool j1EntityManager::Update(float dt) {
 							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 								(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthWest;
+							}
+						}
+
+						else if ((*checkAttackAnimation)->entityType == ENTITY_TYPE_RANGER) {
+
+							if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
+
+								(*checkAttackAnimation)->currentAnimation = &rangerAttackNorth;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &rangerAttackNorthEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &rangerAttackEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &rangerAttackSouthEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH) {
+
+								(*checkAttackAnimation)->currentAnimation = &rangerAttackSouth;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &rangerAttackSouthWest;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &rangerAttackWest;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &rangerAttackNorthWest;
+							}
+						}
+
+						else if ((*checkAttackAnimation)->entityType == ENTITY_TYPE_KNIGHT) {
+
+							if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
+
+								(*checkAttackAnimation)->currentAnimation = &knightAttackNorth;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &knightAttackNorthEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &knightAttackEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &knightAttackSouthEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH) {
+
+								(*checkAttackAnimation)->currentAnimation = &knightAttackSouth;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &knightAttackSouthWest;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &knightAttackWest;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &knightAttackNorthWest;
+							}
+						}
+
+						else if ((*checkAttackAnimation)->entityType == ENTITY_TYPE_RIDER) {
+
+							if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
+
+								(*checkAttackAnimation)->currentAnimation = &riderAttackNorth;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &riderAttackNorthEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_EAST) {
+	
+								(*checkAttackAnimation)->currentAnimation = &riderAttackEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+								(*checkAttackAnimation)->currentAnimation = &riderAttackSouthEast;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH) {
+
+								(*checkAttackAnimation)->currentAnimation = &riderAttackSouth;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &riderAttackSouthWest;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &riderAttackWest;
+							}
+
+							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+								(*checkAttackAnimation)->currentAnimation = &riderAttackNorthWest;
 							}
 						}
 					
@@ -1561,6 +1696,39 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		return (Entity*) slime;
 	}
 
+	else if (entityType == ENTITY_TYPE_RIDER) {
+
+		Rider* rider = new Rider(tile, damage, this);
+		activeEntities.push_back((Entity*)rider);
+		activeUnits.push_back((Entity*)rider);
+		rider->isAlive = true;
+		rider->CreateEntityCollider(rider->pos, (Entity*)rider);
+
+		return (Entity*)rider;
+	}
+
+	else if (entityType == ENTITY_TYPE_EXPLOSIVE_BLOB) {
+
+		ExplosiveBlob* explosiveBlob = new ExplosiveBlob(tile, damage, this);
+		activeEntities.push_back((Entity*)explosiveBlob);
+		activeUnits.push_back((Entity*)explosiveBlob);
+		explosiveBlob->isAlive = true;
+		explosiveBlob->CreateEntityCollider(explosiveBlob->pos, (Entity*)explosiveBlob);
+
+		return (Entity*)explosiveBlob;
+	}
+
+	else if (entityType == ENTITY_TYPE_CHROMA_KING) {
+
+		ChromaKing* chromaKing = new ChromaKing(tile, damage, this);
+		activeEntities.push_back((Entity*)chromaKing);
+		activeUnits.push_back((Entity*)chromaKing);
+		chromaKing->isAlive = true;
+		chromaKing->CreateEntityCollider(chromaKing->pos, (Entity*)chromaKing);
+
+		return (Entity*)chromaKing;
+	}
+
 	else
 		return nullptr;
 }
@@ -2174,7 +2342,7 @@ bool j1EntityManager::Load(pugi::xml_node& save)
 	
 	
 
-	 App->scenes->WhichMapToLoad = save.child("num_entities").attribute("SavedMap").as_string();
+	 App->scenes->WhichMapToLoad = save.child("saved_map").attribute("SavedMap").as_string();
 
 
 	
