@@ -14,6 +14,7 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "j1EntityManager.h"
+#include "j1Particles.h"
 
 Ranger::Ranger(iPoint tile, int damage, j1Module* listener, Entity* creator) : Entity(tile, damage, listener, creator) {
 
@@ -46,10 +47,16 @@ Ranger::Ranger(iPoint tile, int damage, j1Module* listener, Entity* creator) : E
 	if (App->entities->warriorsUpgraded)
 		attackDamage *= 1.5f;
 
-	attackSpeed = 10.0f;
+	attackSpeed = 15.0f;
 	attackCooldown = attackSpeed;
 
 	isEntityFromPlayer = true;
+
+	//FOW
+	visibilityRadius = 3;
+	fow_entity->frontier = App->fow->CreateSightQuad(visibilityRadius, fow_entity->position);
+	fow_entity->LOS = App->fow->FulfillSight(fow_entity->frontier);
+
 }
 
 Ranger::~Ranger() {}
@@ -58,7 +65,10 @@ void Ranger::Attack(Entity* target, float dt) {
 
 	if (attackCooldown >= attackSpeed) {
 
-		target->ApplyDamage(attackDamage);
+		Particles * p = AddParticle(PARTICLE_TYPE::PARTICLE_RANGER, { pos.x + size.x / 2,pos.y + size.y / 2 }, { 0, 0 });
+
+		particles.push_back(p);
+
 		attackCooldown = 0.0f;
 
 		Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
@@ -68,7 +78,7 @@ void Ranger::Attack(Entity* target, float dt) {
 	}
 
 	else {
-		attackCooldown += attackSpeed * dt;
+		attackCooldown += 10 * dt;
 	}
 }
 

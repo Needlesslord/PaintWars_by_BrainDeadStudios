@@ -13,6 +13,7 @@
 #include "SDL_mixer\include\SDL_mixer.h"
 #include "j1Audio.h"
 #include "j1Player.h"
+#include "j1Video.h"
 
 GameLogoScene::GameLogoScene() : Scene(SCENES::GAME_LOGO_SCENE)
 {
@@ -39,15 +40,18 @@ bool GameLogoScene::Start()
 {
 	bool ret = true;
 
-	gameLogoButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 300, 100 }, { 0,500 }, true, true, { 0, 0, 630, 426 }, "Click on the Logo to Start!", App->scenes, TEXTURE::LOGO, FONT::FONT_MEDIUM_WHITE, 1);
-	gameLogoButton->hover_rect = { 0, 0, 630, 426 };
-	gameLogoButton->click_rect = { 0, 0, 630, 426 };
+	gameLogoButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 0, 0 }, { 300,500 }, true, true, { 0, 0, 1280, 720 }, nullptr, App->scenes, TEXTURE::LOGO, FONT::FONT_MEDIUM_WHITE, 1);
+	gameLogoButton->hover_rect = { 0, 0, 1280, 720 };
+	gameLogoButton->click_rect = { 0, 0, 1280, 720 };
 
-	if (App->audio->PlayingLogoMusic != true) {
+	/*if (App->audio->PlayingLogoMusic != true) {
 		App->audio->PlayingLogoMusic = false;
 		App->audio->PlayMusic("audio/music/music_scene_paintwars.ogg");
 		App->audio->PlayingLogoMusic = true;
-	}
+	}*/
+
+	App->video->Initialize("video/video_logo_2.avi");
+	Mix_PlayChannel(-1, App->audio->logo_2_sound, 0);
 
 
 
@@ -122,15 +126,17 @@ bool GameLogoScene::CleanUp()
 		SDL_FreeSurface(scene_surface);
 	}
 
+	App->video->CloseAVI();
+
 	return ret;
 }
 
 
 void GameLogoScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
-	if (element == gameLogoButton && type == GUI_Event::EVENT_ONCLICK)
+	if (element == gameLogoButton && type == GUI_Event::EVENT_ONCLICK && App->video->isVideoFinished == true)
 	{
-		Mix_PlayChannel(-1, App->audio->Click_Logo_Sound, 0);  /*Mix_VolumeChunk(Click_Logo_Sound, 50);*/
+		//Mix_PlayChannel(-1, App->audio->Click_Logo_Sound, 0);  /*Mix_VolumeChunk(Click_Logo_Sound, 50);*/
 
 		App->transition_manager->CreateAlternatingBars(SCENES::MENU_SCENE);
 		
@@ -188,10 +194,10 @@ void GameLogoScene::ExecuteTransition()
 {
 	if (!App->transition_manager->is_transitioning)
 	{
-		if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN)
+		/*if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN)
 		{
 			App->transition_manager->CreateCut(SCENES::GAME_SCENE);
-		}
+		}*/
 
 		if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
 		{

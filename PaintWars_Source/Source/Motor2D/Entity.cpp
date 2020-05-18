@@ -21,6 +21,9 @@ Entity::Entity(iPoint tile, int damage, j1Module* listeners, Entity* creator) : 
 	isOnTheMove = false;
 	isAlive = true;
 	spawningProgress = 0;
+
+	fow_entity = App->fow->CreateFOWEntity(currentTile, true);
+
 }
 
 Entity::~Entity() {

@@ -92,6 +92,8 @@ public:
 	std::list<iPoint> tilesOccupied;
 	std::list<iPoint> destinations;
 
+	std::list<Particles*> particles;
+
 	// Thsese two need to be public so that each entity can use it
 	SDL_Texture* fullLifeTexture = nullptr;
 	SDL_Texture* zeroLifeTexture = nullptr;
@@ -140,6 +142,9 @@ protected:
 
 	/// Units
 	SDL_Texture* slimeTexture = nullptr;
+	SDL_Texture* riderTexture = nullptr;
+	SDL_Texture* chromaKingTexture = nullptr;
+	SDL_Texture* explosiveBlobTexture = nullptr;
 
 	float spawningRate = 1.0f;
 	float constructionRate = 1.0f;

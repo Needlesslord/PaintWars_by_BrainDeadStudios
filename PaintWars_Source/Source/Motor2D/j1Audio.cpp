@@ -173,6 +173,20 @@ bool j1Audio::Awake(pugi::xml_node& config)
 
 	}
 
+	logo_1_sound = Mix_LoadWAV("audio/fx/fx_logo_1.wav");
+	if (logo_1_sound == NULL)
+	{
+		LOG("Audio Logo 1 IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
+	logo_2_sound = Mix_LoadWAV("audio/fx/fx_logo_2.wav");
+	if (logo_2_sound == NULL)
+	{
+		LOG("Audio Logo 2 IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
 	
 	//AUDIO VOLUMES & STUFF
 	

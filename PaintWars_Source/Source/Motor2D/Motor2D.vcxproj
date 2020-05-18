@@ -94,8 +94,10 @@
     <ClCompile Include="House.cpp" />
     <ClCompile Include="j1ButtonUI.cpp" />
     <ClCompile Include="j1Collision.cpp" />
+    <ClCompile Include="j1FogOfWar.cpp" />
     <ClCompile Include="j1Minimap.cpp" />
     <ClCompile Include="j1ParticleManager.cpp" />
+    <ClCompile Include="j1Particles.cpp" />
     <ClCompile Include="j1UIElements.cpp" />
     <ClCompile Include="j1EntityManager.cpp" />
     <ClCompile Include="j1FontsUI.cpp" />
@@ -112,6 +114,7 @@
     <ClCompile Include="j1Player.cpp" />
     <ClCompile Include="j1QuestManager.cpp" />
     <ClCompile Include="j1Timer.cpp" />
+    <ClCompile Include="j1Video.cpp" />
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="LoseScene.cpp" />
     <ClCompile Include="MenuScene.cpp" />
@@ -170,9 +173,11 @@
     <ClInclude Include="j1ButtonUI.h" />
     <ClInclude Include="j1Collision.h" />
     <ClInclude Include="j1EntityManager.h" />
+    <ClInclude Include="j1FogOfWar.h" />
     <ClInclude Include="j1FontsUI.h" />
     <ClInclude Include="j1Minimap.h" />
     <ClInclude Include="j1ParticleManager.h" />
+    <ClInclude Include="j1Particles.h" />
     <ClInclude Include="j1UI_Manager.h" />
     <ClInclude Include="j1SpritesUI.h" />
     <ClInclude Include="j1TextUI.h" />
@@ -183,6 +188,7 @@
     <ClInclude Include="j1Player.h" />
     <ClInclude Include="j1QuestManager.h" />
     <ClInclude Include="j1Timer.h" />
+    <ClInclude Include="j1Video.h" />
     <ClInclude Include="Knight.h" />
     <ClInclude Include="LoseScene.h" />
     <ClInclude Include="MenuScene.h" />

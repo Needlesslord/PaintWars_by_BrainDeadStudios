@@ -8,6 +8,8 @@
 
 #include "j1App.h"
 #include "j1Audio.h"
+#include "Particle.h"
+#include "j1FogOfWar.h"
 
 class j1Module;
 
@@ -15,7 +17,7 @@ struct SDL_Texture;
 
 struct Collider;
 
-enum CollisionState;
+class Particles;
 
 enum UNIT_ORIENTATION { //This is needed when loading animations from tiled
 	
@@ -162,6 +164,8 @@ public:
 	uint attackRadius = 1; // In tiles
 	//float attackProgress = 0.0f;
 
+	std::list<Particles*> particles;
+
 	SDL_Color minimapDrawColor{ 0,0,0,0 };
 
 	// Collision
@@ -176,6 +180,11 @@ public:
 	bool isSpawningAUnit;
 	bool isBuildingSomething;
 	bool isAlive;
+
+	//FOW
+	FOW_Entity* fow_entity = nullptr;
+	bool visible = true;
+	uint visibilityRadius;
 
 	Entity* spawnedBy;
 	Entity* builtBy;

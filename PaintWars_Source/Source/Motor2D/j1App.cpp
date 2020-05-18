@@ -14,7 +14,7 @@
 #include "j1Collision.h"
 #include "j1EntityManager.h"
 #include "j1Pathfinding.h"
-#include "j1ParticleManager.h"
+//#include "j1Particles.h"
 #include "j1App.h"
 #include "j1Player.h"
 #include "j1UI_Manager.h"
@@ -24,6 +24,8 @@
 #include "j1SceneManager.h"
 #include "j1QuestManager.h"
 #include "j1Window.h"
+#include "j1Video.h"
+#include "j1FogOfWar.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -38,13 +40,15 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	col = new j1Collision(); 
 	entities = new j1EntityManager();
 	pathfinding = new j1PathFinding(); 
-	pmanager = new j1ParticleManager();
+	//particles = new j1Particles();
 	gui = new j1UI_Manager();
 	fonts = new j1FontsUI();
 	player = new j1Player();
 	transition_manager = new TransitionManager();
 	quest_manager = new j1QuestManager();
-	
+	video = new j1Video();
+	fow = new j1FogOfWar();
+
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -58,12 +62,14 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(entities);
 	AddModule(pathfinding);
 	AddModule(player);
-	AddModule(pmanager);
+	//AddModule(particles);
 	AddModule(gui);
 	AddModule(fonts);
 	AddModule(player);
 	AddModule(transition_manager);
 	AddModule(quest_manager);
+	AddModule(video);
+	AddModule(fow);
 
 	// render last to swap buffer
 	AddModule(render);
@@ -144,9 +150,6 @@ bool j1App::Start()
 // Called each loop iteration
 bool j1App::Update()
 {
-	
-	
-
 	bool ret = true;
 	PrepareUpdate();
 
@@ -161,8 +164,6 @@ bool j1App::Update()
 		//LOG("ENTERING UPDATE");
 		ret = DoUpdate();
 	}
-		
-
 	if (ret == true) {
 		//LOG("ENTERING POSTUPDATE");
 		ret = PostUpdate();
@@ -224,10 +225,11 @@ void logsomething(char* something)
 // ---------------------------------------------
 void j1App::FinishUpdate()
 {
-	if(want_to_save == true)
+	if (want_to_save == true)
+		//has_game_saved = true;
 		SavegameNow();
 
-	if(want_to_load == true)
+	if(want_to_load == true/* && has_game_saved*/)
 		LoadGameNow();
 
 	if (last_sec_frame_time.Read() > 1000)
@@ -395,7 +397,9 @@ void j1App::LoadGame()
 {
 	// we should be checking if that file actually exist
 	// from the "GetSaveGames" list
+
 	want_to_load = true;
+
 }
 
 // ---------------------------------------
@@ -403,7 +407,7 @@ void j1App::SaveGame(const char* file) const
 {
 	// we should be checking if that file actually exist
 	// from the "GetSaveGames" list ... should we overwrite ?
-
+	//App->has_game_saved = true;
 	want_to_save = true;
 	save_game = (file);
 }
@@ -589,13 +593,15 @@ void j1App::Debug_Actions()
 		if (App->input->GetKey(SDL_SCANCODE_KP_2) == KEY_DOWN) {  //warrior
 			App->entities->AddEntity(ENTITY_TYPE_WARRIOR, mapCoordinates, App->entities, nullptr, 0, true);
 		}
-		//if (App->input->GetKey(SDL_SCANCODE_KP_3) == KEY_DOWN) {  //ranged
-		//}
-		if (App->input->GetKey(SDL_SCANCODE_KP_4) == KEY_DOWN) {  //tank
-			//App->entities->AddEntity(ENTITY_TYPE_KNIGHT, mapCoordinates, App->entities, nullptr, 0, true);
+		if (App->input->GetKey(SDL_SCANCODE_KP_3) == KEY_DOWN) {  //ranged
+			App->entities->AddEntity(ENTITY_TYPE_RANGER, mapCoordinates, App->entities, nullptr, 0, true);
 		}
-		//if (App->input->GetKey(SDL_SCANCODE_KP_5) == KEY_DOWN) {  //explorer
-		//}
+		if (App->input->GetKey(SDL_SCANCODE_KP_4) == KEY_DOWN) {  //tank
+			App->entities->AddEntity(ENTITY_TYPE_KNIGHT, mapCoordinates, App->entities, nullptr, 0, true);
+		}
+		if (App->input->GetKey(SDL_SCANCODE_KP_5) == KEY_DOWN) {  //explorer
+			App->entities->AddEntity(ENTITY_TYPE_EXPLORER, mapCoordinates, App->entities, nullptr, 0, true);
+		}
 		if (App->input->GetKey(SDL_SCANCODE_KP_0) == KEY_DOWN) {  //kill selected unit (one by one)
 			if (!(App->entities->unitsSelected).empty()) {
 
@@ -622,6 +628,9 @@ void j1App::Debug_Actions()
 		}
 		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_6) == KEY_DOWN) {  //titanium extractor
 			App->entities->AddEntity(ENTITY_TYPE_TITANIUM_EXTRACTOR, mapCoordinates, App->entities, nullptr, 0, true);
+		}
+		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_7) == KEY_DOWN) {  //turret
+			App->entities->AddEntity(ENTITY_TYPE_TURRET, mapCoordinates, App->entities, nullptr, 0, true);
 		}
 		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_KP_0) == KEY_DOWN) {  //kill selected building  (one by one)
 			if (!(App->entities->buildingsSelected).empty()) {

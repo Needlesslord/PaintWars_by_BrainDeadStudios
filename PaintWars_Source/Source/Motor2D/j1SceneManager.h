@@ -49,12 +49,19 @@ public:
 	bool Load_Map_Snow;
 	bool Load_Map_Volcano;
 
+	bool savedMapForest;
+	bool savedMapSnow;
+	bool savedMapVolcano;
+	int saved_map = 0;
 
 	bool IN_GAME_SCENE;
 
 	int Timer_Seconds;
 	int Timer_Minutes;
 	bool exit;
+
+	const pugi::char_t* WhichMapToLoad;
+	bool ComingFromContinueButton;
 
 private:
 	std::vector<Scene*>		scenes;									// All the scenes of the game.

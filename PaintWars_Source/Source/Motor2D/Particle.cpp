@@ -5,6 +5,7 @@
 #include "random.h"
 #include "p2Log.h"
 #include "j1Textures.h"
+#include "Entity.h"
 
 using namespace std;
 
@@ -16,9 +17,7 @@ Particle::Particle()
 
 void Particle::Update(float dt)
 {
-	pVelocity += pAcceleration;
-	pLocation += pVelocity;
-
+	
 	pRect.x = pLocation.x;
 	pRect.y = pLocation.y;
 

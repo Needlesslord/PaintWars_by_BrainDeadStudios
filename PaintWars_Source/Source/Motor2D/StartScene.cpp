@@ -43,7 +43,9 @@ bool StartScene::Start()
 
 	backgroundImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes,TEXTURE::MAIN_IMAGE, FONT::FONT_MEDIUM, 1);
 
-
+	//if(saved_game)
+	//else
+		//blocked button continue
 	continueButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 475, 100 }, { 30,25 }, true, true, { 0, 0, 263, 91 }, "", App->scenes, TEXTURE::ATLAS);
 	continueButton->hover_rect = { 263, 0, 263, 91 };
 	continueButton->click_rect = { 526, 0, 263, 91 };
@@ -251,8 +253,9 @@ void StartScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 		if (element == continueButton && type == GUI_Event::EVENT_ONCLICK)
 		{
+			App->LoadGame();
 
-			if (App->scenes->Map_Forest_Active == true) {
+	/*		if (App->scenes->Map_Forest_Active == true) {
 				App->scenes->Load_Map_Forest = true;
 				App->scenes->Load_Map_Snow = false;
 				App->scenes->Load_Map_Volcano = false;
@@ -269,7 +272,7 @@ void StartScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 				App->scenes->Load_Map_Forest = false;
 				App->scenes->Load_Map_Snow = false;
 				App->scenes->Map_Volcano_Active = false;
-			}
+			}*/
 
 			App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true);
 
@@ -310,10 +313,10 @@ void StartScene::ExecuteTransition()
 {
 	if (!App->transition_manager->is_transitioning)
 	{
-		if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN)
+		/*if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN)
 		{
 			App->transition_manager->CreateCut(SCENES::GAME_SCENE);
-		}
+		}*/
 
 		if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
 		{

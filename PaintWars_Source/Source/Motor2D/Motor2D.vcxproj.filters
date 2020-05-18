@@ -1,530 +1,169 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="j1Window.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Input.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Render.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Textures.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="p2Log.cpp">
-      <Filter>Programacio 2 ===========</Filter>
-    </ClCompile>
-    <ClCompile Include="PugiXml\src\pugixml.cpp">
-      <Filter>Motor  ========\Tools\PuguiXML</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Map.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Timer.cpp">
-      <Filter>Motor  ========\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="j1PerfTimer.cpp">
-      <Filter>Motor  ========\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Player.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Collision.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Motor  ========\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="j1EntityManager.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="animation.cpp">
-      <Filter>Motor  ========\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Main.cpp">
-      <Filter>Motor  ========\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="j1App.cpp">
-      <Filter>Motor  ========\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Color.cpp">
-      <Filter>Motor  ========\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Pathfinding.cpp">
-      <Filter>Motor  ========\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="j1SceneManager.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Transition.cpp">
-      <Filter>Motor  ========\Scenes\Transition</Filter>
-    </ClCompile>
-    <ClCompile Include="TransitionManager.cpp">
-      <Filter>Motor  ========\Scenes\Transition</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraToMouse.cpp">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="Cut.cpp">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="FadeToColour.cpp">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="Slide.cpp">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="Wipe.cpp">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="ZoomToMouse.cpp">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="ZoomToTexture.cpp">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="AlternatingBars.cpp">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="ExpandingBars.cpp">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="Dissolve.cpp">
-      <Filter>Motor  ========\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuScene.cpp">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="WinScene.cpp">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="LoseScene.cpp">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="StartScene.cpp">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="SettingsScene.cpp">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="j1QuestManager.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Painter.cpp">
-      <Filter>Motor  ========\Entities\Allies\Units</Filter>
-    </ClCompile>
-    <ClCompile Include="Slime.cpp">
-      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
-    </ClCompile>
-    <ClCompile Include="PaintExtractor.cpp">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
-    </ClCompile>
-    <ClCompile Include="Spawner.cpp">
-      <Filter>Motor  ========\Entities\Enemies\Buildings</Filter>
-    </ClCompile>
-    <ClCompile Include="Warrior.cpp">
-      <Filter>Motor  ========\Entities\Allies\Units</Filter>
-    </ClCompile>
-    <ClCompile Include="TownHall.cpp">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Audio.cpp">
-      <Filter>Motor  ========\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="House.cpp">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
-    </ClCompile>
-    <ClCompile Include="WoodProducer.cpp">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
-    </ClCompile>
-    <ClCompile Include="Barracks.cpp">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
-    </ClCompile>
-    <ClCompile Include="GameLogoScene.cpp">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="j1ButtonUI.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="j1UIElements.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="j1UI_Manager.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="j1SpritesUI.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="j1TextUI.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="j1FontsUI.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="TeamLogoScene.cpp">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Knight.cpp">
-      <Filter>Motor  ========\Entities\Allies\Units</Filter>
-    </ClCompile>
-    <ClCompile Include="Explorer.cpp">
-      <Filter>Motor  ========\Entities\Allies\Units</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Minimap.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreScene.cpp">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="j1ParticleManager.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Particle.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleSystem.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Random.cpp">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Ranger.cpp">
-      <Filter>Motor  ========\Entities\Allies\Units</Filter>
-    </ClCompile>
-    <ClCompile Include="ChromaKing.cpp">
-      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
-    </ClCompile>
-    <ClCompile Include="Rider.cpp">
-      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
-    </ClCompile>
-    <ClCompile Include="ExplosiveBlob.cpp">
-      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
-    </ClCompile>
-    <ClCompile Include="Turret.cpp">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
-    </ClCompile>
-    <ClCompile Include="MetalGatherer.cpp">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
-    </ClCompile>
-    <ClCompile Include="TitaniumExtractor.cpp">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
-    </ClCompile>
+    <ClCompile Include="AlternatingBars.cpp" />
+    <ClCompile Include="animation.cpp" />
+    <ClCompile Include="Barracks.cpp" />
+    <ClCompile Include="CameraToMouse.cpp" />
+    <ClCompile Include="ChromaKing.cpp" />
+    <ClCompile Include="Color.cpp" />
+    <ClCompile Include="Cut.cpp" />
+    <ClCompile Include="Dissolve.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="ExpandingBars.cpp" />
+    <ClCompile Include="Explorer.cpp" />
+    <ClCompile Include="ExplosiveBlob.cpp" />
+    <ClCompile Include="FadeToColour.cpp" />
+    <ClCompile Include="GameLogoScene.cpp" />
+    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="House.cpp" />
+    <ClCompile Include="j1ButtonUI.cpp" />
+    <ClCompile Include="j1Collision.cpp" />
+    <ClCompile Include="j1FogOfWar.cpp" />
+    <ClCompile Include="j1Minimap.cpp" />
+    <ClCompile Include="j1ParticleManager.cpp" />
+    <ClCompile Include="j1Particles.cpp" />
+    <ClCompile Include="j1UIElements.cpp" />
+    <ClCompile Include="j1EntityManager.cpp" />
+    <ClCompile Include="j1FontsUI.cpp" />
+    <ClCompile Include="j1UI_Manager.cpp" />
+    <ClCompile Include="j1SpritesUI.cpp" />
+    <ClCompile Include="j1TextUI.cpp" />
+    <ClCompile Include="j1Main.cpp" />
+    <ClCompile Include="j1App.cpp" />
+    <ClCompile Include="j1Audio.cpp" />
+    <ClCompile Include="j1Input.cpp" />
+    <ClCompile Include="j1Map.cpp" />
+    <ClCompile Include="j1Pathfinding.cpp" />
+    <ClCompile Include="j1PerfTimer.cpp" />
+    <ClCompile Include="j1Player.cpp" />
+    <ClCompile Include="j1QuestManager.cpp" />
+    <ClCompile Include="j1Timer.cpp" />
+    <ClCompile Include="j1Video.cpp" />
+    <ClCompile Include="Knight.cpp" />
+    <ClCompile Include="LoseScene.cpp" />
+    <ClCompile Include="MenuScene.cpp" />
+    <ClCompile Include="MetalGatherer.cpp" />
+    <ClCompile Include="p2Log.cpp" />
+    <ClCompile Include="j1Render.cpp" />
+    <ClCompile Include="j1Textures.cpp" />
+    <ClCompile Include="j1Window.cpp" />
+    <ClCompile Include="Painter.cpp" />
+    <ClCompile Include="PaintExtractor.cpp" />
+    <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="PugiXml\src\pugixml.cpp" />
+    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Ranger.cpp" />
+    <ClCompile Include="Rider.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="j1SceneManager.cpp" />
+    <ClCompile Include="ScoreScene.cpp" />
+    <ClCompile Include="SettingsScene.cpp" />
+    <ClCompile Include="Slide.cpp" />
+    <ClCompile Include="Slime.cpp" />
+    <ClCompile Include="Spawner.cpp" />
+    <ClCompile Include="StartScene.cpp" />
+    <ClCompile Include="TeamLogoScene.cpp" />
+    <ClCompile Include="TitaniumExtractor.cpp" />
+    <ClCompile Include="TownHall.cpp" />
+    <ClCompile Include="Transition.cpp" />
+    <ClCompile Include="TransitionManager.cpp" />
+    <ClCompile Include="Turret.cpp" />
+    <ClCompile Include="Warrior.cpp" />
+    <ClCompile Include="WinScene.cpp" />
+    <ClCompile Include="Wipe.cpp" />
+    <ClCompile Include="WoodProducer.cpp" />
+    <ClCompile Include="ZoomToMouse.cpp" />
+    <ClCompile Include="ZoomToTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="j1Window.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Input.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Render.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Textures.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="p2Defs.h">
-      <Filter>Programacio 2 ===========</Filter>
-    </ClInclude>
-    <ClInclude Include="p2List.h">
-      <Filter>Programacio 2 ===========</Filter>
-    </ClInclude>
-    <ClInclude Include="p2Log.h">
-      <Filter>Programacio 2 ===========</Filter>
-    </ClInclude>
-    <ClInclude Include="p2SString.h">
-      <Filter>Programacio 2 ===========</Filter>
-    </ClInclude>
-    <ClInclude Include="p2Point.h">
-      <Filter>Programacio 2 ===========</Filter>
-    </ClInclude>
-    <ClInclude Include="p2DynArray.h">
-      <Filter>Programacio 2 ===========</Filter>
-    </ClInclude>
-    <ClInclude Include="PugiXml\src\pugiconfig.hpp">
-      <Filter>Motor  ========\Tools\PuguiXML</Filter>
-    </ClInclude>
-    <ClInclude Include="PugiXml\src\pugixml.hpp">
-      <Filter>Motor  ========\Tools\PuguiXML</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Map.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Timer.h">
-      <Filter>Motor  ========\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="j1PerfTimer.h">
-      <Filter>Motor  ========\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Player.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Collision.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="animation.h">
-      <Filter>Motor  ========\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="Color.h">
-      <Filter>Motor  ========\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Motor  ========\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="j1EntityManager.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Module.h">
-      <Filter>Motor  ========\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="j1App.h">
-      <Filter>Motor  ========\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Pathfinding.h">
-      <Filter>Motor  ========\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="j1SceneManager.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Transition.h">
-      <Filter>Motor  ========\Scenes\Transition</Filter>
-    </ClInclude>
-    <ClInclude Include="TransitionManager.h">
-      <Filter>Motor  ========\Scenes\Transition</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraToMouse.h">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="Cut.h">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="FadeToColour.h">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="Slide.h">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="Wipe.h">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="ZoomToMouse.h">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="ZoomToTexture.h">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="AlternatingBars.h">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="Bar.h">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="ExpandingBars.h">
-      <Filter>Motor  ========\Scenes\Transition\TransitionTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="Dissolve.h">
-      <Filter>Motor  ========\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuScene.h">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="WinScene.h">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="LoseScene.h">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="StartScene.h">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="SettingsScene.h">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="j1QuestManager.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Painter.h">
-      <Filter>Motor  ========\Entities\Allies\Units</Filter>
-    </ClInclude>
-    <ClInclude Include="Slime.h">
-      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
-    </ClInclude>
-    <ClInclude Include="PaintExtractor.h">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
-    </ClInclude>
-    <ClInclude Include="Spawner.h">
-      <Filter>Motor  ========\Entities\Enemies\Buildings</Filter>
-    </ClInclude>
-    <ClInclude Include="Warrior.h">
-      <Filter>Motor  ========\Entities\Allies\Units</Filter>
-    </ClInclude>
-    <ClInclude Include="TownHall.h">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Audio.h">
-      <Filter>Motor  ========\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="House.h">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
-    </ClInclude>
-    <ClInclude Include="WoodProducer.h">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
-    </ClInclude>
-    <ClInclude Include="Barracks.h">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprites.h">
-      <Filter>Motor  ========\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="GameLogoScene.h">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="j1ButtonUI.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="j1SpritesUI.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="j1TextUI.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="j1UI_Manager.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="j1UIElements.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="j1FontsUI.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="TeamLogoScene.h">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Knight.h">
-      <Filter>Motor  ========\Entities\Allies\Units</Filter>
-    </ClInclude>
-    <ClInclude Include="Explorer.h">
-      <Filter>Motor  ========\Entities\Allies\Units</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Minimap.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreScene.h">
-      <Filter>Motor  ========\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="j1ParticleManager.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Particle.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleSystem.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Random.h">
-      <Filter>Motor  ========\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Ranger.h">
-      <Filter>Motor  ========\Entities\Allies\Units</Filter>
-    </ClInclude>
-    <ClInclude Include="ChromaKing.h">
-      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
-    </ClInclude>
-    <ClInclude Include="Rider.h">
-      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
-    </ClInclude>
-    <ClInclude Include="ExplosiveBlob.h">
-      <Filter>Motor  ========\Entities\Enemies\Units</Filter>
-    </ClInclude>
-    <ClInclude Include="Turret.h">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
-    </ClInclude>
-    <ClInclude Include="MetalGatherer.h">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
-    </ClInclude>
-    <ClInclude Include="TitaniumExtractor.h">
-      <Filter>Motor  ========\Entities\Allies\Buildings</Filter>
-    </ClInclude>
+    <ClInclude Include="AlternatingBars.h" />
+    <ClInclude Include="animation.h" />
+    <ClInclude Include="Bar.h" />
+    <ClInclude Include="Barracks.h" />
+    <ClInclude Include="CameraToMouse.h" />
+    <ClInclude Include="ChromaKing.h" />
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="Cut.h" />
+    <ClInclude Include="Dissolve.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="ExpandingBars.h" />
+    <ClInclude Include="Explorer.h" />
+    <ClInclude Include="ExplosiveBlob.h" />
+    <ClInclude Include="FadeToColour.h" />
+    <ClInclude Include="GameLogoScene.h" />
+    <ClInclude Include="GameScene.h" />
+    <ClInclude Include="House.h" />
+    <ClInclude Include="j1ButtonUI.h" />
+    <ClInclude Include="j1Collision.h" />
+    <ClInclude Include="j1EntityManager.h" />
+    <ClInclude Include="j1FogOfWar.h" />
+    <ClInclude Include="j1FontsUI.h" />
+    <ClInclude Include="j1Minimap.h" />
+    <ClInclude Include="j1ParticleManager.h" />
+    <ClInclude Include="j1Particles.h" />
+    <ClInclude Include="j1UI_Manager.h" />
+    <ClInclude Include="j1SpritesUI.h" />
+    <ClInclude Include="j1TextUI.h" />
+    <ClInclude Include="j1UIElements.h" />
+    <ClInclude Include="j1Map.h" />
+    <ClInclude Include="j1Pathfinding.h" />
+    <ClInclude Include="j1PerfTimer.h" />
+    <ClInclude Include="j1Player.h" />
+    <ClInclude Include="j1QuestManager.h" />
+    <ClInclude Include="j1Timer.h" />
+    <ClInclude Include="j1Video.h" />
+    <ClInclude Include="Knight.h" />
+    <ClInclude Include="LoseScene.h" />
+    <ClInclude Include="MenuScene.h" />
+    <ClInclude Include="MetalGatherer.h" />
+    <ClInclude Include="p2DynArray.h" />
+    <ClInclude Include="j1Audio.h" />
+    <ClInclude Include="j1Input.h" />
+    <ClInclude Include="p2Log.h" />
+    <ClInclude Include="j1App.h" />
+    <ClInclude Include="p2Defs.h" />
+    <ClInclude Include="p2List.h" />
+    <ClInclude Include="j1Module.h" />
+    <ClInclude Include="p2Point.h" />
+    <ClInclude Include="j1Render.h" />
+    <ClInclude Include="j1Textures.h" />
+    <ClInclude Include="j1Window.h" />
+    <ClInclude Include="p2SString.h" />
+    <ClInclude Include="Painter.h" />
+    <ClInclude Include="PaintExtractor.h" />
+    <ClInclude Include="Particle.h" />
+    <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
+    <ClInclude Include="PugiXml\src\pugixml.hpp" />
+    <ClInclude Include="Random.h" />
+    <ClInclude Include="Ranger.h" />
+    <ClInclude Include="Rider.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="j1SceneManager.h" />
+    <ClInclude Include="ScoreScene.h" />
+    <ClInclude Include="SettingsScene.h" />
+    <ClInclude Include="Slide.h" />
+    <ClInclude Include="Slime.h" />
+    <ClInclude Include="Spawner.h" />
+    <ClInclude Include="Sprites.h" />
+    <ClInclude Include="StartScene.h" />
+    <ClInclude Include="TeamLogoScene.h" />
+    <ClInclude Include="TitaniumExtractor.h" />
+    <ClInclude Include="TownHall.h" />
+    <ClInclude Include="Transition.h" />
+    <ClInclude Include="TransitionManager.h" />
+    <ClInclude Include="Turret.h" />
+    <ClInclude Include="Warrior.h" />
+    <ClInclude Include="WinScene.h" />
+    <ClInclude Include="Wipe.h" />
+    <ClInclude Include="WoodProducer.h" />
+    <ClInclude Include="ZoomToMouse.h" />
+    <ClInclude Include="ZoomToTexture.h" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Programacio 2 ===========">
-      <UniqueIdentifier>{a8bfab6a-5472-4969-943e-861a8b493f08}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Motor  ========">
-      <UniqueIdentifier>{cb944693-b9d0-484c-bad2-02d5a7cdbec6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Motor  ========\Tools">
-      <UniqueIdentifier>{42c748be-4a37-49de-970f-5be811d06b38}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Motor  ========\Tools\PuguiXML">
-      <UniqueIdentifier>{7cb78d67-17cc-45eb-af97-e2106becce7b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Motor  ========\Scenes">
-      <UniqueIdentifier>{e07660eb-d36f-4cc9-af59-324d31c2f2f6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Motor  ========\Scenes\Transition">
-      <UniqueIdentifier>{a96bee88-1472-4cb0-a66c-2315493ac611}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Motor  ========\Modules">
-      <UniqueIdentifier>{244722d1-90ce-423d-8e7a-556211865a32}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Motor  ========\Entities">
-      <UniqueIdentifier>{cc3459b2-da39-48dd-9d70-2899448ad36b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Motor  ========\Entities\Enemies">
-      <UniqueIdentifier>{f8306883-084c-4e8c-bc97-b1a361cad1ea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Motor  ========\Entities\Allies">
-      <UniqueIdentifier>{e5ec44e9-2ba8-480a-b105-dc71c4a00fb3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Motor  ========\Entities\Allies\Buildings">
-      <UniqueIdentifier>{bdb9d870-3f83-4124-9c11-6bc5a42afd71}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Motor  ========\Entities\Allies\Units">
-      <UniqueIdentifier>{3c25fe45-d213-4fba-8fd4-d3682432b4cd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Motor  ========\Core">
-      <UniqueIdentifier>{10a23613-96ae-43d7-b99b-896736fea92d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Motor  ========\XML">
-      <UniqueIdentifier>{ac70356d-d9bb-45be-99d7-0cd3367a3884}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Motor  ========\Scenes\Transition\TransitionTypes">
-      <UniqueIdentifier>{c0d5e313-e0c5-4aca-9e0f-40d4dd75b2ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Motor  ========\Entities\Enemies\Buildings">
-      <UniqueIdentifier>{13e5bc83-539a-45b0-8880-e14b5699fde1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Motor  ========\Entities\Enemies\Units">
-      <UniqueIdentifier>{9a2d649c-0075-412e-9804-a9154a0b0958}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Motor  ========\Audio">
-      <UniqueIdentifier>{98417039-82aa-4c2f-bef9-40141cefc085}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UI">
-      <UniqueIdentifier>{a162aec4-dff3-46c7-bee4-1a1963decebb}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="..\Game\save_game.xml">
-      <Filter>Motor  ========\XML</Filter>
-    </Xml>
-    <Xml Include="..\Game\config.xml">
-      <Filter>Motor  ========\XML</Filter>
-    </Xml>
+    <Xml Include="..\Game\config.xml" />
+    <Xml Include="..\Game\save_game.xml" />
   </ItemGroup>
 </Project>

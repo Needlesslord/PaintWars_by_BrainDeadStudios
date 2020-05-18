@@ -73,7 +73,7 @@ In a world full of colour, a corruption spread, turning everything monochromatic
        11 - crickets
      + Positioning (further fx sound less)
  - DEBUG
-	 + F2/F3 Game Scene
+	 + F1/F2/F3 Game Scene: Forest / Snow / Volcano
 	 + F4 Save
 	 + F5 Load (Load function not functional yet)
 	 + F6 Full Screen

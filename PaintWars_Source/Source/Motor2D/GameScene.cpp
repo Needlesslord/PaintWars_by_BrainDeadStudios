@@ -24,7 +24,7 @@
 
 /*
 DEBUG KEYS
-	 + F2/F3 Game Scene
+	 + F1/F2/F3 Game Scene - Forest, Snow, Volcano
 	 + F4 Save
 	 + F5 Load (Load function not functional yet)
 	 + F6 Full Screen
@@ -37,7 +37,6 @@ DEBUG KEYS
 		- 2 add 10 wood
 		- 3 add 10 metal scrap -not implemented yet-
 		- 4 add 10 titanium -not implemented yet-
-		- 5 add 10 food -not implemented yet-
 		- 6 add 10 max housing
 		- 7 add 1 level of research (units will have the upgrades already)
 		units (on mouse position)
@@ -93,6 +92,19 @@ bool GameScene::Start()
 	App->render->camera.x = 575;
 	App->render->camera.y = -1200;
 
+	////camera start
+//if (App->scenes->Map_Forest_Active) {
+//	App->render->camera.x = 575;
+//	App->render->camera.y = -1200;
+//}
+//if (App->scenes->Map_Snow_Active) {
+//	App->render->camera.x = -1200;
+//	App->render->camera.y = -2350;
+//}
+//if (App->scenes->Map_Volcano_Active) {
+//	App->render->camera.x = 500;
+//	App->render->camera.y = 10;
+//}
 	
 	Map_Manager();
 
@@ -386,6 +398,9 @@ bool GameScene::Start()
 	App->player->gameTimer.Start();
 
 	App->player->cricketsRepeat.Start();
+
+	App->fow->SetVisibilityMap(App->map->data.width, App->map->data.height);
+
 
 	return ret;
 }
@@ -1137,6 +1152,52 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 		
 	}
+
+	if (element == saveButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		if (App->scenes->Map_Forest_Active) {
+			App->scenes->savedMapForest = true;
+			App->scenes->savedMapSnow = false;
+			App->scenes->savedMapVolcano = false;
+			App->scenes->saved_map = 1;
+		}		
+		else if (App->scenes->Map_Snow_Active) {
+			App->scenes->savedMapForest = false;
+			App->scenes->savedMapSnow = true;
+			App->scenes->savedMapVolcano = false;
+			App->scenes->saved_map = 2;
+		}
+		else if (App->scenes->Map_Volcano_Active) {
+			App->scenes->savedMapForest = false;
+			App->scenes->savedMapSnow = false;
+			App->scenes->savedMapVolcano = true;
+			App->scenes->saved_map = 3;
+		}
+		App->SaveGame("save_game.xml");
+	}
+
+	if (element == resumeButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		App->PAUSE_ACTIVE = false;
+
+		App->player->gameTimer.Resume();
+
+		pauseMenu = false;
+		pauseMenuImage->enabled = false;
+		pauseMenuLabel->enabled = false;
+		saveButton->enabled = false;
+		settingsButton->enabled = false;
+		mainMenuButton->enabled = false;
+		exitButton->enabled = false;
+		resumeButton->enabled = false;
+
+		homeButton->interactable = true;
+		pauseMenuButton->interactable = true;
+		shopButton->interactable = true;
+		restartButton->interactable = true;
+		questsOpenButton->interactable = true;
+		questsCloseButton->interactable = true;
+	}
 	
 	if (element == resumeButton && type == GUI_Event::EVENT_ONCLICK)
 	{
@@ -1310,8 +1371,24 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80, 75 }, App->entities, nullptr, 0, true);
 		App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true, true);*/
 
-		App->entities->CleanUp();
-		App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true, true);
+		if (App->PAUSE_ACTIVE == true) {
+			App->entities->CleanUp();
+			App->transition_manager->CreateSlide(SCENES::MENU_SCENE, 0.5f, true, true);
+		}
+		else {
+			if (App->scenes->Map_Forest_Active = true) {
+				App->scenes->Load_Map_Forest = true;
+			    App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
+			}
+			else if (App->scenes->Map_Snow_Active = true) {
+				App->scenes->Load_Map_Snow = true;
+				App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
+			}
+			else {
+				App->scenes->Load_Map_Volcano = true;
+				App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
+			}
+		}
 		
 	}
 
@@ -1454,7 +1531,7 @@ void GameScene::Generate_Volcano_Map()
 
 void GameScene::Generate_Entities()
 {
-	if (App->scenes->Map_Forest_Active==true) {
+	if (App->scenes->Map_Forest_Active == true) {
 
 		//town hall
 		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 42, 42 }, App->entities, nullptr, 0, true);
@@ -1467,6 +1544,7 @@ void GameScene::Generate_Entities()
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 10, 90 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 80, 75 }, App->entities, nullptr, 0, true);
 		//trying
+		App->entities->AddEntity(ENTITY_TYPE_RANGER, { 40, 25 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 2, 2 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_EXPLORER, { 20, 20 }, App->entities, nullptr, 0, true);
 		//enemies
@@ -1506,9 +1584,9 @@ void GameScene::Generate_Entities()
 
 
 		//town hall
-		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 96, 49 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_TOWN_HALL, { 37, 11 }, App->entities, nullptr, 0, true);
 		//painter
-		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 99,  47 }, App->entities, nullptr, 0, true);
+		App->entities->AddEntity(ENTITY_TYPE_PAINTER, { 40,  8 }, App->entities, nullptr, 0, true);
 		//spawners
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 94, 94 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SPAWNER, { 62, 11 }, App->entities, nullptr, 0, true);

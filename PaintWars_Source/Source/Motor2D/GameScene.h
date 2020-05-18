@@ -46,7 +46,6 @@ public:
 	void CreateDialogText();
 	void DialogManagerFunction();
 	void QuestManagerFunction();
-
 	
 	//bool EntityInCamera(Entity* entity);
 
@@ -258,7 +257,7 @@ public:
 
 	
 	
-	
+
 
 
 

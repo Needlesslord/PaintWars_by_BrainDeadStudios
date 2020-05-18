@@ -27,7 +27,7 @@ ParticleSystem::ParticleSystem(PARTICLE_TYPES _type, p2Point<float> location, in
 	}
 	else
 	{
-		numberOfParticles = 20;
+		numberOfParticles = 1;
 	}
 
 	loadSystem();
@@ -50,7 +50,7 @@ void ParticleSystem::loadSystem()
 		systemProps.Acceleration = { 0, 0 };
 		systemProps.rect = { 0, 0, 200, 200 };
 		systemProps.lifetimeSubstraction = 0;
-		systemProps.tex = App->pmanager->cloudTexture;
+		//systemProps.tex = cloudTexture;
 	}
 	else if (systemProps.type == PARTICLE_TYPES::SMOKE)
 	{
@@ -58,7 +58,7 @@ void ParticleSystem::loadSystem()
 		systemProps.Acceleration = { 0, (-0.0015f) };
 		systemProps.rect = { 0, 0, 7, 7 };
 		systemProps.lifetimeSubstraction = 0.5;
-		systemProps.tex = App->pmanager->smokeTexture;
+		//systemProps.tex = smokeTexture;
 	}
 	else if (systemProps.type == PARTICLE_TYPES::FIRE)
 	{
@@ -66,7 +66,7 @@ void ParticleSystem::loadSystem()
 		systemProps.Acceleration = { 0, (-0.001f) };
 		systemProps.rect = { 0, 0, 7, 7 };
 		systemProps.lifetimeSubstraction = 1.;
-		systemProps.tex = App->pmanager->fireTexture;
+		//systemProps.tex = App->pmanager->fireTexture;
 	}
 	else if (systemProps.type == PARTICLE_TYPES::EXPLOSION)
 	{
@@ -74,7 +74,7 @@ void ParticleSystem::loadSystem()
 		systemProps.Acceleration = { 0, 0.01 };
 		systemProps.rect = { 0, 0, 7, 7 };
 		systemProps.lifetimeSubstraction = 3;
-		systemProps.tex = App->pmanager->explosionTexture;
+		//systemProps.tex = App->pmanager->explosionTexture;
 	}
 	else if (systemProps.type == PARTICLE_TYPES::DUST)
 	{
@@ -82,7 +82,7 @@ void ParticleSystem::loadSystem()
 		systemProps.Acceleration = { 0, -0.0005 };
 		systemProps.rect = { 0, 0, 25, 20 };
 		systemProps.lifetimeSubstraction = 1;
-		systemProps.tex = App->pmanager->dustTexture;
+		//systemProps.tex = App->pmanager->dustTexture;
 	}
 	else
 	{
@@ -101,13 +101,13 @@ bool ParticleSystem::activateSystem(int index)
 
 	while (counter < numberOfParticles)
 	{
-		if (App->pmanager->particlePool[newIndex].active == true || newIndex >= 1499)
+		/*if (App->pmanager->particlePool[newIndex].active == true || newIndex >= 1499)
 		{
 			if (App->pmanager->updateIndex())
 				newIndex = App->pmanager->getIndex();
-		}
+		}*/
 
-		pReference = &(App->pmanager->particlePool[newIndex]);
+		//pReference = &(App->pmanager->particlePool[newIndex]);
 		pReference->loadProperties(systemProps);
 		pReference->switchParticleState();
 
@@ -117,7 +117,7 @@ bool ParticleSystem::activateSystem(int index)
 		counter++;
 	}
 
-	App->pmanager->updateIndex();
+	//App->pmanager->updateIndex();
 
 	return true;
 }

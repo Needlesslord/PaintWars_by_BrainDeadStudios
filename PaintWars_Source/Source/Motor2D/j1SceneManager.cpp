@@ -294,6 +294,11 @@ bool j1SceneManager::Load(pugi::xml_node& save)
 bool j1SceneManager::Save(pugi::xml_node& save) const 
 {
 
+	int saved_map = App->scenes->saved_map;
+	if (save.child("map") == NULL)
+		save.append_child("map").append_attribute("map_saved") = saved_map;
+	else
+		save.child("volume").attribute("default").set_value(saved_map);
 
 	return true;
 }

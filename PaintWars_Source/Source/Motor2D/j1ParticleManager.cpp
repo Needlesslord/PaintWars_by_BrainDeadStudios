@@ -8,6 +8,8 @@
 #include "random.h"
 #include "j1Window.h"
 #include "j1Textures.h"
+#include "j1EntityManager.h"
+#include "Entity.h"
 
 #define CLOUD_MAX_TIME 3
 
@@ -35,33 +37,20 @@ bool j1ParticleManager::Start()
 	//fireTexture = App->tex->Load("textures/Fire_Texture_7x7px.png");
 	//explosionTexture = App->tex->Load("textures/Explosion_Texture_2_7x7px.png");
 	//dustTexture = App->tex->Load("textures/Dust_Texture_25x20px.png");
+	rangerParticleTexture = App->tex->Load("textures/Smoke_Texture_7x7px.png");
+	slimeParticleTexture = App->tex->Load("textures/particle_cloud.png");
 
 	return true;
 }
 
-bool j1ParticleManager::Update(float dt)
-{
-	////////////////////PARTICLES UPDATE
+bool j1ParticleManager::Update(float dt) {
 
-	int counter = 0;
 
-	while (counter != particlePool.size())
-	{
-		vector<Particle>::iterator particle = particlePool.begin();
-
-		particle += counter;
-		for (; particle != particlePool.end(); particle++)
-		{
-			if (particle->active)
-				particle->Update(dt);
-
-			counter++;
-		}
-	}
+	
 
 	////////////////////PARTICLE SYSTEMS UPDATE
 
-	counter = 0;
+	/*counter = 0;
 
 	while (counter != systems.size())
 	{
@@ -80,7 +69,7 @@ bool j1ParticleManager::Update(float dt)
 
 			counter++;
 		}
-	}
+	}*/
 
 	//////////////////////DEBUG ("O" TO ACTIVATE/DEACTIVATE CLOUDS & "P" TO START AN EXPLOSION AT THE MOUSE COORDS)
 
@@ -102,7 +91,7 @@ bool j1ParticleManager::Update(float dt)
 		//test.x -= App->render->camera.x / App->win->GetScale();
 		//test.y -= App->render->camera.y / App->win->GetScale();
 
-		App->pmanager->createSystem(PARTICLE_TYPES::SMOKE, { (float)test.x, (float)test.y }, 0);
+		createSystem(PARTICLE_TYPES::SMOKE, { (float)test.x, (float)test.y }, 0);
 		//LOG("CLOUD CREATED AT  X:%.2f Y:%.2f", (float)test.x, (float)test.y);
 	}
 
@@ -125,7 +114,7 @@ bool j1ParticleManager::Update(float dt)
 			App->render->ScreenToWorld(pos.x, pos.y);
 
 			fPoint fpos = { (float)pos.x,  (float)pos.y };
-			App->pmanager->createSystem(PARTICLE_TYPES::CLOUD, fpos, 300);
+			createSystem(PARTICLE_TYPES::CLOUD, fpos, 300);
 			//LOG("CLOUD CREATED AT  X:%.2f Y:%.2f", fpos.x, fpos.y);
 
 			CloudTimer = CLOUD_MAX_TIME;
@@ -228,4 +217,19 @@ int j1ParticleManager::getIndex()
 void j1ParticleManager::changeIndex(int newIndex)
 {
 	Index = newIndex;
+}
+
+Particle* j1ParticleManager::AddParticle(PARTICLE_TYPES type, fPoint location, fPoint velocity) {
+
+	Particle* ret = new Particle();
+	particlePool.push_back(*ret);
+	ret->pType = type;
+	ret->pLocation = location;
+	ret->pVelocity = velocity;
+	ret->remainingLifetime = 999;
+	ret->active = true;
+	ret->pTexture = rangerParticleTexture;
+
+	//type, location, Index, timer
+	return ret;
 }
