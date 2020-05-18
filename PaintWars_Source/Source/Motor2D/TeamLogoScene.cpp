@@ -44,7 +44,7 @@ bool TeamLogoScene::Start()
 	teamLogoButton->click_rect = { 0, 0, 1280, 720 };
 
 	
-	App->video->Initialize("video/video_logo_1.avi");
+	App->video->Initialize("video/video_logo_braindead.avi");
 	Mix_PlayChannel(-1, App->audio->logo_1_sound, 0);
 
 
