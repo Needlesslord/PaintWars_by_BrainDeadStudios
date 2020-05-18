@@ -54,6 +54,7 @@ bool SettingsScene::Start()
 
 	mutelabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 300, 450 }, { 0, 0 }, false, true, { 0, 0, 0, 0 }, "Mute");
 
+	////
 	fxBar= App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 620, 255 }, { 0,0 }, true, true, { 785, 57, 268, 26 }, nullptr, App->scenes, TEXTURE::ATLAS);
 	fxBar->hover_rect = { 785, 57, 268, 26 };
 	fxBar->click_rect = { 785, 57, 268, 26 };
@@ -68,7 +69,7 @@ bool SettingsScene::Start()
 	fxSlider = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 732, 252 }, { 0,0 }, true, true, { 786, 1, 42, 34 }, nullptr, App->scenes, TEXTURE::ATLAS);
 	fxSlider->hover_rect = { 786, 1, 42, 34 };
 	fxSlider->click_rect = { 786, 1, 42, 34 };
-	
+	/////
 
 	fullscreenButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 700, 350 }, { 0,0 }, true, true, { 0, 1031, 182, 58 }, nullptr, App->scenes, TEXTURE::ATLAS);
 	fullscreenButton->hover_rect = { 0, 1031, 182, 58 };
