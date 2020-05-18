@@ -677,6 +677,11 @@ bool GameScene::Update(float dt)
 
 	LOG("Mouse y at %f", MousePos.y);*/
 
+	//comprobaciones
+	if (App->player->gameTimer.ReadSec() == 60) {
+		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 45,  40 }, App->entities, nullptr, 0, true);
+	}
+
 	
 	return ret;
 }
@@ -1573,6 +1578,9 @@ void GameScene::Generate_Entities()
 		App->entities->AddEntity(ENTITY_TYPE_RANGER, { 40, 25 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 2, 2 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_EXPLORER, { 20, 20 }, App->entities, nullptr, 0, true);
+
+
+
 		//enemies
 
 		////at minute 5 generate 3 slimes, 1 explosive blob

@@ -24,6 +24,7 @@
 #include "j1SceneManager.h"
 #include "j1QuestManager.h"
 #include "j1Window.h"
+#include "j1Video.h"
 #include "j1FogOfWar.h"
 
 // Constructor
@@ -45,6 +46,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	player = new j1Player();
 	transition_manager = new TransitionManager();
 	quest_manager = new j1QuestManager();
+	video = new j1Video();
 	fow = new j1FogOfWar();
 
 
@@ -66,6 +68,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(player);
 	AddModule(transition_manager);
 	AddModule(quest_manager);
+	AddModule(video);
 	AddModule(fow);
 
 	// render last to swap buffer
