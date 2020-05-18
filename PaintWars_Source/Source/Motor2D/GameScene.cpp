@@ -1152,6 +1152,48 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 		
 	}
+
+	if (element == saveButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		if (App->scenes->Map_Forest_Active) {
+			bool savedMapForest = true;
+			bool savedMapSnow = false;
+			bool savedMapVolcano = false;
+		}		
+		else if (App->scenes->Map_Snow_Active) {
+			bool savedMapForest = false;
+			bool savedMapSnow = true;
+			bool savedMapVolcano = false;
+		}
+		else if (App->scenes->Map_Volcano_Active) {
+			bool savedMapForest = false;
+			bool savedMapSnow = false;
+			bool savedMapVolcano = true;
+		}
+	}
+
+	if (element == resumeButton && type == GUI_Event::EVENT_ONCLICK)
+	{
+		App->PAUSE_ACTIVE = false;
+
+		App->player->gameTimer.Resume();
+
+		pauseMenu = false;
+		pauseMenuImage->enabled = false;
+		pauseMenuLabel->enabled = false;
+		saveButton->enabled = false;
+		settingsButton->enabled = false;
+		mainMenuButton->enabled = false;
+		exitButton->enabled = false;
+		resumeButton->enabled = false;
+
+		homeButton->interactable = true;
+		pauseMenuButton->interactable = true;
+		shopButton->interactable = true;
+		restartButton->interactable = true;
+		questsOpenButton->interactable = true;
+		questsCloseButton->interactable = true;
+	}
 	
 	if (element == resumeButton && type == GUI_Event::EVENT_ONCLICK)
 	{

@@ -223,10 +223,11 @@ void logsomething(char* something)
 // ---------------------------------------------
 void j1App::FinishUpdate()
 {
-	if(want_to_save == true)
+	if (want_to_save == true)
+		has_game_saved = true;
 		SavegameNow();
 
-	if(want_to_load == true)
+	if(want_to_load == true && has_game_saved)
 		LoadGameNow();
 
 	if (last_sec_frame_time.Read() > 1000)
