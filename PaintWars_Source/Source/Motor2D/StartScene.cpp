@@ -253,8 +253,9 @@ void StartScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 		if (element == continueButton && type == GUI_Event::EVENT_ONCLICK)
 		{
+			App->LoadGame();
 
-			if (App->scenes->Map_Forest_Active == true) {
+	/*		if (App->scenes->Map_Forest_Active == true) {
 				App->scenes->Load_Map_Forest = true;
 				App->scenes->Load_Map_Snow = false;
 				App->scenes->Load_Map_Volcano = false;
@@ -271,7 +272,7 @@ void StartScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 				App->scenes->Load_Map_Forest = false;
 				App->scenes->Load_Map_Snow = false;
 				App->scenes->Map_Volcano_Active = false;
-			}
+			}*/
 
 			App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true);
 

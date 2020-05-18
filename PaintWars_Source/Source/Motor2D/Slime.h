@@ -11,6 +11,7 @@ public:
 	Slime(iPoint tile, int damage, j1Module* listener);
 	~Slime();
 	void Draw(SDL_Texture* sprites) override;
+	void Attack(Entity* target, float dt);
 
 };
 

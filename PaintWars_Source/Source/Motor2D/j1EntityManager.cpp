@@ -85,6 +85,12 @@ bool j1EntityManager::PreUpdate() {
 		else if ((*setDefaultAnimation)->entityType == ENTITY_TYPE_SLIME) {
 			(*setDefaultAnimation)->currentAnimation = &slimeIdle;
 		}
+		else if ((*setDefaultAnimation)->entityType == ENTITY_TYPE_CHROMA_KING) {
+			(*setDefaultAnimation)->currentAnimation = &chromaKingIdle;
+		}
+		else if ((*setDefaultAnimation)->entityType == ENTITY_TYPE_EXPLOSIVE_BLOB) {
+			(*setDefaultAnimation)->currentAnimation = &explosiveBlobIdle;
+		}
 
 		// TODO: knights
 		
@@ -182,6 +188,10 @@ bool j1EntityManager::Update(float dt) {
 						(*checkForSpawningEntities)->currentAnimation = &riderIdle;
 					else if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_SLIME)
 						(*checkForSpawningEntities)->currentAnimation = &slimeIdle;
+					else if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_CHROMA_KING)
+						(*checkForSpawningEntities)->currentAnimation = &chromaKingIdle;
+					else if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_EXPLOSIVE_BLOB)
+						(*checkForSpawningEntities)->currentAnimation = &explosiveBlobIdle;
 
 					spawningEntities.erase(checkForSpawningEntities);
 				}
@@ -871,10 +881,10 @@ bool j1EntityManager::Update(float dt) {
 
 								float ang = atan((((*particle)->target.y + (*particle)->targetSize.y / 2) - (*particle)->pos.y) / (((*particle)->target.x + (*particle)->targetSize.x / 2) - (*particle)->pos.x));
 
-								(*particle)->speed.x = 100 * cos(ang);
-								(*particle)->speed.y = (100) * sin(ang);
+								(*particle)->speed.x = 1000 * cos(ang);
+								(*particle)->speed.y = 1000 * sin(ang);
 
-								(*particle)->Update(dt);
+								(*particle)->Update(dt, { ((*particle)->target.x + ((*particle)->targetSize.x / 2)), ((*particle)->target.y + ((*particle)->targetSize.y / 2)) });
 							}
 
 							else {
@@ -886,10 +896,14 @@ bool j1EntityManager::Update(float dt) {
 								(*particle)->targetSize.x = (*particleToUpdate)->target->GetSize().x;
 								(*particle)->targetSize.y = (*particleToUpdate)->target->GetSize().y;
 
-								(*particle)->speed.x = 100 * cos(ang);
-								(*particle)->speed.y = (100) * sin(ang);
+								(*particle)->speed.x = 1000 * cos(ang);
+								(*particle)->speed.y = 1000 * sin(ang);
 
-								(*particle)->Update(dt);
+								if ((*particle)->Update(dt, { ((*particleToUpdate)->target->pos.x + ((*particleToUpdate)->target->GetSize().x / 2)), ((*particleToUpdate)->target->pos.y + ((*particleToUpdate)->target->GetSize().y / 2)) }) == false) {
+									
+									(*particleToUpdate)->particles.erase(particle);
+									(*particleToUpdate)->target->ApplyDamage((*particleToUpdate)->attackDamage);
+								}
 							}
 						}
 
@@ -988,6 +1002,12 @@ bool j1EntityManager::Update(float dt) {
 				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_RIDER) {
 					(*entitiesToDraw)->Draw(riderTexture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_CHROMA_KING) {
+					(*entitiesToDraw)->Draw(chromaKingTexture);
+				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_EXPLOSIVE_BLOB) {
+					(*entitiesToDraw)->Draw(explosiveBlobTexture);
 				}
 			}
 
@@ -1528,6 +1548,8 @@ void j1EntityManager::LoadEntityTextures()
 	/// Units
 	slimeTexture = App->tex->Load("textures/entity_enemy_slime_spritesheet.png");
 	riderTexture = App->tex->Load("textures/entity_enemy_rider_spritesheet.png");
+	chromaKingTexture = App->tex->Load("textures/entity_enemy_chromaKing_spritesheet.png");
+	explosiveBlobTexture = App->tex->Load("textures/entity_enemy_explosiveBlob_spritesheet.png");
 
 	buildingTexture = App->tex->Load("textures/entity_building_construction.png");
 
@@ -1543,6 +1565,8 @@ void j1EntityManager::LoadEntityTextures()
 	ExplorerSprites();
 	RiderSprites();
 	SlimeSprites();
+	ChromaKingSprites();
+	ExplosiveBlobSprites();
 
 
 	
@@ -1910,6 +1934,111 @@ void j1EntityManager::UpdateAnimations() {
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 	
 					(*checkMovingAnimation)->currentAnimation = &slimeMovingNorthWest;
+					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				}
+			}
+
+
+			else if ((*checkMovingAnimation)->entityType == ENTITY_TYPE_CHROMA_KING) {
+	
+				if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
+
+					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingNorth;
+					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingNorthEast;
+					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
+
+					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingEast;
+					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingSouthEast;
+					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
+
+					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingSouth;
+					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingSouthWest;
+					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
+
+					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingWest;
+					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingNorthWest;
+					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				}
+			}
+
+			else if ((*checkMovingAnimation)->entityType == ENTITY_TYPE_EXPLOSIVE_BLOB) {
+
+				if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
+
+					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingNorth;
+					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+
+					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingNorthEast;
+					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
+
+					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingEast;
+					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+
+					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingSouthEast;
+					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
+
+					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingSouth;
+					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
+
+					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingSouthWest;
+					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
+
+					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingWest;
+					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				}
+
+				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
+
+					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingNorthWest;
 					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 			}

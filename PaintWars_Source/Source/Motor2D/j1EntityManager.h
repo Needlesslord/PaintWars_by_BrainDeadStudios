@@ -143,6 +143,8 @@ protected:
 	/// Units
 	SDL_Texture* slimeTexture = nullptr;
 	SDL_Texture* riderTexture = nullptr;
+	SDL_Texture* chromaKingTexture = nullptr;
+	SDL_Texture* explosiveBlobTexture = nullptr;
 
 	float spawningRate = 1.0f;
 	float constructionRate = 1.0f;

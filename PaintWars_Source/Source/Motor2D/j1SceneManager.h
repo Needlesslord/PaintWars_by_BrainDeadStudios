@@ -49,6 +49,10 @@ public:
 	bool Load_Map_Snow;
 	bool Load_Map_Volcano;
 
+	bool savedMapForest;
+	bool savedMapSnow;
+	bool savedMapVolcano;
+	int saved_map = 0;
 
 	bool IN_GAME_SCENE;
 

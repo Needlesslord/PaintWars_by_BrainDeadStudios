@@ -16,12 +16,62 @@ Particles::Particles() {
 Particles::~Particles()
 {}
 
-void Particles::Update(float dt) {
+bool Particles::Update(float dt, fPoint targetPos) {
 
 	pos.x += speed.x * dt; 
 	pos.y += speed.y * dt;
 
+	// Going Right
+	if (speed.x > 0) {
+
+		// Going Up & Right
+		if (speed.y < 0) {
+
+			if (pos.x > targetPos.x && pos.y < targetPos.y) {
+				isAlive = false;
+				return false;
+			}
+		}
+
+		// Going Down & Right
+		else if (speed.y > 0) {
+
+		}
+
+		// Straight Right
+		else {
+
+		}
+	}
+
+	// Going Left
+	else if (speed.x < 0) {
+
+		// Going Up
+		if (speed.y < 0) {
+
+			if (pos.x > targetPos.x) {
+				
+			}
+		}
+
+		// Going Down
+		else if (speed.y > 0) {
+
+		}
+
+		// Straight Right
+		else {
+
+		}
+	}
+	
+	// Not moving
+	else {
+
+	}
 	Draw();
+	return true;
 }
 
 

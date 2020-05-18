@@ -147,7 +147,6 @@ bool j1App::Start()
 // Called each loop iteration
 bool j1App::Update()
 {
-	
 	bool ret = true;
 	PrepareUpdate();
 
