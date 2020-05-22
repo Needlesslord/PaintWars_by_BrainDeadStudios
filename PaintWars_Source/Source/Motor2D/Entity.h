@@ -54,7 +54,6 @@ enum ENTITY_TYPE {
 
 	ENTITY_TYPE_NONE = 0,//0
 
-		// TODO: Add all entities here
 	// Allies
 	/// Buildings
 	ENTITY_TYPE_TOWN_HALL, //1

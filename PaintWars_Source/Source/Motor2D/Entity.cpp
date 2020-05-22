@@ -280,7 +280,7 @@ void Entity::Move(float dt) {
 		if (pos.x < nextTilePos.x) {
 			pos.x = nextTilePos.x;
 		}
-		// TODO HERE
+		
 		if (pos.y < nextTilePos.y) {
 
 			pos.y += speed * dt / 2;

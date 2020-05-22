@@ -22,7 +22,7 @@ MetalGatherer::MetalGatherer(iPoint tile, int damage, j1Module* listener, Entity
 
 	currLife = maxLife - damage;
 
-	size = { 150, 200 }; // TODO
+	size = { 150, 200 }; 
 
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);

@@ -8,7 +8,6 @@
 #include "j1EntityManager.h"
 #include "j1Player.h"
 
-// TODO: delete this
 #include "j1Map.h"
 
 #define VSYNC true

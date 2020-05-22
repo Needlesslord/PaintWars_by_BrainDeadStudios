@@ -65,7 +65,7 @@ void Knight::Attack(Entity* target, float dt) {
 		target->ApplyDamage(attackDamage);
 		attackCooldown = 0.0f;
 
-		Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0); // TODO: Change
+		Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
 
 		if (target->GetCurrLife() <= 0)
 			Mix_PlayChannel(-1, App->audio->Spawner_Destroyed, 0); 

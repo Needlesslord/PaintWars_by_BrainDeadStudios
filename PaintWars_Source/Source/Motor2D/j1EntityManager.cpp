@@ -92,7 +92,6 @@ bool j1EntityManager::PreUpdate() {
 			(*setDefaultAnimation)->currentAnimation = &explosiveBlobIdle;
 		}
 
-		// TODO: knights
 		
 		setDefaultAnimation++;
 	}

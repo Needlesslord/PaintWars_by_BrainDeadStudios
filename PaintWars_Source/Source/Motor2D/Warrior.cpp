@@ -29,7 +29,7 @@ Warrior::Warrior(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 	currentTile = tile;
 	fPoint tileWorldPosition = App->map->MapToWorld(currentTile.x, currentTile.y);
 
-	pos.x = tileWorldPosition.x + App->map->data.tile_width /  size.x ;
+	pos.x = tileWorldPosition.x + App->map->data.tile_width / 2 - size.x / 2;
 	pos.y = tileWorldPosition.y + App->map->data.tile_height / 2 - size.y;
 
 	speed = 175.0f;

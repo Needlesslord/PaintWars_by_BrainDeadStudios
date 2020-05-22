@@ -226,23 +226,19 @@ void j1FogOfWar::ManageEntitiesFOWManipulation() {
 
 			//Since the Entity moved, we update the LOS position and make the tiles contained inside it visible 
 			for (std::list<iPoint>::iterator tile = (*item)->LOS.begin(); tile != (*item)->LOS.end(); tile++) {
-				// TODO 6: Whenever we move our providing sight entity, we need to update the LOS so the tiles of the LOS are updated with the range of the entity. 
 				// We do this checking the amount of distance the entity has moved in tiles
 
 				(*tile).x += (*item)->motion.x;
 				(*tile).y += (*item)->motion.y;
 				//operator += means ipoint.x++ ipoint.y++
-				// TODO 7: Set the visibility of every tile we just moved to VISIBLE
 				SetVisibilityTile((*tile), FOW_TileState::VISIBLE);
 			}
 
 			(*item)->moved_in_map = false;
 
-			// TODO 8: To finish, we now need to apply foggness to the tiles we left behind. We do this with SetVisibilityTile. 
 			// We previously stored the tiles in prev_LOS. 
 			// To ensure we take the tiles that are no longer in the LOS, we compare it with the prev_LOS, with the function TileInsideList
 
-			///FOW-TODO
 			for (std::list<iPoint>::const_iterator tile = prev_LOS.cbegin(); tile != prev_LOS.end(); tile++) {
 				if (TileInsideList((*tile), (*item)->LOS) == false) {
 					SetVisibilityTile((*tile), FOW_TileState::FOGGED);
