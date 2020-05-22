@@ -139,11 +139,15 @@ In a world full of colour, a corruption spread, turning everything monochromatic
 You start with the Town Hall and some resources. From it you can create painters and upgrade units and buildings leveling up (research).
 With a painter, go to a paint lake to start getting resources.
 From the shop, you can get different buiuldings: 
-   + paint extractor (built with wood): they collect paint faster than painters, must build them with at least one tile on a lake
+   + paint extractor (built with paint): they collect paint faster than painters, must build them with at least one tile on a lake
    + wood producer (built with paint): to get wood. Wood is used to create paint extractors, houses and barracks
    + house (built with wood): to increase your max number of units
-   + barracks (built with wood): to create warriors
-Warriors are used to attack the spawners and destroy them to win the game.
+   + barracks (built with wood): to create warriors, rangers and knights
+   + titanium extractor (built with metal scrap): to get titanium, used in upgrades/research
+   + metal gatherer (built with wood): to get metal scrap
+Warriors, rangers and knights are used to attack the spawners and destroy them to win the game.
+Painters are used to get resources.
+Explorers are used to explore.
 
  - LEFT CLICK - select
  - RIGHT CLICK - select destination / attack
@@ -217,7 +221,7 @@ Copyright (c) 2020 BrainDead Studios
 BrainDead Studios' games are licensed under an unmodified MIT license, which is an OSI-certified license that allows static linking with closed source software. Check [LICENSE](https://github.com/Needlesslord/BrainDeadStudios/blob/master/LICENSE) for further details.
 
 
-###Credits
+### Credits
 
 All the data used (sprites, music, fx, etc), which are free to use, will be credited as well.
 
