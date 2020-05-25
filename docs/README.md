@@ -1,6 +1,6 @@
 # PAINTWARS
 
-# by BRAINDEAD STUDIOS
+# by BrainDead Studios
 
 
 ***
