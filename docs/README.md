@@ -159,13 +159,13 @@ Increasing difficulty as time goes on, the game will pressure the player harder 
 
 Here you will find an index of all the data relevant to the game. All this information can also be found in the folder [BrainDeadStudios/Docs/](https://github.com/Needlesslord/BrainDeadStudios/tree/master/Docs).
 
- + [Game Reference](https://github.com/Needlesslord/PaintWars_by_BrainDeadStudios/blob/master/docs/GameReference.md): information about other games to help inspire the concept and mechanics of ours.
- + [GDD (Game Design Document)](https://github.com/Needlesslord/PaintWars_by_BrainDeadStudios/blob/master/docs/GDD.md): Game pillars of the game
- + [TDD (Tech Design Document)](https://github.com/Needlesslord/PaintWars_by_BrainDeadStudios/blob/master/docs/TDD.md): Tech Design, which includes all the technical aspects of the game and its performance
- + [GUI Design Document](https://github.com/Needlesslord/PaintWars_by_BrainDeadStudios/blob/master/docs/GUIDocument.md): UI design, which includes, for example, the flow diagram, HUD, screens layout, etc.
- + [Audio Bible](https://github.com/Needlesslord/PaintWars_by_BrainDeadStudios/blob/master/docs/AudioBible.md): Music and FX
- + [Art Bible](https://github.com/Needlesslord/PaintWars_by_BrainDeadStudios/blob/master/docs/ArtBible.md): Art, concept, mood and intention behind the graphics
- + [QA Workflow](https://github.com/Needlesslord/PaintWars_by_BrainDeadStudios/blob/master/docs/QAWorkflow.md): QA used during pre-production, alpha, beta and gold, as well as the tools used and process for Quality Testing
+ + [Game Reference](GameReference.md): information about other games to help inspire the concept and mechanics of ours.
+ + [GDD (Game Design Document)](GDD.md): Game pillars of the game
+ + [TDD (Tech Design Document)](TDD.md): Tech Design, which includes all the technical aspects of the game and its performance
+ + [GUI Design Document](GUIDocument.md): UI design, which includes, for example, the flow diagram, HUD, screens layout, etc.
+ + [Audio Bible](AudioBible.md): Music and FX
+ + [Art Bible](ArtBible.md): Art, concept, mood and intention behind the graphics
+ + [QA Workflow](QAWorkflow.md): QA used during pre-production, alpha, beta and gold, as well as the tools used and process for Quality Testing
  + [Production Plan](ProductionPlan.md): calendar, risk and contingency list, Gantt Chart and records
 
 
