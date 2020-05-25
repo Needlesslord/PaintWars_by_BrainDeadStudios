@@ -170,7 +170,6 @@ Here you will find an index of all the data relevant to the game. All this infor
 
 
 
-
 ## Social Media
 
 You can find us in our media handles:
