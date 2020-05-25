@@ -166,7 +166,7 @@ Here you will find an index of all the data relevant to the game. All this infor
  + [Audio Bible](https://github.com/Needlesslord/PaintWars_by_BrainDeadStudios/blob/master/docs/AudioBible.md): Music and FX
  + [Art Bible](https://github.com/Needlesslord/PaintWars_by_BrainDeadStudios/blob/master/docs/ArtBible.md): Art, concept, mood and intention behind the graphics
  + [QA Workflow](https://github.com/Needlesslord/PaintWars_by_BrainDeadStudios/blob/master/docs/QAWorkflow.md): QA used during pre-production, alpha, beta and gold, as well as the tools used and process for Quality Testing
- + [Production Plan](https://github.com/Needlesslord/PaintWars_by_BrainDeadStudios/blob/master/docs/ProductionPlan.md): calendar, risk and contingency list, Gantt Chart and records
+ + [Production Plan](ProductionPlan.md): calendar, risk and contingency list, Gantt Chart and records
 
 
 ***
