@@ -32,7 +32,17 @@
 
 In a world full of colour, a corruption spread, turning everything monochromatic and evil. The war started, with all colour beings trying to restore the colours on the world and with them, the peace. The destiny of those in despair is in your hands.
 
+##### Basic controls
+
+
 *__video to explain the controls and how to play__*
+
+ - Shop to buy buildings
+ - Create units from buildings 
+ - Mouse to select, move and general actions
+ - Debug Keys 
+ - Units to get resources, explore and attack
+ - Upgrades for units and buildings from shop and buildings
 
 If you want more information about this game, please check out all the documentation. You can find it [here](../README.md).
 
