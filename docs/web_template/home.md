@@ -26,7 +26,7 @@
 
 ## Highlighted games:
 
-##### Paint Wars
+### Paint Wars
 
 *__Video marketing__*
 
