@@ -1,15 +1,29 @@
-## Menu:
+# PAINTWARS
 
-Home
-Games
-Jobs
-Community
-Support
-About us
+# by BrainDead Studios
+
+<details>
+  <summary>Menu</summary>
+  
+  ##### What will you find in this web page?
+
+     * Home
+     * Games
+     * About us
+     * Jobs
+     * Community
+     * Support
+
+</details>
+
 
 ## Play now!
 
-**Paint Wars:** Link to releases
+Here you can find our most recent games!
+
+**Paint Wars:** 
+
+[Click here to find the latest release of PaintWars!](https://github.com/Needlesslord/PaintWars_by_BrainDeadStudios/releases)
 
 ## All our games:
 
