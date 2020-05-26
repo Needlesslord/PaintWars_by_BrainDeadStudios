@@ -21,19 +21,20 @@
 
 ## All our games:
 
-**Paint Wars:** 
+**Paint Wars:** In a world full of colour, a corruption spread, turning everything monochromatic and evil. The war started, with all colour beings trying to restore the colours on the world and with them, the peace. The destiny of those in despair is in your hands.
+
 
 ## Highlighted games:
 
 ##### Paint Wars
 
-Video marketing
+*__Video marketing__*
 
-description
+In a world full of colour, a corruption spread, turning everything monochromatic and evil. The war started, with all colour beings trying to restore the colours on the world and with them, the peace. The destiny of those in despair is in your hands.
 
-video to explain the controls and how to play
+*__video to explain the controls and how to play__*
 
-more information (all the documentation)
+If you want more information about this game, please check out all the documentation. You can find it [here](../README.md).
 
 ## Play now!
 
@@ -48,7 +49,7 @@ Here you can find our most recent games!
 
 |  POSITION   |     LOCATION      |       TYPE        |  DEPARTMENT |
 | ----------- | ----------------- | ----------------- | ----------- | 
-| Beta Tester | Barcelona (SPAIN) | Unpaid Internship |     QA      |
+| Beta Tester |    NOT NEEDED     | Unpaid Internship |     QA      |
 
 
 
