@@ -40,9 +40,7 @@ If you want more information about this game, please check out all the documenta
 
 Here you can find our most recent games!
 
-**Paint Wars:** 
-
-[Click here to find the latest release of PaintWars!](https://github.com/Needlesslord/PaintWars_by_BrainDeadStudios/releases)
+**Paint Wars:** [Click here to find the latest release of PaintWars!](https://github.com/Needlesslord/PaintWars_by_BrainDeadStudios/releases)
 
 
 ## Work with us
