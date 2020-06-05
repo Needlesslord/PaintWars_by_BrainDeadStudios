@@ -211,7 +211,7 @@ bool StartScene::CleanUp()
 	LOG("Freeing Scene");
 	bool ret = true;
 
-	App->gui->CleanUp();
+	App->gui->CleanUp(); //WE NEED THIS IN EACH CLEANUP
 
 	continueButton->CleanUp();
 	forestButton->CleanUp();
