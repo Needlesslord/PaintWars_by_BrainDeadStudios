@@ -186,6 +186,7 @@ bool MenuScene::CleanUp()
 {
 	LOG("Freeing Scene");
 	bool ret = true;
+	App->gui->CleanUp();//??????????? 
 
 	playButton->CleanUp();
 	scoreButton->CleanUp();
@@ -269,35 +270,35 @@ void MenuScene::ExecuteTransition()
 			App->transition_manager->CreateCut(SCENES::GAME_SCENE);
 		}*/
 
-		if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
-		{
-			App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
-		}
+		//if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+		//{
+		//	App->transition_manager->CreateFadeToColour(SCENES::GAME_SCENE);
+		//}
 
-			if (App->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN)
-			{
-				App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true);
-			}
+		//	if (App->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN)
+		//	{
+		//		App->transition_manager->CreateSlide(SCENES::GAME_SCENE, 0.5f, true);
+		//	}
 
-			if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
-			{
-				//App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true, true);
-			}
+		//	if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
+		//	{
+		//		//App->transition_manager->CreateSlide(SCENES::SECOND_SCENE, 0.5f, true, true);
+		//	}
 
-			if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
-			{
-				//App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true);
-			}
+		//	if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
+		//	{
+		//		//App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true);
+		//	}
 
-			if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
-			{
-				//App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true, true);
-			}
+		//	if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
+		//	{
+		//		//App->transition_manager->CreateWipe(SCENES::SECOND_SCENE, 0.5f, true, true);
+		//	}
 
-			if (App->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
-			{
-				//App->transition_manager->CreateAlternatingBars(SCENES::SECOND_SCENE, 0.5f, true);
-			}
+		//	if (App->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
+		//	{
+		//		//App->transition_manager->CreateAlternatingBars(SCENES::SECOND_SCENE, 0.5f, true);
+		//	}
 
 		//	if (App->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
 		//	{

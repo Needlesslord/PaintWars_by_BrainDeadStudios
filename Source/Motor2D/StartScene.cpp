@@ -211,6 +211,8 @@ bool StartScene::CleanUp()
 	LOG("Freeing Scene");
 	bool ret = true;
 
+	App->gui->CleanUp();
+
 	continueButton->CleanUp();
 	forestButton->CleanUp();
 	snowButton->CleanUp();

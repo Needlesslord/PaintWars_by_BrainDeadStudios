@@ -20,27 +20,47 @@ j1TextUI::~j1TextUI() {
 
 bool j1TextUI::Start()
 {
-	if(fontType == FONT::FONT_MEDIUM)
+	switch (fontType) {
+
+	case  FONT::FONT_MEDIUM:
+
 		font_name = App->fonts->Load("textures/fonts/font_black.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
-	else if (fontType == FONT::FONT_MEDIUM_WHITE)
+		break;
+
+
+	case FONT::FONT_MEDIUM_WHITE:
 		font_name = App->fonts->Load("textures/fonts/font_white.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
-	else if(fontType == FONT::FONT_SMALL)
+		break;
+
+	case FONT::FONT_SMALL:
 		font_name = App->fonts->Load("textures/fonts/font_black_small.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
-	else if (fontType == FONT::FONT_SMALL_WHITE)
+		break;
+
+	case FONT::FONT_SMALL_WHITE:
 		font_name = App->fonts->Load("textures/fonts/font_white_small.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
-	else if (fontType == FONT::FONT_EXTRA_SMALL)
+		break;
+
+	case FONT::FONT_EXTRA_SMALL:
 		font_name = App->fonts->Load("textures/fonts/font_black_extra_small.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
-	else if (fontType == FONT::FONT_EXTRA_SMALL_WHITE)
+		break;
+
+	case FONT::FONT_EXTRA_SMALL_WHITE:
 		font_name = App->fonts->Load("textures/fonts/font_white_extra_small.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
-	else if (fontType == FONT::FONT_EXTRA_SMALL_RED)
+		break;
+
+
+	case FONT::FONT_EXTRA_SMALL_RED:
 		font_name = App->fonts->Load("textures/fonts/font_red_extra_small.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
-	else if (fontType == FONT::FONT_SMALL_RED)
+		break;
+
+	case FONT::FONT_SMALL_RED:
 		font_name = App->fonts->Load("textures/fonts/font_red_small.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
-	
+		break;
+
+	}
 
 	return true;
 }
-
 
 bool j1TextUI::PreUpdate()
 {
