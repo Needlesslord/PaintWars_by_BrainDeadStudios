@@ -127,7 +127,7 @@ bool LoseScene::CleanUp()
 	bool ret = true;
 
 	
-
+	App->gui->CleanUp();
 
 
 	//UI

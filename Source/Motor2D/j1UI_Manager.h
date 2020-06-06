@@ -61,6 +61,8 @@ public:
 	SDL_Texture* Background_Volcano_Sprite_Load = nullptr;
 	SDL_Texture* Background_Snow_Sprite_Load = nullptr;
 
+	SDL_Texture* Texture_To_Load = nullptr;
+
 	
 
 };

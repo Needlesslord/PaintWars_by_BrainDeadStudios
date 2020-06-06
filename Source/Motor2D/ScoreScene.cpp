@@ -110,7 +110,7 @@ bool ScoreScene::CleanUp()
 {
 	LOG("Freeing Scene");
 	bool ret = true;
-
+	App->gui->CleanUp();
 	
 	BackButton->CleanUp();
 	ScoreTextLabel->CleanUp();

@@ -29,81 +29,81 @@ bool j1ButtonUI::Start()
 
 	case TEXTURE::MINIMAP_FULL_FOREST:
 
-		if (App->tex->Button_UI_Texture_Minimap_FULL_SCALE_forest == NULL)
+		if (App->tex->Button_UI_Texture_Minimap_FULL_SCALE_forest == nullptr)
 			App->tex->Button_UI_Texture_Minimap_FULL_SCALE_forest = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_FULL_FOREST);
 		break;
 
 	case TEXTURE::MINIMAP_MINI_FOREST:
 
-		if (App->tex->Button_UI_Texture_Minimap_MINI_SCALE_forest == NULL)
+		if (App->tex->Button_UI_Texture_Minimap_MINI_SCALE_forest == nullptr)
 			App->tex->Button_UI_Texture_Minimap_MINI_SCALE_forest = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_MINI_FOREST);
 		break;
 
 
 	case TEXTURE::MINIMAP_FULL_SNOW:
 
-		if (App->tex->Button_UI_Texture_Minimap_FULL_SCALE_snow == NULL)
+		if (App->tex->Button_UI_Texture_Minimap_FULL_SCALE_snow == nullptr)
 			App->tex->Button_UI_Texture_Minimap_FULL_SCALE_snow = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_FULL_SNOW);
 		break;
 
 	case TEXTURE::MINIMAP_MINI_SNOW:
 
-		if (App->tex->Button_UI_Texture_Minimap_MINI_SCALE_snow == NULL)
+		if (App->tex->Button_UI_Texture_Minimap_MINI_SCALE_snow == nullptr)
 			App->tex->Button_UI_Texture_Minimap_MINI_SCALE_snow = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_MINI_SNOW);
 		break;
 
 
 	case TEXTURE::MINIMAP_FULL_VOLCANO:
 
-		if (App->tex->Button_UI_Texture_Minimap_FULL_SCALE_volcano == NULL)
+		if (App->tex->Button_UI_Texture_Minimap_FULL_SCALE_volcano == nullptr)
 			App->tex->Button_UI_Texture_Minimap_FULL_SCALE_volcano = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_FULL_VOLCANO);
 		break;
 
 	case TEXTURE::MINIMAP_MINI_VOLCANO:
 
-		if (App->tex->Button_UI_Texture_Minimap_MINI_SCALE_volcano == NULL)
+		if (App->tex->Button_UI_Texture_Minimap_MINI_SCALE_volcano == nullptr)
 			App->tex->Button_UI_Texture_Minimap_MINI_SCALE_volcano = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_MINI_VOLCANO);
 		break;
 
 	case TEXTURE::MINIMAP_CAMERA:
 
-		if (App->tex->Button_UI_Texture_Minimap_CAMERA_FOLLOW == NULL)
+		if (App->tex->Button_UI_Texture_Minimap_CAMERA_FOLLOW == nullptr)
 			App->tex->Button_UI_Texture_Minimap_CAMERA_FOLLOW = App->gui->Get_Texture_From_Image(TEXTURE::MINIMAP_CAMERA);
 		break;
 
 	case TEXTURE::CONTINUE_LETTERS:
 
-		if (App->tex->Button_UI_Texture_ContinueLetters_WIN_LOSE_SCENE == NULL)
+		if (App->tex->Button_UI_Texture_ContinueLetters_WIN_LOSE_SCENE == nullptr)
 			App->tex->Button_UI_Texture_ContinueLetters_WIN_LOSE_SCENE = App->gui->Get_Texture_From_Image(TEXTURE::CONTINUE_LETTERS);
 		break;
 
 	case TEXTURE::LOSE_SCREEN:
 
-		if (App->tex->Button_UI_Texture_Letters_LOSE_SCENE == NULL)
+		if (App->tex->Button_UI_Texture_Letters_LOSE_SCENE == nullptr)
 			App->tex->Button_UI_Texture_Letters_LOSE_SCENE = App->gui->Get_Texture_From_Image(TEXTURE::LOSE_SCREEN);
 		break;
 
 	case TEXTURE::WIN_SCREEN:
 
-		if (App->tex->Button_UI_Texture_Letters_WIN_SCENE == NULL)
+		if (App->tex->Button_UI_Texture_Letters_WIN_SCENE == nullptr)
 			App->tex->Button_UI_Texture_Letters_WIN_SCENE = App->gui->Get_Texture_From_Image(TEXTURE::WIN_SCREEN);
 		break;
 
 	case TEXTURE::LOGO:
 
-		if (App->tex->Button_UI_Texture_LogoImage_LOGO_SCENE == NULL)
+		if (App->tex->Button_UI_Texture_LogoImage_LOGO_SCENE == nullptr)
 			App->tex->Button_UI_Texture_LogoImage_LOGO_SCENE = App->gui->Get_Texture_From_Image(TEXTURE::LOGO);
 		break;
 
 	case TEXTURE::LOGO_LETTERS:
 
-		if (App->tex->Button_UI_Texture_Letters_LOGO_SCENE == NULL)
+		if (App->tex->Button_UI_Texture_Letters_LOGO_SCENE == nullptr)
 			App->tex->Button_UI_Texture_Letters_LOGO_SCENE = App->gui->Get_Texture_From_Image(TEXTURE::LOGO_LETTERS);
 		break;
 
 	case TEXTURE::TEAM_LOGO:
 
-		if (App->tex->Button_UI_Texture_TeamLogoImage_TEAM_LOGO_SCENE == NULL)
+		if (App->tex->Button_UI_Texture_TeamLogoImage_TEAM_LOGO_SCENE == nullptr)
 			App->tex->Button_UI_Texture_TeamLogoImage_TEAM_LOGO_SCENE = App->gui->Get_Texture_From_Image(TEXTURE::TEAM_LOGO);
 		break;
 	}

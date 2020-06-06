@@ -224,7 +224,7 @@ bool SettingsScene::CleanUp()
 	LOG("Freeing Scene");
 	bool ret = true;
 
-	
+	App->gui->CleanUp();
 	musicLabel->CleanUp();
 	vfxLabel->CleanUp();
 	fullscreenLabel->CleanUp();

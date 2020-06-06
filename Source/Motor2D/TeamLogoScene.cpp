@@ -95,7 +95,7 @@ bool TeamLogoScene::CleanUp()
 {
 	LOG("Freeing Scene");
 	bool ret = true;
-
+	App->gui->CleanUp();
 	teamLogoButton->CleanUp();
 
 	if (scene_texture != nullptr)

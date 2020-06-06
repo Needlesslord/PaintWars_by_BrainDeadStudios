@@ -103,7 +103,7 @@ bool GameLogoScene::CleanUp()
 {
 	LOG("Freeing Scene");
 	bool ret = true;
-
+	App->gui->CleanUp();
 	gameLogoButton->CleanUp();
 
 	if (scene_texture != nullptr)
