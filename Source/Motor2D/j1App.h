@@ -19,6 +19,7 @@ class j1SceneManager;
 class j1Map;
 class j1EntityManager;
 class j1PathFinding;
+class j1ParticleManager;
 //class j1Particles;
 class j1UI_Manager;
 class j1FontsUI;
@@ -106,6 +107,7 @@ public:
 	j1Map*				map = NULL;
 	j1EntityManager*	entities = NULL;
 	j1PathFinding*		pathfinding = NULL;
+	j1ParticleManager*	pmanager = NULL;
 	//j1Particles*		particles = NULL;
 	j1Player*			player = NULL;
 	j1UI_Manager*		gui = NULL;
