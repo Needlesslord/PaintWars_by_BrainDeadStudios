@@ -32,7 +32,7 @@ void WarriorSprites()
 	//Idle 
 	warriorIdle.PushBack({ 1068, 0, 89, 152 });
 	warriorIdle.PushBack({ 1157, 0, 89, 152 });
-	warriorIdle.speed = 50.0f;
+	warriorIdle.speed = 60.0f;
 
 	//MOVING
 
@@ -43,7 +43,7 @@ void WarriorSprites()
 	warriorMovingEast.PushBack({ 267, 152, 89, 152 });
 	warriorMovingEast.PushBack({ 356, 152, 89, 152 });
 	warriorMovingEast.PushBack({ 445, 152, 89, 152 });
-	warriorMovingEast.speed = 500.0f;
+	warriorMovingEast.speed = 600.0f;
 
 	//Moving Left
 	warriorMovingWest.PushBack({ 534, 152, 89, 152 });
@@ -52,7 +52,7 @@ void WarriorSprites()
 	warriorMovingWest.PushBack({ 801, 152, 89, 152 });
 	warriorMovingWest.PushBack({ 890, 152, 89, 152 });
 	warriorMovingWest.PushBack({ 979, 152, 89, 152 });
-	warriorMovingWest.speed = 500.0f;
+	warriorMovingWest.speed = 600.0f;
 
 	//Moving RightBack
 	warriorMovingNorthEast.PushBack({ 0, 304, 89, 152 });
@@ -61,7 +61,7 @@ void WarriorSprites()
 	warriorMovingNorthEast.PushBack({ 267, 304, 89, 152 });
 	warriorMovingNorthEast.PushBack({ 356, 304, 89, 152 });
 	warriorMovingNorthEast.PushBack({ 445, 304, 89, 152 });
-	warriorMovingNorthEast.speed = 500.0f;
+	warriorMovingNorthEast.speed = 600.0f;
 
 	//Moving LeftBack
 	warriorMovingNorthWest.PushBack({ 534, 304, 89, 152 });
@@ -70,7 +70,7 @@ void WarriorSprites()
 	warriorMovingNorthWest.PushBack({ 801, 304, 89, 152 });
 	warriorMovingNorthWest.PushBack({ 890, 304, 89, 152 });
 	warriorMovingNorthWest.PushBack({ 979, 304, 89, 152 });
-	warriorMovingNorthWest.speed = 500.0f;
+	warriorMovingNorthWest.speed = 600.0f;
 
 
 	//Moving RightFront
@@ -80,7 +80,7 @@ void WarriorSprites()
 	warriorMovingSouthEast.PushBack({ 267, 456, 89, 152 });
 	warriorMovingSouthEast.PushBack({ 356, 456, 89, 152 });
 	warriorMovingSouthEast.PushBack({ 445, 456, 89, 152 });
-	warriorMovingSouthEast.speed = 500.0f;
+	warriorMovingSouthEast.speed = 600.0f;
 
 	//Moving LeftFront
 	warriorMovingSouthWest.PushBack({ 534, 456, 89, 152 });
@@ -89,7 +89,7 @@ void WarriorSprites()
 	warriorMovingSouthWest.PushBack({ 801, 456, 89, 152 });
 	warriorMovingSouthWest.PushBack({ 890, 456, 89, 152 });
 	warriorMovingSouthWest.PushBack({ 979, 456, 89, 152 });
-	warriorMovingSouthWest.speed = 500.0f;
+	warriorMovingSouthWest.speed = 600.0f;
 
 	//Moving Back
 	warriorMovingNorth.PushBack({ 0, 608, 89, 152 });
@@ -98,7 +98,7 @@ void WarriorSprites()
 	warriorMovingNorth.PushBack({ 267, 608, 89, 152 });
 	warriorMovingNorth.PushBack({ 356, 608, 89, 152 });
 	warriorMovingNorth.PushBack({ 445, 608, 89, 152 });
-	warriorMovingNorth.speed = 500.0f;
+	warriorMovingNorth.speed = 600.0f;
 
 	//Moving Front
 	warriorMovingSouth.PushBack({ 534, 608, 89, 152 });
@@ -107,7 +107,7 @@ void WarriorSprites()
 	warriorMovingSouth.PushBack({ 801, 608, 89, 152 });
 	warriorMovingSouth.PushBack({ 890, 608, 89, 152 });
 	warriorMovingSouth.PushBack({ 979, 608, 89, 152 });
-	warriorMovingSouth.speed = 500.0f;
+	warriorMovingSouth.speed = 600.0f;
 
 	//ATTACK
 
@@ -183,7 +183,7 @@ void PainterSprites()
 	//Idle 
 	painterIdle.PushBack({ 912, 0, 76, 156 });
 	painterIdle.PushBack({ 988, 0, 76, 156 });
-	painterIdle.speed = 50.0f;
+	painterIdle.speed = 60.0f;
 
 	//MOVING
 
@@ -194,7 +194,7 @@ void PainterSprites()
 	painterMovingEast.PushBack({ 228, 156, 76, 156 });
 	painterMovingEast.PushBack({ 304, 156, 76, 156 });
 	painterMovingEast.PushBack({ 380, 156, 76, 156 });
-	painterMovingEast.speed = 500.0f;
+	painterMovingEast.speed = 700.0f;
 
 	//Moving Left
 	painterMovingWest.PushBack({ 456, 156, 76, 156 });
@@ -203,7 +203,7 @@ void PainterSprites()
 	painterMovingWest.PushBack({ 684, 156, 76, 156 });
 	painterMovingWest.PushBack({ 760, 156, 76, 156 });
 	painterMovingWest.PushBack({ 836, 156, 76, 156 });
-	painterMovingWest.speed = 500.0f;
+	painterMovingWest.speed = 700.0f;
 
 	//Moving RightBack
 	painterMovingNorthEast.PushBack({ 0, 312, 76, 156 });
@@ -212,7 +212,7 @@ void PainterSprites()
 	painterMovingNorthEast.PushBack({ 228, 312, 76, 156 });
 	painterMovingNorthEast.PushBack({ 304, 312, 76, 156 });
 	painterMovingNorthEast.PushBack({ 380, 312, 76, 156 });
-	painterMovingNorthEast.speed = 500.0f;
+	painterMovingNorthEast.speed = 700.0f;
 
 	//Moving LeftBack
 	painterMovingNorthWest.PushBack({ 456, 312, 76, 156 });
@@ -221,7 +221,7 @@ void PainterSprites()
 	painterMovingNorthWest.PushBack({ 684, 312, 76, 156 });
 	painterMovingNorthWest.PushBack({ 760, 312, 76, 156 });
 	painterMovingNorthWest.PushBack({ 836, 312, 76, 156 });
-	painterMovingNorthWest.speed = 500.0f;
+	painterMovingNorthWest.speed = 700.0f;
 
 
 	//Moving RightFront
@@ -231,7 +231,7 @@ void PainterSprites()
 	painterMovingSouthEast.PushBack({ 228, 468, 76, 156 });
 	painterMovingSouthEast.PushBack({ 304, 468, 76, 156 });
 	painterMovingSouthEast.PushBack({ 380, 468, 76, 156 });
-	painterMovingSouthEast.speed = 500.0f;
+	painterMovingSouthEast.speed = 700.0f;
 
 	//Moving LeftFront
 	painterMovingSouthWest.PushBack({ 456, 468, 76, 156 });
@@ -240,7 +240,7 @@ void PainterSprites()
 	painterMovingSouthWest.PushBack({ 684, 468, 76, 156 });
 	painterMovingSouthWest.PushBack({ 760, 468, 76, 156 });
 	painterMovingSouthWest.PushBack({ 836, 468, 76, 156 });
-	painterMovingSouthWest.speed = 500.0f;
+	painterMovingSouthWest.speed = 700.0f;
 
 	//Moving Back
 	painterMovingNorth.PushBack({ 0, 624, 76, 156 });
@@ -249,7 +249,7 @@ void PainterSprites()
 	painterMovingNorth.PushBack({ 228, 624, 76, 156 });
 	painterMovingNorth.PushBack({ 304, 624, 76, 156 });
 	painterMovingNorth.PushBack({ 380, 624, 76, 156 });
-	painterMovingNorth.speed = 500.0f;
+	painterMovingNorth.speed = 700.0f;
 
 	//Moving Front
 	painterMovingSouth.PushBack({ 456, 624, 76, 156 });
@@ -258,13 +258,13 @@ void PainterSprites()
 	painterMovingSouth.PushBack({ 684, 624, 76, 156 });
 	painterMovingSouth.PushBack({ 760, 624, 76, 156 });
 	painterMovingSouth.PushBack({ 836, 624, 76, 156 });
-	painterMovingSouth.speed = 500.0f;
+	painterMovingSouth.speed = 700.0f;
 
 	//RECOLLECTION
 	painterRecollection.PushBack({ 1275, 0, 103, 156 });
 	painterRecollection.PushBack({ 1378, 0, 103, 156 });
 	painterRecollection.PushBack({ 1481, 0, 103, 156 });
-	painterRecollection.speed = 500.0f;
+	painterRecollection.speed = 400.0f;
 
 	//DEATH
 	painterDeath.PushBack({ 0, 780, 76, 156 });
@@ -305,7 +305,7 @@ void KnightSprites()
 	//Idle 
 	knightIdle.PushBack({ 1052, 0, 88, 151 });
 	knightIdle.PushBack({ 1140, 0, 88, 151 });
-	knightIdle.speed = 50.0f;
+	knightIdle.speed = 60.0f;
 
 	//MOVING
 
@@ -316,7 +316,7 @@ void KnightSprites()
 	knightMovingEast.PushBack({ 264, 151, 88, 151 });
 	knightMovingEast.PushBack({ 352, 151, 88, 151 });
 	knightMovingEast.PushBack({ 440, 151, 88, 151 });
-	knightMovingEast.speed = 500.0f;
+	knightMovingEast.speed = 700.0f;
 
 	//Moving Left
 	knightMovingWest.PushBack({ 528, 151, 88, 151 });
@@ -325,7 +325,7 @@ void KnightSprites()
 	knightMovingWest.PushBack({ 792, 151, 88, 151 });
 	knightMovingWest.PushBack({ 880, 151, 88, 151 });
 	knightMovingWest.PushBack({ 968, 151, 88, 151 });
-	knightMovingWest.speed = 500.0f;
+	knightMovingWest.speed = 700.0f;
 
 	//Moving RightBack
 	knightMovingNorthEast.PushBack({ 0, 302, 88, 151 });
@@ -334,7 +334,7 @@ void KnightSprites()
 	knightMovingNorthEast.PushBack({ 264, 302, 88, 151 });
 	knightMovingNorthEast.PushBack({ 352, 302, 88, 151 });
 	knightMovingNorthEast.PushBack({ 440, 302, 88, 151 });
-	knightMovingNorthEast.speed = 500.0f;
+	knightMovingNorthEast.speed = 700.0f;
 
 	//Moving LeftBack
 	knightMovingNorthWest.PushBack({ 528, 302, 88, 151 });
@@ -343,7 +343,7 @@ void KnightSprites()
 	knightMovingNorthWest.PushBack({ 792, 302, 88, 151 });
 	knightMovingNorthWest.PushBack({ 880, 302, 88, 151 });
 	knightMovingNorthWest.PushBack({ 968, 302, 88, 151 });
-	knightMovingNorthWest.speed = 500.0f;
+	knightMovingNorthWest.speed = 700.0f;
 
 
 	//Moving RightFront
@@ -353,7 +353,7 @@ void KnightSprites()
 	knightMovingSouthEast.PushBack({ 264, 453, 88, 151 });
 	knightMovingSouthEast.PushBack({ 352, 453, 88, 151 });
 	knightMovingSouthEast.PushBack({ 440, 453, 88, 151 });
-	knightMovingSouthEast.speed = 500.0f;
+	knightMovingSouthEast.speed = 700.0f;
 
 	//Moving LeftFront
 	knightMovingSouthWest.PushBack({ 528, 453, 88, 151 });
@@ -362,7 +362,7 @@ void KnightSprites()
 	knightMovingSouthWest.PushBack({ 792, 453, 88, 151 });
 	knightMovingSouthWest.PushBack({ 880, 453, 88, 151 });
 	knightMovingSouthWest.PushBack({ 968, 453, 88, 151 });
-	knightMovingSouthWest.speed = 500.0f;
+	knightMovingSouthWest.speed = 700.0f;
 
 	//Moving Back
 	knightMovingNorth.PushBack({ 0, 604, 88, 151 });
@@ -371,7 +371,7 @@ void KnightSprites()
 	knightMovingNorth.PushBack({ 264, 604, 88, 151 });
 	knightMovingNorth.PushBack({ 352, 604, 88, 151 });
 	knightMovingNorth.PushBack({ 440, 604, 88, 151 });
-	knightMovingNorth.speed = 500.0f;
+	knightMovingNorth.speed = 700.0f;
 
 	//Moving Front
 	knightMovingSouth.PushBack({ 528, 604, 88, 151 });
@@ -380,7 +380,7 @@ void KnightSprites()
 	knightMovingSouth.PushBack({ 792, 604, 88, 151 });
 	knightMovingSouth.PushBack({ 880, 604, 88, 151 });
 	knightMovingSouth.PushBack({ 968, 604, 88, 151 });
-	knightMovingSouth.speed = 500.0f;
+	knightMovingSouth.speed = 700.0f;
 
 	//ATTACK
 
@@ -452,7 +452,7 @@ void ExplorerSprites()
 	//Idle 
 	explorerIdle.PushBack({ 900, 0, 75, 156 });
 	explorerIdle.PushBack({ 975, 0, 75, 156 });
-	explorerIdle.speed = 50.0f;
+	explorerIdle.speed = 60.0f;
 
 	//MOVING
 
@@ -463,7 +463,7 @@ void ExplorerSprites()
 	explorerMovingEast.PushBack({ 225, 156, 75, 156 });
 	explorerMovingEast.PushBack({ 300, 156, 75, 156 });
 	explorerMovingEast.PushBack({ 375, 156, 75, 156 });
-	explorerMovingEast.speed = 500.0f;
+	explorerMovingEast.speed = 700.0f;
 
 	//Moving Left
 	explorerMovingWest.PushBack({ 450, 156, 75, 156 });
@@ -472,7 +472,7 @@ void ExplorerSprites()
 	explorerMovingWest.PushBack({ 675, 156, 75, 156 });
 	explorerMovingWest.PushBack({ 750, 156, 75, 156 });
 	explorerMovingWest.PushBack({ 825, 156, 75, 156 });
-	explorerMovingWest.speed = 500.0f;
+	explorerMovingWest.speed = 700.0f;
 
 	//Moving RightBack
 	explorerMovingNorthEast.PushBack({ 0, 312, 75, 156 });
@@ -481,7 +481,7 @@ void ExplorerSprites()
 	explorerMovingNorthEast.PushBack({ 225, 312, 75, 156 });
 	explorerMovingNorthEast.PushBack({ 300, 312, 75, 156 });
 	explorerMovingNorthEast.PushBack({ 375, 312, 75, 156 });
-	explorerMovingNorthEast.speed = 500.0f;
+	explorerMovingNorthEast.speed = 700.0f;
 
 	//Moving LeftBack
 	explorerMovingNorthWest.PushBack({ 450, 312, 75, 156 });
@@ -490,7 +490,7 @@ void ExplorerSprites()
 	explorerMovingNorthWest.PushBack({ 675, 312, 75, 156 });
 	explorerMovingNorthWest.PushBack({ 750, 312, 75, 156 });
 	explorerMovingNorthWest.PushBack({ 825, 312, 75, 156 });
-	explorerMovingNorthWest.speed = 500.0f;
+	explorerMovingNorthWest.speed = 700.0f;
 
 
 	//Moving RightFront
@@ -500,7 +500,7 @@ void ExplorerSprites()
 	explorerMovingSouthEast.PushBack({ 225, 468, 75, 156 });
 	explorerMovingSouthEast.PushBack({ 300, 468, 75, 156 });
 	explorerMovingSouthEast.PushBack({ 375, 468, 75, 156 });
-	explorerMovingSouthEast.speed = 500.0f;
+	explorerMovingSouthEast.speed = 700.0f;
 
 	//Moving LeftFront
 	explorerMovingSouthWest.PushBack({ 450, 468, 75, 156 });
@@ -509,7 +509,7 @@ void ExplorerSprites()
 	explorerMovingSouthWest.PushBack({ 675, 468, 75, 156 });
 	explorerMovingSouthWest.PushBack({ 750, 468, 75, 156 });
 	explorerMovingSouthWest.PushBack({ 825, 468, 75, 156 });
-	explorerMovingSouthWest.speed = 500.0f;
+	explorerMovingSouthWest.speed = 700.0f;
 
 	//Moving Back
 	explorerMovingNorth.PushBack({ 0, 624, 75, 156 });
@@ -518,7 +518,7 @@ void ExplorerSprites()
 	explorerMovingNorth.PushBack({ 225, 624, 75, 156 });
 	explorerMovingNorth.PushBack({ 300, 624, 75, 156 });
 	explorerMovingNorth.PushBack({ 375, 624, 75, 156 });
-	explorerMovingNorth.speed = 500.0f;
+	explorerMovingNorth.speed = 700.0f;
 
 	//Moving Front
 	explorerMovingSouth.PushBack({ 450, 624, 75, 156 });
@@ -527,8 +527,9 @@ void ExplorerSprites()
 	explorerMovingSouth.PushBack({ 675, 624, 75, 156 });
 	explorerMovingSouth.PushBack({ 750, 624, 75, 156 });
 	explorerMovingSouth.PushBack({ 825, 624, 75, 156 });
-	explorerMovingSouth.speed = 500.0f;
+	explorerMovingSouth.speed = 700.0f;
 
+	//Death
 	explorerDeath.PushBack({ 0, 780, 75, 156 });
 	explorerDeath.PushBack({ 75, 780, 75, 156 });
 	explorerDeath.PushBack({ 150, 780, 75, 156 });
@@ -565,7 +566,7 @@ void RangerSprites()
 	//Idle 
 	rangerIdle.PushBack({ 948, 0, 75, 156 });
 	rangerIdle.PushBack({ 1027, 0, 75, 156 });
-	rangerIdle.speed = 50.0f;
+	rangerIdle.speed = 60.0f;
 
 	//MOVING
 
@@ -576,7 +577,7 @@ void RangerSprites()
 	rangerMovingEast.PushBack({ 233, 156, 75, 156 });
 	rangerMovingEast.PushBack({ 312, 156, 75, 156 });
 	rangerMovingEast.PushBack({ 391, 156, 75, 156 });
-	rangerMovingEast.speed = 500.0f;
+	rangerMovingEast.speed = 600.0f;
 
 	//Moving Left
 	rangerMovingWest.PushBack({ 470, 156, 75, 156 });
@@ -585,7 +586,7 @@ void RangerSprites()
 	rangerMovingWest.PushBack({ 707, 156, 75, 156 });
 	rangerMovingWest.PushBack({ 786, 156, 75, 156 });
 	rangerMovingWest.PushBack({ 865, 156, 75, 156 });
-	rangerMovingWest.speed = 500.0f;
+	rangerMovingWest.speed = 600.0f;
 
 	//Moving RightBack
 	rangerMovingNorthEast.PushBack({ 0, 312, 75, 156 });
@@ -594,7 +595,7 @@ void RangerSprites()
 	rangerMovingNorthEast.PushBack({ 233, 312, 75, 156 });
 	rangerMovingNorthEast.PushBack({ 312, 312, 75, 156 });
 	rangerMovingNorthEast.PushBack({ 391, 312, 75, 156 });
-	rangerMovingNorthEast.speed = 500.0f;
+	rangerMovingNorthEast.speed = 600.0f;
 
 	//Moving LeftBack
 	rangerMovingNorthWest.PushBack({ 470, 312, 75, 156 });
@@ -603,7 +604,7 @@ void RangerSprites()
 	rangerMovingNorthWest.PushBack({ 707, 312, 75, 156 });
 	rangerMovingNorthWest.PushBack({ 786, 312, 75, 156 });
 	rangerMovingNorthWest.PushBack({ 865, 312, 75, 156 });
-	rangerMovingNorthWest.speed = 500.0f;
+	rangerMovingNorthWest.speed = 600.0f;
 
 
 	//Moving RightFront
@@ -613,7 +614,7 @@ void RangerSprites()
 	rangerMovingSouthEast.PushBack({ 233, 468, 75, 156 });
 	rangerMovingSouthEast.PushBack({ 312, 468, 75, 156 });
 	rangerMovingSouthEast.PushBack({ 391, 468, 75, 156 });
-	rangerMovingSouthEast.speed = 500.0f;
+	rangerMovingSouthEast.speed = 600.0f;
 
 	//Moving LeftFront
 	rangerMovingSouthWest.PushBack({ 470, 468, 75, 156 });
@@ -622,7 +623,7 @@ void RangerSprites()
 	rangerMovingSouthWest.PushBack({ 707, 468, 75, 156 });
 	rangerMovingSouthWest.PushBack({ 786, 468, 75, 156 });
 	rangerMovingSouthWest.PushBack({ 865, 468, 75, 156 });
-	rangerMovingSouthWest.speed = 500.0f;
+	rangerMovingSouthWest.speed = 600.0f;
 
 	//Moving Back
 	rangerMovingNorth.PushBack({ 0, 624, 75, 156 });
@@ -631,7 +632,7 @@ void RangerSprites()
 	rangerMovingNorth.PushBack({ 233, 624, 75, 156 });
 	rangerMovingNorth.PushBack({ 312, 624, 75, 156 });
 	rangerMovingNorth.PushBack({ 391, 624, 75, 156 });
-	rangerMovingNorth.speed = 500.0f;
+	rangerMovingNorth.speed = 600.0f;
 
 	//Moving Front
 	rangerMovingSouth.PushBack({ 470, 624, 75, 156 });
@@ -640,7 +641,7 @@ void RangerSprites()
 	rangerMovingSouth.PushBack({ 707, 624, 75, 156 });
 	rangerMovingSouth.PushBack({ 786, 624, 75, 156 });
 	rangerMovingSouth.PushBack({ 865, 624, 75, 156 });
-	rangerMovingSouth.speed = 500.0f;
+	rangerMovingSouth.speed = 600.0f;
 
 
 	//ATTACK
