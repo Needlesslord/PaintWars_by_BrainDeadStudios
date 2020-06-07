@@ -83,7 +83,7 @@ bool j1Video::GrabAVIFrame()
 		frame++;
 	}
 	i++;
-	if (frame >= lastFrame || App->input->GetMouseButtonDown(SDL_MOUSEBUTTONDOWN) == KEY_DOWN)
+	if (frame >= lastFrame || App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN)
 	{
 		frame = 0;
 		isVideoFinished = true; 
