@@ -40,6 +40,7 @@ public:
 	j1UIElement* settingsButton = nullptr;
 	j1UIElement* exitButton = nullptr;
 	j1UIElement* backgroundImage = nullptr;
+	j1UIElement* newLabel = nullptr;
 
 	j1UIElement* Play_Text = nullptr;
 	j1UIElement* Score_Text = nullptr;

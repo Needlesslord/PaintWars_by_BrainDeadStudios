@@ -13,6 +13,7 @@
 #include "j1Audio.h"
 #include "j1Player.h"
 #include "SDL_mixer\include\SDL_mixer.h"
+#include "j1FontsUI.h"
 
 MenuScene::MenuScene() : Scene(SCENES::MENU_SCENE)
 {
@@ -230,6 +231,7 @@ bool MenuScene::CleanUp()
 void MenuScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 {
 	if (FinishedPosition == true) {
+
 		if (element == playButton && type == GUI_Event::EVENT_ONCLICK)
 		{
 			//App->transition_manager->CreateFadeToColour(SCENES::START_SCENE);
@@ -256,7 +258,15 @@ void MenuScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		if (element == scoreButton && type == GUI_Event::EVENT_ONCLICK) {
 			App->transition_manager->CreateSlide(SCENES::SCORE_SCENE, 0.5f, true);
 		}
+
+		if (type == GUI_Event::EVENT_HOVER) {
+			int font_name = App->fonts->Load("textures/fonts/font_white.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
+			App->fonts->BlitText(element->map_position.x + element->inside_position.x, element->map_position.y + element->inside_position.y, font_name, element->text, element->layer);
+		}
+
+		
 	}
+
 }
 
 

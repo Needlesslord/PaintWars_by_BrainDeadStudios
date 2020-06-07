@@ -6,6 +6,7 @@
 #include "j1Audio.h"
 #include "SDL_mixer\include\SDL_mixer.h"
 #include "j1Video.h"
+#include "j1Input.h"
 
 j1Video::j1Video() : j1Module()
 {
@@ -77,12 +78,12 @@ bool j1Video::GrabAVIFrame()
 	App->render->RenderQueueUI(2, texture, 0, 0, { 0, 0, 2560, 1440 }, SDL_FLIP_VERTICAL);
 
 
-	if (i % 2 == 0 && i % 4 != 0)
+	if (i % 2 == 0)
 	{
 		frame++;
 	}
 	i++;
-	if (frame >= lastFrame)
+	if (frame >= lastFrame || App->input->GetMouseButtonDown(SDL_MOUSEBUTTONDOWN) == KEY_DOWN)
 	{
 		frame = 0;
 		isVideoFinished = true; 

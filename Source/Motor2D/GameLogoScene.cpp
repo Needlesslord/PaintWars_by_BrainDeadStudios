@@ -141,6 +141,7 @@ void GameLogoScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		App->transition_manager->CreateAlternatingBars(SCENES::MENU_SCENE);
 		
 	}
+
 }
 
 //aaaa

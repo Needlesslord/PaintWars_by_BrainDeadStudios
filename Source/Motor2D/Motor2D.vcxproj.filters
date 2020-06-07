@@ -214,7 +214,9 @@
     <ClCompile Include="j1FogOfWar.cpp">
       <Filter>Motor  ========\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="j1Video.cpp" />
+    <ClCompile Include="j1Video.cpp">
+      <Filter>Motor  ========\Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -454,8 +456,10 @@
     <ClInclude Include="j1FogOfWar.h">
       <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="j1Video.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="j1Video.h">
+      <Filter>Motor  ========\Tools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">
