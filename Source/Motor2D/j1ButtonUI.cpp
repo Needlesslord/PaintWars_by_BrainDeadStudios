@@ -137,7 +137,7 @@ bool j1ButtonUI::Update(float dt)
 		{
 
 		case TEXTURE::ATLAS:
-			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
 
 
 				App->render->RenderQueueUI(layer, App->tex->Button_UI_Texture_General_ATLAS, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
@@ -156,7 +156,7 @@ bool j1ButtonUI::Update(float dt)
 
 			//MINIMAPS
 		case TEXTURE::MINIMAP_FULL_FOREST:
-			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
 
 
 				App->render->RenderQueueUI(layer, App->tex->Button_UI_Texture_Minimap_FULL_SCALE_forest, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
@@ -175,7 +175,7 @@ bool j1ButtonUI::Update(float dt)
 
 
 		case TEXTURE::MINIMAP_MINI_FOREST:
-			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
 
 
 				App->render->RenderQueueUI(layer, App->tex->Button_UI_Texture_Minimap_MINI_SCALE_forest, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
@@ -193,7 +193,7 @@ bool j1ButtonUI::Update(float dt)
 			break;
 
 		case TEXTURE::MINIMAP_FULL_SNOW:
-			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
 
 
 				App->render->RenderQueueUI(layer, App->tex->Button_UI_Texture_Minimap_FULL_SCALE_snow, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
@@ -212,7 +212,7 @@ bool j1ButtonUI::Update(float dt)
 
 
 		case TEXTURE::MINIMAP_MINI_SNOW:
-			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
 
 
 				App->render->RenderQueueUI(layer, App->tex->Button_UI_Texture_Minimap_MINI_SCALE_snow, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
@@ -230,7 +230,7 @@ bool j1ButtonUI::Update(float dt)
 			break;
 
 		case TEXTURE::MINIMAP_FULL_VOLCANO:
-			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
 
 
 				App->render->RenderQueueUI(layer, App->tex->Button_UI_Texture_Minimap_FULL_SCALE_volcano, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
@@ -249,7 +249,7 @@ bool j1ButtonUI::Update(float dt)
 
 
 		case TEXTURE::MINIMAP_MINI_VOLCANO:
-			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
 
 
 				App->render->RenderQueueUI(layer, App->tex->Button_UI_Texture_Minimap_MINI_SCALE_volcano, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
@@ -269,7 +269,7 @@ bool j1ButtonUI::Update(float dt)
 
 
 		case TEXTURE::MINIMAP_CAMERA:
-			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
 
 
 				App->render->RenderQueueUI(layer, App->tex->Button_UI_Texture_Minimap_CAMERA_FOLLOW, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
@@ -288,7 +288,7 @@ bool j1ButtonUI::Update(float dt)
 
 
 		case TEXTURE::CONTINUE_LETTERS:
-			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
 
 
 				App->render->RenderQueueUI(layer, App->tex->Button_UI_Texture_ContinueLetters_WIN_LOSE_SCENE, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
@@ -307,7 +307,7 @@ bool j1ButtonUI::Update(float dt)
 
 
 		case TEXTURE::LOGO:
-			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
 
 
 				App->render->RenderQueueUI(layer, App->tex->Button_UI_Texture_LogoImage_LOGO_SCENE, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
@@ -328,7 +328,7 @@ bool j1ButtonUI::Update(float dt)
 
 
 		case TEXTURE::TEAM_LOGO:
-			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
 
 
 				App->render->RenderQueueUI(layer, App->tex->Button_UI_Texture_TeamLogoImage_TEAM_LOGO_SCENE, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
