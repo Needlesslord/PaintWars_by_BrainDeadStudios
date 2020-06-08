@@ -75,7 +75,7 @@ void Particle::switchParticleState()
 
 bool Particle::Draw()
 {
-	//if (App->scenes->In_Main_Menu == false)
+	//if (App->scenes->current_scene == SCENES::GAME_SCENE)
 	//{
 		if (pTexture != nullptr)
 			App->render->RenderQueue(2, pTexture, pLocation.x, pLocation.y + 16, { 0, 0, pRect.w, pRect.h }, false, 0.0f, 0, 0, 0, remainingLifetime);

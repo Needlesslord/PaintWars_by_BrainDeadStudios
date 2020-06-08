@@ -38,13 +38,13 @@ void ParticleSystem::loadSystem()
 
 	if (systemProps.type == PARTICLE_TYPES::CLOUD)
 	{
-		systemProps.Velocity = { -0.25, 0 };
+		systemProps.Velocity = { -2.0, 0 };
 		systemProps.lifetime = 60;
 		systemProps.Acceleration = { 0, 0 };
-		systemProps.rect = { 0, 0, 200, 200 };
+		systemProps.rect = { 0, 0, 200, 83 };
 		systemProps.lifetimeSubstraction = 0;
 		systemProps.tex = App->pmanager->cloudTexture;
-		numberOfParticles = 3;
+		numberOfParticles = 1;
 	}
 	else if (systemProps.type == PARTICLE_TYPES::SMOKE)
 	{

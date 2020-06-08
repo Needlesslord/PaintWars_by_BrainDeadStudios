@@ -9,7 +9,7 @@
 #include "j1Window.h"
 #include "j1Textures.h"
 
-#define CLOUD_MAX_TIME 3
+#define CLOUD_MAX_TIME 1
 
 j1ParticleManager::j1ParticleManager()
 {
@@ -36,7 +36,7 @@ j1ParticleManager::~j1ParticleManager()
 bool j1ParticleManager::Start()
 {
 	//projectileTexture = App->tex->Load("textures/particles/cannonball-texture.png");
-	//cloudTexture = App->tex->Load("textures/particles/cloud-texture.png");
+	cloudTexture = App->tex->Load("textures/particle_cloud.png");
 	//dustTexture = App->tex->Load("textures/particles/dust-texture.png");
 	//explosionTexture = App->tex->Load("textures/particles/explosion-texture.png");
 	//fireTexture = App->tex->Load("textures/particles/fire-texture.png");
@@ -108,7 +108,7 @@ bool j1ParticleManager::Update(float dt)
 		//test.x -= App->render->camera.x / App->win->GetScale();
 		//test.y -= App->render->camera.y / App->win->GetScale();
 
-		App->pmanager->createSystem(PARTICLE_TYPES::SMOKE, { (float)test.x, (float)test.y }, 0);
+		App->pmanager->createSystem(PARTICLE_TYPES::CLOUD, { (float)test.x, (float)test.y }, 0);
 		LOG("BALL CREATED AT  X:%.2f Y:%.2f", (float)test.x, (float)test.y);
 	}
 
