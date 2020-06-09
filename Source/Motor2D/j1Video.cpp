@@ -23,7 +23,7 @@ bool j1Video::Update(float dt)
 	{
 		GrabAVIFrame();
 	}else
-		Mix_PauseMusic();
+		//Mix_PauseMusic();
 	return true;
 }
 
@@ -87,6 +87,7 @@ bool j1Video::GrabAVIFrame()
 	{
 		frame = 0;
 		isVideoFinished = true; 
+		Mix_HaltMusic();
 	}
 	
 	
