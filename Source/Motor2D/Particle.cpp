@@ -49,7 +49,7 @@ void Particle::loadProperties(ParticleProps properties)
 	Props = properties;
 
 	if (pType == PARTICLE_TYPES::CLOUD)
-		pLocation = { (pLocation.x + (float)(100 * (Random::Randomize() - 0.5))), (pLocation.y + (float)(100 * (Random::Randomize() - 0.5))) };
+		pLocation = { (pLocation.x + (float)(100 * (Random::Randomize() - 0.5))), (pLocation.y + (float)(200 * (Random::Randomize() - 0.5))) };
 
 	if (pType == PARTICLE_TYPES::EXPLOSION)
 		pVelocity = { (float)((Random::Randomize() - 0.5)), (float)((Random::Randomize()) * (-1)) };
@@ -59,6 +59,11 @@ void Particle::loadProperties(ParticleProps properties)
 
 	if (pType == PARTICLE_TYPES::DUST)
 		pVelocity = { (float)(0.5 * (Random::Randomize() - 0.5)), (float)(-0.2 * (Random::Randomize())) };
+
+	if (pType == PARTICLE_TYPES::SNOW)
+		pLocation = { (pLocation.x + (float)(100 * (Random::Randomize() - 0.5))) - 2, (pLocation.y + (float)(200 * (Random::Randomize() - 0.5))) };
+
+
 }
 
 void Particle::switchParticleState()
