@@ -1,5 +1,7 @@
 #include "p2Log.h"
 
+#include <algorithm>
+
 #include "j1Module.h"
 #include "j1App.h"
 #include "j1Audio.h"
@@ -22,6 +24,18 @@
 #include "j1UI_Manager.h"
 #include "j1Particles.h"
 #include "j1SceneManager.h"
+
+bool j1EntityManager::customLess(Entity* a, Entity* b)
+{
+	if ((a->entityCategory == ENTITY_CATEGORY::ENTITY_CATEGORY_DYNAMIC_ENTITY && b->entityCategory == ENTITY_CATEGORY::ENTITY_CATEGORY_DYNAMIC_ENTITY) ||
+		(a->entityCategory == ENTITY_CATEGORY::ENTITY_CATEGORY_STATIC_ENTITY && b->entityCategory == ENTITY_CATEGORY::ENTITY_CATEGORY_STATIC_ENTITY)     )
+		return ((float)a->pos.y + (float)a->size.y) < ((float)b->pos.y + (float)b->size.y);
+	else if (a->entityCategory == ENTITY_CATEGORY::ENTITY_CATEGORY_DYNAMIC_ENTITY && b->entityCategory == ENTITY_CATEGORY::ENTITY_CATEGORY_STATIC_ENTITY)
+		return ((float)a->pos.y + (float)a->size.y) < ((float)b->pos.y + ((float)b->size.y / 1.4));
+	else if (a->entityCategory == ENTITY_CATEGORY::ENTITY_CATEGORY_STATIC_ENTITY && b->entityCategory == ENTITY_CATEGORY::ENTITY_CATEGORY_DYNAMIC_ENTITY)
+		return ((float)a->pos.y + ((float)a->size.y / 1.4)) < ((float)b->pos.y + (float)b->size.y);
+}
+
 
 //testing testing testing
 j1EntityManager::j1EntityManager()
@@ -1180,7 +1194,13 @@ bool j1EntityManager::Update(float dt) {
 
 	//if (App->PAUSE_ACTIVE == true) {
 
+		// Sort Active Entities
+	
+		activeEntities.sort(customLess);
+		
+
 		// Draw all active entities
+
 		list<Entity*>::iterator entitiesToDraw = activeEntities.begin();
 		while (entitiesToDraw != activeEntities.end()) {
 
