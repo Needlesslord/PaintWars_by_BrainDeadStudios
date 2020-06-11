@@ -35,16 +35,17 @@ ParticleSystem::~ParticleSystem()
 void ParticleSystem::loadSystem()
 {
 	systemProps.type = systemType;
+	float random = rand() % -2 - 1;
 
 	if (systemProps.type == PARTICLE_TYPES::CLOUD)
 	{
-		systemProps.Velocity = { -0.25, 0 };
+		systemProps.Velocity = { -2.0, 0 };
 		systemProps.lifetime = 60;
 		systemProps.Acceleration = { 0, 0 };
-		systemProps.rect = { 0, 0, 200, 200 };
+		systemProps.rect = { 0, 0, 200, 121 };
 		systemProps.lifetimeSubstraction = 0;
 		systemProps.tex = App->pmanager->cloudTexture;
-		numberOfParticles = 3;
+		numberOfParticles = 1;
 	}
 	else if (systemProps.type == PARTICLE_TYPES::SMOKE)
 	{
@@ -83,7 +84,7 @@ void ParticleSystem::loadSystem()
 		systemProps.rect = { 0, 0, 25, 20 };
 		systemProps.lifetimeSubstraction = 1;
 		systemProps.tex = App->pmanager->dustTexture;
-		numberOfParticles = 3;
+		numberOfParticles = 1;
 	}
 	else if (systemProps.type == PARTICLE_TYPES::CANNONBALL)
 	{
@@ -93,6 +94,16 @@ void ParticleSystem::loadSystem()
 		systemProps.lifetimeSubstraction = 0;
 		systemProps.tex = App->pmanager->projectileTexture;
 		numberOfParticles = 50;
+	}
+	else if (systemProps.type == PARTICLE_TYPES::SNOW)
+	{
+		systemProps.Velocity = { -5, 2 };
+		systemProps.lifetime = 120;
+		systemProps.Acceleration = { 0, 0 };
+		systemProps.rect = { 0, 0, 7, 7 };
+		systemProps.lifetimeSubstraction = 0;
+		systemProps.tex = App->pmanager->smokeTexture;
+		numberOfParticles = 5;
 	}
 	else
 	{

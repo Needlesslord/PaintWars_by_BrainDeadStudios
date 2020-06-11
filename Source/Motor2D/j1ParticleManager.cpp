@@ -9,7 +9,7 @@
 #include "j1Window.h"
 #include "j1Textures.h"
 
-#define CLOUD_MAX_TIME 3
+#define CLOUD_MAX_TIME 2
 
 j1ParticleManager::j1ParticleManager()
 {
@@ -19,6 +19,8 @@ j1ParticleManager::j1ParticleManager()
 	CloudTimer = CLOUD_MAX_TIME;
 	cloudVariableX = 0;
 	cloudVariableY = 0;
+	snowVariableX = 0;
+	snowVariableY = 0;
 	FirstClouds = true;
 	smokeTexture = nullptr;
 	cloudTexture = nullptr;
@@ -36,7 +38,7 @@ j1ParticleManager::~j1ParticleManager()
 bool j1ParticleManager::Start()
 {
 	//projectileTexture = App->tex->Load("textures/particles/cannonball-texture.png");
-	//cloudTexture = App->tex->Load("textures/particles/cloud-texture.png");
+	cloudTexture = App->tex->Load("textures/particle_cloud.png");
 	//dustTexture = App->tex->Load("textures/particles/dust-texture.png");
 	//explosionTexture = App->tex->Load("textures/particles/explosion-texture.png");
 	//fireTexture = App->tex->Load("textures/particles/fire-texture.png");
@@ -108,7 +110,7 @@ bool j1ParticleManager::Update(float dt)
 		//test.x -= App->render->camera.x / App->win->GetScale();
 		//test.y -= App->render->camera.y / App->win->GetScale();
 
-		App->pmanager->createSystem(PARTICLE_TYPES::SMOKE, { (float)test.x, (float)test.y }, 0);
+		App->pmanager->createSystem(PARTICLE_TYPES::SNOW, { (float)test.x, (float)test.y }, 0);
 		LOG("BALL CREATED AT  X:%.2f Y:%.2f", (float)test.x, (float)test.y);
 	}
 
@@ -118,16 +120,23 @@ bool j1ParticleManager::Update(float dt)
 	{
 		if (FirstClouds == true)
 		{
-			for (int CloudsCounter = 0; CloudsCounter < 40; CloudsCounter++)
+			for (int CloudsCounter = 0; CloudsCounter < 60; CloudsCounter++)
 			{
 				cloudVariableY = (3200 * (2 * (Random::Randomize() - 0.5)));
 				cloudVariableX = (3200 * (2 * (Random::Randomize() - 0.5)));
 
+				snowVariableY = (3200 * (2 * (Random::Randomize() - 0.5)));
+				snowVariableX = (3200 * (2 * (Random::Randomize() - 0.5)));
+
 				iPoint pos = { 3200 + cloudVariableX, 3200 + cloudVariableY };
+				iPoint pos2 = { 3200 + snowVariableX, 3200 + snowVariableY };
 				App->render->ScreenToWorld(pos.x, pos.y);
+				App->render->ScreenToWorld(pos2.x, pos2.y);
 
 				fPoint fpos = { (float)pos.x,  (float)pos.y };
+				fPoint fpos2 = { (float)pos2.x,  (float)pos2.y };
 				App->pmanager->createSystem(PARTICLE_TYPES::CLOUD, fpos, 300);
+				App->pmanager->createSystem(PARTICLE_TYPES::SNOW, fpos2, 300);
 			}
 
 			TheCannonSystem = createSystem(PARTICLE_TYPES::CANNONBALL, { 0, 0 }, 0);
@@ -140,17 +149,29 @@ bool j1ParticleManager::Update(float dt)
 		if (CloudTimer <= 0)
 		{
 			cloudVariableY = (3200 * (2 * (Random::Randomize() - 0.5)));
+			snowVariableY = (3200 * (2 * (Random::Randomize() - 0.5)));
 
 			if (cloudVariableY < 0)
 				cloudVariableX = -cloudVariableY;
 			else
 				cloudVariableX = cloudVariableY;
 
+
+			if (snowVariableY < 0)
+				snowVariableX = -snowVariableY;
+			else
+				snowVariableX = snowVariableY;
+
 			iPoint pos = { 6300 - cloudVariableX, 3200 + cloudVariableY };
 			App->render->ScreenToWorld(pos.x, pos.y);
 
+			iPoint pos2 = { 6300 - snowVariableX, 3200 + snowVariableY };
+			App->render->ScreenToWorld(pos2.x, pos2.y);
+
 			fPoint fpos = { (float)pos.x,  (float)pos.y };
+			fPoint fpos2 = { (float)pos2.x,  (float)pos2.y };
 			App->pmanager->createSystem(PARTICLE_TYPES::CLOUD, fpos, 300);
+			App->pmanager->createSystem(PARTICLE_TYPES::SNOW, fpos2, 300);
 			//LOG("CLOUD CREATED AT  X:%.2f Y:%.2f", fpos.x, fpos.y);
 
 			CloudTimer = CLOUD_MAX_TIME;

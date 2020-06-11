@@ -50,6 +50,8 @@ private:
 	float CloudTimer;
 	int cloudVariableY;
 	int cloudVariableX;
+	int snowVariableX;
+	int snowVariableY;
 	bool FirstClouds;
 };
 

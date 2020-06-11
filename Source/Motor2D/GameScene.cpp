@@ -461,10 +461,10 @@ bool GameScene::Start()
 		App->audio->PlayingMenuMusic = false;
 	}
 
-	//if (App->audio->PlayingIngameAudio != true) {
-	//	App->audio->PlayMusic("audio/music/music_scene_inGame.ogg");
-	//	App->audio->PlayingIngameAudio = true;
-	//}
+	if (App->audio->PlayingIngameAudio != true) {
+		App->audio->PlayMusic("audio/music/music_scene_inGame.ogg");
+		App->audio->PlayingIngameAudio = true;
+	}
 
 	App->player->gameTimer.Start();
 

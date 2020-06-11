@@ -21,7 +21,8 @@ enum class PARTICLE_TYPES
 	WIND,
 	CLOUD,
 	DUST,
-	CANNONBALL
+	CANNONBALL,
+	SNOW
 };
 
 struct ParticleProps
