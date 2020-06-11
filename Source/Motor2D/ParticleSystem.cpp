@@ -103,7 +103,7 @@ void ParticleSystem::loadSystem()
 		systemProps.rect = { 0, 0, 7, 7 };
 		systemProps.lifetimeSubstraction = 0;
 		systemProps.tex = App->pmanager->smokeTexture;
-		numberOfParticles = 40;
+		numberOfParticles = 5;
 	}
 	else
 	{
