@@ -42,12 +42,6 @@ public:
 	j1UIElement* backgroundImage = nullptr;
 	j1UIElement* newLabel = nullptr;
 
-	j1UIElement* Play_Text = nullptr;
-	j1UIElement* Score_Text = nullptr;
-	j1UIElement* Settings_Text = nullptr;
-	j1UIElement* Exit_Text = nullptr;
-	j1UIElement* Credits_Text = nullptr;
-
 
 private:
 

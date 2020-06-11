@@ -57,6 +57,11 @@ bool j1TextUI::Start()
 		font_name = App->fonts->Load("textures/fonts/font_red_small.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
 		break;
 
+	case  FONT::FONT_MEDIUM_RED:
+
+		font_name = App->fonts->Load("textures/fonts/font_red.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
+		break;
+
 	}
 
 	return true;

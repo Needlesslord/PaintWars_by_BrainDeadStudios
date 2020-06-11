@@ -111,7 +111,25 @@ bool j1ButtonUI::Start()
 
 
 	if (text != nullptr)
-		label = App->gui->AddElement(TypeOfUI::GUI_LABEL, this, map_position, inside_position, true, true, { 0,0,0,0 }, text, nullptr, TEXTURE::NONE, fontType, layer + 1);
+	{
+		label = App->gui->AddElement(TypeOfUI::GUI_LABEL, this, map_position, inside_position, true, true, { 0,0,0,0 }, text, nullptr, TEXTURE::NONE, fontType, layer);
+		if (fontType == FONT::FONT_EXTRA_SMALL)
+		{
+			label_hover = App->gui->AddElement(TypeOfUI::GUI_LABEL, this, map_position, inside_position, false, false, { 0,0,0,0 }, text, nullptr, TEXTURE::NONE, FONT::FONT_EXTRA_SMALL_WHITE, layer + 3);
+			label_click = App->gui->AddElement(TypeOfUI::GUI_LABEL, this, map_position, inside_position, false, false, { 0,0,0,0 }, text, nullptr, TEXTURE::NONE, FONT::FONT_EXTRA_SMALL_RED, layer + 3);
+		}																								
+		else if (fontType == FONT::FONT_SMALL)															
+		{																								
+			label_hover = App->gui->AddElement(TypeOfUI::GUI_LABEL, this, map_position, inside_position, false, false, { 0,0,0,0 }, text, nullptr, TEXTURE::NONE, FONT::FONT_SMALL_WHITE, layer + 3);
+			label_click = App->gui->AddElement(TypeOfUI::GUI_LABEL, this, map_position, inside_position, false, false, { 0,0,0,0 }, text, nullptr, TEXTURE::NONE, FONT::FONT_SMALL_RED, layer + 3);
+		}																								
+		else if (fontType == FONT::FONT_MEDIUM)															
+		{																								
+			label_hover = App->gui->AddElement(TypeOfUI::GUI_LABEL, this, map_position, inside_position, false, false, { 0,0,0,0 }, text, nullptr, TEXTURE::NONE, FONT::FONT_MEDIUM_WHITE, layer + 3);
+			label_click = App->gui->AddElement(TypeOfUI::GUI_LABEL, this, map_position, inside_position, false, false, { 0,0,0,0 }, text, nullptr, TEXTURE::NONE, FONT::FONT_MEDIUM_RED, layer + 3);
+		}
+		
+	}
 
 	return true;
 }
@@ -137,20 +155,57 @@ bool j1ButtonUI::Update(float dt)
 		{
 
 		case TEXTURE::ATLAS:
-			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
+			if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 
+				Mix_PlayChannel(-1, App->audio->Click_Button_Sound, 0);				
 
-				App->render->RenderQueueUI(layer, App->tex->Button_UI_Texture_General_ATLAS, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
-				Mix_PlayChannel(-1, App->audio->Click_Button_Sound, 0);
+			}
+			else if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
+
 				Mouse_On_Click();
+
+			}
+			else if (above && interactable && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
+				if (text != nullptr)
+				{
+					App->render->RenderQueueUI(layer, App->tex->Button_UI_Texture_General_ATLAS, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, click_rect, false, true, 0u, 0u, 0u, 255, true);
+					if (label_click->enabled == false)
+					{
+						label->enabled = false;
+						label_click->enabled = true;
+					}
+				}
 
 			}
 			else if (above && interactable) {
 				App->render->RenderQueueUI(layer, App->tex->Button_UI_Texture_General_ATLAS, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, hover_rect, false, true, 0u, 0u, 0u, 255, true);
-
+				if (text != nullptr)
+				{
+					if (label_hover->enabled == false)
+					{
+						label->enabled = false;
+						label_hover->enabled = true;
+					}
+						
+				}
+					
 			}
 			else {
 				App->render->RenderQueueUI(layer, App->tex->Button_UI_Texture_General_ATLAS, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0u, 0u, 0u, 255, true);
+				if (text != nullptr)
+				{
+					if (label_hover->enabled == true)
+					{
+						label->enabled = true;
+						label_hover->enabled = false;
+					}
+					if (label_click->enabled == true)
+					{
+						label->enabled = true;
+						label_click->enabled = false;
+					}
+						
+				}
 			}
 			break;
 
@@ -352,6 +407,16 @@ bool j1ButtonUI::Update(float dt)
 
 
 	}
+	else
+	{
+	if (label != nullptr)
+	{
+		label->enabled = false;
+		label_hover->enabled = false;
+		label_click->enabled = false;
+	}
+	 
+	}
 
 	return true;
 }
@@ -470,6 +535,10 @@ bool j1ButtonUI::CleanUp()
 
 	if (label != nullptr)
 		label->CleanUp();
+	if (label_hover != nullptr)
+		label_click->CleanUp();
+	if (label_click != nullptr)
+		label_click->CleanUp();
 
 	return true;
 }
