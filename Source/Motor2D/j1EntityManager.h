@@ -122,6 +122,11 @@ public:
 
 	bool spacePressed = false;
 
+
+	static bool customLess(Entity* a, Entity* b);
+
+
+
 protected:
 
 		// Allies
