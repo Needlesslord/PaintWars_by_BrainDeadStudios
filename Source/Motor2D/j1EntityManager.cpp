@@ -820,46 +820,55 @@ bool j1EntityManager::Update(float dt) {
 							}
 						}
 
+
 						else if ((*checkAttackAnimation)->entityType == ENTITY_TYPE_RANGER) {
 
-							if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
+							if ((*checkAttackAnimation)->currentTile.x < (*checkAttackAnimation)->target->currentTile.x) {
 
-								(*checkAttackAnimation)->currentAnimation = &rangerAttackNorth;
+								if ((*checkAttackAnimation)->currentTile.y < (*checkAttackAnimation)->target->currentTile.y) {
+
+									(*checkAttackAnimation)->currentAnimation = &rangerAttackSouth;
+								}
+								else if ((*checkAttackAnimation)->currentTile.y > (*checkAttackAnimation)->target->currentTile.y) {
+
+									(*checkAttackAnimation)->currentAnimation = &rangerAttackEast;
+								}
+								else {
+
+									(*checkAttackAnimation)->currentAnimation = &rangerAttackSouthEast;
+								}
 							}
 
-							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+							else if ((*checkAttackAnimation)->currentTile.x > (*checkAttackAnimation)->target->currentTile.x) {
 
-								(*checkAttackAnimation)->currentAnimation = &rangerAttackNorthEast;
+								if ((*checkAttackAnimation)->currentTile.y < (*checkAttackAnimation)->target->currentTile.y) {
+
+									(*checkAttackAnimation)->currentAnimation = &rangerAttackWest;
+								}
+								else if ((*checkAttackAnimation)->currentTile.y > (*checkAttackAnimation)->target->currentTile.y) {
+
+									(*checkAttackAnimation)->currentAnimation = &rangerAttackNorth;
+								}
+								else {
+
+									(*checkAttackAnimation)->currentAnimation = &rangerAttackNorthWest;
+								}
 							}
 
-							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_EAST) {
+							else if ((*checkAttackAnimation)->currentTile.x == (*checkAttackAnimation)->target->currentTile.x) {
 
-								(*checkAttackAnimation)->currentAnimation = &rangerAttackEast;
-							}
+								if ((*checkAttackAnimation)->currentTile.y < (*checkAttackAnimation)->target->currentTile.y) {
 
-							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+									(*checkAttackAnimation)->currentAnimation = &rangerAttackSouthWest;
+								}
+								else if ((*checkAttackAnimation)->currentTile.y > (*checkAttackAnimation)->target->currentTile.y) {
 
-								(*checkAttackAnimation)->currentAnimation = &rangerAttackSouthEast;
-							}
+									(*checkAttackAnimation)->currentAnimation = &rangerAttackNorthEast;
+								}
+								else {
 
-							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH) {
-
-								(*checkAttackAnimation)->currentAnimation = &rangerAttackSouth;
-							}
-
-							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
-
-								(*checkAttackAnimation)->currentAnimation = &rangerAttackSouthWest;
-							}
-
-							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_WEST) {
-
-								(*checkAttackAnimation)->currentAnimation = &rangerAttackWest;
-							}
-
-							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_WEST) {
-
-								(*checkAttackAnimation)->currentAnimation = &rangerAttackNorthWest;
+									(*checkAttackAnimation)->currentAnimation = &rangerAttackSouth;
+								}
 							}
 						}
 
@@ -983,8 +992,8 @@ bool j1EntityManager::Update(float dt) {
 
 						i++;
 
-						if (i > (*unitsToAttackLogic)->currentPath.size())
-							isInRange = true;
+						if (i >= (*unitsToAttackLogic)->currentPath.size())
+							break;
 					}
 				}
 			}
