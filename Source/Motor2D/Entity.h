@@ -193,9 +193,17 @@ public:
 	// Paint speed
 	float extractionRate = 0.0f;
 
-protected:
+	bool operator < (Entity* other) const
+	{
+		return other->pos.y > pos.y;
+	}
+
 
 	iPoint size = { 0,0 };
+
+protected:
+
+	
 	iPoint offsetSize = { 0,0 };
 
 	float currLife = 0;
