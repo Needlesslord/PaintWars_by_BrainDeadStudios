@@ -23,15 +23,16 @@ enum class TypeOfUI
 
 enum class FONT
 {
+	FONT_EXTRA_SMALL,
 	FONT_SMALL,
 	FONT_MEDIUM,
-	FONT_MEDIUM_WHITE,
-	FONT_SMALL_WHITE,
-	FONT_LOSE_WIN,
-	FONT_EXTRA_SMALL,
 	FONT_EXTRA_SMALL_WHITE,
+	FONT_SMALL_WHITE,
+	FONT_MEDIUM_WHITE,
 	FONT_EXTRA_SMALL_RED,
-	FONT_SMALL_RED
+	FONT_SMALL_RED,
+	FONT_MEDIUM_RED,
+	FONT_LOSE_WIN
 };
 
 enum class SCROLL_TYPE
@@ -158,6 +159,8 @@ public:
 
 
 	j1UIElement* label = nullptr;
+	j1UIElement* label_hover = nullptr;
+	j1UIElement* label_click = nullptr;
 };
 
 

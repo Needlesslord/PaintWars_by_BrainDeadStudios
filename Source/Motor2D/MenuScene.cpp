@@ -44,33 +44,25 @@ bool MenuScene::Start()
 	App->scenes->IN_GAME_SCENE = false;
 	backgroundImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, true, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, TEXTURE::MAIN_IMAGE);
 
-	playButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 475, 100 }, { 70,25}, true, true, { 0, 0, 263, 91 }, "", App->scenes, TEXTURE::ATLAS);
+	playButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 475, 100 }, { 70,25}, true, true, { 0, 0, 263, 91 }, "PLAY", App->scenes, TEXTURE::ATLAS);
 	playButton->hover_rect = { 263, 0, 263, 91 };
 	playButton->click_rect = { 526, 0, 263, 91 };
 
-	settingsButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 490, 230 }, { 3,20 }, true, true, { 0, 334, 234, 79 }, "", App->scenes, TEXTURE::ATLAS);
+	settingsButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 490, 230 }, { 3,20 }, true, true, { 0, 334, 234, 79 }, "Settings", App->scenes, TEXTURE::ATLAS);
 	settingsButton->hover_rect = { 263, 334, 234, 79 };
 	settingsButton->click_rect = { 525, 334, 234, 79 };
 
-	scoreButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 490, 340 }, { 50,20 }, true, true, { 0, 334, 234, 79 }, "", App->scenes, TEXTURE::ATLAS);
+	scoreButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 490, 340 }, { 50,20 }, true, true, { 0, 334, 234, 79 }, "Score", App->scenes, TEXTURE::ATLAS);
 	scoreButton->hover_rect = { 263, 334, 234, 79 };
 	scoreButton->click_rect = { 525, 334, 234, 79 };
 
-	creditsButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 490, 450 }, { 25,20 }, true, true, { 0, 334, 234, 79 }, "", App->scenes, TEXTURE::ATLAS);
+	creditsButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 490, 450 }, { 25,20 }, true, true, { 0, 334, 234, 79 }, "Credits", App->scenes, TEXTURE::ATLAS);
 	creditsButton->hover_rect = { 263, 334, 234, 79 };
 	creditsButton->click_rect = { 525, 334, 234, 79 };
 
-	exitButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 505, 570 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "", App->scenes, TEXTURE::ATLAS);
+	exitButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 505, 570 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "Exit", App->scenes, TEXTURE::ATLAS);
 	exitButton->hover_rect = { 263, 658, 207, 71 };
 	exitButton->click_rect = { 525, 658, 207, 71 };
-
-
-
-	Play_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, playButton, { 475 , 125 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "PLAY", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
-	Settings_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, settingsButton, { 490 , 250 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "Settings", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
-	Score_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, scoreButton, { 490 , 360 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "Score", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
-	Credits_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, creditsButton, { 490 , 470 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "Credits", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
-	Exit_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, exitButton, { 505 , 585 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "Exit", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
 
 
 	if (App->audio->PlayingMenuMusic != true) {
@@ -97,11 +89,11 @@ bool MenuScene::PreUpdate()
 		scoreButton->map_position.x = -300;
 		creditsButton->map_position.x = 1300;
 		exitButton->map_position.x = -300;
-		Play_Text->map_position.x = -225;
-		Settings_Text->map_position.x = 1305;
-		Score_Text->map_position.x = -255;
-		Credits_Text->map_position.x = 1325;
-		Exit_Text->map_position.x = -250;
+		playButton->label->map_position.x = -225;
+		settingsButton->label->map_position.x = 1305;
+		scoreButton->label->map_position.x = -255;
+		creditsButton->label->map_position.x = 1325;
+		exitButton->label->map_position.x = -250;
 		ResetPosition = false;
 	}
 
@@ -125,36 +117,36 @@ bool MenuScene::Update(float dt)
 	if (playButton->map_position.x < 475 && App->transition_manager->is_transitioning == false) {
 		playButton->map_position = playButton->map_position = { playButton->map_position.x + 7,playButton->map_position.y };
 	}
-	if (Play_Text->map_position.x < 550 && App->transition_manager->is_transitioning == false) {
-		Play_Text->map_position = Play_Text->map_position = { Play_Text->map_position.x + 7,Play_Text->map_position.y };
+	if (playButton->label->map_position.x < 475 && App->transition_manager->is_transitioning == false) {
+		playButton->label->map_position = playButton->label->map_position = { playButton->label->map_position.x + 7,playButton->label->map_position.y };
 	}
 	//--
 	if (settingsButton->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
 		settingsButton->map_position = settingsButton->map_position = { settingsButton->map_position.x - 7,settingsButton->map_position.y };
 	}
-	if (Settings_Text->map_position.x > 495 && App->transition_manager->is_transitioning == false) {
-		Settings_Text->map_position = Settings_Text->map_position = { Settings_Text->map_position.x - 7,Settings_Text->map_position.y };
+	if (settingsButton->label->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
+		settingsButton->label->map_position = settingsButton->label->map_position = { settingsButton->label->map_position.x - 7,settingsButton->label->map_position.y };
 	}
 
 	if (scoreButton->map_position.x < 490 && App->transition_manager->is_transitioning == false) {
 		scoreButton->map_position = scoreButton->map_position = { scoreButton->map_position.x + 7,scoreButton->map_position.y };
 	}
-	if (Score_Text->map_position.x < 535 && App->transition_manager->is_transitioning == false) {
-		Score_Text->map_position = Score_Text->map_position = { Score_Text->map_position.x + 7,Score_Text->map_position.y };
+	if (scoreButton->label->map_position.x < 490 && App->transition_manager->is_transitioning == false) {
+		scoreButton->label->map_position = scoreButton->label->map_position = { scoreButton->label->map_position.x + 7,scoreButton->label->map_position.y };
 	}
 	//--
 	if (creditsButton->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
 		creditsButton->map_position = creditsButton->map_position = { creditsButton->map_position.x - 7,creditsButton->map_position.y };
 	}
-	if (Credits_Text->map_position.x > 515 && App->transition_manager->is_transitioning == false) {
-		Credits_Text->map_position = Credits_Text->map_position = { Credits_Text->map_position.x - 7,Credits_Text->map_position.y };
+	if (creditsButton->label->map_position.x > 495 && App->transition_manager->is_transitioning == false) {
+		creditsButton->label->map_position = creditsButton->label->map_position = { creditsButton->label->map_position.x - 7,creditsButton->label->map_position.y };
 	}
 
 	if (exitButton->map_position.x < 505 && App->transition_manager->is_transitioning == false) {
 		exitButton->map_position = exitButton->map_position = { exitButton->map_position.x + 7,exitButton->map_position.y };
 	}
-	if (Exit_Text->map_position.x < 555 && App->transition_manager->is_transitioning == false) {
-		Exit_Text->map_position = Exit_Text->map_position = { Exit_Text->map_position.x + 7,Exit_Text->map_position.y };
+	if (exitButton->label->map_position.x < 505 && App->transition_manager->is_transitioning == false) {
+		exitButton->label->map_position = exitButton->label->map_position = { exitButton->label->map_position.x + 7,exitButton->label->map_position.y };
 		
 	}
 	else if( App->transition_manager->is_transitioning == false) {
@@ -195,11 +187,6 @@ bool MenuScene::CleanUp()
 	settingsButton->CleanUp();
 	exitButton->CleanUp();
 	backgroundImage->CleanUp();
-	Play_Text->CleanUp();
-	Settings_Text->CleanUp();
-	Score_Text->CleanUp();
-	Credits_Text->CleanUp();
-	Exit_Text->CleanUp();
 
 
 	RELEASE(backgroundImage);
@@ -234,8 +221,6 @@ void MenuScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 		if (element == playButton && type == GUI_Event::EVENT_ONCLICK)
 		{
-			//App->transition_manager->CreateFadeToColour(SCENES::START_SCENE);
-			//App->transition_manager->CreateFadeToColour(SCENES::START_SCENE);
 			App->transition_manager->CreateSlide(SCENES::START_SCENE, 0.5f, true);
 		}
 
@@ -257,11 +242,6 @@ void MenuScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 		if (element == scoreButton && type == GUI_Event::EVENT_ONCLICK) {
 			App->transition_manager->CreateSlide(SCENES::SCORE_SCENE, 0.5f, true);
-		}
-
-		if (type == GUI_Event::EVENT_HOVER) {
-			int font_name = App->fonts->Load("textures/fonts/font_white.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef ghijklmnopqrstuvwxyz0123456789=/-", 2);
-			App->fonts->BlitText(element->map_position.x + element->inside_position.x, element->map_position.y + element->inside_position.y, font_name, element->text, element->layer);
 		}
 
 		

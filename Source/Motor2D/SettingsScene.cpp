@@ -80,15 +80,13 @@ bool SettingsScene::Start()
 	mutebutton->click_rect = { 0, 1031, 182, 58 };
 
 	
-	resetButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 500, 550 }, { 30,15 }, true, true, { 0, 658, 207, 71 },"", App->scenes, TEXTURE::ATLAS);
+	resetButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 500, 550 }, { 30,15 }, true, true, { 0, 658, 207, 71 },"Reset", App->scenes, TEXTURE::ATLAS);
 	resetButton->hover_rect = { 263, 658, 207, 71 };
 	resetButton->click_rect = { 525, 658, 207, 71 };
 
 	backButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 900, 630 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "BACK", App->scenes, TEXTURE::ATLAS);
 	backButton->hover_rect = { 263, 658, 207, 71 };
 	backButton->click_rect = { 525, 658, 207, 71 };
-
-	resetlabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 500, 550 }, { 30, 15 }, false, true, { 0, 0, 0, 0 }, "Reset");
 
 
 	if (App->audio->PlayingSettingsMusic != true) {
@@ -111,7 +109,7 @@ bool SettingsScene::PreUpdate()
 		vfxLabel->map_position.x = -300;
 		fullscreenLabel->map_position.x = -300;
 		mutelabel->map_position.x = -300;
-		resetlabel->map_position.x = -300;
+		resetButton->label->map_position.x = -300;
 		fxBar->map_position.x = 1300;
 		musicBar->map_position.x = 1300;
 		fxSlider->map_position.x = 1300;
@@ -189,8 +187,8 @@ bool SettingsScene::Update(float dt)
 			backButton->map_position = backButton->map_position = { backButton->map_position.x - 7,backButton->map_position.y };
 
 		}
-		if (resetlabel->map_position.x < 500 && App->transition_manager->is_transitioning == false) {
-			resetlabel->map_position = resetlabel->map_position = { resetlabel->map_position.x + 7,resetlabel->map_position.y };
+		if (resetButton->label->map_position.x < 500 && App->transition_manager->is_transitioning == false) {
+			resetButton->label->map_position = resetButton->label->map_position = { resetButton->label->map_position.x + 7,resetButton->label->map_position.y };
 		}
 		else if (App->transition_manager->is_transitioning == false) {
 			FinishedPosition = true; //ONLY ONE CHANGE TO TRUE IS NEEDED BECAUSE ALL BUTTONS GET TO THEIR POSITION AT THE SAME MOMENT
@@ -236,7 +234,6 @@ bool SettingsScene::CleanUp()
 	backButton->CleanUp();
 	backgroundImage->CleanUp();
 
-	resetlabel->CleanUp();
 	musicBar->CleanUp();
 	fxBar->CleanUp();
 	musicSlider->CleanUp();

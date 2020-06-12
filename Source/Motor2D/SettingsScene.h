@@ -41,9 +41,6 @@ public:
 	j1UIElement*  mutebutton= nullptr;
 	j1UIElement* musicSlider = nullptr;
 	j1UIElement* backlabel = nullptr;
-	j1UIElement* resetlabel = nullptr;
-	//j1UIElement* musicScroll = nullptr;
-	//j1UIElement* vfxScroll = nullptr;
 	j1UIElement* fullscreenButton = nullptr;
 	j1UIElement* resetButton = nullptr;
 	j1UIElement* backButton = nullptr;

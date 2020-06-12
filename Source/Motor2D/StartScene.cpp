@@ -46,33 +46,23 @@ bool StartScene::Start()
 	//if(saved_game)
 	//else
 		//blocked button continue
-	continueButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 475, 100 }, { 30,25 }, true, true, { 0, 0, 263, 91 }, "", App->scenes, TEXTURE::ATLAS);
-	continueButton->hover_rect = { 263, 0, 263, 91 };
-	continueButton->click_rect = { 526, 0, 263, 91 };
+	continueButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 475, 100 }, { 30,25 }, true, true, { 0, 0, 263, 91 }, "CONTINUE", App->scenes, TEXTURE::ATLAS);
 
-	forestButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 485, 230 }, { 30,20 }, true, true, { 0, 334, 234, 79 }, "", App->scenes, TEXTURE::ATLAS);
+	forestButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 485, 230 }, { 60,20 }, true, true, { 0, 334, 234, 79 }, "Forest", App->scenes, TEXTURE::ATLAS);
 	forestButton->hover_rect = { 263, 334, 234, 79 };
 	forestButton->click_rect = { 525, 334, 234, 79 };
 
-	snowButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 485, 340 }, { 60,20 }, true, true, { 0, 334, 234, 79 }, "", App->scenes,  TEXTURE::ATLAS);
+	snowButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 485, 340 }, { 60,20 }, true, true, { 0, 334, 234, 79 }, "Snow", App->scenes,  TEXTURE::ATLAS);
 	snowButton->hover_rect = { 263, 334, 234, 79 };
 	snowButton->click_rect = { 525, 334, 234, 79 };
 
-	volcanoButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 485, 450 }, { 20,20 }, true, true, { 0, 334, 234, 79 }, "", App->scenes, TEXTURE::ATLAS);
+	volcanoButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 485, 450 }, { 20,20 }, true, true, { 0, 334, 234, 79 }, "Volcano", App->scenes, TEXTURE::ATLAS);
 	volcanoButton->hover_rect = { 263, 334, 234, 79 };
 	volcanoButton->click_rect = { 525, 334, 234, 79 };
 
-	backButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 505, 570 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "", App->scenes, TEXTURE::ATLAS);
+	backButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 505, 570 }, { 50,15 }, true, true, { 0, 658, 207, 71 }, "BACK", App->scenes, TEXTURE::ATLAS);
 	backButton->hover_rect = { 263, 658, 207, 71 };
 	backButton->click_rect = { 525, 658, 207, 71 };
-
-
-
-	Continue_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, continueButton, { 425 , 125 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "CONTINUE", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
-	Forest_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, forestButton, { 500 , 250 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "Forest", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
-	Snow_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, snowButton, { 500 , 360 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "Snow", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
-	Volcano_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, volcanoButton, { 450 , 470 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "Volcano", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
-	Back_Text = App->gui->AddElement(TypeOfUI::GUI_LABEL, backButton, { 555 , 585 }, { 2 , 2 }, false, true, { 0, 0, 0, 0 }, "BACK", nullptr, TEXTURE::ATLAS, FONT::FONT_MEDIUM);
 	
 
 
@@ -97,15 +87,15 @@ bool StartScene::PreUpdate()
 
 	if (ResetPosition == true) {
 		continueButton->map_position.x = -300;
-		Continue_Text->map_position.x = -275;
+		continueButton->label->map_position.x = -275;
 		forestButton->map_position.x = 1300;
-		Forest_Text->map_position.x = 1335;
+		forestButton->label->map_position.x = 1335;
 		snowButton->map_position.x = -300;
-		Snow_Text->map_position.x = -245;
+		snowButton->label->map_position.x = -245;
 		volcanoButton->map_position.x = 1300;
-		Volcano_Text->map_position.x = 1330;
+		volcanoButton->label->map_position.x = 1300;
 		backButton->map_position.x = -300;
-		Back_Text->map_position.x = -250;
+		backButton->label->map_position.x = -250;
 		ResetPosition = false;
 	}
 
@@ -135,36 +125,36 @@ bool StartScene::Update(float dt)
 	if (continueButton->map_position.x < 475 && App->transition_manager->is_transitioning == false) {
 		continueButton->map_position = continueButton->map_position = { continueButton->map_position.x + 7,continueButton->map_position.y };
 	}
-	if (Continue_Text->map_position.x < 500 && App->transition_manager->is_transitioning == false) {
-		Continue_Text->map_position = Continue_Text->map_position = { Continue_Text->map_position.x + 7,Continue_Text->map_position.y };
+	if (continueButton->label->map_position.x < 475 && App->transition_manager->is_transitioning == false) {
+		continueButton->label->map_position = continueButton->label->map_position = { continueButton->label->map_position.x + 7,continueButton->label->map_position.y };
 	}
 	//--
 	if (forestButton->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
 		forestButton->map_position = forestButton->map_position = { forestButton->map_position.x - 7,forestButton->map_position.y };
 	}
-	if (Forest_Text->map_position.x > 525 && App->transition_manager->is_transitioning == false) {
-		Forest_Text->map_position = Forest_Text->map_position = { Forest_Text->map_position.x - 7,Forest_Text->map_position.y };
+	if (forestButton->label->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
+		forestButton->label->map_position = forestButton->label->map_position = { forestButton->label->map_position.x - 7,forestButton->label->map_position.y };
 	}
 
 	if (snowButton->map_position.x < 490 && App->transition_manager->is_transitioning == false) {
 		snowButton->map_position = snowButton->map_position = { snowButton->map_position.x + 7,snowButton->map_position.y };
 	}
-	if (Snow_Text->map_position.x < 545 && App->transition_manager->is_transitioning == false) {
-		Snow_Text->map_position = Snow_Text->map_position = { Snow_Text->map_position.x + 7,Snow_Text->map_position.y };
+	if (snowButton->label->map_position.x < 490 && App->transition_manager->is_transitioning == false) {
+		snowButton->label->map_position = snowButton->label->map_position = { snowButton->label->map_position.x + 7,snowButton->label->map_position.y };
 	}
 	//--
 	if (volcanoButton->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
 		volcanoButton->map_position = volcanoButton->map_position = { volcanoButton->map_position.x - 7,volcanoButton->map_position.y };
 	}
-	if (Volcano_Text->map_position.x > 515 && App->transition_manager->is_transitioning == false) {
-		Volcano_Text->map_position = Volcano_Text->map_position = { Volcano_Text->map_position.x - 7,Volcano_Text->map_position.y };
+	if (volcanoButton->label->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
+		volcanoButton->label->map_position = volcanoButton->label->map_position = { volcanoButton->label->map_position.x - 7,volcanoButton->label->map_position.y };
 	}
 
 	if (backButton->map_position.x < 505 && App->transition_manager->is_transitioning == false) {
 		backButton->map_position = backButton->map_position = { backButton->map_position.x + 7,backButton->map_position.y };
 	}
-	if (Back_Text->map_position.x < 555 && App->transition_manager->is_transitioning == false) {
-		Back_Text->map_position = Back_Text->map_position = { Back_Text->map_position.x + 7,Back_Text->map_position.y };
+	if (backButton->label->map_position.x < 505 && App->transition_manager->is_transitioning == false) {
+		backButton->label->map_position = backButton->label->map_position = { backButton->label->map_position.x + 7,backButton->label->map_position.y };
 		
 	}
 	else if (App->transition_manager->is_transitioning == false) {
@@ -219,12 +209,6 @@ bool StartScene::CleanUp()
 	volcanoButton->CleanUp();
 	backButton->CleanUp();
 	backgroundImage->CleanUp();
-	Forest_Text->CleanUp();
-	Continue_Text->CleanUp();
-	Snow_Text->CleanUp();
-	Volcano_Text->CleanUp();
-	Back_Text->CleanUp();
-
 
 	RELEASE(backgroundImage);
 
