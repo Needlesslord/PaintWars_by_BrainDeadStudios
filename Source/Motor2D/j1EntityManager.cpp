@@ -425,6 +425,8 @@ bool j1EntityManager::Update(float dt) {
 
 				(*entitiesToExtractPaint)->ExtractPaint(dt);
 				(*entitiesToExtractPaint)->currentAnimation = &painterRecollection;
+				App->audio->PlayFx(App->audio->walkingPainter_sound);
+
 			}
 
 			else if ((*entitiesToExtractPaint)->entityType == ENTITY_TYPE_PAINT_EXTRACTOR) {
@@ -1915,50 +1917,50 @@ void j1EntityManager::UpdateAnimations() {
 			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &warriorMovingNorth;
-				Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &warriorMovingNorthEast;
-				Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &warriorMovingEast;
-				Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &warriorMovingSouthEast;
-				Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &warriorMovingSouth;
-				Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &warriorMovingSouthWest;
-				Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &warriorMovingWest;
-				Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &warriorMovingNorthWest;
-				Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 		}
 
@@ -1967,49 +1969,49 @@ void j1EntityManager::UpdateAnimations() {
 			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &painterMovingNorth;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingPainter_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &painterMovingNorthEast;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingPainter_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &painterMovingEast;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingPainter_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &painterMovingSouthEast;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingPainter_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &painterMovingSouth;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingPainter_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &painterMovingSouthWest;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingPainter_sound); (-1, App->audio->walkingPainter_sound, 0);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &painterMovingWest;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingPainter_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &painterMovingNorthWest;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingPainter_sound);
 			}
 		}
 
@@ -2018,49 +2020,49 @@ void j1EntityManager::UpdateAnimations() {
 			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &knightMovingNorth;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &knightMovingNorthEast;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 	
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &knightMovingEast;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &knightMovingSouthEast;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &knightMovingSouth;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &knightMovingSouthWest;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &knightMovingWest;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &knightMovingNorthWest;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 		}
 
@@ -2069,49 +2071,49 @@ void j1EntityManager::UpdateAnimations() {
 			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &rangerMovingNorth;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &rangerMovingNorthEast;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &rangerMovingEast;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &rangerMovingSouthEast;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &rangerMovingSouth;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &rangerMovingSouthWest;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &rangerMovingWest;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &rangerMovingNorthWest;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingWarrior_sound);
 			}
 		}
 
@@ -2120,49 +2122,49 @@ void j1EntityManager::UpdateAnimations() {
 			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &explorerMovingNorth;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingPainter_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &explorerMovingNorthEast;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingPainter_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &explorerMovingEast;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingPainter_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &explorerMovingSouthEast;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingPainter_sound);
 			}
 	
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &explorerMovingSouth;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingPainter_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &explorerMovingSouthWest;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingPainter_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &explorerMovingWest;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingPainter_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &explorerMovingNorthWest;
-				Mix_PlayChannel(-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingPainter_sound);
 			}
 
 
@@ -2171,50 +2173,50 @@ void j1EntityManager::UpdateAnimations() {
 				if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 					(*checkMovingAnimation)->currentAnimation = &riderMovingNorth;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->walkingWarrior_sound);
 
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &riderMovingNorthEast;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->walkingWarrior_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &riderMovingEast;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->walkingWarrior_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &riderMovingSouthEast;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->walkingWarrior_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 					(*checkMovingAnimation)->currentAnimation = &riderMovingSouth;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->walkingWarrior_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &riderMovingSouthWest;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->walkingWarrior_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &riderMovingWest;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->walkingWarrior_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &riderMovingNorthWest;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->walkingWarrior_sound);
 				}
 			}
 
@@ -2223,51 +2225,51 @@ void j1EntityManager::UpdateAnimations() {
 
 				if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
-				(*checkMovingAnimation)->currentAnimation = &slimeMovingNorth;
-				Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					(*checkMovingAnimation)->currentAnimation = &slimeMovingNorth;
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &slimeMovingNorthEast;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+				//	Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &slimeMovingEast;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &slimeMovingSouthEast;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 					(*checkMovingAnimation)->currentAnimation = &slimeMovingSouth;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &slimeMovingSouthWest;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &slimeMovingWest;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 	
 					(*checkMovingAnimation)->currentAnimation = &slimeMovingNorthWest;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 			}
 
@@ -2277,50 +2279,50 @@ void j1EntityManager::UpdateAnimations() {
 				if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingNorth;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingNorthEast;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingEast;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingSouthEast;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingSouth;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingSouthWest;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingWest;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingNorthWest;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 			}
 
@@ -2329,50 +2331,50 @@ void j1EntityManager::UpdateAnimations() {
 				if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingNorth;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingNorthEast;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingEast;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingSouthEast;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingSouth;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingSouthWest;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingWest;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingNorthWest;
-					Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
 				}
 			}
 		}

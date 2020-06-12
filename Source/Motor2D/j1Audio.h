@@ -1,13 +1,17 @@
 #ifndef __j1AUDIO_H__
 #define __j1AUDIO_H__
 
-#include <list>
+#include <vector>
 
 #include "j1Module.h"
+#include "p2Point.h"
 
 using namespace std;
 
 #define DEFAULT_MUSIC_FADE_TIME 2.0f
+#define MAX_FX 500						
+#define RAD_TO_DEG 57.32f				
+#define MAX_DISTANCE 255	
 
 struct _Mix_Music;
 struct Mix_Chunk;
@@ -34,7 +38,16 @@ public:
 	unsigned int LoadFx(const char* path);
 
 	// Play a previously loaded WAV
-	bool PlayFx(unsigned int fx, int repeat = 0);
+	uint PlayFx(unsigned int fx, int repeat = 0);
+
+	// Play a WAV like a 3D audio reciving an fx, a channel, an angle and a distance
+	bool PlaySpatialFx(uint id, uint channel_angle = 1, uint distance = 1, int repeat = 0);
+
+	// Get the angle of the Y axis with the position of the enemy regard the player position
+	uint GetAngle(fPoint player_pos, fPoint enemy_pos);
+
+	// Get the distance with the position of the player and the enemy
+	uint GetDistance(fPoint player_pos, fPoint enemy_pos);
 
 	// Save
 	bool Save(pugi::xml_node&) const;
@@ -61,26 +74,26 @@ public:
 
 
 	//AUDIO CHUNKS
-	Mix_Chunk* Click_Button_Sound;
-	Mix_Chunk* Click_Logo_Sound;
-	Mix_Chunk* Spawner_Destroyed;
-	Mix_Chunk* time_sound;
-	Mix_Chunk* WarriorAttack_Sound;//
-	Mix_Chunk* walkingPainter_sound;//
-	Mix_Chunk* walkingWarrior_sound;//
-	Mix_Chunk* buy1_sound;
-	Mix_Chunk* buy2_sound;
-	Mix_Chunk* spawnFromHall;
-	Mix_Chunk* birds_sound;
-	Mix_Chunk* knight_sound;
-	Mix_Chunk* explorer_sound;
-	Mix_Chunk* enemyDeath_sound;
-	Mix_Chunk* crickets_sound;
-	Mix_Chunk* braindead_sound;
-	Mix_Chunk* Transition_Sound;
-	Mix_Chunk* Quest_Audio;
-	Mix_Chunk* logo_1_sound;
-	Mix_Chunk* logo_2_sound;
+	Mix_Chunk*	Click_Button_Sound;
+	Mix_Chunk*	Click_Logo_Sound;
+	Mix_Chunk*	Spawner_Destroyed;
+	Mix_Chunk*	time_sound;
+	uint		warriorAttack_Sound;//
+	uint		walkingPainter_sound;//
+	uint		walkingWarrior_sound;//
+	Mix_Chunk*	buy1_sound;
+	Mix_Chunk*	buy2_sound;
+	Mix_Chunk*	spawnFromHall;
+	Mix_Chunk*	birds_sound;
+	Mix_Chunk*	knight_sound;
+	Mix_Chunk*	explorer_sound;
+	Mix_Chunk*	enemyDeath_sound;
+	Mix_Chunk*	crickets_sound;
+	Mix_Chunk*	braindead_sound;
+	Mix_Chunk*	Transition_Sound;
+	Mix_Chunk*	Quest_Audio;
+	Mix_Chunk*	logo_1_sound;
+	Mix_Chunk*	logo_2_sound;
 
 
 	bool logoSound;
@@ -88,8 +101,9 @@ public:
 
 private:
 
-	_Mix_Music*			music = NULL;
-	list<Mix_Chunk*>	fx;
+	_Mix_Music*				music = NULL;
+	std::vector<Mix_Chunk*>	fx;
+	int						scale;
 	
 };
 

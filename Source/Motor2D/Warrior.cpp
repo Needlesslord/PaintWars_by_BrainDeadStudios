@@ -64,7 +64,7 @@ void Warrior::Attack(Entity* target, float dt) {
 		target->ApplyDamage(attackDamage);
 		attackCooldown = 0.0f;
 		
-		Mix_PlayChannel(-1, App->audio->WarriorAttack_Sound, 0);
+		App->audio->PlayFx(App->audio->warriorAttack_Sound);
 
 		if (target->GetCurrLife() <= 0)
 			Mix_PlayChannel(-1, App->audio->Spawner_Destroyed, 0);

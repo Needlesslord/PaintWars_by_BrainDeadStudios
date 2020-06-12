@@ -75,8 +75,8 @@ bool j1Audio::Awake(pugi::xml_node& config)
 
 	}
 
-	WarriorAttack_Sound = Mix_LoadWAV("audio/fx/fx_unit_warrior_attack.wav");
-	if (WarriorAttack_Sound == NULL)
+	warriorAttack_Sound = LoadFx("audio/fx/fx_unit_warrior_attack.wav");
+	if (warriorAttack_Sound == NULL)
 	{
 		LOG("Audio Warrior Attack IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
 
@@ -96,14 +96,14 @@ bool j1Audio::Awake(pugi::xml_node& config)
 
 	}
 
-	walkingPainter_sound = Mix_LoadWAV("audio/fx/fx_unit_painter_walk.wav");
+	walkingPainter_sound = LoadFx("audio/fx/fx_unit_painter_walk.wav");
 	if (walkingPainter_sound == NULL)
 	{
 		LOG("Audio Walking Painter IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
 
 	}
 
-	walkingWarrior_sound = Mix_LoadWAV("audio/fx/fx_unit_warrior_walk.wav");
+	walkingWarrior_sound = LoadFx("audio/fx/fx_unit_warrior_walk.wav");
 	if (walkingWarrior_sound == NULL)
 	{
 		LOG("Audio Walking Warrior IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
@@ -189,7 +189,7 @@ bool j1Audio::Awake(pugi::xml_node& config)
 
 	
 	//AUDIO VOLUMES & STUFF
-	
+	scale = 450;
 	VolumeMusic = 5;
 	CurrentMusVolume = 5;
 	CurrentFXVolume = 5;
@@ -212,7 +212,7 @@ bool j1Audio::CleanUp() {
 		Mix_FreeMusic(music);
 	}
 
-	list<Mix_Chunk*>::const_iterator item;
+	vector<Mix_Chunk*>::const_iterator item;
 	for (item = fx.begin(); item != fx.end(); item++)
 		Mix_FreeChunk(*item);
 
@@ -298,20 +298,90 @@ unsigned int j1Audio::LoadFx(const char* path) {
 }
 
 // Play WAV
-bool j1Audio::PlayFx(unsigned int id, int repeat) {
-	bool ret = false;
+uint j1Audio::PlayFx(unsigned int id, int repeat) {
+	uint channel;
 
 	if (!active)
 		return false;
 
 	if(id > 0 && id <= fx.size()) {
-		list< Mix_Chunk*>::const_iterator it;
+		std::vector<Mix_Chunk*>::iterator fx_item = fx.begin();
+		advance(fx_item, id - 1);
+		channel = Mix_PlayChannel(-1, *fx_item, repeat);
+	}
+
+	return channel;
+}
+
+bool j1Audio::PlaySpatialFx(uint id, uint channel_angle, uint distance, int repeat)
+{
+	bool ret = false;
+
+	if (!active)
+		return false;
+
+	Mix_Chunk* chunk = NULL;
+
+	if (id > 0 && id <= fx.size())
+	{
+		vector <Mix_Chunk*>::const_iterator it;			
 		it = next(fx.begin(), id - 1);
-		Mix_PlayChannel(-1, *it, repeat);
+		chunk = *it;
+	}
+	if (chunk != nullptr)
+	{
+		while (Mix_Playing(channel_angle) == 1)	// If the channel is already playing, choose the next channel that we already allocated with Mix_AllocateChannels()
+		{
+			channel_angle++;
+
+			if (channel_angle > 360)
+				channel_angle = 0;
+		}
+
+		// TODO 2 Set a channel in a position given a channel, an angle and a distance, There is SDL_Mixer function already explained 
+		// Play the channel that we already placed with Mix_SetPosition()
+		Mix_SetPosition(channel_angle, channel_angle, distance);	// Set a channel in a position given a channel, an angle and a distance
+
+		Mix_PlayChannel(channel_angle, chunk, repeat);				// Play the channel that we already placed with Mix_SetPosition()
+
+		ret = true;
 	}
 
 	return ret;
 }
+
+uint j1Audio::GetAngle(fPoint player_pos, fPoint enemy_pos)
+{
+	fPoint vector_pos;
+	vector_pos.y = player_pos.y - enemy_pos.y;
+	vector_pos.x = player_pos.x - enemy_pos.x;				// The vector of the player and enemy positions
+	fPoint vector_axis = { 0, 1 };							// We use the this vector because we want the angle that is formed with the Y axis
+
+	double dot_x = vector_axis.y * vector_pos.y;			// Product of the two vectors to get the X position
+	double det_y = -(vector_axis.y * vector_pos.x);			// Determinant of the two vectors to get the Y position
+
+	float f_angle = ((float)atan2(det_y, dot_x)) * RAD_TO_DEG;		// Arc tangent of the previous X and Y, multiply the result with RAD_TO_DEG to get the result in degrees instead of radiants
+
+	if (f_angle < 0)										// If the angle is negative we add +360 because in PlaySpatialFx() we need the channel to be positive
+		f_angle += 360;
+
+	return uint(f_angle);
+}
+
+uint j1Audio::GetDistance(fPoint player_pos, fPoint enemy_pos)
+{
+
+	// TODO 3 Calculate the distance between the player and the enemy passed by reference using pythagoras
+	uint distance = (int)sqrt(pow(player_pos.x - enemy_pos.x, 2) + pow(player_pos.y - enemy_pos.y, 2));	// Calculate the distance with Pythagoras
+
+	uint distance_scaled = (distance * MAX_DISTANCE) / scale;										// We can scale the maximum hear distance by modifying scale in the config XML
+
+	if (distance_scaled > MAX_DISTANCE)																// If the distance is greater than the MAX_DISTANCE(255), keep it in 255
+		distance_scaled = MAX_DISTANCE;
+
+	return distance_scaled;
+}
+
 
 bool j1Audio::Load(pugi::xml_node& save) {
 	if (save.child("volume").attribute("default") != NULL) {
@@ -338,9 +408,9 @@ void j1Audio::ChunkAudioManager(int volume)
 	Mix_VolumeChunk(braindead_sound, 50);*/
 
 	Mix_VolumeChunk(Click_Button_Sound, volume);
-	Mix_VolumeChunk(walkingPainter_sound, volume);
-	Mix_VolumeChunk(walkingWarrior_sound, volume);
-	Mix_VolumeChunk(WarriorAttack_Sound, volume);
+	//Mix_VolumeChunk(walkingPainter_sound, volume);
+	//Mix_VolumeChunk(walkingWarrior_sound, volume);
+	//Mix_VolumeChunk(warriorAttack_Sound, volume);
 	Mix_VolumeChunk(buy1_sound, volume);
 	Mix_VolumeChunk(buy2_sound, volume);
 	Mix_VolumeChunk(spawnFromHall, volume);
