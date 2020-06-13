@@ -31,11 +31,13 @@ public:
 
 	void		deleteAllParticles();
 
+	bool meteorActive;
 
 	std::vector<Particle> particlePool;
 	std::vector<ParticleSystem*> systems;
 	SDL_Texture* smokeTexture;
 	SDL_Texture* cloudTexture;
+	SDL_Texture* meteorTexture;
 	SDL_Texture* fireTexture;
 	SDL_Texture* explosionTexture;
 	SDL_Texture* dustTexture;
@@ -47,12 +49,17 @@ private:
 
 	int	 Index;
 	bool CloudsActive;
+	
 	float CloudTimer;
+	float meteorTimer;
 	int cloudVariableY;
 	int cloudVariableX;
 	int snowVariableX;
 	int snowVariableY;
+	int meteorVariableY;
+	int meteorVariableX;
 	bool FirstClouds;
+	bool firstMeteors;
 };
 
 #endif // __PARTICLESYSTEM_H__

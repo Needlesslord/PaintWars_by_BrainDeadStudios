@@ -95,6 +95,16 @@ void ParticleSystem::loadSystem()
 		systemProps.tex = App->pmanager->projectileTexture;
 		numberOfParticles = 50;
 	}
+	else if (systemProps.type == PARTICLE_TYPES::METEOR)
+	{
+		systemProps.Velocity = { -5, 2 };
+		systemProps.lifetime = 120;
+		systemProps.Acceleration = { 0, 0 };
+		systemProps.rect = { 0, 0, 150, 120 };
+		systemProps.lifetimeSubstraction = 0;
+		systemProps.tex = App->pmanager->meteorTexture;
+		numberOfParticles = 5;
+	}
 	else if (systemProps.type == PARTICLE_TYPES::SNOW)
 	{
 		systemProps.Velocity = { -5, 2 };

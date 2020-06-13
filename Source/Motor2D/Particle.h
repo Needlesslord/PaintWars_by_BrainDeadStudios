@@ -22,7 +22,8 @@ enum class PARTICLE_TYPES
 	CLOUD,
 	DUST,
 	CANNONBALL,
-	SNOW
+	SNOW,
+	METEOR
 };
 
 struct ParticleProps
@@ -55,7 +56,7 @@ public:
 	p2Point<float>	pVelocity;
 	p2Point<float>	pAcceleration;
 	PARTICLE_TYPES	pType;
-	SDL_Texture* pTexture;
+	SDL_Texture*	pTexture;
 	fPoint			pDestination;
 
 	float			lifespan;

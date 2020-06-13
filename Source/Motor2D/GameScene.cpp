@@ -9,6 +9,7 @@
 #include "j1Player.h"
 #include "j1SceneManager.h"
 #include "j1EntityManager.h"
+#include "j1ParticleManager.h"
 #include "j1Pathfinding.h"
 #include "GameScene.h"
 #include "TransitionManager.h"
@@ -472,6 +473,15 @@ bool GameScene::Start()
 
 	App->fow->SetVisibilityMap(App->map->data.width, App->map->data.height);
 
+
+	if (App->scenes->Map_Volcano_Active)
+	{
+		App->pmanager->meteorActive = true;
+	}
+	else
+	{
+		App->pmanager->meteorActive = false;
+	}
 
 	return ret;
 }

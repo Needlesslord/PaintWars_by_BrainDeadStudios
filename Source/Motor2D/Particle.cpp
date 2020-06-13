@@ -60,7 +60,7 @@ void Particle::loadProperties(ParticleProps properties)
 	if (pType == PARTICLE_TYPES::DUST)
 		pVelocity = { (float)(0.5 * (Random::Randomize() - 0.5)), (float)(-0.2 * (Random::Randomize())) };
 
-	if (pType == PARTICLE_TYPES::SNOW)
+	if (pType == PARTICLE_TYPES::METEOR)
 		pLocation = { (pLocation.x + (float)(100 * (Random::Randomize() - 0.5))) - 2, (pLocation.y + (float)(200 * (Random::Randomize() - 0.5))) };
 
 
