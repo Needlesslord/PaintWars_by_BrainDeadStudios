@@ -83,7 +83,7 @@ bool Particle::Draw()
 	if (App->scenes->current_scene->scene_name == SCENES::GAME_SCENE)
 	{
 		if (pTexture != nullptr)
-			App->render->RenderQueue(2, pTexture, pLocation.x, pLocation.y + 16, { 0, 0, pRect.w, pRect.h }, false, 0.0f, 0, 0, 0, remainingLifetime);
+			App->render->RenderQueue(2, pTexture, pLocation.x, pLocation.y + 16, { 0, 0, pRect.w, pRect.h }, false, false, 1, 0, 0, remainingLifetime);
 
 		else
 			App->render->RenderQueue(2, nullptr, pLocation.x, pLocation.y, pRect, false, 0.0f, 255, 130, 0, remainingLifetime);
