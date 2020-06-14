@@ -179,7 +179,7 @@ SDL_Rect& j1FogOfWar::GetFOWMetaRect(FOW_TileState state) {
 	//uint real_sprite_pos = uint(state) - (uint(FOW_TileState::UNVISITED)); // tile inside the FOWmeta spritesheet
 	uint spritex = 0;
 	if (state == FOW_TileState::FOGGED)
-		spritex = 150;
+		spritex = 0;
 	else if (state == FOW_TileState::UNVISITED)
 		spritex = 300;
 	else
