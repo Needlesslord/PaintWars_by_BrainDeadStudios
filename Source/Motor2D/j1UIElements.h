@@ -159,8 +159,6 @@ public:
 
 
 	j1UIElement* label = nullptr;
-	j1UIElement* label_hover = nullptr;
-	j1UIElement* label_click = nullptr;
 };
 
 

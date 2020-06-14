@@ -148,10 +148,9 @@ bool j1ParticleManager::Update(float dt)
 
 				iPoint pos = { 3200 + cloudVariableX, 3200 + cloudVariableY };
 			//	iPoint pos2 = { 3200 + snowVariableX, 3200 + snowVariableY };
-				App->render->ScreenToWorld(pos.x, pos.y);
+				fPoint fpos = App->render->ScreenToWorld(pos.x, pos.y);
 			//	App->render->ScreenToWorld(pos2.x, pos2.y);
 
-				fPoint fpos = { (float)pos.x,  (float)pos.y };
 			//	fPoint fpos2 = { (float)pos2.x,  (float)pos2.y };
 				App->pmanager->createSystem(PARTICLE_TYPES::CLOUD, fpos, 300);
 			//	App->pmanager->createSystem(PARTICLE_TYPES::SNOW, fpos2, 300);
@@ -181,12 +180,11 @@ bool j1ParticleManager::Update(float dt)
 		//		snowVariableX = snowVariableY;
 
 			iPoint pos = { 6300 - cloudVariableX, 3200 + cloudVariableY };
-			App->render->ScreenToWorld(pos.x, pos.y);
+			fPoint fpos = App->render->ScreenToWorld(pos.x, pos.y);
 
 		//	iPoint pos2 = { 6300 - snowVariableX, 3200 + snowVariableY };
 		//	App->render->ScreenToWorld(pos2.x, pos2.y);
 
-			fPoint fpos = { (float)pos.x,  (float)pos.y };
 		//	fPoint fpos2 = { (float)pos2.x,  (float)pos2.y };
 			App->pmanager->createSystem(PARTICLE_TYPES::CLOUD, fpos, 300);
 		//	App->pmanager->createSystem(PARTICLE_TYPES::SNOW, fpos2, 300);

@@ -18,5 +18,13 @@ public:
 
 private:
 
-	int font_name = -1;
+	int font_name_black = -1;
+	int font_name_white = -1;
+	int font_name_black_small = -1;
+	int font_name_white_small = -1;
+	int font_name_black_extra_small = -1;
+	int font_name_white_extra_small = -1;
+	int font_name_red = -1;
+	int font_name_red_small = -1;
+	int font_name_red_extra_small = -1;
 };
