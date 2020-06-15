@@ -11,10 +11,8 @@ public:
 	ChromaKing(iPoint tile, int damage, j1Module* listener);
 	~ChromaKing();
 
-	bool goToTownHall();
-	bool CanAttackTownHall();
-	void attack(Entity* target, float dt);
-
+	void Draw(SDL_Texture* sprites) override;
+	void Attack(Entity* target, float dt);
 };
 
 #endif //__ChromaKing_H__

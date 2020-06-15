@@ -146,7 +146,7 @@ public:
 
 	iPoint destination;
 	iPoint nextTile;
-	uint aggroRange = 15;
+	uint aggroRange = 8;
 
 	std::vector<iPoint>currentPath;
 	uint pathIterator;
