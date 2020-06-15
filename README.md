@@ -15,16 +15,16 @@ In a world full of colour, a corruption spread, turning everything monochromatic
 ## Key Features
 
  - GENERAL
-     + Logo for the team (animated)
-     + Logo for the game (animated)
+     + Logo for the team (animated) (Video)
+     + Logo for the game (animated) (Video)
      + FX for the Game Logo and Team Logo
      + Social Media Updated
      + Animations
      + Game resoulution at 1280x720px@60fps (Window and Full Screen supported)
      + Automatic Continuous Integration and Deployment (basic)
      + Save/Load
-     + 3 different waves -not fully implemented, enemies all over the map-
-     + Fog of war
+     + Enemies all over the map
+     + Fog of war: visited, visited-empty and not-visited-yet
      + Tutorial, Dialogs and Quests
      + Particles
  - UI and HUD
@@ -34,6 +34,7 @@ In a world full of colour, a corruption spread, turning everything monochromatic
      + HUD: Quests (drop-down menu), buttons on the right (in order: go to Town Hall, Shop, Pause, Start over), resources bar (with all the resources, life timer)
      + Minimap: can be made bigger/smaller with [M], shows where in the map you are, has entities -in progress-
      + Visual and acustic feedback, all menus animated
+     + Tutorial, related to quests and dialog UI
  - RESOURCES
      + 6 different resources working: paint, wood, max units, research (to improve units/buildings), metal scrap, titanium
  - ENTITIES: Allies, buildings and enemies
@@ -47,18 +48,18 @@ In a world full of colour, a corruption spread, turning everything monochromatic
        - Research: to get improvement on units and buildings -not fully working yet-
        - Metal Gatherer: To get metal scrap
        - Titanium Extractor: To get titanium
-       - Turret: defensive building -not fully working yet-
+       - Turret: defensive building
      + 1 enemy building (black and white): Spawner (5, if destroyed WIN)
      + 4 Enemies, with AI behaviour, (black and white):
        - Slime: Melee enemy
        - Explosive Blob: Kamikaze enemy -not fully implemented-
        - Rider: similar to warrior, but enemy -not fully implemented-
-       - Chroma King: Boss, Town Hall target -not fully implemented-
+       - Chroma King: Boss, Town Hall target, apperas at the 4th spawner destruït)
  - ACTIONS
      + Movement and group movement
      + Collect resources and explore
      + Run from and attack enemies 
-     + Destroy spawners (with warriors)
+     + Destroy spawners (with warriors, rangers and special units)
      + Pathfinding
      + Win/Lose conditions (Town Hall destroyed OR more than 15 min LOSE, 5 Spawners destroyed WIN) with victory/lose custom messages and font and animated
  - MAPS
@@ -95,6 +96,7 @@ In a world full of colour, a corruption spread, turning everything monochromatic
        16 - explorer movement
        17 - ranger movement
        18 - knight movement
+... and more!
      + Positioning (further fx sound less)
  - DEBUG
 	 + F1/F2/F3 Game Scene: Forest / Snow / Volcano
