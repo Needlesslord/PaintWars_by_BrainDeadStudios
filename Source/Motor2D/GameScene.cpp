@@ -153,6 +153,10 @@ bool GameScene::Start()
 	}*/
 	
 
+	BackgroundForest = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, false, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, TEXTURE::BACKGROUND_FOREST, FONT::FONT_MEDIUM, 1);
+	BackgroundSnow = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, false, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, TEXTURE::BACKGROUND_SNOW, FONT::FONT_MEDIUM, 1);
+	BackgroundVolcano = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 0, 0 }, { 0,0 }, true, false, { 0, 0, App->win->width, App->win->width }, nullptr, App->scenes, TEXTURE::BACKGROUND_VOLCANO, FONT::FONT_MEDIUM, 1);
+
 	
 	//HUD - Bar
 	//hudBarImage = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::ATLAS_SPRITE);
@@ -316,7 +320,7 @@ bool GameScene::Start()
 	upgradePaintExtractorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradePaintExtractorButton->hover_rect = { 0, 1966, 65, 82 };
 	upgradePaintExtractorButton->click_rect = { 65, 1966, 65, 82 };
-	tagLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 80, 485 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-20M", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
+	tagLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 80, 150 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-20M", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_RED, 6);
 
 
 	////
@@ -341,7 +345,7 @@ bool GameScene::Start()
 	//////
 
 	//shopHoverPrice =App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "0", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
-	shopHoverPrice = App->gui->AddElement(TypeOfUI::GUI_LABEL, shopImage, { 210 , 680 }, { 0 , 0 }, false, false, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED);
+	shopHoverPrice = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 210 , 680 }, { 0 , 0 }, false, false, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE, 9);
 	
 
 	//HUD - MiniMap
@@ -438,9 +442,7 @@ bool GameScene::Start()
 	PaintRollerAnimation = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 400, -600 }, { 0,0 }, false, false, { 1493, 1275, 552, 770 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	//PaintRollerAnimation->enabled = false;
 
-	BackgroundForest = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, false, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_FOREST, FONT::FONT_MEDIUM, 1);
-	BackgroundSnow = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, false, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_SNOW, FONT::FONT_MEDIUM, 1);
-	BackgroundVolcano = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, false, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_VOLCANO, FONT::FONT_MEDIUM, 1);
+
 	//////////////////
 	//	RESOURCES	//
 	//////////////////
@@ -501,19 +503,19 @@ bool GameScene::PreUpdate()
 		miniMapMINI_forest->enabled = true;
 		miniMapMINI_snow->enabled = false;
 		miniMapMINI_volcano->enabled = false;
-		BackgroundForest->enabled = true;
+		//BackgroundForest->enabled = true;
 	}
 	else if (App->scenes->Map_Snow_Active) {
 		miniMapMINI_snow->enabled = true;
 		miniMapMINI_volcano->enabled = false;
 		miniMapMINI_forest->enabled = false;
-		BackgroundSnow->enabled = true;
+		//BackgroundSnow->enabled = true;
 	}
 	else if (App->scenes->Map_Volcano_Active) {
 		miniMapMINI_volcano->enabled = true;
 		miniMapMINI_snow->enabled = false;
 		miniMapMINI_forest->enabled = false;
-		BackgroundVolcano->enabled = true;
+		//BackgroundVolcano->enabled = true;
 	}
 	//PaintRollerAnimation->enabled = false;
 	
@@ -802,20 +804,21 @@ bool GameScene::Update(float dt)
 
 	if (App->entities->bought == true)
 	{
-		
-		tagTimer++;
-
 		if (tagTimer == 0)
 		{
 			App->input->GetMousePosition(tagLabel->map_position.x, tagLabel->map_position.y);
 			tagLabel->enabled = true;
 		}
-		else if (tagTimer > 100)
+
+		tagTimer++;
+		
+		if (tagTimer > 50)
 		{
 			tagTimer = 0;
 			tagLabel->enabled = false;
 			App->entities->bought = false;
 		}
+
 	}
 
 	
@@ -1213,6 +1216,15 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		else if (!App->entities->paintExtractorUpgraded && upgradePaintExtractorButton->enabled)
 			upgradePaintExtractorButton->enabled = false;*/
 
+		if (shopHoverPrice->enabled == true)
+		{
+			shopHoverPrice->enabled = false;
+		}
+		else if (shopHoverPrice->enabled == false)
+		{
+			shopHoverPrice->enabled = true;
+		}
+
 	}
 
 	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_ONCLICK) {
@@ -1405,9 +1417,6 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		shopHoverPrice->text = "-200M UP-WOOD";
 		tagLabel->text = "-200M";
 		shopHoverPrice->enabled = true;
-	}
-	else {
-		shopHoverPrice->enabled = false;
 	}
 
 

@@ -61,7 +61,7 @@ void j1Map::Draw()
 					///FOW
 					if (App->fow->GetVisibilityTileAt({ x, y }) != (const int8_t)FOW_TileState::UNVISITED)
 					{
-						App->render->RenderQueue(0, tileset->texture, pos.x, pos.y, r);
+						App->render->RenderQueue(2, tileset->texture, pos.x, pos.y, r);
 					}
 
 					//App->render->RenderQueue(0, tileset->texture, pos.x, pos.y, r);
@@ -88,7 +88,7 @@ void j1Map::Draw()
 					if (state == FOW_TileState::FOGGED)
 					{
 						r = App->fow->GetFOWMetaRect(state);
-						App->render->RenderQueue(1, App->fow->fogtexture, pos.x, pos.y, r);
+						App->render->RenderQueue(3, App->fow->fogtexture, pos.x, pos.y, r);
 
 					}
 					//Blit black if the tile is not visited. 
