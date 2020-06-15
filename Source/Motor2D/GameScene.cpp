@@ -1286,6 +1286,17 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		}
 	}
 
+	if (element == buyTurretButton && type == GUI_Event::EVENT_ONCLICK) {
+
+		if (App->entities->isSelectingPlacement != true) {
+
+			App->entities->isSelectingPlacement = true;
+
+			App->entities->hoveringEntityType = ENTITY_TYPE_TURRET;
+			Mix_PlayChannel(-1, App->audio->buy2_sound, 0);
+		}
+	}
+
 	//HoverShop
 
 	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_HOVER) {

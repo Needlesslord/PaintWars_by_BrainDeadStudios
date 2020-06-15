@@ -62,14 +62,16 @@ void Ranger::Attack(Entity* target, float dt) {
 
 	if (attackCooldown >= attackSpeed) {
 
-		Particles * p = AddParticle(PARTICLE_TYPE::PARTICLE_RANGER, { pos.x + size.x / 2,pos.y + size.y / 2 }, { 0, 0 });
+		Particles * p = AddParticle(PARTICLE_TYPE::PARTICLE_RANGER, { pos.x + size.x / 2, pos.y + size.y / 2 }, { 0, 0 });
 
 		particles.push_back(p);
 
 		attackCooldown = 0.0f;
 
+		// TODO: change
 		App->audio->PlayFx(App->audio->warriorAttack_Sound);
 
+		//TODO: move to Entity manager when something dies
 		if (target->GetCurrLife() <= 0)
 			Mix_PlayChannel(-1, App->audio->Spawner_Destroyed, 0);
 	}
