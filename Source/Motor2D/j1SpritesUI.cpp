@@ -114,7 +114,7 @@ bool j1UISprites::Update(float dt) {
 	{
 	case TEXTURE::MAIN_IMAGE:
 
-		App->render->RenderQueueUI(2, App->tex->Sprites_UI_Texture_General_Sprites, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
+		App->render->RenderQueueUI(layer, App->tex->Sprites_UI_Texture_General_Sprites, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
 		break;
 
 	case TEXTURE::LOGO_SPRITE:
@@ -153,18 +153,18 @@ bool j1UISprites::Update(float dt) {
 		break;
 
 	case TEXTURE::BACKGROUND_FOREST:
-
-		App->render->RenderQueueUI(2, App->tex->Sprites_UI_Texture_Background_Forest, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
+		if (enabled)
+			App->render->RenderQueueUI(layer, App->tex->Sprites_UI_Texture_Background_Forest, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
 		break;
 
 	case TEXTURE::BACKGROUND_SNOW:
-
-		App->render->RenderQueueUI(2, App->tex->Sprites_UI_Texture_Background_Snow, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
+		if (enabled)
+			App->render->RenderQueueUI(layer, App->tex->Sprites_UI_Texture_Background_Snow, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
 		break;
 
 	case TEXTURE::BACKGROUND_VOLCANO:
-
-		App->render->RenderQueueUI(2, App->tex->Sprites_UI_Texture_Background_Volcano, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
+		if (enabled)
+			App->render->RenderQueueUI(layer, App->tex->Sprites_UI_Texture_Background_Volcano, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
 		break;
 
 	}
