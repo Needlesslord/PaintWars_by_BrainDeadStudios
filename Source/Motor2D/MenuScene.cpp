@@ -89,11 +89,11 @@ bool MenuScene::PreUpdate()
 		scoreButton->map_position.x = -300;
 		creditsButton->map_position.x = 1300;
 		exitButton->map_position.x = -300;
-		playButton->label->map_position.x = -225;
-		settingsButton->label->map_position.x = 1305;
-		scoreButton->label->map_position.x = -255;
-		creditsButton->label->map_position.x = 1325;
-		exitButton->label->map_position.x = -250;
+		playButton->label->map_position.x = -292;
+		settingsButton->label->map_position.x = 1304;
+		scoreButton->label->map_position.x = -295;
+		creditsButton->label->map_position.x = 1300;
+		exitButton->label->map_position.x = -295;
 		ResetPosition = false;
 	}
 
@@ -116,39 +116,30 @@ bool MenuScene::Update(float dt)
 
 	if (playButton->map_position.x < 475 && App->transition_manager->is_transitioning == false) {
 		playButton->map_position = playButton->map_position = { playButton->map_position.x + 7,playButton->map_position.y };
-	}
-	if (playButton->label->map_position.x < 475 && App->transition_manager->is_transitioning == false) {
 		playButton->label->map_position = playButton->label->map_position = { playButton->label->map_position.x + 7,playButton->label->map_position.y };
 	}
 	//--
 	if (settingsButton->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
 		settingsButton->map_position = settingsButton->map_position = { settingsButton->map_position.x - 7,settingsButton->map_position.y };
-	}
-	if (settingsButton->label->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
 		settingsButton->label->map_position = settingsButton->label->map_position = { settingsButton->label->map_position.x - 7,settingsButton->label->map_position.y };
 	}
 
 	if (scoreButton->map_position.x < 490 && App->transition_manager->is_transitioning == false) {
 		scoreButton->map_position = scoreButton->map_position = { scoreButton->map_position.x + 7,scoreButton->map_position.y };
-	}
-	if (scoreButton->label->map_position.x < 490 && App->transition_manager->is_transitioning == false) {
 		scoreButton->label->map_position = scoreButton->label->map_position = { scoreButton->label->map_position.x + 7,scoreButton->label->map_position.y };
 	}
+
 	//--
 	if (creditsButton->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
 		creditsButton->map_position = creditsButton->map_position = { creditsButton->map_position.x - 7,creditsButton->map_position.y };
-	}
-	if (creditsButton->label->map_position.x > 495 && App->transition_manager->is_transitioning == false) {
 		creditsButton->label->map_position = creditsButton->label->map_position = { creditsButton->label->map_position.x - 7,creditsButton->label->map_position.y };
 	}
 
 	if (exitButton->map_position.x < 505 && App->transition_manager->is_transitioning == false) {
 		exitButton->map_position = exitButton->map_position = { exitButton->map_position.x + 7,exitButton->map_position.y };
-	}
-	if (exitButton->label->map_position.x < 505 && App->transition_manager->is_transitioning == false) {
 		exitButton->label->map_position = exitButton->label->map_position = { exitButton->label->map_position.x + 7,exitButton->label->map_position.y };
-		
 	}
+
 	else if( App->transition_manager->is_transitioning == false) {
 		FinishedPosition = true; //ONLY ONE CHANGE TO TRUE IS NEEDED BECAUSE ALL BUTTONS GET TO THEIR POSITION AT THE SAME MOMENT
 	}

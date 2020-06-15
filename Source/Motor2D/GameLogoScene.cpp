@@ -79,6 +79,12 @@ bool GameLogoScene::Update(float dt)
 	//	App->scenes->SwitchScene(SCENES::MENU_SCENE);
 	//}
 	App->player->Mouse_Cursor();
+	
+
+	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN)
+	{
+		Mix_FreeChunk(App->audio->logo_2_sound);
+	}
 
 
 

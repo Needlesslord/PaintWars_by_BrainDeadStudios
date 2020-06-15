@@ -87,15 +87,15 @@ bool StartScene::PreUpdate()
 
 	if (ResetPosition == true) {
 		continueButton->map_position.x = -300;
-		continueButton->label->map_position.x = -275;
+		continueButton->label->map_position.x = -297;
 		forestButton->map_position.x = 1300;
-		forestButton->label->map_position.x = 1335;
+		forestButton->label->map_position.x = 1285;
 		snowButton->map_position.x = -300;
-		snowButton->label->map_position.x = -245;
+		snowButton->label->map_position.x = -292;
 		volcanoButton->map_position.x = 1300;
-		volcanoButton->label->map_position.x = 1300;
+		volcanoButton->label->map_position.x = 1302;
 		backButton->map_position.x = -300;
-		backButton->label->map_position.x = -250;
+		backButton->label->map_position.x = -292;
 		ResetPosition = false;
 	}
 
@@ -124,39 +124,30 @@ bool StartScene::Update(float dt)
 
 	if (continueButton->map_position.x < 475 && App->transition_manager->is_transitioning == false) {
 		continueButton->map_position = continueButton->map_position = { continueButton->map_position.x + 7,continueButton->map_position.y };
-	}
-	if (continueButton->label->map_position.x < 475 && App->transition_manager->is_transitioning == false) {
 		continueButton->label->map_position = continueButton->label->map_position = { continueButton->label->map_position.x + 7,continueButton->label->map_position.y };
 	}
 	//--
 	if (forestButton->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
 		forestButton->map_position = forestButton->map_position = { forestButton->map_position.x - 7,forestButton->map_position.y };
-	}
-	if (forestButton->label->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
 		forestButton->label->map_position = forestButton->label->map_position = { forestButton->label->map_position.x - 7,forestButton->label->map_position.y };
 	}
 
 	if (snowButton->map_position.x < 490 && App->transition_manager->is_transitioning == false) {
 		snowButton->map_position = snowButton->map_position = { snowButton->map_position.x + 7,snowButton->map_position.y };
-	}
-	if (snowButton->label->map_position.x < 490 && App->transition_manager->is_transitioning == false) {
 		snowButton->label->map_position = snowButton->label->map_position = { snowButton->label->map_position.x + 7,snowButton->label->map_position.y };
 	}
+
 	//--
 	if (volcanoButton->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
 		volcanoButton->map_position = volcanoButton->map_position = { volcanoButton->map_position.x - 7,volcanoButton->map_position.y };
-	}
-	if (volcanoButton->label->map_position.x > 490 && App->transition_manager->is_transitioning == false) {
 		volcanoButton->label->map_position = volcanoButton->label->map_position = { volcanoButton->label->map_position.x - 7,volcanoButton->label->map_position.y };
 	}
 
 	if (backButton->map_position.x < 505 && App->transition_manager->is_transitioning == false) {
 		backButton->map_position = backButton->map_position = { backButton->map_position.x + 7,backButton->map_position.y };
-	}
-	if (backButton->label->map_position.x < 505 && App->transition_manager->is_transitioning == false) {
 		backButton->label->map_position = backButton->label->map_position = { backButton->label->map_position.x + 7,backButton->label->map_position.y };
-		
 	}
+
 	else if (App->transition_manager->is_transitioning == false) {
 		FinishedPosition = true; //ONLY ONE CHANGE TO TRUE IS NEEDED BECAUSE ALL BUTTONS GET TO THEIR POSITION AT THE SAME MOMENT
 	}

@@ -215,7 +215,8 @@ public:
 	j1UIElement* shopHoverUpgradeExtractor = nullptr;
 	j1UIElement* shopHoverUpgradeWoodProducer = nullptr;*/
 
-	// int priceTimer = 0;
+	int tagTimer = 0;
+	j1UIElement* tagLabel = nullptr;
 
 
 	// Buildings

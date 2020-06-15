@@ -339,6 +339,7 @@ bool j1EntityManager::Update(float dt) {
 							AddEntity(ENTITY_TYPE_PAINT_EXTRACTOR, mapCoordinates, App->entities, nullptr, 0);
 							hoveringEntityType == ENTITY_TYPE_NONE;
 							ExtractorQuestDone = true;
+							bought = true;
 						}
 					}
 				}
@@ -351,6 +352,7 @@ bool j1EntityManager::Update(float dt) {
 						isSelectingPlacement = false;
 						AddEntity(ENTITY_TYPE_TITANIUM_EXTRACTOR, mapCoordinates, App->entities, nullptr, 0);
 						hoveringEntityType == ENTITY_TYPE_NONE;
+						bought = true;
 					}
 				}
 
@@ -363,6 +365,7 @@ bool j1EntityManager::Update(float dt) {
 							App->player->paintCount.count -= 20;
 							AddEntity(ENTITY_TYPE_WOOD_PRODUCER, mapCoordinates, App->entities, nullptr, 0);
 							hoveringEntityType == ENTITY_TYPE_NONE;
+							bought = true;
 						}
 					}
 				}
@@ -376,6 +379,7 @@ bool j1EntityManager::Update(float dt) {
 							App->player->paintCount.count -= 100;
 							AddEntity(ENTITY_TYPE_METAL_GATHERER, mapCoordinates, App->entities, nullptr, 0);
 							hoveringEntityType == ENTITY_TYPE_NONE;
+							bought = true;
 						}
 					}
 				}
@@ -391,6 +395,7 @@ bool j1EntityManager::Update(float dt) {
 							AddEntity(ENTITY_TYPE_BARRACKS, mapCoordinates, App->entities, nullptr, 0);
 							hoveringEntityType == ENTITY_TYPE_NONE;
 							BarracksQuestDone = true;
+							bought = true;
 						}
 					}
 				}
@@ -404,6 +409,7 @@ bool j1EntityManager::Update(float dt) {
 							App->player->woodCount.count -= 20;
 							AddEntity(ENTITY_TYPE_HOUSE, mapCoordinates, App->entities, nullptr, 0);
 							hoveringEntityType == ENTITY_TYPE_NONE;
+							bought = true;
 						}
 					}
 				}

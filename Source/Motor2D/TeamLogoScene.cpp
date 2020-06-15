@@ -72,7 +72,10 @@ bool TeamLogoScene::Update(float dt)
 	//	App->scenes->SwitchScene(SCENES::MENU_SCENE);
 	//}
 
-
+	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN)
+	{
+		Mix_FreeChunk(App->audio->logo_1_sound);
+	}
 
 	return ret;
 }

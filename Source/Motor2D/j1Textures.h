@@ -69,6 +69,8 @@ public:
 	SDL_Texture* Sprites_UI_Texture_ContinueLetters_WIN_LOSE_SCENE = nullptr;
 
 	SDL_Texture* Sprites_UI_Texture_Background_Forest = nullptr;
+	SDL_Texture* Sprites_UI_Texture_Background_Snow = nullptr;
+	SDL_Texture* Sprites_UI_Texture_Background_Volcano = nullptr;
 
 };
 
