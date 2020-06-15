@@ -75,10 +75,17 @@ bool j1Audio::Awake(pugi::xml_node& config)
 
 	}
 
-	warriorAttack_Sound = LoadFx("audio/fx/fx_unit_warrior_attack.wav");
-	if (warriorAttack_Sound == NULL)
+	attack_Sound = LoadFx("audio/fx/fx_unit_warrior_attack.wav");
+	if (attack_Sound == NULL)
 	{
 		LOG("Audio Warrior Attack IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
+
+	}
+
+	knightAttack_Sound = LoadFx("audio/fx/fx_unit_knight_attack.wav");
+	if (knightAttack_Sound == NULL)
+	{
+			LOG("Audio Knight Attack IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
 
 	}
 
@@ -152,12 +159,12 @@ bool j1Audio::Awake(pugi::xml_node& config)
 
 	}
 
-	knight_sound = Mix_LoadWAV("audio/fx/fx_unit_knight.wav");
+	/*knight_sound = Mix_LoadWAV("audio/fx/fx_unit_knight.wav");
 	if (braindead_sound == NULL)
 	{
 		LOG("Audio Knight IS NOT WORKING! SDL_mixer Error: %s\n", Mix_GetError());
 
-	}
+	}*/
 
 	explorer_sound = Mix_LoadWAV("audio/fx/fx_unit_warrior_walk.wav");
 	if (braindead_sound == NULL)
@@ -419,7 +426,7 @@ void j1Audio::ChunkAudioManager(int volume)
 	Mix_VolumeChunk(birds_sound, volume);
 	Mix_VolumeChunk(crickets_sound, volume);
 	Mix_VolumeChunk(braindead_sound, volume);
-	Mix_VolumeChunk(knight_sound, volume);
+	//Mix_VolumeChunk(knight_sound, volume);
 	Mix_VolumeChunk(explorer_sound, volume);
 	Mix_VolumeChunk(enemyDeath_sound, volume);
 	
