@@ -73,6 +73,20 @@ bool j1EntityManager::PreUpdate() {
 		LoadEntityTextures();
 	}*/
 
+	if (isChromaKingAwakening) {
+		isChromaKingAwakening = false;
+
+		list<Entity*>::iterator lastSpawner = activeBuildings.begin();
+		while (lastSpawner != activeBuildings.end()) {
+
+			if ((*lastSpawner)->entityType == ENTITY_TYPE_SPAWNER) {
+				AddEntity(ENTITY_TYPE_CHROMA_KING, { (*lastSpawner)->currentTile.x + 3,(*lastSpawner)->currentTile.y + 3 }, App->entities);
+				break;
+			}
+			lastSpawner++;
+		}	
+	}
+
 	if (App->PAUSE_ACTIVE == false) {}
 
 	// Update the currentTile to the actual pos
@@ -247,7 +261,11 @@ bool j1EntityManager::Update(float dt) {
 
 					else if ((*checkForSpawningEntities)->entitySize == ENTITY_SIZE_MEDIUM) {
 
-						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,260,260 });
+						if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_TURRET)
+							App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y + 150, { 0,0,260,260 });
+
+						else
+							App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,260,260 });
 					}
 
 					else if ((*checkForSpawningEntities)->entitySize == ENTITY_SIZE_BIG) {
@@ -883,7 +901,7 @@ bool j1EntityManager::Update(float dt) {
 							}
 						}
 
-						// TODO: keep changing these Also warrior!!!
+						// TODO: keep changing these (Also warrior)!!!
 						else if ((*checkAttackAnimation)->entityType == ENTITY_TYPE_RIDER) {
 
 							if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
@@ -1108,7 +1126,7 @@ bool j1EntityManager::Update(float dt) {
 
 			}
 
-			else if ((*particleToUpdate)->entityType == ENTITY_TYPE_SLIME) {
+			else if ((*particleToUpdate)->entityType == ENTITY_TYPE_SLIME || (*particleToUpdate)->entityType == ENTITY_TYPE_CHROMA_KING) {
 
 				if ((*particleToUpdate)->particles.size() > 0) {
 
@@ -1379,7 +1397,6 @@ bool j1EntityManager::PostUpdate() {
 
 		if ((*checkForDeadUnits)->GetCurrLife() <= 0 || !(*checkForDeadUnits)->isAlive) {
 
-			App->player->housingSpace.count--;
 			activeUnits.erase(checkForDeadUnits);
 		}
 		checkForDeadUnits++;
@@ -1390,6 +1407,12 @@ bool j1EntityManager::PostUpdate() {
 
 		if ((*checkForDeadBuildings)->GetCurrLife() <= 0 || !(*checkForDeadBuildings)->isAlive) {
 
+			if ((*checkForDeadBuildings)->entityType == ENTITY_TYPE_SPAWNER) {
+
+				spawnersDestroyed++;
+				if (spawnersDestroyed == 4)
+					isChromaKingAwakening = true;
+			}
 			activeBuildings.erase(checkForDeadBuildings);
 		}
 		checkForDeadBuildings++;

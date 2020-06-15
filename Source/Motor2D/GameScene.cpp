@@ -637,6 +637,17 @@ bool GameScene::Update(float dt)
 	sprintf_s(conversorChar3, 256, "%d", conversorInt3);
 	metalLabel->text = conversorChar3;
 
+	int housingUsed = 0;
+	list<Entity*>::iterator housingCheck = App->entities->activeUnits.begin();
+	while (housingCheck != App->entities->activeUnits.end()) {
+
+		if ((*housingCheck)->isEntityFromPlayer)
+			housingUsed++;
+
+		housingCheck++;
+	}
+	App->player->housingSpace.count = housingUsed;
+
 	static char conversorChar4[256];
 	int conversorInt4 = App->player->housingSpace.count;
 	int conversorInt5 = App->player->housingSpace.maxCount;
@@ -1936,10 +1947,14 @@ void GameScene::Generate_Volcano_Map()
 
 void GameScene::Generate_Entities()
 {
-	App->entities->AddEntity(ENTITY_TYPE_EXPLORER, { 2, 2 }, App->entities, nullptr, 0, true);
+	//App->entities->AddEntity(ENTITY_TYPE_EXPLORER, { 4, 4 }, App->entities, nullptr, 0, true);
 
 	//scattered enemies (slimes)
 	if (App->scenes->Map_Forest_Active == true) {
+
+		//App->entities->AddEntity(ENTITY_TYPE_CHROMA_KING, { 2, 2 }, App->entities, nullptr, 0, true);
+
+
 		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 19, 86 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 86, 19 }, App->entities, nullptr, 0, true);
 		App->entities->AddEntity(ENTITY_TYPE_SLIME, { 90, 90 }, App->entities, nullptr, 0, true);
@@ -2773,7 +2788,7 @@ void GameScene::QuestManagerFunction()
 		//Mix_PlayChannel(-1, App->audio->Quest_Audio, 0);
 	}
 
-	if (spawnerscount < 4) { //REMEMBER TO SET THIS BOOL TO FALSE IN CLEANUP OF GAME SCENE OR THIS QUEST WONT WORK
+	if (spawnerscount < 4) { //REMEMBER TO SET THIS BOOL TO FALSE IN CLEAN UP OF GAME SCENE OR THIS QUEST WONT WORK
 		DestroySpawnerQuestCompleted = true;
 		if (DestroySpawnerQuestCompleted == true) {
 			questsText5Count->text = "1/1";
@@ -2781,7 +2796,7 @@ void GameScene::QuestManagerFunction()
 		}
 	}
 
-	if (App->entities->ExplorerQuestDone == true) { //REMEMBER TO SET THIS BOOL TO FALSE IN CLEANUP OF GAME SCENE OR THIS QUEST WONT WORK
+	if (App->entities->ExplorerQuestDone == true) { //REMEMBER TO SET THIS BOOL TO FALSE IN CLEAN UP OF GAME SCENE OR THIS QUEST WONT WORK
 		ExplorerQuestCompleted = true;
 		if (ExplorerQuestCompleted == true) {
 			questsText2Count->text = "1/1";

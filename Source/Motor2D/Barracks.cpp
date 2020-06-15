@@ -50,7 +50,6 @@ void Barracks::SpawnEntity(ENTITY_TYPE type) {
 		if (!isSpawningAUnit && App->player->paintCount.count >= 20 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
 
 			App->player->paintCount.count -= 20;
-			App->player->housingSpace.count++;
 
 			App->entities->AddEntity(ENTITY_TYPE_WARRIOR, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
 			isSpawningAUnit = true;
@@ -60,7 +59,6 @@ void Barracks::SpawnEntity(ENTITY_TYPE type) {
 		if (!isSpawningAUnit && App->player->paintCount.count >= 100 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
 
 			App->player->paintCount.count -= 100;
-			App->player->housingSpace.count++;
 
 			App->entities->AddEntity(ENTITY_TYPE_KNIGHT, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
 			isSpawningAUnit = true;
@@ -70,7 +68,6 @@ void Barracks::SpawnEntity(ENTITY_TYPE type) {
 		if (!isSpawningAUnit && App->player->paintCount.count >= 50 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
 
 			App->player->paintCount.count -= 50;
-			App->player->housingSpace.count++;
 
 			App->entities->AddEntity(ENTITY_TYPE_RANGER, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
 			isSpawningAUnit = true;

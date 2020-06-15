@@ -50,6 +50,7 @@ Painter::Painter(iPoint tile, int damage, j1Module* listener, Entity* creator) :
 
 	//FOW
 	visibilityRadius = 2;
+
 	fow_entity->frontier = App->fow->CreateSightQuad(visibilityRadius, fow_entity->position);
 	fow_entity->LOS = App->fow->FulfillSight(fow_entity->frontier);
 

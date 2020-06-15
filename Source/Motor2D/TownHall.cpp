@@ -36,6 +36,7 @@ TownHall::TownHall(iPoint tile, int damage, j1Module* listener, Entity* creator)
 	isSpawningAUnit = false;
 
 	visibilityRadius = 6;
+
 	fow_entity->frontier = App->fow->CreateSightQuad(visibilityRadius, fow_entity->position);
 	fow_entity->LOS = App->fow->FulfillSight(fow_entity->frontier);
 
@@ -50,7 +51,6 @@ void TownHall::SpawnEntity(ENTITY_TYPE type) {
 		if (!isSpawningAUnit && App->player->paintCount.count >= 25 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
 
 			App->player->paintCount.count -= 25;
-			App->player->housingSpace.count++;
 			App->entities->AddEntity(ENTITY_TYPE_PAINTER, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
 			Mix_PlayChannel(-1, App->audio->spawnFromHall, 0);
 			isSpawningAUnit = true;
@@ -61,7 +61,6 @@ void TownHall::SpawnEntity(ENTITY_TYPE type) {
 		if (!isSpawningAUnit && App->player->paintCount.count >= 25 && App->player->housingSpace.count < App->player->housingSpace.maxCount) {
 
 			App->player->paintCount.count -= 25;
-			App->player->housingSpace.count++;
 			App->entities->AddEntity(ENTITY_TYPE_EXPLORER, { currentTile.x + 1, currentTile.y + 1 }, App->entities, this, 0);
 			Mix_PlayChannel(-1, App->audio->spawnFromHall, 0);
 			isSpawningAUnit = true;
