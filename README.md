@@ -7,9 +7,9 @@ In a world full of colour, a corruption spread, turning everything monochromatic
 
 *Paint Wars* is an isometric single player RTS game featuring a campaign with playable units, buildable structures and manageable resources where the player will have to fight against waves of enemies trying to destroy his base. The game is located in a paint themed world where resources, units and buildings will be related to paint.
 
-**DISCLAIMER:** This version is not the final one, so please do not mind bugs and lack of content. We are working on that! 
+**DISCLAIMER:** This is version v1.0, but we intend to do more in the future! 
 
-*Current version: v0.85*
+*Current version: v1.0*
 
 
 ## Key Features
@@ -26,7 +26,8 @@ In a world full of colour, a corruption spread, turning everything monochromatic
      + Enemies all over the map
      + Fog of war: visited, visited-empty and not-visited-yet
      + Tutorial, Dialogs and Quests
-     + Particles
+     + Particles (clouds)
+     + Works under 256mb, code optimized
  - UI and HUD
      + UI, with Main Menu (Play and Exit, Settings -music, fx, full screen, reset-, Credits -link to repository- and Map selection -continue if saved game, forest, snow and volcano-) with background
      + Life Bars, Progress bars
@@ -97,7 +98,7 @@ In a world full of colour, a corruption spread, turning everything monochromatic
        17 - ranger movement
        18 - knight movement
 ... and more!
-     + Positioning (further fx sound less)
+     + Positioning (outside sounds of the camera are not heard)
  - DEBUG
 	 + F1/F2/F3 Game Scene: Forest / Snow / Volcano
 	 + F4 Save
