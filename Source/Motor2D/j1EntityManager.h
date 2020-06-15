@@ -176,7 +176,8 @@ private:
 	SDL_Texture* debug_tex = nullptr;
 	bool EntityTexturesAreLoaded;
 
-
+	uint spawnersDestroyed = 0;
+	bool isChromaKingAwakening = false;
 };
 
 #endif //__j1ENTITY_FACTORY_H__

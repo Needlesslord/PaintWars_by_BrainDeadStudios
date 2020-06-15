@@ -63,8 +63,6 @@ enum ENTITY_TYPE {
 	ENTITY_TYPE_BARRACKS,//5
 	ENTITY_TYPE_TITANIUM_EXTRACTOR,//6
 	ENTITY_TYPE_METAL_GATHERER,//7
-
-	///Defenses
 	ENTITY_TYPE_TURRET,//8
 
 	/// Units
@@ -148,7 +146,7 @@ public:
 
 	iPoint destination;
 	iPoint nextTile;
-	uint aggroRange = 15;
+	uint aggroRange = 8;
 
 	std::vector<iPoint>currentPath;
 	uint pathIterator;

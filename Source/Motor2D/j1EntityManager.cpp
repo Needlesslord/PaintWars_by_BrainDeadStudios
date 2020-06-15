@@ -73,6 +73,20 @@ bool j1EntityManager::PreUpdate() {
 		LoadEntityTextures();
 	}*/
 
+	if (isChromaKingAwakening) {
+		isChromaKingAwakening = false;
+
+		list<Entity*>::iterator lastSpawner = activeBuildings.begin();
+		while (lastSpawner != activeBuildings.end()) {
+
+			if ((*lastSpawner)->entityType == ENTITY_TYPE_SPAWNER) {
+				AddEntity(ENTITY_TYPE_CHROMA_KING, { (*lastSpawner)->currentTile.x + 3,(*lastSpawner)->currentTile.y + 3 }, App->entities);
+				break;
+			}
+			lastSpawner++;
+		}	
+	}
+
 	if (App->PAUSE_ACTIVE == false) {}
 
 	// Update the currentTile to the actual pos
@@ -247,7 +261,11 @@ bool j1EntityManager::Update(float dt) {
 
 					else if ((*checkForSpawningEntities)->entitySize == ENTITY_SIZE_MEDIUM) {
 
-						App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,260,260 });
+						if ((*checkForSpawningEntities)->entityType == ENTITY_TYPE_TURRET)
+							App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y + 150, { 0,0,260,260 });
+
+						else
+							App->render->RenderQueueUI(1, buildingTexture, (*checkForSpawningEntities)->pos.x, (*checkForSpawningEntities)->pos.y, { 0,0,260,260 });
 					}
 
 					else if ((*checkForSpawningEntities)->entitySize == ENTITY_SIZE_BIG) {
@@ -301,7 +319,9 @@ bool j1EntityManager::Update(float dt) {
 			else if (hoveringEntityType == ENTITY_TYPE_HOUSE) {
 				App->render->RenderQueue(1, houseTexture, mapWorldCoordinates.x - 200 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 400 + App->map->data.tile_height / 2, { 0,0,400,400 });
 			}
-
+			else if (hoveringEntityType == ENTITY_TYPE_TURRET) {
+				App->render->RenderQueue(1, turretTexture, mapWorldCoordinates.x - 125 + App->map->data.tile_width / 2, mapWorldCoordinates.y - 250 + App->map->data.tile_height / 2, { 0,0,250,400 });
+			}
 
 			// If the Left click was pressed we'll check if it can in fact be built there
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
@@ -393,6 +413,19 @@ bool j1EntityManager::Update(float dt) {
 						}
 					}
 				}
+
+				else if (hoveringEntityType == ENTITY_TYPE_TURRET) {
+
+					if (App->pathfinding->IsBuildable(mapCoordinates)) {
+
+						if (App->player->woodCount.count >= 75) {
+							isSelectingPlacement = false;
+							App->player->woodCount.count -= 75;
+							AddEntity(ENTITY_TYPE_TURRET, mapCoordinates, App->entities, nullptr, 0);
+							hoveringEntityType == ENTITY_TYPE_NONE;
+						}
+					}
+				}
 			}
 		}
 
@@ -433,7 +466,7 @@ bool j1EntityManager::Update(float dt) {
 
 				(*entitiesToExtractPaint)->ExtractPaint(dt);
 				(*entitiesToExtractPaint)->currentAnimation = &painterRecollection;
-				App->audio->PlayFx(App->audio->walkingPainter_sound);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
 
 			}
 
@@ -454,6 +487,8 @@ bool j1EntityManager::Update(float dt) {
 
 				(*paintersToExtractWood)->ExtractWood(dt);
 				(*paintersToExtractWood)->currentAnimation = &painterRecollection;
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
+
 			}
 			paintersToExtractWood++;
 		}
@@ -466,6 +501,8 @@ bool j1EntityManager::Update(float dt) {
 			if ((*paintersToExtractMetal)->entityType == ENTITY_TYPE_PAINTER && (App->pathfinding->IsMetalScrap((*paintersToExtractMetal)->currentTile) && (*paintersToExtractMetal)->currentTile == (*paintersToExtractMetal)->destination)) {
 
 				(*paintersToExtractMetal)->ExtractMetalScrap(dt);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
+
 			}
 			paintersToExtractMetal++;
 		}
@@ -478,117 +515,11 @@ bool j1EntityManager::Update(float dt) {
 			if ((*extractTitanium)->entityType == ENTITY_TYPE_TITANIUM_EXTRACTOR) {
 
 				(*extractTitanium)->ExtractTitanium(dt);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
+
 			}
 			extractTitanium++;
 		}
-
-	
-
-	
-		// Attack Mode
-		//list<Entity*>::iterator unitsToFight = activeUnits.begin();
-		//while (unitsToFight != activeUnits.end()) {
-
-		//	if ((*unitsToFight)->isEntityFromPlayer) {
-
-		//		if ((*unitsToFight)->currentTile == (*unitsToFight)->destination) {
-		//			
-		//			int x_distance, y_distance;
-
-		//			x_distance = (*unitsToFight)->currentTile.x - (*unitsToFight)->target.x;
-		//			y_distance = (*unitsToFight)->currentTile.y - (*unitsToFight)->target.y;
-
-		//			if (x_distance < 0)
-		//				x_distance *= (-1);
-
-		//			if (y_distance < 0)
-		//				y_distance *= (-1);
-
-		//			if (x_distance <= 1 && y_distance <= 1) {
-		//				
-		//				// If we should attack, we check to what
-		//				list<Entity*>::iterator checkWhichSpawner = activeBuildings.begin();
-		//				while (checkWhichSpawner != activeBuildings.end()) {
-
-		//					if ((*checkWhichSpawner)->entityType == ENTITY_TYPE_SPAWNER) {
-
-		//						fPoint targetWorldPos = App->map->MapToWorld((*unitsToFight)->target.x, (*unitsToFight)->target.y);
-		//						//targetWorldPos.x -= App->map->data.tile_width;
-		//						//targetWorldPos.y -= App->map->data.tile_height;
-
-		//						fPoint spawnerCurrentTileWorld = App->map->MapToWorld((*checkWhichSpawner)->currentTile.x - 1, (*checkWhichSpawner)->currentTile.y - 1);
-
-		//						if (targetWorldPos.x < spawnerCurrentTileWorld.x + (*checkWhichSpawner)->GetSize().x &&
-		//							targetWorldPos.x + App->map->data.tile_width > spawnerCurrentTileWorld.x &&
-		//							targetWorldPos.y < spawnerCurrentTileWorld.y + (*checkWhichSpawner)->GetSize().y &&
-		//							App->map->data.tile_height + targetWorldPos.y > spawnerCurrentTileWorld.y) {
-
-		//							(*unitsToFight)->Attack((*checkWhichSpawner), dt);
-		//							/*
-		//							(*unitsToFight)->currentAnimation = &warriorAttackingDIRECTION;
-		//							comprobar orientación (OJO: previousOrientation no unitOrientation!!!
-
-
-		//							Aqu?compruebas las 8 direcciones y les pones su animación */
-
-		//							std::list<Entity*>::iterator checkAttackAnimation = activeUnits.begin();
-		//							while (checkAttackAnimation != activeUnits.end()) {
-
-		//								if ((*checkAttackAnimation)->entityType == ENTITY_TYPE_WARRIOR) {
-
-		//									if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
-
-		//										(*checkAttackAnimation)->currentAnimation = &warriorAttackNorth;
-		//									}
-
-		//									else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_EAST) {
-
-		//										(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthEast;
-		//									}
-
-		//									else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_EAST) {
-
-		//										(*checkAttackAnimation)->currentAnimation = &warriorAttackEast;
-		//									}
-
-		//									else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
-
-		//										(*checkAttackAnimation)->currentAnimation = &warriorAttackSouthEast;
-		//									}
-
-		//									else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH) {
-
-		//										(*checkAttackAnimation)->currentAnimation = &warriorAttackSouth;
-		//									}
-
-		//									else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
-
-		//										(*checkAttackAnimation)->currentAnimation = &warriorAttackSouthWest;
-		//									}
-
-		//									else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_WEST) {
-
-		//										(*checkAttackAnimation)->currentAnimation = &warriorAttackWest;
-		//									}
-
-		//									else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_WEST) {
-
-		//										(*checkAttackAnimation)->currentAnimation = &warriorAttackNorthWest;
-		//									}
-		//								}
-		//								checkAttackAnimation++;
-		//							}
-		//						}
-		//					}
-
-		//					checkWhichSpawner++;
-		//				}
-		//			}
-		//		}
-		//	}
-
-		//	unitsToFight++;
-		//}
 
 
 
@@ -783,20 +714,55 @@ bool j1EntityManager::Update(float dt) {
 			}
 		}
 
+		
+
+		// Turrets targetting system
+		list<Entity*>::iterator turretsToTarget = activeBuildings.begin();
+		while (turretsToTarget != activeBuildings.end()) {
+
+			// Only turrets here
+			if ((*turretsToTarget)->entityType == ENTITY_TYPE_TURRET) {
+
+				(*turretsToTarget)->target = nullptr;
+				int minimumDistance = 999;
+
+				// Cycle throw enemies
+				list<Entity*>::iterator enemyUnits = activeUnits.begin();
+				while (enemyUnits != activeUnits.end()) {
+				
+					if (!(*enemyUnits)->isEntityFromPlayer) {
+
+						if (App->pathfinding->DistanceTo((*turretsToTarget)->currentTile, (*enemyUnits)->currentTile) <= (*turretsToTarget)->attackRadius) {
+
+							if (App->pathfinding->DistanceTo((*turretsToTarget)->currentTile, (*enemyUnits)->currentTile) < minimumDistance) {
+
+								minimumDistance = App->pathfinding->DistanceTo((*turretsToTarget)->currentTile, (*enemyUnits)->currentTile);
+								(*turretsToTarget)->target = (*enemyUnits);
+							}
+						}
+					}
+
+					enemyUnits++;
+				}
+			}
+
+			turretsToTarget++;
+		}
+
 
 
 		// Attacking Logic
-		list<Entity*>::iterator unitsToAttackLogic = activeUnits.begin();
-		while (unitsToAttackLogic != activeUnits.end()) {
+		list<Entity*>::iterator entitiessToAttackLogic = activeEntities.begin();
+		while (entitiessToAttackLogic != activeEntities.end()) {
 
 			// First, we will get the units that need to AttackLogic
-			if ((*unitsToAttackLogic)->target != nullptr) {
+			if ((*entitiessToAttackLogic)->target != nullptr) {
 
-				// Checking if the unit is range to attack
-				// If it's in range, attack
-				if (App->pathfinding->DistanceTo((*unitsToAttackLogic)->currentTile, (*unitsToAttackLogic)->target->currentTile) <= (*unitsToAttackLogic)->attackRadius) {
+				// Checking if the unit is in range to attack
+				// If it's in range, we'll move it
+				if (App->pathfinding->DistanceTo((*entitiessToAttackLogic)->currentTile, (*entitiessToAttackLogic)->target->currentTile) <= (*entitiessToAttackLogic)->attackRadius) {
 
-					(*unitsToAttackLogic)->Attack((*unitsToAttackLogic)->target, dt);
+					(*entitiessToAttackLogic)->Attack((*entitiessToAttackLogic)->target, dt);
 					AttackQuestDone = true;
 					std::list<Entity*>::iterator checkAttackAnimation = activeUnits.begin();
 					while (checkAttackAnimation != activeUnits.end()) {
@@ -898,47 +864,56 @@ bool j1EntityManager::Update(float dt) {
 
 						else if ((*checkAttackAnimation)->entityType == ENTITY_TYPE_KNIGHT) {
 
-							if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
+							if ((*checkAttackAnimation)->currentTile.x < (*checkAttackAnimation)->target->currentTile.x) {
 
-								(*checkAttackAnimation)->currentAnimation = &knightAttackNorth;
+								if ((*checkAttackAnimation)->currentTile.y < (*checkAttackAnimation)->target->currentTile.y) {
+
+									(*checkAttackAnimation)->currentAnimation = &knightAttackSouth;
+								}
+								else if ((*checkAttackAnimation)->currentTile.y > (*checkAttackAnimation)->target->currentTile.y) {
+
+									(*checkAttackAnimation)->currentAnimation = &knightAttackEast;
+								}
+								else {
+
+									(*checkAttackAnimation)->currentAnimation = &knightAttackSouthEast;
+								}
 							}
 
-							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_EAST) {
+							else if ((*checkAttackAnimation)->currentTile.x > (*checkAttackAnimation)->target->currentTile.x) {
 
-								(*checkAttackAnimation)->currentAnimation = &knightAttackNorthEast;
+								if ((*checkAttackAnimation)->currentTile.y < (*checkAttackAnimation)->target->currentTile.y) {
+
+									(*checkAttackAnimation)->currentAnimation = &knightAttackWest;
+								}
+								else if ((*checkAttackAnimation)->currentTile.y > (*checkAttackAnimation)->target->currentTile.y) {
+
+									(*checkAttackAnimation)->currentAnimation = &knightAttackNorth;
+								}
+								else {
+
+									(*checkAttackAnimation)->currentAnimation = &knightAttackNorthWest;
+								}
 							}
 
-							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_EAST) {
+							else if ((*checkAttackAnimation)->currentTile.x == (*checkAttackAnimation)->target->currentTile.x) {
 
-								(*checkAttackAnimation)->currentAnimation = &knightAttackEast;
-							}
+								if ((*checkAttackAnimation)->currentTile.y < (*checkAttackAnimation)->target->currentTile.y) {
 
-							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
+									(*checkAttackAnimation)->currentAnimation = &knightAttackSouthWest;
+								}
+								else if ((*checkAttackAnimation)->currentTile.y > (*checkAttackAnimation)->target->currentTile.y) {
 
-								(*checkAttackAnimation)->currentAnimation = &knightAttackSouthEast;
-							}
+									(*checkAttackAnimation)->currentAnimation = &knightAttackNorthEast;
+								}
+								else {
 
-							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH) {
-
-								(*checkAttackAnimation)->currentAnimation = &knightAttackSouth;
-							}
-
-							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
-
-								(*checkAttackAnimation)->currentAnimation = &knightAttackSouthWest;
-							}
-
-							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_WEST) {
-
-								(*checkAttackAnimation)->currentAnimation = &knightAttackWest;
-							}
-
-							else if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH_WEST) {
-
-								(*checkAttackAnimation)->currentAnimation = &knightAttackNorthWest;
+									(*checkAttackAnimation)->currentAnimation = &knightAttackSouth;
+								}
 							}
 						}
 
+						// TODO: keep changing these (Also warrior)!!!
 						else if ((*checkAttackAnimation)->entityType == ENTITY_TYPE_RIDER) {
 
 							if ((*checkAttackAnimation)->previousOrientation == UNIT_ORIENTATION_NORTH) {
@@ -991,8 +966,8 @@ bool j1EntityManager::Update(float dt) {
 
 					// First we'll create a path to the target's position
 					int map;
-					map = App->pathfinding->CreatePath((*unitsToAttackLogic)->currentTile, (*unitsToAttackLogic)->target->currentTile, true);
-					(*unitsToAttackLogic)->currentPath = *App->pathfinding->GetLastPath();
+					map = App->pathfinding->CreatePath((*entitiessToAttackLogic)->currentTile, (*entitiessToAttackLogic)->target->currentTile, true);
+					(*entitiessToAttackLogic)->currentPath = *App->pathfinding->GetLastPath();
 					
 					bool isInRange = false;
 					int i = 0;
@@ -1000,13 +975,13 @@ bool j1EntityManager::Update(float dt) {
 					// We are looking for the closest tile that is in range to attack the target
 					while (!isInRange) {
 
-						if (App->pathfinding->DistanceTo((*unitsToAttackLogic)->currentPath.at(i), (*unitsToAttackLogic)->target->currentTile) <= (*unitsToAttackLogic)->attackRadius) {
+						if (App->pathfinding->DistanceTo((*entitiessToAttackLogic)->currentPath.at(i), (*entitiessToAttackLogic)->target->currentTile) <= (*entitiessToAttackLogic)->attackRadius) {
 
 							isInRange = true;
 
-							(*unitsToAttackLogic)->SetDestination((*unitsToAttackLogic)->currentPath.at(i));
-							destinations.push_back((*unitsToAttackLogic)->currentPath.at(i));
-							(*unitsToAttackLogic)->CalculateMovementLogic();
+							(*entitiessToAttackLogic)->SetDestination((*entitiessToAttackLogic)->currentPath.at(i));
+							destinations.push_back((*entitiessToAttackLogic)->currentPath.at(i));
+							(*entitiessToAttackLogic)->CalculateMovementLogic();
 
 							//map = App->pathfinding->CreatePath((*unitsToAttackLogic)->currentTile, (*unitsToAttackLogic)->currentPath.at(i));
 							//(*unitsToAttackLogic)->currentPath = *App->pathfinding->GetLastPath();
@@ -1016,13 +991,13 @@ bool j1EntityManager::Update(float dt) {
 
 						i++;
 
-						if (i >= (*unitsToAttackLogic)->currentPath.size())
+						if (i >= (*entitiessToAttackLogic)->currentPath.size())
 							break;
 					}
 				}
 			}
 
-			unitsToAttackLogic++;
+			entitiessToAttackLogic++;
 		}
 
 
@@ -1063,8 +1038,8 @@ bool j1EntityManager::Update(float dt) {
 
 
 		// Update Particles
-		std::list<Entity*>::iterator particleToUpdate = activeUnits.begin();
-		while (particleToUpdate != activeUnits.end()) {
+		std::list<Entity*>::iterator particleToUpdate = activeEntities.begin();
+		while (particleToUpdate != activeEntities.end()) {
 
 			if ((*particleToUpdate)->entityType == ENTITY_TYPE_RANGER) {
 
@@ -1114,7 +1089,56 @@ bool j1EntityManager::Update(float dt) {
 
 
 			}
-			else if ((*particleToUpdate)->entityType == ENTITY_TYPE_SLIME) {
+			else if ((*particleToUpdate)->entityType == ENTITY_TYPE_RANGER || (*particleToUpdate)->entityType == ENTITY_TYPE_TURRET) {
+
+				if ((*particleToUpdate)->particles.size() > 0) {
+
+					particles = (*particleToUpdate)->particles;
+
+					std::list<Particles*>::iterator particle = particles.begin();
+					while (particle != particles.end()) {
+
+						if ((*particle)->isAlive) {
+
+							if ((*particleToUpdate)->target == nullptr) {
+
+								float ang = atan((((*particle)->target.y + (*particle)->targetSize.y / 2) - (*particle)->pos.y) / (((*particle)->target.x + (*particle)->targetSize.x / 2) - (*particle)->pos.x));
+
+								(*particle)->speed.x = 500 * cos(ang);
+								(*particle)->speed.y = 500 * sin(ang);
+
+								(*particle)->Update(dt, { ((*particle)->target.x + ((*particle)->targetSize.x / 2)), ((*particle)->target.y + ((*particle)->targetSize.y / 2)) });
+							}
+
+							else {
+
+								float ang = atan((((*particleToUpdate)->target->pos.y + (*particleToUpdate)->target->GetSize().y / 2) - (*particle)->pos.y) / (((*particleToUpdate)->target->pos.x + (*particleToUpdate)->target->GetSize().x / 2) - (*particle)->pos.x));
+
+								(*particle)->target.x = (*particleToUpdate)->target->pos.x;
+								(*particle)->target.y = (*particleToUpdate)->target->pos.y;
+								(*particle)->targetSize.x = (*particleToUpdate)->target->GetSize().x;
+								(*particle)->targetSize.y = (*particleToUpdate)->target->GetSize().y;
+
+								(*particle)->speed.x = 500 * cos(ang);
+								(*particle)->speed.y = 500 * sin(ang);
+
+								if ((*particle)->Update(dt, { ((*particleToUpdate)->target->pos.x + ((*particleToUpdate)->target->GetSize().x / 2)), ((*particleToUpdate)->target->pos.y + ((*particleToUpdate)->target->GetSize().y / 2)) }) == false) {
+
+									(*particleToUpdate)->particles.erase(particle);
+									(*particleToUpdate)->target->ApplyDamage((*particleToUpdate)->attackDamage);
+									delete(*particle);
+								}
+							}
+						}
+
+						particle++;
+					}
+				}
+
+
+			}
+
+			else if ((*particleToUpdate)->entityType == ENTITY_TYPE_SLIME || (*particleToUpdate)->entityType == ENTITY_TYPE_CHROMA_KING) {
 
 				if ((*particleToUpdate)->particles.size() > 0) {
 
@@ -1237,6 +1261,9 @@ bool j1EntityManager::Update(float dt) {
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_BARRACKS) {
 					(*entitiesToDraw)->Draw(barracksTexture);
 				}
+				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_TURRET) {
+					(*entitiesToDraw)->Draw(turretTexture);
+				}
 				else if ((*entitiesToDraw)->entityType == ENTITY_TYPE_PAINTER) {
 					(*entitiesToDraw)->Draw(painterTexture);
 				}
@@ -1327,7 +1354,7 @@ bool j1EntityManager::PostUpdate() {
 		return ret;
 
 
-	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
 
 		float x, y;
 		App->input->GetMousePosition(x, y);
@@ -1382,7 +1409,6 @@ bool j1EntityManager::PostUpdate() {
 
 		if ((*checkForDeadUnits)->GetCurrLife() <= 0 || !(*checkForDeadUnits)->isAlive) {
 
-			App->player->housingSpace.count--;
 			activeUnits.erase(checkForDeadUnits);
 		}
 		checkForDeadUnits++;
@@ -1393,6 +1419,12 @@ bool j1EntityManager::PostUpdate() {
 
 		if ((*checkForDeadBuildings)->GetCurrLife() <= 0 || !(*checkForDeadBuildings)->isAlive) {
 
+			if ((*checkForDeadBuildings)->entityType == ENTITY_TYPE_SPAWNER) {
+
+				spawnersDestroyed++;
+				if (spawnersDestroyed == 4)
+					isChromaKingAwakening = true;
+			}
 			activeBuildings.erase(checkForDeadBuildings);
 		}
 		checkForDeadBuildings++;
@@ -1642,6 +1674,27 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 		return (Entity*)barracks;
 	}
 
+	else if (entityType == ENTITY_TYPE_TURRET) {
+
+		Turret* turret = new Turret(tile, damage, this, creator);
+
+		if (spawnAutomatically) {
+
+			activeEntities.push_back((Entity*)turret);
+			activeBuildings.push_back((Entity*)turret);
+			turret->isAlive = true;
+			turret->CreateEntityCollider(turret->pos, (Entity*)turret);
+		}
+
+		else
+			spawningEntities.push_back((Entity*)turret);
+
+		// Change the walkability to non walkable
+		App->pathfinding->ChangeWalkability(tile, false, turret->entitySize);
+
+		return (Entity*)turret;
+	}
+
 	/// Units
 	else if (entityType == ENTITY_TYPE_PAINTER) {
 
@@ -1880,6 +1933,7 @@ void j1EntityManager::LoadEntityTextures()
 	barracksTexture = App->tex->Load("textures/entity_building_barracks.png");
 	metalGathererTexture = App->tex->Load("textures/entity_building_metal_gatherer.png");
 	titaniumExtractorTexture = App->tex->Load("textures/entity_building_titanium_extractor.png");
+	turretTexture = App->tex->Load("textures/entity_building_turret.png");
 
 	/// Units
 	warriorTexture = App->tex->Load("textures/entity_units_warrior_spritesheet.png");
@@ -1929,50 +1983,50 @@ void j1EntityManager::UpdateAnimations() {
 			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &warriorMovingNorth;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &warriorMovingNorthEast;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &warriorMovingEast;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &warriorMovingSouthEast;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &warriorMovingSouth;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &warriorMovingSouthWest;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &warriorMovingWest;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &warriorMovingNorthWest;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 		}
 
@@ -1981,49 +2035,49 @@ void j1EntityManager::UpdateAnimations() {
 			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &painterMovingNorth;
-				App->audio->PlayFx(App->audio->walkingPainter_sound);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &painterMovingNorthEast;
-				App->audio->PlayFx(App->audio->walkingPainter_sound);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &painterMovingEast;
-				App->audio->PlayFx(App->audio->walkingPainter_sound);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &painterMovingSouthEast;
-				App->audio->PlayFx(App->audio->walkingPainter_sound);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &painterMovingSouth;
-				App->audio->PlayFx(App->audio->walkingPainter_sound);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &painterMovingSouthWest;
-				App->audio->PlayFx(App->audio->walkingPainter_sound); (-1, App->audio->walkingPainter_sound, 0);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound); (-1, App->audio->walkingUnit2_sound, 0);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &painterMovingWest;
-				App->audio->PlayFx(App->audio->walkingPainter_sound);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &painterMovingNorthWest;
-				App->audio->PlayFx(App->audio->walkingPainter_sound);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
 			}
 		}
 
@@ -2032,49 +2086,49 @@ void j1EntityManager::UpdateAnimations() {
 			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &knightMovingNorth;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &knightMovingNorthEast;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 	
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &knightMovingEast;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &knightMovingSouthEast;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &knightMovingSouth;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &knightMovingSouthWest;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &knightMovingWest;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &knightMovingNorthWest;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 		}
 
@@ -2083,49 +2137,49 @@ void j1EntityManager::UpdateAnimations() {
 			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &rangerMovingNorth;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &rangerMovingNorthEast;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &rangerMovingEast;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &rangerMovingSouthEast;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &rangerMovingSouth;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &rangerMovingSouthWest;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &rangerMovingWest;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &rangerMovingNorthWest;
-				App->audio->PlayFx(App->audio->walkingWarrior_sound);
+				App->audio->PlayFx(App->audio->walkingUnit1_sound);
 			}
 		}
 
@@ -2134,49 +2188,49 @@ void j1EntityManager::UpdateAnimations() {
 			if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &explorerMovingNorth;
-				App->audio->PlayFx(App->audio->walkingPainter_sound);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &explorerMovingNorthEast;
-				App->audio->PlayFx(App->audio->walkingPainter_sound);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &explorerMovingEast;
-				App->audio->PlayFx(App->audio->walkingPainter_sound);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 				(*checkMovingAnimation)->currentAnimation = &explorerMovingSouthEast;
-				App->audio->PlayFx(App->audio->walkingPainter_sound);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
 			}
 	
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 				(*checkMovingAnimation)->currentAnimation = &explorerMovingSouth;
-				App->audio->PlayFx(App->audio->walkingPainter_sound);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &explorerMovingSouthWest;
-				App->audio->PlayFx(App->audio->walkingPainter_sound);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &explorerMovingWest;
-				App->audio->PlayFx(App->audio->walkingPainter_sound);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
 			}
 
 			else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 				(*checkMovingAnimation)->currentAnimation = &explorerMovingNorthWest;
-				App->audio->PlayFx(App->audio->walkingPainter_sound);
+				App->audio->PlayFx(App->audio->walkingUnit2_sound);
 			}
 
 
@@ -2185,50 +2239,50 @@ void j1EntityManager::UpdateAnimations() {
 				if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 					(*checkMovingAnimation)->currentAnimation = &riderMovingNorth;
-					App->audio->PlayFx(App->audio->walkingWarrior_sound);
+					App->audio->PlayFx(App->audio->walkingUnit1_sound);
 
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &riderMovingNorthEast;
-					App->audio->PlayFx(App->audio->walkingWarrior_sound);
+					App->audio->PlayFx(App->audio->walkingUnit1_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &riderMovingEast;
-					App->audio->PlayFx(App->audio->walkingWarrior_sound);
+					App->audio->PlayFx(App->audio->walkingUnit1_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &riderMovingSouthEast;
-					App->audio->PlayFx(App->audio->walkingWarrior_sound);
+					App->audio->PlayFx(App->audio->walkingUnit1_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 					(*checkMovingAnimation)->currentAnimation = &riderMovingSouth;
-					App->audio->PlayFx(App->audio->walkingWarrior_sound);
+					App->audio->PlayFx(App->audio->walkingUnit1_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &riderMovingSouthWest;
-					App->audio->PlayFx(App->audio->walkingWarrior_sound);
+					App->audio->PlayFx(App->audio->walkingUnit1_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &riderMovingWest;
-					App->audio->PlayFx(App->audio->walkingWarrior_sound);
+					App->audio->PlayFx(App->audio->walkingUnit1_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &riderMovingNorthWest;
-					App->audio->PlayFx(App->audio->walkingWarrior_sound);
+					App->audio->PlayFx(App->audio->walkingUnit1_sound);
 				}
 			}
 
@@ -2238,50 +2292,50 @@ void j1EntityManager::UpdateAnimations() {
 				if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 					(*checkMovingAnimation)->currentAnimation = &slimeMovingNorth;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &slimeMovingNorthEast;
-				//	Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &slimeMovingEast;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &slimeMovingSouthEast;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 					(*checkMovingAnimation)->currentAnimation = &slimeMovingSouth;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &slimeMovingSouthWest;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &slimeMovingWest;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 	
 					(*checkMovingAnimation)->currentAnimation = &slimeMovingNorthWest;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 			}
 
@@ -2291,50 +2345,50 @@ void j1EntityManager::UpdateAnimations() {
 				if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingNorth;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingNorthEast;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingEast;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingSouthEast;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingSouth;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingSouthWest;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingWest;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &chromaKingMovingNorthWest;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 			}
 
@@ -2343,50 +2397,50 @@ void j1EntityManager::UpdateAnimations() {
 				if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH) {
 
 					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingNorth;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingNorthEast;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingEast;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_EAST) {
 
 					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingSouthEast;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH) {
 
 					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingSouth;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_SOUTH_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingSouthWest;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingWest;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 
 				else if ((*checkMovingAnimation)->unitOrientation == UNIT_ORIENTATION_NORTH_WEST) {
 
 					(*checkMovingAnimation)->currentAnimation = &explosiveBlobMovingNorthWest;
-					//Mix_PlayChannel(-1, App->audio->walkingWarrior_sound, 0);
+					App->audio->PlayFx(App->audio->enemy_sound);
 				}
 			}
 		}
