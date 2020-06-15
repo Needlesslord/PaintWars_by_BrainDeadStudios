@@ -34,7 +34,7 @@ In a world full of colour, a corruption spread, turning everything monochromatic
      + HUD: Quests (drop-down menu), buttons on the right (in order: go to Town Hall, Shop, Pause, Start over), resources bar (with all the resources, life timer)
      + Minimap: can be made bigger/smaller with [M], shows where in the map you are, has entities -in progress-
      + Visual and acustic feedback, all menus animated
-     + Tutorial, related to quests and dialog UI
+     + Tutorial, related to quests and dialog UI, improved
  - RESOURCES
      + 6 different resources working: paint, wood, max units, research (to improve units/buildings), metal scrap, titanium
  - ENTITIES: Allies, buildings and enemies
@@ -54,7 +54,7 @@ In a world full of colour, a corruption spread, turning everything monochromatic
        - Slime: Melee enemy
        - Explosive Blob: Kamikaze enemy -not fully implemented-
        - Rider: similar to warrior, but enemy -not fully implemented-
-       - Chroma King: Boss, Town Hall target, apperas at the 4th spawner destruït)
+       - Chroma King: Boss, Town Hall target, appears when the 4th spawner is destroyed to defend the last one)
  - ACTIONS
      + Movement and group movement
      + Collect resources and explore
@@ -196,6 +196,9 @@ Explorers are used to explore.
 
 ## Developers
 
+ - Marc San José - Designer, QA
+      + [Github](https://github.com/marcsjm19)
+      + [Linkedin](https://www.linkedin.com/in/marc-san-jos%C3%A9-mart%C3%ADnez-6239361a3/)
  - Enric-G. Durán - Co-Lead UI Designer, Lead Artist
       + [Github](https://github.com/EnricGDV)
       + [Linkedin](https://www.linkedin.com/in/enric-guillem-dur%C3%A1n-vilar-9a1932138/)
@@ -211,10 +214,6 @@ Explorers are used to explore.
  - Núria Lamonja - **Team Leader**, Management, Community Manager, Social Media, Co-Lead UI Designer, Music
       + [Github](https://github.com/Needlesslord)
       + [Linkedin](https://es.linkedin.com/in/needlesslord)
-
-Special thanks to Marc San José, he helped us implement the Fx for the game.
-      + [Github](https://github.com/marcsjm19)
-      + [Linkedin](https://www.linkedin.com/in/marc-san-jos%C3%A9-mart%C3%ADnez-6239361a3/)
 
 ## License
 
