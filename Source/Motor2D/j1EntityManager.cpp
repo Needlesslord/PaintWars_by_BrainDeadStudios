@@ -24,6 +24,7 @@
 #include "j1UI_Manager.h"
 #include "j1Particles.h"
 #include "j1SceneManager.h"
+#include "j1QuestManager.h"
 
 bool j1EntityManager::customLess(Entity* a, Entity* b)
 {
@@ -369,6 +370,7 @@ bool j1EntityManager::Update(float dt) {
 							App->player->woodCount.count -= 50;
 							AddEntity(ENTITY_TYPE_BARRACKS, mapCoordinates, App->entities, nullptr, 0);
 							hoveringEntityType == ENTITY_TYPE_NONE;
+							BarracksQuestDone = true;
 						}
 					}
 				}
@@ -789,7 +791,7 @@ bool j1EntityManager::Update(float dt) {
 				if (App->pathfinding->DistanceTo((*unitsToAttackLogic)->currentTile, (*unitsToAttackLogic)->target->currentTile) <= (*unitsToAttackLogic)->attackRadius) {
 
 					(*unitsToAttackLogic)->Attack((*unitsToAttackLogic)->target, dt);
-
+					AttackQuestDone = true;
 					std::list<Entity*>::iterator checkAttackAnimation = activeUnits.begin();
 					while (checkAttackAnimation != activeUnits.end()) {
 
@@ -1351,6 +1353,9 @@ bool j1EntityManager::PostUpdate() {
 
 						isSomethingSelected = true;
 
+						if ((*checkForSelectedEntities)->entityType == ENTITY_TYPE::ENTITY_TYPE_EXPLORER)
+							ExplorerQuestDone = true;
+
 						break;
 					}
 				}
@@ -1662,6 +1667,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			warrior->isAlive = true;
 			warrior->CreateEntityCollider(warrior->pos, (Entity*)warrior);
 			warrior->currentAnimation = &warriorIdle;
+			WarriorQuestDone = true;
 		}
 
 		else

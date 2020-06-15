@@ -117,6 +117,10 @@ public:
 	bool paintExtractorUpgraded = false;
 	bool woodProducersUpgraded = false;
 	bool ExtractorQuestDone = false;
+	bool BarracksQuestDone = false;
+	bool WarriorQuestDone = false;
+	bool AttackQuestDone = false;
+	bool ExplorerQuestDone = false;
 	//bool titaniumExtractorUpgraded = false;
 	//bool metalGathererUpgraded = false;
 

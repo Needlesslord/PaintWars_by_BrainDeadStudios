@@ -178,14 +178,18 @@ bool GameScene::Start()
 	questsCloseButton->hover_rect = { 263, 1443, 54, 54 };
 	questsCloseButton->click_rect = { 263, 1497, 54, 54 };
 
-	questsText1 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 90 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Create 1 Painter", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
-	questsText1Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 120 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
-	questsText2 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 160 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Create 1 Paint", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
-	questsText2Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 190 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Extractor 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
-	questsText3 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 230 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Extract Paint", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText1 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 90 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " CREATE 3 PAINTERS", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText1Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 120 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/3", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText2 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 160 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " CREATE 1 BARRACKS", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText2Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 190 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, "0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText3 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 230 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " EXTRACT PAINT", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
 	questsText3Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 260 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/150", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
-	questsText4 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 300 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " Upgrade 1 Building", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText4 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 300 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " UPGRADE 1 WARRIOR", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
 	questsText4Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 330 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText5 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 370 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " DESTROY 1 SPAWNER", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText5Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 330 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText6 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 430 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " FIND THE EXPLORER", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText6Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 330 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
 
 
 	//HUD - Dialog
@@ -195,9 +199,9 @@ bool GameScene::Start()
 	dialogClose = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 780 , 570 }, { 0 , 0 }, true, true, { 670, 1392, 28, 28 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_MEDIUM, 2);
 	dialogClose->hover_rect = { 636, 1392, 28, 28 };
 	dialogClose->click_rect = { 601, 1392, 28, 28 };
-	dialogText1 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 600 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
-	dialogText2 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 630 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
-	dialogText3 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 660 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_WHITE);
+	dialogText1 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 600 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	dialogText2 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 630 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	dialogText3 = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 330 , 660 }, { 2 , 0 }, false, true, { 0, 0, 0, 0 }, "DIALOG SYSTEM ", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
 	dialogPrev = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 695 , 660 }, { 0 , 0 }, true, true, { 499, 1431, 27, 28 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_MEDIUM,2);
 	dialogPrev->hover_rect = {457,1432,27,28};
 	dialogPrev->click_rect = {415,1432,27,28};
@@ -1016,18 +1020,53 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			DialogPage6 = true;
 			DialogPage5 = false;
 		}
+		else if (DialogPage5 == true) {
+			DialogPage6 = true;
+			DialogPage5 = false;
+		}
 		else if (DialogPage6 == true) {
-			
+			DialogPage7 = true;
+			DialogPage6 = false;
+		}
+		else if (DialogPage7 == true) {
+			DialogPage8 = true;
+			DialogPage7 = false;
+		}
+		else if (DialogPage8 == true) {
+			DialogPage9 = true;
+			DialogPage8 = false;
+		}
+		else if (DialogPage9 == true) {
+			DialogPage10 = true;
+			DialogPage9 = false;
+		}
+		else if (DialogPage10 == true) {
+			DialogPage11 = true;
+			DialogPage10 = false;
+		}
+		else if (DialogPage11 == true) {
+			DialogPage12 = true;
+			DialogPage11 = false;
+		}
+		else if (DialogPage12 == true) {
+			DialogPage13 = true;
+			DialogPage12 = false;
+		}
+		else if (DialogPage13 == true) {
+			DialogPage14 = true;
+			DialogPage13 = false;
+		}
+		else if (DialogPage14 == true) {
+			DialogPage15 = true;
+			DialogPage14 = false;
 		}
 	 
 	}
 
 	if (element == dialogPrev && type == GUI_Event::EVENT_ONCLICK)
 	{
-		if (DialogPage1 == true) {
-			
-		}
-		else if (DialogPage2 == true) {
+
+		if (DialogPage2 == true) {
 			DialogPage1 = true;
 			DialogPage2 = false;
 		}
@@ -1046,6 +1085,42 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		else if (DialogPage6 == true) {
 			DialogPage5 = true;
 			DialogPage6 = false;
+		}
+		if (DialogPage7 == true) {
+			DialogPage6 = true;
+			DialogPage7 = false;
+		}
+		else if (DialogPage8 == true) {
+			DialogPage7 = true;
+			DialogPage8 = false;
+		}
+		else if (DialogPage9 == true) {
+			DialogPage8 = true;
+			DialogPage9 = false;
+		}
+		else if (DialogPage10 == true) {
+			DialogPage9 = true;
+			DialogPage10 = false;
+		}
+		else if (DialogPage11 == true) {
+			DialogPage10 = true;
+			DialogPage11 = false;
+		}
+		if (DialogPage12 == true) {
+			DialogPage11 = true;
+			DialogPage12 = false;
+		}
+		else if (DialogPage13 == true) {
+			DialogPage12 = true;
+			DialogPage13 = false;
+		}
+		else if (DialogPage14 == true) {
+			DialogPage13 = true;
+			DialogPage14 = false;
+		}
+		else if (DialogPage15 == true) {
+			DialogPage14 = true;
+			DialogPage15 = false;
 		}
 	}
 	
@@ -1189,7 +1264,6 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			}
 			upgradePaintExtractorButton->enabled = false;
 			App->entities->paintExtractorUpgraded = true;
-			UpgradeEntityQuestCompleted = true;
 		}
 	}
 
@@ -1209,7 +1283,6 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			}
 			upgradeWoodProducerButton->enabled = false;
 			App->entities->woodProducersUpgraded = true;
-			UpgradeEntityQuestCompleted = true;
 		}
 	}
 
@@ -1237,17 +1310,17 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyPainterButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-25P";
+		shopHoverPrice->text = "-25P PAINTER";
 		shopHoverPrice->enabled = true;
 		//shopHoverPrice->map_position;
 	}
 	else if (element == buyExplorerButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-25P";
+		shopHoverPrice->text = "-25P EXPLORER";
 		shopHoverPrice->enabled = true;
 		//shopHoverPrice->map_position;
 	}
 	else if (element == buyWarriorButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-20P";
+		shopHoverPrice->text = "-20P WARRIOR";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyKnightButton && type == GUI_Event::EVENT_HOVER) {
@@ -1255,24 +1328,24 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyRangerButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-50P";
+		shopHoverPrice->text = "-50P RANGER";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == upgradeWarriorButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-200P";
+		shopHoverPrice->text = "-200P UP-WARRIOR";
 		shopHoverPrice->enabled = true;
 
 	}
 	else if (element == upgradePainterButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-200P";
+		shopHoverPrice->text = "-200P UP-PAINTER";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == upgradePaintExtractorButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-200M";
+		shopHoverPrice->text = "-200M UP-PAINT";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == upgradeWoodProducerButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-200M";
+		shopHoverPrice->text = "-200M UP-WOOD";
 		shopHoverPrice->enabled = true;
 	}
 	else {
@@ -1286,7 +1359,11 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	if (element == buyPainterButton && type == GUI_Event::EVENT_ONCLICK) {
 		list<Entity*>::iterator onlyTownhallSelected = App->entities->buildingsSelected.begin();
 		(*onlyTownhallSelected)->SpawnEntity(ENTITY_TYPE::ENTITY_TYPE_PAINTER);
-		PainterQuestCompleted = true;
+		painterscount++;
+		if (painterscount >= 3)
+		{
+			PaintersQuestCompleted = true;
+		}
 	}
 	else if (element == upgradePainterButton && type == GUI_Event::EVENT_ONCLICK) {
 
@@ -1326,6 +1403,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 				upgradeAllWarriors++;
 			}
 			App->entities->warriorsUpgraded = true;
+			UpgradeWarriorQuestCompleted = true;
 		}
 	}
 	else if (element == buyKnightButton && type == GUI_Event::EVENT_ONCLICK) {
@@ -1644,12 +1722,12 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	}
 
 	if (element == questsOpenButton && type == GUI_Event::EVENT_ONCLICK) {
-		if (PainterQuestActive == true) {
+		if (PaintersQuestActive == true) {
 			questsText1Count->enabled = true;
 			questsText1->enabled = true;
 		}
 
-		if (PaintExtractorQuestActive == true) {
+		if (BarracksQuestActive == true) {
 			questsText2Count->enabled = true;
 			questsText2->enabled = true;
 		}
@@ -1659,9 +1737,19 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			questsText3->enabled = true;
 		}
 
-		if (UpgradeEntityQuestActive == true) {
+		if (UpgradeWarriorQuestActive == true) {
 			questsText4Count->enabled = true;
 			questsText4->enabled = true;
+		}
+
+		if (DestroySpawnerQuestActive == true) {
+			questsText5Count->enabled = true;
+			questsText5->enabled = true;
+		}
+
+		if (ExplorerQuestActive == true) {
+			questsText6Count->enabled = true;
+			questsText6->enabled = true;
 		}
 	}
 
@@ -1671,10 +1759,14 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		questsText2Count->enabled = false;
 		questsText3Count->enabled = false;
 		questsText4Count->enabled = false;
+		questsText5Count->enabled = false;
+		questsText6Count->enabled = false;
 		questsText1->enabled = false;
 		questsText2->enabled = false;
 		questsText3->enabled = false;
 		questsText4->enabled = false;
+		questsText5->enabled = false;
+		questsText6->enabled = false;
 	}
 
 
@@ -2384,6 +2476,7 @@ void GameScene::WIN_LOSE_Manager()
 
 		if ((*checkForSpawners)->entityType == ENTITY_TYPE_SPAWNER) {
 			anySpawnerActive = true;
+			spawnerscount++;
 			break;
 		}
 		checkForSpawners++;
@@ -2415,55 +2508,123 @@ void GameScene::CreateDialogText()
 	DialogPage4 = false;
 	DialogPage5 = false;
 	DialogPage6 = false;
+	DialogPage7 = false;
+	DialogPage8 = false;
+	DialogPage9 = false;
+	DialogPage10 = false;
+	DialogPage11 = false;
+	DialogPage12 = false;
+	DialogPage13 = false;
+	DialogPage14 = false;
+	DialogPage15 = false;
 	/*PaintExtractorQuestCompletedSafe = false;
 	PainterQuestCompletedSafe = false;
 	ExtractPaintQuestCompletedSafe = false;
     UpgradeEntityQuestCompletedSafe=false;*/
 
-	PainterQuestCompleted = false;
-	PaintExtractorQuestCompleted = false;
+	PaintersQuestCompleted = false;
+	BarracksQuestCompleted = false;
 	ExtractPaintQuestCompleted = false;
-	UpgradeEntityQuestCompleted = false;
+	UpgradeWarriorQuestCompleted = false;
+	ExplorerQuestCompleted = false;
+	DestroySpawnerQuestCompleted = false;
 
-	PainterQuestActive = false;
-	PaintExtractorQuestActive = false;
+	PaintersQuestActive = false;
+	BarracksQuestActive = false;
 	ExtractPaintQuestActive = false;
-	UpgradeEntityQuestActive = false;
+	UpgradeWarriorQuestActive = false;
+	ExplorerQuestActive = false;
+	DestroySpawnerQuestActive = false;
 
 
 
-
-	Dialog_Text1_Line_1 = "GREETINGS KING OF PAINTLAND";
-	Dialog_Text1_Line_2 = "I WELCOME YOU TO YOUR KINGDOM";
-	Dialog_Text1_Line_3 = "I AM HERE TO GUIDE YOU! PRESS H";
-
-
-
-	Dialog_Text2_Line_1 = "NOW LETS GET STARTED!";
-	Dialog_Text2_Line_2 = "SELECT THE TOWN HALL";
-	Dialog_Text2_Line_3 = "AND BUY A PAINTER";
+	Dialog_Text1_Line_1 = "FINALLY OUR HERO HAS ARRIVED";
+	Dialog_Text1_Line_2 = "THE CORRUPTION IS SPREADING";
+	Dialog_Text1_Line_3 = "WE NEED TO DO SOMETHING";
 
 
 
-	Dialog_Text3_Line_1 = "WE WILL ALSO NEED TO ";
-	Dialog_Text3_Line_2 = "BUILD A PAINT EXTRACTOR";
-	Dialog_Text3_Line_3 = "NOW GO TO THE SHOP!";
+	Dialog_Text2_Line_1 = " ";
+	Dialog_Text2_Line_2 = "FAST - FIND A LAKE OF PAINT";
+	Dialog_Text2_Line_3 = " ";
 
 
 
-	Dialog_Text4_Line_1 = "WE HAVE TO GET STRONGER";
-	Dialog_Text4_Line_2 = "WAIT FOR THE EXTRACTORS";
-	Dialog_Text4_Line_3 = "TO COLLECT SOME PAINT!";
+	Dialog_Text3_Line_1 = "LEFT-CLICK THE PAINTER";
+	Dialog_Text3_Line_2 = "RIGHT-CLICK ON THE MAP";
+	Dialog_Text3_Line_3 = "CTRL FOR MULTIPLE SELECTION";
 
 
 
-	Dialog_Text5_Line_1 = "UPGRADE THE EXTRACTOR";
-	Dialog_Text5_Line_2 = "TO COLLECT EVEN MORE";
-	Dialog_Text5_Line_3 = "PAINT!";
+	Dialog_Text4_Line_1 = "NOW MOVE THE PAINTER TO";
+	Dialog_Text4_Line_2 = "THE EDGE OF THE PAINT LAKE";
+	Dialog_Text4_Line_3 = " ";
 
-	Dialog_Text6_Line_1 = "THATS ALL THE TUTORIAL FOR NOW";
-	Dialog_Text6_Line_2 = "WAIT FOR THE FULL RELEASE TO";
-	Dialog_Text6_Line_3 = "KEEP GOING";
+
+
+	Dialog_Text5_Line_1 = "NOW GET SOME PAINT";
+	Dialog_Text5_Line_2 = "WE WILL NEED RESOURCES TO";
+	Dialog_Text5_Line_3 = "DEFEND OURSELVES";
+
+
+
+	Dialog_Text6_Line_1 = "PRODUCE 150 PAINT";
+	Dialog_Text6_Line_2 = "/ CHECK QUESTS /";
+	Dialog_Text6_Line_3 = " ";
+
+
+
+	Dialog_Text7_Line_1 = "WAIT";
+	Dialog_Text7_Line_2 = "WE ARE NOT GETTING RESOURCES";
+	Dialog_Text7_Line_3 = "FAST ENOUGH";
+
+
+
+	Dialog_Text8_Line_1 = "CLICK THE SHOP ICON AND";
+	Dialog_Text8_Line_2 = "BUILD A PAINT EXTRACTOR";
+	Dialog_Text8_Line_3 = "ON THE LAKE";
+
+
+
+	Dialog_Text9_Line_1 = "IT WILL PRODUCE PAINT";
+	Dialog_Text9_Line_2 = "AUTOMATICALLY";
+	Dialog_Text9_Line_3 = " ";
+
+
+
+	Dialog_Text10_Line_1 = "SOME BUILDINGS PRODUCE";
+	Dialog_Text10_Line_2 = "AUTOMATICALLY AND SOME";
+	Dialog_Text10_Line_3 = "NEED PAINTERS";
+
+
+
+	Dialog_Text11_Line_1 = "TIME TO START THE OFFENSE";
+	Dialog_Text11_Line_2 = "BUILD A BARRACK";
+	Dialog_Text11_Line_3 = "/CHECK QUESTS/";
+
+
+
+	Dialog_Text12_Line_1 = "USE THE BARRACKS TO CREATE";
+	Dialog_Text12_Line_2 = "A WARRIOR AND SELECT IT";
+	Dialog_Text12_Line_3 = " ";
+
+
+
+	Dialog_Text13_Line_1 = "FIND AN ENEMY OR SPAWNER";
+	Dialog_Text13_Line_2 = "AND RIGHT-CLICK IT TO";
+	Dialog_Text13_Line_3 = "ATTACK";
+
+
+
+	Dialog_Text14_Line_1 = "NOW YOU KNOW THE BASICS";
+	Dialog_Text14_Line_2 = "FIND AND DESTROY THE 5";
+	Dialog_Text14_Line_3 = "SPAWNERS IN 15 MINUTES";
+
+
+
+	Dialog_Text15_Line_1 = "USE THE QUESTS IN THE";
+	Dialog_Text15_Line_2 = "TOP-LEFT CORNER AS A GUIDE";
+	Dialog_Text15_Line_3 = "THEY WILL GIVE YOU TITANIUM";
 	
 
 }
@@ -2479,26 +2640,96 @@ void GameScene::DialogManagerFunction()
 		dialogText1->text = Dialog_Text2_Line_1;
 		dialogText2->text = Dialog_Text2_Line_2;
 		dialogText3->text = Dialog_Text2_Line_3;
+		
 	}
 	else if (DialogPage3) {
 		dialogText1->text = Dialog_Text3_Line_1;
+		dialogText1->fontType = FONT::FONT_EXTRA_SMALL_RED;
 		dialogText2->text = Dialog_Text3_Line_2;
+		dialogText2->fontType = FONT::FONT_EXTRA_SMALL_RED;
 		dialogText3->text = Dialog_Text3_Line_3;
+		dialogText3->fontType = FONT::FONT_EXTRA_SMALL_RED;
 	}
 	else if (DialogPage4) {
 		dialogText1->text = Dialog_Text4_Line_1;
-		dialogText2->text = Dialog_Text4_Line_2;
-		dialogText3->text = Dialog_Text4_Line_3;
+		dialogText2->text = Dialog_Text4_Line_2;	
+		dialogText3->text = Dialog_Text4_Line_3;	 
 	}
 	else if (DialogPage5) {
 		dialogText1->text = Dialog_Text5_Line_1;
-		dialogText2->text = Dialog_Text5_Line_2;
-		dialogText3->text = Dialog_Text5_Line_3;
+		dialogText1->fontType = FONT::FONT_EXTRA_SMALL_WHITE;
+		dialogText2->text = Dialog_Text5_Line_2;	  
+		dialogText2->fontType = FONT::FONT_EXTRA_SMALL_WHITE;
+		dialogText3->text = Dialog_Text5_Line_3;	   
+		dialogText3->fontType = FONT::FONT_EXTRA_SMALL_WHITE;
 	}
 	else if (DialogPage6) {
 		dialogText1->text = Dialog_Text6_Line_1;
+		dialogText1->fontType = FONT::FONT_EXTRA_SMALL_RED;
 		dialogText2->text = Dialog_Text6_Line_2;
+		dialogText2->fontType = FONT::FONT_EXTRA_SMALL_RED;
 		dialogText3->text = Dialog_Text6_Line_3;
+		dialogText3->fontType = FONT::FONT_EXTRA_SMALL_RED;
+	}
+	else if (DialogPage7) {
+		dialogText1->text = Dialog_Text7_Line_1;
+		dialogText1->fontType = FONT::FONT_EXTRA_SMALL_WHITE;
+		dialogText2->text = Dialog_Text7_Line_2;
+		dialogText2->fontType = FONT::FONT_EXTRA_SMALL_WHITE;
+		dialogText3->text = Dialog_Text7_Line_3;
+		dialogText3->fontType = FONT::FONT_EXTRA_SMALL_WHITE;
+	}
+	else if (DialogPage8) {
+		dialogText1->text = Dialog_Text8_Line_1;
+		dialogText1->fontType = FONT::FONT_EXTRA_SMALL_RED;
+		dialogText2->text = Dialog_Text8_Line_2;
+		dialogText2->fontType = FONT::FONT_EXTRA_SMALL_RED;
+		dialogText3->text = Dialog_Text8_Line_3;
+		dialogText3->fontType = FONT::FONT_EXTRA_SMALL_RED;
+	}
+	else if (DialogPage9) {
+		dialogText1->text = Dialog_Text9_Line_1;
+		dialogText1->fontType = FONT::FONT_EXTRA_SMALL_WHITE;
+		dialogText2->text = Dialog_Text9_Line_2;
+		dialogText2->fontType = FONT::FONT_EXTRA_SMALL_WHITE;
+		dialogText3->text = Dialog_Text9_Line_3;
+		dialogText3->fontType = FONT::FONT_EXTRA_SMALL_WHITE;
+	}
+	else if (DialogPage10) {
+		dialogText1->text = Dialog_Text10_Line_1;
+		dialogText2->text = Dialog_Text10_Line_2;
+		dialogText3->text = Dialog_Text10_Line_3;
+	}
+	else if (DialogPage11) {
+		dialogText1->text = Dialog_Text11_Line_1;
+		dialogText1->fontType = FONT::FONT_EXTRA_SMALL_RED;
+		dialogText2->text = Dialog_Text11_Line_2;
+		dialogText2->fontType = FONT::FONT_EXTRA_SMALL_RED;
+		dialogText3->text = Dialog_Text11_Line_3;
+		dialogText3->fontType = FONT::FONT_EXTRA_SMALL_RED;
+	}
+	else if (DialogPage12) {
+		dialogText1->text = Dialog_Text12_Line_1;
+		dialogText2->text = Dialog_Text12_Line_2;
+		dialogText3->text = Dialog_Text12_Line_3;
+	}
+	else if (DialogPage13) {
+		dialogText1->text = Dialog_Text13_Line_1;
+		dialogText2->text = Dialog_Text13_Line_2;
+		dialogText3->text = Dialog_Text13_Line_3;
+	}
+	else if (DialogPage14) {
+		dialogText1->text = Dialog_Text14_Line_1;
+		dialogText1->fontType = FONT::FONT_EXTRA_SMALL_WHITE;
+		dialogText2->text = Dialog_Text14_Line_2;
+		dialogText2->fontType = FONT::FONT_EXTRA_SMALL_WHITE;
+		dialogText3->text = Dialog_Text14_Line_3;
+		dialogText3->fontType = FONT::FONT_EXTRA_SMALL_WHITE;
+	}
+	else if (DialogPage15) {
+		dialogText1->text = Dialog_Text15_Line_1;
+		dialogText2->text = Dialog_Text15_Line_2;
+		dialogText3->text = Dialog_Text15_Line_3;
 	}
 
 
@@ -2507,15 +2738,15 @@ void GameScene::DialogManagerFunction()
 void GameScene::QuestManagerFunction()
 {
 
-	if (PainterQuestCompleted == true) {
-		questsText1Count->text = "1/1";
+	if (PaintersQuestCompleted == true) {
+		questsText1Count->text = "3/3";
 		//Mix_PlayChannel(-1, App->audio->Quest_Audio, 0);
 	}
 
-	if (App->entities->ExtractorQuestDone == true) { //REMEMBER TO SET THIS BOOL TO FALSE IN CLEANUP OF GAME SCENE OR THIS QUEST WONT WORK
-		PaintExtractorQuestCompleted = true;
-		if (PaintExtractorQuestCompleted == true) {
-			questsText2Count->text = "extractor 1/1";
+	if (App->entities->BarracksQuestDone == true) { //REMEMBER TO SET THIS BOOL TO FALSE IN CLEANUP OF GAME SCENE OR THIS QUEST WONT WORK
+		BarracksQuestCompleted = true;
+		if (BarracksQuestCompleted == true) {
+			questsText2Count->text = "1/1";
 			//Mix_PlayChannel(-1, App->audio->Quest_Audio, 0);
 		}
 	}
@@ -2526,9 +2757,25 @@ void GameScene::QuestManagerFunction()
 		//Mix_PlayChannel(-1, App->audio->Quest_Audio, 0);
 	}
 
-	if (UpgradeEntityQuestCompleted == true) {
+	if (UpgradeWarriorQuestCompleted == true) {
 		questsText4Count->text = " 1/1";
 		//Mix_PlayChannel(-1, App->audio->Quest_Audio, 0);
+	}
+
+	if (spawnerscount < 4) { //REMEMBER TO SET THIS BOOL TO FALSE IN CLEANUP OF GAME SCENE OR THIS QUEST WONT WORK
+		DestroySpawnerQuestCompleted = true;
+		if (DestroySpawnerQuestCompleted == true) {
+			questsText5Count->text = "1/1";
+			//Mix_PlayChannel(-1, App->audio->Quest_Audio, 0);
+		}
+	}
+
+	if (App->entities->ExplorerQuestDone == true) { //REMEMBER TO SET THIS BOOL TO FALSE IN CLEANUP OF GAME SCENE OR THIS QUEST WONT WORK
+		ExplorerQuestCompleted = true;
+		if (ExplorerQuestCompleted == true) {
+			questsText2Count->text = "1/1";
+			//Mix_PlayChannel(-1, App->audio->Quest_Audio, 0);
+		}
 	}
 
 	if (DialogOperative == true) {
@@ -2546,30 +2793,21 @@ void GameScene::QuestManagerFunction()
 			dialogPrev->enabled = false;
 		}
 		else if (DialogPage2 == true) {
-			PainterQuestActive = true;
 
 			/*questsText1Count->enabled = true;
 			questsText1->enabled = true;*/
 
-			if (PainterQuestCompleted == true) {
-				dialogNext->enabled = true;
-				dialogPrev->enabled = true;
-			}
-			else {
-				dialogNext->enabled = false;
-				dialogPrev->enabled = true;
-			}
+			dialogNext->enabled = true;
+			dialogPrev->enabled = true;
 
 		}
 		else if (DialogPage3 == true) {
-			PaintExtractorQuestActive = true;
 
-			/*questsText2Count->enabled = true;
-			questsText2->enabled = true;*/
-
-			if (PaintExtractorQuestCompleted == true) {
+			PaintersQuestActive = true;
+			if (App->entities->destinations.size() > 0 || movedstuff) {
 				dialogNext->enabled = true;
 				dialogPrev->enabled = true;
+				movedstuff = true;
 			}
 			else {
 				dialogNext->enabled = false;
@@ -2578,12 +2816,12 @@ void GameScene::QuestManagerFunction()
 
 		}
 		else if (DialogPage4 == true) {
-			ExtractPaintQuestActive = true;
 
 			/*questsText3Count->enabled = true;
 			questsText3->enabled = true;*/
+			ExtractPaintQuestActive = true;
 
-			if (ExtractPaintQuestCompleted == true) {
+			if (App->player->paintCount.count > 50 ) {
 				dialogNext->enabled = true;
 				dialogPrev->enabled = true;
 			}
@@ -2594,19 +2832,102 @@ void GameScene::QuestManagerFunction()
 
 		}
 		else if (DialogPage5 == true) {
-			UpgradeEntityQuestActive = true;
 
-			/*questsText4Count->enabled = true;
-			questsText4->enabled = true;*/
+			dialogNext->enabled = true;
+			dialogPrev->enabled = true;
 
-			if (UpgradeEntityQuestCompleted == true) {
+		}
+		else if (DialogPage6 == true) {
+
+			if (App->player->paintCount.count > 70) {
 				dialogNext->enabled = true;
 				dialogPrev->enabled = true;
 			}
 			else {
 				dialogNext->enabled = false;
-
+				dialogPrev->enabled = true;
 			}
+
+		}
+		else if (DialogPage7 == true) {
+
+			dialogNext->enabled = true;
+			dialogPrev->enabled = true;
+
+		}
+		else if (DialogPage8 == true) {
+
+			if (App->entities->ExtractorQuestDone == true) {
+				dialogNext->enabled = true;
+				dialogPrev->enabled = true;
+			}
+			else {
+				dialogNext->enabled = false;
+				dialogPrev->enabled = true;
+			}
+
+		}
+		else if (DialogPage9 == true) {
+
+			dialogNext->enabled = true;
+			dialogPrev->enabled = true;
+
+		}
+		else if (DialogPage10 == true) {
+
+			dialogNext->enabled = true;
+			dialogPrev->enabled = true;
+
+		}
+		else if (DialogPage11 == true) {
+
+			BarracksQuestActive = true;
+			if (App->entities->BarracksQuestDone == true) {
+				dialogNext->enabled = true;
+				dialogPrev->enabled = true;
+			}
+			else {
+				dialogNext->enabled = false;
+				dialogPrev->enabled = true;
+			}
+
+		}
+		else if (DialogPage12 == true) {
+
+			if (App->entities->WarriorQuestDone == true) {
+				dialogNext->enabled = true;
+				dialogPrev->enabled = true;
+			}
+			else {
+				dialogNext->enabled = false;
+				dialogPrev->enabled = true;
+			}
+
+		}
+		else if (DialogPage13 == true) {
+
+			if (App->entities->AttackQuestDone == true) {
+				dialogNext->enabled = true;
+				dialogPrev->enabled = true;
+			}
+			else {
+				dialogNext->enabled = false;
+				dialogPrev->enabled = true;
+			}
+		}
+		else if (DialogPage14 == true) {
+
+		UpgradeWarriorQuestActive = true;
+		dialogNext->enabled = true;
+		dialogPrev->enabled = true;
+
+		}
+		else if (DialogPage15 == true) {
+
+		DestroySpawnerQuestActive = true;
+		ExplorerQuestActive = true;
+		dialogNext->enabled = false;
+		dialogPrev->enabled = true;
 
 		}
 	}

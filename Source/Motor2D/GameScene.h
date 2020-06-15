@@ -95,30 +95,41 @@ public:
 	j1UIElement* questsLabel = nullptr;
 	j1UIElement* questsOpenButton = nullptr;
 	j1UIElement* questsCloseButton = nullptr;
-	j1UIElement* questsText1 = nullptr;          //CREATE 1 PAINTER 
-	j1UIElement* questsText2 = nullptr;          //CREATE 1 PAINT EXTRACTOR
+	j1UIElement* questsText1 = nullptr;          //CREATE 3 PAINTERS
+	j1UIElement* questsText2 = nullptr;          //CREATE 1 BARRACKS
 	j1UIElement* questsText3 = nullptr;          //EXTRACT 150 PAINT
-	j1UIElement* questsText4 = nullptr;          //UPGRADE BUILDING
+	j1UIElement* questsText4 = nullptr;          //UPGRADE 1 WARRIOR
+	j1UIElement* questsText5 = nullptr;          //FIND 1 EXPLORER
+	j1UIElement* questsText6 = nullptr;          //DESTROY 1 SPAWNER
 	j1UIElement* questsText1Count = nullptr;
 	j1UIElement* questsText2Count = nullptr;
 	j1UIElement* questsText3Count = nullptr;
 	j1UIElement* questsText4Count = nullptr;
-	j1UIElement* questsCompleted1=nullptr;
+	j1UIElement* questsText5Count = nullptr;
+	j1UIElement* questsText6Count = nullptr;
+	j1UIElement* questsCompleted1= nullptr;
 	j1UIElement* questsCompleted2 = nullptr;
 	j1UIElement* questsCompleted3 = nullptr;
 	j1UIElement* questsCompleted4 = nullptr;
+	j1UIElement* questsCompleted5 = nullptr;
+	j1UIElement* questsCompleted6 = nullptr;
 	
 	
-
-	bool PainterQuestCompleted;
-	bool PaintExtractorQuestCompleted;
+	int painterscount;
+	int spawnerscount;
+	bool PaintersQuestCompleted;
+	bool BarracksQuestCompleted;
 	bool ExtractPaintQuestCompleted;
-	bool UpgradeEntityQuestCompleted;
+	bool UpgradeWarriorQuestCompleted;
+	bool ExplorerQuestCompleted;
+	bool DestroySpawnerQuestCompleted;
 
-	bool PainterQuestActive;
-	bool PaintExtractorQuestActive;
+	bool PaintersQuestActive;
+	bool BarracksQuestActive;
 	bool ExtractPaintQuestActive;
-	bool UpgradeEntityQuestActive;
+	bool UpgradeWarriorQuestActive;
+	bool ExplorerQuestActive;
+	bool DestroySpawnerQuestActive;
 
 
 	//HUD - Buttons
@@ -228,6 +239,8 @@ public:
 	j1UIElement* dialogPrev = nullptr;
 	j1UIElement* dialogClose = nullptr;
 
+	bool movedstuff = false;
+
 
 	//Animation
 
@@ -249,10 +262,36 @@ public:
 	char* Dialog_Text5_Line_1 = nullptr;
 	char* Dialog_Text5_Line_2 = nullptr;
 	char* Dialog_Text5_Line_3 = nullptr;
-
 	char* Dialog_Text6_Line_1 = nullptr;
 	char* Dialog_Text6_Line_2 = nullptr;
 	char* Dialog_Text6_Line_3 = nullptr;
+	char* Dialog_Text7_Line_1 = nullptr;
+	char* Dialog_Text7_Line_2 = nullptr;
+	char* Dialog_Text7_Line_3 = nullptr;
+	char* Dialog_Text8_Line_1 = nullptr;
+	char* Dialog_Text8_Line_2 = nullptr;
+	char* Dialog_Text8_Line_3 = nullptr;
+	char* Dialog_Text9_Line_1 = nullptr;
+	char* Dialog_Text9_Line_2 = nullptr;
+	char* Dialog_Text9_Line_3 = nullptr;
+	char* Dialog_Text10_Line_1 = nullptr;
+	char* Dialog_Text10_Line_2 = nullptr;
+	char* Dialog_Text10_Line_3 = nullptr;
+	char* Dialog_Text11_Line_1 = nullptr;
+	char* Dialog_Text11_Line_2 = nullptr;
+	char* Dialog_Text11_Line_3 = nullptr;
+	char* Dialog_Text12_Line_1 = nullptr;
+	char* Dialog_Text12_Line_2 = nullptr;
+	char* Dialog_Text12_Line_3 = nullptr;
+	char* Dialog_Text13_Line_1 = nullptr;
+	char* Dialog_Text13_Line_2 = nullptr;
+	char* Dialog_Text13_Line_3 = nullptr;
+	char* Dialog_Text14_Line_1 = nullptr;
+	char* Dialog_Text14_Line_2 = nullptr;
+	char* Dialog_Text14_Line_3 = nullptr;
+	char* Dialog_Text15_Line_1 = nullptr;
+	char* Dialog_Text15_Line_2 = nullptr;
+	char* Dialog_Text15_Line_3 = nullptr;
 
 	bool DialogPage1;
 	bool DialogPage2;
@@ -260,6 +299,15 @@ public:
 	bool DialogPage4;
 	bool DialogPage5;
 	bool DialogPage6;
+	bool DialogPage7;
+	bool DialogPage8;
+	bool DialogPage9;
+	bool DialogPage10;
+	bool DialogPage11;
+	bool DialogPage12;
+	bool DialogPage13;
+	bool DialogPage14;
+	bool DialogPage15;
 
 	bool DialogOperative;
 
