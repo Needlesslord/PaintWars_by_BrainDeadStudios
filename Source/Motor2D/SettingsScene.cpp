@@ -109,16 +109,16 @@ bool SettingsScene::PreUpdate()
 		vfxLabel->map_position.x = -300;
 		fullscreenLabel->map_position.x = -300;
 		mutelabel->map_position.x = -300;
-		resetButton->label->map_position.x = -300;
+		resetButton->label->map_position.x = 1305;
 		fxBar->map_position.x = 1300;
 		musicBar->map_position.x = 1300;
 		fxSlider->map_position.x = 1300;
 		musicSlider->map_position.x = 1300;
 		backButton->map_position.x = 1300;
+		backButton->label->map_position.x = 1305;
 		fullscreenButton->map_position.x = 1300;
 		mutebutton->map_position.x = 1300;
 		resetButton->map_position.x = 1300;
-		backButton->map_position.x = 1300;
 		
 		ResetPosition = false;
 	}
@@ -181,16 +181,15 @@ bool SettingsScene::Update(float dt)
 
 		if (resetButton->map_position.x > 500 && App->transition_manager->is_transitioning == false) {
 			resetButton->map_position = resetButton->map_position = { resetButton->map_position.x - 7,resetButton->map_position.y };
+			resetButton->label->map_position = resetButton->label->map_position = { resetButton->label->map_position.x - 7,resetButton->label->map_position.y };
 
 		}
 		if (backButton->map_position.x > 900 && App->transition_manager->is_transitioning == false) {
 			backButton->map_position = backButton->map_position = { backButton->map_position.x - 7,backButton->map_position.y };
+			backButton->label->map_position = backButton->label->map_position = { backButton->label->map_position.x - 7,backButton->label->map_position.y };
 
 		}
-		if (resetButton->label->map_position.x < 500 && App->transition_manager->is_transitioning == false) {
-			resetButton->label->map_position = resetButton->label->map_position = { resetButton->label->map_position.x + 7,resetButton->label->map_position.y };
-		}
-		else if (App->transition_manager->is_transitioning == false) {
+		else if (App->transition_manager->is_transitioning == false && musicBar->map_position.x <= 621) {
 			FinishedPosition = true; //ONLY ONE CHANGE TO TRUE IS NEEDED BECAUSE ALL BUTTONS GET TO THEIR POSITION AT THE SAME MOMENT
 		}
 	}

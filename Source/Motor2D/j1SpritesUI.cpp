@@ -79,22 +79,22 @@ bool j1UISprites::Start()
 
 	case TEXTURE::BACKGROUND_FOREST:
 
-		if (App->tex->Sprites_UI_Texture_General_ATLAS == nullptr)
-			App->tex->Sprites_UI_Texture_General_ATLAS = App->gui->Get_Texture_From_Image(TEXTURE::BACKGROUND_FOREST);
+		if (App->tex->Sprites_UI_Texture_Background_Forest == nullptr)
+			App->tex->Sprites_UI_Texture_Background_Forest = App->gui->Get_Texture_From_Image(TEXTURE::BACKGROUND_FOREST);
 
 		break;
 
 	case TEXTURE::BACKGROUND_SNOW:
 
-		if (App->tex->Sprites_UI_Texture_General_ATLAS == nullptr)
-			App->tex->Sprites_UI_Texture_General_ATLAS = App->gui->Get_Texture_From_Image(TEXTURE::BACKGROUND_SNOW);
+		if (App->tex->Sprites_UI_Texture_Background_Snow == nullptr)
+			App->tex->Sprites_UI_Texture_Background_Snow = App->gui->Get_Texture_From_Image(TEXTURE::BACKGROUND_SNOW);
 
 		break;
 
 	case TEXTURE::BACKGROUND_VOLCANO:
 
-		if (App->tex->Sprites_UI_Texture_General_ATLAS == nullptr)
-			App->tex->Sprites_UI_Texture_General_ATLAS = App->gui->Get_Texture_From_Image(TEXTURE::BACKGROUND_VOLCANO);
+		if (App->tex->Sprites_UI_Texture_Background_Volcano == nullptr)
+			App->tex->Sprites_UI_Texture_Background_Volcano = App->gui->Get_Texture_From_Image(TEXTURE::BACKGROUND_VOLCANO);
 
 		break;
 	}
@@ -159,12 +159,12 @@ bool j1UISprites::Update(float dt) {
 
 	case TEXTURE::BACKGROUND_SNOW:
 
-		App->render->RenderQueueUI(2, App->tex->Sprites_UI_Texture_Background_Forest, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
+		App->render->RenderQueueUI(2, App->tex->Sprites_UI_Texture_Background_Snow, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
 		break;
 
 	case TEXTURE::BACKGROUND_VOLCANO:
 
-		App->render->RenderQueueUI(2, App->tex->Sprites_UI_Texture_Background_Forest, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
+		App->render->RenderQueueUI(2, App->tex->Sprites_UI_Texture_Background_Volcano, map_position.x - App->render->camera.x, map_position.y - App->render->camera.y, rect, false, true, 0, 0, 0, 0, true);
 		break;
 
 	}
@@ -245,6 +245,14 @@ bool j1UISprites::CleanUp() {
 	if (App->tex->Sprites_UI_Texture_Background_Forest != nullptr) {
 		App->tex->UnLoad(App->tex->Sprites_UI_Texture_Background_Forest);
 		App->tex->Sprites_UI_Texture_Background_Forest = nullptr;
+	}
+	if (App->tex->Sprites_UI_Texture_Background_Snow != nullptr) {
+		App->tex->UnLoad(App->tex->Sprites_UI_Texture_Background_Snow);
+		App->tex->Sprites_UI_Texture_Background_Snow = nullptr;
+	}
+	if (App->tex->Sprites_UI_Texture_Background_Volcano != nullptr) {
+		App->tex->UnLoad(App->tex->Sprites_UI_Texture_Background_Volcano);
+		App->tex->Sprites_UI_Texture_Background_Volcano = nullptr;
 	}
 	
 

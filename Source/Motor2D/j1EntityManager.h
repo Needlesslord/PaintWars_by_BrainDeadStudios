@@ -126,6 +126,8 @@ public:
 
 	bool spacePressed = false;
 
+	bool bought = false;
+
 
 	static bool customLess(Entity* a, Entity* b);
 

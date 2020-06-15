@@ -316,6 +316,7 @@ bool GameScene::Start()
 	upgradePaintExtractorButton = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 80, 485 }, { 0,0 }, true, false, { 1985, 1966, 65, 82 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	upgradePaintExtractorButton->hover_rect = { 0, 1966, 65, 82 };
 	upgradePaintExtractorButton->click_rect = { 65, 1966, 65, 82 };
+	tagLabel = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 80, 485 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "-20M", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 
 
 	////
@@ -437,9 +438,9 @@ bool GameScene::Start()
 	PaintRollerAnimation = App->gui->AddElement(TypeOfUI::GUI_BUTTON, nullptr, { 400, -600 }, { 0,0 }, false, false, { 1493, 1275, 552, 770 }, nullptr, App->scenes, TEXTURE::ATLAS, FONT::FONT_SMALL, 6);
 	//PaintRollerAnimation->enabled = false;
 
-	BackgroundForest = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_FOREST);
-	BackgroundSnow = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_SNOW);
-	BackgroundVolcano = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, true, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_VOLCANO);
+	BackgroundForest = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, false, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_FOREST, FONT::FONT_MEDIUM, 1);
+	BackgroundSnow = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, false, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_SNOW, FONT::FONT_MEDIUM, 1);
+	BackgroundVolcano = App->gui->AddElement(TypeOfUI::GUI_IMAGE, nullptr, { 15 , 5 }, { 0 , 0 }, false, false, { 0, 1353, 1250, 35 }, nullptr, nullptr, TEXTURE::BACKGROUND_VOLCANO, FONT::FONT_MEDIUM, 1);
 	//////////////////
 	//	RESOURCES	//
 	//////////////////
@@ -500,16 +501,19 @@ bool GameScene::PreUpdate()
 		miniMapMINI_forest->enabled = true;
 		miniMapMINI_snow->enabled = false;
 		miniMapMINI_volcano->enabled = false;
+		BackgroundForest->enabled = true;
 	}
 	else if (App->scenes->Map_Snow_Active) {
 		miniMapMINI_snow->enabled = true;
 		miniMapMINI_volcano->enabled = false;
 		miniMapMINI_forest->enabled = false;
+		BackgroundSnow->enabled = true;
 	}
 	else if (App->scenes->Map_Volcano_Active) {
 		miniMapMINI_volcano->enabled = true;
 		miniMapMINI_snow->enabled = false;
 		miniMapMINI_forest->enabled = false;
+		BackgroundVolcano->enabled = true;
 	}
 	//PaintRollerAnimation->enabled = false;
 	
@@ -784,6 +788,24 @@ bool GameScene::Update(float dt)
 	//if (App->player->gameTimer.ReadSec() == 60) {
 	//	App->entities->AddEntity(ENTITY_TYPE_SLIME, { 45,  40 }, App->entities, nullptr, 0, true);
 	//}
+
+	if (App->entities->bought == true)
+	{
+		
+		tagTimer++;
+
+		if (tagTimer == 0)
+		{
+			App->input->GetMousePosition(tagLabel->map_position.x, tagLabel->map_position.y);
+			tagLabel->enabled = true;
+		}
+		else if (tagTimer > 100)
+		{
+			tagTimer = 0;
+			tagLabel->enabled = false;
+			App->entities->bought = false;
+		}
+	}
 
 	
 	return ret;
@@ -1291,61 +1313,75 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	if (element == buyPaintExtractorButton && type == GUI_Event::EVENT_HOVER) {
 
 		shopHoverPrice->text = "-20P PAINT EXTRACTOR";
+		tagLabel->text = "-20P";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyWoodProducerButton && type == GUI_Event::EVENT_HOVER) {
 		shopHoverPrice->text = "-20P WOOD PRODUCER";
+		tagLabel->text = "-20P";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyMetalGathererButton && type == GUI_Event::EVENT_HOVER) {
 		shopHoverPrice->text = "-20M WOOD PRODUCER";
+		tagLabel->text = "-20M";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyBarrackButton && type == GUI_Event::EVENT_HOVER) {
 		shopHoverPrice->text = "-50W BARRACKS";
+		tagLabel->text = "-50W";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyHouseButton && type == GUI_Event::EVENT_HOVER) {
 		shopHoverPrice->text = "-20W HOUSE";
+		tagLabel->text = "-20W";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyPainterButton && type == GUI_Event::EVENT_HOVER) {
 		shopHoverPrice->text = "-25P PAINTER";
+		tagLabel->text = "-25P";
 		shopHoverPrice->enabled = true;
 		//shopHoverPrice->map_position;
 	}
 	else if (element == buyExplorerButton && type == GUI_Event::EVENT_HOVER) {
 		shopHoverPrice->text = "-25P EXPLORER";
+		tagLabel->text = "-25P";
 		shopHoverPrice->enabled = true;
 		//shopHoverPrice->map_position;
 	}
 	else if (element == buyWarriorButton && type == GUI_Event::EVENT_HOVER) {
 		shopHoverPrice->text = "-20P WARRIOR";
+		tagLabel->text = "-20P";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyKnightButton && type == GUI_Event::EVENT_HOVER) {
-		shopHoverPrice->text = "-100P";
+		shopHoverPrice->text = "-100P KNIGHT";
+		tagLabel->text = "-100P";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == buyRangerButton && type == GUI_Event::EVENT_HOVER) {
 		shopHoverPrice->text = "-50P RANGER";
+		tagLabel->text = "-50P";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == upgradeWarriorButton && type == GUI_Event::EVENT_HOVER) {
 		shopHoverPrice->text = "-200P UP-WARRIOR";
+		tagLabel->text = "-200P";
 		shopHoverPrice->enabled = true;
 
 	}
 	else if (element == upgradePainterButton && type == GUI_Event::EVENT_HOVER) {
 		shopHoverPrice->text = "-200P UP-PAINTER";
+		tagLabel->text = "-200P";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == upgradePaintExtractorButton && type == GUI_Event::EVENT_HOVER) {
 		shopHoverPrice->text = "-200M UP-PAINT";
+		tagLabel->text = "-200M";
 		shopHoverPrice->enabled = true;
 	}
 	else if (element == upgradeWoodProducerButton && type == GUI_Event::EVENT_HOVER) {
 		shopHoverPrice->text = "-200M UP-WOOD";
+		tagLabel->text = "-200M";
 		shopHoverPrice->enabled = true;
 	}
 	else {
@@ -1364,6 +1400,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 		{
 			PaintersQuestCompleted = true;
 		}
+		App->entities->bought = true;
 	}
 	else if (element == upgradePainterButton && type == GUI_Event::EVENT_ONCLICK) {
 
@@ -1375,6 +1412,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 
 				(*upgradeAllPainters)->extractionRate *= 1.33f;
 				upgradeAllPainters++;
+				App->entities->bought = true;
 			}
 			App->entities->paintersUpgraded = true;
 		}
@@ -1383,6 +1421,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	else if (element == buyExplorerButton && type == GUI_Event::EVENT_ONCLICK) {
 		list<Entity*>::iterator onlyTownhallSelected = App->entities->buildingsSelected.begin();
 		(*onlyTownhallSelected)->SpawnEntity(ENTITY_TYPE::ENTITY_TYPE_EXPLORER);
+		App->entities->bought = true;
 	}
 
 	//Barracks shop
@@ -1390,6 +1429,7 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 	if (element == buyWarriorButton && type == GUI_Event::EVENT_ONCLICK) {
 		list<Entity*>::iterator onlyBarracksSelected = App->entities->buildingsSelected.begin();
 		(*onlyBarracksSelected)->SpawnEntity(ENTITY_TYPE::ENTITY_TYPE_WARRIOR);
+		App->entities->bought = true;
 	}
 	else if (element == upgradeWarriorButton && type == GUI_Event::EVENT_ONCLICK) {
 
@@ -1404,15 +1444,18 @@ void GameScene::GUI_Event_Manager(GUI_Event type, j1UIElement* element)
 			}
 			App->entities->warriorsUpgraded = true;
 			UpgradeWarriorQuestCompleted = true;
+			App->entities->bought = true;
 		}
 	}
 	else if (element == buyKnightButton && type == GUI_Event::EVENT_ONCLICK) {
 		list<Entity*>::iterator onlyBarracksSelected = App->entities->buildingsSelected.begin();
 		(*onlyBarracksSelected)->SpawnEntity(ENTITY_TYPE::ENTITY_TYPE_KNIGHT);
+		App->entities->bought = true;
 	}
 	else if (element == buyRangerButton && type == GUI_Event::EVENT_ONCLICK) {
 		list<Entity*>::iterator onlyBarracksSelected = App->entities->buildingsSelected.begin();
 		(*onlyBarracksSelected)->SpawnEntity(ENTITY_TYPE::ENTITY_TYPE_RANGER);
+		App->entities->bought = true;
 	}
 
 
