@@ -79,15 +79,16 @@ public:
 	Mix_Chunk*	Spawner_Destroyed;
 	Mix_Chunk*	time_sound;
 	uint		attack_Sound;//
-	uint		walkingPainter_sound;//
-	uint		walkingWarrior_sound;//
+	uint		walkingUnit2_sound;//
+	uint		walkingUnit1_sound;//
 	uint		knightAttack_Sound;//
+	uint		enemy_sound;//
 	Mix_Chunk*	buy1_sound;
 	Mix_Chunk*	buy2_sound;
 	Mix_Chunk*	spawnFromHall;
 	Mix_Chunk*	birds_sound;
 	//Mix_Chunk*	knight_sound;
-	Mix_Chunk*	explorer_sound;
+	//Mix_Chunk*	explorer_sound;
 	Mix_Chunk*	enemyDeath_sound;
 	Mix_Chunk*	crickets_sound;
 	Mix_Chunk*	braindead_sound;
