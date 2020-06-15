@@ -69,7 +69,7 @@ void Ranger::Attack(Entity* target, float dt) {
 		attackCooldown = 0.0f;
 
 		// TODO: change
-		App->audio->PlayFx(App->audio->warriorAttack_Sound);
+		App->audio->PlayFx(App->audio->attack_Sound);
 
 		//TODO: move to Entity manager when something dies
 		if (target->GetCurrLife() <= 0)
