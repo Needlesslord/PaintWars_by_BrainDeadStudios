@@ -14,7 +14,7 @@
     <ProjectGuid>{2AF9969B-F202-497B-AF30-7BEF9CE8005E}</ProjectGuid>
     <RootNamespace>programacio_2</RootNamespace>
     <ProjectName>PaintWars_by_BrainDeadStudios</ProjectName>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -215,6 +215,7 @@
     <ClInclude Include="Random.h" />
     <ClInclude Include="Ranger.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
     <ClInclude Include="Rider.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="j1SceneManager.h" />
@@ -243,6 +244,9 @@
       <SubType>Designer</SubType>
     </Xml>
     <Xml Include="..\Game\save_game.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="PaintWars_by_BrainDeadStudios.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

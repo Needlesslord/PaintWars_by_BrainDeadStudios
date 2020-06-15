@@ -478,6 +478,7 @@
     <ClInclude Include="Particle.h">
       <Filter>Motor  ========\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="resource1.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">
@@ -545,5 +546,8 @@
     <Xml Include="..\Game\config.xml">
       <Filter>Motor  ========\XML</Filter>
     </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="PaintWars_by_BrainDeadStudios.rc" />
   </ItemGroup>
 </Project>
