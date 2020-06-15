@@ -345,7 +345,7 @@ bool GameScene::Start()
 	//////
 
 	//shopHoverPrice =App->gui->AddElement(TypeOfUI::GUI_BUTTON, shopImage, { 210 , 680 }, { 0,0 }, true, false, { 0, 0, 0, 0 }, "0", App->scenes, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_RED, 6);
-	shopHoverPrice = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 210 , 680 }, { 0 , 0 }, false, false, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE, 9);
+	shopHoverPrice = App->gui->AddElement(TypeOfUI::GUI_LABEL, nullptr, { 210 , 680 }, { 0 , 0 }, false, false, { 0, 0, 0, 0 }, "0", nullptr, TEXTURE::ATLAS, FONT::FONT_SMALL_RED, 6);
 	
 
 	//HUD - MiniMap
