@@ -179,7 +179,7 @@ SDL_Rect& j1FogOfWar::GetFOWMetaRect(FOW_TileState state) {
 	//uint real_sprite_pos = uint(state) - (uint(FOW_TileState::UNVISITED)); // tile inside the FOWmeta spritesheet
 	uint spritex = 0;
 	if (state == FOW_TileState::FOGGED)
-		spritex = 150;
+		spritex = 0;
 	else if (state == FOW_TileState::UNVISITED)
 		spritex = 300;
 	else
@@ -201,13 +201,18 @@ void j1FogOfWar::SetVisibilityTile(iPoint pos, FOW_TileState state) {
 // We will manage the bool is_visible in the fow_entities, entities from the entity manager should check this value of
 // their own fow_entity to determine if they're visible
 void j1FogOfWar::ManageEntitiesVisibility() {
+
 	for (std::list<FOW_Entity*>::iterator item = fow_entities.begin(); item != fow_entities.end(); ++item) {
+
 		int8_t st = GetVisibilityTileAt((*item)->position);
+
 		// If the tile isn't visible or a smoothing tile from black to Fogged
 		if (st == (int8_t)FOW_TileState::VISIBLE) {
+		
 			(*item)->is_visible = true;
 		}
 		else {
+			
 			(*item)->is_visible = false;
 		}
 	}
@@ -240,7 +245,9 @@ void j1FogOfWar::ManageEntitiesFOWManipulation() {
 			// To ensure we take the tiles that are no longer in the LOS, we compare it with the prev_LOS, with the function TileInsideList
 
 			for (std::list<iPoint>::const_iterator tile = prev_LOS.cbegin(); tile != prev_LOS.end(); tile++) {
+
 				if (TileInsideList((*tile), (*item)->LOS) == false) {
+
 					SetVisibilityTile((*tile), FOW_TileState::FOGGED);
 				}
 			}
