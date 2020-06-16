@@ -1718,7 +1718,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 	else if (entityType == ENTITY_TYPE_WARRIOR) {
 
 		Warrior* warrior = new Warrior(tile, damage, this, creator);
-
+		WarriorQuestDone = true;
 		if (spawnAutomatically) {
 
 			activeEntities.push_back((Entity*)warrior);
@@ -1726,7 +1726,7 @@ Entity* j1EntityManager::AddEntity(ENTITY_TYPE entityType, iPoint tile, j1Module
 			warrior->isAlive = true;
 			warrior->CreateEntityCollider(warrior->pos, (Entity*)warrior);
 			warrior->currentAnimation = &warriorIdle;
-			WarriorQuestDone = true;
+			
 		}
 
 		else

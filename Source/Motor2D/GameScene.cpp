@@ -191,9 +191,9 @@ bool GameScene::Start()
 	questsText4 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 300 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " UPGRADE 1 WARRIOR", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
 	questsText4Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 330 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
 	questsText5 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 370 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " DESTROY 1 SPAWNER", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
-	questsText5Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 330 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText5Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 400 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
 	questsText6 = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 430 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " FIND THE EXPLORER", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
-	questsText6Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 330 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
+	questsText6Count = App->gui->AddElement(TypeOfUI::GUI_LABEL, questsImage, { 15 , 460 }, { 2 , 0 }, false, false, { 0, 0, 0, 0 }, " 0/1", nullptr, TEXTURE::ATLAS, FONT::FONT_EXTRA_SMALL_WHITE);
 
 
 	//HUD - Dialog
